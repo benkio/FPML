@@ -1,0 +1,136 @@
+grammar it.unibo.FPML with org.eclipse.xtext.common.Terminals
+
+generate fPML "http://www.unibo.it/FPML"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+///////////////////////////////////////////////////////////////
+// Entry element
+//////////////////////////////////////////////////////////////
+Model:
+	elements+=PureBlock
+	elements+=EffectFullBlock;
+
+//////////////////////////////////////////////////////////////
+// Outer Blocks
+//////////////////////////////////////////////////////////////
+
+PureBlock:
+	'Pure' '{'
+		elements+=PureFunctionBlock
+		elements+=DataBlock
+	'}';
+
+PureFunctionBlock:
+	{PureFunctionBlock} 'Functions' '{'
+		(features+=PureFunction)*
+	'}';
+
+DataBlock:
+	{DataBlock} 'Data' '{'
+		(elements+=Data)*
+	'}';
+
+EffectFullBlock:
+    'Effects' '{'
+    	(features+=EffectFullFunction)*
+		main=MainFunc
+    '}';
+
+/////////////////////////////////////////////////////////////////
+// Outer Block Elements
+/////////////////////////////////////////////////////////////////
+
+Data:
+    name=ID ':' content=Adt;
+
+Adt:
+      Argument
+    | Value
+    | SumType
+    | ProdType;
+
+SumType:
+    '(' SumAdtElements+=(ValueType | Value) ('+' SumAdtElements+=(ValueType | Value))+ ')';
+
+ProdType:
+    '(' ProdAdtElements+=(ValueType | Value) ('*' ProdAdtElements+=(ValueType | Value))+ ')';
+
+PureFunction:
+	'def' returnType=ValueType name=ID '(' arg=Argument ')' ':' '{' functionBody=FunctionBodyPure '}';
+
+EffectFullFunction:
+	'def' returnType=IOType name=ID '(' arg=EffectFullArgument ')' ':' '{'  functionBody=FunctionBodyEffectFull '}';
+
+MainFunc:
+	'IO' returnType=UnitType 'main' ':' '{' functionBody=FunctionBodyEffectFull '}';
+
+///////////////////////////////////////////////////////////////////
+// Function Body Elements
+///////////////////////////////////////////////////////////////////
+
+ChainElement:
+    Function | Data;
+
+InitialPureChainElement:
+	PureFunction | Data;
+
+Function:
+    PureFunction | EffectFullFunction;
+
+EffectFullArgument:
+	type=Type (name=ID)?;
+
+Argument:
+	type=ValueType name=ID;
+
+FunctionBodyPure:
+    {FunctionBodyPure}		 EMPTY_FUNCTION_BODY | CompositionFunctionBodyPure;
+FunctionBodyEffectFull:
+  	{FunctionBodyEffectFull} EMPTY_FUNCTION_BODY | CompositionFunctionBodyEffect;
+
+terminal EMPTY_FUNCTION_BODY:
+    'Undefined';
+
+CompositionFunctionBodyPure:
+    ((functionChain+=[InitialPureChainElement]) '|>' (functionChain+=[PureFunction])) ( '|>' (functionChain+=[PureFunction]))*;
+CompositionFunctionBodyEffect:
+    ((functionChain+=[ChainElement]) '>>=' (functionChain+=[ChainElement])) ( '>>=' (functionChain+=[ChainElement]))*;
+
+//////////////////////////////////////////////////////////////////////
+// Types
+//////////////////////////////////////////////////////////////////////
+
+IOType:
+	'IO' type=Type ;
+
+ValueType:
+	IntegerType | StringType | DataType;
+
+Type:
+	ValueType | UnitType;
+
+IntegerType:
+	{IntegerType} type="Int";
+
+StringType:
+	{StringType} type="String";
+
+UnitType:
+	{UnitType} type="Unit";
+
+DataType:
+    {DataType} 'ref' type=[Data];
+
+////////////////////////////////////////////////////////////////////
+// Values
+////////////////////////////////////////////////////////////////////
+
+Value returns ValueType:
+    IntValue | StringValue | UnitValue;
+
+IntValue returns IntegerType: INT;
+
+StringValue returns StringType: STRING;
+
+UnitValue returns UnitType: '()';
