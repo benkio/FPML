@@ -217,6 +217,15 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.EMPTY_FUNCTION_BODY:
+      {
+        EmptyFunctionBody emptyFunctionBody = (EmptyFunctionBody)theEObject;
+        T result = caseEmptyFunctionBody(emptyFunctionBody);
+        if (result == null) result = caseFunctionBodyPure(emptyFunctionBody);
+        if (result == null) result = caseFunctionBodyEffectFull(emptyFunctionBody);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE:
       {
         CompositionFunctionBodyPure compositionFunctionBodyPure = (CompositionFunctionBodyPure)theEObject;
@@ -600,6 +609,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFunctionBodyEffectFull(FunctionBodyEffectFull object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Empty Function Body</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Empty Function Body</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEmptyFunctionBody(EmptyFunctionBody object)
   {
     return null;
   }

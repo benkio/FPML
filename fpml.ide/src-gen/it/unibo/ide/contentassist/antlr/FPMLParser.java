@@ -63,8 +63,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMainFuncAccess().getGroup(), "rule__MainFunc__Group__0");
 					put(grammarAccess.getEffectFullArgumentAccess().getGroup(), "rule__EffectFullArgument__Group__0");
 					put(grammarAccess.getArgumentAccess().getGroup(), "rule__Argument__Group__0");
-					put(grammarAccess.getFunctionBodyPureAccess().getGroup_0(), "rule__FunctionBodyPure__Group_0__0");
-					put(grammarAccess.getFunctionBodyEffectFullAccess().getGroup_0(), "rule__FunctionBodyEffectFull__Group_0__0");
+					put(grammarAccess.getEmptyFunctionBodyAccess().getGroup(), "rule__EmptyFunctionBody__Group__0");
 					put(grammarAccess.getCompositionFunctionBodyPureAccess().getGroup(), "rule__CompositionFunctionBodyPure__Group__0");
 					put(grammarAccess.getCompositionFunctionBodyPureAccess().getGroup_0(), "rule__CompositionFunctionBodyPure__Group_0__0");
 					put(grammarAccess.getCompositionFunctionBodyPureAccess().getGroup_1(), "rule__CompositionFunctionBodyPure__Group_1__0");
@@ -80,8 +79,8 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelAccess().getElementsAssignment_1(), "rule__Model__ElementsAssignment_1");
 					put(grammarAccess.getPureBlockAccess().getElementsAssignment_2(), "rule__PureBlock__ElementsAssignment_2");
 					put(grammarAccess.getPureBlockAccess().getElementsAssignment_3(), "rule__PureBlock__ElementsAssignment_3");
-					put(grammarAccess.getPureFunctionBlockAccess().getFeaturesAssignment_3(), "rule__PureFunctionBlock__FeaturesAssignment_3");
-					put(grammarAccess.getDataBlockAccess().getElementsAssignment_3(), "rule__DataBlock__ElementsAssignment_3");
+					put(grammarAccess.getPureFunctionBlockAccess().getFeaturesAssignment_2(), "rule__PureFunctionBlock__FeaturesAssignment_2");
+					put(grammarAccess.getDataBlockAccess().getElementsAssignment_2(), "rule__DataBlock__ElementsAssignment_2");
 					put(grammarAccess.getEffectFullBlockAccess().getFeaturesAssignment_2(), "rule__EffectFullBlock__FeaturesAssignment_2");
 					put(grammarAccess.getEffectFullBlockAccess().getMainAssignment_3(), "rule__EffectFullBlock__MainAssignment_3");
 					put(grammarAccess.getDataAccess().getNameAssignment_0(), "rule__Data__NameAssignment_0");

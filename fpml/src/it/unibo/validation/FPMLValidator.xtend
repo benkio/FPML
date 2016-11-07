@@ -17,7 +17,6 @@ import it.unibo.fPML.EffectFullFunction
 import it.unibo.validation.UtilitiesFunctions
 import it.unibo.fPML.InitialPureChainElement
 import it.unibo.fPML.MainFunc
-import it.unibo.fPML.impl.FPMLFactoryImpl
 
 /**
  * This class contains custom validation rules. 

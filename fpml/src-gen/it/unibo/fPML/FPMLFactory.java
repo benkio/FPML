@@ -195,6 +195,15 @@ public interface FPMLFactory extends EFactory
   FunctionBodyEffectFull createFunctionBodyEffectFull();
 
   /**
+   * Returns a new object of class '<em>Empty Function Body</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Empty Function Body</em>'.
+   * @generated
+   */
+  EmptyFunctionBody createEmptyFunctionBody();
+
+  /**
    * Returns a new object of class '<em>Composition Function Body Pure</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -171,6 +171,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createFunctionBodyEffectFullAdapter();
       }
       @Override
+      public Adapter caseEmptyFunctionBody(EmptyFunctionBody object)
+      {
+        return createEmptyFunctionBodyAdapter();
+      }
+      @Override
       public Adapter caseCompositionFunctionBodyPure(CompositionFunctionBodyPure object)
       {
         return createCompositionFunctionBodyPureAdapter();
@@ -518,6 +523,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFunctionBodyEffectFullAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EmptyFunctionBody <em>Empty Function Body</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EmptyFunctionBody
+   * @generated
+   */
+  public Adapter createEmptyFunctionBodyAdapter()
   {
     return null;
   }

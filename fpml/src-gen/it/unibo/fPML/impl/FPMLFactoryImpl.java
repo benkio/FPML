@@ -84,6 +84,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.ARGUMENT: return createArgument();
       case FPMLPackage.FUNCTION_BODY_PURE: return createFunctionBodyPure();
       case FPMLPackage.FUNCTION_BODY_EFFECT_FULL: return createFunctionBodyEffectFull();
+      case FPMLPackage.EMPTY_FUNCTION_BODY: return createEmptyFunctionBody();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE: return createCompositionFunctionBodyPure();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT: return createCompositionFunctionBodyEffect();
       case FPMLPackage.IO_TYPE: return createIOType();
@@ -305,6 +306,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     FunctionBodyEffectFullImpl functionBodyEffectFull = new FunctionBodyEffectFullImpl();
     return functionBodyEffectFull;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EmptyFunctionBody createEmptyFunctionBody()
+  {
+    EmptyFunctionBodyImpl emptyFunctionBody = new EmptyFunctionBodyImpl();
+    return emptyFunctionBody;
   }
 
   /**

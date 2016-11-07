@@ -14,6 +14,7 @@ import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBlock;
 import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
@@ -181,6 +182,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass functionBodyEffectFullEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass emptyFunctionBodyEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -723,6 +731,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getEmptyFunctionBody()
+  {
+    return emptyFunctionBodyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getCompositionFunctionBodyPure()
   {
     return compositionFunctionBodyPureEClass;
@@ -968,6 +986,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     functionBodyEffectFullEClass = createEClass(FUNCTION_BODY_EFFECT_FULL);
 
+    emptyFunctionBodyEClass = createEClass(EMPTY_FUNCTION_BODY);
+
     compositionFunctionBodyPureEClass = createEClass(COMPOSITION_FUNCTION_BODY_PURE);
     createEReference(compositionFunctionBodyPureEClass, COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
 
@@ -1032,6 +1052,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     effectFullFunctionEClass.getESuperTypes().add(this.getFunction());
     functionEClass.getESuperTypes().add(this.getChainElement());
     argumentEClass.getESuperTypes().add(this.getAdt());
+    emptyFunctionBodyEClass.getESuperTypes().add(this.getFunctionBodyPure());
+    emptyFunctionBodyEClass.getESuperTypes().add(this.getFunctionBodyEffectFull());
     compositionFunctionBodyPureEClass.getESuperTypes().add(this.getFunctionBodyPure());
     compositionFunctionBodyEffectEClass.getESuperTypes().add(this.getFunctionBodyEffectFull());
     valueTypeEClass.getESuperTypes().add(this.getAdt());
@@ -1102,6 +1124,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(functionBodyPureEClass, FunctionBodyPure.class, "FunctionBodyPure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(functionBodyEffectFullEClass, FunctionBodyEffectFull.class, "FunctionBodyEffectFull", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(emptyFunctionBodyEClass, EmptyFunctionBody.class, "EmptyFunctionBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(compositionFunctionBodyPureEClass, CompositionFunctionBodyPure.class, "CompositionFunctionBodyPure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCompositionFunctionBodyPure_FunctionChain(), this.getInitialPureChainElement(), null, "functionChain", null, 0, -1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

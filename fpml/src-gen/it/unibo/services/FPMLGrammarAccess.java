@@ -103,76 +103,68 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class PureFunctionBlockElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PureFunctionBlock");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cPureFunctionBlockAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cFunctionsKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cFeaturesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cFeaturesPureFunctionParserRuleCall_3_0 = (RuleCall)cFeaturesAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cFunctionsKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cFeaturesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cFeaturesPureFunctionParserRuleCall_2_0 = (RuleCall)cFeaturesAssignment_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//PureFunctionBlock:
-		//	{PureFunctionBlock} 'Functions' '{'
+		//	'Functions' '{'
 		//	features+=PureFunction*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{PureFunctionBlock} 'Functions' '{' features+=PureFunction* '}'
+		//'Functions' '{' features+=PureFunction* '}'
 		public Group getGroup() { return cGroup; }
 		
-		//{PureFunctionBlock}
-		public Action getPureFunctionBlockAction_0() { return cPureFunctionBlockAction_0; }
-		
 		//'Functions'
-		public Keyword getFunctionsKeyword_1() { return cFunctionsKeyword_1; }
+		public Keyword getFunctionsKeyword_0() { return cFunctionsKeyword_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
 		//features+=PureFunction*
-		public Assignment getFeaturesAssignment_3() { return cFeaturesAssignment_3; }
+		public Assignment getFeaturesAssignment_2() { return cFeaturesAssignment_2; }
 		
 		//PureFunction
-		public RuleCall getFeaturesPureFunctionParserRuleCall_3_0() { return cFeaturesPureFunctionParserRuleCall_3_0; }
+		public RuleCall getFeaturesPureFunctionParserRuleCall_2_0() { return cFeaturesPureFunctionParserRuleCall_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	public class DataBlockElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.DataBlock");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cDataBlockAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cDataKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cElementsDataParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cDataKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementsDataParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//DataBlock:
-		//	{DataBlock} 'Data' '{'
+		//	'Data' '{'
 		//	elements+=Data*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{DataBlock} 'Data' '{' elements+=Data* '}'
+		//'Data' '{' elements+=Data* '}'
 		public Group getGroup() { return cGroup; }
 		
-		//{DataBlock}
-		public Action getDataBlockAction_0() { return cDataBlockAction_0; }
-		
 		//'Data'
-		public Keyword getDataKeyword_1() { return cDataKeyword_1; }
+		public Keyword getDataKeyword_0() { return cDataKeyword_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
 		//elements+=Data*
-		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
+		public Assignment getElementsAssignment_2() { return cElementsAssignment_2; }
 		
 		//Data
-		public RuleCall getElementsDataParserRuleCall_3_0() { return cElementsDataParserRuleCall_3_0; }
+		public RuleCall getElementsDataParserRuleCall_2_0() { return cElementsDataParserRuleCall_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	public class EffectFullBlockElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EffectFullBlock");
@@ -696,26 +688,18 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class FunctionBodyPureElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.FunctionBodyPure");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cFunctionBodyPureAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final RuleCall cEMPTY_FUNCTION_BODYTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cEmptyFunctionBodyParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cCompositionFunctionBodyPureParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//FunctionBodyPure:
-		//	{FunctionBodyPure} EMPTY_FUNCTION_BODY | CompositionFunctionBodyPure;
+		//	EmptyFunctionBody | CompositionFunctionBodyPure;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{FunctionBodyPure} EMPTY_FUNCTION_BODY | CompositionFunctionBodyPure
+		//EmptyFunctionBody | CompositionFunctionBodyPure
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//{FunctionBodyPure} EMPTY_FUNCTION_BODY
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//{FunctionBodyPure}
-		public Action getFunctionBodyPureAction_0_0() { return cFunctionBodyPureAction_0_0; }
-		
-		//EMPTY_FUNCTION_BODY
-		public RuleCall getEMPTY_FUNCTION_BODYTerminalRuleCall_0_1() { return cEMPTY_FUNCTION_BODYTerminalRuleCall_0_1; }
+		//EmptyFunctionBody
+		public RuleCall getEmptyFunctionBodyParserRuleCall_0() { return cEmptyFunctionBodyParserRuleCall_0; }
 		
 		//CompositionFunctionBodyPure
 		public RuleCall getCompositionFunctionBodyPureParserRuleCall_1() { return cCompositionFunctionBodyPureParserRuleCall_1; }
@@ -723,29 +707,40 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class FunctionBodyEffectFullElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.FunctionBodyEffectFull");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cFunctionBodyEffectFullAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final RuleCall cEMPTY_FUNCTION_BODYTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cEmptyFunctionBodyParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cCompositionFunctionBodyEffectParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//FunctionBodyEffectFull:
-		//	{FunctionBodyEffectFull} EMPTY_FUNCTION_BODY | CompositionFunctionBodyEffect;
+		//	EmptyFunctionBody | CompositionFunctionBodyEffect;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{FunctionBodyEffectFull} EMPTY_FUNCTION_BODY | CompositionFunctionBodyEffect
+		//EmptyFunctionBody | CompositionFunctionBodyEffect
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//{FunctionBodyEffectFull} EMPTY_FUNCTION_BODY
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//{FunctionBodyEffectFull}
-		public Action getFunctionBodyEffectFullAction_0_0() { return cFunctionBodyEffectFullAction_0_0; }
-		
-		//EMPTY_FUNCTION_BODY
-		public RuleCall getEMPTY_FUNCTION_BODYTerminalRuleCall_0_1() { return cEMPTY_FUNCTION_BODYTerminalRuleCall_0_1; }
+		//EmptyFunctionBody
+		public RuleCall getEmptyFunctionBodyParserRuleCall_0() { return cEmptyFunctionBodyParserRuleCall_0; }
 		
 		//CompositionFunctionBodyEffect
 		public RuleCall getCompositionFunctionBodyEffectParserRuleCall_1() { return cCompositionFunctionBodyEffectParserRuleCall_1; }
+	}
+	public class EmptyFunctionBodyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EmptyFunctionBody");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cEmptyFunctionBodyAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cUndefinedKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//EmptyFunctionBody:
+		//	{EmptyFunctionBody} 'Undefined';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{EmptyFunctionBody} 'Undefined'
+		public Group getGroup() { return cGroup; }
+		
+		//{EmptyFunctionBody}
+		public Action getEmptyFunctionBodyAction_0() { return cEmptyFunctionBodyAction_0; }
+		
+		//'Undefined'
+		public Keyword getUndefinedKeyword_1() { return cUndefinedKeyword_1; }
 	}
 	public class CompositionFunctionBodyPureElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.CompositionFunctionBodyPure");
@@ -949,19 +944,19 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cTypeIntKeyword_1_0 = (Keyword)cTypeAssignment_1.eContents().get(0);
 		
 		//IntegerType:
-		//	{IntegerType} type="Int";
+		//	{IntegerType} type="int";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{IntegerType} type="Int"
+		//{IntegerType} type="int"
 		public Group getGroup() { return cGroup; }
 		
 		//{IntegerType}
 		public Action getIntegerTypeAction_0() { return cIntegerTypeAction_0; }
 		
-		//type="Int"
+		//type="int"
 		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
 		
-		//"Int"
+		//"int"
 		public Keyword getTypeIntKeyword_1_0() { return cTypeIntKeyword_1_0; }
 	}
 	public class StringTypeElements extends AbstractParserRuleElementFinder {
@@ -1121,7 +1116,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final ArgumentElements pArgument;
 	private final FunctionBodyPureElements pFunctionBodyPure;
 	private final FunctionBodyEffectFullElements pFunctionBodyEffectFull;
-	private final TerminalRule tEMPTY_FUNCTION_BODY;
+	private final EmptyFunctionBodyElements pEmptyFunctionBody;
 	private final CompositionFunctionBodyPureElements pCompositionFunctionBodyPure;
 	private final CompositionFunctionBodyEffectElements pCompositionFunctionBodyEffect;
 	private final IOTypeElements pIOType;
@@ -1164,7 +1159,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pArgument = new ArgumentElements();
 		this.pFunctionBodyPure = new FunctionBodyPureElements();
 		this.pFunctionBodyEffectFull = new FunctionBodyEffectFullElements();
-		this.tEMPTY_FUNCTION_BODY = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EMPTY_FUNCTION_BODY");
+		this.pEmptyFunctionBody = new EmptyFunctionBodyElements();
 		this.pCompositionFunctionBodyPure = new CompositionFunctionBodyPureElements();
 		this.pCompositionFunctionBodyEffect = new CompositionFunctionBodyEffectElements();
 		this.pIOType = new IOTypeElements();
@@ -1238,7 +1233,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PureFunctionBlock:
-	//	{PureFunctionBlock} 'Functions' '{'
+	//	'Functions' '{'
 	//	features+=PureFunction*
 	//	'}';
 	public PureFunctionBlockElements getPureFunctionBlockAccess() {
@@ -1250,7 +1245,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DataBlock:
-	//	{DataBlock} 'Data' '{'
+	//	'Data' '{'
 	//	elements+=Data*
 	//	'}';
 	public DataBlockElements getDataBlockAccess() {
@@ -1404,7 +1399,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FunctionBodyPure:
-	//	{FunctionBodyPure} EMPTY_FUNCTION_BODY | CompositionFunctionBodyPure;
+	//	EmptyFunctionBody | CompositionFunctionBodyPure;
 	public FunctionBodyPureElements getFunctionBodyPureAccess() {
 		return pFunctionBodyPure;
 	}
@@ -1414,7 +1409,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FunctionBodyEffectFull:
-	//	{FunctionBodyEffectFull} EMPTY_FUNCTION_BODY | CompositionFunctionBodyEffect;
+	//	EmptyFunctionBody | CompositionFunctionBodyEffect;
 	public FunctionBodyEffectFullElements getFunctionBodyEffectFullAccess() {
 		return pFunctionBodyEffectFull;
 	}
@@ -1423,10 +1418,14 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionBodyEffectFullAccess().getRule();
 	}
 	
-	//terminal EMPTY_FUNCTION_BODY:
-	//	'Undefined';
-	public TerminalRule getEMPTY_FUNCTION_BODYRule() {
-		return tEMPTY_FUNCTION_BODY;
+	//EmptyFunctionBody:
+	//	{EmptyFunctionBody} 'Undefined';
+	public EmptyFunctionBodyElements getEmptyFunctionBodyAccess() {
+		return pEmptyFunctionBody;
+	}
+	
+	public ParserRule getEmptyFunctionBodyRule() {
+		return getEmptyFunctionBodyAccess().getRule();
 	}
 	
 	//CompositionFunctionBodyPure:
@@ -1483,7 +1482,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//IntegerType:
-	//	{IntegerType} type="Int";
+	//	{IntegerType} type="int";
 	public IntegerTypeElements getIntegerTypeAccess() {
 		return pIntegerType;
 	}

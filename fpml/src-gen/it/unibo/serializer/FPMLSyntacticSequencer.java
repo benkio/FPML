@@ -26,23 +26,11 @@ public class FPMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getEMPTY_FUNCTION_BODYRule())
-			return getEMPTY_FUNCTION_BODYToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getINTRule())
+		if (ruleCall.getRule() == grammarAccess.getINTRule())
 			return getINTToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSTRINGRule())
 			return getSTRINGToken(semanticObject, ruleCall, node);
 		return "";
-	}
-	
-	/**
-	 * terminal EMPTY_FUNCTION_BODY:
-	 *     'Undefined';
-	 */
-	protected String getEMPTY_FUNCTION_BODYToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "Undefined";
 	}
 	
 	/**

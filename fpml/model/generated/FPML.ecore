@@ -74,6 +74,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionBodyPure"/>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionBodyEffectFull"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EmptyFunctionBody" eSuperTypes="#//FunctionBodyPure #//FunctionBodyEffectFull"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyPure" eSuperTypes="#//FunctionBodyPure">
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionChain" unique="false"
         upperBound="-1" eType="#//InitialPureChainElement"/>

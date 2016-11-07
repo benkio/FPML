@@ -13,9 +13,8 @@ import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBlock;
 import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.FunctionBodyEffectFull;
-import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
@@ -80,11 +79,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.EFFECT_FULL_FUNCTION:
 				sequence_EffectFullFunction(context, (EffectFullFunction) semanticObject); 
 				return; 
-			case FPMLPackage.FUNCTION_BODY_EFFECT_FULL:
-				sequence_FunctionBodyEffectFull(context, (FunctionBodyEffectFull) semanticObject); 
-				return; 
-			case FPMLPackage.FUNCTION_BODY_PURE:
-				sequence_FunctionBodyPure(context, (FunctionBodyPure) semanticObject); 
+			case FPMLPackage.EMPTY_FUNCTION_BODY:
+				sequence_EmptyFunctionBody(context, (EmptyFunctionBody) semanticObject); 
 				return; 
 			case FPMLPackage.IO_TYPE:
 				sequence_IOType(context, (IOType) semanticObject); 
@@ -177,7 +173,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DataBlock returns DataBlock
 	 *
 	 * Constraint:
-	 *     elements+=Data*
+	 *     elements+=Data+
 	 */
 	protected void sequence_DataBlock(ISerializationContext context, DataBlock semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -282,24 +278,14 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     FunctionBodyEffectFull returns FunctionBodyEffectFull
+	 *     FunctionBodyPure returns EmptyFunctionBody
+	 *     FunctionBodyEffectFull returns EmptyFunctionBody
+	 *     EmptyFunctionBody returns EmptyFunctionBody
 	 *
 	 * Constraint:
-	 *     {FunctionBodyEffectFull}
+	 *     {EmptyFunctionBody}
 	 */
-	protected void sequence_FunctionBodyEffectFull(ISerializationContext context, FunctionBodyEffectFull semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FunctionBodyPure returns FunctionBodyPure
-	 *
-	 * Constraint:
-	 *     {FunctionBodyPure}
-	 */
-	protected void sequence_FunctionBodyPure(ISerializationContext context, FunctionBodyPure semanticObject) {
+	protected void sequence_EmptyFunctionBody(ISerializationContext context, EmptyFunctionBody semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -329,7 +315,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     IntegerType returns IntegerType
 	 *
 	 * Constraint:
-	 *     type='Int'
+	 *     type='int'
 	 */
 	protected void sequence_IntegerType(ISerializationContext context, IntegerType semanticObject) {
 		if (errorAcceptor != null) {
@@ -405,7 +391,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     PureFunctionBlock returns PureFunctionBlock
 	 *
 	 * Constraint:
-	 *     features+=PureFunction*
+	 *     features+=PureFunction+
 	 */
 	protected void sequence_PureFunctionBlock(ISerializationContext context, PureFunctionBlock semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

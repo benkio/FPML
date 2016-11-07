@@ -653,6 +653,25 @@ public interface FPMLPackage extends EPackage
   int FUNCTION_BODY_EFFECT_FULL_FEATURE_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.EmptyFunctionBodyImpl <em>Empty Function Body</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.EmptyFunctionBodyImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getEmptyFunctionBody()
+   * @generated
+   */
+  int EMPTY_FUNCTION_BODY = 19;
+
+  /**
+   * The number of structural features of the '<em>Empty Function Body</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EMPTY_FUNCTION_BODY_FEATURE_COUNT = FUNCTION_BODY_PURE_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.CompositionFunctionBodyPureImpl <em>Composition Function Body Pure</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -660,7 +679,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getCompositionFunctionBodyPure()
    * @generated
    */
-  int COMPOSITION_FUNCTION_BODY_PURE = 19;
+  int COMPOSITION_FUNCTION_BODY_PURE = 20;
 
   /**
    * The feature id for the '<em><b>Function Chain</b></em>' reference list.
@@ -688,7 +707,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getCompositionFunctionBodyEffect()
    * @generated
    */
-  int COMPOSITION_FUNCTION_BODY_EFFECT = 20;
+  int COMPOSITION_FUNCTION_BODY_EFFECT = 21;
 
   /**
    * The feature id for the '<em><b>Function Chain</b></em>' reference list.
@@ -716,7 +735,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOType()
    * @generated
    */
-  int IO_TYPE = 21;
+  int IO_TYPE = 22;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -744,7 +763,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getValueType()
    * @generated
    */
-  int VALUE_TYPE = 22;
+  int VALUE_TYPE = 23;
 
   /**
    * The number of structural features of the '<em>Value Type</em>' class.
@@ -763,7 +782,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getType()
    * @generated
    */
-  int TYPE = 23;
+  int TYPE = 24;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -782,7 +801,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIntegerType()
    * @generated
    */
-  int INTEGER_TYPE = 24;
+  int INTEGER_TYPE = 25;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -810,7 +829,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getStringType()
    * @generated
    */
-  int STRING_TYPE = 25;
+  int STRING_TYPE = 26;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -838,7 +857,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 26;
+  int UNIT_TYPE = 27;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -866,7 +885,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 27;
+  int DATA_TYPE = 28;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1318,6 +1337,16 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EClass getFunctionBodyEffectFull();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.EmptyFunctionBody <em>Empty Function Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Empty Function Body</em>'.
+   * @see it.unibo.fPML.EmptyFunctionBody
+   * @generated
+   */
+  EClass getEmptyFunctionBody();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.CompositionFunctionBodyPure <em>Composition Function Body Pure</em>}'.
@@ -1874,6 +1903,16 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EClass FUNCTION_BODY_EFFECT_FULL = eINSTANCE.getFunctionBodyEffectFull();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.EmptyFunctionBodyImpl <em>Empty Function Body</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.EmptyFunctionBodyImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getEmptyFunctionBody()
+     * @generated
+     */
+    EClass EMPTY_FUNCTION_BODY = eINSTANCE.getEmptyFunctionBody();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.CompositionFunctionBodyPureImpl <em>Composition Function Body Pure</em>}' class.

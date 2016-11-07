@@ -22,12 +22,12 @@ PureBlock:
 	'}';
 
 PureFunctionBlock:
-	{PureFunctionBlock} 'Functions' '{'
+	'Functions' '{'
 		(features+=PureFunction)*
 	'}';
 
 DataBlock:
-	{DataBlock} 'Data' '{'
+	'Data' '{'
 		(elements+=Data)*
 	'}';
 
@@ -85,12 +85,12 @@ Argument:
 	type=ValueType name=ID;
 
 FunctionBodyPure:
-    {FunctionBodyPure}		 EMPTY_FUNCTION_BODY | CompositionFunctionBodyPure;
+		 EmptyFunctionBody | CompositionFunctionBodyPure;
 FunctionBodyEffectFull:
-  	{FunctionBodyEffectFull} EMPTY_FUNCTION_BODY | CompositionFunctionBodyEffect;
+  	     EmptyFunctionBody | CompositionFunctionBodyEffect;
 
-terminal EMPTY_FUNCTION_BODY:
-    'Undefined';
+EmptyFunctionBody:
+    {EmptyFunctionBody} 'Undefined';
 
 CompositionFunctionBodyPure:
     ((functionChain+=[InitialPureChainElement]) '|>' (functionChain+=[PureFunction])) ( '|>' (functionChain+=[PureFunction]))*;
@@ -111,7 +111,7 @@ Type:
 	ValueType | UnitType;
 
 IntegerType:
-	{IntegerType} type="Int";
+	{IntegerType} type="int";
 
 StringType:
 	{StringType} type="String";
