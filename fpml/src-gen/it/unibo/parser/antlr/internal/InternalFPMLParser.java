@@ -4490,23 +4490,62 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIntValue"
-    // InternalFPML.g:1728:1: ruleIntValue returns [EObject current=null] : this_INT_0= RULE_INT ;
+    // InternalFPML.g:1728:1: ruleIntValue returns [EObject current=null] : ( () ( (lv_value_1_0= RULE_INT ) ) ) ;
     public final EObject ruleIntValue() throws RecognitionException {
         EObject current = null;
 
-        Token this_INT_0=null;
+        Token lv_value_1_0=null;
 
 
         	enterRule();
 
         try {
-            // InternalFPML.g:1734:2: (this_INT_0= RULE_INT )
-            // InternalFPML.g:1735:2: this_INT_0= RULE_INT
+            // InternalFPML.g:1734:2: ( ( () ( (lv_value_1_0= RULE_INT ) ) ) )
+            // InternalFPML.g:1735:2: ( () ( (lv_value_1_0= RULE_INT ) ) )
             {
-            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_2); 
+            // InternalFPML.g:1735:2: ( () ( (lv_value_1_0= RULE_INT ) ) )
+            // InternalFPML.g:1736:3: () ( (lv_value_1_0= RULE_INT ) )
+            {
+            // InternalFPML.g:1736:3: ()
+            // InternalFPML.g:1737:4: 
+            {
 
-            		newLeafNode(this_INT_0, grammarAccess.getIntValueAccess().getINTTerminalRuleCall());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getIntValueAccess().getIntegerTypeAction_0(),
+            					current);
+            			
+
+            }
+
+            // InternalFPML.g:1743:3: ( (lv_value_1_0= RULE_INT ) )
+            // InternalFPML.g:1744:4: (lv_value_1_0= RULE_INT )
+            {
+            // InternalFPML.g:1744:4: (lv_value_1_0= RULE_INT )
+            // InternalFPML.g:1745:5: lv_value_1_0= RULE_INT
+            {
+            lv_value_1_0=(Token)match(input,RULE_INT,FOLLOW_2); 
+
+            					newLeafNode(lv_value_1_0, grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_1_0());
+            				
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getIntValueRule());
+            					}
+            					setWithLastConsumed(
+            						current,
+            						"value",
+            						lv_value_1_0,
+            						"org.eclipse.xtext.common.Terminals.INT");
+            				
+
+            }
+
+
+            }
+
+
+            }
+
 
             }
 
@@ -4527,7 +4566,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStringValue"
-    // InternalFPML.g:1742:1: entryRuleStringValue returns [EObject current=null] : iv_ruleStringValue= ruleStringValue EOF ;
+    // InternalFPML.g:1765:1: entryRuleStringValue returns [EObject current=null] : iv_ruleStringValue= ruleStringValue EOF ;
     public final EObject entryRuleStringValue() throws RecognitionException {
         EObject current = null;
 
@@ -4535,8 +4574,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:1742:52: (iv_ruleStringValue= ruleStringValue EOF )
-            // InternalFPML.g:1743:2: iv_ruleStringValue= ruleStringValue EOF
+            // InternalFPML.g:1765:52: (iv_ruleStringValue= ruleStringValue EOF )
+            // InternalFPML.g:1766:2: iv_ruleStringValue= ruleStringValue EOF
             {
              newCompositeNode(grammarAccess.getStringValueRule()); 
             pushFollow(FOLLOW_1);
@@ -4563,23 +4602,62 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStringValue"
-    // InternalFPML.g:1749:1: ruleStringValue returns [EObject current=null] : this_STRING_0= RULE_STRING ;
+    // InternalFPML.g:1772:1: ruleStringValue returns [EObject current=null] : ( () ( (lv_value_1_0= RULE_STRING ) ) ) ;
     public final EObject ruleStringValue() throws RecognitionException {
         EObject current = null;
 
-        Token this_STRING_0=null;
+        Token lv_value_1_0=null;
 
 
         	enterRule();
 
         try {
-            // InternalFPML.g:1755:2: (this_STRING_0= RULE_STRING )
-            // InternalFPML.g:1756:2: this_STRING_0= RULE_STRING
+            // InternalFPML.g:1778:2: ( ( () ( (lv_value_1_0= RULE_STRING ) ) ) )
+            // InternalFPML.g:1779:2: ( () ( (lv_value_1_0= RULE_STRING ) ) )
             {
-            this_STRING_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
+            // InternalFPML.g:1779:2: ( () ( (lv_value_1_0= RULE_STRING ) ) )
+            // InternalFPML.g:1780:3: () ( (lv_value_1_0= RULE_STRING ) )
+            {
+            // InternalFPML.g:1780:3: ()
+            // InternalFPML.g:1781:4: 
+            {
 
-            		newLeafNode(this_STRING_0, grammarAccess.getStringValueAccess().getSTRINGTerminalRuleCall());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getStringValueAccess().getStringTypeAction_0(),
+            					current);
+            			
+
+            }
+
+            // InternalFPML.g:1787:3: ( (lv_value_1_0= RULE_STRING ) )
+            // InternalFPML.g:1788:4: (lv_value_1_0= RULE_STRING )
+            {
+            // InternalFPML.g:1788:4: (lv_value_1_0= RULE_STRING )
+            // InternalFPML.g:1789:5: lv_value_1_0= RULE_STRING
+            {
+            lv_value_1_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
+
+            					newLeafNode(lv_value_1_0, grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_1_0());
+            				
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getStringValueRule());
+            					}
+            					setWithLastConsumed(
+            						current,
+            						"value",
+            						lv_value_1_0,
+            						"org.eclipse.xtext.common.Terminals.STRING");
+            				
+
+            }
+
+
+            }
+
+
+            }
+
 
             }
 
@@ -4600,7 +4678,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnitValue"
-    // InternalFPML.g:1763:1: entryRuleUnitValue returns [EObject current=null] : iv_ruleUnitValue= ruleUnitValue EOF ;
+    // InternalFPML.g:1809:1: entryRuleUnitValue returns [EObject current=null] : iv_ruleUnitValue= ruleUnitValue EOF ;
     public final EObject entryRuleUnitValue() throws RecognitionException {
         EObject current = null;
 
@@ -4608,8 +4686,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:1763:50: (iv_ruleUnitValue= ruleUnitValue EOF )
-            // InternalFPML.g:1764:2: iv_ruleUnitValue= ruleUnitValue EOF
+            // InternalFPML.g:1809:50: (iv_ruleUnitValue= ruleUnitValue EOF )
+            // InternalFPML.g:1810:2: iv_ruleUnitValue= ruleUnitValue EOF
             {
              newCompositeNode(grammarAccess.getUnitValueRule()); 
             pushFollow(FOLLOW_1);
@@ -4636,23 +4714,40 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnitValue"
-    // InternalFPML.g:1770:1: ruleUnitValue returns [EObject current=null] : otherlv_0= '()' ;
+    // InternalFPML.g:1816:1: ruleUnitValue returns [EObject current=null] : ( () otherlv_1= '()' ) ;
     public final EObject ruleUnitValue() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_0=null;
+        Token otherlv_1=null;
 
 
         	enterRule();
 
         try {
-            // InternalFPML.g:1776:2: (otherlv_0= '()' )
-            // InternalFPML.g:1777:2: otherlv_0= '()'
+            // InternalFPML.g:1822:2: ( ( () otherlv_1= '()' ) )
+            // InternalFPML.g:1823:2: ( () otherlv_1= '()' )
             {
-            otherlv_0=(Token)match(input,32,FOLLOW_2); 
+            // InternalFPML.g:1823:2: ( () otherlv_1= '()' )
+            // InternalFPML.g:1824:3: () otherlv_1= '()'
+            {
+            // InternalFPML.g:1824:3: ()
+            // InternalFPML.g:1825:4: 
+            {
 
-            		newLeafNode(otherlv_0, grammarAccess.getUnitValueAccess().getLeftParenthesisRightParenthesisKeyword());
-            	
+            				current = forceCreateModelElement(
+            					grammarAccess.getUnitValueAccess().getUnitTypeAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,32,FOLLOW_2); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getUnitValueAccess().getLeftParenthesisRightParenthesisKeyword_1());
+            		
+
+            }
+
 
             }
 

@@ -813,13 +813,22 @@ public interface FPMLPackage extends EPackage
   int INTEGER_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER_TYPE__VALUE = VALUE_TYPE_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Integer Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INTEGER_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 1;
+  int INTEGER_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.StringTypeImpl <em>String Type</em>}' class.
@@ -841,13 +850,22 @@ public interface FPMLPackage extends EPackage
   int STRING_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_TYPE__VALUE = VALUE_TYPE_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>String Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STRING_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 1;
+  int STRING_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.UnitTypeImpl <em>Unit Type</em>}' class.
@@ -1453,6 +1471,17 @@ public interface FPMLPackage extends EPackage
   EAttribute getIntegerType_Type();
 
   /**
+   * Returns the meta object for the attribute '{@link it.unibo.fPML.IntegerType#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see it.unibo.fPML.IntegerType#getValue()
+   * @see #getIntegerType()
+   * @generated
+   */
+  EAttribute getIntegerType_Value();
+
+  /**
    * Returns the meta object for class '{@link it.unibo.fPML.StringType <em>String Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1472,6 +1501,17 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EAttribute getStringType_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link it.unibo.fPML.StringType#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see it.unibo.fPML.StringType#getValue()
+   * @see #getStringType()
+   * @generated
+   */
+  EAttribute getStringType_Value();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.UnitType <em>Unit Type</em>}'.
@@ -2007,6 +2047,14 @@ public interface FPMLPackage extends EPackage
     EAttribute INTEGER_TYPE__TYPE = eINSTANCE.getIntegerType_Type();
 
     /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INTEGER_TYPE__VALUE = eINSTANCE.getIntegerType_Value();
+
+    /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.StringTypeImpl <em>String Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2023,6 +2071,14 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EAttribute STRING_TYPE__TYPE = eINSTANCE.getStringType_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRING_TYPE__VALUE = eINSTANCE.getStringType_Value();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.UnitTypeImpl <em>Unit Type</em>}' class.

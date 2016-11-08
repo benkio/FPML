@@ -75,9 +75,11 @@
     <genClasses ecoreClass="FPML.ecore#//Type"/>
     <genClasses ecoreClass="FPML.ecore#//IntegerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//IntegerType/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//IntegerType/value"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//StringType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//StringType/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//StringType/value"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//UnitType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//UnitType/type"/>

@@ -75,6 +75,9 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStringTypeAccess().getGroup(), "rule__StringType__Group__0");
 					put(grammarAccess.getUnitTypeAccess().getGroup(), "rule__UnitType__Group__0");
 					put(grammarAccess.getDataTypeAccess().getGroup(), "rule__DataType__Group__0");
+					put(grammarAccess.getIntValueAccess().getGroup(), "rule__IntValue__Group__0");
+					put(grammarAccess.getStringValueAccess().getGroup(), "rule__StringValue__Group__0");
+					put(grammarAccess.getUnitValueAccess().getGroup(), "rule__UnitValue__Group__0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_0(), "rule__Model__ElementsAssignment_0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_1(), "rule__Model__ElementsAssignment_1");
 					put(grammarAccess.getPureBlockAccess().getElementsAssignment_2(), "rule__PureBlock__ElementsAssignment_2");
@@ -114,6 +117,8 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStringTypeAccess().getTypeAssignment_1(), "rule__StringType__TypeAssignment_1");
 					put(grammarAccess.getUnitTypeAccess().getTypeAssignment_1(), "rule__UnitType__TypeAssignment_1");
 					put(grammarAccess.getDataTypeAccess().getTypeAssignment_2(), "rule__DataType__TypeAssignment_2");
+					put(grammarAccess.getIntValueAccess().getValueAssignment_1(), "rule__IntValue__ValueAssignment_1");
+					put(grammarAccess.getStringValueAccess().getValueAssignment_1(), "rule__StringValue__ValueAssignment_1");
 				}
 			};
 		}

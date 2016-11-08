@@ -129,8 +129,8 @@ DataType:
 Value returns ValueType:
     IntValue | StringValue | UnitValue;
 
-IntValue returns IntegerType: INT;
+IntValue returns IntegerType: {IntegerType} value=INT;
 
-StringValue returns StringType: STRING;
+StringValue returns StringType: {StringType} value=STRING;
 
-UnitValue returns UnitType: '()';
+UnitValue returns UnitType: {UnitType} '()';

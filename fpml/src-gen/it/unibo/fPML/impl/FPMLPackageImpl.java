@@ -841,6 +841,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getIntegerType_Value()
+  {
+    return (EAttribute)integerTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getStringType()
   {
     return stringTypeEClass;
@@ -854,6 +864,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EAttribute getStringType_Type()
   {
     return (EAttribute)stringTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStringType_Value()
+  {
+    return (EAttribute)stringTypeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1003,9 +1023,11 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     integerTypeEClass = createEClass(INTEGER_TYPE);
     createEAttribute(integerTypeEClass, INTEGER_TYPE__TYPE);
+    createEAttribute(integerTypeEClass, INTEGER_TYPE__VALUE);
 
     stringTypeEClass = createEClass(STRING_TYPE);
     createEAttribute(stringTypeEClass, STRING_TYPE__TYPE);
+    createEAttribute(stringTypeEClass, STRING_TYPE__VALUE);
 
     unitTypeEClass = createEClass(UNIT_TYPE);
     createEAttribute(unitTypeEClass, UNIT_TYPE__TYPE);
@@ -1142,9 +1164,11 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(integerTypeEClass, IntegerType.class, "IntegerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntegerType_Type(), ecorePackage.getEString(), "type", null, 0, 1, IntegerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIntegerType_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntegerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stringTypeEClass, StringType.class, "StringType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getStringType_Type(), ecorePackage.getEString(), "type", null, 0, 1, StringType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStringType_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unitTypeEClass, UnitType.class, "UnitType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnitType_Type(), ecorePackage.getEString(), "type", null, 0, 1, UnitType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

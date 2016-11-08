@@ -1732,10 +1732,33 @@ ruleIntValue returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	this_INT_0=RULE_INT
-	{
-		newLeafNode(this_INT_0, grammarAccess.getIntValueAccess().getINTTerminalRuleCall());
-	}
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getIntValueAccess().getIntegerTypeAction_0(),
+					$current);
+			}
+		)
+		(
+			(
+				lv_value_1_0=RULE_INT
+				{
+					newLeafNode(lv_value_1_0, grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getIntValueRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"value",
+						lv_value_1_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
+	)
 ;
 
 // Entry rule entryRuleStringValue
@@ -1753,10 +1776,33 @@ ruleStringValue returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	this_STRING_0=RULE_STRING
-	{
-		newLeafNode(this_STRING_0, grammarAccess.getStringValueAccess().getSTRINGTerminalRuleCall());
-	}
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getStringValueAccess().getStringTypeAction_0(),
+					$current);
+			}
+		)
+		(
+			(
+				lv_value_1_0=RULE_STRING
+				{
+					newLeafNode(lv_value_1_0, grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getStringValueRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"value",
+						lv_value_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+	)
 ;
 
 // Entry rule entryRuleUnitValue
@@ -1774,10 +1820,19 @@ ruleUnitValue returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	otherlv_0='()'
-	{
-		newLeafNode(otherlv_0, grammarAccess.getUnitValueAccess().getLeftParenthesisRightParenthesisKeyword());
-	}
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getUnitValueAccess().getUnitTypeAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='()'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getUnitValueAccess().getLeftParenthesisRightParenthesisKeyword_1());
+		}
+	)
 ;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

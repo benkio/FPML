@@ -1064,36 +1064,68 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class IntValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.IntValue");
-		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cIntegerTypeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueINTTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		
 		//IntValue IntegerType:
-		//	INT
+		//	{IntegerType} value=INT
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{IntegerType} value=INT
+		public Group getGroup() { return cGroup; }
+		
+		//{IntegerType}
+		public Action getIntegerTypeAction_0() { return cIntegerTypeAction_0; }
+		
+		//value=INT
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
 		//INT
-		public RuleCall getINTTerminalRuleCall() { return cINTTerminalRuleCall; }
+		public RuleCall getValueINTTerminalRuleCall_1_0() { return cValueINTTerminalRuleCall_1_0; }
 	}
 	public class StringValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.StringValue");
-		private final RuleCall cSTRINGTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cStringTypeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueSTRINGTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		
 		//StringValue StringType:
-		//	STRING
+		//	{StringType} value=STRING
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{StringType} value=STRING
+		public Group getGroup() { return cGroup; }
+		
+		//{StringType}
+		public Action getStringTypeAction_0() { return cStringTypeAction_0; }
+		
+		//value=STRING
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
 		//STRING
-		public RuleCall getSTRINGTerminalRuleCall() { return cSTRINGTerminalRuleCall; }
+		public RuleCall getValueSTRINGTerminalRuleCall_1_0() { return cValueSTRINGTerminalRuleCall_1_0; }
 	}
 	public class UnitValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.UnitValue");
-		private final Keyword cLeftParenthesisRightParenthesisKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cUnitTypeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLeftParenthesisRightParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//UnitValue UnitType:
-		//	'()'
+		//	{UnitType} '()'
 		@Override public ParserRule getRule() { return rule; }
 		
+		//{UnitType} '()'
+		public Group getGroup() { return cGroup; }
+		
+		//{UnitType}
+		public Action getUnitTypeAction_0() { return cUnitTypeAction_0; }
+		
 		//'()'
-		public Keyword getLeftParenthesisRightParenthesisKeyword() { return cLeftParenthesisRightParenthesisKeyword; }
+		public Keyword getLeftParenthesisRightParenthesisKeyword_1() { return cLeftParenthesisRightParenthesisKeyword_1; }
 	}
 	
 	
@@ -1535,7 +1567,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//IntValue IntegerType:
-	//	INT
+	//	{IntegerType} value=INT
 	public IntValueElements getIntValueAccess() {
 		return pIntValue;
 	}
@@ -1545,7 +1577,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//StringValue StringType:
-	//	STRING
+	//	{StringType} value=STRING
 	public StringValueElements getStringValueAccess() {
 		return pStringValue;
 	}
@@ -1555,7 +1587,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//UnitValue UnitType:
-	//	'()'
+	//	{UnitType} '()'
 	public UnitValueElements getUnitValueAccess() {
 		return pUnitValue;
 	}

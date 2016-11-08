@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.IntegerTypeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.IntegerTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,6 +47,26 @@ public class IntegerTypeImpl extends ValueTypeImpl implements IntegerType
    * @ordered
    */
   protected String type = TYPE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected static final int VALUE_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected int value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -96,6 +117,29 @@ public class IntegerTypeImpl extends ValueTypeImpl implements IntegerType
    * <!-- end-user-doc -->
    * @generated
    */
+  public int getValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(int newValue)
+  {
+    int oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.INTEGER_TYPE__VALUE, oldValue, value));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -103,6 +147,8 @@ public class IntegerTypeImpl extends ValueTypeImpl implements IntegerType
     {
       case FPMLPackage.INTEGER_TYPE__TYPE:
         return getType();
+      case FPMLPackage.INTEGER_TYPE__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -119,6 +165,9 @@ public class IntegerTypeImpl extends ValueTypeImpl implements IntegerType
     {
       case FPMLPackage.INTEGER_TYPE__TYPE:
         setType((String)newValue);
+        return;
+      case FPMLPackage.INTEGER_TYPE__VALUE:
+        setValue((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,6 +186,9 @@ public class IntegerTypeImpl extends ValueTypeImpl implements IntegerType
       case FPMLPackage.INTEGER_TYPE__TYPE:
         setType(TYPE_EDEFAULT);
         return;
+      case FPMLPackage.INTEGER_TYPE__VALUE:
+        setValue(VALUE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -153,6 +205,8 @@ public class IntegerTypeImpl extends ValueTypeImpl implements IntegerType
     {
       case FPMLPackage.INTEGER_TYPE__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case FPMLPackage.INTEGER_TYPE__VALUE:
+        return value != VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -170,6 +224,8 @@ public class IntegerTypeImpl extends ValueTypeImpl implements IntegerType
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (type: ");
     result.append(type);
+    result.append(", value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }
