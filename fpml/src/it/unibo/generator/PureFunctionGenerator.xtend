@@ -7,13 +7,10 @@ import it.unibo.fPML.CompositionFunctionBodyPure
 import org.eclipse.xtext.xbase.lib.Functions.Function2
 import it.unibo.fPML.InitialPureChainElement
 import it.unibo.fPML.PureFunction
-import it.unibo.fPML.DataType
-import it.unibo.fPML.IntegerType
-import it.unibo.fPML.StringType
-import it.unibo.fPML.ValueType
-import it.unibo.fPML.Argument
 
 class PureFunctionGenerator {
+	
+	val typeGenerator = new TypeGenerator
 	
 	def compile(PureFunctionBlock pfb) '''
 		package «FPMLGenerator.basePackageJava»Pure;
@@ -29,7 +26,7 @@ class PureFunctionGenerator {
 
 	def compile(PureFunction pf) '''
 
-		public static «pf.returnType.compile» «pf.name» («pf.arg.compile»){
+		public static «typeGenerator.functionCompile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
 			«IF pf.functionBody instanceof EmptyFunctionBody»
 			throw new NotImpletementedException("TODO")
 			«ELSEIF pf.functionBody instanceof CompositionFunctionBodyPure»
@@ -46,14 +43,4 @@ class PureFunctionGenerator {
 			«(e as Data).name».getValue()
 		«ELSE»
 			«(e as PureFunction).name»«ENDIF»('''
-
-	def compile(ValueType vt) '''
-		«switch vt{
-			DataType: return vt.type.name
-			IntegerType: return vt.type
-			StringType: return vt.type
-		}»'''
-
-	def compile(Argument arg) '''«arg.type.compile» «arg.name»'''
-	
 }

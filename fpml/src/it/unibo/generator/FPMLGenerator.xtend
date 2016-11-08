@@ -22,11 +22,12 @@ class FPMLGenerator extends AbstractGenerator {
 	val basePackage = "it/unibo/";
 	val static basePackageJava = "it.unibo."
 	val pureFunctionGenerator = new PureFunctionGenerator
+	val effectFullFunctionGenerator = new EffectFullFunctionGenerator
 	val dataGenerator = new DataGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		fsa.generateFile(basePackage + "Pure/Functions.java", pureFunctionGenerator.compile(resource.getAllContents.filter(PureFunctionBlock).head));
-		fsa.generateFile(basePackage + "Effectfull/Functions.java", resource.getAllContents.filter(EffectFullBlock).head.compile);
+		fsa.generateFile(basePackage + "Pure/PureFunctions.java", pureFunctionGenerator.compile(resource.getAllContents.filter(PureFunctionBlock).head));
+		fsa.generateFile(basePackage + "Effectfull/EffectFullFunctions.java", effectFullFunctionGenerator.compile(resource.getAllContents.filter(EffectFullBlock).head));
 		for(e : resource.getAllContents.toIterable.filter(Data)){
 			fsa.generateFile(
 					basePackage + "Pure/Data/" + e.getName() + ".java",
@@ -34,10 +35,6 @@ class FPMLGenerator extends AbstractGenerator {
 			);
 		}
 	}
-
-	def compile(EffectFullBlock efb) '''
-	    Effectfull funcitons
-	'''
 	
 	def static getBasePackageJava() {
 		return basePackageJava

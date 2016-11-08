@@ -147,7 +147,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
       EffectFullArgument _arg = ef.getArg();
       final Type t = _arg.getType();
       ChainElement _get = rt2.get(0);
-      final EObject t1 = UtilitiesFunctions.getArgType(_get);
+      EObject _argType = UtilitiesFunctions.getArgType(_get);
+      final Type t1 = ((Type) _argType);
       boolean _equals = EcoreUtil.equals(t, t1);
       boolean _not = (!_equals);
       if (_not) {

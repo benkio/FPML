@@ -17,6 +17,7 @@ import it.unibo.fPML.EffectFullFunction
 import it.unibo.validation.UtilitiesFunctions
 import it.unibo.fPML.InitialPureChainElement
 import it.unibo.fPML.MainFunc
+import it.unibo.fPML.Type
 
 /**
  * This class contains custom validation rules. 
@@ -91,7 +92,7 @@ class FPMLValidator extends AbstractFPMLValidator {
         if (rt instanceof CompositionFunctionBodyEffect) {
             val rt2 = rt.getFunctionChain();
             val t = ef.getArg().getType()
-            val t1 = UtilitiesFunctions.getArgType(rt2.get(0));
+            val t1 = (UtilitiesFunctions.getArgType(rt2.get(0)) as Type);
             if(!(EcoreUtil.equals(t, t1)))
                 error(TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.EFFECT_FULL_FUNCTION__ARG);
         }
