@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface ValueType extends Adt, Type
+public interface ValueType extends AdtType, Type
 {
 } // ValueType

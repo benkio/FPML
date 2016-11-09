@@ -2,11 +2,9 @@ package it.unibo.generator
 
 import it.unibo.fPML.PureFunctionBlock
 import it.unibo.fPML.EmptyFunctionBody
-import it.unibo.fPML.Data
 import it.unibo.fPML.CompositionFunctionBodyPure
-import org.eclipse.xtext.xbase.lib.Functions.Function2
-import it.unibo.fPML.InitialPureChainElement
 import it.unibo.fPML.PureFunction
+import it.unibo.fPML.Value
 
 class PureFunctionGenerator {
 	
@@ -26,21 +24,27 @@ class PureFunctionGenerator {
 
 	def compile(PureFunction pf) '''
 
-		public static «typeGenerator.functionCompile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
+		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
 			«IF pf.functionBody instanceof EmptyFunctionBody»
-			throw new NotImpletementedException("TODO")
+				throw new NotImpletementedException("TODO")
 			«ELSEIF pf.functionBody instanceof CompositionFunctionBodyPure»
-			«(pf.functionBody as CompositionFunctionBodyPure).compile»
+				«(pf.functionBody as CompositionFunctionBodyPure).compile»
 			«ENDIF»
 		}'''
 
-	def compile(CompositionFunctionBodyPure cfbp) '''
-		«val Function2<String, InitialPureChainElement, String>  f = [String acc, InitialPureChainElement x | x.compile + acc + ')']»
-		«cfbp.functionChain.fold("", f) »'''
+	def compile(CompositionFunctionBodyPure cfbp) {
+		var result = ""
+		if (cfbp.initialElement instanceof PureFunction) 
+			result = compileCall((cfbp.initialElement as PureFunction), "")
+		else 
+			result = (cfbp.initialElement as Value).name
+		for (f : cfbp.functionChain){
+			result = compileCall(f, result)
+		}
+		return result
+	} 
 	
-	def compile(InitialPureChainElement e) '''
-		«IF e instanceof Data»
-			«(e as Data).name».getValue()
-		«ELSE»
-			«(e as PureFunction).name»«ENDIF»('''
+	def compileCall(PureFunction pf, String args) {
+		return pf.name + "(" + args + ")"
+	}
 }

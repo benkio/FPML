@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface StringType extends ValueType
+public interface StringType extends ValueType, Expression, AdtValue
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.

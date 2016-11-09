@@ -1,6 +1,6 @@
 package it.unibo.generator;
 
-import it.unibo.fPML.Adt;
+import it.unibo.fPML.AdtType;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
@@ -13,107 +13,12 @@ import it.unibo.fPML.SumType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
-import java.util.List;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.Functions.Function2;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class TypeGenerator {
-  public String dataCompile(final ValueType vt) {
-    boolean _matched = false;
-    if (vt instanceof IntegerType) {
-      _matched=true;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("int value = ");
-      int _value = ((IntegerType) vt).getValue();
-      _builder.append(_value, "");
-      _builder.append(";");
-      return _builder.toString();
-    }
-    if (!_matched) {
-      if (vt instanceof StringType) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("String value = \"");
-        String _value = ((StringType) vt).getValue();
-        _builder.append(_value, "");
-        _builder.append("\";");
-        return _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (vt instanceof UnitType) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("Unit value = IOFunctions.unit;");
-        return _builder.toString();
-      }
-    }
-    return null;
-  }
-  
-  public CharSequence compile(final SumType st) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Either<");
-    EList<ValueType> _sumAdtElements = st.getSumAdtElements();
-    final Function1<ValueType, CharSequence> _function = (ValueType t) -> {
-      return this.functionCompile(t);
-    };
-    List<CharSequence> _map = ListExtensions.<ValueType, CharSequence>map(_sumAdtElements, _function);
-    final Function2<CharSequence, CharSequence, CharSequence> _function_1 = (CharSequence p1, CharSequence p2) -> {
-      String _plus = (p1 + ", ");
-      return (_plus + p2);
-    };
-    CharSequence _reduce = IterableExtensions.<CharSequence>reduce(_map, _function_1);
-    _builder.append(_reduce, "");
-    _builder.append(">");
-    return _builder;
-  }
-  
-  public CharSequence compile(final ProdType pt) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("P2<");
-    EList<ValueType> _prodAdtElements = pt.getProdAdtElements();
-    final Function1<ValueType, CharSequence> _function = (ValueType t) -> {
-      return this.functionCompile(t);
-    };
-    List<CharSequence> _map = ListExtensions.<ValueType, CharSequence>map(_prodAdtElements, _function);
-    final Function2<CharSequence, CharSequence, CharSequence> _function_1 = (CharSequence p1, CharSequence p2) -> {
-      String _plus = (p1 + ", ");
-      return (_plus + p2);
-    };
-    CharSequence _reduce = IterableExtensions.<CharSequence>reduce(_map, _function_1);
-    _builder.append(_reduce, "");
-    _builder.append(">");
-    return _builder;
-  }
-  
-  public CharSequence compile(final Adt adt) {
-    boolean _matched = false;
-    if (adt instanceof Argument) {
-      _matched=true;
-      return this.compile(((Argument) adt));
-    }
-    if (!_matched) {
-      if (adt instanceof SumType) {
-        _matched=true;
-        return this.compile(((SumType) adt));
-      }
-    }
-    if (!_matched) {
-      if (adt instanceof ProdType) {
-        _matched=true;
-        return this.compile(((ProdType) adt));
-      }
-    }
-    return null;
-  }
-  
-  public CharSequence functionCompile(final ValueType vt) {
+  public CharSequence compile(final ValueType vt) {
     StringConcatenation _builder = new StringConcatenation();
     boolean _matched = false;
     if (vt instanceof DataType) {
@@ -139,8 +44,8 @@ public class TypeGenerator {
   public CharSequence compile(final Argument arg) {
     StringConcatenation _builder = new StringConcatenation();
     ValueType _type = arg.getType();
-    CharSequence _functionCompile = this.functionCompile(_type);
-    _builder.append(_functionCompile, "");
+    CharSequence _compile = this.compile(_type);
+    _builder.append(_compile, "");
     _builder.append(" ");
     String _name = arg.getName();
     _builder.append(_name, "");
@@ -169,7 +74,7 @@ public class TypeGenerator {
     if (!_matched) {
       if (t instanceof ValueType) {
         _matched=true;
-        return this.functionCompile(((ValueType)t));
+        return this.compile(((ValueType)t));
       }
     }
     return null;
@@ -183,5 +88,63 @@ public class TypeGenerator {
     _builder.append(_compile, "");
     _builder.append(">");
     return _builder.toString();
+  }
+  
+  public Object adtTypeCompile(final AdtType adtType) {
+    boolean _matched = false;
+    if (adtType instanceof ValueType) {
+      _matched=true;
+      return this.compile(((ValueType) adtType));
+    }
+    EObject _adtElement2 = adtType.getAdtElement2();
+    if ((_adtElement2 instanceof SumType)) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Either<");
+      AdtType _adtElement1 = adtType.getAdtElement1();
+      Object _adtTypeCompile = this.adtTypeCompile(_adtElement1);
+      _builder.append(_adtTypeCompile, "");
+      _builder.append(", ");
+      Object _xifexpression = null;
+      EObject _adtElement2_1 = adtType.getAdtElement2();
+      if ((_adtElement2_1 instanceof SumType)) {
+        EObject _adtElement2_2 = adtType.getAdtElement2();
+        _xifexpression = this.compile(((SumType) _adtElement2_2));
+      } else {
+        EObject _adtElement2_3 = adtType.getAdtElement2();
+        _xifexpression = this.compile(((ProdType) _adtElement2_3));
+      }
+      _builder.append(_xifexpression, "");
+      _builder.append(">");
+      return _builder.toString();
+    } else {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("p(");
+      AdtType _adtElement1_1 = adtType.getAdtElement1();
+      Object _adtTypeCompile_1 = this.adtTypeCompile(_adtElement1_1);
+      _builder_1.append(_adtTypeCompile_1, "");
+      _builder_1.append(", ");
+      Object _xifexpression_1 = null;
+      EObject _adtElement2_4 = adtType.getAdtElement2();
+      if ((_adtElement2_4 instanceof SumType)) {
+        EObject _adtElement2_5 = adtType.getAdtElement2();
+        _xifexpression_1 = this.compile(((SumType) _adtElement2_5));
+      } else {
+        EObject _adtElement2_6 = adtType.getAdtElement2();
+        _xifexpression_1 = this.compile(((ProdType) _adtElement2_6));
+      }
+      _builder_1.append(_xifexpression_1, "");
+      _builder_1.append(")");
+      return _builder_1.toString();
+    }
+  }
+  
+  public Object compile(final SumType st) {
+    AdtType _adtElement = st.getAdtElement();
+    return this.adtTypeCompile(_adtElement);
+  }
+  
+  public Object compile(final ProdType pt) {
+    AdtType _adtElement = pt.getAdtElement();
+    return this.adtTypeCompile(_adtElement);
   }
 }

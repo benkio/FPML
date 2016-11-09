@@ -3,21 +3,18 @@
  */
 package it.unibo.fPML.impl;
 
+import it.unibo.fPML.AdtType;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.SumType;
-import it.unibo.fPML.ValueType;
 
-import java.util.Collection;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,22 +24,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.SumTypeImpl#getSumAdtElements <em>Sum Adt Elements</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.SumTypeImpl#getAdtElement <em>Adt Element</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SumTypeImpl extends AdtImpl implements SumType
+public class SumTypeImpl extends MinimalEObjectImpl.Container implements SumType
 {
   /**
-   * The cached value of the '{@link #getSumAdtElements() <em>Sum Adt Elements</em>}' containment reference list.
+   * The cached value of the '{@link #getAdtElement() <em>Adt Element</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSumAdtElements()
+   * @see #getAdtElement()
    * @generated
    * @ordered
    */
-  protected EList<ValueType> sumAdtElements;
+  protected AdtType adtElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -70,13 +67,47 @@ public class SumTypeImpl extends AdtImpl implements SumType
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ValueType> getSumAdtElements()
+  public AdtType getAdtElement()
   {
-    if (sumAdtElements == null)
+    return adtElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetAdtElement(AdtType newAdtElement, NotificationChain msgs)
+  {
+    AdtType oldAdtElement = adtElement;
+    adtElement = newAdtElement;
+    if (eNotificationRequired())
     {
-      sumAdtElements = new EObjectContainmentEList<ValueType>(ValueType.class, this, FPMLPackage.SUM_TYPE__SUM_ADT_ELEMENTS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.SUM_TYPE__ADT_ELEMENT, oldAdtElement, newAdtElement);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return sumAdtElements;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAdtElement(AdtType newAdtElement)
+  {
+    if (newAdtElement != adtElement)
+    {
+      NotificationChain msgs = null;
+      if (adtElement != null)
+        msgs = ((InternalEObject)adtElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.SUM_TYPE__ADT_ELEMENT, null, msgs);
+      if (newAdtElement != null)
+        msgs = ((InternalEObject)newAdtElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.SUM_TYPE__ADT_ELEMENT, null, msgs);
+      msgs = basicSetAdtElement(newAdtElement, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.SUM_TYPE__ADT_ELEMENT, newAdtElement, newAdtElement));
   }
 
   /**
@@ -89,8 +120,8 @@ public class SumTypeImpl extends AdtImpl implements SumType
   {
     switch (featureID)
     {
-      case FPMLPackage.SUM_TYPE__SUM_ADT_ELEMENTS:
-        return ((InternalEList<?>)getSumAdtElements()).basicRemove(otherEnd, msgs);
+      case FPMLPackage.SUM_TYPE__ADT_ELEMENT:
+        return basicSetAdtElement(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -105,8 +136,8 @@ public class SumTypeImpl extends AdtImpl implements SumType
   {
     switch (featureID)
     {
-      case FPMLPackage.SUM_TYPE__SUM_ADT_ELEMENTS:
-        return getSumAdtElements();
+      case FPMLPackage.SUM_TYPE__ADT_ELEMENT:
+        return getAdtElement();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -116,15 +147,13 @@ public class SumTypeImpl extends AdtImpl implements SumType
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case FPMLPackage.SUM_TYPE__SUM_ADT_ELEMENTS:
-        getSumAdtElements().clear();
-        getSumAdtElements().addAll((Collection<? extends ValueType>)newValue);
+      case FPMLPackage.SUM_TYPE__ADT_ELEMENT:
+        setAdtElement((AdtType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -140,8 +169,8 @@ public class SumTypeImpl extends AdtImpl implements SumType
   {
     switch (featureID)
     {
-      case FPMLPackage.SUM_TYPE__SUM_ADT_ELEMENTS:
-        getSumAdtElements().clear();
+      case FPMLPackage.SUM_TYPE__ADT_ELEMENT:
+        setAdtElement((AdtType)null);
         return;
     }
     super.eUnset(featureID);
@@ -157,8 +186,8 @@ public class SumTypeImpl extends AdtImpl implements SumType
   {
     switch (featureID)
     {
-      case FPMLPackage.SUM_TYPE__SUM_ADT_ELEMENTS:
-        return sumAdtElements != null && !sumAdtElements.isEmpty();
+      case FPMLPackage.SUM_TYPE__ADT_ELEMENT:
+        return adtElement != null;
     }
     return super.eIsSet(featureID);
   }

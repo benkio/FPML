@@ -3,6 +3,7 @@
  */
 package it.unibo.fPML;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,6 +14,7 @@ package it.unibo.fPML;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link it.unibo.fPML.Data#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.Data#getContent <em>Content</em>}</li>
  * </ul>
  *
@@ -20,8 +22,34 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface Data extends ChainElement, InitialPureChainElement
+public interface Data extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see it.unibo.fPML.FPMLPackage#getData_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.Data#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
   /**
    * Returns the value of the '<em><b>Content</b></em>' containment reference.
    * <!-- begin-user-doc -->
@@ -31,12 +59,12 @@ public interface Data extends ChainElement, InitialPureChainElement
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Content</em>' containment reference.
-   * @see #setContent(Adt)
+   * @see #setContent(AdtType)
    * @see it.unibo.fPML.FPMLPackage#getData_Content()
    * @model containment="true"
    * @generated
    */
-  Adt getContent();
+  AdtType getContent();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.Data#getContent <em>Content</em>}' containment reference.
@@ -46,6 +74,6 @@ public interface Data extends ChainElement, InitialPureChainElement
    * @see #getContent()
    * @generated
    */
-  void setContent(Adt value);
+  void setContent(AdtType value);
 
 } // Data

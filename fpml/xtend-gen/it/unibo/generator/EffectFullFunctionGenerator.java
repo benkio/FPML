@@ -2,7 +2,6 @@ package it.unibo.generator;
 
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
-import it.unibo.fPML.Data;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBlock;
 import it.unibo.fPML.EffectFullFunction;
@@ -10,6 +9,7 @@ import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.PureFunction;
+import it.unibo.fPML.Value;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
 import org.eclipse.emf.common.util.EList;
@@ -50,7 +50,6 @@ public class EffectFullFunctionGenerator {
       }
     }
     _builder.append("}");
-    _builder.newLine();
     return _builder;
   }
   
@@ -123,11 +122,11 @@ public class EffectFullFunctionGenerator {
       return _builder.toString();
     }
     if (!_matched) {
-      if (e instanceof Data) {
+      if (e instanceof Value) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(".append(IOFunctions.unit(");
-        String _name = ((Data) e).getName();
+        String _name = ((Value) e).getName();
         _builder.append(_name, "");
         _builder.append(".value))");
         return _builder.toString();

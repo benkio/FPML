@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ArgumentImpl extends AdtImpl implements Argument
+public class ArgumentImpl extends MinimalEObjectImpl.Container implements Argument
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.

@@ -7,7 +7,7 @@ import it.unibo.fPML.CompositionFunctionBodyEffect
 import it.unibo.fPML.ChainElement
 import org.eclipse.xtext.xbase.lib.Functions.Function2
 import it.unibo.fPML.PureFunction
-import it.unibo.fPML.Data
+import it.unibo.fPML.Value
 
 class EffectFullFunctionGenerator {
 	
@@ -23,8 +23,8 @@ class EffectFullFunctionGenerator {
 	    	«FOR f:efb.features»
 	    		«f.compile»
 	    	«ENDFOR»
-	    }
-	'''
+	    }'''
+	    
 	def compile(EffectFullFunction pf) '''
 
 		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
@@ -43,7 +43,7 @@ class EffectFullFunctionGenerator {
 	def compile(ChainElement e) {
 		switch e {
 			PureFunction: return '''.map(«(e as PureFunction).name»)'''
-			Data: return '''.append(IOFunctions.unit(«(e as Data).name».value))'''
+			Value: return '''.append(IOFunctions.unit(«(e as Value).name».value))'''
 			EffectFullFunction: return '''.bind(«(e as EffectFullFunction).name»)''' 
 		}
 	}	

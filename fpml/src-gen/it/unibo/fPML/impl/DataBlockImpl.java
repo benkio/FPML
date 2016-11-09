@@ -6,9 +6,11 @@ package it.unibo.fPML.impl;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataBlock;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.ValueBlock;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -30,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.DataBlockImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.DataBlockImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,6 +49,16 @@ public class DataBlockImpl extends MinimalEObjectImpl.Container implements DataB
    * @ordered
    */
   protected EList<Data> elements;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected ValueBlock value;
 
   /**
    * <!-- begin-user-doc -->
@@ -86,6 +100,54 @@ public class DataBlockImpl extends MinimalEObjectImpl.Container implements DataB
    * <!-- end-user-doc -->
    * @generated
    */
+  public ValueBlock getValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetValue(ValueBlock newValue, NotificationChain msgs)
+  {
+    ValueBlock oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.DATA_BLOCK__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(ValueBlock newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.DATA_BLOCK__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.DATA_BLOCK__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.DATA_BLOCK__VALUE, newValue, newValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -93,6 +155,8 @@ public class DataBlockImpl extends MinimalEObjectImpl.Container implements DataB
     {
       case FPMLPackage.DATA_BLOCK__ELEMENTS:
         return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+      case FPMLPackage.DATA_BLOCK__VALUE:
+        return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -109,6 +173,8 @@ public class DataBlockImpl extends MinimalEObjectImpl.Container implements DataB
     {
       case FPMLPackage.DATA_BLOCK__ELEMENTS:
         return getElements();
+      case FPMLPackage.DATA_BLOCK__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -128,6 +194,9 @@ public class DataBlockImpl extends MinimalEObjectImpl.Container implements DataB
         getElements().clear();
         getElements().addAll((Collection<? extends Data>)newValue);
         return;
+      case FPMLPackage.DATA_BLOCK__VALUE:
+        setValue((ValueBlock)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -145,6 +214,9 @@ public class DataBlockImpl extends MinimalEObjectImpl.Container implements DataB
       case FPMLPackage.DATA_BLOCK__ELEMENTS:
         getElements().clear();
         return;
+      case FPMLPackage.DATA_BLOCK__VALUE:
+        setValue((ValueBlock)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -161,6 +233,8 @@ public class DataBlockImpl extends MinimalEObjectImpl.Container implements DataB
     {
       case FPMLPackage.DATA_BLOCK__ELEMENTS:
         return elements != null && !elements.isEmpty();
+      case FPMLPackage.DATA_BLOCK__VALUE:
+        return value != null;
     }
     return super.eIsSet(featureID);
   }

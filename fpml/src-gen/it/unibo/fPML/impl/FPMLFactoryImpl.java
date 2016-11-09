@@ -69,9 +69,11 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.PURE_BLOCK: return createPureBlock();
       case FPMLPackage.PURE_FUNCTION_BLOCK: return createPureFunctionBlock();
       case FPMLPackage.DATA_BLOCK: return createDataBlock();
+      case FPMLPackage.VALUE_BLOCK: return createValueBlock();
       case FPMLPackage.EFFECT_FULL_BLOCK: return createEffectFullBlock();
       case FPMLPackage.DATA: return createData();
-      case FPMLPackage.ADT: return createAdt();
+      case FPMLPackage.VALUE: return createValue();
+      case FPMLPackage.ADT_TYPE: return createAdtType();
       case FPMLPackage.SUM_TYPE: return createSumType();
       case FPMLPackage.PROD_TYPE: return createProdType();
       case FPMLPackage.PURE_FUNCTION: return createPureFunction();
@@ -94,6 +96,9 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.STRING_TYPE: return createStringType();
       case FPMLPackage.UNIT_TYPE: return createUnitType();
       case FPMLPackage.DATA_TYPE: return createDataType();
+      case FPMLPackage.EXPRESSION: return createExpression();
+      case FPMLPackage.ADT_VALUE: return createAdtValue();
+      case FPMLPackage.PROD_TYPE_VALUE: return createProdTypeValue();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -148,6 +153,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ValueBlock createValueBlock()
+  {
+    ValueBlockImpl valueBlock = new ValueBlockImpl();
+    return valueBlock;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EffectFullBlock createEffectFullBlock()
   {
     EffectFullBlockImpl effectFullBlock = new EffectFullBlockImpl();
@@ -170,10 +186,21 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Adt createAdt()
+  public Value createValue()
   {
-    AdtImpl adt = new AdtImpl();
-    return adt;
+    ValueImpl value = new ValueImpl();
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdtType createAdtType()
+  {
+    AdtTypeImpl adtType = new AdtTypeImpl();
+    return adtType;
   }
 
   /**
@@ -416,6 +443,39 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     DataTypeImpl dataType = new DataTypeImpl();
     return dataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expression createExpression()
+  {
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdtValue createAdtValue()
+  {
+    AdtValueImpl adtValue = new AdtValueImpl();
+    return adtValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ProdTypeValue createProdTypeValue()
+  {
+    ProdTypeValueImpl prodTypeValue = new ProdTypeValueImpl();
+    return prodTypeValue;
   }
 
   /**

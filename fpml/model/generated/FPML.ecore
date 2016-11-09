@@ -16,6 +16,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="DataBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//Data" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ValueBlock"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueBlock">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Value" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
@@ -23,18 +29,28 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="main" eType="#//MainFunc"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Data" eSuperTypes="#//ChainElement #//InitialPureChainElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//Adt"
+  <eClassifiers xsi:type="ecore:EClass" name="Data">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//AdtType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Adt"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SumType" eSuperTypes="#//Adt">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="SumAdtElements" upperBound="-1"
-        eType="#//ValueType" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Value" eSuperTypes="#//ChainElement #//InitialPureChainElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProdType" eSuperTypes="#//Adt">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ProdAdtElements" upperBound="-1"
-        eType="#//ValueType" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AdtType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adtElement1" eType="#//AdtType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adtElement2" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SumType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adtElement" eType="#//AdtType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProdType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adtElement" eType="#//AdtType"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PureFunction" eSuperTypes="#//InitialPureChainElement #//Function">
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//ValueType"
@@ -67,7 +83,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Argument" eSuperTypes="#//Adt">
+  <eClassifiers xsi:type="ecore:EClass" name="Argument">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ValueType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -76,8 +92,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="FunctionBodyEffectFull"/>
   <eClassifiers xsi:type="ecore:EClass" name="EmptyFunctionBody" eSuperTypes="#//FunctionBodyPure #//FunctionBodyEffectFull"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyPure" eSuperTypes="#//FunctionBodyPure">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialElement" eType="#//InitialPureChainElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionChain" unique="false"
-        upperBound="-1" eType="#//InitialPureChainElement"/>
+        upperBound="-1" eType="#//PureFunction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyEffect" eSuperTypes="#//FunctionBodyEffectFull">
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionChain" unique="false"
@@ -86,20 +103,31 @@
   <eClassifiers xsi:type="ecore:EClass" name="IOType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ValueType" eSuperTypes="#//Adt #//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueType" eSuperTypes="#//AdtType #//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IntegerType" eSuperTypes="#//ValueType">
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerType" eSuperTypes="#//ValueType #//Expression #//AdtValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringType" eSuperTypes="#//ValueType">
+  <eClassifiers xsi:type="ecore:EClass" name="StringType" eSuperTypes="#//ValueType #//Expression #//AdtValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UnitType" eSuperTypes="#//Type #//ValueType">
+  <eClassifiers xsi:type="ecore:EClass" name="UnitType" eSuperTypes="#//Type #//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//ValueType">
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//ValueType #//Expression #//AdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Data"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AdtValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AdtValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adtElements" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProdTypeValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ProdAdtElements" upperBound="-1"
+        eType="#//AdtValue" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

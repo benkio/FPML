@@ -4,11 +4,9 @@
 package it.unibo.validation;
 
 import com.google.common.base.Objects;
-import it.unibo.fPML.Argument;
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyPure;
-import it.unibo.fPML.Data;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.FPMLPackage;
@@ -19,10 +17,12 @@ import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
+import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
 import it.unibo.validation.UtilitiesFunctions;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.validation.Check;
@@ -45,18 +45,18 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   @Check
   public void CompositionFunctionTypePure(final CompositionFunctionBodyPure cfbp) {
-    EList<InitialPureChainElement> _functionChain = cfbp.getFunctionChain();
-    InitialPureChainElement _head = IterableExtensions.<InitialPureChainElement>head(_functionChain);
-    EObject t = UtilitiesFunctions.getReturnType(_head);
-    EList<InitialPureChainElement> _functionChain_1 = cfbp.getFunctionChain();
-    Iterable<InitialPureChainElement> _tail = IterableExtensions.<InitialPureChainElement>tail(_functionChain_1);
-    for (final InitialPureChainElement pf : _tail) {
+    InitialPureChainElement _initialElement = cfbp.getInitialElement();
+    EObject t = UtilitiesFunctions.getReturnType(_initialElement);
+    EList<PureFunction> _functionChain = cfbp.getFunctionChain();
+    for (final InitialPureChainElement pf : _functionChain) {
       {
-        final EObject t1 = UtilitiesFunctions.getArgType(pf);
-        boolean _equals = EcoreUtil.equals(t1, t);
-        boolean _not = (!_equals);
-        if (_not) {
-          this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
+        if ((!(pf instanceof Value))) {
+          final EObject t1 = UtilitiesFunctions.getArgType(pf);
+          boolean _equals = EcoreUtil.equals(t1, t);
+          boolean _not = (!_equals);
+          if (_not) {
+            this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
+          }
         }
         EObject _returnType = UtilitiesFunctions.getReturnType(pf);
         t = _returnType;
@@ -73,9 +73,9 @@ public class FPMLValidator extends AbstractFPMLValidator {
     Iterable<ChainElement> _tail = IterableExtensions.<ChainElement>tail(_functionChain_1);
     for (final ChainElement ef : _tail) {
       {
-        if ((!(ef instanceof Data))) {
+        if ((!(ef instanceof Value))) {
           EObject t1 = UtilitiesFunctions.getArgType(ef);
-          if (((!EcoreUtil.equals(t1, t)) && (!(t1 instanceof UnitType)))) {
+          if (((!Objects.equal(t1.eClass(), t.eClass())) && (!(t1 instanceof UnitType)))) {
             this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
           }
         }
@@ -89,12 +89,12 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public void FunctionCompositionReturnType(final PureFunction pf) {
     final FunctionBodyPure rt = pf.getFunctionBody();
     if ((rt instanceof CompositionFunctionBodyPure)) {
-      final EList<InitialPureChainElement> rt2 = ((CompositionFunctionBodyPure)rt).getFunctionChain();
+      final EList<PureFunction> rt2 = ((CompositionFunctionBodyPure)rt).getFunctionChain();
       ValueType _returnType = pf.getReturnType();
       EObject _typeFromValueType = UtilitiesFunctions.getTypeFromValueType(_returnType);
       int _size = rt2.size();
       int _minus = (_size - 1);
-      InitialPureChainElement _get = rt2.get(_minus);
+      PureFunction _get = rt2.get(_minus);
       EObject _returnType_1 = UtilitiesFunctions.getReturnType(_get);
       boolean _equals = EcoreUtil.equals(_typeFromValueType, _returnType_1);
       boolean _not = (!_equals);
@@ -126,14 +126,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public void FunctionCompositionArgType(final PureFunction pf) {
     final FunctionBodyPure rt = pf.getFunctionBody();
     if ((rt instanceof CompositionFunctionBodyPure)) {
-      final EList<InitialPureChainElement> rt2 = ((CompositionFunctionBodyPure)rt).getFunctionChain();
-      Argument _arg = pf.getArg();
-      ValueType _type = _arg.getType();
-      InitialPureChainElement _get = rt2.get(0);
-      EObject _argType = UtilitiesFunctions.getArgType(_get);
-      boolean _equals = EcoreUtil.equals(_type, _argType);
-      boolean _not = (!_equals);
-      if (_not) {
+      final InitialPureChainElement rt2 = ((CompositionFunctionBodyPure)rt).getInitialElement();
+      if (((rt2 instanceof PureFunction) && (!EcoreUtil.equals(pf.getArg().getType(), UtilitiesFunctions.getArgType(rt2))))) {
         this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.PURE_FUNCTION__ARG);
       }
     }
@@ -170,11 +164,13 @@ public class FPMLValidator extends AbstractFPMLValidator {
     if ((rt instanceof CompositionFunctionBodyEffect)) {
       final EList<ChainElement> rt2 = ((CompositionFunctionBodyEffect)rt).getFunctionChain();
       UnitType _returnType = m.getReturnType();
+      EClass _eClass = _returnType.eClass();
       int _size = rt2.size();
       int _minus = (_size - 1);
       ChainElement _get = rt2.get(_minus);
       EObject _returnType_1 = UtilitiesFunctions.getReturnType(_get);
-      boolean _equals = EcoreUtil.equals(_returnType, _returnType_1);
+      EClass _eClass_1 = _returnType_1.eClass();
+      boolean _equals = Objects.equal(_eClass, _eClass_1);
       boolean _not = (!_equals);
       if (_not) {
         this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE);

@@ -3,7 +3,7 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.Adt;
+import it.unibo.fPML.AdtType;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.FPMLPackage;
 
@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,13 +24,34 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link it.unibo.fPML.impl.DataImpl#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.DataImpl#getContent <em>Content</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DataImpl extends ChainElementImpl implements Data
+public class DataImpl extends MinimalEObjectImpl.Container implements Data
 {
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getContent() <em>Content</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -38,7 +60,7 @@ public class DataImpl extends ChainElementImpl implements Data
    * @generated
    * @ordered
    */
-  protected Adt content;
+  protected AdtType content;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +88,30 @@ public class DataImpl extends ChainElementImpl implements Data
    * <!-- end-user-doc -->
    * @generated
    */
-  public Adt getContent()
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.DATA__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdtType getContent()
   {
     return content;
   }
@@ -76,9 +121,9 @@ public class DataImpl extends ChainElementImpl implements Data
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetContent(Adt newContent, NotificationChain msgs)
+  public NotificationChain basicSetContent(AdtType newContent, NotificationChain msgs)
   {
-    Adt oldContent = content;
+    AdtType oldContent = content;
     content = newContent;
     if (eNotificationRequired())
     {
@@ -93,7 +138,7 @@ public class DataImpl extends ChainElementImpl implements Data
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setContent(Adt newContent)
+  public void setContent(AdtType newContent)
   {
     if (newContent != content)
     {
@@ -135,6 +180,8 @@ public class DataImpl extends ChainElementImpl implements Data
   {
     switch (featureID)
     {
+      case FPMLPackage.DATA__NAME:
+        return getName();
       case FPMLPackage.DATA__CONTENT:
         return getContent();
     }
@@ -151,8 +198,11 @@ public class DataImpl extends ChainElementImpl implements Data
   {
     switch (featureID)
     {
+      case FPMLPackage.DATA__NAME:
+        setName((String)newValue);
+        return;
       case FPMLPackage.DATA__CONTENT:
-        setContent((Adt)newValue);
+        setContent((AdtType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,8 +218,11 @@ public class DataImpl extends ChainElementImpl implements Data
   {
     switch (featureID)
     {
+      case FPMLPackage.DATA__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case FPMLPackage.DATA__CONTENT:
-        setContent((Adt)null);
+        setContent((AdtType)null);
         return;
     }
     super.eUnset(featureID);
@@ -185,10 +238,29 @@ public class DataImpl extends ChainElementImpl implements Data
   {
     switch (featureID)
     {
+      case FPMLPackage.DATA__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case FPMLPackage.DATA__CONTENT:
         return content != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //DataImpl

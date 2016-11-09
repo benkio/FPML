@@ -3,16 +3,27 @@
  */
 package it.unibo.fPML.impl;
 
+import it.unibo.fPML.AdtValue;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,13 +33,25 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link it.unibo.fPML.impl.DataTypeImpl#getAdtElements <em>Adt Elements</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.DataTypeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.DataTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DataTypeImpl extends ValueTypeImpl implements DataType
 {
+  /**
+   * The cached value of the '{@link #getAdtElements() <em>Adt Elements</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAdtElements()
+   * @generated
+   * @ordered
+   */
+  protected EList<EObject> adtElements;
+
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
@@ -38,6 +61,16 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
    * @ordered
    */
   protected Data type;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected AdtValue value;
 
   /**
    * <!-- begin-user-doc -->
@@ -58,6 +91,20 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
   protected EClass eStaticClass()
   {
     return FPMLPackage.Literals.DATA_TYPE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<EObject> getAdtElements()
+  {
+    if (adtElements == null)
+    {
+      adtElements = new EObjectContainmentEList<EObject>(EObject.class, this, FPMLPackage.DATA_TYPE__ADT_ELEMENTS);
+    }
+    return adtElements;
   }
 
   /**
@@ -108,14 +155,84 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
    * <!-- end-user-doc -->
    * @generated
    */
+  public AdtValue getValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetValue(AdtValue newValue, NotificationChain msgs)
+  {
+    AdtValue oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.DATA_TYPE__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(AdtValue newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.DATA_TYPE__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.DATA_TYPE__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.DATA_TYPE__VALUE, newValue, newValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case FPMLPackage.DATA_TYPE__ADT_ELEMENTS:
+        return ((InternalEList<?>)getAdtElements()).basicRemove(otherEnd, msgs);
+      case FPMLPackage.DATA_TYPE__VALUE:
+        return basicSetValue(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
+      case FPMLPackage.DATA_TYPE__ADT_ELEMENTS:
+        return getAdtElements();
       case FPMLPackage.DATA_TYPE__TYPE:
         if (resolve) return getType();
         return basicGetType();
+      case FPMLPackage.DATA_TYPE__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -125,13 +242,21 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
+      case FPMLPackage.DATA_TYPE__ADT_ELEMENTS:
+        getAdtElements().clear();
+        getAdtElements().addAll((Collection<? extends EObject>)newValue);
+        return;
       case FPMLPackage.DATA_TYPE__TYPE:
         setType((Data)newValue);
+        return;
+      case FPMLPackage.DATA_TYPE__VALUE:
+        setValue((AdtValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -147,8 +272,14 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
   {
     switch (featureID)
     {
+      case FPMLPackage.DATA_TYPE__ADT_ELEMENTS:
+        getAdtElements().clear();
+        return;
       case FPMLPackage.DATA_TYPE__TYPE:
         setType((Data)null);
+        return;
+      case FPMLPackage.DATA_TYPE__VALUE:
+        setValue((AdtValue)null);
         return;
     }
     super.eUnset(featureID);
@@ -164,10 +295,66 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
   {
     switch (featureID)
     {
+      case FPMLPackage.DATA_TYPE__ADT_ELEMENTS:
+        return adtElements != null && !adtElements.isEmpty();
       case FPMLPackage.DATA_TYPE__TYPE:
         return type != null;
+      case FPMLPackage.DATA_TYPE__VALUE:
+        return value != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+  {
+    if (baseClass == Expression.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == AdtValue.class)
+    {
+      switch (derivedFeatureID)
+      {
+        case FPMLPackage.DATA_TYPE__ADT_ELEMENTS: return FPMLPackage.ADT_VALUE__ADT_ELEMENTS;
+        default: return -1;
+      }
+    }
+    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+  {
+    if (baseClass == Expression.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == AdtValue.class)
+    {
+      switch (baseFeatureID)
+      {
+        case FPMLPackage.ADT_VALUE__ADT_ELEMENTS: return FPMLPackage.DATA_TYPE__ADT_ELEMENTS;
+        default: return -1;
+      }
+    }
+    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
 } //DataTypeImpl

@@ -3,9 +3,9 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.AdtType;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.ProdType;
+import it.unibo.fPML.Value;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,39 +14,38 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Prod Type</b></em>'.
+ * An implementation of the model object '<em><b>Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.ProdTypeImpl#getAdtElement <em>Adt Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.ValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdType
+public class ValueImpl extends ChainElementImpl implements Value
 {
   /**
-   * The cached value of the '{@link #getAdtElement() <em>Adt Element</em>}' containment reference.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAdtElement()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected AdtType adtElement;
+  protected Expression value;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ProdTypeImpl()
+  protected ValueImpl()
   {
     super();
   }
@@ -59,7 +58,7 @@ public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdTy
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PROD_TYPE;
+    return FPMLPackage.Literals.VALUE;
   }
 
   /**
@@ -67,9 +66,9 @@ public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public AdtType getAdtElement()
+  public Expression getValue()
   {
-    return adtElement;
+    return value;
   }
 
   /**
@@ -77,13 +76,13 @@ public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAdtElement(AdtType newAdtElement, NotificationChain msgs)
+  public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs)
   {
-    AdtType oldAdtElement = adtElement;
-    adtElement = newAdtElement;
+    Expression oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PROD_TYPE__ADT_ELEMENT, oldAdtElement, newAdtElement);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.VALUE__VALUE, oldValue, newValue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +93,20 @@ public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAdtElement(AdtType newAdtElement)
+  public void setValue(Expression newValue)
   {
-    if (newAdtElement != adtElement)
+    if (newValue != value)
     {
       NotificationChain msgs = null;
-      if (adtElement != null)
-        msgs = ((InternalEObject)adtElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PROD_TYPE__ADT_ELEMENT, null, msgs);
-      if (newAdtElement != null)
-        msgs = ((InternalEObject)newAdtElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PROD_TYPE__ADT_ELEMENT, null, msgs);
-      msgs = basicSetAdtElement(newAdtElement, msgs);
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.VALUE__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.VALUE__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PROD_TYPE__ADT_ELEMENT, newAdtElement, newAdtElement));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.VALUE__VALUE, newValue, newValue));
   }
 
   /**
@@ -120,8 +119,8 @@ public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdTy
   {
     switch (featureID)
     {
-      case FPMLPackage.PROD_TYPE__ADT_ELEMENT:
-        return basicSetAdtElement(null, msgs);
+      case FPMLPackage.VALUE__VALUE:
+        return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +135,8 @@ public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdTy
   {
     switch (featureID)
     {
-      case FPMLPackage.PROD_TYPE__ADT_ELEMENT:
-        return getAdtElement();
+      case FPMLPackage.VALUE__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,8 +151,8 @@ public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdTy
   {
     switch (featureID)
     {
-      case FPMLPackage.PROD_TYPE__ADT_ELEMENT:
-        setAdtElement((AdtType)newValue);
+      case FPMLPackage.VALUE__VALUE:
+        setValue((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +168,8 @@ public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdTy
   {
     switch (featureID)
     {
-      case FPMLPackage.PROD_TYPE__ADT_ELEMENT:
-        setAdtElement((AdtType)null);
+      case FPMLPackage.VALUE__VALUE:
+        setValue((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,10 +185,10 @@ public class ProdTypeImpl extends MinimalEObjectImpl.Container implements ProdTy
   {
     switch (featureID)
     {
-      case FPMLPackage.PROD_TYPE__ADT_ELEMENT:
-        return adtElement != null;
+      case FPMLPackage.VALUE__VALUE:
+        return value != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ProdTypeImpl
+} //ValueImpl

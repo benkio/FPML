@@ -101,6 +101,13 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.VALUE_BLOCK:
+      {
+        ValueBlock valueBlock = (ValueBlock)theEObject;
+        T result = caseValueBlock(valueBlock);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.EFFECT_FULL_BLOCK:
       {
         EffectFullBlock effectFullBlock = (EffectFullBlock)theEObject;
@@ -112,15 +119,22 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         Data data = (Data)theEObject;
         T result = caseData(data);
-        if (result == null) result = caseChainElement(data);
-        if (result == null) result = caseInitialPureChainElement(data);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.ADT:
+      case FPMLPackage.VALUE:
       {
-        Adt adt = (Adt)theEObject;
-        T result = caseAdt(adt);
+        Value value = (Value)theEObject;
+        T result = caseValue(value);
+        if (result == null) result = caseChainElement(value);
+        if (result == null) result = caseInitialPureChainElement(value);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.ADT_TYPE:
+      {
+        AdtType adtType = (AdtType)theEObject;
+        T result = caseAdtType(adtType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -128,7 +142,6 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         SumType sumType = (SumType)theEObject;
         T result = caseSumType(sumType);
-        if (result == null) result = caseAdt(sumType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -136,7 +149,6 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         ProdType prodType = (ProdType)theEObject;
         T result = caseProdType(prodType);
-        if (result == null) result = caseAdt(prodType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -199,7 +211,6 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         Argument argument = (Argument)theEObject;
         T result = caseArgument(argument);
-        if (result == null) result = caseAdt(argument);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -253,7 +264,7 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         ValueType valueType = (ValueType)theEObject;
         T result = caseValueType(valueType);
-        if (result == null) result = caseAdt(valueType);
+        if (result == null) result = caseAdtType(valueType);
         if (result == null) result = caseType(valueType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -270,7 +281,9 @@ public class FPMLSwitch<T> extends Switch<T>
         IntegerType integerType = (IntegerType)theEObject;
         T result = caseIntegerType(integerType);
         if (result == null) result = caseValueType(integerType);
-        if (result == null) result = caseAdt(integerType);
+        if (result == null) result = caseExpression(integerType);
+        if (result == null) result = caseAdtValue(integerType);
+        if (result == null) result = caseAdtType(integerType);
         if (result == null) result = caseType(integerType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -280,7 +293,9 @@ public class FPMLSwitch<T> extends Switch<T>
         StringType stringType = (StringType)theEObject;
         T result = caseStringType(stringType);
         if (result == null) result = caseValueType(stringType);
-        if (result == null) result = caseAdt(stringType);
+        if (result == null) result = caseExpression(stringType);
+        if (result == null) result = caseAdtValue(stringType);
+        if (result == null) result = caseAdtType(stringType);
         if (result == null) result = caseType(stringType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -289,9 +304,8 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         UnitType unitType = (UnitType)theEObject;
         T result = caseUnitType(unitType);
-        if (result == null) result = caseValueType(unitType);
         if (result == null) result = caseType(unitType);
-        if (result == null) result = caseAdt(unitType);
+        if (result == null) result = caseExpression(unitType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -300,8 +314,31 @@ public class FPMLSwitch<T> extends Switch<T>
         DataType dataType = (DataType)theEObject;
         T result = caseDataType(dataType);
         if (result == null) result = caseValueType(dataType);
-        if (result == null) result = caseAdt(dataType);
+        if (result == null) result = caseExpression(dataType);
+        if (result == null) result = caseAdtValue(dataType);
+        if (result == null) result = caseAdtType(dataType);
         if (result == null) result = caseType(dataType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EXPRESSION:
+      {
+        Expression expression = (Expression)theEObject;
+        T result = caseExpression(expression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.ADT_VALUE:
+      {
+        AdtValue adtValue = (AdtValue)theEObject;
+        T result = caseAdtValue(adtValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PROD_TYPE_VALUE:
+      {
+        ProdTypeValue prodTypeValue = (ProdTypeValue)theEObject;
+        T result = caseProdTypeValue(prodTypeValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -374,6 +411,22 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Value Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Value Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValueBlock(ValueBlock object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Effect Full Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -406,17 +459,33 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Adt</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Adt</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAdt(Adt object)
+  public T caseValue(Value object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Adt Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Adt Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAdtType(AdtType object)
   {
     return null;
   }
@@ -769,6 +838,54 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDataType(DataType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpression(Expression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Adt Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Adt Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAdtValue(AdtValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Prod Type Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Prod Type Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseProdTypeValue(ProdTypeValue object)
   {
     return null;
   }

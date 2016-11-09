@@ -3,7 +3,7 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.Adt;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -12,19 +12,19 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Adt</b></em>'.
+ * An implementation of the model object '<em><b>Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class AdtImpl extends MinimalEObjectImpl.Container implements Adt
+public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected AdtImpl()
+  protected ExpressionImpl()
   {
     super();
   }
@@ -37,7 +37,7 @@ public class AdtImpl extends MinimalEObjectImpl.Container implements Adt
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.ADT;
+    return FPMLPackage.Literals.EXPRESSION;
   }
 
-} //AdtImpl
+} //ExpressionImpl

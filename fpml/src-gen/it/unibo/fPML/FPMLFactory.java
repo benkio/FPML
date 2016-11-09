@@ -60,6 +60,15 @@ public interface FPMLFactory extends EFactory
   DataBlock createDataBlock();
 
   /**
+   * Returns a new object of class '<em>Value Block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Value Block</em>'.
+   * @generated
+   */
+  ValueBlock createValueBlock();
+
+  /**
    * Returns a new object of class '<em>Effect Full Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -78,13 +87,22 @@ public interface FPMLFactory extends EFactory
   Data createData();
 
   /**
-   * Returns a new object of class '<em>Adt</em>'.
+   * Returns a new object of class '<em>Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Adt</em>'.
+   * @return a new object of class '<em>Value</em>'.
    * @generated
    */
-  Adt createAdt();
+  Value createValue();
+
+  /**
+   * Returns a new object of class '<em>Adt Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Adt Type</em>'.
+   * @generated
+   */
+  AdtType createAdtType();
 
   /**
    * Returns a new object of class '<em>Sum Type</em>'.
@@ -283,6 +301,33 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   DataType createDataType();
+
+  /**
+   * Returns a new object of class '<em>Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expression</em>'.
+   * @generated
+   */
+  Expression createExpression();
+
+  /**
+   * Returns a new object of class '<em>Adt Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Adt Value</em>'.
+   * @generated
+   */
+  AdtValue createAdtValue();
+
+  /**
+   * Returns a new object of class '<em>Prod Type Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Prod Type Value</em>'.
+   * @generated
+   */
+  ProdTypeValue createProdTypeValue();
 
   /**
    * Returns the package supported by this factory.

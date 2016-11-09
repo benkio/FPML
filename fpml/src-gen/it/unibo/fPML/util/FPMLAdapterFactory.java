@@ -96,6 +96,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createDataBlockAdapter();
       }
       @Override
+      public Adapter caseValueBlock(ValueBlock object)
+      {
+        return createValueBlockAdapter();
+      }
+      @Override
       public Adapter caseEffectFullBlock(EffectFullBlock object)
       {
         return createEffectFullBlockAdapter();
@@ -106,9 +111,14 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createDataAdapter();
       }
       @Override
-      public Adapter caseAdt(Adt object)
+      public Adapter caseValue(Value object)
       {
-        return createAdtAdapter();
+        return createValueAdapter();
+      }
+      @Override
+      public Adapter caseAdtType(AdtType object)
+      {
+        return createAdtTypeAdapter();
       }
       @Override
       public Adapter caseSumType(SumType object)
@@ -221,6 +231,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createDataTypeAdapter();
       }
       @Override
+      public Adapter caseExpression(Expression object)
+      {
+        return createExpressionAdapter();
+      }
+      @Override
+      public Adapter caseAdtValue(AdtValue object)
+      {
+        return createAdtValueAdapter();
+      }
+      @Override
+      public Adapter caseProdTypeValue(ProdTypeValue object)
+      {
+        return createProdTypeValueAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -303,6 +328,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ValueBlock <em>Value Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.ValueBlock
+   * @generated
+   */
+  public Adapter createValueBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullBlock <em>Effect Full Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -333,16 +373,31 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Adt <em>Adt</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Value <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.Adt
+   * @see it.unibo.fPML.Value
    * @generated
    */
-  public Adapter createAdtAdapter()
+  public Adapter createValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.AdtType <em>Adt Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.AdtType
+   * @generated
+   */
+  public Adapter createAdtTypeAdapter()
   {
     return null;
   }
@@ -673,6 +728,51 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDataTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Expression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.Expression
+   * @generated
+   */
+  public Adapter createExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.AdtValue <em>Adt Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.AdtValue
+   * @generated
+   */
+  public Adapter createAdtValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ProdTypeValue <em>Prod Type Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.ProdTypeValue
+   * @generated
+   */
+  public Adapter createProdTypeValueAdapter()
   {
     return null;
   }

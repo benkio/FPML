@@ -3,7 +3,7 @@
  */
 package it.unibo.fPML;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,29 +14,39 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.ProdType#getProdAdtElements <em>Prod Adt Elements</em>}</li>
+ *   <li>{@link it.unibo.fPML.ProdType#getAdtElement <em>Adt Element</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getProdType()
  * @model
  * @generated
  */
-public interface ProdType extends Adt
+public interface ProdType extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Prod Adt Elements</b></em>' containment reference list.
-   * The list contents are of type {@link it.unibo.fPML.ValueType}.
+   * Returns the value of the '<em><b>Adt Element</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Prod Adt Elements</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Adt Element</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Prod Adt Elements</em>' containment reference list.
-   * @see it.unibo.fPML.FPMLPackage#getProdType_ProdAdtElements()
+   * @return the value of the '<em>Adt Element</em>' containment reference.
+   * @see #setAdtElement(AdtType)
+   * @see it.unibo.fPML.FPMLPackage#getProdType_AdtElement()
    * @model containment="true"
    * @generated
    */
-  EList<ValueType> getProdAdtElements();
+  AdtType getAdtElement();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.ProdType#getAdtElement <em>Adt Element</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Adt Element</em>' containment reference.
+   * @see #getAdtElement()
+   * @generated
+   */
+  void setAdtElement(AdtType value);
 
 } // ProdType

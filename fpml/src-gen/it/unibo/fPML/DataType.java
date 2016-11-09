@@ -14,13 +14,14 @@ package it.unibo.fPML;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.DataType#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.DataType#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getDataType()
  * @model
  * @generated
  */
-public interface DataType extends ValueType
+public interface DataType extends ValueType, Expression, AdtValue
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.
@@ -47,5 +48,31 @@ public interface DataType extends ValueType
    * @generated
    */
   void setType(Data value);
+
+  /**
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(AdtValue)
+   * @see it.unibo.fPML.FPMLPackage#getDataType_Value()
+   * @model containment="true"
+   * @generated
+   */
+  AdtValue getValue();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.DataType#getValue <em>Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value</em>' containment reference.
+   * @see #getValue()
+   * @generated
+   */
+  void setValue(AdtValue value);
 
 } // DataType

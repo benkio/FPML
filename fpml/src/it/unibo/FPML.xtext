@@ -29,7 +29,14 @@ PureFunctionBlock:
 DataBlock:
 	'Data' '{'
 		(elements+=Data)*
+		value=ValueBlock
 	'}';
+
+ValueBlock:
+	'Value' '{' 
+		(elements+=Value)*
+	'}'
+;
 
 EffectFullBlock:
     'Effects' '{'
@@ -42,20 +49,19 @@ EffectFullBlock:
 /////////////////////////////////////////////////////////////////
 
 Data:
-    name=ID ':' content=Adt;
+    name=ID ':' content=(AdtType);
 
-Adt:
-      Argument
-    | Value
-    | SumType
-    | ProdType;
+Value: name=ID ':' value=Expression;
+
+AdtType:
+      ValueType
+    | '[' adtElement1=AdtType adtElement2=(SumType | ProdType) ']';
 
 SumType:
-    '(' SumAdtElements+=(ValueType | Value) ('+' SumAdtElements+=(ValueType | Value))+ ')';
-
+    '+' adtElement=AdtType;
 ProdType:
-    '(' ProdAdtElements+=(ValueType | Value) ('*' ProdAdtElements+=(ValueType | Value))+ ')';
-
+    '*' adtElement=AdtType;
+    
 PureFunction:
 	'def' returnType=ValueType name=ID '(' arg=Argument ')' ':' '{' functionBody=FunctionBodyPure '}';
 
@@ -70,10 +76,10 @@ MainFunc:
 ///////////////////////////////////////////////////////////////////
 
 ChainElement:
-    Function | Data;
+    Function | Value;
 
 InitialPureChainElement:
-	PureFunction | Data;
+	PureFunction | Value;
 
 Function:
     PureFunction | EffectFullFunction;
@@ -93,7 +99,7 @@ EmptyFunctionBody:
     {EmptyFunctionBody} 'Undefined';
 
 CompositionFunctionBodyPure:
-    ((functionChain+=[InitialPureChainElement]) '|>' (functionChain+=[PureFunction])) ( '|>' (functionChain+=[PureFunction]))*;
+    ((initialElement=[InitialPureChainElement]) '|>' (functionChain+=[PureFunction])) ( '|>' (functionChain+=[PureFunction]))*;
 CompositionFunctionBodyEffect:
     ((functionChain+=[ChainElement]) '>>=' (functionChain+=[ChainElement])) ( '>>=' (functionChain+=[ChainElement]))*;
 
@@ -126,11 +132,22 @@ DataType:
 // Values
 ////////////////////////////////////////////////////////////////////
 
-Value returns ValueType:
-    IntValue | StringValue | UnitValue;
+Expression:
+    IntValue | StringValue | UnitValue | DataValue;
 
 IntValue returns IntegerType: {IntegerType} value=INT;
 
 StringValue returns StringType: {StringType} value=STRING;
 
 UnitValue returns UnitType: {UnitType} '()';
+
+DataValue returns DataType: type=[Data]'(' value=AdtValue ')';
+
+AdtValue:
+	  IntValue
+	| StringValue
+	| DataValue
+	| '(' adtElements+=AdtValue adtElements+=ProdTypeValue ')';
+   
+ProdTypeValue:
+    '*' ProdAdtElements+=AdtValue;    

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.DataBlock#getElements <em>Elements</em>}</li>
+ *   <li>{@link it.unibo.fPML.DataBlock#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getDataBlock()
@@ -40,5 +41,31 @@ public interface DataBlock extends EObject
    * @generated
    */
   EList<Data> getElements();
+
+  /**
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(ValueBlock)
+   * @see it.unibo.fPML.FPMLPackage#getDataBlock_Value()
+   * @model containment="true"
+   * @generated
+   */
+  ValueBlock getValue();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.DataBlock#getValue <em>Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value</em>' containment reference.
+   * @see #getValue()
+   * @generated
+   */
+  void setValue(ValueBlock value);
 
 } // DataBlock

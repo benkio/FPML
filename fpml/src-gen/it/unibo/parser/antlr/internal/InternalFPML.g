@@ -279,9 +279,78 @@ ruleDataBlock returns [EObject current=null]
 				}
 			)
 		)*
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDataBlockAccess().getValueValueBlockParserRuleCall_3_0());
+				}
+				lv_value_3_0=ruleValueBlock
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDataBlockRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_3_0,
+						"it.unibo.FPML.ValueBlock");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_4='}'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getDataBlockAccess().getRightCurlyBracketKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleValueBlock
+entryRuleValueBlock returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getValueBlockRule()); }
+	iv_ruleValueBlock=ruleValueBlock
+	{ $current=$iv_ruleValueBlock.current; }
+	EOF;
+
+// Rule ValueBlock
+ruleValueBlock returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='Value'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getValueBlockAccess().getValueKeyword_0());
+		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getValueBlockAccess().getLeftCurlyBracketKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getValueBlockAccess().getElementsValueParserRuleCall_2_0());
+				}
+				lv_elements_2_0=ruleValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getValueBlockRule());
+					}
+					add(
+						$current,
+						"elements",
+						lv_elements_2_0,
+						"it.unibo.FPML.Value");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
 		otherlv_3='}'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getDataBlockAccess().getRightCurlyBracketKeyword_3());
+			newLeafNode(otherlv_3, grammarAccess.getValueBlockAccess().getRightCurlyBracketKeyword_3());
 		}
 	)
 ;
@@ -396,9 +465,9 @@ ruleData returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDataAccess().getContentAdtParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getDataAccess().getContentAdtTypeParserRuleCall_2_0());
 				}
-				lv_content_2_0=ruleAdt
+				lv_content_2_0=ruleAdtType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDataRule());
@@ -407,7 +476,7 @@ ruleData returns [EObject current=null]
 						$current,
 						"content",
 						lv_content_2_0,
-						"it.unibo.FPML.Adt");
+						"it.unibo.FPML.AdtType");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -415,15 +484,75 @@ ruleData returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleAdt
-entryRuleAdt returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getAdtRule()); }
-	iv_ruleAdt=ruleAdt
-	{ $current=$iv_ruleAdt.current; }
+// Entry rule entryRuleValue
+entryRuleValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getValueRule()); }
+	iv_ruleValue=ruleValue
+	{ $current=$iv_ruleValue.current; }
 	EOF;
 
-// Rule Adt
-ruleAdt returns [EObject current=null]
+// Rule Value
+ruleValue returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_name_0_0=RULE_ID
+				{
+					newLeafNode(lv_name_0_0, grammarAccess.getValueAccess().getNameIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getValueRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_1=':'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getValueAccess().getColonKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getValueAccess().getValueExpressionParserRuleCall_2_0());
+				}
+				lv_value_2_0=ruleExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getValueRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_2_0,
+						"it.unibo.FPML.Expression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleAdtType
+entryRuleAdtType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAdtTypeRule()); }
+	iv_ruleAdtType=ruleAdtType
+	{ $current=$iv_ruleAdtType.current; }
+	EOF;
+
+// Rule AdtType
+ruleAdtType returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -432,40 +561,80 @@ ruleAdt returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getAdtAccess().getArgumentParserRuleCall_0());
+			newCompositeNode(grammarAccess.getAdtTypeAccess().getValueTypeParserRuleCall_0());
 		}
-		this_Argument_0=ruleArgument
+		this_ValueType_0=ruleValueType
 		{
-			$current = $this_Argument_0.current;
+			$current = $this_ValueType_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
-		{
-			newCompositeNode(grammarAccess.getAdtAccess().getValueParserRuleCall_1());
-		}
-		this_Value_1=ruleValue
-		{
-			$current = $this_Value_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getAdtAccess().getSumTypeParserRuleCall_2());
-		}
-		this_SumType_2=ruleSumType
-		{
-			$current = $this_SumType_2.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getAdtAccess().getProdTypeParserRuleCall_3());
-		}
-		this_ProdType_3=ruleProdType
-		{
-			$current = $this_ProdType_3.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			otherlv_1='['
+			{
+				newLeafNode(otherlv_1, grammarAccess.getAdtTypeAccess().getLeftSquareBracketKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAdtTypeAccess().getAdtElement1AdtTypeParserRuleCall_1_1_0());
+					}
+					lv_adtElement1_2_0=ruleAdtType
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAdtTypeRule());
+						}
+						set(
+							$current,
+							"adtElement1",
+							lv_adtElement1_2_0,
+							"it.unibo.FPML.AdtType");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getAdtTypeAccess().getAdtElement2SumTypeParserRuleCall_1_2_0_0());
+						}
+						lv_adtElement2_3_1=ruleSumType
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAdtTypeRule());
+							}
+							set(
+								$current,
+								"adtElement2",
+								lv_adtElement2_3_1,
+								"it.unibo.FPML.SumType");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getAdtTypeAccess().getAdtElement2ProdTypeParserRuleCall_1_2_0_1());
+						}
+						lv_adtElement2_3_2=ruleProdType
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAdtTypeRule());
+							}
+							set(
+								$current,
+								"adtElement2",
+								lv_adtElement2_3_2,
+								"it.unibo.FPML.ProdType");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
+			otherlv_4=']'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getAdtTypeAccess().getRightSquareBracketKeyword_1_3());
+			}
+		)
 	)
 ;
 
@@ -485,94 +654,29 @@ ruleSumType returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='('
+		otherlv_0='+'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getSumTypeAccess().getLeftParenthesisKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getSumTypeAccess().getPlusSignKeyword_0());
 		}
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getSumTypeAccess().getSumAdtElementsValueTypeParserRuleCall_1_0_0());
+				{
+					newCompositeNode(grammarAccess.getSumTypeAccess().getAdtElementAdtTypeParserRuleCall_1_0());
+				}
+				lv_adtElement_1_0=ruleAdtType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSumTypeRule());
 					}
-					lv_SumAdtElements_1_1=ruleValueType
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSumTypeRule());
-						}
-						add(
-							$current,
-							"SumAdtElements",
-							lv_SumAdtElements_1_1,
-							"it.unibo.FPML.ValueType");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getSumTypeAccess().getSumAdtElementsValueParserRuleCall_1_0_1());
-					}
-					lv_SumAdtElements_1_2=ruleValue
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSumTypeRule());
-						}
-						add(
-							$current,
-							"SumAdtElements",
-							lv_SumAdtElements_1_2,
-							"it.unibo.FPML.Value");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"adtElement",
+						lv_adtElement_1_0,
+						"it.unibo.FPML.AdtType");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)
-		(
-			otherlv_2='+'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getSumTypeAccess().getPlusSignKeyword_2_0());
-			}
-			(
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getSumTypeAccess().getSumAdtElementsValueTypeParserRuleCall_2_1_0_0());
-						}
-						lv_SumAdtElements_3_1=ruleValueType
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getSumTypeRule());
-							}
-							add(
-								$current,
-								"SumAdtElements",
-								lv_SumAdtElements_3_1,
-								"it.unibo.FPML.ValueType");
-							afterParserOrEnumRuleCall();
-						}
-						    |
-						{
-							newCompositeNode(grammarAccess.getSumTypeAccess().getSumAdtElementsValueParserRuleCall_2_1_0_1());
-						}
-						lv_SumAdtElements_3_2=ruleValue
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getSumTypeRule());
-							}
-							add(
-								$current,
-								"SumAdtElements",
-								lv_SumAdtElements_3_2,
-								"it.unibo.FPML.Value");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)
-		)+
-		otherlv_4=')'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getSumTypeAccess().getRightParenthesisKeyword_3());
-		}
 	)
 ;
 
@@ -592,94 +696,29 @@ ruleProdType returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='('
+		otherlv_0='*'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getProdTypeAccess().getLeftParenthesisKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getProdTypeAccess().getAsteriskKeyword_0());
 		}
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getProdTypeAccess().getProdAdtElementsValueTypeParserRuleCall_1_0_0());
+				{
+					newCompositeNode(grammarAccess.getProdTypeAccess().getAdtElementAdtTypeParserRuleCall_1_0());
+				}
+				lv_adtElement_1_0=ruleAdtType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProdTypeRule());
 					}
-					lv_ProdAdtElements_1_1=ruleValueType
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getProdTypeRule());
-						}
-						add(
-							$current,
-							"ProdAdtElements",
-							lv_ProdAdtElements_1_1,
-							"it.unibo.FPML.ValueType");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getProdTypeAccess().getProdAdtElementsValueParserRuleCall_1_0_1());
-					}
-					lv_ProdAdtElements_1_2=ruleValue
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getProdTypeRule());
-						}
-						add(
-							$current,
-							"ProdAdtElements",
-							lv_ProdAdtElements_1_2,
-							"it.unibo.FPML.Value");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"adtElement",
+						lv_adtElement_1_0,
+						"it.unibo.FPML.AdtType");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)
-		(
-			otherlv_2='*'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getProdTypeAccess().getAsteriskKeyword_2_0());
-			}
-			(
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getProdTypeAccess().getProdAdtElementsValueTypeParserRuleCall_2_1_0_0());
-						}
-						lv_ProdAdtElements_3_1=ruleValueType
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getProdTypeRule());
-							}
-							add(
-								$current,
-								"ProdAdtElements",
-								lv_ProdAdtElements_3_1,
-								"it.unibo.FPML.ValueType");
-							afterParserOrEnumRuleCall();
-						}
-						    |
-						{
-							newCompositeNode(grammarAccess.getProdTypeAccess().getProdAdtElementsValueParserRuleCall_2_1_0_1());
-						}
-						lv_ProdAdtElements_3_2=ruleValue
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getProdTypeRule());
-							}
-							add(
-								$current,
-								"ProdAdtElements",
-								lv_ProdAdtElements_3_2,
-								"it.unibo.FPML.Value");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)
-		)+
-		otherlv_4=')'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getProdTypeAccess().getRightParenthesisKeyword_3());
-		}
 	)
 ;
 
@@ -1272,7 +1311,7 @@ ruleCompositionFunctionBodyPure returns [EObject current=null]
 					}
 					otherlv_0=RULE_ID
 					{
-						newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyPureAccess().getFunctionChainInitialPureChainElementCrossReference_0_0_0());
+						newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyPureAccess().getInitialElementInitialPureChainElementCrossReference_0_0_0());
 					}
 				)
 			)
@@ -1672,15 +1711,15 @@ ruleDataType returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleValue
-entryRuleValue returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getValueRule()); }
-	iv_ruleValue=ruleValue
-	{ $current=$iv_ruleValue.current; }
+// Entry rule entryRuleExpression
+entryRuleExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExpressionRule()); }
+	iv_ruleExpression=ruleExpression
+	{ $current=$iv_ruleExpression.current; }
 	EOF;
 
-// Rule Value
-ruleValue returns [EObject current=null]
+// Rule Expression
+ruleExpression returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1689,7 +1728,7 @@ ruleValue returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getValueAccess().getIntValueParserRuleCall_0());
+			newCompositeNode(grammarAccess.getExpressionAccess().getIntValueParserRuleCall_0());
 		}
 		this_IntValue_0=ruleIntValue
 		{
@@ -1698,7 +1737,7 @@ ruleValue returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getValueAccess().getStringValueParserRuleCall_1());
+			newCompositeNode(grammarAccess.getExpressionAccess().getStringValueParserRuleCall_1());
 		}
 		this_StringValue_1=ruleStringValue
 		{
@@ -1707,11 +1746,20 @@ ruleValue returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getValueAccess().getUnitValueParserRuleCall_2());
+			newCompositeNode(grammarAccess.getExpressionAccess().getUnitValueParserRuleCall_2());
 		}
 		this_UnitValue_2=ruleUnitValue
 		{
 			$current = $this_UnitValue_2.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getExpressionAccess().getDataValueParserRuleCall_3());
+		}
+		this_DataValue_3=ruleDataValue
+		{
+			$current = $this_DataValue_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1832,6 +1880,201 @@ ruleUnitValue returns [EObject current=null]
 		{
 			newLeafNode(otherlv_1, grammarAccess.getUnitValueAccess().getLeftParenthesisRightParenthesisKeyword_1());
 		}
+	)
+;
+
+// Entry rule entryRuleDataValue
+entryRuleDataValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDataValueRule()); }
+	iv_ruleDataValue=ruleDataValue
+	{ $current=$iv_ruleDataValue.current; }
+	EOF;
+
+// Rule DataValue
+ruleDataValue returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDataValueRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getDataValueAccess().getTypeDataCrossReference_0_0());
+				}
+			)
+		)
+		otherlv_1='('
+		{
+			newLeafNode(otherlv_1, grammarAccess.getDataValueAccess().getLeftParenthesisKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDataValueAccess().getValueAdtValueParserRuleCall_2_0());
+				}
+				lv_value_2_0=ruleAdtValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDataValueRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_2_0,
+						"it.unibo.FPML.AdtValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3=')'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getDataValueAccess().getRightParenthesisKeyword_3());
+		}
+	)
+;
+
+// Entry rule entryRuleAdtValue
+entryRuleAdtValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAdtValueRule()); }
+	iv_ruleAdtValue=ruleAdtValue
+	{ $current=$iv_ruleAdtValue.current; }
+	EOF;
+
+// Rule AdtValue
+ruleAdtValue returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getAdtValueAccess().getIntValueParserRuleCall_0());
+		}
+		this_IntValue_0=ruleIntValue
+		{
+			$current = $this_IntValue_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getAdtValueAccess().getStringValueParserRuleCall_1());
+		}
+		this_StringValue_1=ruleStringValue
+		{
+			$current = $this_StringValue_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getAdtValueAccess().getDataValueParserRuleCall_2());
+		}
+		this_DataValue_2=ruleDataValue
+		{
+			$current = $this_DataValue_2.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		(
+			otherlv_3='('
+			{
+				newLeafNode(otherlv_3, grammarAccess.getAdtValueAccess().getLeftParenthesisKeyword_3_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAdtValueAccess().getAdtElementsAdtValueParserRuleCall_3_1_0());
+					}
+					lv_adtElements_4_0=ruleAdtValue
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAdtValueRule());
+						}
+						add(
+							$current,
+							"adtElements",
+							lv_adtElements_4_0,
+							"it.unibo.FPML.AdtValue");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAdtValueAccess().getAdtElementsProdTypeValueParserRuleCall_3_2_0());
+					}
+					lv_adtElements_5_0=ruleProdTypeValue
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAdtValueRule());
+						}
+						add(
+							$current,
+							"adtElements",
+							lv_adtElements_5_0,
+							"it.unibo.FPML.ProdTypeValue");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_6=')'
+			{
+				newLeafNode(otherlv_6, grammarAccess.getAdtValueAccess().getRightParenthesisKeyword_3_3());
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleProdTypeValue
+entryRuleProdTypeValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getProdTypeValueRule()); }
+	iv_ruleProdTypeValue=ruleProdTypeValue
+	{ $current=$iv_ruleProdTypeValue.current; }
+	EOF;
+
+// Rule ProdTypeValue
+ruleProdTypeValue returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='*'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getProdTypeValueAccess().getAsteriskKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProdTypeValueAccess().getProdAdtElementsAdtValueParserRuleCall_1_0());
+				}
+				lv_ProdAdtElements_1_0=ruleAdtValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProdTypeValueRule());
+					}
+					add(
+						$current,
+						"ProdAdtElements",
+						lv_ProdAdtElements_1_0,
+						"it.unibo.FPML.AdtValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 

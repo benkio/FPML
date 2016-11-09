@@ -56,7 +56,7 @@ public class FPMLGenerator extends AbstractGenerator {
       String _name = e.getName();
       String _plus = ((this.basePackage + "Pure/Data/") + _name);
       String _plus_1 = (_plus + ".java");
-      CharSequence _compile_2 = this.dataGenerator.compile(e);
+      String _compile_2 = this.dataGenerator.compile(e);
       fsa.generateFile(_plus_1, _compile_2);
     }
   }

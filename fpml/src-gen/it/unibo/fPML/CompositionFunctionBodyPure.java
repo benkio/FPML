@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getInitialElement <em>Initial Element</em>}</li>
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getFunctionChain <em>Function Chain</em>}</li>
  * </ul>
  *
@@ -24,8 +25,34 @@ import org.eclipse.emf.common.util.EList;
 public interface CompositionFunctionBodyPure extends FunctionBodyPure
 {
   /**
+   * Returns the value of the '<em><b>Initial Element</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Initial Element</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Initial Element</em>' reference.
+   * @see #setInitialElement(InitialPureChainElement)
+   * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPure_InitialElement()
+   * @model
+   * @generated
+   */
+  InitialPureChainElement getInitialElement();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyPure#getInitialElement <em>Initial Element</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Initial Element</em>' reference.
+   * @see #getInitialElement()
+   * @generated
+   */
+  void setInitialElement(InitialPureChainElement value);
+
+  /**
    * Returns the value of the '<em><b>Function Chain</b></em>' reference list.
-   * The list contents are of type {@link it.unibo.fPML.InitialPureChainElement}.
+   * The list contents are of type {@link it.unibo.fPML.PureFunction}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Function Chain</em>' reference list isn't clear,
@@ -37,6 +64,6 @@ public interface CompositionFunctionBodyPure extends FunctionBodyPure
    * @model
    * @generated
    */
-  EList<InitialPureChainElement> getFunctionChain();
+  EList<PureFunction> getFunctionChain();
 
 } // CompositionFunctionBodyPure

@@ -7,14 +7,14 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Adt</b></em>'.
+ * A representation of the model object '<em><b>Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see it.unibo.fPML.FPMLPackage#getAdt()
+ * @see it.unibo.fPML.FPMLPackage#getExpression()
  * @model
  * @generated
  */
-public interface Adt extends EObject
+public interface Expression extends EObject
 {
-} // Adt
+} // Expression

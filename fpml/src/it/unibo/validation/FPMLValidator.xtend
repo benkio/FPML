@@ -9,7 +9,6 @@ import it.unibo.fPML.ChainElement
 import it.unibo.fPML.FPMLPackage
 import it.unibo.fPML.EffectFullArgument
 import it.unibo.fPML.UnitType
-import it.unibo.fPML.Data
 import org.eclipse.xtext.validation.Check
 import org.eclipse.emf.ecore.util.EcoreUtil
 import it.unibo.fPML.CompositionFunctionBodyEffect
@@ -18,6 +17,7 @@ import it.unibo.validation.UtilitiesFunctions
 import it.unibo.fPML.InitialPureChainElement
 import it.unibo.fPML.MainFunc
 import it.unibo.fPML.Type
+import it.unibo.fPML.Value
 
 /**
  * This class contains custom validation rules. 
@@ -33,11 +33,13 @@ class FPMLValidator extends AbstractFPMLValidator {
 
     @Check
     def CompositionFunctionTypePure(CompositionFunctionBodyPure cfbp ) {
-        var t = UtilitiesFunctions.getReturnType(cfbp.getFunctionChain().head);
-        for (InitialPureChainElement pf : cfbp.getFunctionChain().tail){
-            val t1 = UtilitiesFunctions.getArgType(pf);
-            if(!(EcoreUtil.equals(t1,t)))
-                error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN );
+        var t = UtilitiesFunctions.getReturnType(cfbp.initialElement);
+        for (InitialPureChainElement pf : cfbp.getFunctionChain()){
+        	if (!(pf instanceof Value)) {
+	            val t1 = UtilitiesFunctions.getArgType(pf);
+	            if(!(EcoreUtil.equals(t1,t)))
+	                error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN );
+            }
             t = UtilitiesFunctions.getReturnType(pf);
         }
     }
@@ -47,9 +49,9 @@ class FPMLValidator extends AbstractFPMLValidator {
         val f1 = cfbe.getFunctionChain().head;
         var t = UtilitiesFunctions.getReturnType(f1);
         for (ChainElement ef : cfbe.getFunctionChain().tail) {
-            if (!(ef instanceof Data)) {
+            if (!(ef instanceof Value)) {
                 var t1 = UtilitiesFunctions.getArgType(ef);
-                if(!(EcoreUtil.equals(t1,t)) && !(t1 instanceof UnitType))
+                if(!(t1.eClass == t.eClass) && !(t1 instanceof UnitType))
                     error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
             }
             t = UtilitiesFunctions.getReturnType(ef);
@@ -80,8 +82,8 @@ class FPMLValidator extends AbstractFPMLValidator {
     def FunctionCompositionArgType(PureFunction pf){
         val rt = pf.getFunctionBody();
         if (rt instanceof CompositionFunctionBodyPure) {
-            val rt2 = rt.getFunctionChain();
-            if(!(EcoreUtil.equals(pf.getArg().getType, UtilitiesFunctions.getArgType(rt2.get(0)))))
+            val rt2 = rt.initialElement
+            if((rt2 instanceof PureFunction) && !(EcoreUtil.equals(pf.getArg().getType, UtilitiesFunctions.getArgType(rt2))))
                 error(TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.PURE_FUNCTION__ARG);
         }
     }
@@ -109,16 +111,8 @@ class FPMLValidator extends AbstractFPMLValidator {
         val rt = m.getFunctionBody();
         if (rt instanceof CompositionFunctionBodyEffect) {
             val rt2 = rt.getFunctionChain();
-            if(!(EcoreUtil.equals(m.getReturnType(), UtilitiesFunctions.getReturnType(rt2.get(rt2.size() -1)))))
+            if(!(m.getReturnType().eClass == UtilitiesFunctions.getReturnType(rt2.get(rt2.size() -1)).eClass ))
                 error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE);
         }
-
-        /*val factory = FPMLFactoryImpl.init()
-        val main = factory.createEffectFullFunction()
-        val mainReturnType = factory.createIOType();
-        mainReturnType.setType(factory.createUnitType())
-        main.setFunctionBody(m.getFunctionBody())
-        main.setReturnType(mainReturnType)
-        this.FunctionCompositionReturnType(main)*/
     }
 }
