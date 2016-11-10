@@ -32,7 +32,7 @@ public class PureFunctionGenerator {
     _builder.append("Pure.Data.*;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("public static class PureFunction {");
+    _builder.append("public class PureFunctions {");
     _builder.newLine();
     {
       EList<PureFunction> _features = pfb.getFeatures();
@@ -68,15 +68,19 @@ public class PureFunctionGenerator {
       FunctionBodyPure _functionBody = pf.getFunctionBody();
       if ((_functionBody instanceof EmptyFunctionBody)) {
         _builder.append("\t");
-        _builder.append("throw new NotImpletementedException(\"TODO\")");
+        _builder.append("throw new UnsupportedOperationException(\"TODO\");");
         _builder.newLine();
       } else {
         FunctionBodyPure _functionBody_1 = pf.getFunctionBody();
         if ((_functionBody_1 instanceof CompositionFunctionBodyPure)) {
           _builder.append("\t");
+          _builder.append("return ");
           FunctionBodyPure _functionBody_2 = pf.getFunctionBody();
-          String _compile_2 = this.compile(((CompositionFunctionBodyPure) _functionBody_2));
+          Argument _arg_1 = pf.getArg();
+          String _name_1 = _arg_1.getName();
+          String _compile_2 = this.compile(((CompositionFunctionBodyPure) _functionBody_2), _name_1);
           _builder.append(_compile_2, "\t");
+          _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
       }
@@ -85,12 +89,12 @@ public class PureFunctionGenerator {
     return _builder;
   }
   
-  public String compile(final CompositionFunctionBodyPure cfbp) {
+  public String compile(final CompositionFunctionBodyPure cfbp, final String argName) {
     String result = "";
     InitialPureChainElement _initialElement = cfbp.getInitialElement();
     if ((_initialElement instanceof PureFunction)) {
       InitialPureChainElement _initialElement_1 = cfbp.getInitialElement();
-      String _compileCall = this.compileCall(((PureFunction) _initialElement_1), "");
+      String _compileCall = this.compileCall(((PureFunction) _initialElement_1), argName);
       result = _compileCall;
     } else {
       InitialPureChainElement _initialElement_2 = cfbp.getInitialElement();

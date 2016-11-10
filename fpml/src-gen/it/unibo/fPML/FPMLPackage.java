@@ -941,22 +941,13 @@ public interface FPMLPackage extends EPackage
   int INTEGER_TYPE__ADT_ELEMENT2 = VALUE_TYPE__ADT_ELEMENT2;
 
   /**
-   * The feature id for the '<em><b>Adt Elements</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTEGER_TYPE__ADT_ELEMENTS = VALUE_TYPE_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INTEGER_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 1;
+  int INTEGER_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -965,7 +956,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTEGER_TYPE__VALUE = VALUE_TYPE_FEATURE_COUNT + 2;
+  int INTEGER_TYPE__VALUE = VALUE_TYPE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Integer Type</em>' class.
@@ -974,7 +965,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INTEGER_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 3;
+  int INTEGER_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.StringTypeImpl <em>String Type</em>}' class.
@@ -1005,22 +996,13 @@ public interface FPMLPackage extends EPackage
   int STRING_TYPE__ADT_ELEMENT2 = VALUE_TYPE__ADT_ELEMENT2;
 
   /**
-   * The feature id for the '<em><b>Adt Elements</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_TYPE__ADT_ELEMENTS = VALUE_TYPE_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STRING_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 1;
+  int STRING_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1029,7 +1011,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRING_TYPE__VALUE = VALUE_TYPE_FEATURE_COUNT + 2;
+  int STRING_TYPE__VALUE = VALUE_TYPE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>String Type</em>' class.
@@ -1038,7 +1020,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRING_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 3;
+  int STRING_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.UnitTypeImpl <em>Unit Type</em>}' class.
@@ -1097,31 +1079,13 @@ public interface FPMLPackage extends EPackage
   int DATA_TYPE__ADT_ELEMENT2 = VALUE_TYPE__ADT_ELEMENT2;
 
   /**
-   * The feature id for the '<em><b>Adt Elements</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATA_TYPE__ADT_ELEMENTS = VALUE_TYPE_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATA_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATA_TYPE__VALUE = VALUE_TYPE_FEATURE_COUNT + 2;
+  int DATA_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Data Type</em>' class.
@@ -1130,7 +1094,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 3;
+  int DATA_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -1162,50 +1126,142 @@ public interface FPMLPackage extends EPackage
   int ADT_VALUE = 32;
 
   /**
-   * The feature id for the '<em><b>Adt Elements</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADT_VALUE__ADT_ELEMENTS = 0;
-
-  /**
    * The number of structural features of the '<em>Adt Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADT_VALUE_FEATURE_COUNT = 1;
+  int ADT_VALUE_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link it.unibo.fPML.impl.ProdTypeValueImpl <em>Prod Type Value</em>}' class.
+   * The meta object id for the '{@link it.unibo.fPML.impl.ProdValueImpl <em>Prod Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see it.unibo.fPML.impl.ProdTypeValueImpl
-   * @see it.unibo.fPML.impl.FPMLPackageImpl#getProdTypeValue()
+   * @see it.unibo.fPML.impl.ProdValueImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getProdValue()
    * @generated
    */
-  int PROD_TYPE_VALUE = 33;
+  int PROD_VALUE = 33;
 
   /**
-   * The feature id for the '<em><b>Prod Adt Elements</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROD_TYPE_VALUE__PROD_ADT_ELEMENTS = 0;
-
-  /**
-   * The number of structural features of the '<em>Prod Type Value</em>' class.
+   * The feature id for the '<em><b>Prod Adt Element1</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROD_TYPE_VALUE_FEATURE_COUNT = 1;
+  int PROD_VALUE__PROD_ADT_ELEMENT1 = ADT_VALUE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Prod Adt Element2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROD_VALUE__PROD_ADT_ELEMENT2 = ADT_VALUE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Prod Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROD_VALUE_FEATURE_COUNT = ADT_VALUE_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.SumValueImpl <em>Sum Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.SumValueImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getSumValue()
+   * @generated
+   */
+  int SUM_VALUE = 34;
+
+  /**
+   * The feature id for the '<em><b>Sum Adt Element1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUM_VALUE__SUM_ADT_ELEMENT1 = ADT_VALUE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Sum Adt Element2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUM_VALUE__SUM_ADT_ELEMENT2 = ADT_VALUE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Sum Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUM_VALUE_FEATURE_COUNT = ADT_VALUE_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.DataValueImpl <em>Data Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.DataValueImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
+   * @generated
+   */
+  int DATA_VALUE = 35;
+
+  /**
+   * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_VALUE__ADT_ELEMENT1 = DATA_TYPE__ADT_ELEMENT1;
+
+  /**
+   * The feature id for the '<em><b>Adt Element2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_VALUE__ADT_ELEMENT2 = DATA_TYPE__ADT_ELEMENT2;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_VALUE__TYPE = DATA_TYPE__TYPE;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_VALUE__VALUE = DATA_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Data Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_VALUE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 1;
 
 
   /**
@@ -1937,17 +1993,6 @@ public interface FPMLPackage extends EPackage
   EReference getDataType_Type();
 
   /**
-   * Returns the meta object for the containment reference '{@link it.unibo.fPML.DataType#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see it.unibo.fPML.DataType#getValue()
-   * @see #getDataType()
-   * @generated
-   */
-  EReference getDataType_Value();
-
-  /**
    * Returns the meta object for class '{@link it.unibo.fPML.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1968,36 +2013,89 @@ public interface FPMLPackage extends EPackage
   EClass getAdtValue();
 
   /**
-   * Returns the meta object for the containment reference list '{@link it.unibo.fPML.AdtValue#getAdtElements <em>Adt Elements</em>}'.
+   * Returns the meta object for class '{@link it.unibo.fPML.ProdValue <em>Prod Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Adt Elements</em>'.
-   * @see it.unibo.fPML.AdtValue#getAdtElements()
-   * @see #getAdtValue()
+   * @return the meta object for class '<em>Prod Value</em>'.
+   * @see it.unibo.fPML.ProdValue
    * @generated
    */
-  EReference getAdtValue_AdtElements();
+  EClass getProdValue();
 
   /**
-   * Returns the meta object for class '{@link it.unibo.fPML.ProdTypeValue <em>Prod Type Value</em>}'.
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.ProdValue#getProdAdtElement1 <em>Prod Adt Element1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Prod Type Value</em>'.
-   * @see it.unibo.fPML.ProdTypeValue
+   * @return the meta object for the containment reference '<em>Prod Adt Element1</em>'.
+   * @see it.unibo.fPML.ProdValue#getProdAdtElement1()
+   * @see #getProdValue()
    * @generated
    */
-  EClass getProdTypeValue();
+  EReference getProdValue_ProdAdtElement1();
 
   /**
-   * Returns the meta object for the containment reference list '{@link it.unibo.fPML.ProdTypeValue#getProdAdtElements <em>Prod Adt Elements</em>}'.
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.ProdValue#getProdAdtElement2 <em>Prod Adt Element2</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Prod Adt Elements</em>'.
-   * @see it.unibo.fPML.ProdTypeValue#getProdAdtElements()
-   * @see #getProdTypeValue()
+   * @return the meta object for the containment reference '<em>Prod Adt Element2</em>'.
+   * @see it.unibo.fPML.ProdValue#getProdAdtElement2()
+   * @see #getProdValue()
    * @generated
    */
-  EReference getProdTypeValue_ProdAdtElements();
+  EReference getProdValue_ProdAdtElement2();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.SumValue <em>Sum Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Sum Value</em>'.
+   * @see it.unibo.fPML.SumValue
+   * @generated
+   */
+  EClass getSumValue();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.SumValue#getSumAdtElement1 <em>Sum Adt Element1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Sum Adt Element1</em>'.
+   * @see it.unibo.fPML.SumValue#getSumAdtElement1()
+   * @see #getSumValue()
+   * @generated
+   */
+  EReference getSumValue_SumAdtElement1();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.SumValue#getSumAdtElement2 <em>Sum Adt Element2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Sum Adt Element2</em>'.
+   * @see it.unibo.fPML.SumValue#getSumAdtElement2()
+   * @see #getSumValue()
+   * @generated
+   */
+  EReference getSumValue_SumAdtElement2();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.DataValue <em>Data Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Data Value</em>'.
+   * @see it.unibo.fPML.DataValue
+   * @generated
+   */
+  EClass getDataValue();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.DataValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see it.unibo.fPML.DataValue#getValue()
+   * @see #getDataValue()
+   * @generated
+   */
+  EReference getDataValue_Value();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -2637,14 +2735,6 @@ public interface FPMLPackage extends EPackage
     EReference DATA_TYPE__TYPE = eINSTANCE.getDataType_Type();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATA_TYPE__VALUE = eINSTANCE.getDataType_Value();
-
-    /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.ExpressionImpl <em>Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2665,30 +2755,74 @@ public interface FPMLPackage extends EPackage
     EClass ADT_VALUE = eINSTANCE.getAdtValue();
 
     /**
-     * The meta object literal for the '<em><b>Adt Elements</b></em>' containment reference list feature.
+     * The meta object literal for the '{@link it.unibo.fPML.impl.ProdValueImpl <em>Prod Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.ProdValueImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getProdValue()
      * @generated
      */
-    EReference ADT_VALUE__ADT_ELEMENTS = eINSTANCE.getAdtValue_AdtElements();
+    EClass PROD_VALUE = eINSTANCE.getProdValue();
 
     /**
-     * The meta object literal for the '{@link it.unibo.fPML.impl.ProdTypeValueImpl <em>Prod Type Value</em>}' class.
+     * The meta object literal for the '<em><b>Prod Adt Element1</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see it.unibo.fPML.impl.ProdTypeValueImpl
-     * @see it.unibo.fPML.impl.FPMLPackageImpl#getProdTypeValue()
      * @generated
      */
-    EClass PROD_TYPE_VALUE = eINSTANCE.getProdTypeValue();
+    EReference PROD_VALUE__PROD_ADT_ELEMENT1 = eINSTANCE.getProdValue_ProdAdtElement1();
 
     /**
-     * The meta object literal for the '<em><b>Prod Adt Elements</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Prod Adt Element2</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROD_TYPE_VALUE__PROD_ADT_ELEMENTS = eINSTANCE.getProdTypeValue_ProdAdtElements();
+    EReference PROD_VALUE__PROD_ADT_ELEMENT2 = eINSTANCE.getProdValue_ProdAdtElement2();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.SumValueImpl <em>Sum Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.SumValueImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getSumValue()
+     * @generated
+     */
+    EClass SUM_VALUE = eINSTANCE.getSumValue();
+
+    /**
+     * The meta object literal for the '<em><b>Sum Adt Element1</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SUM_VALUE__SUM_ADT_ELEMENT1 = eINSTANCE.getSumValue_SumAdtElement1();
+
+    /**
+     * The meta object literal for the '<em><b>Sum Adt Element2</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SUM_VALUE__SUM_ADT_ELEMENT2 = eINSTANCE.getSumValue_SumAdtElement2();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.DataValueImpl <em>Data Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.DataValueImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
+     * @generated
+     */
+    EClass DATA_VALUE = eINSTANCE.getDataValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DATA_VALUE__VALUE = eINSTANCE.getDataValue_Value();
 
   }
 

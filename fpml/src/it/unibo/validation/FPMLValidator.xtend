@@ -18,6 +18,7 @@ import it.unibo.fPML.InitialPureChainElement
 import it.unibo.fPML.MainFunc
 import it.unibo.fPML.Type
 import it.unibo.fPML.Value
+import it.unibo.fPML.DataValue
 
 /**
  * This class contains custom validation rules. 
@@ -30,6 +31,7 @@ class FPMLValidator extends AbstractFPMLValidator {
     public static val TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN = "The return type of the last function and the outside function doesn't match";
     public static val TYPEMISMATCHFUNCTIONCOMPOSITIONARGS = "The argument type of the function is not the same as the first argument of the function chain";
     public static val EFFECTFULLARGUMENTUNITTYPEID = "The Unit Type don't require and ID";
+    public static val TYPEVMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
 
     @Check
     def CompositionFunctionTypePure(CompositionFunctionBodyPure cfbp ) {
@@ -114,5 +116,11 @@ class FPMLValidator extends AbstractFPMLValidator {
             if(!(m.getReturnType().eClass == UtilitiesFunctions.getReturnType(rt2.get(rt2.size() -1)).eClass ))
                 error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE);
         }
+    }
+    
+    @Check
+    def ValueDataTypeCheck(DataValue dv) {
+    	if (!UtilitiesFunctions.typeCheckDataAndValue(dv.value, dv.type.content))
+    		error(TYPEVMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.DATA_VALUE__VALUE)
     }
 }

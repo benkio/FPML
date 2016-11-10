@@ -6,46 +6,19 @@ package it.unibo.fPML.impl;
 import it.unibo.fPML.AdtValue;
 import it.unibo.fPML.FPMLPackage;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Adt Value</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link it.unibo.fPML.impl.AdtValueImpl#getAdtElements <em>Adt Elements</em>}</li>
- * </ul>
  *
  * @generated
  */
 public class AdtValueImpl extends MinimalEObjectImpl.Container implements AdtValue
 {
-  /**
-   * The cached value of the '{@link #getAdtElements() <em>Adt Elements</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAdtElements()
-   * @generated
-   * @ordered
-   */
-  protected EList<EObject> adtElements;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -65,104 +38,6 @@ public class AdtValueImpl extends MinimalEObjectImpl.Container implements AdtVal
   protected EClass eStaticClass()
   {
     return FPMLPackage.Literals.ADT_VALUE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<EObject> getAdtElements()
-  {
-    if (adtElements == null)
-    {
-      adtElements = new EObjectContainmentEList<EObject>(EObject.class, this, FPMLPackage.ADT_VALUE__ADT_ELEMENTS);
-    }
-    return adtElements;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case FPMLPackage.ADT_VALUE__ADT_ELEMENTS:
-        return ((InternalEList<?>)getAdtElements()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case FPMLPackage.ADT_VALUE__ADT_ELEMENTS:
-        return getAdtElements();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case FPMLPackage.ADT_VALUE__ADT_ELEMENTS:
-        getAdtElements().clear();
-        getAdtElements().addAll((Collection<? extends EObject>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case FPMLPackage.ADT_VALUE__ADT_ELEMENTS:
-        getAdtElements().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case FPMLPackage.ADT_VALUE__ADT_ELEMENTS:
-        return adtElements != null && !adtElements.isEmpty();
-    }
-    return super.eIsSet(featureID);
   }
 
 } //AdtValueImpl

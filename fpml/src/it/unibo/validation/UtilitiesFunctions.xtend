@@ -12,6 +12,14 @@ import it.unibo.fPML.Expression
 import it.unibo.fPML.IntegerType
 import it.unibo.fPML.StringType
 import it.unibo.fPML.UnitType
+import it.unibo.fPML.DataValue
+import it.unibo.fPML.Data
+import it.unibo.fPML.SumValue
+import it.unibo.fPML.SumType
+import it.unibo.fPML.AdtType
+import it.unibo.fPML.ProdType
+import it.unibo.fPML.AdtValue
+import it.unibo.fPML.ProdValue
 
 /**
  * Created by benkio on 11/3/16.
@@ -87,4 +95,20 @@ class UtilitiesFunctions {
     		DataType: return (e as DataType).type
     	}
     }
+	
+	def static boolean typeCheckDataAndValue(AdtValue value, AdtType type) {
+		switch type {
+			IntegerType: return value instanceof IntegerType
+			StringType: return value instanceof StringType
+			DataType: return typeCheckDataAndValue(value, (type as DataType).type.content) 
+			default: {
+				switch value{
+					SumValue: return (type.adtElement2 instanceof SumType) && ((typeCheckDataAndValue(value.sumAdtElement1, type.adtElement1)).booleanValue || (typeCheckDataAndValue(value.sumAdtElement2, (type.adtElement2 as SumType).adtElement)).booleanValue)
+					ProdValue: return (type.adtElement2 instanceof ProdType) && ((typeCheckDataAndValue(value.prodAdtElement1, type.adtElement1)).booleanValue && (typeCheckDataAndValue(value.prodAdtElement2, (type.adtElement2 as ProdType).adtElement)).booleanValue)
+					default: false
+				}
+			}
+		}
+	}
+	
 }

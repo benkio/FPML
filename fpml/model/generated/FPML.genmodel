@@ -98,14 +98,19 @@
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//DataType">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//DataType/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//DataType/value"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//Expression"/>
-    <genClasses ecoreClass="FPML.ecore#//AdtValue">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//AdtValue/adtElements"/>
+    <genClasses ecoreClass="FPML.ecore#//AdtValue"/>
+    <genClasses ecoreClass="FPML.ecore#//ProdValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ProdValue/prodAdtElement1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ProdValue/prodAdtElement2"/>
     </genClasses>
-    <genClasses ecoreClass="FPML.ecore#//ProdTypeValue">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ProdTypeValue/ProdAdtElements"/>
+    <genClasses ecoreClass="FPML.ecore#//SumValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//SumValue/sumAdtElement1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//SumValue/sumAdtElement2"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//DataValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//DataValue/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

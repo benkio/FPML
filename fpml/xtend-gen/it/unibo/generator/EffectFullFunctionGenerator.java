@@ -37,8 +37,13 @@ public class EffectFullFunctionGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("import fj.data.*;");
     _builder.newLine();
+    _builder.append("import ");
+    String _basePackageJava_2 = FPMLGenerator.getBasePackageJava();
+    _builder.append(_basePackageJava_2, "");
+    _builder.append("Pure.*;");
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("public static class EffectFullFunction {");
+    _builder.append("public class EffectFullFunctions {");
     _builder.newLine();
     {
       EList<EffectFullFunction> _features = efb.getFeatures();
@@ -73,7 +78,7 @@ public class EffectFullFunctionGenerator {
       FunctionBodyEffectFull _functionBody = pf.getFunctionBody();
       if ((_functionBody instanceof EmptyFunctionBody)) {
         _builder.append("\t");
-        _builder.append("throw new NotImpletementedException(\"TODO\")");
+        _builder.append("throw new UnsupportedOperationException(\"TODO\");");
         _builder.newLine();
       } else {
         FunctionBodyEffectFull _functionBody_1 = pf.getFunctionBody();
@@ -87,6 +92,7 @@ public class EffectFullFunctionGenerator {
           FunctionBodyEffectFull _functionBody_2 = pf.getFunctionBody();
           CharSequence _compile_2 = this.compile(((CompositionFunctionBodyEffect) _functionBody_2));
           _builder.append(_compile_2, "\t");
+          _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
       }
@@ -115,7 +121,7 @@ public class EffectFullFunctionGenerator {
     if (e instanceof PureFunction) {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append(".map(");
+      _builder.append(".map(PureFunctions::");
       String _name = ((PureFunction) e).getName();
       _builder.append(_name, "");
       _builder.append(")");
@@ -136,7 +142,7 @@ public class EffectFullFunctionGenerator {
       if (e instanceof EffectFullFunction) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(");
+        _builder.append(".bind(EffectFullFunctions::");
         String _name = ((EffectFullFunction) e).getName();
         _builder.append(_name, "");
         _builder.append(")");

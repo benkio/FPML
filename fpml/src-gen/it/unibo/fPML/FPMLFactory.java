@@ -321,13 +321,31 @@ public interface FPMLFactory extends EFactory
   AdtValue createAdtValue();
 
   /**
-   * Returns a new object of class '<em>Prod Type Value</em>'.
+   * Returns a new object of class '<em>Prod Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Prod Type Value</em>'.
+   * @return a new object of class '<em>Prod Value</em>'.
    * @generated
    */
-  ProdTypeValue createProdTypeValue();
+  ProdValue createProdValue();
+
+  /**
+   * Returns a new object of class '<em>Sum Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Sum Value</em>'.
+   * @generated
+   */
+  SumValue createSumValue();
+
+  /**
+   * Returns a new object of class '<em>Data Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Data Value</em>'.
+   * @generated
+   */
+  DataValue createDataValue();
 
   /**
    * Returns the package supported by this factory.

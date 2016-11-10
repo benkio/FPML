@@ -335,10 +335,32 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.PROD_TYPE_VALUE:
+      case FPMLPackage.PROD_VALUE:
       {
-        ProdTypeValue prodTypeValue = (ProdTypeValue)theEObject;
-        T result = caseProdTypeValue(prodTypeValue);
+        ProdValue prodValue = (ProdValue)theEObject;
+        T result = caseProdValue(prodValue);
+        if (result == null) result = caseAdtValue(prodValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.SUM_VALUE:
+      {
+        SumValue sumValue = (SumValue)theEObject;
+        T result = caseSumValue(sumValue);
+        if (result == null) result = caseAdtValue(sumValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.DATA_VALUE:
+      {
+        DataValue dataValue = (DataValue)theEObject;
+        T result = caseDataValue(dataValue);
+        if (result == null) result = caseDataType(dataValue);
+        if (result == null) result = caseValueType(dataValue);
+        if (result == null) result = caseExpression(dataValue);
+        if (result == null) result = caseAdtValue(dataValue);
+        if (result == null) result = caseAdtType(dataValue);
+        if (result == null) result = caseType(dataValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -875,17 +897,49 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Prod Type Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Prod Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Prod Type Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Prod Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseProdTypeValue(ProdTypeValue object)
+  public T caseProdValue(ProdValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Sum Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Sum Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSumValue(SumValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Data Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Data Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDataValue(DataValue object)
   {
     return null;
   }

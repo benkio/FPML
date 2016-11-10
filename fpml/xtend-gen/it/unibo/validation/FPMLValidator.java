@@ -4,9 +4,13 @@
 package it.unibo.validation;
 
 import com.google.common.base.Objects;
+import it.unibo.fPML.AdtType;
+import it.unibo.fPML.AdtValue;
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyPure;
+import it.unibo.fPML.Data;
+import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.FPMLPackage;
@@ -42,6 +46,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public final static String TYPEMISMATCHFUNCTIONCOMPOSITIONARGS = "The argument type of the function is not the same as the first argument of the function chain";
   
   public final static String EFFECTFULLARGUMENTUNITTYPEID = "The Unit Type don\'t require and ID";
+  
+  public final static String TYPEVMISMATCHBETWEENVALUEANDDATA = "The value doesn\'t match the data declaration";
   
   @Check
   public void CompositionFunctionTypePure(final CompositionFunctionBodyPure cfbp) {
@@ -175,6 +181,18 @@ public class FPMLValidator extends AbstractFPMLValidator {
       if (_not) {
         this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE);
       }
+    }
+  }
+  
+  @Check
+  public void ValueDataTypeCheck(final DataValue dv) {
+    AdtValue _value = dv.getValue();
+    Data _type = dv.getType();
+    AdtType _content = _type.getContent();
+    boolean _typeCheckDataAndValue = UtilitiesFunctions.typeCheckDataAndValue(_value, _content);
+    boolean _not = (!_typeCheckDataAndValue);
+    if (_not) {
+      this.error(FPMLValidator.TYPEVMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.DATA_VALUE__VALUE);
     }
   }
 }

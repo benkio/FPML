@@ -3,26 +3,14 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.AdtValue;
-import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.StringType;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +20,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.StringTypeImpl#getAdtElements <em>Adt Elements</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.StringTypeImpl#getType <em>Type</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.StringTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
@@ -41,16 +28,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class StringTypeImpl extends ValueTypeImpl implements StringType
 {
-  /**
-   * The cached value of the '{@link #getAdtElements() <em>Adt Elements</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAdtElements()
-   * @generated
-   * @ordered
-   */
-  protected EList<EObject> adtElements;
-
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -117,20 +94,6 @@ public class StringTypeImpl extends ValueTypeImpl implements StringType
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EObject> getAdtElements()
-  {
-    if (adtElements == null)
-    {
-      adtElements = new EObjectContainmentEList<EObject>(EObject.class, this, FPMLPackage.STRING_TYPE__ADT_ELEMENTS);
-    }
-    return adtElements;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public String getType()
   {
     return type;
@@ -178,28 +141,10 @@ public class StringTypeImpl extends ValueTypeImpl implements StringType
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case FPMLPackage.STRING_TYPE__ADT_ELEMENTS:
-        return ((InternalEList<?>)getAdtElements()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
-      case FPMLPackage.STRING_TYPE__ADT_ELEMENTS:
-        return getAdtElements();
       case FPMLPackage.STRING_TYPE__TYPE:
         return getType();
       case FPMLPackage.STRING_TYPE__VALUE:
@@ -213,16 +158,11 @@ public class StringTypeImpl extends ValueTypeImpl implements StringType
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case FPMLPackage.STRING_TYPE__ADT_ELEMENTS:
-        getAdtElements().clear();
-        getAdtElements().addAll((Collection<? extends EObject>)newValue);
-        return;
       case FPMLPackage.STRING_TYPE__TYPE:
         setType((String)newValue);
         return;
@@ -243,9 +183,6 @@ public class StringTypeImpl extends ValueTypeImpl implements StringType
   {
     switch (featureID)
     {
-      case FPMLPackage.STRING_TYPE__ADT_ELEMENTS:
-        getAdtElements().clear();
-        return;
       case FPMLPackage.STRING_TYPE__TYPE:
         setType(TYPE_EDEFAULT);
         return;
@@ -266,66 +203,12 @@ public class StringTypeImpl extends ValueTypeImpl implements StringType
   {
     switch (featureID)
     {
-      case FPMLPackage.STRING_TYPE__ADT_ELEMENTS:
-        return adtElements != null && !adtElements.isEmpty();
       case FPMLPackage.STRING_TYPE__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case FPMLPackage.STRING_TYPE__VALUE:
         return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-  {
-    if (baseClass == Expression.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == AdtValue.class)
-    {
-      switch (derivedFeatureID)
-      {
-        case FPMLPackage.STRING_TYPE__ADT_ELEMENTS: return FPMLPackage.ADT_VALUE__ADT_ELEMENTS;
-        default: return -1;
-      }
-    }
-    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-  {
-    if (baseClass == Expression.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == AdtValue.class)
-    {
-      switch (baseFeatureID)
-      {
-        case FPMLPackage.ADT_VALUE__ADT_ELEMENTS: return FPMLPackage.STRING_TYPE__ADT_ELEMENTS;
-        default: return -1;
-      }
-    }
-    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
   /**

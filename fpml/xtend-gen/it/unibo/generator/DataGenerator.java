@@ -18,11 +18,6 @@ public class DataGenerator {
     _builder.append("Pure.Data;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("import ");
-    String _basePackageJava_1 = FPMLGenerator.getBasePackageJava();
-    _builder.append(_basePackageJava_1, "");
-    _builder.append("Pure.Data.*;");
-    _builder.newLineIfNotEmpty();
     _builder.append("import fj.data.*;");
     _builder.newLine();
     _builder.append("import fj.P2;");

@@ -141,13 +141,19 @@ StringValue returns StringType: {StringType} value=STRING;
 
 UnitValue returns UnitType: {UnitType} '()';
 
-DataValue returns DataType: type=[Data]'(' value=AdtValue ')';
+DataValue returns DataType: {DataValue} type=[Data]'(' value=AdtValue ')';
 
 AdtValue:
 	  IntValue
 	| StringValue
 	| DataValue
-	| '(' adtElements+=AdtValue adtElements+=ProdTypeValue ')';
-   
-ProdTypeValue:
-    '*' ProdAdtElements+=AdtValue;    
+	| SumValue
+	| ProdValue;
+
+ProdValue: 
+	'(' prodAdtElement1=AdtValue ',' prodAdtElement2=AdtValue ')';
+
+SumValue:
+	'Left' '(' sumAdtElement1=AdtValue ')'
+	| 'Right' '(' sumAdtElement2=AdtValue ')';
+    

@@ -24,7 +24,7 @@ class FPMLGenerator extends AbstractGenerator {
 	val pureFunctionGenerator = new PureFunctionGenerator
 	val effectFullFunctionGenerator = new EffectFullFunctionGenerator
 	val dataGenerator = new DataGenerator
-
+	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		fsa.generateFile(basePackage + "Pure/PureFunctions.java", pureFunctionGenerator.compile(resource.getAllContents.filter(PureFunctionBlock).head));
 		fsa.generateFile(basePackage + "Effectfull/EffectFullFunctions.java", effectFullFunctionGenerator.compile(resource.getAllContents.filter(EffectFullBlock).head));

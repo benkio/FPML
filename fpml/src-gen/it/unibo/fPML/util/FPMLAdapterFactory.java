@@ -241,9 +241,19 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createAdtValueAdapter();
       }
       @Override
-      public Adapter caseProdTypeValue(ProdTypeValue object)
+      public Adapter caseProdValue(ProdValue object)
       {
-        return createProdTypeValueAdapter();
+        return createProdValueAdapter();
+      }
+      @Override
+      public Adapter caseSumValue(SumValue object)
+      {
+        return createSumValueAdapter();
+      }
+      @Override
+      public Adapter caseDataValue(DataValue object)
+      {
+        return createDataValueAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -763,16 +773,46 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ProdTypeValue <em>Prod Type Value</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ProdValue <em>Prod Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.ProdTypeValue
+   * @see it.unibo.fPML.ProdValue
    * @generated
    */
-  public Adapter createProdTypeValueAdapter()
+  public Adapter createProdValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.SumValue <em>Sum Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.SumValue
+   * @generated
+   */
+  public Adapter createSumValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.DataValue <em>Data Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.DataValue
+   * @generated
+   */
+  public Adapter createDataValueAdapter()
   {
     return null;
   }

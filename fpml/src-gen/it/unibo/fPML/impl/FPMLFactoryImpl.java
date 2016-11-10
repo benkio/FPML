@@ -98,7 +98,9 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.DATA_TYPE: return createDataType();
       case FPMLPackage.EXPRESSION: return createExpression();
       case FPMLPackage.ADT_VALUE: return createAdtValue();
-      case FPMLPackage.PROD_TYPE_VALUE: return createProdTypeValue();
+      case FPMLPackage.PROD_VALUE: return createProdValue();
+      case FPMLPackage.SUM_VALUE: return createSumValue();
+      case FPMLPackage.DATA_VALUE: return createDataValue();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -472,10 +474,32 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ProdTypeValue createProdTypeValue()
+  public ProdValue createProdValue()
   {
-    ProdTypeValueImpl prodTypeValue = new ProdTypeValueImpl();
-    return prodTypeValue;
+    ProdValueImpl prodValue = new ProdValueImpl();
+    return prodValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SumValue createSumValue()
+  {
+    SumValueImpl sumValue = new SumValueImpl();
+    return sumValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DataValue createDataValue()
+  {
+    DataValueImpl dataValue = new DataValueImpl();
+    return dataValue;
   }
 
   /**

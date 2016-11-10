@@ -12,7 +12,6 @@ class DataGenerator {
 	return '''
 	    package «FPMLGenerator.basePackageJava»Pure.Data;
 	    
-	    import «FPMLGenerator.basePackageJava»Pure.Data.*;
 	    import fj.data.*;
 	    import fj.P2;
 	    import fj.Unit;

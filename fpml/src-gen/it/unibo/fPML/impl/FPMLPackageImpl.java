@@ -12,6 +12,7 @@ import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataBlock;
 import it.unibo.fPML.DataType;
+import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBlock;
 import it.unibo.fPML.EffectFullFunction;
@@ -28,12 +29,13 @@ import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Model;
 import it.unibo.fPML.ProdType;
-import it.unibo.fPML.ProdTypeValue;
+import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureBlock;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
+import it.unibo.fPML.SumValue;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
@@ -291,7 +293,21 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass prodTypeValueEClass = null;
+  private EClass prodValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass sumValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dataValueEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -1051,16 +1067,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDataType_Value()
-  {
-    return (EReference)dataTypeEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getExpression()
   {
     return expressionEClass;
@@ -1081,9 +1087,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAdtValue_AdtElements()
+  public EClass getProdValue()
   {
-    return (EReference)adtValueEClass.getEStructuralFeatures().get(0);
+    return prodValueEClass;
   }
 
   /**
@@ -1091,9 +1097,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getProdTypeValue()
+  public EReference getProdValue_ProdAdtElement1()
   {
-    return prodTypeValueEClass;
+    return (EReference)prodValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1101,9 +1107,59 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getProdTypeValue_ProdAdtElements()
+  public EReference getProdValue_ProdAdtElement2()
   {
-    return (EReference)prodTypeValueEClass.getEStructuralFeatures().get(0);
+    return (EReference)prodValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSumValue()
+  {
+    return sumValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSumValue_SumAdtElement1()
+  {
+    return (EReference)sumValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSumValue_SumAdtElement2()
+  {
+    return (EReference)sumValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDataValue()
+  {
+    return dataValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDataValue_Value()
+  {
+    return (EReference)dataValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1235,15 +1291,21 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     dataTypeEClass = createEClass(DATA_TYPE);
     createEReference(dataTypeEClass, DATA_TYPE__TYPE);
-    createEReference(dataTypeEClass, DATA_TYPE__VALUE);
 
     expressionEClass = createEClass(EXPRESSION);
 
     adtValueEClass = createEClass(ADT_VALUE);
-    createEReference(adtValueEClass, ADT_VALUE__ADT_ELEMENTS);
 
-    prodTypeValueEClass = createEClass(PROD_TYPE_VALUE);
-    createEReference(prodTypeValueEClass, PROD_TYPE_VALUE__PROD_ADT_ELEMENTS);
+    prodValueEClass = createEClass(PROD_VALUE);
+    createEReference(prodValueEClass, PROD_VALUE__PROD_ADT_ELEMENT1);
+    createEReference(prodValueEClass, PROD_VALUE__PROD_ADT_ELEMENT2);
+
+    sumValueEClass = createEClass(SUM_VALUE);
+    createEReference(sumValueEClass, SUM_VALUE__SUM_ADT_ELEMENT1);
+    createEReference(sumValueEClass, SUM_VALUE__SUM_ADT_ELEMENT2);
+
+    dataValueEClass = createEClass(DATA_VALUE);
+    createEReference(dataValueEClass, DATA_VALUE__VALUE);
   }
 
   /**
@@ -1298,6 +1360,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     dataTypeEClass.getESuperTypes().add(this.getValueType());
     dataTypeEClass.getESuperTypes().add(this.getExpression());
     dataTypeEClass.getESuperTypes().add(this.getAdtValue());
+    prodValueEClass.getESuperTypes().add(this.getAdtValue());
+    sumValueEClass.getESuperTypes().add(this.getAdtValue());
+    dataValueEClass.getESuperTypes().add(this.getDataType());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1399,15 +1464,21 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(dataTypeEClass, DataType.class, "DataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDataType_Type(), this.getData(), null, "type", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataType_Value(), this.getAdtValue(), null, "value", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(adtValueEClass, AdtValue.class, "AdtValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAdtValue_AdtElements(), ecorePackage.getEObject(), null, "adtElements", null, 0, -1, AdtValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(prodTypeValueEClass, ProdTypeValue.class, "ProdTypeValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getProdTypeValue_ProdAdtElements(), this.getAdtValue(), null, "ProdAdtElements", null, 0, -1, ProdTypeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(prodValueEClass, ProdValue.class, "ProdValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getProdValue_ProdAdtElement1(), this.getAdtValue(), null, "prodAdtElement1", null, 0, 1, ProdValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProdValue_ProdAdtElement2(), this.getAdtValue(), null, "prodAdtElement2", null, 0, 1, ProdValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(sumValueEClass, SumValue.class, "SumValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSumValue_SumAdtElement1(), this.getAdtValue(), null, "sumAdtElement1", null, 0, 1, SumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSumValue_SumAdtElement2(), this.getAdtValue(), null, "sumAdtElement2", null, 0, 1, SumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dataValueEClass, DataValue.class, "DataValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDataValue_Value(), this.getAdtValue(), null, "value", null, 0, 1, DataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

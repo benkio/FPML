@@ -118,16 +118,23 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//ValueType #//Expression #//AdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Data"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AdtValue"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AdtValue">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="adtElements" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AdtValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProdValue" eSuperTypes="#//AdtValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prodAdtElement1" eType="#//AdtValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prodAdtElement2" eType="#//AdtValue"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProdTypeValue">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ProdAdtElements" upperBound="-1"
-        eType="#//AdtValue" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SumValue" eSuperTypes="#//AdtValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sumAdtElement1" eType="#//AdtValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sumAdtElement2" eType="#//AdtValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataValue" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AdtValue"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

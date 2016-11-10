@@ -18,8 +18,9 @@ class EffectFullFunctionGenerator {
 	    		
 	    import «FPMLGenerator.basePackageJava»Pure.Data.*;
 	    import fj.data.*;
+	    import «FPMLGenerator.basePackageJava»Pure.*;
 	    
-	    public static class EffectFullFunction {
+	    public class EffectFullFunctions {
 	    	«FOR f:efb.features»
 	    		«f.compile»
 	    	«ENDFOR»
@@ -29,9 +30,9 @@ class EffectFullFunctionGenerator {
 
 		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
 			«IF pf.functionBody instanceof EmptyFunctionBody»
-			throw new NotImpletementedException("TODO")
+			throw new UnsupportedOperationException("TODO");
 			«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
-			IOW.append(IOFunctions.unit(«pf.arg.name»))«(pf.functionBody as CompositionFunctionBodyEffect).compile»
+			IOW.append(IOFunctions.unit(«pf.arg.name»))«(pf.functionBody as CompositionFunctionBodyEffect).compile»;
 			«ENDIF»
 		}'''
 
@@ -42,9 +43,9 @@ class EffectFullFunctionGenerator {
 	
 	def compile(ChainElement e) {
 		switch e {
-			PureFunction: return '''.map(«(e as PureFunction).name»)'''
+			PureFunction: return '''.map(PureFunctions::«(e as PureFunction).name»)'''
 			Value: return '''.append(IOFunctions.unit(«(e as Value).name».value))'''
-			EffectFullFunction: return '''.bind(«(e as EffectFullFunction).name»)''' 
+			EffectFullFunction: return '''.bind(EffectFullFunctions::«(e as EffectFullFunction).name»)''' 
 		}
 	}	
 }
