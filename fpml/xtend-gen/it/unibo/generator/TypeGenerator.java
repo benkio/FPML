@@ -5,6 +5,7 @@ import it.unibo.fPML.Argument;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.ProdType;
@@ -146,5 +147,33 @@ public class TypeGenerator {
   public Object compile(final ProdType pt) {
     AdtType _adtElement = pt.getAdtElement();
     return this.adtTypeCompile(_adtElement);
+  }
+  
+  public String compileType(final Expression e) {
+    boolean _matched = false;
+    if (e instanceof IntegerType) {
+      _matched=true;
+      return "int";
+    }
+    if (!_matched) {
+      if (e instanceof UnitType) {
+        _matched=true;
+        return "IO<Unit>";
+      }
+    }
+    if (!_matched) {
+      if (e instanceof StringType) {
+        _matched=true;
+        return "String";
+      }
+    }
+    if (!_matched) {
+      if (e instanceof DataType) {
+        _matched=true;
+        Data _type = ((DataType)e).getType();
+        return _type.getName();
+      }
+    }
+    return null;
   }
 }

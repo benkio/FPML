@@ -8,9 +8,11 @@ import com.google.common.collect.Iterators;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.EffectFullBlock;
 import it.unibo.fPML.PureFunctionBlock;
+import it.unibo.fPML.Value;
 import it.unibo.generator.DataGenerator;
 import it.unibo.generator.EffectFullFunctionGenerator;
 import it.unibo.generator.PureFunctionGenerator;
+import it.unibo.generator.ValueGenerator;
 import java.util.Iterator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -37,6 +39,8 @@ public class FPMLGenerator extends AbstractGenerator {
   
   private final DataGenerator dataGenerator = new DataGenerator();
   
+  private final ValueGenerator valueGenerator = new ValueGenerator();
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
@@ -59,6 +63,12 @@ public class FPMLGenerator extends AbstractGenerator {
       String _compile_2 = this.dataGenerator.compile(e);
       fsa.generateFile(_plus_1, _compile_2);
     }
+    TreeIterator<EObject> _allContents_3 = resource.getAllContents();
+    Iterable<EObject> _iterable_1 = IteratorExtensions.<EObject>toIterable(_allContents_3);
+    Iterable<Value> _filter_3 = Iterables.<Value>filter(_iterable_1, Value.class);
+    CharSequence _compile_3 = this.valueGenerator.compile(_filter_3);
+    fsa.generateFile(
+      (this.basePackage + "Pure/Data/Value.java"), _compile_3);
   }
   
   public static String getBasePackageJava() {

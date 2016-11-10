@@ -22,6 +22,6 @@ class DataGenerator {
 	    	public «d.name»(«typeGenerator.adtTypeCompile((d.content as AdtType))» value){
 	    		this.value = value;
 	    	}
-	    }'''	
+	    }'''
 	}
 }

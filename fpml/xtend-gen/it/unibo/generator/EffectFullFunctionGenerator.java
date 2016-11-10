@@ -131,10 +131,10 @@ public class EffectFullFunctionGenerator {
       if (e instanceof Value) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(IOFunctions.unit(");
+        _builder.append(".append(IOFunctions.unit(Value.");
         String _name = ((Value) e).getName();
         _builder.append(_name, "");
-        _builder.append(".value))");
+        _builder.append("()))");
         return _builder.toString();
       }
     }

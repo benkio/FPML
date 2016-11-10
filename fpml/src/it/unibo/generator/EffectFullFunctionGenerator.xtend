@@ -44,7 +44,7 @@ class EffectFullFunctionGenerator {
 	def compile(ChainElement e) {
 		switch e {
 			PureFunction: return '''.map(PureFunctions::«(e as PureFunction).name»)'''
-			Value: return '''.append(IOFunctions.unit(«(e as Value).name».value))'''
+			Value: return '''.append(IOFunctions.unit(Value.«(e as Value).name»()))'''
 			EffectFullFunction: return '''.bind(EffectFullFunctions::«(e as EffectFullFunction).name»)''' 
 		}
 	}	

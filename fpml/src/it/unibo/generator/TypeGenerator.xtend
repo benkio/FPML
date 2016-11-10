@@ -56,4 +56,13 @@ class TypeGenerator {
 	def compile(ProdType pt){
 		return adtTypeCompile(pt.adtElement)
 	}
+	
+	def compileType(Expression e) {
+		switch e {
+			IntegerType: return "int"
+			UnitType: return "IO<Unit>"
+			StringType: return "String"
+			DataType: return e.type.name
+		}
+	}
 }

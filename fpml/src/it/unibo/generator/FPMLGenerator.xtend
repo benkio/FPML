@@ -11,6 +11,7 @@ import it.unibo.fPML.PureFunctionBlock
 import it.unibo.fPML.Data
 import it.unibo.fPML.EffectFullBlock
 import it.unibo.generator.PureFunctionGenerator
+import it.unibo.fPML.Value
 
 /**
  * Generates code from your model files on save.
@@ -24,6 +25,7 @@ class FPMLGenerator extends AbstractGenerator {
 	val pureFunctionGenerator = new PureFunctionGenerator
 	val effectFullFunctionGenerator = new EffectFullFunctionGenerator
 	val dataGenerator = new DataGenerator
+	val valueGenerator = new ValueGenerator
 	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		fsa.generateFile(basePackage + "Pure/PureFunctions.java", pureFunctionGenerator.compile(resource.getAllContents.filter(PureFunctionBlock).head));
@@ -34,6 +36,10 @@ class FPMLGenerator extends AbstractGenerator {
 					dataGenerator.compile(e)
 			);
 		}
+		fsa.generateFile(
+			basePackage + "Pure/Data/Value.java",
+			valueGenerator.compile(resource.getAllContents.toIterable.filter(Value))
+		)	
 	}
 	
 	def static getBasePackageJava() {
