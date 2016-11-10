@@ -103,12 +103,15 @@ class UtilitiesFunctions {
 			DataType: return typeCheckDataAndValue(value, (type as DataType).type.content) 
 			default: {
 				switch value{
-					SumValue: return (type.adtElement2 instanceof SumType) && ((typeCheckDataAndValue(value.sumAdtElement1, type.adtElement1)).booleanValue || (typeCheckDataAndValue(value.sumAdtElement2, (type.adtElement2 as SumType).adtElement)).booleanValue)
-					ProdValue: return (type.adtElement2 instanceof ProdType) && ((typeCheckDataAndValue(value.prodAdtElement1, type.adtElement1)).booleanValue && (typeCheckDataAndValue(value.prodAdtElement2, (type.adtElement2 as ProdType).adtElement)).booleanValue)
+					SumValue: return (type.adtElement2 instanceof SumType) && 
+									 (  (typeCheckDataAndValue(value.sumAdtElement1, type.adtElement1)).booleanValue 
+									 || (typeCheckDataAndValue(value.sumAdtElement2, (type.adtElement2 as SumType).adtElement)).booleanValue)
+					ProdValue: return (type.adtElement2 instanceof ProdType) && 
+									(   (typeCheckDataAndValue(value.prodAdtElement1, type.adtElement1)).booleanValue 
+									&& (typeCheckDataAndValue(value.prodAdtElement2, (type.adtElement2 as ProdType).adtElement)).booleanValue)
 					default: false
 				}
 			}
 		}
 	}
-	
 }
