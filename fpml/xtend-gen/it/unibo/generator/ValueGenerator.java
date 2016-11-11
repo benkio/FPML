@@ -58,7 +58,6 @@ public class ValueGenerator {
       }
     }
     _builder.append("}");
-    _builder.newLine();
     return _builder;
   }
   

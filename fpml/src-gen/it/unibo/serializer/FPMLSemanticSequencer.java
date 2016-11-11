@@ -21,6 +21,7 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Model;
+import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureBlock;
@@ -117,6 +118,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
+				return; 
+			case FPMLPackage.PRIMITIVE_PRINT:
+				sequence_PrimitivePrint(context, (PrimitivePrint) semanticObject); 
 				return; 
 			case FPMLPackage.PROD_TYPE:
 				sequence_ProdType(context, (ProdType) semanticObject); 
@@ -469,6 +473,24 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PrimitivePrint returns PrimitivePrint
+	 *
+	 * Constraint:
+	 *     name='print'
+	 */
+	protected void sequence_PrimitivePrint(ISerializationContext context, PrimitivePrint semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.CHAIN_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.CHAIN_ELEMENT__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimitivePrintAccess().getNamePrintKeyword_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	

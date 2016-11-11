@@ -1331,6 +1331,32 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
 	}
+	public class PrimitivePrintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitivePrint");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPrimitivePrintAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cNamePrintKeyword_1_0 = (Keyword)cNameAssignment_1.eContents().get(0);
+		
+		///////////////////////////////////////////////////////////////////////
+		//// Primitives
+		///////////////////////////////////////////////////////////////////////
+		//PrimitivePrint EffectFullFunction:
+		//	{PrimitivePrint} name='print'
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{PrimitivePrint} name='print'
+		public Group getGroup() { return cGroup; }
+		
+		//{PrimitivePrint}
+		public Action getPrimitivePrintAction_0() { return cPrimitivePrintAction_0; }
+		
+		//name='print'
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//'print'
+		public Keyword getNamePrintKeyword_1_0() { return cNamePrintKeyword_1_0; }
+	}
 	
 	
 	private final ModelElements pModel;
@@ -1372,6 +1398,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final AdtValueElements pAdtValue;
 	private final ProdValueElements pProdValue;
 	private final SumValueElements pSumValue;
+	private final PrimitivePrintElements pPrimitivePrint;
 	
 	private final Grammar grammar;
 	
@@ -1421,6 +1448,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAdtValue = new AdtValueElements();
 		this.pProdValue = new ProdValueElements();
 		this.pSumValue = new SumValueElements();
+		this.pPrimitivePrint = new PrimitivePrintElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1876,6 +1904,19 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getSumValueRule() {
 		return getSumValueAccess().getRule();
+	}
+	
+	///////////////////////////////////////////////////////////////////////
+	//// Primitives
+	///////////////////////////////////////////////////////////////////////
+	//PrimitivePrint EffectFullFunction:
+	//	{PrimitivePrint} name='print'
+	public PrimitivePrintElements getPrimitivePrintAccess() {
+		return pPrimitivePrint;
+	}
+	
+	public ParserRule getPrimitivePrintRule() {
+		return getPrimitivePrintAccess().getRule();
 	}
 	
 	//terminal ID:

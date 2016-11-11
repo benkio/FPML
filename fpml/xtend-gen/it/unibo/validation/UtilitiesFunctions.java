@@ -10,9 +10,11 @@ import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.Expression;
+import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.IntegerType;
+import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureFunction;
@@ -41,8 +43,19 @@ public class UtilitiesFunctions {
   public static EObject getReturnType(final EffectFullFunction ef) {
     IOType _returnType = ef.getReturnType();
     final Type t = _returnType.getType();
-    if ((t instanceof DataType)) {
-      return ((DataType)t).getType();
+    boolean _matched = false;
+    if (t instanceof DataType) {
+      _matched=true;
+      return ((DataType) t).getType();
+    }
+    if (!_matched) {
+      if (t instanceof PrimitivePrint) {
+        _matched=true;
+        final IOType t1 = FPMLFactory.eINSTANCE.createIOType();
+        UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+        t1.setType(_createUnitType);
+        return t1;
+      }
     }
     return t;
   }
@@ -97,8 +110,16 @@ public class UtilitiesFunctions {
   public static EObject getArgType(final EffectFullFunction ef) {
     EffectFullArgument _arg = ef.getArg();
     final Type t = _arg.getType();
-    if ((t instanceof DataType)) {
+    boolean _matched = false;
+    if (t instanceof DataType) {
+      _matched=true;
       return ((DataType)t).getType();
+    }
+    if (!_matched) {
+      if (t instanceof PrimitivePrint) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createStringType();
+      }
     }
     return t;
   }

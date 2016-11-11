@@ -13,13 +13,14 @@ import it.unibo.fPML.IntegerType
 import it.unibo.fPML.StringType
 import it.unibo.fPML.UnitType
 import it.unibo.fPML.DataValue
-import it.unibo.fPML.Data
 import it.unibo.fPML.SumValue
 import it.unibo.fPML.SumType
 import it.unibo.fPML.AdtType
 import it.unibo.fPML.ProdType
 import it.unibo.fPML.AdtValue
 import it.unibo.fPML.ProdValue
+import it.unibo.fPML.PrimitivePrint
+import it.unibo.fPML.FPMLFactory
 
 /**
  * Created by benkio on 11/3/16.
@@ -34,8 +35,15 @@ class UtilitiesFunctions {
 	
 	def static getReturnType(EffectFullFunction ef){
         val t = ef.getReturnType().getType()
-        if (t instanceof DataType) return t.getType()
-        return t
+        switch t {
+        	DataType: return (t as DataType).getType()
+        	PrimitivePrint: {
+        		val t1 = FPMLFactory.eINSTANCE.createIOType()
+        		t1.type = FPMLFactory.eINSTANCE.createUnitType
+        		return t1
+        	}
+        	default: return t 
+        }
     }
 	
     def static getReturnType(ChainElement f1){
@@ -61,8 +69,11 @@ class UtilitiesFunctions {
 	
  	def static getArgType(EffectFullFunction ef){
  		val t = ef.getArg().getType()
-        if (t instanceof DataType) return t.getType()
-        return t
+ 		switch t {
+ 			DataType: return t.getType()
+ 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType()
+ 			default: return t
+ 		}
  	}
 
     def static getArgType(ChainElement f1){

@@ -32,8 +32,7 @@ class ValueGenerator {
 	    	«FOR v:values»
 	    		«v.compile»
 	    	«ENDFOR»
-	    }
-	    '''
+	    }'''
 	
 	def compile(Value v) '''
 	

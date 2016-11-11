@@ -1263,6 +1263,61 @@ public interface FPMLPackage extends EPackage
    */
   int DATA_VALUE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 1;
 
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.PrimitivePrintImpl <em>Primitive Print</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.PrimitivePrintImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePrint()
+   * @generated
+   */
+  int PRIMITIVE_PRINT = 36;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_PRINT__NAME = EFFECT_FULL_FUNCTION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_PRINT__RETURN_TYPE = EFFECT_FULL_FUNCTION__RETURN_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Arg</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_PRINT__ARG = EFFECT_FULL_FUNCTION__ARG;
+
+  /**
+   * The feature id for the '<em><b>Function Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_PRINT__FUNCTION_BODY = EFFECT_FULL_FUNCTION__FUNCTION_BODY;
+
+  /**
+   * The number of structural features of the '<em>Primitive Print</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_PRINT_FEATURE_COUNT = EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
+
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.Model <em>Model</em>}'.
@@ -2098,6 +2153,16 @@ public interface FPMLPackage extends EPackage
   EReference getDataValue_Value();
 
   /**
+   * Returns the meta object for class '{@link it.unibo.fPML.PrimitivePrint <em>Primitive Print</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Primitive Print</em>'.
+   * @see it.unibo.fPML.PrimitivePrint
+   * @generated
+   */
+  EClass getPrimitivePrint();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2823,6 +2888,16 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EReference DATA_VALUE__VALUE = eINSTANCE.getDataValue_Value();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitivePrintImpl <em>Primitive Print</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.PrimitivePrintImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePrint()
+     * @generated
+     */
+    EClass PRIMITIVE_PRINT = eINSTANCE.getPrimitivePrint();
 
   }
 

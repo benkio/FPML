@@ -28,6 +28,7 @@ import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Model;
+import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureBlock;
@@ -308,6 +309,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass dataValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass primitivePrintEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -1167,6 +1175,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPrimitivePrint()
+  {
+    return primitivePrintEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FPMLFactory getFPMLFactory()
   {
     return (FPMLFactory)getEFactoryInstance();
@@ -1306,6 +1324,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     dataValueEClass = createEClass(DATA_VALUE);
     createEReference(dataValueEClass, DATA_VALUE__VALUE);
+
+    primitivePrintEClass = createEClass(PRIMITIVE_PRINT);
   }
 
   /**
@@ -1363,6 +1383,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     prodValueEClass.getESuperTypes().add(this.getAdtValue());
     sumValueEClass.getESuperTypes().add(this.getAdtValue());
     dataValueEClass.getESuperTypes().add(this.getDataType());
+    primitivePrintEClass.getESuperTypes().add(this.getEffectFullFunction());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1479,6 +1500,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(dataValueEClass, DataValue.class, "DataValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDataValue_Value(), this.getAdtValue(), null, "value", null, 0, 1, DataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(primitivePrintEClass, PrimitivePrint.class, "PrimitivePrint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

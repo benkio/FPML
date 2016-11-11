@@ -76,10 +76,10 @@ MainFunc:
 ///////////////////////////////////////////////////////////////////
 
 ChainElement:
-    Function | Value;
+    Function | Value | Expression;
 
 InitialPureChainElement:
-	PureFunction | Value;
+	PureFunction | Value | Expression;
 
 Function:
     PureFunction | EffectFullFunction;
@@ -157,3 +157,9 @@ SumValue:
 	'Left' '(' sumAdtElement1=AdtValue ')'
 	| 'Right' '(' sumAdtElement2=AdtValue ')';
     
+/////////////////////////////////////////////////////////////////////
+// Primitives
+/////////////////////////////////////////////////////////////////////
+
+PrimitivePrint returns EffectFullFunction:
+    {PrimitivePrint} name='print';

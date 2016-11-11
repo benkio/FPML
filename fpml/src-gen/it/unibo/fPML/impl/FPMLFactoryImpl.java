@@ -101,6 +101,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.PROD_VALUE: return createProdValue();
       case FPMLPackage.SUM_VALUE: return createSumValue();
       case FPMLPackage.DATA_VALUE: return createDataValue();
+      case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -500,6 +501,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     DataValueImpl dataValue = new DataValueImpl();
     return dataValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PrimitivePrint createPrimitivePrint()
+  {
+    PrimitivePrintImpl primitivePrint = new PrimitivePrintImpl();
+    return primitivePrint;
   }
 
   /**

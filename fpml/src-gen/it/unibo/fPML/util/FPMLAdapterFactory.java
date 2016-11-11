@@ -256,6 +256,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createDataValueAdapter();
       }
       @Override
+      public Adapter casePrimitivePrint(PrimitivePrint object)
+      {
+        return createPrimitivePrintAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -813,6 +818,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDataValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitivePrint <em>Primitive Print</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PrimitivePrint
+   * @generated
+   */
+  public Adapter createPrimitivePrintAdapter()
   {
     return null;
   }
