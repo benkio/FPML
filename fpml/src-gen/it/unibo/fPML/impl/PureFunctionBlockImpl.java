@@ -4,8 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionBlock;
+import it.unibo.fPML.PureFunctionDefinition;
 
 import java.util.Collection;
 
@@ -44,7 +44,7 @@ public class PureFunctionBlockImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    * @ordered
    */
-  protected EList<PureFunction> features;
+  protected EList<PureFunctionDefinition> features;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,11 +72,11 @@ public class PureFunctionBlockImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PureFunction> getFeatures()
+  public EList<PureFunctionDefinition> getFeatures()
   {
     if (features == null)
     {
-      features = new EObjectContainmentEList<PureFunction>(PureFunction.class, this, FPMLPackage.PURE_FUNCTION_BLOCK__FEATURES);
+      features = new EObjectContainmentEList<PureFunctionDefinition>(PureFunctionDefinition.class, this, FPMLPackage.PURE_FUNCTION_BLOCK__FEATURES);
     }
     return features;
   }
@@ -126,7 +126,7 @@ public class PureFunctionBlockImpl extends MinimalEObjectImpl.Container implemen
     {
       case FPMLPackage.PURE_FUNCTION_BLOCK__FEATURES:
         getFeatures().clear();
-        getFeatures().addAll((Collection<? extends PureFunction>)newValue);
+        getFeatures().addAll((Collection<? extends PureFunctionDefinition>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

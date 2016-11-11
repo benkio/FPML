@@ -11,7 +11,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PureFunctionBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
-        eType="#//PureFunction" containment="true"/>
+        eType="#//PureFunctionDefinition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
@@ -25,7 +25,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
-        eType="#//EffectFullFunction" containment="true"/>
+        eType="#//EffectFullFunctionDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="main" eType="#//MainFunc"
         containment="true"/>
   </eClassifiers>
@@ -35,7 +35,6 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Value" eSuperTypes="#//ChainElement #//InitialPureChainElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
@@ -53,7 +52,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="adtElement" eType="#//AdtType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PureFunction" eSuperTypes="#//InitialPureChainElement #//Function">
+  <eClassifiers xsi:type="ecore:EClass" name="PureFunctionDefinition" eSuperTypes="#//InitialPureChainElement #//Function">
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//ValueType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arg" eType="#//Argument"
@@ -61,7 +60,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionBody" eType="#//FunctionBodyPure"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EffectFullFunction" eSuperTypes="#//Function">
+  <eClassifiers xsi:type="ecore:EClass" name="EffectFullFunctionDefinition" eSuperTypes="#//Function">
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//IOType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arg" eType="#//EffectFullArgument"
@@ -75,11 +74,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionBody" eType="#//FunctionBodyEffectFull"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ChainElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InitialPureChainElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//ChainElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ChainElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialPureChainElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//ChainElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullArgument">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -93,13 +92,28 @@
   <eClassifiers xsi:type="ecore:EClass" name="FunctionBodyEffectFull"/>
   <eClassifiers xsi:type="ecore:EClass" name="EmptyFunctionBody" eSuperTypes="#//FunctionBodyPure #//FunctionBodyEffectFull"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyPure" eSuperTypes="#//FunctionBodyPure">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="initialElement" eType="#//InitialPureChainElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functionChain" unique="false"
-        upperBound="-1" eType="#//PureFunction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceElement" eType="#//InitialPureChainElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionChain" upperBound="-1"
+        eType="#//CompositionFunctionBodyPureFactor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveElement" eType="#//PureFunctionDefinition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyPureFactor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceElement" eType="#//PureFunctionDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PrimitiveElement" eType="#//PureFunctionDefinition"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyEffect" eSuperTypes="#//FunctionBodyEffectFull">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functionChain" unique="false"
-        upperBound="-1" eType="#//ChainElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceElement" eType="#//ChainElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionChain" upperBound="-1"
+        eType="#//CompositionFunctionBodyEffectFullFactor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveElement" eType="#//EffectFullFunctionDefinition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyEffectFullFactor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceElement" eType="#//ChainElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PrimitiveElement" eType="#//EffectFullFunctionDefinition"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IOType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
@@ -120,7 +134,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//ValueType #//Expression #//AdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Data"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//ChainElement #//InitialPureChainElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="AdtValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProdValue" eSuperTypes="#//AdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prodAdtElement1" eType="#//AdtValue"
@@ -134,9 +148,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sumAdtElement2" eType="#//AdtValue"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntToString" eSuperTypes="#//PureFunctionDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//EffectFullFunctionDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataValue" eSuperTypes="#//DataType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AdtValue"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//EffectFullFunction"/>
 </ecore:EPackage>

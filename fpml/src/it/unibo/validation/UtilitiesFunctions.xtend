@@ -1,39 +1,23 @@
 package it.unibo.validation
 
 
-import it.unibo.fPML.PureFunction
-import it.unibo.fPML.EffectFullFunction
-import it.unibo.fPML.DataType
-import it.unibo.fPML.ChainElement
-import it.unibo.fPML.InitialPureChainElement
-import it.unibo.fPML.ValueType
-import it.unibo.fPML.Value
-import it.unibo.fPML.Expression
-import it.unibo.fPML.IntegerType
-import it.unibo.fPML.StringType
-import it.unibo.fPML.UnitType
-import it.unibo.fPML.DataValue
-import it.unibo.fPML.SumValue
-import it.unibo.fPML.SumType
-import it.unibo.fPML.AdtType
-import it.unibo.fPML.ProdType
-import it.unibo.fPML.AdtValue
-import it.unibo.fPML.ProdValue
-import it.unibo.fPML.PrimitivePrint
-import it.unibo.fPML.FPMLFactory
+import it.unibo.fPML.*;
 
 /**
  * Created by benkio on 11/3/16.
  */
 class UtilitiesFunctions {
 	
-	def static getReturnType(PureFunction pf){
+	def static getReturnType(PureFunctionDefinition pf){
 		val t = pf.getReturnType()
-		if (t instanceof DataType) return t.type
-		return t 
+		switch t {
+			DataType: return t.type
+			IntToString: return FPMLFactory.eINSTANCE.createStringType() 
+			default: return t
+		}
 	}
 	
-	def static getReturnType(EffectFullFunction ef){
+	def static getReturnType(EffectFullFunctionDefinition ef){
         val t = ef.getReturnType().getType()
         switch t {
         	DataType: return (t as DataType).getType()
@@ -48,26 +32,29 @@ class UtilitiesFunctions {
 	
     def static getReturnType(ChainElement f1){
         switch f1 {
-            EffectFullFunction : return getReturnType(f1)
-            PureFunction: return getReturnType(f1)
+            EffectFullFunctionDefinition : return getReturnType(f1)
+            PureFunctionDefinition: return getReturnType(f1)
             Value: return getTypeFromExpression(f1.value)
         }
     }
 
     def static getReturnType(InitialPureChainElement f1){
         switch f1 {
-            PureFunction: return getReturnType(f1)
+            PureFunctionDefinition: return getReturnType(f1)
             Value: return getTypeFromExpression(f1.value)
         }
     }
 
-	def static getArgType(PureFunction pf){
+	def static getArgType(PureFunctionDefinition pf){
 		val t = pf.getArg().getType()
-    	if (t instanceof DataType) return t.getType()
-    	return t
+		switch t {
+			DataType: return t.getType()
+			IntToString: return FPMLFactory.eINSTANCE.createIntegerType	
+			default: return t
+		}
 	}
 	
- 	def static getArgType(EffectFullFunction ef){
+ 	def static getArgType(EffectFullFunctionDefinition ef){
  		val t = ef.getArg().getType()
  		switch t {
  			DataType: return t.getType()
@@ -78,15 +65,15 @@ class UtilitiesFunctions {
 
     def static getArgType(ChainElement f1){
         switch f1 {
-            EffectFullFunction: return getArgType(f1)
-            PureFunction: return getArgType(f1)
+            EffectFullFunctionDefinition: return getArgType(f1)
+            PureFunctionDefinition: return getArgType(f1)
             Value: return getTypeFromExpression(f1.value)
         }
     }
 
     def static getArgType(InitialPureChainElement f1){
         switch f1 {
-            PureFunction: return getArgType(f1)
+            PureFunctionDefinition: return getArgType(f1)
             Value: return getTypeFromExpression(f1.value)
         }
     }

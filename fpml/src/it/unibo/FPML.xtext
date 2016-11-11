@@ -23,7 +23,7 @@ PureBlock:
 
 PureFunctionBlock:
 	'Functions' '{'
-		(features+=PureFunction)*
+		(features+=PureFunctionDefinition)*
 	'}';
 
 DataBlock:
@@ -40,7 +40,7 @@ ValueBlock:
 
 EffectFullBlock:
     'Effects' '{'
-    	(features+=EffectFullFunction)*
+    	(features+=EffectFullFunctionDefinition)*
 		main=MainFunc
     '}';
 
@@ -62,10 +62,10 @@ SumType:
 ProdType:
     '*' adtElement=AdtType;
     
-PureFunction:
+PureFunctionDefinition:
 	'def' returnType=ValueType name=ID '(' arg=Argument ')' ':' '{' functionBody=FunctionBodyPure '}';
 
-EffectFullFunction:
+EffectFullFunctionDefinition:
 	'def' returnType=IOType name=ID '(' arg=EffectFullArgument ')' ':' '{'  functionBody=FunctionBodyEffectFull '}';
 
 MainFunc:
@@ -76,13 +76,13 @@ MainFunc:
 ///////////////////////////////////////////////////////////////////
 
 ChainElement:
-    Function | Value | Expression;
+    Function | Value;
 
 InitialPureChainElement:
-	PureFunction | Value | Expression;
+	PureFunctionDefinition | Value;
 
 Function:
-    PureFunction | EffectFullFunction;
+    PureFunctionDefinition | EffectFullFunctionDefinition;
 
 EffectFullArgument:
 	type=Type (name=ID)?;
@@ -92,6 +92,7 @@ Argument:
 
 FunctionBodyPure:
 		 EmptyFunctionBody | CompositionFunctionBodyPure;
+
 FunctionBodyEffectFull:
   	     EmptyFunctionBody | CompositionFunctionBodyEffect;
 
@@ -99,9 +100,20 @@ EmptyFunctionBody:
     {EmptyFunctionBody} 'Undefined';
 
 CompositionFunctionBodyPure:
-    ((initialElement=[InitialPureChainElement]) '|>' (functionChain+=[PureFunction])) ( '|>' (functionChain+=[PureFunction]))*;
+      referenceElement=[InitialPureChainElement] (functionChain+=CompositionFunctionBodyPureFactor)+
+    | primitiveElement=PrimitivePureFunction (functionChain+=CompositionFunctionBodyPureFactor)+;
+    
+CompositionFunctionBodyPureFactor:
+	  ( '|>' (referenceElement=[PureFunctionDefinition]))
+	| ( '|>' (PrimitiveElement=PrimitivePureFunction));
+
 CompositionFunctionBodyEffect:
-    ((functionChain+=[ChainElement]) '>>=' (functionChain+=[ChainElement])) ( '>>=' (functionChain+=[ChainElement]))*;
+      referenceElement=[ChainElement] (functionChain+=CompositionFunctionBodyEffectFullFactor)+
+    | primitiveElement=PrimitiveEffectFullFunction (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
+    
+CompositionFunctionBodyEffectFullFactor:
+	  ( '|>' (referenceElement=[ChainElement]))
+	| ( '|>' (PrimitiveElement=PrimitiveEffectFullFunction));
 
 //////////////////////////////////////////////////////////////////////
 // Types
@@ -161,5 +173,15 @@ SumValue:
 // Primitives
 /////////////////////////////////////////////////////////////////////
 
-PrimitivePrint returns EffectFullFunction:
-    {PrimitivePrint} name='print';
+PrimitivePureFunction returns PureFunctionDefinition: 
+	IntToString
+;
+
+IntToString:
+	{IntToString} 'IntToString';
+
+PrimitiveEffectFullFunction returns EffectFullFunctionDefinition:
+	PrimitivePrint;
+
+PrimitivePrint:
+    {PrimitivePrint} "print";

@@ -8,27 +8,24 @@ import it.unibo.fPML.AdtType;
 import it.unibo.fPML.AdtValue;
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
+import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
+import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
-import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.FunctionBodyEffectFull;
-import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.MainFunc;
-import it.unibo.fPML.PureFunction;
-import it.unibo.fPML.Type;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
-import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
 import it.unibo.validation.UtilitiesFunctions;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
@@ -51,110 +48,133 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   @Check
   public void CompositionFunctionTypePure(final CompositionFunctionBodyPure cfbp) {
-    InitialPureChainElement _initialElement = cfbp.getInitialElement();
-    EObject t = UtilitiesFunctions.getReturnType(_initialElement);
-    EList<PureFunction> _functionChain = cfbp.getFunctionChain();
-    for (final InitialPureChainElement pf : _functionChain) {
+    EObject t = null;
+    PureFunctionDefinition _primitiveElement = cfbp.getPrimitiveElement();
+    boolean _equals = Objects.equal(_primitiveElement, null);
+    if (_equals) {
+      InitialPureChainElement _referenceElement = cfbp.getReferenceElement();
+      EObject _returnType = UtilitiesFunctions.getReturnType(_referenceElement);
+      t = _returnType;
+    } else {
+      PureFunctionDefinition _primitiveElement_1 = cfbp.getPrimitiveElement();
+      EObject _returnType_1 = UtilitiesFunctions.getReturnType(_primitiveElement_1);
+      t = _returnType_1;
+    }
+    EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
+    for (final CompositionFunctionBodyPureFactor pf : _functionChain) {
       {
-        if ((!(pf instanceof Value))) {
-          final EObject t1 = UtilitiesFunctions.getArgType(pf);
-          boolean _equals = EcoreUtil.equals(t1, t);
-          boolean _not = (!_equals);
-          if (_not) {
-            this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
-          }
+        EObject t1 = null;
+        PureFunctionDefinition _primitiveElement_2 = pf.getPrimitiveElement();
+        boolean _equals_1 = Objects.equal(_primitiveElement_2, null);
+        if (_equals_1) {
+          PureFunctionDefinition _referenceElement_1 = pf.getReferenceElement();
+          EObject _argType = UtilitiesFunctions.getArgType(_referenceElement_1);
+          t1 = _argType;
+        } else {
+          PureFunctionDefinition _primitiveElement_3 = pf.getPrimitiveElement();
+          EObject _argType_1 = UtilitiesFunctions.getArgType(_primitiveElement_3);
+          t1 = _argType_1;
         }
-        EObject _returnType = UtilitiesFunctions.getReturnType(pf);
-        t = _returnType;
+        EClass _eClass = t1.eClass();
+        EClass _eClass_1 = t.eClass();
+        boolean _equals_2 = Objects.equal(_eClass, _eClass_1);
+        boolean _not = (!_equals_2);
+        if (_not) {
+          this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
+        }
+        PureFunctionDefinition _primitiveElement_4 = pf.getPrimitiveElement();
+        boolean _equals_3 = Objects.equal(_primitiveElement_4, null);
+        if (_equals_3) {
+          PureFunctionDefinition _referenceElement_2 = pf.getReferenceElement();
+          EObject _returnType_2 = UtilitiesFunctions.getReturnType(_referenceElement_2);
+          t = _returnType_2;
+        } else {
+          PureFunctionDefinition _primitiveElement_5 = pf.getPrimitiveElement();
+          EObject _returnType_3 = UtilitiesFunctions.getReturnType(_primitiveElement_5);
+          t = _returnType_3;
+        }
       }
     }
   }
   
   @Check
   public void CompositionFunctionTypeEffect(final CompositionFunctionBodyEffect cfbe) {
-    EList<ChainElement> _functionChain = cfbe.getFunctionChain();
-    final ChainElement f1 = IterableExtensions.<ChainElement>head(_functionChain);
-    EObject t = UtilitiesFunctions.getReturnType(f1);
-    EList<ChainElement> _functionChain_1 = cfbe.getFunctionChain();
-    Iterable<ChainElement> _tail = IterableExtensions.<ChainElement>tail(_functionChain_1);
-    for (final ChainElement ef : _tail) {
+    EList<CompositionFunctionBodyEffectFullFactor> _functionChain = cfbe.getFunctionChain();
+    final CompositionFunctionBodyEffectFullFactor f1 = IterableExtensions.<CompositionFunctionBodyEffectFullFactor>head(_functionChain);
+    EObject t = null;
+    EffectFullFunctionDefinition _primitiveElement = f1.getPrimitiveElement();
+    boolean _equals = Objects.equal(_primitiveElement, null);
+    if (_equals) {
+      ChainElement _referenceElement = f1.getReferenceElement();
+      EObject _returnType = UtilitiesFunctions.getReturnType(_referenceElement);
+      t = _returnType;
+    } else {
+      EffectFullFunctionDefinition _primitiveElement_1 = f1.getPrimitiveElement();
+      EObject _returnType_1 = UtilitiesFunctions.getReturnType(_primitiveElement_1);
+      t = _returnType_1;
+    }
+    EList<CompositionFunctionBodyEffectFullFactor> _functionChain_1 = cfbe.getFunctionChain();
+    Iterable<CompositionFunctionBodyEffectFullFactor> _tail = IterableExtensions.<CompositionFunctionBodyEffectFullFactor>tail(_functionChain_1);
+    for (final CompositionFunctionBodyEffectFullFactor ef : _tail) {
       {
         if ((!(ef instanceof Value))) {
-          EObject t1 = UtilitiesFunctions.getArgType(ef);
+          EObject t1 = null;
+          EffectFullFunctionDefinition _primitiveElement_2 = f1.getPrimitiveElement();
+          boolean _equals_1 = Objects.equal(_primitiveElement_2, null);
+          if (_equals_1) {
+            ChainElement _referenceElement_1 = ef.getReferenceElement();
+            EObject _argType = UtilitiesFunctions.getArgType(_referenceElement_1);
+            t1 = _argType;
+          } else {
+            EffectFullFunctionDefinition _primitiveElement_3 = ef.getPrimitiveElement();
+            EObject _argType_1 = UtilitiesFunctions.getArgType(_primitiveElement_3);
+            t1 = _argType_1;
+          }
           if (((!Objects.equal(t1.eClass(), t.eClass())) && (!(t1 instanceof UnitType)))) {
             this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
           }
         }
-        EObject _returnType = UtilitiesFunctions.getReturnType(ef);
-        t = _returnType;
+        EffectFullFunctionDefinition _primitiveElement_4 = ef.getPrimitiveElement();
+        boolean _equals_2 = Objects.equal(_primitiveElement_4, null);
+        if (_equals_2) {
+          ChainElement _referenceElement_2 = ef.getReferenceElement();
+          EObject _returnType_2 = UtilitiesFunctions.getReturnType(_referenceElement_2);
+          t = _returnType_2;
+        } else {
+          EffectFullFunctionDefinition _primitiveElement_5 = ef.getPrimitiveElement();
+          EObject _returnType_3 = UtilitiesFunctions.getReturnType(_primitiveElement_5);
+          t = _returnType_3;
+        }
       }
     }
   }
   
   @Check
-  public void FunctionCompositionReturnType(final PureFunction pf) {
-    final FunctionBodyPure rt = pf.getFunctionBody();
-    if ((rt instanceof CompositionFunctionBodyPure)) {
-      final EList<PureFunction> rt2 = ((CompositionFunctionBodyPure)rt).getFunctionChain();
-      ValueType _returnType = pf.getReturnType();
-      EObject _typeFromValueType = UtilitiesFunctions.getTypeFromValueType(_returnType);
-      int _size = rt2.size();
-      int _minus = (_size - 1);
-      PureFunction _get = rt2.get(_minus);
-      EObject _returnType_1 = UtilitiesFunctions.getReturnType(_get);
-      boolean _equals = EcoreUtil.equals(_typeFromValueType, _returnType_1);
-      boolean _not = (!_equals);
-      if (_not) {
-        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.PURE_FUNCTION__RETURN_TYPE);
-      }
-    }
+  public void FunctionCompositionReturnType(final PureFunctionDefinition pf) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field PURE_FUNCTION__RETURN_TYPE is undefined for the type Class<Literals>"
+      + "\nType mismatch: cannot convert from CompositionFunctionBodyPureFactor to PureFunctionDefinition");
   }
   
   @Check
-  public void FunctionCompositionReturnType(final EffectFullFunction ef) {
-    final FunctionBodyEffectFull rt = ef.getFunctionBody();
-    if (((!(ef instanceof MainFunc)) && (rt instanceof CompositionFunctionBodyEffect))) {
-      final EList<ChainElement> rt2 = ((CompositionFunctionBodyEffect) rt).getFunctionChain();
-      EObject _returnType = UtilitiesFunctions.getReturnType(ef);
-      int _size = rt2.size();
-      int _minus = (_size - 1);
-      ChainElement _get = rt2.get(_minus);
-      EObject _returnType_1 = UtilitiesFunctions.getReturnType(_get);
-      boolean _equals = EcoreUtil.equals(_returnType, _returnType_1);
-      boolean _not = (!_equals);
-      if (_not) {
-        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.EFFECT_FULL_FUNCTION__RETURN_TYPE);
-      }
-    }
+  public void FunctionCompositionReturnType(final EffectFullFunctionDefinition ef) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field EFFECT_FULL_FUNCTION__RETURN_TYPE is undefined for the type Class<Literals>"
+      + "\nType mismatch: cannot convert from CompositionFunctionBodyEffectFullFactor to PureFunctionDefinition");
   }
   
   @Check
-  public void FunctionCompositionArgType(final PureFunction pf) {
-    final FunctionBodyPure rt = pf.getFunctionBody();
-    if ((rt instanceof CompositionFunctionBodyPure)) {
-      final InitialPureChainElement rt2 = ((CompositionFunctionBodyPure)rt).getInitialElement();
-      if (((rt2 instanceof PureFunction) && (!EcoreUtil.equals(pf.getArg().getType(), UtilitiesFunctions.getArgType(rt2))))) {
-        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.PURE_FUNCTION__ARG);
-      }
-    }
+  public void FunctionCompositionArgType(final PureFunctionDefinition pf) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field initialElement is undefined for the type CompositionFunctionBodyPure"
+      + "\nThe method or field PURE_FUNCTION__ARG is undefined for the type Class<Literals>");
   }
   
   @Check
-  public void FunctionCompositionArgType(final EffectFullFunction ef) {
-    final FunctionBodyEffectFull rt = ef.getFunctionBody();
-    if ((rt instanceof CompositionFunctionBodyEffect)) {
-      final EList<ChainElement> rt2 = ((CompositionFunctionBodyEffect)rt).getFunctionChain();
-      EffectFullArgument _arg = ef.getArg();
-      final Type t = _arg.getType();
-      ChainElement _get = rt2.get(0);
-      EObject _argType = UtilitiesFunctions.getArgType(_get);
-      final Type t1 = ((Type) _argType);
-      boolean _equals = EcoreUtil.equals(t, t1);
-      boolean _not = (!_equals);
-      if (_not) {
-        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.EFFECT_FULL_FUNCTION__ARG);
-      }
-    }
+  public void FunctionCompositionArgType(final EffectFullFunctionDefinition ef) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field EFFECT_FULL_FUNCTION__ARG is undefined for the type Class<Literals>"
+      + "\nType mismatch: cannot convert from CompositionFunctionBodyEffectFullFactor to PureFunctionDefinition");
   }
   
   @Check
@@ -166,22 +186,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   @Check
   public void MainFuncReturnTypeCheck(final MainFunc m) {
-    final FunctionBodyEffectFull rt = m.getFunctionBody();
-    if ((rt instanceof CompositionFunctionBodyEffect)) {
-      final EList<ChainElement> rt2 = ((CompositionFunctionBodyEffect)rt).getFunctionChain();
-      UnitType _returnType = m.getReturnType();
-      EClass _eClass = _returnType.eClass();
-      int _size = rt2.size();
-      int _minus = (_size - 1);
-      ChainElement _get = rt2.get(_minus);
-      EObject _returnType_1 = UtilitiesFunctions.getReturnType(_get);
-      EClass _eClass_1 = _returnType_1.eClass();
-      boolean _equals = Objects.equal(_eClass, _eClass_1);
-      boolean _not = (!_equals);
-      if (_not) {
-        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE);
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from CompositionFunctionBodyEffectFullFactor to PureFunctionDefinition");
   }
   
   @Check

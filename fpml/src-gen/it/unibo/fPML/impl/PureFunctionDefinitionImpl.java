@@ -8,7 +8,7 @@ import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.FunctionBodyPure;
-import it.unibo.fPML.PureFunction;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.ValueType;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -21,21 +21,21 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Pure Function</b></em>'.
+ * An implementation of the model object '<em><b>Pure Function Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.PureFunctionImpl#getName <em>Name</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.PureFunctionImpl#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.PureFunctionImpl#getArg <em>Arg</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.PureFunctionImpl#getFunctionBody <em>Function Body</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PureFunctionImpl extends InitialPureChainElementImpl implements PureFunction
+public class PureFunctionDefinitionImpl extends InitialPureChainElementImpl implements PureFunctionDefinition
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -92,7 +92,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PureFunctionImpl()
+  protected PureFunctionDefinitionImpl()
   {
     super();
   }
@@ -105,7 +105,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PURE_FUNCTION;
+    return FPMLPackage.Literals.PURE_FUNCTION_DEFINITION;
   }
 
   /**
@@ -128,7 +128,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__NAME, oldName, name));
   }
 
   /**
@@ -152,7 +152,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     returnType = newReturnType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION__RETURN_TYPE, oldReturnType, newReturnType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE, oldReturnType, newReturnType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -169,14 +169,14 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       NotificationChain msgs = null;
       if (returnType != null)
-        msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION__RETURN_TYPE, null, msgs);
+        msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE, null, msgs);
       if (newReturnType != null)
-        msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION__RETURN_TYPE, null, msgs);
+        msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE, null, msgs);
       msgs = basicSetReturnType(newReturnType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION__RETURN_TYPE, newReturnType, newReturnType));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE, newReturnType, newReturnType));
   }
 
   /**
@@ -200,7 +200,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     arg = newArg;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION__ARG, oldArg, newArg);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__ARG, oldArg, newArg);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -217,14 +217,14 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       NotificationChain msgs = null;
       if (arg != null)
-        msgs = ((InternalEObject)arg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION__ARG, null, msgs);
+        msgs = ((InternalEObject)arg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__ARG, null, msgs);
       if (newArg != null)
-        msgs = ((InternalEObject)newArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION__ARG, null, msgs);
+        msgs = ((InternalEObject)newArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__ARG, null, msgs);
       msgs = basicSetArg(newArg, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION__ARG, newArg, newArg));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__ARG, newArg, newArg));
   }
 
   /**
@@ -248,7 +248,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     functionBody = newFunctionBody;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION__FUNCTION_BODY, oldFunctionBody, newFunctionBody);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY, oldFunctionBody, newFunctionBody);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -265,14 +265,14 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       NotificationChain msgs = null;
       if (functionBody != null)
-        msgs = ((InternalEObject)functionBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION__FUNCTION_BODY, null, msgs);
+        msgs = ((InternalEObject)functionBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY, null, msgs);
       if (newFunctionBody != null)
-        msgs = ((InternalEObject)newFunctionBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION__FUNCTION_BODY, null, msgs);
+        msgs = ((InternalEObject)newFunctionBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY, null, msgs);
       msgs = basicSetFunctionBody(newFunctionBody, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION__FUNCTION_BODY, newFunctionBody, newFunctionBody));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY, newFunctionBody, newFunctionBody));
   }
 
   /**
@@ -285,11 +285,11 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         return basicSetReturnType(null, msgs);
-      case FPMLPackage.PURE_FUNCTION__ARG:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
         return basicSetArg(null, msgs);
-      case FPMLPackage.PURE_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         return basicSetFunctionBody(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -305,13 +305,13 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_FUNCTION__NAME:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
         return getName();
-      case FPMLPackage.PURE_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         return getReturnType();
-      case FPMLPackage.PURE_FUNCTION__ARG:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
         return getArg();
-      case FPMLPackage.PURE_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         return getFunctionBody();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -327,16 +327,16 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_FUNCTION__NAME:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
         setName((String)newValue);
         return;
-      case FPMLPackage.PURE_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((ValueType)newValue);
         return;
-      case FPMLPackage.PURE_FUNCTION__ARG:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
         setArg((Argument)newValue);
         return;
-      case FPMLPackage.PURE_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyPure)newValue);
         return;
     }
@@ -353,16 +353,16 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_FUNCTION__NAME:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case FPMLPackage.PURE_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((ValueType)null);
         return;
-      case FPMLPackage.PURE_FUNCTION__ARG:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
         setArg((Argument)null);
         return;
-      case FPMLPackage.PURE_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyPure)null);
         return;
     }
@@ -379,13 +379,13 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_FUNCTION__NAME:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case FPMLPackage.PURE_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         return returnType != null;
-      case FPMLPackage.PURE_FUNCTION__ARG:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
         return arg != null;
-      case FPMLPackage.PURE_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         return functionBody != null;
     }
     return super.eIsSet(featureID);
@@ -403,6 +403,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       switch (derivedFeatureID)
       {
+        case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME: return FPMLPackage.CHAIN_ELEMENT__NAME;
         default: return -1;
       }
     }
@@ -410,7 +411,6 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       switch (derivedFeatureID)
       {
-        case FPMLPackage.PURE_FUNCTION__NAME: return FPMLPackage.FUNCTION__NAME;
         default: return -1;
       }
     }
@@ -429,6 +429,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       switch (baseFeatureID)
       {
+        case FPMLPackage.CHAIN_ELEMENT__NAME: return FPMLPackage.PURE_FUNCTION_DEFINITION__NAME;
         default: return -1;
       }
     }
@@ -436,7 +437,6 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       switch (baseFeatureID)
       {
-        case FPMLPackage.FUNCTION__NAME: return FPMLPackage.PURE_FUNCTION__NAME;
         default: return -1;
       }
     }
@@ -460,4 +460,4 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     return result.toString();
   }
 
-} //PureFunctionImpl
+} //PureFunctionDefinitionImpl

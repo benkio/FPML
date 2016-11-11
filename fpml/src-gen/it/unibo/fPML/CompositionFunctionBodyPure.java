@@ -14,8 +14,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getInitialElement <em>Initial Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getReferenceElement <em>Reference Element</em>}</li>
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getFunctionChain <em>Function Chain</em>}</li>
+ *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getPrimitiveElement <em>Primitive Element</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPure()
@@ -25,45 +26,71 @@ import org.eclipse.emf.common.util.EList;
 public interface CompositionFunctionBodyPure extends FunctionBodyPure
 {
   /**
-   * Returns the value of the '<em><b>Initial Element</b></em>' reference.
+   * Returns the value of the '<em><b>Reference Element</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Initial Element</em>' reference isn't clear,
+   * If the meaning of the '<em>Reference Element</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Initial Element</em>' reference.
-   * @see #setInitialElement(InitialPureChainElement)
-   * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPure_InitialElement()
+   * @return the value of the '<em>Reference Element</em>' reference.
+   * @see #setReferenceElement(InitialPureChainElement)
+   * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPure_ReferenceElement()
    * @model
    * @generated
    */
-  InitialPureChainElement getInitialElement();
+  InitialPureChainElement getReferenceElement();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyPure#getInitialElement <em>Initial Element</em>}' reference.
+   * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyPure#getReferenceElement <em>Reference Element</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Initial Element</em>' reference.
-   * @see #getInitialElement()
+   * @param value the new value of the '<em>Reference Element</em>' reference.
+   * @see #getReferenceElement()
    * @generated
    */
-  void setInitialElement(InitialPureChainElement value);
+  void setReferenceElement(InitialPureChainElement value);
 
   /**
-   * Returns the value of the '<em><b>Function Chain</b></em>' reference list.
-   * The list contents are of type {@link it.unibo.fPML.PureFunction}.
+   * Returns the value of the '<em><b>Function Chain</b></em>' containment reference list.
+   * The list contents are of type {@link it.unibo.fPML.CompositionFunctionBodyPureFactor}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Function Chain</em>' reference list isn't clear,
+   * If the meaning of the '<em>Function Chain</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Function Chain</em>' reference list.
+   * @return the value of the '<em>Function Chain</em>' containment reference list.
    * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPure_FunctionChain()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  EList<PureFunction> getFunctionChain();
+  EList<CompositionFunctionBodyPureFactor> getFunctionChain();
+
+  /**
+   * Returns the value of the '<em><b>Primitive Element</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Primitive Element</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Primitive Element</em>' containment reference.
+   * @see #setPrimitiveElement(PureFunctionDefinition)
+   * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPure_PrimitiveElement()
+   * @model containment="true"
+   * @generated
+   */
+  PureFunctionDefinition getPrimitiveElement();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyPure#getPrimitiveElement <em>Primitive Element</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Primitive Element</em>' containment reference.
+   * @see #getPrimitiveElement()
+   * @generated
+   */
+  void setPrimitiveElement(PureFunctionDefinition value);
 
 } // CompositionFunctionBodyPure

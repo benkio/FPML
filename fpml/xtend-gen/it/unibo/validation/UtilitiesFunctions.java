@@ -8,16 +8,17 @@ import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
-import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.InitialPureChainElement;
+import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
-import it.unibo.fPML.PureFunction;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
 import it.unibo.fPML.SumValue;
@@ -32,15 +33,23 @@ import org.eclipse.emf.ecore.EObject;
  */
 @SuppressWarnings("all")
 public class UtilitiesFunctions {
-  public static EObject getReturnType(final PureFunction pf) {
+  public static EObject getReturnType(final PureFunctionDefinition pf) {
     final ValueType t = pf.getReturnType();
-    if ((t instanceof DataType)) {
+    boolean _matched = false;
+    if (t instanceof DataType) {
+      _matched=true;
       return ((DataType)t).getType();
+    }
+    if (!_matched) {
+      if (t instanceof IntToString) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createStringType();
+      }
     }
     return t;
   }
   
-  public static EObject getReturnType(final EffectFullFunction ef) {
+  public static EObject getReturnType(final EffectFullFunctionDefinition ef) {
     IOType _returnType = ef.getReturnType();
     final Type t = _returnType.getType();
     boolean _matched = false;
@@ -62,14 +71,14 @@ public class UtilitiesFunctions {
   
   public static EObject getReturnType(final ChainElement f1) {
     boolean _matched = false;
-    if (f1 instanceof EffectFullFunction) {
+    if (f1 instanceof EffectFullFunctionDefinition) {
       _matched=true;
-      return UtilitiesFunctions.getReturnType(((EffectFullFunction)f1));
+      return UtilitiesFunctions.getReturnType(((EffectFullFunctionDefinition)f1));
     }
     if (!_matched) {
-      if (f1 instanceof PureFunction) {
+      if (f1 instanceof PureFunctionDefinition) {
         _matched=true;
-        return UtilitiesFunctions.getReturnType(((PureFunction)f1));
+        return UtilitiesFunctions.getReturnType(((PureFunctionDefinition)f1));
       }
     }
     if (!_matched) {
@@ -84,9 +93,9 @@ public class UtilitiesFunctions {
   
   public static EObject getReturnType(final InitialPureChainElement f1) {
     boolean _matched = false;
-    if (f1 instanceof PureFunction) {
+    if (f1 instanceof PureFunctionDefinition) {
       _matched=true;
-      return UtilitiesFunctions.getReturnType(((PureFunction)f1));
+      return UtilitiesFunctions.getReturnType(((PureFunctionDefinition)f1));
     }
     if (!_matched) {
       if (f1 instanceof Value) {
@@ -98,16 +107,24 @@ public class UtilitiesFunctions {
     return null;
   }
   
-  public static EObject getArgType(final PureFunction pf) {
+  public static EObject getArgType(final PureFunctionDefinition pf) {
     Argument _arg = pf.getArg();
     final ValueType t = _arg.getType();
-    if ((t instanceof DataType)) {
+    boolean _matched = false;
+    if (t instanceof DataType) {
+      _matched=true;
       return ((DataType)t).getType();
+    }
+    if (!_matched) {
+      if (t instanceof IntToString) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createIntegerType();
+      }
     }
     return t;
   }
   
-  public static EObject getArgType(final EffectFullFunction ef) {
+  public static EObject getArgType(final EffectFullFunctionDefinition ef) {
     EffectFullArgument _arg = ef.getArg();
     final Type t = _arg.getType();
     boolean _matched = false;
@@ -126,14 +143,14 @@ public class UtilitiesFunctions {
   
   public static EObject getArgType(final ChainElement f1) {
     boolean _matched = false;
-    if (f1 instanceof EffectFullFunction) {
+    if (f1 instanceof EffectFullFunctionDefinition) {
       _matched=true;
-      return UtilitiesFunctions.getArgType(((EffectFullFunction)f1));
+      return UtilitiesFunctions.getArgType(((EffectFullFunctionDefinition)f1));
     }
     if (!_matched) {
-      if (f1 instanceof PureFunction) {
+      if (f1 instanceof PureFunctionDefinition) {
         _matched=true;
-        return UtilitiesFunctions.getArgType(((PureFunction)f1));
+        return UtilitiesFunctions.getArgType(((PureFunctionDefinition)f1));
       }
     }
     if (!_matched) {
@@ -148,9 +165,9 @@ public class UtilitiesFunctions {
   
   public static EObject getArgType(final InitialPureChainElement f1) {
     boolean _matched = false;
-    if (f1 instanceof PureFunction) {
+    if (f1 instanceof PureFunctionDefinition) {
       _matched=true;
-      return UtilitiesFunctions.getArgType(((PureFunction)f1));
+      return UtilitiesFunctions.getArgType(((PureFunctionDefinition)f1));
     }
     if (!_matched) {
       if (f1 instanceof Value) {

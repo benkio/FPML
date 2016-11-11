@@ -123,22 +123,22 @@ public interface FPMLFactory extends EFactory
   ProdType createProdType();
 
   /**
-   * Returns a new object of class '<em>Pure Function</em>'.
+   * Returns a new object of class '<em>Pure Function Definition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Function</em>'.
+   * @return a new object of class '<em>Pure Function Definition</em>'.
    * @generated
    */
-  PureFunction createPureFunction();
+  PureFunctionDefinition createPureFunctionDefinition();
 
   /**
-   * Returns a new object of class '<em>Effect Full Function</em>'.
+   * Returns a new object of class '<em>Effect Full Function Definition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect Full Function</em>'.
+   * @return a new object of class '<em>Effect Full Function Definition</em>'.
    * @generated
    */
-  EffectFullFunction createEffectFullFunction();
+  EffectFullFunctionDefinition createEffectFullFunctionDefinition();
 
   /**
    * Returns a new object of class '<em>Main Func</em>'.
@@ -231,6 +231,15 @@ public interface FPMLFactory extends EFactory
   CompositionFunctionBodyPure createCompositionFunctionBodyPure();
 
   /**
+   * Returns a new object of class '<em>Composition Function Body Pure Factor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Composition Function Body Pure Factor</em>'.
+   * @generated
+   */
+  CompositionFunctionBodyPureFactor createCompositionFunctionBodyPureFactor();
+
+  /**
    * Returns a new object of class '<em>Composition Function Body Effect</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -238,6 +247,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   CompositionFunctionBodyEffect createCompositionFunctionBodyEffect();
+
+  /**
+   * Returns a new object of class '<em>Composition Function Body Effect Full Factor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Composition Function Body Effect Full Factor</em>'.
+   * @generated
+   */
+  CompositionFunctionBodyEffectFullFactor createCompositionFunctionBodyEffectFullFactor();
 
   /**
    * Returns a new object of class '<em>IO Type</em>'.
@@ -339,13 +357,13 @@ public interface FPMLFactory extends EFactory
   SumValue createSumValue();
 
   /**
-   * Returns a new object of class '<em>Data Value</em>'.
+   * Returns a new object of class '<em>Int To String</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Data Value</em>'.
+   * @return a new object of class '<em>Int To String</em>'.
    * @generated
    */
-  DataValue createDataValue();
+  IntToString createIntToString();
 
   /**
    * Returns a new object of class '<em>Primitive Print</em>'.
@@ -355,6 +373,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   PrimitivePrint createPrimitivePrint();
+
+  /**
+   * Returns a new object of class '<em>Data Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Data Value</em>'.
+   * @generated
+   */
+  DataValue createDataValue();
 
   /**
    * Returns the package supported by this factory.

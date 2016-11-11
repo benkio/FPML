@@ -4,25 +4,25 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PrimitivePrint;
+import it.unibo.fPML.IntToString;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primitive Print</b></em>'.
+ * An implementation of the model object '<em><b>Int To String</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class PrimitivePrintImpl extends EffectFullFunctionDefinitionImpl implements PrimitivePrint
+public class IntToStringImpl extends PureFunctionDefinitionImpl implements IntToString
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PrimitivePrintImpl()
+  protected IntToStringImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class PrimitivePrintImpl extends EffectFullFunctionDefinitionImpl impleme
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PRIMITIVE_PRINT;
+    return FPMLPackage.Literals.INT_TO_STRING;
   }
 
-} //PrimitivePrintImpl
+} //IntToStringImpl

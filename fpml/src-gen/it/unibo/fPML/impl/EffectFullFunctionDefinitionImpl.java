@@ -4,7 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.EffectFullArgument;
-import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
@@ -19,20 +19,20 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Effect Full Function</b></em>'.
+ * An implementation of the model object '<em><b>Effect Full Function Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionImpl#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionImpl#getArg <em>Arg</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionImpl#getFunctionBody <em>Function Body</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFunction
+public class EffectFullFunctionDefinitionImpl extends FunctionImpl implements EffectFullFunctionDefinition
 {
   /**
    * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
@@ -69,7 +69,7 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EffectFullFunctionImpl()
+  protected EffectFullFunctionDefinitionImpl()
   {
     super();
   }
@@ -82,7 +82,7 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.EFFECT_FULL_FUNCTION;
+    return FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION;
   }
 
   /**
@@ -106,7 +106,7 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
     returnType = newReturnType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION__RETURN_TYPE, oldReturnType, newReturnType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE, oldReturnType, newReturnType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -123,14 +123,14 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
     {
       NotificationChain msgs = null;
       if (returnType != null)
-        msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION__RETURN_TYPE, null, msgs);
+        msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE, null, msgs);
       if (newReturnType != null)
-        msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION__RETURN_TYPE, null, msgs);
+        msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE, null, msgs);
       msgs = basicSetReturnType(newReturnType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION__RETURN_TYPE, newReturnType, newReturnType));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE, newReturnType, newReturnType));
   }
 
   /**
@@ -154,7 +154,7 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
     arg = newArg;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION__ARG, oldArg, newArg);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG, oldArg, newArg);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -171,14 +171,14 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
     {
       NotificationChain msgs = null;
       if (arg != null)
-        msgs = ((InternalEObject)arg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION__ARG, null, msgs);
+        msgs = ((InternalEObject)arg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG, null, msgs);
       if (newArg != null)
-        msgs = ((InternalEObject)newArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION__ARG, null, msgs);
+        msgs = ((InternalEObject)newArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG, null, msgs);
       msgs = basicSetArg(newArg, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION__ARG, newArg, newArg));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG, newArg, newArg));
   }
 
   /**
@@ -202,7 +202,7 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
     functionBody = newFunctionBody;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION__FUNCTION_BODY, oldFunctionBody, newFunctionBody);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY, oldFunctionBody, newFunctionBody);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -219,14 +219,14 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
     {
       NotificationChain msgs = null;
       if (functionBody != null)
-        msgs = ((InternalEObject)functionBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION__FUNCTION_BODY, null, msgs);
+        msgs = ((InternalEObject)functionBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY, null, msgs);
       if (newFunctionBody != null)
-        msgs = ((InternalEObject)newFunctionBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION__FUNCTION_BODY, null, msgs);
+        msgs = ((InternalEObject)newFunctionBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY, null, msgs);
       msgs = basicSetFunctionBody(newFunctionBody, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION__FUNCTION_BODY, newFunctionBody, newFunctionBody));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY, newFunctionBody, newFunctionBody));
   }
 
   /**
@@ -239,11 +239,11 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         return basicSetReturnType(null, msgs);
-      case FPMLPackage.EFFECT_FULL_FUNCTION__ARG:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         return basicSetArg(null, msgs);
-      case FPMLPackage.EFFECT_FULL_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return basicSetFunctionBody(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -259,11 +259,11 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         return getReturnType();
-      case FPMLPackage.EFFECT_FULL_FUNCTION__ARG:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         return getArg();
-      case FPMLPackage.EFFECT_FULL_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return getFunctionBody();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -279,13 +279,13 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((IOType)newValue);
         return;
-      case FPMLPackage.EFFECT_FULL_FUNCTION__ARG:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         setArg((EffectFullArgument)newValue);
         return;
-      case FPMLPackage.EFFECT_FULL_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyEffectFull)newValue);
         return;
     }
@@ -302,13 +302,13 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((IOType)null);
         return;
-      case FPMLPackage.EFFECT_FULL_FUNCTION__ARG:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         setArg((EffectFullArgument)null);
         return;
-      case FPMLPackage.EFFECT_FULL_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyEffectFull)null);
         return;
     }
@@ -325,14 +325,14 @@ public class EffectFullFunctionImpl extends FunctionImpl implements EffectFullFu
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_FUNCTION__RETURN_TYPE:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         return returnType != null;
-      case FPMLPackage.EFFECT_FULL_FUNCTION__ARG:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         return arg != null;
-      case FPMLPackage.EFFECT_FULL_FUNCTION__FUNCTION_BODY:
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return functionBody != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //EffectFullFunctionImpl
+} //EffectFullFunctionDefinitionImpl

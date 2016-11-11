@@ -27,7 +27,7 @@ public interface PureFunctionBlock extends EObject
 {
   /**
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.
-   * The list contents are of type {@link it.unibo.fPML.PureFunction}.
+   * The list contents are of type {@link it.unibo.fPML.PureFunctionDefinition}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
@@ -39,6 +39,6 @@ public interface PureFunctionBlock extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<PureFunction> getFeatures();
+  EList<PureFunctionDefinition> getFeatures();
 
 } // PureFunctionBlock

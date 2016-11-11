@@ -76,8 +76,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.ADT_TYPE: return createAdtType();
       case FPMLPackage.SUM_TYPE: return createSumType();
       case FPMLPackage.PROD_TYPE: return createProdType();
-      case FPMLPackage.PURE_FUNCTION: return createPureFunction();
-      case FPMLPackage.EFFECT_FULL_FUNCTION: return createEffectFullFunction();
+      case FPMLPackage.PURE_FUNCTION_DEFINITION: return createPureFunctionDefinition();
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION: return createEffectFullFunctionDefinition();
       case FPMLPackage.MAIN_FUNC: return createMainFunc();
       case FPMLPackage.CHAIN_ELEMENT: return createChainElement();
       case FPMLPackage.INITIAL_PURE_CHAIN_ELEMENT: return createInitialPureChainElement();
@@ -88,7 +88,9 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.FUNCTION_BODY_EFFECT_FULL: return createFunctionBodyEffectFull();
       case FPMLPackage.EMPTY_FUNCTION_BODY: return createEmptyFunctionBody();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE: return createCompositionFunctionBodyPure();
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR: return createCompositionFunctionBodyPureFactor();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT: return createCompositionFunctionBodyEffect();
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT_FULL_FACTOR: return createCompositionFunctionBodyEffectFullFactor();
       case FPMLPackage.IO_TYPE: return createIOType();
       case FPMLPackage.VALUE_TYPE: return createValueType();
       case FPMLPackage.TYPE: return createType();
@@ -100,8 +102,9 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.ADT_VALUE: return createAdtValue();
       case FPMLPackage.PROD_VALUE: return createProdValue();
       case FPMLPackage.SUM_VALUE: return createSumValue();
-      case FPMLPackage.DATA_VALUE: return createDataValue();
+      case FPMLPackage.INT_TO_STRING: return createIntToString();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
+      case FPMLPackage.DATA_VALUE: return createDataValue();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -233,10 +236,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureFunction createPureFunction()
+  public PureFunctionDefinition createPureFunctionDefinition()
   {
-    PureFunctionImpl pureFunction = new PureFunctionImpl();
-    return pureFunction;
+    PureFunctionDefinitionImpl pureFunctionDefinition = new PureFunctionDefinitionImpl();
+    return pureFunctionDefinition;
   }
 
   /**
@@ -244,10 +247,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullFunction createEffectFullFunction()
+  public EffectFullFunctionDefinition createEffectFullFunctionDefinition()
   {
-    EffectFullFunctionImpl effectFullFunction = new EffectFullFunctionImpl();
-    return effectFullFunction;
+    EffectFullFunctionDefinitionImpl effectFullFunctionDefinition = new EffectFullFunctionDefinitionImpl();
+    return effectFullFunctionDefinition;
   }
 
   /**
@@ -365,10 +368,32 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public CompositionFunctionBodyPureFactor createCompositionFunctionBodyPureFactor()
+  {
+    CompositionFunctionBodyPureFactorImpl compositionFunctionBodyPureFactor = new CompositionFunctionBodyPureFactorImpl();
+    return compositionFunctionBodyPureFactor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public CompositionFunctionBodyEffect createCompositionFunctionBodyEffect()
   {
     CompositionFunctionBodyEffectImpl compositionFunctionBodyEffect = new CompositionFunctionBodyEffectImpl();
     return compositionFunctionBodyEffect;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CompositionFunctionBodyEffectFullFactor createCompositionFunctionBodyEffectFullFactor()
+  {
+    CompositionFunctionBodyEffectFullFactorImpl compositionFunctionBodyEffectFullFactor = new CompositionFunctionBodyEffectFullFactorImpl();
+    return compositionFunctionBodyEffectFullFactor;
   }
 
   /**
@@ -497,10 +522,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DataValue createDataValue()
+  public IntToString createIntToString()
   {
-    DataValueImpl dataValue = new DataValueImpl();
-    return dataValue;
+    IntToStringImpl intToString = new IntToStringImpl();
+    return intToString;
   }
 
   /**
@@ -512,6 +537,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     PrimitivePrintImpl primitivePrint = new PrimitivePrintImpl();
     return primitivePrint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DataValue createDataValue()
+  {
+    DataValueImpl dataValue = new DataValueImpl();
+    return dataValue;
   }
 
   /**

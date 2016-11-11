@@ -28,7 +28,7 @@ public interface EffectFullBlock extends EObject
 {
   /**
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.
-   * The list contents are of type {@link it.unibo.fPML.EffectFullFunction}.
+   * The list contents are of type {@link it.unibo.fPML.EffectFullFunctionDefinition}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
@@ -40,7 +40,7 @@ public interface EffectFullBlock extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<EffectFullFunction> getFeatures();
+  EList<EffectFullFunctionDefinition> getFeatures();
 
   /**
    * Returns the value of the '<em><b>Main</b></em>' containment reference.

@@ -6,23 +6,23 @@ package it.unibo.fPML;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Effect Full Function</b></em>'.
+ * A representation of the model object '<em><b>Effect Full Function Definition</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.EffectFullFunction#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link it.unibo.fPML.EffectFullFunction#getArg <em>Arg</em>}</li>
- *   <li>{@link it.unibo.fPML.EffectFullFunction#getFunctionBody <em>Function Body</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getEffectFullFunction()
+ * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition()
  * @model
  * @generated
  */
-public interface EffectFullFunction extends Function
+public interface EffectFullFunctionDefinition extends Function
 {
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
@@ -34,14 +34,14 @@ public interface EffectFullFunction extends Function
    * <!-- end-user-doc -->
    * @return the value of the '<em>Return Type</em>' containment reference.
    * @see #setReturnType(IOType)
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunction_ReturnType()
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition_ReturnType()
    * @model containment="true"
    * @generated
    */
   IOType getReturnType();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunction#getReturnType <em>Return Type</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionDefinition#getReturnType <em>Return Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Return Type</em>' containment reference.
@@ -60,14 +60,14 @@ public interface EffectFullFunction extends Function
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arg</em>' containment reference.
    * @see #setArg(EffectFullArgument)
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunction_Arg()
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition_Arg()
    * @model containment="true"
    * @generated
    */
   EffectFullArgument getArg();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunction#getArg <em>Arg</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg <em>Arg</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Arg</em>' containment reference.
@@ -86,14 +86,14 @@ public interface EffectFullFunction extends Function
    * <!-- end-user-doc -->
    * @return the value of the '<em>Function Body</em>' containment reference.
    * @see #setFunctionBody(FunctionBodyEffectFull)
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunction_FunctionBody()
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition_FunctionBody()
    * @model containment="true"
    * @generated
    */
   FunctionBodyEffectFull getFunctionBody();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunction#getFunctionBody <em>Function Body</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionDefinition#getFunctionBody <em>Function Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Function Body</em>' containment reference.
@@ -102,4 +102,4 @@ public interface EffectFullFunction extends Function
    */
   void setFunctionBody(FunctionBodyEffectFull value);
 
-} // EffectFullFunction
+} // EffectFullFunctionDefinition

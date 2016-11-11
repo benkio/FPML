@@ -4,7 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.EffectFullBlock;
-import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.MainFunc;
 
@@ -48,7 +48,7 @@ public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected EList<EffectFullFunction> features;
+  protected EList<EffectFullFunctionDefinition> features;
 
   /**
    * The cached value of the '{@link #getMain() <em>Main</em>}' containment reference.
@@ -86,11 +86,11 @@ public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EffectFullFunction> getFeatures()
+  public EList<EffectFullFunctionDefinition> getFeatures()
   {
     if (features == null)
     {
-      features = new EObjectContainmentEList<EffectFullFunction>(EffectFullFunction.class, this, FPMLPackage.EFFECT_FULL_BLOCK__FEATURES);
+      features = new EObjectContainmentEList<EffectFullFunctionDefinition>(EffectFullFunctionDefinition.class, this, FPMLPackage.EFFECT_FULL_BLOCK__FEATURES);
     }
     return features;
   }
@@ -192,7 +192,7 @@ public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements
     {
       case FPMLPackage.EFFECT_FULL_BLOCK__FEATURES:
         getFeatures().clear();
-        getFeatures().addAll((Collection<? extends EffectFullFunction>)newValue);
+        getFeatures().addAll((Collection<? extends EffectFullFunctionDefinition>)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_BLOCK__MAIN:
         setMain((MainFunc)newValue);
