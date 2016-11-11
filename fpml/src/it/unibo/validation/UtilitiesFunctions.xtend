@@ -100,7 +100,7 @@ class UtilitiesFunctions {
 		switch type {
 			IntegerType: return value instanceof IntegerType
 			StringType: return value instanceof StringType
-			DataType: return typeCheckDataAndValue(value, (type as DataType).type.content) 
+			DataType: return typeCheckDataAndValue((value as DataValue).value, (type as DataType).type.content) 
 			default: {
 				switch value{
 					SumValue: return (type.adtElement2 instanceof SumType) && 

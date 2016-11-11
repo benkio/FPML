@@ -6,6 +6,7 @@ import it.unibo.fPML.Argument;
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
+import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.Expression;
@@ -192,9 +193,10 @@ public class UtilitiesFunctions {
     if (!_matched) {
       if (type instanceof DataType) {
         _matched=true;
+        AdtValue _value = ((DataValue) value).getValue();
         Data _type = ((DataType) type).getType();
         AdtType _content = _type.getContent();
-        return UtilitiesFunctions.typeCheckDataAndValue(value, _content);
+        return UtilitiesFunctions.typeCheckDataAndValue(_value, _content);
       }
     }
     if (!_matched) {
