@@ -599,15 +599,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cFunctionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		/////////////////////////////////////////////////////////////////////
 		//// Function Body Elements
 		/////////////////////////////////////////////////////////////////////
 		//ChainElement:
-		//	Function | Value;
+		//	Function | Value | Expression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Function | Value
+		//Function | Value | Expression
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Function
@@ -615,18 +616,22 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Value
 		public RuleCall getValueParserRuleCall_1() { return cValueParserRuleCall_1; }
+		
+		//Expression
+		public RuleCall getExpressionParserRuleCall_2() { return cExpressionParserRuleCall_2; }
 	}
 	public class InitialPureChainElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.InitialPureChainElement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPureFunctionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//InitialPureChainElement:
-		//	PureFunction | Value;
+		//	PureFunction | Value | Expression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PureFunction | Value
+		//PureFunction | Value | Expression
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//PureFunction
@@ -634,6 +639,9 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Value
 		public RuleCall getValueParserRuleCall_1() { return cValueParserRuleCall_1; }
+		
+		//Expression
+		public RuleCall getExpressionParserRuleCall_2() { return cExpressionParserRuleCall_2; }
 	}
 	public class FunctionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Function");
@@ -1646,7 +1654,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//// Function Body Elements
 	/////////////////////////////////////////////////////////////////////
 	//ChainElement:
-	//	Function | Value;
+	//	Function | Value | Expression;
 	public ChainElementElements getChainElementAccess() {
 		return pChainElement;
 	}
@@ -1656,7 +1664,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//InitialPureChainElement:
-	//	PureFunction | Value;
+	//	PureFunction | Value | Expression;
 	public InitialPureChainElementElements getInitialPureChainElementAccess() {
 		return pInitialPureChainElement;
 	}

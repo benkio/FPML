@@ -403,7 +403,6 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       switch (derivedFeatureID)
       {
-        case FPMLPackage.PURE_FUNCTION__NAME: return FPMLPackage.CHAIN_ELEMENT__NAME;
         default: return -1;
       }
     }
@@ -411,6 +410,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       switch (derivedFeatureID)
       {
+        case FPMLPackage.PURE_FUNCTION__NAME: return FPMLPackage.FUNCTION__NAME;
         default: return -1;
       }
     }
@@ -429,7 +429,6 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       switch (baseFeatureID)
       {
-        case FPMLPackage.CHAIN_ELEMENT__NAME: return FPMLPackage.PURE_FUNCTION__NAME;
         default: return -1;
       }
     }
@@ -437,6 +436,7 @@ public class PureFunctionImpl extends InitialPureChainElementImpl implements Pur
     {
       switch (baseFeatureID)
       {
+        case FPMLPackage.FUNCTION__NAME: return FPMLPackage.PURE_FUNCTION__NAME;
         default: return -1;
       }
     }

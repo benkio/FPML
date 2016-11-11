@@ -291,22 +291,13 @@ public interface FPMLPackage extends EPackage
   int CHAIN_ELEMENT = 14;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CHAIN_ELEMENT__NAME = 0;
-
-  /**
    * The number of structural features of the '<em>Chain Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHAIN_ELEMENT_FEATURE_COUNT = 1;
+  int CHAIN_ELEMENT_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.ValueImpl <em>Value</em>}' class.
@@ -325,7 +316,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VALUE__NAME = CHAIN_ELEMENT__NAME;
+  int VALUE__NAME = CHAIN_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -334,7 +325,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VALUE__VALUE = CHAIN_ELEMENT_FEATURE_COUNT + 0;
+  int VALUE__VALUE = CHAIN_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Value</em>' class.
@@ -343,7 +334,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VALUE_FEATURE_COUNT = CHAIN_ELEMENT_FEATURE_COUNT + 1;
+  int VALUE_FEATURE_COUNT = CHAIN_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.AdtTypeImpl <em>Adt Type</em>}' class.
@@ -529,7 +520,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION__NAME = CHAIN_ELEMENT__NAME;
+  int FUNCTION__NAME = CHAIN_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Function</em>' class.
@@ -538,7 +529,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_FEATURE_COUNT = CHAIN_ELEMENT_FEATURE_COUNT + 0;
+  int FUNCTION_FEATURE_COUNT = CHAIN_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.EffectFullFunctionImpl <em>Effect Full Function</em>}' class.
@@ -1113,7 +1104,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = 0;
+  int EXPRESSION_FEATURE_COUNT = CHAIN_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.AdtValueImpl <em>Adt Value</em>}' class.
@@ -1510,6 +1501,17 @@ public interface FPMLPackage extends EPackage
   EClass getValue();
 
   /**
+   * Returns the meta object for the attribute '{@link it.unibo.fPML.Value#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see it.unibo.fPML.Value#getName()
+   * @see #getValue()
+   * @generated
+   */
+  EAttribute getValue_Name();
+
+  /**
    * Returns the meta object for the containment reference '{@link it.unibo.fPML.Value#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1723,17 +1725,6 @@ public interface FPMLPackage extends EPackage
   EClass getChainElement();
 
   /**
-   * Returns the meta object for the attribute '{@link it.unibo.fPML.ChainElement#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see it.unibo.fPML.ChainElement#getName()
-   * @see #getChainElement()
-   * @generated
-   */
-  EAttribute getChainElement_Name();
-
-  /**
    * Returns the meta object for class '{@link it.unibo.fPML.InitialPureChainElement <em>Initial Pure Chain Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1752,6 +1743,17 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EClass getFunction();
+
+  /**
+   * Returns the meta object for the attribute '{@link it.unibo.fPML.Function#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see it.unibo.fPML.Function#getName()
+   * @see #getFunction()
+   * @generated
+   */
+  EAttribute getFunction_Name();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.EffectFullArgument <em>Effect Full Argument</em>}'.
@@ -2346,6 +2348,14 @@ public interface FPMLPackage extends EPackage
     EClass VALUE = eINSTANCE.getValue();
 
     /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALUE__NAME = eINSTANCE.getValue_Name();
+
+    /**
      * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2520,14 +2530,6 @@ public interface FPMLPackage extends EPackage
     EClass CHAIN_ELEMENT = eINSTANCE.getChainElement();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CHAIN_ELEMENT__NAME = eINSTANCE.getChainElement_Name();
-
-    /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.InitialPureChainElementImpl <em>Initial Pure Chain Element</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2546,6 +2548,14 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EClass FUNCTION = eINSTANCE.getFunction();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION__NAME = eINSTANCE.getFunction_Name();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.EffectFullArgumentImpl <em>Effect Full Argument</em>}' class.

@@ -35,6 +35,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Value" eSuperTypes="#//ChainElement #//InitialPureChainElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
@@ -74,11 +75,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionBody" eType="#//FunctionBodyEffectFull"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ChainElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ChainElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialPureChainElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//ChainElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InitialPureChainElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//ChainElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullArgument">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -119,7 +120,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//ValueType #//Expression #//AdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Data"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//ChainElement #//InitialPureChainElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="AdtValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProdValue" eSuperTypes="#//AdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prodAdtElement1" eType="#//AdtValue"

@@ -285,6 +285,8 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseAdtValue(integerType);
         if (result == null) result = caseAdtType(integerType);
         if (result == null) result = caseType(integerType);
+        if (result == null) result = caseChainElement(integerType);
+        if (result == null) result = caseInitialPureChainElement(integerType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -297,6 +299,8 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseAdtValue(stringType);
         if (result == null) result = caseAdtType(stringType);
         if (result == null) result = caseType(stringType);
+        if (result == null) result = caseChainElement(stringType);
+        if (result == null) result = caseInitialPureChainElement(stringType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -306,6 +310,8 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseUnitType(unitType);
         if (result == null) result = caseType(unitType);
         if (result == null) result = caseExpression(unitType);
+        if (result == null) result = caseChainElement(unitType);
+        if (result == null) result = caseInitialPureChainElement(unitType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -318,6 +324,8 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseAdtValue(dataType);
         if (result == null) result = caseAdtType(dataType);
         if (result == null) result = caseType(dataType);
+        if (result == null) result = caseChainElement(dataType);
+        if (result == null) result = caseInitialPureChainElement(dataType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -325,6 +333,8 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
+        if (result == null) result = caseChainElement(expression);
+        if (result == null) result = caseInitialPureChainElement(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -361,6 +371,8 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseAdtValue(dataValue);
         if (result == null) result = caseAdtType(dataValue);
         if (result == null) result = caseType(dataValue);
+        if (result == null) result = caseChainElement(dataValue);
+        if (result == null) result = caseInitialPureChainElement(dataValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
