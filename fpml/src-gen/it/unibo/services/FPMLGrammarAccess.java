@@ -930,27 +930,27 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.CompositionFunctionBodyEffectFullFactor");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cVerticalLineGreaterThanSignKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Keyword cGreaterThanSignGreaterThanSignEqualsSignKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final Assignment cReferenceElementAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
 		private final CrossReference cReferenceElementChainElementCrossReference_0_1_0 = (CrossReference)cReferenceElementAssignment_0_1.eContents().get(0);
 		private final RuleCall cReferenceElementChainElementIDTerminalRuleCall_0_1_0_1 = (RuleCall)cReferenceElementChainElementCrossReference_0_1_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cVerticalLineGreaterThanSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cPrimitiveElementAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cPrimitiveElementPrimitiveEffectFullFunctionParserRuleCall_1_1_0 = (RuleCall)cPrimitiveElementAssignment_1_1.eContents().get(0);
 		
 		//CompositionFunctionBodyEffectFullFactor:
-		//	'|>' referenceElement=[ChainElement] | '|>' PrimitiveElement=PrimitiveEffectFullFunction;
+		//	'>>=' referenceElement=[ChainElement] | '>>=' PrimitiveElement=PrimitiveEffectFullFunction;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'|>' referenceElement=[ChainElement] | '|>' PrimitiveElement=PrimitiveEffectFullFunction
+		//'>>=' referenceElement=[ChainElement] | '>>=' PrimitiveElement=PrimitiveEffectFullFunction
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'|>' referenceElement=[ChainElement]
+		//'>>=' referenceElement=[ChainElement]
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//'|>'
-		public Keyword getVerticalLineGreaterThanSignKeyword_0_0() { return cVerticalLineGreaterThanSignKeyword_0_0; }
+		//'>>='
+		public Keyword getGreaterThanSignGreaterThanSignEqualsSignKeyword_0_0() { return cGreaterThanSignGreaterThanSignEqualsSignKeyword_0_0; }
 		
 		//referenceElement=[ChainElement]
 		public Assignment getReferenceElementAssignment_0_1() { return cReferenceElementAssignment_0_1; }
@@ -961,11 +961,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getReferenceElementChainElementIDTerminalRuleCall_0_1_0_1() { return cReferenceElementChainElementIDTerminalRuleCall_0_1_0_1; }
 		
-		//'|>' PrimitiveElement=PrimitiveEffectFullFunction
+		//'>>=' PrimitiveElement=PrimitiveEffectFullFunction
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'|>'
-		public Keyword getVerticalLineGreaterThanSignKeyword_1_0() { return cVerticalLineGreaterThanSignKeyword_1_0; }
+		//'>>='
+		public Keyword getGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0() { return cGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0; }
 		
 		//PrimitiveElement=PrimitiveEffectFullFunction
 		public Assignment getPrimitiveElementAssignment_1_1() { return cPrimitiveElementAssignment_1_1; }
@@ -1887,7 +1887,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CompositionFunctionBodyEffectFullFactor:
-	//	'|>' referenceElement=[ChainElement] | '|>' PrimitiveElement=PrimitiveEffectFullFunction;
+	//	'>>=' referenceElement=[ChainElement] | '>>=' PrimitiveElement=PrimitiveEffectFullFunction;
 	public CompositionFunctionBodyEffectFullFactorElements getCompositionFunctionBodyEffectFullFactorAccess() {
 		return pCompositionFunctionBodyEffectFullFactor;
 	}

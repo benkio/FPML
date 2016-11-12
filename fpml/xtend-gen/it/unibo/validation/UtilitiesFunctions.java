@@ -1,9 +1,14 @@
 package it.unibo.validation;
 
+import com.google.common.base.Objects;
 import it.unibo.fPML.AdtType;
 import it.unibo.fPML.AdtValue;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.ChainElement;
+import it.unibo.fPML.CompositionFunctionBodyEffect;
+import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
+import it.unibo.fPML.CompositionFunctionBodyPure;
+import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
@@ -256,5 +261,45 @@ public class UtilitiesFunctions {
       _switchResult = _switchResult_1;
     }
     return _switchResult;
+  }
+  
+  public static PureFunctionDefinition getFunctionDefinitionFromPureFactor(final CompositionFunctionBodyPureFactor cfbpf) {
+    PureFunctionDefinition _primitiveElement = cfbpf.getPrimitiveElement();
+    boolean _equals = Objects.equal(_primitiveElement, null);
+    if (_equals) {
+      return cfbpf.getReferenceElement();
+    } else {
+      return cfbpf.getPrimitiveElement();
+    }
+  }
+  
+  public static ChainElement getFunctionDefinitionFromEffectFullFactor(final CompositionFunctionBodyEffectFullFactor cfbef) {
+    EffectFullFunctionDefinition _primitiveElement = cfbef.getPrimitiveElement();
+    boolean _equals = Objects.equal(_primitiveElement, null);
+    if (_equals) {
+      return cfbef.getReferenceElement();
+    } else {
+      return cfbef.getPrimitiveElement();
+    }
+  }
+  
+  public static InitialPureChainElement getFirstFunctionDefinitionFromCompositionBodyPure(final CompositionFunctionBodyPure cfbp) {
+    PureFunctionDefinition _primitiveElement = cfbp.getPrimitiveElement();
+    boolean _equals = Objects.equal(_primitiveElement, null);
+    if (_equals) {
+      return cfbp.getReferenceElement();
+    } else {
+      return cfbp.getPrimitiveElement();
+    }
+  }
+  
+  public static ChainElement getFirstFunctionDefinitionFromCompositionBodyEffectFull(final CompositionFunctionBodyEffect cfbe) {
+    EffectFullFunctionDefinition _primitiveElement = cfbe.getPrimitiveElement();
+    boolean _equals = Objects.equal(_primitiveElement, null);
+    if (_equals) {
+      return cfbe.getReferenceElement();
+    } else {
+      return cfbe.getPrimitiveElement();
+    }
   }
 }

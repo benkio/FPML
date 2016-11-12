@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Pure'", "'{'", "'}'", "'Functions'", "'Data'", "'Value'", "'Effects'", "':'", "'['", "']'", "'+'", "'*'", "'def'", "'('", "')'", "'IO'", "'main'", "'Undefined'", "'|>'", "'ref'", "'()'", "','", "'Left'", "'Right'", "'IntToString'", "'print'", "'int'", "'String'", "'Unit'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Pure'", "'{'", "'}'", "'Functions'", "'Data'", "'Value'", "'Effects'", "':'", "'['", "']'", "'+'", "'*'", "'def'", "'('", "')'", "'IO'", "'main'", "'Undefined'", "'|>'", "'>>='", "'ref'", "'()'", "','", "'Left'", "'Right'", "'IntToString'", "'print'", "'int'", "'String'", "'Unit'"
     };
     public static final int RULE_STRING=6;
     public static final int RULE_SL_COMMENT=8;
@@ -59,6 +59,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
+    public static final int T__40=40;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -3407,7 +3408,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==30||(LA1_0>=37 && LA1_0<=38)) ) {
+            if ( (LA1_0==31||(LA1_0>=38 && LA1_0<=39)) ) {
                 alt1=1;
             }
             else if ( (LA1_0==19) ) {
@@ -3574,7 +3575,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA3_0==23) ) {
                 int LA3_1 = input.LA(2);
 
-                if ( (LA3_1==30||(LA3_1>=37 && LA3_1<=38)) ) {
+                if ( (LA3_1==31||(LA3_1>=38 && LA3_1<=39)) ) {
                     alt3=1;
                 }
                 else if ( (LA3_1==26) ) {
@@ -3663,7 +3664,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA4_0==28) ) {
                 alt4=1;
             }
-            else if ( (LA4_0==RULE_ID||LA4_0==35) ) {
+            else if ( (LA4_0==RULE_ID||LA4_0==36) ) {
                 alt4=2;
             }
             else {
@@ -3742,7 +3743,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA5_0==28) ) {
                 alt5=1;
             }
-            else if ( (LA5_0==RULE_ID||LA5_0==36) ) {
+            else if ( (LA5_0==RULE_ID||LA5_0==37) ) {
                 alt5=2;
             }
             else {
@@ -3821,7 +3822,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA6_0==RULE_ID) ) {
                 alt6=1;
             }
-            else if ( (LA6_0==35) ) {
+            else if ( (LA6_0==36) ) {
                 alt6=2;
             }
             else {
@@ -3912,7 +3913,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA7_0==29) ) {
                 int LA7_1 = input.LA(2);
 
-                if ( (LA7_1==35) ) {
+                if ( (LA7_1==36) ) {
                     alt7=2;
                 }
                 else if ( (LA7_1==RULE_ID) ) {
@@ -4013,7 +4014,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA8_0==RULE_ID) ) {
                 alt8=1;
             }
-            else if ( (LA8_0==36) ) {
+            else if ( (LA8_0==37) ) {
                 alt8=2;
             }
             else {
@@ -4101,10 +4102,10 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             int alt9=2;
             int LA9_0 = input.LA(1);
 
-            if ( (LA9_0==29) ) {
+            if ( (LA9_0==30) ) {
                 int LA9_1 = input.LA(2);
 
-                if ( (LA9_1==36) ) {
+                if ( (LA9_1==37) ) {
                     alt9=2;
                 }
                 else if ( (LA9_1==RULE_ID) ) {
@@ -4201,17 +4202,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:1320:1: ( ( ruleIntegerType ) | ( ruleStringType ) | ( ruleDataType ) )
             int alt10=3;
             switch ( input.LA(1) ) {
-            case 37:
+            case 38:
                 {
                 alt10=1;
                 }
                 break;
-            case 38:
+            case 39:
                 {
                 alt10=2;
                 }
                 break;
-            case 30:
+            case 31:
                 {
                 alt10=3;
                 }
@@ -4309,10 +4310,10 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             int alt11=2;
             int LA11_0 = input.LA(1);
 
-            if ( (LA11_0==30||(LA11_0>=37 && LA11_0<=38)) ) {
+            if ( (LA11_0==31||(LA11_0>=38 && LA11_0<=39)) ) {
                 alt11=1;
             }
-            else if ( (LA11_0==39) ) {
+            else if ( (LA11_0==40) ) {
                 alt11=2;
             }
             else {
@@ -4397,7 +4398,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
                 alt12=2;
                 }
                 break;
-            case 31:
+            case 32:
                 {
                 alt12=3;
                 }
@@ -4533,8 +4534,8 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
                 alt13=3;
                 }
                 break;
-            case 33:
             case 34:
+            case 35:
                 {
                 alt13=4;
                 }
@@ -4675,10 +4676,10 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             int alt14=2;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==33) ) {
+            if ( (LA14_0==34) ) {
                 alt14=1;
             }
-            else if ( (LA14_0==34) ) {
+            else if ( (LA14_0==35) ) {
                 alt14=2;
             }
             else {
@@ -11209,7 +11210,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:3635:1: ( rule__CompositionFunctionBodyEffect__Group_0__0__Impl rule__CompositionFunctionBodyEffect__Group_0__1 )
             // InternalFPML.g:3636:2: rule__CompositionFunctionBodyEffect__Group_0__0__Impl rule__CompositionFunctionBodyEffect__Group_0__1
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_31);
             rule__CompositionFunctionBodyEffect__Group_0__0__Impl();
 
             state._fsp--;
@@ -11337,7 +11338,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:3677:3: ( rule__CompositionFunctionBodyEffect__FunctionChainAssignment_0_1 )
             // InternalFPML.g:3677:4: rule__CompositionFunctionBodyEffect__FunctionChainAssignment_0_1
             {
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_32);
             rule__CompositionFunctionBodyEffect__FunctionChainAssignment_0_1();
 
             state._fsp--;
@@ -11359,7 +11360,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
                 int alt22=2;
                 int LA22_0 = input.LA(1);
 
-                if ( (LA22_0==29) ) {
+                if ( (LA22_0==30) ) {
                     alt22=1;
                 }
 
@@ -11368,7 +11369,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalFPML.g:3682:4: rule__CompositionFunctionBodyEffect__FunctionChainAssignment_0_1
             	    {
-            	    pushFollow(FOLLOW_30);
+            	    pushFollow(FOLLOW_32);
             	    rule__CompositionFunctionBodyEffect__FunctionChainAssignment_0_1();
 
             	    state._fsp--;
@@ -11417,7 +11418,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:3696:1: ( rule__CompositionFunctionBodyEffect__Group_1__0__Impl rule__CompositionFunctionBodyEffect__Group_1__1 )
             // InternalFPML.g:3697:2: rule__CompositionFunctionBodyEffect__Group_1__0__Impl rule__CompositionFunctionBodyEffect__Group_1__1
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_31);
             rule__CompositionFunctionBodyEffect__Group_1__0__Impl();
 
             state._fsp--;
@@ -11545,7 +11546,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:3738:3: ( rule__CompositionFunctionBodyEffect__FunctionChainAssignment_1_1 )
             // InternalFPML.g:3738:4: rule__CompositionFunctionBodyEffect__FunctionChainAssignment_1_1
             {
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_32);
             rule__CompositionFunctionBodyEffect__FunctionChainAssignment_1_1();
 
             state._fsp--;
@@ -11567,7 +11568,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
                 int alt23=2;
                 int LA23_0 = input.LA(1);
 
-                if ( (LA23_0==29) ) {
+                if ( (LA23_0==30) ) {
                     alt23=1;
                 }
 
@@ -11576,7 +11577,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalFPML.g:3743:4: rule__CompositionFunctionBodyEffect__FunctionChainAssignment_1_1
             	    {
-            	    pushFollow(FOLLOW_30);
+            	    pushFollow(FOLLOW_32);
             	    rule__CompositionFunctionBodyEffect__FunctionChainAssignment_1_1();
 
             	    state._fsp--;
@@ -11654,21 +11655,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CompositionFunctionBodyEffectFullFactor__Group_0__0__Impl"
-    // InternalFPML.g:3765:1: rule__CompositionFunctionBodyEffectFullFactor__Group_0__0__Impl : ( '|>' ) ;
+    // InternalFPML.g:3765:1: rule__CompositionFunctionBodyEffectFullFactor__Group_0__0__Impl : ( '>>=' ) ;
     public final void rule__CompositionFunctionBodyEffectFullFactor__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:3769:1: ( ( '|>' ) )
-            // InternalFPML.g:3770:1: ( '|>' )
+            // InternalFPML.g:3769:1: ( ( '>>=' ) )
+            // InternalFPML.g:3770:1: ( '>>=' )
             {
-            // InternalFPML.g:3770:1: ( '|>' )
-            // InternalFPML.g:3771:2: '|>'
+            // InternalFPML.g:3770:1: ( '>>=' )
+            // InternalFPML.g:3771:2: '>>='
             {
-             before(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_0_0()); 
-            match(input,29,FOLLOW_2); 
-             after(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_0_0()); 
+             before(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_0_0()); 
+            match(input,30,FOLLOW_2); 
+             after(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_0_0()); 
 
             }
 
@@ -11809,21 +11810,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CompositionFunctionBodyEffectFullFactor__Group_1__0__Impl"
-    // InternalFPML.g:3819:1: rule__CompositionFunctionBodyEffectFullFactor__Group_1__0__Impl : ( '|>' ) ;
+    // InternalFPML.g:3819:1: rule__CompositionFunctionBodyEffectFullFactor__Group_1__0__Impl : ( '>>=' ) ;
     public final void rule__CompositionFunctionBodyEffectFullFactor__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:3823:1: ( ( '|>' ) )
-            // InternalFPML.g:3824:1: ( '|>' )
+            // InternalFPML.g:3823:1: ( ( '>>=' ) )
+            // InternalFPML.g:3824:1: ( '>>=' )
             {
-            // InternalFPML.g:3824:1: ( '|>' )
-            // InternalFPML.g:3825:2: '|>'
+            // InternalFPML.g:3824:1: ( '>>=' )
+            // InternalFPML.g:3825:2: '>>='
             {
-             before(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_1_0()); 
-            match(input,29,FOLLOW_2); 
-             after(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_1_0()); 
+             before(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0()); 
+            match(input,30,FOLLOW_2); 
+             after(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0()); 
 
             }
 
@@ -12090,7 +12091,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:3919:1: ( rule__IntegerType__Group__0__Impl rule__IntegerType__Group__1 )
             // InternalFPML.g:3920:2: rule__IntegerType__Group__0__Impl rule__IntegerType__Group__1
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_33);
             rule__IntegerType__Group__0__Impl();
 
             state._fsp--;
@@ -12245,7 +12246,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:3973:1: ( rule__StringType__Group__0__Impl rule__StringType__Group__1 )
             // InternalFPML.g:3974:2: rule__StringType__Group__0__Impl rule__StringType__Group__1
             {
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_34);
             rule__StringType__Group__0__Impl();
 
             state._fsp--;
@@ -12672,7 +12673,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4122:2: 'ref'
             {
              before(grammarAccess.getDataTypeAccess().getRefKeyword_1()); 
-            match(input,30,FOLLOW_2); 
+            match(input,31,FOLLOW_2); 
              after(grammarAccess.getDataTypeAccess().getRefKeyword_1()); 
 
             }
@@ -12785,7 +12786,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4162:1: ( rule__IntValue__Group__0__Impl rule__IntValue__Group__1 )
             // InternalFPML.g:4163:2: rule__IntValue__Group__0__Impl rule__IntValue__Group__1
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_35);
             rule__IntValue__Group__0__Impl();
 
             state._fsp--;
@@ -12940,7 +12941,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4216:1: ( rule__StringValue__Group__0__Impl rule__StringValue__Group__1 )
             // InternalFPML.g:4217:2: rule__StringValue__Group__0__Impl rule__StringValue__Group__1
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_36);
             rule__StringValue__Group__0__Impl();
 
             state._fsp--;
@@ -13095,7 +13096,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4270:1: ( rule__UnitValue__Group__0__Impl rule__UnitValue__Group__1 )
             // InternalFPML.g:4271:2: rule__UnitValue__Group__0__Impl rule__UnitValue__Group__1
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_37);
             rule__UnitValue__Group__0__Impl();
 
             state._fsp--;
@@ -13207,7 +13208,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4310:2: '()'
             {
              before(grammarAccess.getUnitValueAccess().getLeftParenthesisRightParenthesisKeyword_1()); 
-            match(input,31,FOLLOW_2); 
+            match(input,32,FOLLOW_2); 
              after(grammarAccess.getUnitValueAccess().getLeftParenthesisRightParenthesisKeyword_1()); 
 
             }
@@ -13400,7 +13401,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4378:1: ( rule__DataValue__Group__2__Impl rule__DataValue__Group__3 )
             // InternalFPML.g:4379:2: rule__DataValue__Group__2__Impl rule__DataValue__Group__3
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_38);
             rule__DataValue__Group__2__Impl();
 
             state._fsp--;
@@ -13630,7 +13631,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4459:1: ( rule__ProdValue__Group__0__Impl rule__ProdValue__Group__1 )
             // InternalFPML.g:4460:2: rule__ProdValue__Group__0__Impl rule__ProdValue__Group__1
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_38);
             rule__ProdValue__Group__0__Impl();
 
             state._fsp--;
@@ -13705,7 +13706,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4486:1: ( rule__ProdValue__Group__1__Impl rule__ProdValue__Group__2 )
             // InternalFPML.g:4487:2: rule__ProdValue__Group__1__Impl rule__ProdValue__Group__2
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_39);
             rule__ProdValue__Group__1__Impl();
 
             state._fsp--;
@@ -13790,7 +13791,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4513:1: ( rule__ProdValue__Group__2__Impl rule__ProdValue__Group__3 )
             // InternalFPML.g:4514:2: rule__ProdValue__Group__2__Impl rule__ProdValue__Group__3
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_38);
             rule__ProdValue__Group__2__Impl();
 
             state._fsp--;
@@ -13832,7 +13833,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4527:2: ','
             {
              before(grammarAccess.getProdValueAccess().getCommaKeyword_2()); 
-            match(input,32,FOLLOW_2); 
+            match(input,33,FOLLOW_2); 
              after(grammarAccess.getProdValueAccess().getCommaKeyword_2()); 
 
             }
@@ -14062,7 +14063,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4608:2: 'Left'
             {
              before(grammarAccess.getSumValueAccess().getLeftKeyword_0_0()); 
-            match(input,33,FOLLOW_2); 
+            match(input,34,FOLLOW_2); 
              after(grammarAccess.getSumValueAccess().getLeftKeyword_0_0()); 
 
             }
@@ -14095,7 +14096,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4621:1: ( rule__SumValue__Group_0__1__Impl rule__SumValue__Group_0__2 )
             // InternalFPML.g:4622:2: rule__SumValue__Group_0__1__Impl rule__SumValue__Group_0__2
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_38);
             rule__SumValue__Group_0__1__Impl();
 
             state._fsp--;
@@ -14367,7 +14368,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4716:2: 'Right'
             {
              before(grammarAccess.getSumValueAccess().getRightKeyword_1_0()); 
-            match(input,34,FOLLOW_2); 
+            match(input,35,FOLLOW_2); 
              after(grammarAccess.getSumValueAccess().getRightKeyword_1_0()); 
 
             }
@@ -14400,7 +14401,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4729:1: ( rule__SumValue__Group_1__1__Impl rule__SumValue__Group_1__2 )
             // InternalFPML.g:4730:2: rule__SumValue__Group_1__1__Impl rule__SumValue__Group_1__2
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_38);
             rule__SumValue__Group_1__1__Impl();
 
             state._fsp--;
@@ -14742,7 +14743,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4850:2: 'IntToString'
             {
              before(grammarAccess.getIntToStringAccess().getIntToStringKeyword_1()); 
-            match(input,35,FOLLOW_2); 
+            match(input,36,FOLLOW_2); 
              after(grammarAccess.getIntToStringAccess().getIntToStringKeyword_1()); 
 
             }
@@ -14887,7 +14888,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:4904:2: 'print'
             {
              before(grammarAccess.getPrimitivePrintAccess().getPrintKeyword_1()); 
-            match(input,36,FOLLOW_2); 
+            match(input,37,FOLLOW_2); 
              after(grammarAccess.getPrimitivePrintAccess().getPrintKeyword_1()); 
 
             }
@@ -16771,7 +16772,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:5613:4: 'int'
             {
              before(grammarAccess.getIntegerTypeAccess().getTypeIntKeyword_1_0()); 
-            match(input,37,FOLLOW_2); 
+            match(input,38,FOLLOW_2); 
              after(grammarAccess.getIntegerTypeAccess().getTypeIntKeyword_1_0()); 
 
             }
@@ -16816,7 +16817,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:5632:4: 'String'
             {
              before(grammarAccess.getStringTypeAccess().getTypeStringKeyword_1_0()); 
-            match(input,38,FOLLOW_2); 
+            match(input,39,FOLLOW_2); 
              after(grammarAccess.getStringTypeAccess().getTypeStringKeyword_1_0()); 
 
             }
@@ -16861,7 +16862,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:5651:4: 'Unit'
             {
              before(grammarAccess.getUnitTypeAccess().getTypeUnitKeyword_1_0()); 
-            match(input,39,FOLLOW_2); 
+            match(input,40,FOLLOW_2); 
              after(grammarAccess.getUnitTypeAccess().getTypeUnitKeyword_1_0()); 
 
             }
@@ -17275,28 +17276,30 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000002010L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000006040080000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000080000070L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x000000C080080000L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000100000070L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000600000L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000006040000000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x000000C080000000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000001000000L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000810000010L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000001010000010L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x000000E040000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000001010000010L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x000001C080000000L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000002010000010L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000008000000L});
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000681000070L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000D01000070L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000200000000L});
 
 }

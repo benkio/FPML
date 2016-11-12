@@ -3768,9 +3768,9 @@ rule__CompositionFunctionBodyEffectFullFactor__Group_0__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_0_0()); }
-	'|>'
-	{ after(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_0_0()); }
+	{ before(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_0_0()); }
+	'>>='
+	{ after(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_0_0()); }
 )
 ;
 finally {
@@ -3822,9 +3822,9 @@ rule__CompositionFunctionBodyEffectFullFactor__Group_1__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_1_0()); }
-	'|>'
-	{ after(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_1_0()); }
+	{ before(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0()); }
+	'>>='
+	{ after(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0()); }
 )
 ;
 finally {

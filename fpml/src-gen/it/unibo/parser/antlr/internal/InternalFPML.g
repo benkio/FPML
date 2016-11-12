@@ -1554,9 +1554,9 @@ ruleCompositionFunctionBodyEffectFullFactor returns [EObject current=null]
 }:
 	(
 		(
-			otherlv_0='|>'
+			otherlv_0='>>='
 			{
-				newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_0_0());
+				newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_0_0());
 			}
 			(
 				(
@@ -1574,9 +1574,9 @@ ruleCompositionFunctionBodyEffectFullFactor returns [EObject current=null]
 		)
 		    |
 		(
-			otherlv_2='|>'
+			otherlv_2='>>='
 			{
-				newLeafNode(otherlv_2, grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getVerticalLineGreaterThanSignKeyword_1_0());
+				newLeafNode(otherlv_2, grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0());
 			}
 			(
 				(

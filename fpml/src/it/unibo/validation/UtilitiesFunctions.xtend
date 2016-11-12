@@ -8,6 +8,10 @@ import it.unibo.fPML.*;
  */
 class UtilitiesFunctions {
 	
+	/////////////////////////////////////////////////////
+	// getReturnTypes
+	////////////////////////////////////////////////////
+	
 	def static getReturnType(PureFunctionDefinition pf){
 		val t = pf.getReturnType()
 		switch t {
@@ -45,6 +49,10 @@ class UtilitiesFunctions {
         }
     }
 
+	/////////////////////////////////////////////////////
+	// getArgTypes
+	////////////////////////////////////////////////////
+
 	def static getArgType(PureFunctionDefinition pf){
 		val t = pf.getArg().getType()
 		switch t {
@@ -78,6 +86,10 @@ class UtilitiesFunctions {
         }
     }
 
+	//////////////////////////////////////////////////////
+	// getTypeFrom
+	/////////////////////////////////////////////////////
+
     def static getTypeFromValueType(ValueType t){
         switch t {
             DataType: return t.getType()
@@ -93,7 +105,12 @@ class UtilitiesFunctions {
     		DataType: return (e as DataType).type
     	}
     }
+
+	/////////////////////////////////////////////////////
+	// Other Utilities Functions
+	/////////////////////////////////////////////////////
 	
+		
 	def static boolean typeCheckDataAndValue(AdtValue value, AdtType type) {
 		switch type {
 			IntegerType: return value instanceof IntegerType
@@ -111,5 +128,22 @@ class UtilitiesFunctions {
 				}
 			}
 		}
+	}
+
+	def static getFunctionDefinitionFromPureFactor(CompositionFunctionBodyPureFactor cfbpf) {
+		if (cfbpf.primitiveElement == null) return cfbpf.referenceElement
+		else return cfbpf.primitiveElement
+	}
+	def static getFunctionDefinitionFromEffectFullFactor(CompositionFunctionBodyEffectFullFactor cfbef) {
+		if (cfbef.primitiveElement == null) return cfbef.referenceElement
+		else return cfbef.primitiveElement
+	}
+	def static getFirstFunctionDefinitionFromCompositionBodyPure(CompositionFunctionBodyPure cfbp) {
+		if (cfbp.primitiveElement == null) return cfbp.referenceElement
+		else return cfbp.primitiveElement
+	}
+	def static getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect cfbe) {
+		if (cfbe.primitiveElement == null) return cfbe.referenceElement
+		else return cfbe.primitiveElement
 	}
 }

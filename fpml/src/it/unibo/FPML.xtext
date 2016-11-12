@@ -112,8 +112,8 @@ CompositionFunctionBodyEffect:
     | primitiveElement=PrimitiveEffectFullFunction (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
     
 CompositionFunctionBodyEffectFullFactor:
-	  ( '|>' (referenceElement=[ChainElement]))
-	| ( '|>' (PrimitiveElement=PrimitiveEffectFullFunction));
+	  ( '>>=' (referenceElement=[ChainElement]))
+	| ( '>>=' (PrimitiveElement=PrimitiveEffectFullFunction));
 
 //////////////////////////////////////////////////////////////////////
 // Types

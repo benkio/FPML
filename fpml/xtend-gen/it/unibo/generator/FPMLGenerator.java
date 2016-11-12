@@ -3,14 +3,26 @@
  */
 package it.unibo.generator;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
+import it.unibo.fPML.Data;
+import it.unibo.fPML.EffectFullBlock;
+import it.unibo.fPML.MainFunc;
+import it.unibo.fPML.PureFunctionBlock;
+import it.unibo.fPML.Value;
 import it.unibo.generator.DataGenerator;
 import it.unibo.generator.EffectFullFunctionGenerator;
 import it.unibo.generator.PureFunctionGenerator;
 import it.unibo.generator.ValueGenerator;
+import java.util.Iterator;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -33,8 +45,38 @@ public class FPMLGenerator extends AbstractGenerator {
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Object to CharSequence");
+    TreeIterator<EObject> _allContents = resource.getAllContents();
+    Iterator<PureFunctionBlock> _filter = Iterators.<PureFunctionBlock>filter(_allContents, PureFunctionBlock.class);
+    PureFunctionBlock _head = IteratorExtensions.<PureFunctionBlock>head(_filter);
+    CharSequence _compile = this.pureFunctionGenerator.compile(_head);
+    fsa.generateFile((this.basePackage + "Pure/PureFunctionDefinitions.java"), _compile);
+    TreeIterator<EObject> _allContents_1 = resource.getAllContents();
+    Iterator<EffectFullBlock> _filter_1 = Iterators.<EffectFullBlock>filter(_allContents_1, EffectFullBlock.class);
+    EffectFullBlock _head_1 = IteratorExtensions.<EffectFullBlock>head(_filter_1);
+    CharSequence _compile_1 = this.effectFullFunctionGenerator.compile(_head_1);
+    fsa.generateFile((this.basePackage + "Effectfull/EffectFullFunctionDefinitions.java"), _compile_1);
+    TreeIterator<EObject> _allContents_2 = resource.getAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents_2);
+    Iterable<Data> _filter_2 = Iterables.<Data>filter(_iterable, Data.class);
+    for (final Data e : _filter_2) {
+      String _name = e.getName();
+      String _plus = ((this.basePackage + "Pure/Data/") + _name);
+      String _plus_1 = (_plus + ".java");
+      String _compile_2 = this.dataGenerator.compile(e);
+      fsa.generateFile(_plus_1, _compile_2);
+    }
+    TreeIterator<EObject> _allContents_3 = resource.getAllContents();
+    Iterable<EObject> _iterable_1 = IteratorExtensions.<EObject>toIterable(_allContents_3);
+    Iterable<Value> _filter_3 = Iterables.<Value>filter(_iterable_1, Value.class);
+    CharSequence _compile_3 = this.valueGenerator.compile(_filter_3);
+    fsa.generateFile(
+      (this.basePackage + "Pure/Data/Value.java"), _compile_3);
+    TreeIterator<EObject> _allContents_4 = resource.getAllContents();
+    Iterable<EObject> _iterable_2 = IteratorExtensions.<EObject>toIterable(_allContents_4);
+    Iterable<MainFunc> _filter_4 = Iterables.<MainFunc>filter(_iterable_2, MainFunc.class);
+    MainFunc _head_2 = IterableExtensions.<MainFunc>head(_filter_4);
+    CharSequence _compile_4 = this.effectFullFunctionGenerator.compile(_head_2);
+    fsa.generateFile((this.basePackage + "Effectfull/EntryPoint.java"), _compile_4);
   }
   
   public static String getBasePackageJava() {
