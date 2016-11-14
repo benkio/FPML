@@ -258,6 +258,24 @@ public interface FPMLFactory extends EFactory
   CompositionFunctionBodyEffectFullFactor createCompositionFunctionBodyEffectFullFactor();
 
   /**
+   * Returns a new object of class '<em>Return Pure Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Return Pure Function</em>'.
+   * @generated
+   */
+  ReturnPureFunction createReturnPureFunction();
+
+  /**
+   * Returns a new object of class '<em>Return Effect Full Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Return Effect Full Function</em>'.
+   * @generated
+   */
+  ReturnEffectFullFunction createReturnEffectFullFunction();
+
+  /**
    * Returns a new object of class '<em>IO Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -319,6 +337,24 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   DataType createDataType();
+
+  /**
+   * Returns a new object of class '<em>Pure Function Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Function Type</em>'.
+   * @generated
+   */
+  PureFunctionType createPureFunctionType();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Function Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Function Type</em>'.
+   * @generated
+   */
+  EffectFullFunctionType createEffectFullFunctionType();
 
   /**
    * Returns a new object of class '<em>Expression</em>'.

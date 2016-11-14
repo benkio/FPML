@@ -206,6 +206,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createCompositionFunctionBodyEffectFullFactorAdapter();
       }
       @Override
+      public Adapter caseReturnPureFunction(ReturnPureFunction object)
+      {
+        return createReturnPureFunctionAdapter();
+      }
+      @Override
+      public Adapter caseReturnEffectFullFunction(ReturnEffectFullFunction object)
+      {
+        return createReturnEffectFullFunctionAdapter();
+      }
+      @Override
       public Adapter caseIOType(IOType object)
       {
         return createIOTypeAdapter();
@@ -239,6 +249,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseDataType(DataType object)
       {
         return createDataTypeAdapter();
+      }
+      @Override
+      public Adapter casePureFunctionType(PureFunctionType object)
+      {
+        return createPureFunctionTypeAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullFunctionType(EffectFullFunctionType object)
+      {
+        return createEffectFullFunctionTypeAdapter();
       }
       @Override
       public Adapter caseExpression(Expression object)
@@ -688,6 +708,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ReturnPureFunction <em>Return Pure Function</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.ReturnPureFunction
+   * @generated
+   */
+  public Adapter createReturnPureFunctionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ReturnEffectFullFunction <em>Return Effect Full Function</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.ReturnEffectFullFunction
+   * @generated
+   */
+  public Adapter createReturnEffectFullFunctionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link it.unibo.fPML.IOType <em>IO Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -788,6 +838,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDataTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureFunctionType <em>Pure Function Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PureFunctionType
+   * @generated
+   */
+  public Adapter createPureFunctionTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullFunctionType <em>Effect Full Function Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullFunctionType
+   * @generated
+   */
+  public Adapter createEffectFullFunctionTypeAdapter()
   {
     return null;
   }

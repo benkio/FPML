@@ -792,13 +792,22 @@ public interface FPMLPackage extends EPackage
   int COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN = FUNCTION_BODY_PURE_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Return Function</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION = FUNCTION_BODY_PURE_FEATURE_COUNT + 2;
+
+  /**
    * The feature id for the '<em><b>Primitive Element</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPOSITION_FUNCTION_BODY_PURE__PRIMITIVE_ELEMENT = FUNCTION_BODY_PURE_FEATURE_COUNT + 2;
+  int COMPOSITION_FUNCTION_BODY_PURE__PRIMITIVE_ELEMENT = FUNCTION_BODY_PURE_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Composition Function Body Pure</em>' class.
@@ -807,7 +816,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int COMPOSITION_FUNCTION_BODY_PURE_FEATURE_COUNT = FUNCTION_BODY_PURE_FEATURE_COUNT + 3;
+  int COMPOSITION_FUNCTION_BODY_PURE_FEATURE_COUNT = FUNCTION_BODY_PURE_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.CompositionFunctionBodyPureFactorImpl <em>Composition Function Body Pure Factor</em>}' class.
@@ -875,13 +884,22 @@ public interface FPMLPackage extends EPackage
   int COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN = FUNCTION_BODY_EFFECT_FULL_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Return Function</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION = FUNCTION_BODY_EFFECT_FULL_FEATURE_COUNT + 2;
+
+  /**
    * The feature id for the '<em><b>Primitive Element</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT = FUNCTION_BODY_EFFECT_FULL_FEATURE_COUNT + 2;
+  int COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT = FUNCTION_BODY_EFFECT_FULL_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Composition Function Body Effect</em>' class.
@@ -890,7 +908,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int COMPOSITION_FUNCTION_BODY_EFFECT_FEATURE_COUNT = FUNCTION_BODY_EFFECT_FULL_FEATURE_COUNT + 3;
+  int COMPOSITION_FUNCTION_BODY_EFFECT_FEATURE_COUNT = FUNCTION_BODY_EFFECT_FULL_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.CompositionFunctionBodyEffectFullFactorImpl <em>Composition Function Body Effect Full Factor</em>}' class.
@@ -930,6 +948,62 @@ public interface FPMLPackage extends EPackage
   int COMPOSITION_FUNCTION_BODY_EFFECT_FULL_FACTOR_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.ReturnPureFunctionImpl <em>Return Pure Function</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.ReturnPureFunctionImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getReturnPureFunction()
+   * @generated
+   */
+  int RETURN_PURE_FUNCTION = 26;
+
+  /**
+   * The feature id for the '<em><b>Lambda Functio Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY = 0;
+
+  /**
+   * The number of structural features of the '<em>Return Pure Function</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RETURN_PURE_FUNCTION_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.ReturnEffectFullFunctionImpl <em>Return Effect Full Function</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.ReturnEffectFullFunctionImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getReturnEffectFullFunction()
+   * @generated
+   */
+  int RETURN_EFFECT_FULL_FUNCTION = 27;
+
+  /**
+   * The feature id for the '<em><b>Lambda Function Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RETURN_EFFECT_FULL_FUNCTION__LAMBDA_FUNCTION_BODY = 0;
+
+  /**
+   * The number of structural features of the '<em>Return Effect Full Function</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RETURN_EFFECT_FULL_FUNCTION_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.IOTypeImpl <em>IO Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -937,7 +1011,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOType()
    * @generated
    */
-  int IO_TYPE = 26;
+  int IO_TYPE = 28;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -965,7 +1039,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getValueType()
    * @generated
    */
-  int VALUE_TYPE = 27;
+  int VALUE_TYPE = 29;
 
   /**
    * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
@@ -1002,7 +1076,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getType()
    * @generated
    */
-  int TYPE = 28;
+  int TYPE = 30;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -1021,7 +1095,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIntegerType()
    * @generated
    */
-  int INTEGER_TYPE = 29;
+  int INTEGER_TYPE = 31;
 
   /**
    * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
@@ -1076,7 +1150,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getStringType()
    * @generated
    */
-  int STRING_TYPE = 30;
+  int STRING_TYPE = 32;
 
   /**
    * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
@@ -1131,7 +1205,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 31;
+  int UNIT_TYPE = 33;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1159,7 +1233,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 32;
+  int DATA_TYPE = 34;
 
   /**
    * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
@@ -1198,6 +1272,98 @@ public interface FPMLPackage extends EPackage
   int DATA_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.PureFunctionTypeImpl <em>Pure Function Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.PureFunctionTypeImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureFunctionType()
+   * @generated
+   */
+  int PURE_FUNCTION_TYPE = 35;
+
+  /**
+   * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PURE_FUNCTION_TYPE__ADT_ELEMENT1 = VALUE_TYPE__ADT_ELEMENT1;
+
+  /**
+   * The feature id for the '<em><b>Adt Element2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PURE_FUNCTION_TYPE__ADT_ELEMENT2 = VALUE_TYPE__ADT_ELEMENT2;
+
+  /**
+   * The feature id for the '<em><b>Arg Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PURE_FUNCTION_TYPE__ARG_TYPE = VALUE_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PURE_FUNCTION_TYPE__RETURN_TYPE = VALUE_TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Pure Function Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PURE_FUNCTION_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.EffectFullFunctionTypeImpl <em>Effect Full Function Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.EffectFullFunctionTypeImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullFunctionType()
+   * @generated
+   */
+  int EFFECT_FULL_FUNCTION_TYPE = 36;
+
+  /**
+   * The feature id for the '<em><b>Arg Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT_FULL_FUNCTION_TYPE__ARG_TYPE = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE = TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Effect Full Function Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT_FULL_FUNCTION_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.ExpressionImpl <em>Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1205,7 +1371,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 33;
+  int EXPRESSION = 37;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -1224,7 +1390,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getAdtValue()
    * @generated
    */
-  int ADT_VALUE = 34;
+  int ADT_VALUE = 38;
 
   /**
    * The number of structural features of the '<em>Adt Value</em>' class.
@@ -1243,7 +1409,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getProdValue()
    * @generated
    */
-  int PROD_VALUE = 35;
+  int PROD_VALUE = 39;
 
   /**
    * The feature id for the '<em><b>Prod Adt Element1</b></em>' containment reference.
@@ -1280,7 +1446,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getSumValue()
    * @generated
    */
-  int SUM_VALUE = 36;
+  int SUM_VALUE = 40;
 
   /**
    * The feature id for the '<em><b>Sum Adt Element1</b></em>' containment reference.
@@ -1317,7 +1483,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIntToString()
    * @generated
    */
-  int INT_TO_STRING = 37;
+  int INT_TO_STRING = 41;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1372,7 +1538,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePrint()
    * @generated
    */
-  int PRIMITIVE_PRINT = 38;
+  int PRIMITIVE_PRINT = 42;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1427,7 +1593,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 39;
+  int DATA_VALUE = 43;
 
   /**
    * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
@@ -2036,6 +2202,17 @@ public interface FPMLPackage extends EPackage
   EReference getCompositionFunctionBodyPure_FunctionChain();
 
   /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.CompositionFunctionBodyPure#getReturnFunction <em>Return Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Return Function</em>'.
+   * @see it.unibo.fPML.CompositionFunctionBodyPure#getReturnFunction()
+   * @see #getCompositionFunctionBodyPure()
+   * @generated
+   */
+  EReference getCompositionFunctionBodyPure_ReturnFunction();
+
+  /**
    * Returns the meta object for the containment reference '{@link it.unibo.fPML.CompositionFunctionBodyPure#getPrimitiveElement <em>Primitive Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2111,6 +2288,17 @@ public interface FPMLPackage extends EPackage
   EReference getCompositionFunctionBodyEffect_FunctionChain();
 
   /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.CompositionFunctionBodyEffect#getReturnFunction <em>Return Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Return Function</em>'.
+   * @see it.unibo.fPML.CompositionFunctionBodyEffect#getReturnFunction()
+   * @see #getCompositionFunctionBodyEffect()
+   * @generated
+   */
+  EReference getCompositionFunctionBodyEffect_ReturnFunction();
+
+  /**
    * Returns the meta object for the containment reference '{@link it.unibo.fPML.CompositionFunctionBodyEffect#getPrimitiveElement <em>Primitive Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2152,6 +2340,48 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EReference getCompositionFunctionBodyEffectFullFactor_PrimitiveElement();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.ReturnPureFunction <em>Return Pure Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Return Pure Function</em>'.
+   * @see it.unibo.fPML.ReturnPureFunction
+   * @generated
+   */
+  EClass getReturnPureFunction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.ReturnPureFunction#getLambdaFunctioBody <em>Lambda Functio Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Lambda Functio Body</em>'.
+   * @see it.unibo.fPML.ReturnPureFunction#getLambdaFunctioBody()
+   * @see #getReturnPureFunction()
+   * @generated
+   */
+  EReference getReturnPureFunction_LambdaFunctioBody();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.ReturnEffectFullFunction <em>Return Effect Full Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Return Effect Full Function</em>'.
+   * @see it.unibo.fPML.ReturnEffectFullFunction
+   * @generated
+   */
+  EClass getReturnEffectFullFunction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.ReturnEffectFullFunction#getLambdaFunctionBody <em>Lambda Function Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Lambda Function Body</em>'.
+   * @see it.unibo.fPML.ReturnEffectFullFunction#getLambdaFunctionBody()
+   * @see #getReturnEffectFullFunction()
+   * @generated
+   */
+  EReference getReturnEffectFullFunction_LambdaFunctionBody();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.IOType <em>IO Type</em>}'.
@@ -2299,6 +2529,70 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EReference getDataType_Type();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.PureFunctionType <em>Pure Function Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pure Function Type</em>'.
+   * @see it.unibo.fPML.PureFunctionType
+   * @generated
+   */
+  EClass getPureFunctionType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.PureFunctionType#getArgType <em>Arg Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Arg Type</em>'.
+   * @see it.unibo.fPML.PureFunctionType#getArgType()
+   * @see #getPureFunctionType()
+   * @generated
+   */
+  EReference getPureFunctionType_ArgType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.PureFunctionType#getReturnType <em>Return Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Return Type</em>'.
+   * @see it.unibo.fPML.PureFunctionType#getReturnType()
+   * @see #getPureFunctionType()
+   * @generated
+   */
+  EReference getPureFunctionType_ReturnType();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.EffectFullFunctionType <em>Effect Full Function Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Effect Full Function Type</em>'.
+   * @see it.unibo.fPML.EffectFullFunctionType
+   * @generated
+   */
+  EClass getEffectFullFunctionType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.EffectFullFunctionType#getArgType <em>Arg Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Arg Type</em>'.
+   * @see it.unibo.fPML.EffectFullFunctionType#getArgType()
+   * @see #getEffectFullFunctionType()
+   * @generated
+   */
+  EReference getEffectFullFunctionType_ArgType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.EffectFullFunctionType#getReturnType <em>Return Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Return Type</em>'.
+   * @see it.unibo.fPML.EffectFullFunctionType#getReturnType()
+   * @see #getEffectFullFunctionType()
+   * @generated
+   */
+  EReference getEffectFullFunctionType_ReturnType();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.Expression <em>Expression</em>}'.
@@ -2919,6 +3213,14 @@ public interface FPMLPackage extends EPackage
     EReference COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN = eINSTANCE.getCompositionFunctionBodyPure_FunctionChain();
 
     /**
+     * The meta object literal for the '<em><b>Return Function</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION = eINSTANCE.getCompositionFunctionBodyPure_ReturnFunction();
+
+    /**
      * The meta object literal for the '<em><b>Primitive Element</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2979,6 +3281,14 @@ public interface FPMLPackage extends EPackage
     EReference COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN = eINSTANCE.getCompositionFunctionBodyEffect_FunctionChain();
 
     /**
+     * The meta object literal for the '<em><b>Return Function</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION = eINSTANCE.getCompositionFunctionBodyEffect_ReturnFunction();
+
+    /**
      * The meta object literal for the '<em><b>Primitive Element</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3011,6 +3321,42 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EReference COMPOSITION_FUNCTION_BODY_EFFECT_FULL_FACTOR__PRIMITIVE_ELEMENT = eINSTANCE.getCompositionFunctionBodyEffectFullFactor_PrimitiveElement();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.ReturnPureFunctionImpl <em>Return Pure Function</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.ReturnPureFunctionImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getReturnPureFunction()
+     * @generated
+     */
+    EClass RETURN_PURE_FUNCTION = eINSTANCE.getReturnPureFunction();
+
+    /**
+     * The meta object literal for the '<em><b>Lambda Functio Body</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY = eINSTANCE.getReturnPureFunction_LambdaFunctioBody();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.ReturnEffectFullFunctionImpl <em>Return Effect Full Function</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.ReturnEffectFullFunctionImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getReturnEffectFullFunction()
+     * @generated
+     */
+    EClass RETURN_EFFECT_FULL_FUNCTION = eINSTANCE.getReturnEffectFullFunction();
+
+    /**
+     * The meta object literal for the '<em><b>Lambda Function Body</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RETURN_EFFECT_FULL_FUNCTION__LAMBDA_FUNCTION_BODY = eINSTANCE.getReturnEffectFullFunction_LambdaFunctionBody();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.IOTypeImpl <em>IO Type</em>}' class.
@@ -3137,6 +3483,58 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EReference DATA_TYPE__TYPE = eINSTANCE.getDataType_Type();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.PureFunctionTypeImpl <em>Pure Function Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.PureFunctionTypeImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureFunctionType()
+     * @generated
+     */
+    EClass PURE_FUNCTION_TYPE = eINSTANCE.getPureFunctionType();
+
+    /**
+     * The meta object literal for the '<em><b>Arg Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PURE_FUNCTION_TYPE__ARG_TYPE = eINSTANCE.getPureFunctionType_ArgType();
+
+    /**
+     * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PURE_FUNCTION_TYPE__RETURN_TYPE = eINSTANCE.getPureFunctionType_ReturnType();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.EffectFullFunctionTypeImpl <em>Effect Full Function Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.EffectFullFunctionTypeImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullFunctionType()
+     * @generated
+     */
+    EClass EFFECT_FULL_FUNCTION_TYPE = eINSTANCE.getEffectFullFunctionType();
+
+    /**
+     * The meta object literal for the '<em><b>Arg Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EFFECT_FULL_FUNCTION_TYPE__ARG_TYPE = eINSTANCE.getEffectFullFunctionType_ArgType();
+
+    /**
+     * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE = eINSTANCE.getEffectFullFunctionType_ReturnType();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.ExpressionImpl <em>Expression</em>}' class.

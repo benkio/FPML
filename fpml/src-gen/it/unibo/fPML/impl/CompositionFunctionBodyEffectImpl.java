@@ -8,6 +8,7 @@ import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.ReturnEffectFullFunction;
 
 import java.util.Collection;
 
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyEffectImpl#getReferenceElement <em>Reference Element</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyEffectImpl#getFunctionChain <em>Function Chain</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyEffectImpl#getReturnFunction <em>Return Function</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyEffectImpl#getPrimitiveElement <em>Primitive Element</em>}</li>
  * </ul>
  *
@@ -60,6 +62,16 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * @ordered
    */
   protected EList<CompositionFunctionBodyEffectFullFactor> functionChain;
+
+  /**
+   * The cached value of the '{@link #getReturnFunction() <em>Return Function</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReturnFunction()
+   * @generated
+   * @ordered
+   */
+  protected ReturnEffectFullFunction returnFunction;
 
   /**
    * The cached value of the '{@link #getPrimitiveElement() <em>Primitive Element</em>}' containment reference.
@@ -154,6 +166,54 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
+  public ReturnEffectFullFunction getReturnFunction()
+  {
+    return returnFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetReturnFunction(ReturnEffectFullFunction newReturnFunction, NotificationChain msgs)
+  {
+    ReturnEffectFullFunction oldReturnFunction = returnFunction;
+    returnFunction = newReturnFunction;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION, oldReturnFunction, newReturnFunction);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setReturnFunction(ReturnEffectFullFunction newReturnFunction)
+  {
+    if (newReturnFunction != returnFunction)
+    {
+      NotificationChain msgs = null;
+      if (returnFunction != null)
+        msgs = ((InternalEObject)returnFunction).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION, null, msgs);
+      if (newReturnFunction != null)
+        msgs = ((InternalEObject)newReturnFunction).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION, null, msgs);
+      msgs = basicSetReturnFunction(newReturnFunction, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION, newReturnFunction, newReturnFunction));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EffectFullFunctionDefinition getPrimitiveElement()
   {
     return primitiveElement;
@@ -209,6 +269,8 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN:
         return ((InternalEList<?>)getFunctionChain()).basicRemove(otherEnd, msgs);
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION:
+        return basicSetReturnFunction(null, msgs);
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
         return basicSetPrimitiveElement(null, msgs);
     }
@@ -230,6 +292,8 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
         return basicGetReferenceElement();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN:
         return getFunctionChain();
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION:
+        return getReturnFunction();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
         return getPrimitiveElement();
     }
@@ -254,6 +318,9 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
         getFunctionChain().clear();
         getFunctionChain().addAll((Collection<? extends CompositionFunctionBodyEffectFullFactor>)newValue);
         return;
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION:
+        setReturnFunction((ReturnEffectFullFunction)newValue);
+        return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
         setPrimitiveElement((EffectFullFunctionDefinition)newValue);
         return;
@@ -277,6 +344,9 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN:
         getFunctionChain().clear();
         return;
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION:
+        setReturnFunction((ReturnEffectFullFunction)null);
+        return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
         setPrimitiveElement((EffectFullFunctionDefinition)null);
         return;
@@ -298,6 +368,8 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
         return referenceElement != null;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN:
         return functionChain != null && !functionChain.isEmpty();
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__RETURN_FUNCTION:
+        return returnFunction != null;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
         return primitiveElement != null;
     }

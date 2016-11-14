@@ -76,6 +76,7 @@
     <genClasses ecoreClass="FPML.ecore#//CompositionFunctionBodyPure">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyPure/referenceElement"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyPure/functionChain"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyPure/returnFunction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyPure/primitiveElement"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//CompositionFunctionBodyPureFactor">
@@ -85,11 +86,18 @@
     <genClasses ecoreClass="FPML.ecore#//CompositionFunctionBodyEffect">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyEffect/referenceElement"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyEffect/functionChain"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyEffect/returnFunction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyEffect/primitiveElement"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//CompositionFunctionBodyEffectFullFactor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyEffectFullFactor/referenceElement"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//CompositionFunctionBodyEffectFullFactor/PrimitiveElement"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//ReturnPureFunction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ReturnPureFunction/lambdaFunctioBody"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//ReturnEffectFullFunction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ReturnEffectFullFunction/lambdaFunctionBody"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//IOType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//IOType/type"/>
@@ -109,6 +117,14 @@
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//DataType">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//DataType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//PureFunctionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureFunctionType/argType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureFunctionType/returnType"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//EffectFullFunctionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullFunctionType/argType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullFunctionType/returnType"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//Expression"/>
     <genClasses ecoreClass="FPML.ecore#//AdtValue"/>

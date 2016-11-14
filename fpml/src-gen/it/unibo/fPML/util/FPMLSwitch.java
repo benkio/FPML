@@ -267,6 +267,20 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.RETURN_PURE_FUNCTION:
+      {
+        ReturnPureFunction returnPureFunction = (ReturnPureFunction)theEObject;
+        T result = caseReturnPureFunction(returnPureFunction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.RETURN_EFFECT_FULL_FUNCTION:
+      {
+        ReturnEffectFullFunction returnEffectFullFunction = (ReturnEffectFullFunction)theEObject;
+        T result = caseReturnEffectFullFunction(returnEffectFullFunction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.IO_TYPE:
       {
         IOType ioType = (IOType)theEObject;
@@ -332,6 +346,24 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseAdtValue(dataType);
         if (result == null) result = caseAdtType(dataType);
         if (result == null) result = caseType(dataType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PURE_FUNCTION_TYPE:
+      {
+        PureFunctionType pureFunctionType = (PureFunctionType)theEObject;
+        T result = casePureFunctionType(pureFunctionType);
+        if (result == null) result = caseValueType(pureFunctionType);
+        if (result == null) result = caseAdtType(pureFunctionType);
+        if (result == null) result = caseType(pureFunctionType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE:
+      {
+        EffectFullFunctionType effectFullFunctionType = (EffectFullFunctionType)theEObject;
+        T result = caseEffectFullFunctionType(effectFullFunctionType);
+        if (result == null) result = caseType(effectFullFunctionType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -820,6 +852,38 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Return Pure Function</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Return Pure Function</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseReturnPureFunction(ReturnPureFunction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Return Effect Full Function</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Return Effect Full Function</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseReturnEffectFullFunction(ReturnEffectFullFunction object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>IO Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -927,6 +991,38 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDataType(DataType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pure Function Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pure Function Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePureFunctionType(PureFunctionType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Function Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Function Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullFunctionType(EffectFullFunctionType object)
   {
     return null;
   }

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getReferenceElement <em>Reference Element</em>}</li>
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getFunctionChain <em>Function Chain</em>}</li>
+ *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getReturnFunction <em>Return Function</em>}</li>
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPure#getPrimitiveElement <em>Primitive Element</em>}</li>
  * </ul>
  *
@@ -66,6 +67,32 @@ public interface CompositionFunctionBodyPure extends FunctionBodyPure
    * @generated
    */
   EList<CompositionFunctionBodyPureFactor> getFunctionChain();
+
+  /**
+   * Returns the value of the '<em><b>Return Function</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Return Function</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Return Function</em>' containment reference.
+   * @see #setReturnFunction(ReturnPureFunction)
+   * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPure_ReturnFunction()
+   * @model containment="true"
+   * @generated
+   */
+  ReturnPureFunction getReturnFunction();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyPure#getReturnFunction <em>Return Function</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Return Function</em>' containment reference.
+   * @see #getReturnFunction()
+   * @generated
+   */
+  void setReturnFunction(ReturnPureFunction value);
 
   /**
    * Returns the value of the '<em><b>Primitive Element</b></em>' containment reference.

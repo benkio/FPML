@@ -100,20 +100,26 @@ EmptyFunctionBody:
     {EmptyFunctionBody} 'Undefined';
 
 CompositionFunctionBodyPure:
-      referenceElement=[InitialPureChainElement] (functionChain+=CompositionFunctionBodyPureFactor)+
-    | primitiveElement=PrimitivePureFunction (functionChain+=CompositionFunctionBodyPureFactor)+;
+      referenceElement=[InitialPureChainElement] (functionChain+=CompositionFunctionBodyPureFactor)+ (returnFunction=ReturnPureFunction)?
+    | primitiveElement=PrimitivePureFunction (functionChain+=CompositionFunctionBodyPureFactor)+ (returnFunction=ReturnPureFunction)?;
     
 CompositionFunctionBodyPureFactor:
 	  ( '|>' (referenceElement=[PureFunctionDefinition]))
 	| ( '|>' (PrimitiveElement=PrimitivePureFunction));
 
 CompositionFunctionBodyEffect:
-      referenceElement=[ChainElement] (functionChain+=CompositionFunctionBodyEffectFullFactor)+
-    | primitiveElement=PrimitiveEffectFullFunction (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
+      referenceElement=[ChainElement] (functionChain+=CompositionFunctionBodyEffectFullFactor)+ (returnFunction=ReturnEffectFullFunction)?
+    | primitiveElement=PrimitiveEffectFullFunction (functionChain+=CompositionFunctionBodyEffectFullFactor)+ (returnFunction=ReturnEffectFullFunction)?;
     
 CompositionFunctionBodyEffectFullFactor:
 	  ( '>>=' (referenceElement=[ChainElement]))
 	| ( '>>=' (PrimitiveElement=PrimitiveEffectFullFunction));
+
+ReturnPureFunction:
+	'->' '(' lambdaFunctioBody=FunctionBodyPure ')';
+
+ReturnEffectFullFunction:
+	'->' '(' lambdaFunctionBody=FunctionBodyEffectFull ')';
 
 //////////////////////////////////////////////////////////////////////
 // Types
@@ -123,10 +129,10 @@ IOType:
 	'IO' type=Type ;
 
 ValueType:
-	IntegerType | StringType | DataType;
+	IntegerType | StringType | DataType | PureFunctionType;
 
 Type:
-	ValueType | UnitType;
+	ValueType | UnitType | EffectFullFunctionType;
 
 IntegerType:
 	{IntegerType} type="int";
@@ -139,6 +145,12 @@ UnitType:
 
 DataType:
     {DataType} 'ref' type=[Data];
+    
+PureFunctionType:
+	{PureFunctionType} 'F' '<' argType=ValueType ',' returnType=ValueType '>';
+
+EffectFullFunctionType:
+	{EffectFullFunctionType} 'FIO' '<' argType=Type ',' returnType=IOType '>';
 
 ////////////////////////////////////////////////////////////////////
 // Values

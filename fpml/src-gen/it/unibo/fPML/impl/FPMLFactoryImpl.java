@@ -91,6 +91,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR: return createCompositionFunctionBodyPureFactor();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT: return createCompositionFunctionBodyEffect();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT_FULL_FACTOR: return createCompositionFunctionBodyEffectFullFactor();
+      case FPMLPackage.RETURN_PURE_FUNCTION: return createReturnPureFunction();
+      case FPMLPackage.RETURN_EFFECT_FULL_FUNCTION: return createReturnEffectFullFunction();
       case FPMLPackage.IO_TYPE: return createIOType();
       case FPMLPackage.VALUE_TYPE: return createValueType();
       case FPMLPackage.TYPE: return createType();
@@ -98,6 +100,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.STRING_TYPE: return createStringType();
       case FPMLPackage.UNIT_TYPE: return createUnitType();
       case FPMLPackage.DATA_TYPE: return createDataType();
+      case FPMLPackage.PURE_FUNCTION_TYPE: return createPureFunctionType();
+      case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE: return createEffectFullFunctionType();
       case FPMLPackage.EXPRESSION: return createExpression();
       case FPMLPackage.ADT_VALUE: return createAdtValue();
       case FPMLPackage.PROD_VALUE: return createProdValue();
@@ -401,6 +405,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ReturnPureFunction createReturnPureFunction()
+  {
+    ReturnPureFunctionImpl returnPureFunction = new ReturnPureFunctionImpl();
+    return returnPureFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ReturnEffectFullFunction createReturnEffectFullFunction()
+  {
+    ReturnEffectFullFunctionImpl returnEffectFullFunction = new ReturnEffectFullFunctionImpl();
+    return returnEffectFullFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public IOType createIOType()
   {
     IOTypeImpl ioType = new IOTypeImpl();
@@ -471,6 +497,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     DataTypeImpl dataType = new DataTypeImpl();
     return dataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureFunctionType createPureFunctionType()
+  {
+    PureFunctionTypeImpl pureFunctionType = new PureFunctionTypeImpl();
+    return pureFunctionType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullFunctionType createEffectFullFunctionType()
+  {
+    EffectFullFunctionTypeImpl effectFullFunctionType = new EffectFullFunctionTypeImpl();
+    return effectFullFunctionType;
   }
 
   /**
