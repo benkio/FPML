@@ -16,11 +16,14 @@ import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.Function;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PureFunctionDefinition;
+import it.unibo.fPML.ReturnEffectFullFunction;
+import it.unibo.fPML.ReturnPureFunction;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
@@ -43,6 +46,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public final static String TYPEMISMATCHFUNCTIONCOMPOSITION = "Type mismatch between the input of one function and the return of another in the function chain";
   
   public final static String TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN = "The return type of the last function and the outside function doesn\'t match";
+  
+  public final static String TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA = "The first argument of the product type in the lambda function chain doesn\'t match the return type of the function before the lambda";
   
   public final static String TYPEMISMATCHFUNCTIONCOMPOSITIONARGS = "The argument type of the function is not the same as the first argument of the function chain";
   
@@ -71,6 +76,21 @@ public class FPMLValidator extends AbstractFPMLValidator {
         t = _returnType;
       }
     }
+    ReturnPureFunction _returnFunction = cfbp.getReturnFunction();
+    boolean _notEquals = (!Objects.equal(_returnFunction, null));
+    if (_notEquals) {
+      ReturnPureFunction _returnFunction_1 = cfbp.getReturnFunction();
+      FunctionBodyPure _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
+      if ((_lambdaFunctionBody instanceof CompositionFunctionBodyPure)) {
+        ReturnPureFunction _returnFunction_2 = cfbp.getReturnFunction();
+        FunctionBodyPure _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
+        final InitialPureChainElement firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) _lambdaFunctionBody_1));
+        if (((firstElem instanceof Function) && 
+          (!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType(((Function) firstElem), ((Type) t))))) {
+          this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
+        }
+      }
+    }
   }
   
   @Check
@@ -89,6 +109,21 @@ public class FPMLValidator extends AbstractFPMLValidator {
         }
         EObject _returnType = UtilitiesFunctions.getReturnType(efElement);
         t = _returnType;
+      }
+    }
+    ReturnEffectFullFunction _returnFunction = cfbe.getReturnFunction();
+    boolean _notEquals = (!Objects.equal(_returnFunction, null));
+    if (_notEquals) {
+      ReturnEffectFullFunction _returnFunction_1 = cfbe.getReturnFunction();
+      FunctionBodyEffectFull _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
+      if ((_lambdaFunctionBody instanceof CompositionFunctionBodyEffect)) {
+        ReturnEffectFullFunction _returnFunction_2 = cfbe.getReturnFunction();
+        FunctionBodyEffectFull _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
+        final ChainElement firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(((CompositionFunctionBodyEffect) _lambdaFunctionBody_1));
+        if (((firstElem instanceof Function) && 
+          (!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType(((Function) firstElem), ((Type) t))))) {
+          this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
+        }
       }
     }
   }

@@ -106,6 +106,25 @@ class UtilitiesFunctions {
     	}
     }
 
+	//////////////////////////////////////////////////////
+	// Checks
+	/////////////////////////////////////////////////////
+
+	def static isFirstFunctionBodyArgAProductTypeAndMatchTheType(Function f, Type t){
+		if (f instanceof EffectFullFunctionDefinition){
+			return ((f as EffectFullFunctionDefinition).arg.type != null &&
+			((f as EffectFullFunctionDefinition).arg.type instanceof DataType) &&
+			((f as EffectFullFunctionDefinition).arg.type as DataType).type.content.adtElement2 != null &&
+			(((f as EffectFullFunctionDefinition).arg.type as DataType).type.content.adtElement2 instanceof ProdType) &&
+			(((f as EffectFullFunctionDefinition).arg.type as DataType).type.content.adtElement1.eClass == t.eClass))
+		}else 
+			return ((f as PureFunctionDefinition).arg.type != null &&
+			((f as PureFunctionDefinition).arg.type instanceof DataType) &&
+			((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement2 != null &&
+			(((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement2 instanceof ProdType) &&
+			(((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement1.eClass == t.eClass))
+	}
+	
 	/////////////////////////////////////////////////////
 	// Other Utilities Functions
 	/////////////////////////////////////////////////////

@@ -116,7 +116,7 @@ CompositionFunctionBodyEffectFullFactor:
 	| ( '>>=' (PrimitiveElement=PrimitiveEffectFullFunction));
 
 ReturnPureFunction:
-	'->' '(' lambdaFunctioBody=FunctionBodyPure ')';
+	'->' '(' lambdaFunctionBody=FunctionBodyPure ')';
 
 ReturnEffectFullFunction:
 	'->' '(' lambdaFunctionBody=FunctionBodyEffectFull ')';
@@ -157,13 +157,15 @@ EffectFullFunctionType:
 ////////////////////////////////////////////////////////////////////
 
 Expression:
-    IntValue | StringValue | UnitValue | DataValue;
+    IntValue | StringValue | UnitValue | DataValue | FunctionValue;
 
 IntValue returns IntegerType: {IntegerType} value=INT;
 
 StringValue returns StringType: {StringType} value=STRING;
 
 UnitValue returns UnitType: {UnitType} '()';
+
+FunctionValue returns FunctionType: '(' arg=Argument ')' ':' functionBody=FunctionBodyPure;
 
 DataValue returns DataType: {DataValue} type=[Data]'(' value=AdtValue ')';
 
@@ -172,6 +174,7 @@ AdtValue:
 	| StringValue
 	| DataValue
 	| SumValue
+	| FunctionValue
 	| ProdValue;
 
 ProdValue: 

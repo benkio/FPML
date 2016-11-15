@@ -55,7 +55,6 @@ public class DataGenerator {
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("}");
     return _builder.toString();
   }
 }

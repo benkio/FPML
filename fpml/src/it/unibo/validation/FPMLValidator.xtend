@@ -19,6 +19,7 @@ class FPMLValidator extends AbstractFPMLValidator {
 
     public static val TYPEMISMATCHFUNCTIONCOMPOSITION = "Type mismatch between the input of one function and the return of another in the function chain";
     public static val TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN = "The return type of the last function and the outside function doesn't match";
+    public static val TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA = "The first argument of the product type in the lambda function chain doesn't match the return type of the function before the lambda"
     public static val TYPEMISMATCHFUNCTIONCOMPOSITIONARGS = "The argument type of the function is not the same as the first argument of the function chain";
     public static val EFFECTFULLARGUMENTUNITTYPEID = "The Unit Type don't require and ID";
     public static val TYPEVMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
@@ -32,6 +33,15 @@ class FPMLValidator extends AbstractFPMLValidator {
 	        if(!(t1.eClass == t.eClass))
 	           error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN );
             t = UtilitiesFunctions.getReturnType(UtilitiesFunctions.getFunctionDefinitionFromPureFactor(pf))
+        }
+        
+        if (cfbp.returnFunction != null) {
+        	if (cfbp.returnFunction.lambdaFunctionBody instanceof CompositionFunctionBodyPure) {
+        		val firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure((cfbp.returnFunction.lambdaFunctionBody as CompositionFunctionBodyPure))
+        		if (firstElem instanceof Function &&  	
+        			!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType((firstElem as Function),(t as Type)))
+        			error(TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
+        	}
         }
     }
 
@@ -47,6 +57,15 @@ class FPMLValidator extends AbstractFPMLValidator {
                     error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
             }
             t = UtilitiesFunctions.getReturnType(efElement);
+        }
+        
+        if (cfbe.returnFunction != null) {
+        	if (cfbe.returnFunction.lambdaFunctionBody instanceof CompositionFunctionBodyEffect) {
+        		val firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull((cfbe.returnFunction.lambdaFunctionBody as CompositionFunctionBodyEffect))
+        		if (firstElem instanceof Function &&  	
+        			!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType((firstElem as Function),(t as Type)))
+        			error(TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN)
+        	}
         }
     }
 

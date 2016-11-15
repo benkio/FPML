@@ -16,6 +16,7 @@ import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
+import it.unibo.fPML.Function;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.IntToString;
@@ -218,6 +219,16 @@ public class UtilitiesFunctions {
       }
     }
     return null;
+  }
+  
+  public static boolean isFirstFunctionBodyArgAProductTypeAndMatchTheType(final Function f, final Type t) {
+    if ((f instanceof EffectFullFunctionDefinition)) {
+      return (((((!Objects.equal(((EffectFullFunctionDefinition) f).getArg().getType(), null)) && (((EffectFullFunctionDefinition) f).getArg().getType() instanceof DataType)) && 
+        (!Objects.equal(((DataType) ((EffectFullFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement2(), null))) && (((DataType) ((EffectFullFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement2() instanceof ProdType)) && Objects.equal(((DataType) ((EffectFullFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement1().eClass(), t.eClass()));
+    } else {
+      return (((((!Objects.equal(((PureFunctionDefinition) f).getArg().getType(), null)) && (((PureFunctionDefinition) f).getArg().getType() instanceof DataType)) && 
+        (!Objects.equal(((DataType) ((PureFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement2(), null))) && (((DataType) ((PureFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement2() instanceof ProdType)) && Objects.equal(((DataType) ((PureFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement1().eClass(), t.eClass()));
+    }
   }
   
   public static boolean typeCheckDataAndValue(final AdtValue value, final AdtType type) {

@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.ReturnPureFunction#getLambdaFunctioBody <em>Lambda Functio Body</em>}</li>
+ *   <li>{@link it.unibo.fPML.ReturnPureFunction#getLambdaFunctionBody <em>Lambda Function Body</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getReturnPureFunction()
@@ -24,29 +24,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface ReturnPureFunction extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Lambda Functio Body</b></em>' containment reference.
+   * Returns the value of the '<em><b>Lambda Function Body</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Lambda Functio Body</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Lambda Function Body</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Lambda Functio Body</em>' containment reference.
-   * @see #setLambdaFunctioBody(FunctionBodyPure)
-   * @see it.unibo.fPML.FPMLPackage#getReturnPureFunction_LambdaFunctioBody()
+   * @return the value of the '<em>Lambda Function Body</em>' containment reference.
+   * @see #setLambdaFunctionBody(FunctionBodyPure)
+   * @see it.unibo.fPML.FPMLPackage#getReturnPureFunction_LambdaFunctionBody()
    * @model containment="true"
    * @generated
    */
-  FunctionBodyPure getLambdaFunctioBody();
+  FunctionBodyPure getLambdaFunctionBody();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.ReturnPureFunction#getLambdaFunctioBody <em>Lambda Functio Body</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.ReturnPureFunction#getLambdaFunctionBody <em>Lambda Function Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Lambda Functio Body</em>' containment reference.
-   * @see #getLambdaFunctioBody()
+   * @param value the new value of the '<em>Lambda Function Body</em>' containment reference.
+   * @see #getLambdaFunctionBody()
    * @generated
    */
-  void setLambdaFunctioBody(FunctionBodyPure value);
+  void setLambdaFunctionBody(FunctionBodyPure value);
 
 } // ReturnPureFunction

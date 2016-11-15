@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.ReturnPureFunctionImpl#getLambdaFunctioBody <em>Lambda Functio Body</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.ReturnPureFunctionImpl#getLambdaFunctionBody <em>Lambda Function Body</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +32,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container implements ReturnPureFunction
 {
   /**
-   * The cached value of the '{@link #getLambdaFunctioBody() <em>Lambda Functio Body</em>}' containment reference.
+   * The cached value of the '{@link #getLambdaFunctionBody() <em>Lambda Function Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLambdaFunctioBody()
+   * @see #getLambdaFunctionBody()
    * @generated
    * @ordered
    */
-  protected FunctionBodyPure lambdaFunctioBody;
+  protected FunctionBodyPure lambdaFunctionBody;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,9 +67,9 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public FunctionBodyPure getLambdaFunctioBody()
+  public FunctionBodyPure getLambdaFunctionBody()
   {
-    return lambdaFunctioBody;
+    return lambdaFunctionBody;
   }
 
   /**
@@ -77,13 +77,13 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLambdaFunctioBody(FunctionBodyPure newLambdaFunctioBody, NotificationChain msgs)
+  public NotificationChain basicSetLambdaFunctionBody(FunctionBodyPure newLambdaFunctionBody, NotificationChain msgs)
   {
-    FunctionBodyPure oldLambdaFunctioBody = lambdaFunctioBody;
-    lambdaFunctioBody = newLambdaFunctioBody;
+    FunctionBodyPure oldLambdaFunctionBody = lambdaFunctionBody;
+    lambdaFunctionBody = newLambdaFunctionBody;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY, oldLambdaFunctioBody, newLambdaFunctioBody);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY, oldLambdaFunctionBody, newLambdaFunctionBody);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLambdaFunctioBody(FunctionBodyPure newLambdaFunctioBody)
+  public void setLambdaFunctionBody(FunctionBodyPure newLambdaFunctionBody)
   {
-    if (newLambdaFunctioBody != lambdaFunctioBody)
+    if (newLambdaFunctionBody != lambdaFunctionBody)
     {
       NotificationChain msgs = null;
-      if (lambdaFunctioBody != null)
-        msgs = ((InternalEObject)lambdaFunctioBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY, null, msgs);
-      if (newLambdaFunctioBody != null)
-        msgs = ((InternalEObject)newLambdaFunctioBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY, null, msgs);
-      msgs = basicSetLambdaFunctioBody(newLambdaFunctioBody, msgs);
+      if (lambdaFunctionBody != null)
+        msgs = ((InternalEObject)lambdaFunctionBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY, null, msgs);
+      if (newLambdaFunctionBody != null)
+        msgs = ((InternalEObject)newLambdaFunctionBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY, null, msgs);
+      msgs = basicSetLambdaFunctionBody(newLambdaFunctionBody, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY, newLambdaFunctioBody, newLambdaFunctioBody));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY, newLambdaFunctionBody, newLambdaFunctionBody));
   }
 
   /**
@@ -120,8 +120,8 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY:
-        return basicSetLambdaFunctioBody(null, msgs);
+      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY:
+        return basicSetLambdaFunctionBody(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +136,8 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY:
-        return getLambdaFunctioBody();
+      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY:
+        return getLambdaFunctionBody();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,8 +152,8 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY:
-        setLambdaFunctioBody((FunctionBodyPure)newValue);
+      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY:
+        setLambdaFunctionBody((FunctionBodyPure)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY:
-        setLambdaFunctioBody((FunctionBodyPure)null);
+      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY:
+        setLambdaFunctionBody((FunctionBodyPure)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,8 +186,8 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTIO_BODY:
-        return lambdaFunctioBody != null;
+      case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY:
+        return lambdaFunctionBody != null;
     }
     return super.eIsSet(featureID);
   }

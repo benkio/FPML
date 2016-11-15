@@ -88,6 +88,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIntValueAccess().getGroup(), "rule__IntValue__Group__0");
 					put(grammarAccess.getStringValueAccess().getGroup(), "rule__StringValue__Group__0");
 					put(grammarAccess.getUnitValueAccess().getGroup(), "rule__UnitValue__Group__0");
+					put(grammarAccess.getFunctionValueAccess().getGroup(), "rule__FunctionValue__Group__0");
 					put(grammarAccess.getDataValueAccess().getGroup(), "rule__DataValue__Group__0");
 					put(grammarAccess.getProdValueAccess().getGroup(), "rule__ProdValue__Group__0");
 					put(grammarAccess.getSumValueAccess().getGroup_0(), "rule__SumValue__Group_0__0");
@@ -142,7 +143,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCompositionFunctionBodyEffectAccess().getReturnFunctionAssignment_1_2(), "rule__CompositionFunctionBodyEffect__ReturnFunctionAssignment_1_2");
 					put(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getReferenceElementAssignment_0_1(), "rule__CompositionFunctionBodyEffectFullFactor__ReferenceElementAssignment_0_1");
 					put(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getPrimitiveElementAssignment_1_1(), "rule__CompositionFunctionBodyEffectFullFactor__PrimitiveElementAssignment_1_1");
-					put(grammarAccess.getReturnPureFunctionAccess().getLambdaFunctioBodyAssignment_2(), "rule__ReturnPureFunction__LambdaFunctioBodyAssignment_2");
+					put(grammarAccess.getReturnPureFunctionAccess().getLambdaFunctionBodyAssignment_2(), "rule__ReturnPureFunction__LambdaFunctionBodyAssignment_2");
 					put(grammarAccess.getReturnEffectFullFunctionAccess().getLambdaFunctionBodyAssignment_2(), "rule__ReturnEffectFullFunction__LambdaFunctionBodyAssignment_2");
 					put(grammarAccess.getIOTypeAccess().getTypeAssignment_1(), "rule__IOType__TypeAssignment_1");
 					put(grammarAccess.getIntegerTypeAccess().getTypeAssignment_1(), "rule__IntegerType__TypeAssignment_1");
@@ -155,6 +156,8 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeAssignment_5(), "rule__EffectFullFunctionType__ReturnTypeAssignment_5");
 					put(grammarAccess.getIntValueAccess().getValueAssignment_1(), "rule__IntValue__ValueAssignment_1");
 					put(grammarAccess.getStringValueAccess().getValueAssignment_1(), "rule__StringValue__ValueAssignment_1");
+					put(grammarAccess.getFunctionValueAccess().getArgAssignment_1(), "rule__FunctionValue__ArgAssignment_1");
+					put(grammarAccess.getFunctionValueAccess().getFunctionBodyAssignment_4(), "rule__FunctionValue__FunctionBodyAssignment_4");
 					put(grammarAccess.getDataValueAccess().getTypeAssignment_1(), "rule__DataValue__TypeAssignment_1");
 					put(grammarAccess.getDataValueAccess().getValueAssignment_3(), "rule__DataValue__ValueAssignment_3");
 					put(grammarAccess.getProdValueAccess().getProdAdtElement1Assignment_1(), "rule__ProdValue__ProdAdtElement1Assignment_1");

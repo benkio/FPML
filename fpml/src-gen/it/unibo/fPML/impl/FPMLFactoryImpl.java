@@ -103,6 +103,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.PURE_FUNCTION_TYPE: return createPureFunctionType();
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE: return createEffectFullFunctionType();
       case FPMLPackage.EXPRESSION: return createExpression();
+      case FPMLPackage.FUNCTION_TYPE: return createFunctionType();
       case FPMLPackage.ADT_VALUE: return createAdtValue();
       case FPMLPackage.PROD_VALUE: return createProdValue();
       case FPMLPackage.SUM_VALUE: return createSumValue();
@@ -530,6 +531,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     ExpressionImpl expression = new ExpressionImpl();
     return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionType createFunctionType()
+  {
+    FunctionTypeImpl functionType = new FunctionTypeImpl();
+    return functionType;
   }
 
   /**

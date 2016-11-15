@@ -366,6 +366,15 @@ public interface FPMLFactory extends EFactory
   Expression createExpression();
 
   /**
+   * Returns a new object of class '<em>Function Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Type</em>'.
+   * @generated
+   */
+  FunctionType createFunctionType();
+
+  /**
    * Returns a new object of class '<em>Adt Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

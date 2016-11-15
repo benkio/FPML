@@ -120,7 +120,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReturnPureFunction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lambdaFunctioBody" eType="#//FunctionBodyPure"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lambdaFunctionBody" eType="#//FunctionBodyPure"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReturnEffectFullFunction">
@@ -159,6 +159,12 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionType" eSuperTypes="#//Expression #//AdtValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arg" eType="#//Argument"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionBody" eType="#//FunctionBodyPure"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AdtValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProdValue" eSuperTypes="#//AdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prodAdtElement1" eType="#//AdtValue"
