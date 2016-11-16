@@ -14,23 +14,25 @@ class UtilitiesFunctions {
 	
 	def static getReturnType(PureFunctionDefinition pf){
 		val t = pf.getReturnType()
-		switch t {
-			DataType: return t.type
-			IntToString: return FPMLFactory.eINSTANCE.createStringType() 
-			default: return t
+		if (t == null) {
+			return getReturnTypePurePrimitive(pf)
+		}else{
+			switch t {
+				DataType: return t.type 
+				default: return t
+			}
 		}
 	}
 	
 	def static getReturnType(EffectFullFunctionDefinition ef){
-        val t = ef.getReturnType().getType()
-        switch t {
-        	DataType: return (t as DataType).getType()
-        	PrimitivePrint: {
-        		val t1 = FPMLFactory.eINSTANCE.createIOType()
-        		t1.type = FPMLFactory.eINSTANCE.createUnitType
-        		return t1
-        	}
-        	default: return t 
+        val t = ef.getReturnType()
+        if (t == null) {
+        	return getReturnTypeEffectFullPrimitive(ef)
+	    }else{   
+	    	 switch t.getType() {
+	        	DataType: return (t as DataType).getType()
+	        	default: return t.type
+	        }
         }
     }
 	
@@ -48,26 +50,44 @@ class UtilitiesFunctions {
             Value: return getTypeFromExpression(f1.value)
         }
     }
+    
+    def static getReturnTypePurePrimitive(PureFunctionDefinition pf){
+    	switch pf {
+    		IntToString: return FPMLFactory.eINSTANCE.createStringType()
+    	}
+    }
+    
+    def static getReturnTypeEffectFullPrimitive(EffectFullFunctionDefinition ef){
+    	switch ef {
+    		PrimitivePrint: return FPMLFactory.eINSTANCE.createUnitType
+    	}
+    }
 
 	/////////////////////////////////////////////////////
 	// getArgTypes
 	////////////////////////////////////////////////////
 
 	def static getArgType(PureFunctionDefinition pf){
-		val t = pf.getArg().getType()
-		switch t {
-			DataType: return t.getType()
-			IntToString: return FPMLFactory.eINSTANCE.createIntegerType	
-			default: return t
+		val t = pf.getArg()
+		if (t == null) {
+			return getArgTypePurePrimitive(pf)	
+		} else {
+			switch t.getType() {
+				DataType: return (t.getType() as DataType).type	
+				default: return t.type
+			}
 		}
 	}
 	
  	def static getArgType(EffectFullFunctionDefinition ef){
- 		val t = ef.getArg().getType()
- 		switch t {
- 			DataType: return t.getType()
- 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType()
- 			default: return t
+ 		val t = ef.getArg()
+ 		if (t == null){
+ 			return getArgTypeEffectFullPrimitive(ef)
+ 		} else {
+	 		switch t.getType() {
+	 			DataType: return (t.getType() as DataType).type
+	 			default: return t.type
+	 		}
  		}
  	}
 
@@ -84,6 +104,18 @@ class UtilitiesFunctions {
             PureFunctionDefinition: return getArgType(f1)
             Value: return getTypeFromExpression(f1.value)
         }
+    }
+
+	def static getArgTypePurePrimitive(PureFunctionDefinition pf){
+    	switch pf {
+    		IntToString: return FPMLFactory.eINSTANCE.createIntegerType()
+    	}
+    }
+    
+    def static getArgTypeEffectFullPrimitive(EffectFullFunctionDefinition ef){
+    	switch ef {
+    		PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType()
+    	}
     }
 
 	//////////////////////////////////////////////////////

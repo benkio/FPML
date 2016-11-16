@@ -41,38 +41,33 @@ import org.eclipse.emf.ecore.EObject;
 public class UtilitiesFunctions {
   public static EObject getReturnType(final PureFunctionDefinition pf) {
     final ValueType t = pf.getReturnType();
-    boolean _matched = false;
-    if (t instanceof DataType) {
-      _matched=true;
-      return ((DataType)t).getType();
-    }
-    if (!_matched) {
-      if (t instanceof IntToString) {
+    boolean _equals = Objects.equal(t, null);
+    if (_equals) {
+      return UtilitiesFunctions.getReturnTypePurePrimitive(pf);
+    } else {
+      boolean _matched = false;
+      if (t instanceof DataType) {
         _matched=true;
-        return FPMLFactory.eINSTANCE.createStringType();
+        return ((DataType)t).getType();
       }
+      return t;
     }
-    return t;
   }
   
   public static EObject getReturnType(final EffectFullFunctionDefinition ef) {
-    IOType _returnType = ef.getReturnType();
-    final Type t = _returnType.getType();
-    boolean _matched = false;
-    if (t instanceof DataType) {
-      _matched=true;
-      return ((DataType) t).getType();
-    }
-    if (!_matched) {
-      if (t instanceof PrimitivePrint) {
+    final IOType t = ef.getReturnType();
+    boolean _equals = Objects.equal(t, null);
+    if (_equals) {
+      return UtilitiesFunctions.getReturnTypeEffectFullPrimitive(ef);
+    } else {
+      Type _type = t.getType();
+      boolean _matched = false;
+      if (_type instanceof DataType) {
         _matched=true;
-        final IOType t1 = FPMLFactory.eINSTANCE.createIOType();
-        UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
-        t1.setType(_createUnitType);
-        return t1;
+        return ((DataType) t).getType();
       }
+      return t.getType();
     }
-    return t;
   }
   
   public static EObject getReturnType(final ChainElement f1) {
@@ -113,38 +108,56 @@ public class UtilitiesFunctions {
     return null;
   }
   
-  public static EObject getArgType(final PureFunctionDefinition pf) {
-    Argument _arg = pf.getArg();
-    final ValueType t = _arg.getType();
+  public static StringType getReturnTypePurePrimitive(final PureFunctionDefinition pf) {
     boolean _matched = false;
-    if (t instanceof DataType) {
+    if (pf instanceof IntToString) {
       _matched=true;
-      return ((DataType)t).getType();
+      return FPMLFactory.eINSTANCE.createStringType();
     }
-    if (!_matched) {
-      if (t instanceof IntToString) {
+    return null;
+  }
+  
+  public static UnitType getReturnTypeEffectFullPrimitive(final EffectFullFunctionDefinition ef) {
+    boolean _matched = false;
+    if (ef instanceof PrimitivePrint) {
+      _matched=true;
+      return FPMLFactory.eINSTANCE.createUnitType();
+    }
+    return null;
+  }
+  
+  public static EObject getArgType(final PureFunctionDefinition pf) {
+    final Argument t = pf.getArg();
+    boolean _equals = Objects.equal(t, null);
+    if (_equals) {
+      return UtilitiesFunctions.getArgTypePurePrimitive(pf);
+    } else {
+      ValueType _type = t.getType();
+      boolean _matched = false;
+      if (_type instanceof DataType) {
         _matched=true;
-        return FPMLFactory.eINSTANCE.createIntegerType();
+        ValueType _type_1 = t.getType();
+        return ((DataType) _type_1).getType();
       }
+      return t.getType();
     }
-    return t;
   }
   
   public static EObject getArgType(final EffectFullFunctionDefinition ef) {
-    EffectFullArgument _arg = ef.getArg();
-    final Type t = _arg.getType();
-    boolean _matched = false;
-    if (t instanceof DataType) {
-      _matched=true;
-      return ((DataType)t).getType();
-    }
-    if (!_matched) {
-      if (t instanceof PrimitivePrint) {
+    final EffectFullArgument t = ef.getArg();
+    boolean _equals = Objects.equal(t, null);
+    if (_equals) {
+      return UtilitiesFunctions.getArgTypeEffectFullPrimitive(ef);
+    } else {
+      Type _type = t.getType();
+      boolean _matched = false;
+      if (_type instanceof DataType) {
         _matched=true;
-        return FPMLFactory.eINSTANCE.createStringType();
+        Type _type_1 = t.getType();
+        return ((DataType) _type_1).getType();
       }
+      return t.getType();
     }
-    return t;
   }
   
   public static EObject getArgType(final ChainElement f1) {
@@ -181,6 +194,24 @@ public class UtilitiesFunctions {
         Expression _value = ((Value)f1).getValue();
         return UtilitiesFunctions.getTypeFromExpression(_value);
       }
+    }
+    return null;
+  }
+  
+  public static IntegerType getArgTypePurePrimitive(final PureFunctionDefinition pf) {
+    boolean _matched = false;
+    if (pf instanceof IntToString) {
+      _matched=true;
+      return FPMLFactory.eINSTANCE.createIntegerType();
+    }
+    return null;
+  }
+  
+  public static StringType getArgTypeEffectFullPrimitive(final EffectFullFunctionDefinition ef) {
+    boolean _matched = false;
+    if (ef instanceof PrimitivePrint) {
+      _matched=true;
+      return FPMLFactory.eINSTANCE.createStringType();
     }
     return null;
   }

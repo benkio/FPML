@@ -131,9 +131,9 @@ public class FPMLValidator extends AbstractFPMLValidator {
   @Check
   public void FunctionCompositionReturnType(final PureFunctionDefinition pf) {
     final FunctionBodyPure rt = pf.getFunctionBody();
-    if ((rt instanceof CompositionFunctionBodyPure)) {
-      EList<CompositionFunctionBodyPureFactor> _functionChain = ((CompositionFunctionBodyPure)rt).getFunctionChain();
-      EList<CompositionFunctionBodyPureFactor> _functionChain_1 = ((CompositionFunctionBodyPure)rt).getFunctionChain();
+    if (((!Objects.equal(rt, null)) && (rt instanceof CompositionFunctionBodyPure))) {
+      EList<CompositionFunctionBodyPureFactor> _functionChain = ((CompositionFunctionBodyPure) rt).getFunctionChain();
+      EList<CompositionFunctionBodyPureFactor> _functionChain_1 = ((CompositionFunctionBodyPure) rt).getFunctionChain();
       int _size = _functionChain_1.size();
       int _minus = (_size - 1);
       CompositionFunctionBodyPureFactor _get = _functionChain.get(_minus);
@@ -152,7 +152,9 @@ public class FPMLValidator extends AbstractFPMLValidator {
   @Check
   public void FunctionCompositionReturnType(final EffectFullFunctionDefinition ef) {
     final FunctionBodyEffectFull rt = ef.getFunctionBody();
-    if (((!(ef instanceof MainFunc)) && (rt instanceof CompositionFunctionBodyEffect))) {
+    if ((((!Objects.equal(rt, null)) && 
+      (rt instanceof CompositionFunctionBodyEffect)) && 
+      Objects.equal(((CompositionFunctionBodyEffect) rt).getReturnFunction(), null))) {
       EList<CompositionFunctionBodyEffectFullFactor> _functionChain = ((CompositionFunctionBodyEffect) rt).getFunctionChain();
       EList<CompositionFunctionBodyEffectFullFactor> _functionChain_1 = ((CompositionFunctionBodyEffect) rt).getFunctionChain();
       int _size = _functionChain_1.size();
@@ -172,9 +174,9 @@ public class FPMLValidator extends AbstractFPMLValidator {
   @Check
   public void FunctionCompositionArgType(final PureFunctionDefinition pf) {
     final FunctionBodyPure rt = pf.getFunctionBody();
-    if ((rt instanceof CompositionFunctionBodyPure)) {
-      final InitialPureChainElement rt2 = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure)rt));
-      if (((rt2 instanceof PureFunctionDefinition) && (!EcoreUtil.equals(pf.getArg().getType(), UtilitiesFunctions.getArgType(rt2))))) {
+    if (((!Objects.equal(rt, null)) && (rt instanceof CompositionFunctionBodyPure))) {
+      final InitialPureChainElement rt2 = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) rt));
+      if (((rt2 instanceof PureFunctionDefinition) && (!Objects.equal(pf.getArg().getType().eClass(), UtilitiesFunctions.getArgType(rt2).eClass())))) {
         this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG);
       }
     }
@@ -183,13 +185,15 @@ public class FPMLValidator extends AbstractFPMLValidator {
   @Check
   public void FunctionCompositionArgType(final EffectFullFunctionDefinition ef) {
     final FunctionBodyEffectFull rt = ef.getFunctionBody();
-    if ((rt instanceof CompositionFunctionBodyEffect)) {
+    if (((!Objects.equal(rt, null)) && (rt instanceof CompositionFunctionBodyEffect))) {
       EffectFullArgument _arg = ef.getArg();
       final Type t = _arg.getType();
-      ChainElement _firstFunctionDefinitionFromCompositionBodyEffectFull = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(((CompositionFunctionBodyEffect)rt));
+      ChainElement _firstFunctionDefinitionFromCompositionBodyEffectFull = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(((CompositionFunctionBodyEffect) rt));
       EObject _argType = UtilitiesFunctions.getArgType(_firstFunctionDefinitionFromCompositionBodyEffectFull);
       final Type t1 = ((Type) _argType);
-      boolean _equals = EcoreUtil.equals(t, t1);
+      EClass _eClass = t.eClass();
+      EClass _eClass_1 = t1.eClass();
+      boolean _equals = Objects.equal(_eClass, _eClass_1);
       boolean _not = (!_equals);
       if (_not) {
         this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG);
