@@ -81,7 +81,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.MAIN_FUNC: return createMainFunc();
       case FPMLPackage.CHAIN_ELEMENT: return createChainElement();
       case FPMLPackage.INITIAL_PURE_CHAIN_ELEMENT: return createInitialPureChainElement();
-      case FPMLPackage.FUNCTION: return createFunction();
       case FPMLPackage.EFFECT_FULL_ARGUMENT: return createEffectFullArgument();
       case FPMLPackage.ARGUMENT: return createArgument();
       case FPMLPackage.FUNCTION_BODY_PURE: return createFunctionBodyPure();
@@ -108,6 +107,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.PROD_VALUE: return createProdValue();
       case FPMLPackage.SUM_VALUE: return createSumValue();
       case FPMLPackage.INT_TO_STRING: return createIntToString();
+      case FPMLPackage.INT_POW: return createIntPow();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
       case FPMLPackage.DATA_VALUE: return createDataValue();
       default:
@@ -289,17 +289,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     InitialPureChainElementImpl initialPureChainElement = new InitialPureChainElementImpl();
     return initialPureChainElement;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Function createFunction()
-  {
-    FunctionImpl function = new FunctionImpl();
-    return function;
   }
 
   /**
@@ -586,6 +575,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     IntToStringImpl intToString = new IntToStringImpl();
     return intToString;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IntPow createIntPow()
+  {
+    IntPowImpl intPow = new IntPowImpl();
+    return intPow;
   }
 
   /**

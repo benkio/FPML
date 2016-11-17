@@ -39,18 +39,19 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAdtTypeAccess().getAdtElement2Alternatives_1_2_0(), "rule__AdtType__AdtElement2Alternatives_1_2_0");
 					put(grammarAccess.getChainElementAccess().getAlternatives(), "rule__ChainElement__Alternatives");
 					put(grammarAccess.getInitialPureChainElementAccess().getAlternatives(), "rule__InitialPureChainElement__Alternatives");
-					put(grammarAccess.getFunctionAccess().getAlternatives(), "rule__Function__Alternatives");
 					put(grammarAccess.getFunctionBodyPureAccess().getAlternatives(), "rule__FunctionBodyPure__Alternatives");
 					put(grammarAccess.getFunctionBodyEffectFullAccess().getAlternatives(), "rule__FunctionBodyEffectFull__Alternatives");
 					put(grammarAccess.getCompositionFunctionBodyPureAccess().getAlternatives(), "rule__CompositionFunctionBodyPure__Alternatives");
 					put(grammarAccess.getCompositionFunctionBodyPureFactorAccess().getAlternatives(), "rule__CompositionFunctionBodyPureFactor__Alternatives");
 					put(grammarAccess.getCompositionFunctionBodyEffectAccess().getAlternatives(), "rule__CompositionFunctionBodyEffect__Alternatives");
 					put(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getAlternatives(), "rule__CompositionFunctionBodyEffectFullFactor__Alternatives");
+					put(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getPrimitiveElementAlternatives_1_1_0(), "rule__CompositionFunctionBodyEffectFullFactor__PrimitiveElementAlternatives_1_1_0");
 					put(grammarAccess.getValueTypeAccess().getAlternatives(), "rule__ValueType__Alternatives");
 					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
 					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
 					put(grammarAccess.getAdtValueAccess().getAlternatives(), "rule__AdtValue__Alternatives");
 					put(grammarAccess.getSumValueAccess().getAlternatives(), "rule__SumValue__Alternatives");
+					put(grammarAccess.getPrimitivePureFunctionAccess().getAlternatives(), "rule__PrimitivePureFunction__Alternatives");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
 					put(grammarAccess.getPureBlockAccess().getGroup(), "rule__PureBlock__Group__0");
 					put(grammarAccess.getPureFunctionBlockAccess().getGroup(), "rule__PureFunctionBlock__Group__0");
@@ -94,6 +95,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSumValueAccess().getGroup_0(), "rule__SumValue__Group_0__0");
 					put(grammarAccess.getSumValueAccess().getGroup_1(), "rule__SumValue__Group_1__0");
 					put(grammarAccess.getIntToStringAccess().getGroup(), "rule__IntToString__Group__0");
+					put(grammarAccess.getIntPowAccess().getGroup(), "rule__IntPow__Group__0");
 					put(grammarAccess.getPrimitivePrintAccess().getGroup(), "rule__PrimitivePrint__Group__0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_0(), "rule__Model__ElementsAssignment_0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_1(), "rule__Model__ElementsAssignment_1");

@@ -59,12 +59,12 @@ public interface CompositionFunctionBodyEffectFullFactor extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Primitive Element</em>' containment reference.
-   * @see #setPrimitiveElement(EffectFullFunctionDefinition)
+   * @see #setPrimitiveElement(ChainElement)
    * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyEffectFullFactor_PrimitiveElement()
    * @model containment="true"
    * @generated
    */
-  EffectFullFunctionDefinition getPrimitiveElement();
+  ChainElement getPrimitiveElement();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyEffectFullFactor#getPrimitiveElement <em>Primitive Element</em>}' containment reference.
@@ -74,6 +74,6 @@ public interface CompositionFunctionBodyEffectFullFactor extends EObject
    * @see #getPrimitiveElement()
    * @generated
    */
-  void setPrimitiveElement(EffectFullFunctionDefinition value);
+  void setPrimitiveElement(ChainElement value);
 
 } // CompositionFunctionBodyEffectFullFactor

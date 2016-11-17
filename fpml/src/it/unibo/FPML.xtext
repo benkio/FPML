@@ -76,13 +76,10 @@ MainFunc:
 ///////////////////////////////////////////////////////////////////
 
 ChainElement:
-    Function | Value;
+    PureFunctionDefinition | EffectFullFunctionDefinition | Value;
 
 InitialPureChainElement:
 	PureFunctionDefinition | Value;
-
-Function:
-    PureFunctionDefinition | EffectFullFunctionDefinition;
 
 EffectFullArgument:
 	type=Type (name=ID)?;
@@ -113,7 +110,7 @@ CompositionFunctionBodyEffect:
     
 CompositionFunctionBodyEffectFullFactor:
 	  ( '>>=' (referenceElement=[ChainElement]))
-	| ( '>>=' (PrimitiveElement=PrimitiveEffectFullFunction));
+	| ( '>>=' (PrimitiveElement=(PrimitiveEffectFullFunction | PrimitivePureFunction)));
 
 ReturnPureFunction:
 	'->' '(' lambdaFunctionBody=FunctionBodyPure ')';
@@ -189,11 +186,15 @@ SumValue:
 /////////////////////////////////////////////////////////////////////
 
 PrimitivePureFunction returns PureFunctionDefinition: 
-	IntToString
+	IntToString | IntPow
 ;
 
 IntToString:
 	{IntToString} 'IntToString';
+
+IntPow:
+	{IntPow} 'IntPow'
+;
 
 PrimitiveEffectFullFunction returns EffectFullFunctionDefinition:
 	PrimitivePrint;

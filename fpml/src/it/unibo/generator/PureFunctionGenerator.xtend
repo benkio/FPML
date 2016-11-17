@@ -6,6 +6,7 @@ import it.unibo.fPML.CompositionFunctionBodyPure
 import it.unibo.fPML.PureFunctionDefinition
 import it.unibo.fPML.Value
 import it.unibo.fPML.IntToString
+import it.unibo.fPML.IntPow
 import it.unibo.validation.UtilitiesFunctions
 import it.unibo.fPML.FPMLFactory
 
@@ -39,12 +40,7 @@ class PureFunctionGenerator {
 		var result = ""
 		val initialElement = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
 		switch initialElement {
-			IntToString: {
-				val f = FPMLFactory.eINSTANCE.createPureFunctionDefinition()
-				f.name = "Integer.toString"
-				result = compileCall(f, argName)
-			} 
-			PureFunctionDefinition: result = compileCall((initialElement as PureFunctionDefinition), argName)
+			PureFunctionDefinition: result = compileCall(initialElement, argName)
 			Value: result = "Value." + (initialElement as Value).name + "()"
 		}
 		for (f : cfbp.functionChain){
@@ -53,7 +49,23 @@ class PureFunctionGenerator {
 		return result
 	} 
 	
-	def compileCall(PureFunctionDefinition pf, String args) {
+	def String compileCall(PureFunctionDefinition pf, String args) {
+		if (pf.name == null ) return compilePrimitiveCall(pf, args)
 		return pf.name + "(" + args + ")"
+	}
+	
+	def compilePrimitiveCall(PureFunctionDefinition purePrimitive, String argName){
+		switch purePrimitive {
+			IntToString: {
+				val f = FPMLFactory.eINSTANCE.createPureFunctionDefinition()
+				f.name = "Integer.toString"
+				return compileCall(f, argName)
+			}
+      		IntPow: {
+				val f = FPMLFactory.eINSTANCE.createPureFunctionDefinition()
+				f.name = "(int) Math.pow"
+				return compileCall(f, argName + ", 2")
+			}
+		}
 	}
 }

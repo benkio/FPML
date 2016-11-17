@@ -11,6 +11,7 @@ import it.unibo.fPML.Value
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor
 import it.unibo.validation.UtilitiesFunctions
 import it.unibo.fPML.IntToString
+import it.unibo.fPML.IntPow
 import it.unibo.fPML.PrimitivePrint
 import it.unibo.fPML.MainFunc
 import it.unibo.fPML.FPMLFactory
@@ -67,7 +68,8 @@ class EffectFullFunctionGenerator {
 	
 	def compile(ChainElement e){
 		switch e {
-			IntToString: return '''.map(Integer.toString)'''
+			IntToString: return '''.map(String::valueOf)'''
+      		IntPow: return '''.map(x -> x * x) '''
 			PrimitivePrint: return '''.bind(IOFunctions::stdoutPrint)'''
 			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
 			Value: return '''.append(IOFunctions.unit(Value.«(e as Value).name»()))'''

@@ -156,11 +156,6 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createInitialPureChainElementAdapter();
       }
       @Override
-      public Adapter caseFunction(Function object)
-      {
-        return createFunctionAdapter();
-      }
-      @Override
       public Adapter caseEffectFullArgument(EffectFullArgument object)
       {
         return createEffectFullArgumentAdapter();
@@ -289,6 +284,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseIntToString(IntToString object)
       {
         return createIntToStringAdapter();
+      }
+      @Override
+      public Adapter caseIntPow(IntPow object)
+      {
+        return createIntPowAdapter();
       }
       @Override
       public Adapter casePrimitivePrint(PrimitivePrint object)
@@ -558,21 +558,6 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInitialPureChainElementAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Function <em>Function</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see it.unibo.fPML.Function
-   * @generated
-   */
-  public Adapter createFunctionAdapter()
   {
     return null;
   }
@@ -963,6 +948,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIntToStringAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.IntPow <em>Int Pow</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.IntPow
+   * @generated
+   */
+  public Adapter createIntPowAdapter()
   {
     return null;
   }

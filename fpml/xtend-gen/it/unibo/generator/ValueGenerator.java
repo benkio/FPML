@@ -96,7 +96,7 @@ public class ValueGenerator {
     if (!_matched) {
       if (e instanceof UnitType) {
         _matched=true;
-        return "IOFunctions.unit";
+        return "IOFunctions.ioUnit";
       }
     }
     if (!_matched) {

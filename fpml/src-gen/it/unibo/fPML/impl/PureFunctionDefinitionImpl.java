@@ -4,9 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.Argument;
-import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.Function;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.ValueType;
@@ -27,16 +25,26 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getArg <em>Arg</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PureFunctionDefinitionImpl extends InitialPureChainElementImpl implements PureFunctionDefinition
+public class PureFunctionDefinitionImpl extends ChainElementImpl implements PureFunctionDefinition
 {
+  /**
+   * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReturnType()
+   * @generated
+   * @ordered
+   */
+  protected ValueType returnType;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -56,16 +64,6 @@ public class PureFunctionDefinitionImpl extends InitialPureChainElementImpl impl
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReturnType()
-   * @generated
-   * @ordered
-   */
-  protected ValueType returnType;
 
   /**
    * The cached value of the '{@link #getArg() <em>Arg</em>}' containment reference.
@@ -106,29 +104,6 @@ public class PureFunctionDefinitionImpl extends InitialPureChainElementImpl impl
   protected EClass eStaticClass()
   {
     return FPMLPackage.Literals.PURE_FUNCTION_DEFINITION;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__NAME, oldName, name));
   }
 
   /**
@@ -177,6 +152,29 @@ public class PureFunctionDefinitionImpl extends InitialPureChainElementImpl impl
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE, newReturnType, newReturnType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__NAME, oldName, name));
   }
 
   /**
@@ -305,10 +303,10 @@ public class PureFunctionDefinitionImpl extends InitialPureChainElementImpl impl
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
-        return getName();
       case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         return getReturnType();
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
+        return getName();
       case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
         return getArg();
       case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
@@ -327,11 +325,11 @@ public class PureFunctionDefinitionImpl extends InitialPureChainElementImpl impl
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
-        setName((String)newValue);
-        return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((ValueType)newValue);
+        return;
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
+        setName((String)newValue);
         return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
         setArg((Argument)newValue);
@@ -353,11 +351,11 @@ public class PureFunctionDefinitionImpl extends InitialPureChainElementImpl impl
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((ValueType)null);
+        return;
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
         setArg((Argument)null);
@@ -379,68 +377,16 @@ public class PureFunctionDefinitionImpl extends InitialPureChainElementImpl impl
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         return returnType != null;
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
         return arg != null;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         return functionBody != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-  {
-    if (baseClass == ChainElement.class)
-    {
-      switch (derivedFeatureID)
-      {
-        case FPMLPackage.PURE_FUNCTION_DEFINITION__NAME: return FPMLPackage.CHAIN_ELEMENT__NAME;
-        default: return -1;
-      }
-    }
-    if (baseClass == Function.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-  {
-    if (baseClass == ChainElement.class)
-    {
-      switch (baseFeatureID)
-      {
-        case FPMLPackage.CHAIN_ELEMENT__NAME: return FPMLPackage.PURE_FUNCTION_DEFINITION__NAME;
-        default: return -1;
-      }
-    }
-    if (baseClass == Function.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
   /**

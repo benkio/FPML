@@ -168,15 +168,6 @@ public interface FPMLFactory extends EFactory
   InitialPureChainElement createInitialPureChainElement();
 
   /**
-   * Returns a new object of class '<em>Function</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Function</em>'.
-   * @generated
-   */
-  Function createFunction();
-
-  /**
    * Returns a new object of class '<em>Effect Full Argument</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -409,6 +400,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   IntToString createIntToString();
+
+  /**
+   * Returns a new object of class '<em>Int Pow</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Pow</em>'.
+   * @generated
+   */
+  IntPow createIntPow();
 
   /**
    * Returns a new object of class '<em>Primitive Print</em>'.

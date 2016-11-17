@@ -4,25 +4,25 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.Function;
+import it.unibo.fPML.IntPow;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Function</b></em>'.
+ * An implementation of the model object '<em><b>Int Pow</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class FunctionImpl extends ChainElementImpl implements Function
+public class IntPowImpl extends PureFunctionDefinitionImpl implements IntPow
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FunctionImpl()
+  protected IntPowImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class FunctionImpl extends ChainElementImpl implements Function
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.FUNCTION;
+    return FPMLPackage.Literals.INT_POW;
   }
 
-} //FunctionImpl
+} //IntPowImpl

@@ -11,6 +11,7 @@ import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
+import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PrimitivePrint;
@@ -170,8 +171,16 @@ public class EffectFullFunctionGenerator {
     if (e instanceof IntToString) {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append(".map(Integer.toString)");
+      _builder.append(".map(String::valueOf)");
       return _builder.toString();
+    }
+    if (!_matched) {
+      if (e instanceof IntPow) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".map(x -> x * x) ");
+        return _builder.toString();
+      }
     }
     if (!_matched) {
       if (e instanceof PrimitivePrint) {

@@ -52,13 +52,14 @@ class UtilitiesFunctions {
         }
     }
     
-    def static getReturnTypePurePrimitive(PureFunctionDefinition pf){
+    def static ValueType getReturnTypePurePrimitive(PureFunctionDefinition pf){
     	switch pf {
     		IntToString: return FPMLFactory.eINSTANCE.createStringType()
+        IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
     	}
     }
     
-    def static getReturnTypeEffectFullPrimitive(EffectFullFunctionDefinition ef){
+    def static Type getReturnTypeEffectFullPrimitive(EffectFullFunctionDefinition ef){
     	switch ef {
     		PrimitivePrint: return FPMLFactory.eINSTANCE.createUnitType
     	}
@@ -100,20 +101,25 @@ class UtilitiesFunctions {
         }
     }
 
-    def static getArgType(InitialPureChainElement f1){
+    def static ValueType getArgType(InitialPureChainElement f1){
         switch f1 {
             PureFunctionDefinition: return getArgType(f1)
-            Value: return getTypeFromExpression(f1.value)
+            Value: { 
+            	val x = getTypeFromExpression(f1.value)
+            	if (x instanceof UnitType) throw new Exception("cannot convert type to ValueType, unit type not allowed")
+            	return (x as ValueType)
+        	}
         }
     }
 
-	def static getArgTypePurePrimitive(PureFunctionDefinition pf){
+	def static ValueType getArgTypePurePrimitive(PureFunctionDefinition pf){
     	switch pf {
     		IntToString: return FPMLFactory.eINSTANCE.createIntegerType()
+        IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
     	}
     }
     
-    def static getArgTypeEffectFullPrimitive(EffectFullFunctionDefinition ef){
+    def static Type getArgTypeEffectFullPrimitive(EffectFullFunctionDefinition ef){
     	switch ef {
     		PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType()
     	}
@@ -122,13 +128,6 @@ class UtilitiesFunctions {
 	//////////////////////////////////////////////////////
 	// getTypeFrom
 	/////////////////////////////////////////////////////
-
-    def static getTypeFromValueType(ValueType t){
-        switch t {
-            DataType: return t.getType()
-            default: return t
-        }
-    }
     
     def static Type getTypeFromExpression(Expression e){
     	switch e {
@@ -183,19 +182,19 @@ class UtilitiesFunctions {
 		}
 	}
 
-	def static isFirstFunctionBodyArgAProductTypeAndMatchTheType(Function f, Type t){
-		if (f instanceof EffectFullFunctionDefinition){
-			return ((f as EffectFullFunctionDefinition).arg.type != null &&
+	def static isFirstFunctionBodyArgAProductTypeAndMatchTheType(EffectFullFunctionDefinition f, Type t){
+		return ((f as EffectFullFunctionDefinition).arg.type != null &&
 			((f as EffectFullFunctionDefinition).arg.type instanceof DataType) &&
 			((f as EffectFullFunctionDefinition).arg.type as DataType).type.content.adtElement2 != null &&
 			(((f as EffectFullFunctionDefinition).arg.type as DataType).type.content.adtElement2 instanceof ProdType) &&
 			(((f as EffectFullFunctionDefinition).arg.type as DataType).type.content.adtElement1.eClass == t.eClass))
-		}else 
-			return ((f as PureFunctionDefinition).arg.type != null &&
-			((f as PureFunctionDefinition).arg.type instanceof DataType) &&
-			((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement2 != null &&
-			(((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement2 instanceof ProdType) &&
-			(((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement1.eClass == t.eClass))
+	}
+	def static isFirstFunctionBodyArgAProductTypeAndMatchTheType(PureFunctionDefinition f, Type t){
+		return ((f as PureFunctionDefinition).arg.type != null &&
+				((f as PureFunctionDefinition).arg.type instanceof DataType) &&
+				((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement2 != null &&
+				(((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement2 instanceof ProdType) &&
+				(((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement1.eClass == t.eClass))
 	}
 	
 	/////////////////////////////////////////////////////

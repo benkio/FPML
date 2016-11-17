@@ -1035,42 +1035,6 @@ ruleMainFunc returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleFunction
-entryRuleFunction returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getFunctionRule()); }
-	iv_ruleFunction=ruleFunction
-	{ $current=$iv_ruleFunction.current; }
-	EOF;
-
-// Rule Function
-ruleFunction returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getFunctionAccess().getPureFunctionDefinitionParserRuleCall_0());
-		}
-		this_PureFunctionDefinition_0=rulePureFunctionDefinition
-		{
-			$current = $this_PureFunctionDefinition_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getFunctionAccess().getEffectFullFunctionDefinitionParserRuleCall_1());
-		}
-		this_EffectFullFunctionDefinition_1=ruleEffectFullFunctionDefinition
-		{
-			$current = $this_EffectFullFunctionDefinition_1.current;
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
 // Entry rule entryRuleEffectFullArgument
 entryRuleEffectFullArgument returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getEffectFullArgumentRule()); }
@@ -1656,21 +1620,39 @@ ruleCompositionFunctionBodyEffectFullFactor returns [EObject current=null]
 			}
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getPrimitiveElementPrimitiveEffectFullFunctionParserRuleCall_1_1_0());
-					}
-					lv_PrimitiveElement_3_0=rulePrimitiveEffectFullFunction
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getCompositionFunctionBodyEffectFullFactorRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getPrimitiveElementPrimitiveEffectFullFunctionParserRuleCall_1_1_0_0());
 						}
-						set(
-							$current,
-							"PrimitiveElement",
-							lv_PrimitiveElement_3_0,
-							"it.unibo.FPML.PrimitiveEffectFullFunction");
-						afterParserOrEnumRuleCall();
-					}
+						lv_PrimitiveElement_3_1=rulePrimitiveEffectFullFunction
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getCompositionFunctionBodyEffectFullFactorRule());
+							}
+							set(
+								$current,
+								"PrimitiveElement",
+								lv_PrimitiveElement_3_1,
+								"it.unibo.FPML.PrimitiveEffectFullFunction");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getCompositionFunctionBodyEffectFullFactorAccess().getPrimitiveElementPrimitivePureFunctionParserRuleCall_1_1_0_1());
+						}
+						lv_PrimitiveElement_3_2=rulePrimitivePureFunction
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getCompositionFunctionBodyEffectFullFactorRule());
+							}
+							set(
+								$current,
+								"PrimitiveElement",
+								lv_PrimitiveElement_3_2,
+								"it.unibo.FPML.PrimitivePureFunction");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
 			)
 		)
@@ -2799,14 +2781,25 @@ rulePrimitivePureFunction returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	{
-		newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getIntToStringParserRuleCall());
-	}
-	this_IntToString_0=ruleIntToString
-	{
-		$current = $this_IntToString_0.current;
-		afterParserOrEnumRuleCall();
-	}
+	(
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getIntToStringParserRuleCall_0());
+		}
+		this_IntToString_0=ruleIntToString
+		{
+			$current = $this_IntToString_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getIntPowParserRuleCall_1());
+		}
+		this_IntPow_1=ruleIntPow
+		{
+			$current = $this_IntPow_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
 ;
 
 // Entry rule entryRuleIntToString
@@ -2835,6 +2828,36 @@ ruleIntToString returns [EObject current=null]
 		otherlv_1='IntToString'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getIntToStringAccess().getIntToStringKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleIntPow
+entryRuleIntPow returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIntPowRule()); }
+	iv_ruleIntPow=ruleIntPow
+	{ $current=$iv_ruleIntPow.current; }
+	EOF;
+
+// Rule IntPow
+ruleIntPow returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getIntPowAccess().getIntPowAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='IntPow'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getIntPowAccess().getIntPowKeyword_1());
 		}
 	)
 ;

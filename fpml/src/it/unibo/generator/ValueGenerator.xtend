@@ -45,7 +45,7 @@ class ValueGenerator {
 	def compile(Expression e) {
 		switch e {
 			IntegerType: return e.value
-			UnitType: return "IOFunctions.unit"
+			UnitType: return "IOFunctions.ioUnit"
 			StringType: return '''"«e.value»"'''
 			DataType: return '''new «typeGenerator.compileType(e)»(«compileAdtValue((e as DataValue).value, (e as DataValue).type.content)»)'''
 		}	

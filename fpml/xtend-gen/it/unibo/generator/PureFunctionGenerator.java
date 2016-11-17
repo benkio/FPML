@@ -1,5 +1,6 @@
 package it.unibo.generator;
 
+import com.google.common.base.Objects;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
@@ -7,6 +8,7 @@ import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.InitialPureChainElement;
+import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureFunctionDefinition;
@@ -97,19 +99,10 @@ public class PureFunctionGenerator {
     String result = "";
     final InitialPureChainElement initialElement = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
     boolean _matched = false;
-    if (initialElement instanceof IntToString) {
+    if (initialElement instanceof PureFunctionDefinition) {
       _matched=true;
-      final PureFunctionDefinition f = FPMLFactory.eINSTANCE.createPureFunctionDefinition();
-      f.setName("Integer.toString");
-      String _compileCall = this.compileCall(f, argName);
+      String _compileCall = this.compileCall(((PureFunctionDefinition)initialElement), argName);
       result = _compileCall;
-    }
-    if (!_matched) {
-      if (initialElement instanceof PureFunctionDefinition) {
-        _matched=true;
-        String _compileCall = this.compileCall(((PureFunctionDefinition) initialElement), argName);
-        result = _compileCall;
-      }
     }
     if (!_matched) {
       if (initialElement instanceof Value) {
@@ -131,8 +124,32 @@ public class PureFunctionGenerator {
   
   public String compileCall(final PureFunctionDefinition pf, final String args) {
     String _name = pf.getName();
-    String _plus = (_name + "(");
+    boolean _equals = Objects.equal(_name, null);
+    if (_equals) {
+      return this.compilePrimitiveCall(pf, args);
+    }
+    String _name_1 = pf.getName();
+    String _plus = (_name_1 + "(");
     String _plus_1 = (_plus + args);
     return (_plus_1 + ")");
+  }
+  
+  public String compilePrimitiveCall(final PureFunctionDefinition purePrimitive, final String argName) {
+    boolean _matched = false;
+    if (purePrimitive instanceof IntToString) {
+      _matched=true;
+      final PureFunctionDefinition f = FPMLFactory.eINSTANCE.createPureFunctionDefinition();
+      f.setName("Integer.toString");
+      return this.compileCall(f, argName);
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof IntPow) {
+        _matched=true;
+        final PureFunctionDefinition f = FPMLFactory.eINSTANCE.createPureFunctionDefinition();
+        f.setName("(int) Math.pow");
+        return this.compileCall(f, (argName + ", 2"));
+      }
+    }
+    return null;
   }
 }

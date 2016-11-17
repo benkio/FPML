@@ -22,6 +22,7 @@ import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionType;
 import it.unibo.fPML.IOType;
+import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
@@ -117,6 +118,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.IO_TYPE:
 				sequence_IOType(context, (IOType) semanticObject); 
+				return; 
+			case FPMLPackage.INT_POW:
+				sequence_IntPow(context, (IntPow) semanticObject); 
 				return; 
 			case FPMLPackage.INT_TO_STRING:
 				sequence_IntToString(context, (IntToString) semanticObject); 
@@ -251,7 +255,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     CompositionFunctionBodyEffectFullFactor returns CompositionFunctionBodyEffectFullFactor
 	 *
 	 * Constraint:
-	 *     (referenceElement=[ChainElement|ID] | PrimitiveElement=PrimitiveEffectFullFunction)
+	 *     (referenceElement=[ChainElement|ID] | PrimitiveElement=PrimitiveEffectFullFunction | PrimitiveElement=PrimitivePureFunction)
 	 */
 	protected void sequence_CompositionFunctionBodyEffectFullFactor(ISerializationContext context, CompositionFunctionBodyEffectFullFactor semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -407,7 +411,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     EffectFullFunctionDefinition returns EffectFullFunctionDefinition
 	 *     ChainElement returns EffectFullFunctionDefinition
-	 *     Function returns EffectFullFunctionDefinition
 	 *
 	 * Constraint:
 	 *     (returnType=IOType name=ID arg=EffectFullArgument functionBody=FunctionBodyEffectFull)
@@ -416,8 +419,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.CHAIN_ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.CHAIN_ELEMENT__NAME));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__NAME));
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG));
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY) == ValueTransient.YES)
@@ -506,6 +509,19 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getIOTypeAccess().getTypeTypeParserRuleCall_1_0(), semanticObject.getType());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PrimitivePureFunction returns IntPow
+	 *     IntPow returns IntPow
+	 *
+	 * Constraint:
+	 *     {IntPow}
+	 */
+	protected void sequence_IntPow(ISerializationContext context, IntPow semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -678,7 +694,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     PureFunctionDefinition returns PureFunctionDefinition
 	 *     ChainElement returns PureFunctionDefinition
 	 *     InitialPureChainElement returns PureFunctionDefinition
-	 *     Function returns PureFunctionDefinition
 	 *
 	 * Constraint:
 	 *     (returnType=ValueType name=ID arg=Argument functionBody=FunctionBodyPure)
@@ -687,8 +702,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.CHAIN_ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.CHAIN_ELEMENT__NAME));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__NAME));
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG));
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY) == ValueTransient.YES)
@@ -890,8 +905,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Value(ISerializationContext context, Value semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.CHAIN_ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.CHAIN_ELEMENT__NAME));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.VALUE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.VALUE__NAME));
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.VALUE__VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.VALUE__VALUE));
 		}

@@ -14,6 +14,7 @@ package it.unibo.fPML;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg <em>Arg</em>}</li>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
@@ -22,7 +23,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullFunctionDefinition extends Function
+public interface EffectFullFunctionDefinition extends ChainElement
 {
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
@@ -49,6 +50,32 @@ public interface EffectFullFunctionDefinition extends Function
    * @generated
    */
   void setReturnType(IOType value);
+
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionDefinition#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Arg</b></em>' containment reference.

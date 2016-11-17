@@ -26,13 +26,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getArg <em>Arg</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EffectFullFunctionDefinitionImpl extends FunctionImpl implements EffectFullFunctionDefinition
+public class EffectFullFunctionDefinitionImpl extends ChainElementImpl implements EffectFullFunctionDefinition
 {
   /**
    * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
@@ -43,6 +44,26 @@ public class EffectFullFunctionDefinitionImpl extends FunctionImpl implements Ef
    * @ordered
    */
   protected IOType returnType;
+
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getArg() <em>Arg</em>}' containment reference.
@@ -131,6 +152,29 @@ public class EffectFullFunctionDefinitionImpl extends FunctionImpl implements Ef
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE, newReturnType, newReturnType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__NAME, oldName, name));
   }
 
   /**
@@ -261,6 +305,8 @@ public class EffectFullFunctionDefinitionImpl extends FunctionImpl implements Ef
     {
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         return getReturnType();
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__NAME:
+        return getName();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         return getArg();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
@@ -281,6 +327,9 @@ public class EffectFullFunctionDefinitionImpl extends FunctionImpl implements Ef
     {
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((IOType)newValue);
+        return;
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__NAME:
+        setName((String)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         setArg((EffectFullArgument)newValue);
@@ -305,6 +354,9 @@ public class EffectFullFunctionDefinitionImpl extends FunctionImpl implements Ef
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((IOType)null);
         return;
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         setArg((EffectFullArgument)null);
         return;
@@ -327,12 +379,31 @@ public class EffectFullFunctionDefinitionImpl extends FunctionImpl implements Ef
     {
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         return returnType != null;
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         return arg != null;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return functionBody != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //EffectFullFunctionDefinitionImpl

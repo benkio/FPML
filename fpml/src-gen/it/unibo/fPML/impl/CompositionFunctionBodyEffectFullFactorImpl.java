@@ -5,7 +5,6 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
-import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -51,7 +50,7 @@ public class CompositionFunctionBodyEffectFullFactorImpl extends MinimalEObjectI
    * @generated
    * @ordered
    */
-  protected EffectFullFunctionDefinition primitiveElement;
+  protected ChainElement primitiveElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -122,7 +121,7 @@ public class CompositionFunctionBodyEffectFullFactorImpl extends MinimalEObjectI
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullFunctionDefinition getPrimitiveElement()
+  public ChainElement getPrimitiveElement()
   {
     return primitiveElement;
   }
@@ -132,9 +131,9 @@ public class CompositionFunctionBodyEffectFullFactorImpl extends MinimalEObjectI
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPrimitiveElement(EffectFullFunctionDefinition newPrimitiveElement, NotificationChain msgs)
+  public NotificationChain basicSetPrimitiveElement(ChainElement newPrimitiveElement, NotificationChain msgs)
   {
-    EffectFullFunctionDefinition oldPrimitiveElement = primitiveElement;
+    ChainElement oldPrimitiveElement = primitiveElement;
     primitiveElement = newPrimitiveElement;
     if (eNotificationRequired())
     {
@@ -149,7 +148,7 @@ public class CompositionFunctionBodyEffectFullFactorImpl extends MinimalEObjectI
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPrimitiveElement(EffectFullFunctionDefinition newPrimitiveElement)
+  public void setPrimitiveElement(ChainElement newPrimitiveElement)
   {
     if (newPrimitiveElement != primitiveElement)
     {
@@ -214,7 +213,7 @@ public class CompositionFunctionBodyEffectFullFactorImpl extends MinimalEObjectI
         setReferenceElement((ChainElement)newValue);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT_FULL_FACTOR__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((EffectFullFunctionDefinition)newValue);
+        setPrimitiveElement((ChainElement)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -234,7 +233,7 @@ public class CompositionFunctionBodyEffectFullFactorImpl extends MinimalEObjectI
         setReferenceElement((ChainElement)null);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT_FULL_FACTOR__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((EffectFullFunctionDefinition)null);
+        setPrimitiveElement((ChainElement)null);
         return;
     }
     super.eUnset(featureID);
