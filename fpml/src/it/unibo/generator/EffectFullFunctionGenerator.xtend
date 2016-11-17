@@ -39,16 +39,16 @@ class EffectFullFunctionGenerator {
 				«IF pf.functionBody instanceof EmptyFunctionBody»
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
-				IOW.append(IOFunctions.unit(«pf.arg.name»))«(pf.functionBody as CompositionFunctionBodyEffect).compile»;
+				IOW.lift(IOFunctions.unit(«pf.arg.name»))«(pf.functionBody as CompositionFunctionBodyEffect).compile»;
 				«ENDIF»
 			}'''
 		}else {
 			return '''
-			public static void «pf.name»(){
+			public static void «pf.name»(String[] args){
 				«IF pf.functionBody instanceof EmptyFunctionBody»
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
-				IOW«(pf.functionBody as CompositionFunctionBodyEffect).compile»
+				IOW.lift(IOFunctions.ioUnit)«(pf.functionBody as CompositionFunctionBodyEffect).compile»
 				«ENDIF»
 				.safe().run().on((IOException e) -> { e.printStackTrace(); return Unit.unit(); });
 			}'''
@@ -68,7 +68,7 @@ class EffectFullFunctionGenerator {
 	def compile(ChainElement e){
 		switch e {
 			IntToString: return '''.map(Integer.toString)'''
-			PrimitivePrint: return '''.bind(IOFunctions.stdoutPrint)'''
+			PrimitivePrint: return '''.bind(IOFunctions::stdoutPrint)'''
 			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
 			Value: return '''.append(IOFunctions.unit(Value.«(e as Value).name»()))'''
 			EffectFullFunctionDefinition: return '''.bind(EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
@@ -80,6 +80,8 @@ class EffectFullFunctionGenerator {
 		
 		import «FPMLGenerator.basePackageJava»Pure.Data.*;
 		import fj.data.*;
+		import java.io.IOException;
+		import fj.Unit;
 		import «FPMLGenerator.basePackageJava»Pure.*;
 		
 		public class EntryPoint {

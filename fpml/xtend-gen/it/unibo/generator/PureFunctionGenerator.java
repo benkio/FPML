@@ -115,7 +115,9 @@ public class PureFunctionGenerator {
       if (initialElement instanceof Value) {
         _matched=true;
         String _name = ((Value) initialElement).getName();
-        result = _name;
+        String _plus = ("Value." + _name);
+        String _plus_1 = (_plus + "()");
+        result = _plus_1;
       }
     }
     EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();

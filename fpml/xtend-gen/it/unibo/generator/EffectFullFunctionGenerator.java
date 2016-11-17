@@ -94,7 +94,7 @@ public class EffectFullFunctionGenerator {
           FunctionBodyEffectFull _functionBody_1 = pf.getFunctionBody();
           if ((_functionBody_1 instanceof CompositionFunctionBodyEffect)) {
             _builder.append("\t");
-            _builder.append("IOW.append(IOFunctions.unit(");
+            _builder.append("IOW.lift(IOFunctions.unit(");
             EffectFullArgument _arg_1 = pf.getArg();
             String _name_2 = _arg_1.getName();
             _builder.append(_name_2, "\t");
@@ -114,7 +114,7 @@ public class EffectFullFunctionGenerator {
       _builder_1.append("public static void ");
       String _name_3 = pf.getName();
       _builder_1.append(_name_3, "");
-      _builder_1.append("(){");
+      _builder_1.append("(String[] args){");
       _builder_1.newLineIfNotEmpty();
       {
         FunctionBodyEffectFull _functionBody_3 = pf.getFunctionBody();
@@ -126,7 +126,7 @@ public class EffectFullFunctionGenerator {
           FunctionBodyEffectFull _functionBody_4 = pf.getFunctionBody();
           if ((_functionBody_4 instanceof CompositionFunctionBodyEffect)) {
             _builder_1.append("\t");
-            _builder_1.append("IOW");
+            _builder_1.append("IOW.lift(IOFunctions.ioUnit)");
             FunctionBodyEffectFull _functionBody_5 = pf.getFunctionBody();
             CharSequence _compile_3 = this.compile(((CompositionFunctionBodyEffect) _functionBody_5));
             _builder_1.append(_compile_3, "\t");
@@ -177,7 +177,7 @@ public class EffectFullFunctionGenerator {
       if (e instanceof PrimitivePrint) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(IOFunctions.stdoutPrint)");
+        _builder.append(".bind(IOFunctions::stdoutPrint)");
         return _builder.toString();
       }
     }
@@ -231,6 +231,10 @@ public class EffectFullFunctionGenerator {
     _builder.append("Pure.Data.*;");
     _builder.newLineIfNotEmpty();
     _builder.append("import fj.data.*;");
+    _builder.newLine();
+    _builder.append("import java.io.IOException;");
+    _builder.newLine();
+    _builder.append("import fj.Unit;");
     _builder.newLine();
     _builder.append("import ");
     String _basePackageJava_2 = FPMLGenerator.getBasePackageJava();

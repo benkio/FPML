@@ -25,6 +25,7 @@ class ValueGenerator {
 	    
 	    import «FPMLGenerator.basePackageJava»Pure.Data.*;
 	    import fj.data.*;
+	    import fj.P;
 	    import fj.P2;
 	    import fj.Unit;
 	    
@@ -56,10 +57,10 @@ class ValueGenerator {
 			StringType: return '''"«v.value»"'''
 			DataType: return '''new «typeGenerator.compileType(v)»(«compileAdtValue((v as DataValue).value, (v as DataValue).type.content)»)'''
 			SumValue: {
-				if (v.sumAdtElement1 == null) return '''«typeGenerator.adtTypeCompile((d as AdtType))».right(«compileAdtValue(v.sumAdtElement2, (d.adtElement2 as SumType).adtElement)»)'''
-				return '''«typeGenerator.adtTypeCompile((d as AdtType))».left(«compileAdtValue(v.sumAdtElement1, ((d as AdtType).adtElement1))»)'''
+				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, (d.adtElement2 as SumType).adtElement)»)'''
+				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as AdtType).adtElement1))»)'''
 			}
-			ProdValue: return '''p(«compileAdtValue(v.prodAdtElement1,d.adtElement1)»,«compileAdtValue(v.prodAdtElement2, (d.adtElement2 as ProdType).adtElement)»)'''			
+			ProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,d.adtElement1)»,«compileAdtValue(v.prodAdtElement2, (d.adtElement2 as ProdType).adtElement)»)'''			
 		}
 	}
 }

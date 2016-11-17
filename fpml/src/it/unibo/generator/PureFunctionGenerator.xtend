@@ -45,7 +45,7 @@ class PureFunctionGenerator {
 				result = compileCall(f, argName)
 			} 
 			PureFunctionDefinition: result = compileCall((initialElement as PureFunctionDefinition), argName)
-			Value: result = (initialElement as Value).name
+			Value: result = "Value." + (initialElement as Value).name + "()"
 		}
 		for (f : cfbp.functionChain){
 			result = compileCall( UtilitiesFunctions.getFunctionDefinitionFromPureFactor(f), result)

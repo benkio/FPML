@@ -30,7 +30,7 @@ public class TypeGenerator {
     if (!_matched) {
       if (vt instanceof IntegerType) {
         _matched=true;
-        return ((IntegerType)vt).getType();
+        return "Integer";
       }
     }
     if (!_matched) {
@@ -119,7 +119,7 @@ public class TypeGenerator {
       return _builder.toString();
     } else {
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("p(");
+      _builder_1.append("P2<");
       AdtType _adtElement1_1 = adtType.getAdtElement1();
       Object _adtTypeCompile_1 = this.adtTypeCompile(_adtElement1_1);
       _builder_1.append(_adtTypeCompile_1, "");
@@ -134,7 +134,7 @@ public class TypeGenerator {
         _xifexpression_1 = this.compile(((ProdType) _adtElement2_6));
       }
       _builder_1.append(_xifexpression_1, "");
-      _builder_1.append(")");
+      _builder_1.append(">");
       return _builder_1.toString();
     }
   }

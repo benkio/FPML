@@ -26,11 +26,11 @@ class FPMLValidator extends AbstractFPMLValidator {
 
     @Check
     def CompositionFunctionTypePure(CompositionFunctionBodyPure cfbp ) {
-    	var t = UtilitiesFunctions.getReturnType(UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp));
+    	var ValueType t = UtilitiesFunctions.getReturnType(UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp));
         
         for (CompositionFunctionBodyPureFactor pf : cfbp.getFunctionChain()){
-	        var t1 = UtilitiesFunctions.getArgType( UtilitiesFunctions.getFunctionDefinitionFromPureFactor(pf));
-	        if(!(t1.eClass == t.eClass))
+	        var ValueType t1 = UtilitiesFunctions.getArgType( UtilitiesFunctions.getFunctionDefinitionFromPureFactor(pf));
+	        if(!UtilitiesFunctions.checkValueTypeEquals(t, t1))
 	           error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN );
             t = UtilitiesFunctions.getReturnType(UtilitiesFunctions.getFunctionDefinitionFromPureFactor(pf))
         }
@@ -47,13 +47,13 @@ class FPMLValidator extends AbstractFPMLValidator {
 
     @Check
     def CompositionFunctionTypeEffect(CompositionFunctionBodyEffect cfbe ) {
-        var t = UtilitiesFunctions.getReturnType(UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe))
+        var Type t = UtilitiesFunctions.getReturnType(UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe))
         
         for (CompositionFunctionBodyEffectFullFactor ef : cfbe.getFunctionChain()) {
         	val efElement = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(ef)
             if (!(efElement instanceof Value)) {
-                val t1 = UtilitiesFunctions.getArgType(efElement); 
-                if(!(t1.eClass == t.eClass) && !(t1 instanceof UnitType))
+                val Type t1 = UtilitiesFunctions.getArgType(efElement); 
+                if(!UtilitiesFunctions.checkTypeEquals(t, t1))
                     error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
             }
             t = UtilitiesFunctions.getReturnType(efElement);

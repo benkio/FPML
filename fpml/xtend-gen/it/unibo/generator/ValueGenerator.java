@@ -42,6 +42,8 @@ public class ValueGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("import fj.data.*;");
     _builder.newLine();
+    _builder.append("import fj.P;");
+    _builder.newLine();
     _builder.append("import fj.P2;");
     _builder.newLine();
     _builder.append("import fj.Unit;");
@@ -169,9 +171,7 @@ public class ValueGenerator {
         boolean _equals = Objects.equal(_sumAdtElement1, null);
         if (_equals) {
           StringConcatenation _builder = new StringConcatenation();
-          Object _adtTypeCompile = this.typeGenerator.adtTypeCompile(((AdtType) d));
-          _builder.append(_adtTypeCompile, "");
-          _builder.append(".right(");
+          _builder.append("Either.right(");
           AdtValue _sumAdtElement2 = ((SumValue)v).getSumAdtElement2();
           EObject _adtElement2 = d.getAdtElement2();
           AdtType _adtElement = ((SumType) _adtElement2).getAdtElement();
@@ -181,9 +181,7 @@ public class ValueGenerator {
           return _builder.toString();
         }
         StringConcatenation _builder_1 = new StringConcatenation();
-        Object _adtTypeCompile_1 = this.typeGenerator.adtTypeCompile(((AdtType) d));
-        _builder_1.append(_adtTypeCompile_1, "");
-        _builder_1.append(".left(");
+        _builder_1.append("Either.left(");
         AdtValue _sumAdtElement1_1 = ((SumValue)v).getSumAdtElement1();
         AdtType _adtElement1 = ((AdtType) d).getAdtElement1();
         Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _adtElement1);
@@ -196,7 +194,7 @@ public class ValueGenerator {
       if (v instanceof ProdValue) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("p(");
+        _builder.append("P.p(");
         AdtValue _prodAdtElement1 = ((ProdValue)v).getProdAdtElement1();
         AdtType _adtElement1 = d.getAdtElement1();
         Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _adtElement1);

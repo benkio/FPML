@@ -19,7 +19,7 @@ class TypeGenerator {
 	def compile(ValueType vt) '''
 		«switch vt{
 			DataType: return vt.type.name
-			IntegerType: return vt.type
+			IntegerType: return 'Integer'
 			StringType: return vt.type
 		}»'''
 
@@ -45,7 +45,7 @@ class TypeGenerator {
 				if (adtType.adtElement2 instanceof SumType)
 					return '''Either<«adtType.adtElement1.adtTypeCompile», «if (adtType.adtElement2 instanceof SumType) (adtType.adtElement2 as SumType).compile else (adtType.adtElement2 as ProdType).compile»>'''
 				else
-					return '''p(«adtType.adtElement1.adtTypeCompile», «if (adtType.adtElement2 instanceof SumType) (adtType.adtElement2 as SumType).compile else (adtType.adtElement2 as ProdType).compile»)'''
+					return '''P2<«adtType.adtElement1.adtTypeCompile», «if (adtType.adtElement2 instanceof SumType) (adtType.adtElement2 as SumType).compile else (adtType.adtElement2 as ProdType).compile»>'''
 			}
 		}
 	}

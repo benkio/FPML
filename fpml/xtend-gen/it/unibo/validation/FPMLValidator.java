@@ -58,21 +58,19 @@ public class FPMLValidator extends AbstractFPMLValidator {
   @Check
   public void CompositionFunctionTypePure(final CompositionFunctionBodyPure cfbp) {
     InitialPureChainElement _firstFunctionDefinitionFromCompositionBodyPure = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
-    EObject t = UtilitiesFunctions.getReturnType(_firstFunctionDefinitionFromCompositionBodyPure);
+    ValueType t = UtilitiesFunctions.getReturnType(_firstFunctionDefinitionFromCompositionBodyPure);
     EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
     for (final CompositionFunctionBodyPureFactor pf : _functionChain) {
       {
         PureFunctionDefinition _functionDefinitionFromPureFactor = UtilitiesFunctions.getFunctionDefinitionFromPureFactor(pf);
-        EObject t1 = UtilitiesFunctions.getArgType(_functionDefinitionFromPureFactor);
-        EClass _eClass = t1.eClass();
-        EClass _eClass_1 = t.eClass();
-        boolean _equals = Objects.equal(_eClass, _eClass_1);
-        boolean _not = (!_equals);
+        ValueType t1 = UtilitiesFunctions.getArgType(_functionDefinitionFromPureFactor);
+        boolean _checkValueTypeEquals = UtilitiesFunctions.checkValueTypeEquals(t, t1);
+        boolean _not = (!_checkValueTypeEquals);
         if (_not) {
           this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
         }
         PureFunctionDefinition _functionDefinitionFromPureFactor_1 = UtilitiesFunctions.getFunctionDefinitionFromPureFactor(pf);
-        EObject _returnType = UtilitiesFunctions.getReturnType(_functionDefinitionFromPureFactor_1);
+        ValueType _returnType = UtilitiesFunctions.getReturnType(_functionDefinitionFromPureFactor_1);
         t = _returnType;
       }
     }
@@ -96,18 +94,20 @@ public class FPMLValidator extends AbstractFPMLValidator {
   @Check
   public void CompositionFunctionTypeEffect(final CompositionFunctionBodyEffect cfbe) {
     ChainElement _firstFunctionDefinitionFromCompositionBodyEffectFull = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe);
-    EObject t = UtilitiesFunctions.getReturnType(_firstFunctionDefinitionFromCompositionBodyEffectFull);
+    Type t = UtilitiesFunctions.getReturnType(_firstFunctionDefinitionFromCompositionBodyEffectFull);
     EList<CompositionFunctionBodyEffectFullFactor> _functionChain = cfbe.getFunctionChain();
     for (final CompositionFunctionBodyEffectFullFactor ef : _functionChain) {
       {
         final ChainElement efElement = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(ef);
         if ((!(efElement instanceof Value))) {
-          final EObject t1 = UtilitiesFunctions.getArgType(efElement);
-          if (((!Objects.equal(t1.eClass(), t.eClass())) && (!(t1 instanceof UnitType)))) {
+          final Type t1 = UtilitiesFunctions.getArgType(efElement);
+          boolean _checkTypeEquals = UtilitiesFunctions.checkTypeEquals(t, t1);
+          boolean _not = (!_checkTypeEquals);
+          if (_not) {
             this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
           }
         }
-        EObject _returnType = UtilitiesFunctions.getReturnType(efElement);
+        Type _returnType = UtilitiesFunctions.getReturnType(efElement);
         t = _returnType;
       }
     }
@@ -140,7 +140,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
       final PureFunctionDefinition rt2 = UtilitiesFunctions.getFunctionDefinitionFromPureFactor(_get);
       ValueType _returnType = pf.getReturnType();
       EObject _typeFromValueType = UtilitiesFunctions.getTypeFromValueType(_returnType);
-      EObject _returnType_1 = UtilitiesFunctions.getReturnType(rt2);
+      ValueType _returnType_1 = UtilitiesFunctions.getReturnType(rt2);
       boolean _equals = EcoreUtil.equals(_typeFromValueType, _returnType_1);
       boolean _not = (!_equals);
       if (_not) {
@@ -161,8 +161,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
       int _minus = (_size - 1);
       CompositionFunctionBodyEffectFullFactor _get = _functionChain.get(_minus);
       final ChainElement rt2 = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(_get);
-      EObject _returnType = UtilitiesFunctions.getReturnType(ef);
-      EObject _returnType_1 = UtilitiesFunctions.getReturnType(rt2);
+      Type _returnType = UtilitiesFunctions.getReturnType(ef);
+      Type _returnType_1 = UtilitiesFunctions.getReturnType(rt2);
       boolean _equals = EcoreUtil.equals(_returnType, _returnType_1);
       boolean _not = (!_equals);
       if (_not) {
@@ -189,7 +189,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
       EffectFullArgument _arg = ef.getArg();
       final Type t = _arg.getType();
       ChainElement _firstFunctionDefinitionFromCompositionBodyEffectFull = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(((CompositionFunctionBodyEffect) rt));
-      EObject _argType = UtilitiesFunctions.getArgType(_firstFunctionDefinitionFromCompositionBodyEffectFull);
+      Type _argType = UtilitiesFunctions.getArgType(_firstFunctionDefinitionFromCompositionBodyEffectFull);
       final Type t1 = ((Type) _argType);
       EClass _eClass = t.eClass();
       EClass _eClass_1 = t1.eClass();
@@ -220,7 +220,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
       final ChainElement rt2 = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(_get);
       UnitType _returnType = m.getReturnType();
       EClass _eClass = _returnType.eClass();
-      EObject _returnType_1 = UtilitiesFunctions.getReturnType(rt2);
+      Type _returnType_1 = UtilitiesFunctions.getReturnType(rt2);
       EClass _eClass_1 = _returnType_1.eClass();
       boolean _equals = Objects.equal(_eClass, _eClass_1);
       boolean _not = (!_equals);
