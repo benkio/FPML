@@ -5,6 +5,7 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.ValueType;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.PureFunctionTypeImpl#getArgType <em>Arg Type</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.PureFunctionTypeImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureFunctionTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,6 +52,16 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
    * @ordered
    */
   protected ValueType returnType;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected PureLambda value;
 
   /**
    * <!-- begin-user-doc -->
@@ -173,6 +185,54 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
    * <!-- end-user-doc -->
    * @generated
    */
+  public PureLambda getValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetValue(PureLambda newValue, NotificationChain msgs)
+  {
+    PureLambda oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_TYPE__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(PureLambda newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_TYPE__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_TYPE__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_TYPE__VALUE, newValue, newValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -182,6 +242,8 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
         return basicSetArgType(null, msgs);
       case FPMLPackage.PURE_FUNCTION_TYPE__RETURN_TYPE:
         return basicSetReturnType(null, msgs);
+      case FPMLPackage.PURE_FUNCTION_TYPE__VALUE:
+        return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -200,6 +262,8 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
         return getArgType();
       case FPMLPackage.PURE_FUNCTION_TYPE__RETURN_TYPE:
         return getReturnType();
+      case FPMLPackage.PURE_FUNCTION_TYPE__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -219,6 +283,9 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
         return;
       case FPMLPackage.PURE_FUNCTION_TYPE__RETURN_TYPE:
         setReturnType((ValueType)newValue);
+        return;
+      case FPMLPackage.PURE_FUNCTION_TYPE__VALUE:
+        setValue((PureLambda)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -240,6 +307,9 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
       case FPMLPackage.PURE_FUNCTION_TYPE__RETURN_TYPE:
         setReturnType((ValueType)null);
         return;
+      case FPMLPackage.PURE_FUNCTION_TYPE__VALUE:
+        setValue((PureLambda)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -258,6 +328,8 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
         return argType != null;
       case FPMLPackage.PURE_FUNCTION_TYPE__RETURN_TYPE:
         return returnType != null;
+      case FPMLPackage.PURE_FUNCTION_TYPE__VALUE:
+        return value != null;
     }
     return super.eIsSet(featureID);
   }

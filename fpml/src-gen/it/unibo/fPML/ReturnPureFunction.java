@@ -32,12 +32,12 @@ public interface ReturnPureFunction extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Lambda Function Body</em>' containment reference.
-   * @see #setLambdaFunctionBody(FunctionBodyPure)
+   * @see #setLambdaFunctionBody(PureLambda)
    * @see it.unibo.fPML.FPMLPackage#getReturnPureFunction_LambdaFunctionBody()
    * @model containment="true"
    * @generated
    */
-  FunctionBodyPure getLambdaFunctionBody();
+  PureLambda getLambdaFunctionBody();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.ReturnPureFunction#getLambdaFunctionBody <em>Lambda Function Body</em>}' containment reference.
@@ -47,6 +47,6 @@ public interface ReturnPureFunction extends EObject
    * @see #getLambdaFunctionBody()
    * @generated
    */
-  void setLambdaFunctionBody(FunctionBodyPure value);
+  void setLambdaFunctionBody(PureLambda value);
 
 } // ReturnPureFunction

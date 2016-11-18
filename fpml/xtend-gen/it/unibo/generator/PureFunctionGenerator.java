@@ -59,7 +59,7 @@ public class PureFunctionGenerator {
     _builder.newLine();
     _builder.append("public static ");
     ValueType _returnType = pf.getReturnType();
-    CharSequence _compile = this.typeGenerator.compile(_returnType);
+    Object _compile = this.typeGenerator.compile(_returnType);
     _builder.append(_compile, "");
     _builder.append(" ");
     String _name = pf.getName();
@@ -70,38 +70,39 @@ public class PureFunctionGenerator {
     _builder.append(_compile_1, "");
     _builder.append("){");
     _builder.newLineIfNotEmpty();
-    {
-      FunctionBodyPure _functionBody = pf.getFunctionBody();
-      if ((_functionBody instanceof EmptyFunctionBody)) {
-        _builder.append("\t");
-        _builder.append("throw new UnsupportedOperationException(\"TODO\");");
-        _builder.newLine();
-      } else {
-        FunctionBodyPure _functionBody_1 = pf.getFunctionBody();
-        if ((_functionBody_1 instanceof CompositionFunctionBodyPure)) {
-          _builder.append("\t");
-          _builder.append("return ");
-          FunctionBodyPure _functionBody_2 = pf.getFunctionBody();
-          Argument _arg_1 = pf.getArg();
-          String _name_1 = _arg_1.getName();
-          String _compile_2 = this.compile(((CompositionFunctionBodyPure) _functionBody_2), _name_1);
-          _builder.append(_compile_2, "\t");
-          _builder.append(";");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-    }
+    _builder.append("\t");
+    FunctionBodyPure _functionBody = pf.getFunctionBody();
+    Argument _arg_1 = pf.getArg();
+    String _name_1 = _arg_1.getName();
+    String _compile_2 = this.compile(_functionBody, _name_1, false);
+    _builder.append(_compile_2, "\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("}");
     return _builder;
   }
   
-  public String compile(final CompositionFunctionBodyPure cfbp, final String argName) {
+  public String compile(final FunctionBodyPure fbp, final String arg, final boolean outsideCalls) {
+    if ((fbp instanceof EmptyFunctionBody)) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("throw new UnsupportedOperationException(\"TODO\");");
+      return _builder.toString();
+    } else {
+      if ((fbp instanceof CompositionFunctionBodyPure)) {
+        String _compile = this.compile(((CompositionFunctionBodyPure) fbp), arg, outsideCalls);
+        String _plus = ("return " + _compile);
+        return (_plus + ";");
+      }
+    }
+    return null;
+  }
+  
+  public String compile(final CompositionFunctionBodyPure cfbp, final String argName, final boolean outsideCalls) {
     String result = "";
     final InitialPureChainElement initialElement = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
     boolean _matched = false;
     if (initialElement instanceof PureFunctionDefinition) {
       _matched=true;
-      String _compileCall = this.compileCall(((PureFunctionDefinition)initialElement), argName);
+      String _compileCall = this.compileCall(((PureFunctionDefinition)initialElement), argName, outsideCalls);
       result = _compileCall;
     }
     if (!_matched) {
@@ -116,38 +117,46 @@ public class PureFunctionGenerator {
     EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
     for (final CompositionFunctionBodyPureFactor f : _functionChain) {
       PureFunctionDefinition _functionDefinitionFromPureFactor = UtilitiesFunctions.getFunctionDefinitionFromPureFactor(f);
-      String _compileCall = this.compileCall(_functionDefinitionFromPureFactor, result);
+      String _compileCall = this.compileCall(_functionDefinitionFromPureFactor, result, outsideCalls);
       result = _compileCall;
     }
     return result;
   }
   
-  public String compileCall(final PureFunctionDefinition pf, final String args) {
+  public String compileCall(final PureFunctionDefinition pf, final String args, final boolean outsideCalls) {
     String _name = pf.getName();
     boolean _equals = Objects.equal(_name, null);
     if (_equals) {
-      return this.compilePrimitiveCall(pf, args);
+      return this.compilePrimitiveCall(pf, args, outsideCalls);
     }
-    String _name_1 = pf.getName();
-    String _plus = (_name_1 + "(");
-    String _plus_1 = (_plus + args);
-    return (_plus_1 + ")");
+    if ((!outsideCalls)) {
+      String _name_1 = pf.getName();
+      String _plus = (_name_1 + "(");
+      String _plus_1 = (_plus + args);
+      return (_plus_1 + ")");
+    } else {
+      String _name_2 = pf.getName();
+      String _plus_2 = ("PureFunctionDefinitions." + _name_2);
+      String _plus_3 = (_plus_2 + "(");
+      String _plus_4 = (_plus_3 + args);
+      return (_plus_4 + ")");
+    }
   }
   
-  public String compilePrimitiveCall(final PureFunctionDefinition purePrimitive, final String argName) {
+  public String compilePrimitiveCall(final PureFunctionDefinition purePrimitive, final String argName, final boolean outsideCalls) {
     boolean _matched = false;
     if (purePrimitive instanceof IntToString) {
       _matched=true;
       final PureFunctionDefinition f = FPMLFactory.eINSTANCE.createPureFunctionDefinition();
       f.setName("Integer.toString");
-      return this.compileCall(f, argName);
+      return this.compileCall(f, argName, outsideCalls);
     }
     if (!_matched) {
       if (purePrimitive instanceof IntPow) {
         _matched=true;
         final PureFunctionDefinition f = FPMLFactory.eINSTANCE.createPureFunctionDefinition();
         f.setName("(int) Math.pow");
-        return this.compileCall(f, (argName + ", 2"));
+        return this.compileCall(f, (argName + ", 2"), outsideCalls);
       }
     }
     return null;

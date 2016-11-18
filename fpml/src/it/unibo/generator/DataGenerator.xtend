@@ -14,6 +14,7 @@ class DataGenerator {
 	    
 	    import fj.data.*;
 	    import fj.P2;
+	    import fj.F;
 	    import fj.Unit;
 	    
 	    public class «d.name» {

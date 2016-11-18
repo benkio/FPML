@@ -3,10 +3,10 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.Argument;
+import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.FunctionBodyPure;
-import it.unibo.fPML.FunctionType;
+import it.unibo.fPML.FunctionBodyEffectFull;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -15,22 +15,23 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Function Type</b></em>'.
+ * An implementation of the model object '<em><b>Effect Full Lambda</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.FunctionTypeImpl#getArg <em>Arg</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.FunctionTypeImpl#getFunctionBody <em>Function Body</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullLambdaImpl#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullLambdaImpl#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
+public class EffectFullLambdaImpl extends MinimalEObjectImpl.Container implements EffectFullLambda
 {
   /**
    * The cached value of the '{@link #getArg() <em>Arg</em>}' containment reference.
@@ -40,7 +41,7 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
    * @generated
    * @ordered
    */
-  protected Argument arg;
+  protected EffectFullArgument arg;
 
   /**
    * The cached value of the '{@link #getFunctionBody() <em>Function Body</em>}' containment reference.
@@ -50,14 +51,14 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
    * @generated
    * @ordered
    */
-  protected FunctionBodyPure functionBody;
+  protected FunctionBodyEffectFull functionBody;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FunctionTypeImpl()
+  protected EffectFullLambdaImpl()
   {
     super();
   }
@@ -70,7 +71,7 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.FUNCTION_TYPE;
+    return FPMLPackage.Literals.EFFECT_FULL_LAMBDA;
   }
 
   /**
@@ -78,7 +79,7 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
    * <!-- end-user-doc -->
    * @generated
    */
-  public Argument getArg()
+  public EffectFullArgument getArg()
   {
     return arg;
   }
@@ -88,13 +89,13 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArg(Argument newArg, NotificationChain msgs)
+  public NotificationChain basicSetArg(EffectFullArgument newArg, NotificationChain msgs)
   {
-    Argument oldArg = arg;
+    EffectFullArgument oldArg = arg;
     arg = newArg;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.FUNCTION_TYPE__ARG, oldArg, newArg);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_LAMBDA__ARG, oldArg, newArg);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -105,20 +106,20 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArg(Argument newArg)
+  public void setArg(EffectFullArgument newArg)
   {
     if (newArg != arg)
     {
       NotificationChain msgs = null;
       if (arg != null)
-        msgs = ((InternalEObject)arg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.FUNCTION_TYPE__ARG, null, msgs);
+        msgs = ((InternalEObject)arg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_LAMBDA__ARG, null, msgs);
       if (newArg != null)
-        msgs = ((InternalEObject)newArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.FUNCTION_TYPE__ARG, null, msgs);
+        msgs = ((InternalEObject)newArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_LAMBDA__ARG, null, msgs);
       msgs = basicSetArg(newArg, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.FUNCTION_TYPE__ARG, newArg, newArg));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_LAMBDA__ARG, newArg, newArg));
   }
 
   /**
@@ -126,7 +127,7 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
    * <!-- end-user-doc -->
    * @generated
    */
-  public FunctionBodyPure getFunctionBody()
+  public FunctionBodyEffectFull getFunctionBody()
   {
     return functionBody;
   }
@@ -136,13 +137,13 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetFunctionBody(FunctionBodyPure newFunctionBody, NotificationChain msgs)
+  public NotificationChain basicSetFunctionBody(FunctionBodyEffectFull newFunctionBody, NotificationChain msgs)
   {
-    FunctionBodyPure oldFunctionBody = functionBody;
+    FunctionBodyEffectFull oldFunctionBody = functionBody;
     functionBody = newFunctionBody;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.FUNCTION_TYPE__FUNCTION_BODY, oldFunctionBody, newFunctionBody);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_LAMBDA__FUNCTION_BODY, oldFunctionBody, newFunctionBody);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -153,20 +154,20 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setFunctionBody(FunctionBodyPure newFunctionBody)
+  public void setFunctionBody(FunctionBodyEffectFull newFunctionBody)
   {
     if (newFunctionBody != functionBody)
     {
       NotificationChain msgs = null;
       if (functionBody != null)
-        msgs = ((InternalEObject)functionBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.FUNCTION_TYPE__FUNCTION_BODY, null, msgs);
+        msgs = ((InternalEObject)functionBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_LAMBDA__FUNCTION_BODY, null, msgs);
       if (newFunctionBody != null)
-        msgs = ((InternalEObject)newFunctionBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.FUNCTION_TYPE__FUNCTION_BODY, null, msgs);
+        msgs = ((InternalEObject)newFunctionBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_LAMBDA__FUNCTION_BODY, null, msgs);
       msgs = basicSetFunctionBody(newFunctionBody, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.FUNCTION_TYPE__FUNCTION_BODY, newFunctionBody, newFunctionBody));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_LAMBDA__FUNCTION_BODY, newFunctionBody, newFunctionBody));
   }
 
   /**
@@ -179,9 +180,9 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
   {
     switch (featureID)
     {
-      case FPMLPackage.FUNCTION_TYPE__ARG:
+      case FPMLPackage.EFFECT_FULL_LAMBDA__ARG:
         return basicSetArg(null, msgs);
-      case FPMLPackage.FUNCTION_TYPE__FUNCTION_BODY:
+      case FPMLPackage.EFFECT_FULL_LAMBDA__FUNCTION_BODY:
         return basicSetFunctionBody(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -197,9 +198,9 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
   {
     switch (featureID)
     {
-      case FPMLPackage.FUNCTION_TYPE__ARG:
+      case FPMLPackage.EFFECT_FULL_LAMBDA__ARG:
         return getArg();
-      case FPMLPackage.FUNCTION_TYPE__FUNCTION_BODY:
+      case FPMLPackage.EFFECT_FULL_LAMBDA__FUNCTION_BODY:
         return getFunctionBody();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -215,11 +216,11 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
   {
     switch (featureID)
     {
-      case FPMLPackage.FUNCTION_TYPE__ARG:
-        setArg((Argument)newValue);
+      case FPMLPackage.EFFECT_FULL_LAMBDA__ARG:
+        setArg((EffectFullArgument)newValue);
         return;
-      case FPMLPackage.FUNCTION_TYPE__FUNCTION_BODY:
-        setFunctionBody((FunctionBodyPure)newValue);
+      case FPMLPackage.EFFECT_FULL_LAMBDA__FUNCTION_BODY:
+        setFunctionBody((FunctionBodyEffectFull)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,11 +236,11 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
   {
     switch (featureID)
     {
-      case FPMLPackage.FUNCTION_TYPE__ARG:
-        setArg((Argument)null);
+      case FPMLPackage.EFFECT_FULL_LAMBDA__ARG:
+        setArg((EffectFullArgument)null);
         return;
-      case FPMLPackage.FUNCTION_TYPE__FUNCTION_BODY:
-        setFunctionBody((FunctionBodyPure)null);
+      case FPMLPackage.EFFECT_FULL_LAMBDA__FUNCTION_BODY:
+        setFunctionBody((FunctionBodyEffectFull)null);
         return;
     }
     super.eUnset(featureID);
@@ -255,12 +256,12 @@ public class FunctionTypeImpl extends ExpressionImpl implements FunctionType
   {
     switch (featureID)
     {
-      case FPMLPackage.FUNCTION_TYPE__ARG:
+      case FPMLPackage.EFFECT_FULL_LAMBDA__ARG:
         return arg != null;
-      case FPMLPackage.FUNCTION_TYPE__FUNCTION_BODY:
+      case FPMLPackage.EFFECT_FULL_LAMBDA__FUNCTION_BODY:
         return functionBody != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //FunctionTypeImpl
+} //EffectFullLambdaImpl

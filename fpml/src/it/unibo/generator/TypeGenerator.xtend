@@ -13,6 +13,7 @@ import it.unibo.fPML.AdtType
 import it.unibo.fPML.SumType
 import it.unibo.fPML.ProdType
 import it.unibo.fPML.Expression
+import it.unibo.fPML.PureFunctionType
 
 class TypeGenerator {
 	
@@ -21,6 +22,7 @@ class TypeGenerator {
 			DataType: return vt.type.name
 			IntegerType: return 'Integer'
 			StringType: return vt.type
+			PureFunctionType: return '''F<«vt.argType.compile»,«vt.returnType.compile»>'''
 		}»'''
 
 	def compile(Argument arg) '''«arg.type.compile» «arg.name»'''
@@ -35,7 +37,7 @@ class TypeGenerator {
 	}
 	
 	def compile(IOType iot) {
-		return '''IO<«compile(iot.type)»>'''
+		return '''IOW<«compile(iot.type)»>'''
 	}
 	
 	def adtTypeCompile(AdtType adtType) {

@@ -95,7 +95,7 @@ public class EffectFullFunctionGenerator {
           FunctionBodyEffectFull _functionBody_1 = pf.getFunctionBody();
           if ((_functionBody_1 instanceof CompositionFunctionBodyEffect)) {
             _builder.append("\t");
-            _builder.append("IOW.lift(IOFunctions.unit(");
+            _builder.append("return IOW.lift(IOFunctions.unit(");
             EffectFullArgument _arg_1 = pf.getArg();
             String _name_2 = _arg_1.getName();
             _builder.append(_name_2, "\t");
@@ -209,6 +209,17 @@ public class EffectFullFunctionGenerator {
         String _name = ((Value) e).getName();
         _builder.append(_name, "");
         _builder.append("()))");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullArgument) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".append(");
+        String _name = ((EffectFullArgument) e).getName();
+        _builder.append(_name, "");
+        _builder.append(")");
         return _builder.toString();
       }
     }

@@ -3,25 +3,26 @@
  */
 package it.unibo.fPML;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Function Type</b></em>'.
+ * A representation of the model object '<em><b>Effect Full Lambda</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.FunctionType#getArg <em>Arg</em>}</li>
- *   <li>{@link it.unibo.fPML.FunctionType#getFunctionBody <em>Function Body</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullLambda#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullLambda#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getFunctionType()
+ * @see it.unibo.fPML.FPMLPackage#getEffectFullLambda()
  * @model
  * @generated
  */
-public interface FunctionType extends Expression, AdtValue
+public interface EffectFullLambda extends EObject
 {
   /**
    * Returns the value of the '<em><b>Arg</b></em>' containment reference.
@@ -32,22 +33,22 @@ public interface FunctionType extends Expression, AdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arg</em>' containment reference.
-   * @see #setArg(Argument)
-   * @see it.unibo.fPML.FPMLPackage#getFunctionType_Arg()
+   * @see #setArg(EffectFullArgument)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullLambda_Arg()
    * @model containment="true"
    * @generated
    */
-  Argument getArg();
+  EffectFullArgument getArg();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.FunctionType#getArg <em>Arg</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullLambda#getArg <em>Arg</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Arg</em>' containment reference.
    * @see #getArg()
    * @generated
    */
-  void setArg(Argument value);
+  void setArg(EffectFullArgument value);
 
   /**
    * Returns the value of the '<em><b>Function Body</b></em>' containment reference.
@@ -58,21 +59,21 @@ public interface FunctionType extends Expression, AdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Function Body</em>' containment reference.
-   * @see #setFunctionBody(FunctionBodyPure)
-   * @see it.unibo.fPML.FPMLPackage#getFunctionType_FunctionBody()
+   * @see #setFunctionBody(FunctionBodyEffectFull)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullLambda_FunctionBody()
    * @model containment="true"
    * @generated
    */
-  FunctionBodyPure getFunctionBody();
+  FunctionBodyEffectFull getFunctionBody();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.FunctionType#getFunctionBody <em>Function Body</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullLambda#getFunctionBody <em>Function Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Function Body</em>' containment reference.
    * @see #getFunctionBody()
    * @generated
    */
-  void setFunctionBody(FunctionBodyPure value);
+  void setFunctionBody(FunctionBodyEffectFull value);
 
-} // FunctionType
+} // EffectFullLambda

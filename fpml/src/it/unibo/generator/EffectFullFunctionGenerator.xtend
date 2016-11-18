@@ -15,6 +15,7 @@ import it.unibo.fPML.IntPow
 import it.unibo.fPML.PrimitivePrint
 import it.unibo.fPML.MainFunc
 import it.unibo.fPML.FPMLFactory
+import it.unibo.fPML.EffectFullArgument
 
 class EffectFullFunctionGenerator {
 	
@@ -40,7 +41,7 @@ class EffectFullFunctionGenerator {
 				«IF pf.functionBody instanceof EmptyFunctionBody»
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
-				IOW.lift(IOFunctions.unit(«pf.arg.name»))«(pf.functionBody as CompositionFunctionBodyEffect).compile»;
+				return IOW.lift(IOFunctions.unit(«pf.arg.name»))«(pf.functionBody as CompositionFunctionBodyEffect).compile»;
 				«ENDIF»
 			}'''
 		}else {
@@ -73,6 +74,7 @@ class EffectFullFunctionGenerator {
 			PrimitivePrint: return '''.bind(IOFunctions::stdoutPrint)'''
 			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
 			Value: return '''.append(IOFunctions.unit(Value.«(e as Value).name»()))'''
+      		EffectFullArgument: return '''.append(«(e as EffectFullArgument).name»)'''
 			EffectFullFunctionDefinition: return '''.bind(EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
 		}
 	}

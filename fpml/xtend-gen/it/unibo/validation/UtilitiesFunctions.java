@@ -16,6 +16,7 @@ import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
+import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.IntPow;
@@ -26,15 +27,20 @@ import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.ReturnPureFunction;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
 import it.unibo.fPML.SumValue;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
+import it.unibo.fPML.ValueRef;
 import it.unibo.fPML.ValueType;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Created by benkio on 11/3/16.
@@ -45,7 +51,7 @@ public class UtilitiesFunctions {
     final ValueType t = pf.getReturnType();
     boolean _equals = Objects.equal(t, null);
     if (_equals) {
-      return UtilitiesFunctions.getReturnTypePurePrimitive(pf);
+      return UtilitiesFunctions.getReturnTypePurePrimitiveOrLambda(pf);
     }
     return t;
   }
@@ -85,6 +91,12 @@ public class UtilitiesFunctions {
         return UtilitiesFunctions.getTypeFromExpression(_value);
       }
     }
+    if (!_matched) {
+      if (f1 instanceof EffectFullArgument) {
+        _matched=true;
+        return ((EffectFullArgument)f1).getType();
+      }
+    }
     return null;
   }
   
@@ -112,7 +124,8 @@ public class UtilitiesFunctions {
     }
   }
   
-  public static ValueType getReturnTypePurePrimitive(final PureFunctionDefinition pf) {
+  public static ValueType getReturnTypePurePrimitiveOrLambda(final PureFunctionDefinition pf) {
+    Object _switchResult = null;
     boolean _matched = false;
     if (pf instanceof IntToString) {
       _matched=true;
@@ -124,7 +137,42 @@ public class UtilitiesFunctions {
         return FPMLFactory.eINSTANCE.createIntegerType();
       }
     }
-    return null;
+    if (!_matched) {
+      Object _xifexpression = null;
+      FunctionBodyPure _functionBody = pf.getFunctionBody();
+      if ((_functionBody instanceof CompositionFunctionBodyPure)) {
+        _xifexpression = null;
+      }
+      _switchResult = _xifexpression;
+    }
+    return ((ValueType)_switchResult);
+  }
+  
+  public static ValueType getReturnTypeCompositionFunctionBodyPure(final CompositionFunctionBodyPure cfbp) {
+    try {
+      ReturnPureFunction _returnFunction = cfbp.getReturnFunction();
+      boolean _equals = Objects.equal(_returnFunction, null);
+      if (_equals) {
+        EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
+        CompositionFunctionBodyPureFactor _last = IterableExtensions.<CompositionFunctionBodyPureFactor>last(_functionChain);
+        PureFunctionDefinition _functionDefinitionFromPureFactor = UtilitiesFunctions.getFunctionDefinitionFromPureFactor(_last);
+        return UtilitiesFunctions.getReturnType(_functionDefinitionFromPureFactor);
+      } else {
+        ReturnPureFunction _returnFunction_1 = cfbp.getReturnFunction();
+        PureLambda _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
+        FunctionBodyPure _functionBody = _lambdaFunctionBody.getFunctionBody();
+        if ((_functionBody instanceof CompositionFunctionBodyPure)) {
+          ReturnPureFunction _returnFunction_2 = cfbp.getReturnFunction();
+          PureLambda _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
+          FunctionBodyPure _functionBody_1 = _lambdaFunctionBody_1.getFunctionBody();
+          return UtilitiesFunctions.getReturnTypeCompositionFunctionBodyPure(((CompositionFunctionBodyPure) _functionBody_1));
+        } else {
+          throw new Exception("this cannot happen during the typechecking of a compositionFunction body pure");
+        }
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public static Type getReturnTypeEffectFullPrimitive(final EffectFullFunctionDefinition ef) {
@@ -264,6 +312,12 @@ public class UtilitiesFunctions {
         return ((DataType) e);
       }
     }
+    if (!_matched) {
+      if (e instanceof PureFunctionType) {
+        _matched=true;
+        return ((PureFunctionType) e);
+      }
+    }
     return null;
   }
   
@@ -272,18 +326,30 @@ public class UtilitiesFunctions {
     boolean _matched = false;
     if (type instanceof IntegerType) {
       _matched=true;
-      return (value instanceof IntegerType);
+      return ((value instanceof IntegerType) || ((value instanceof ValueRef) && 
+        UtilitiesFunctions.checkValueType(((ValueRef) value).getValue(), type)));
     }
     if (!_matched) {
       if (type instanceof StringType) {
         _matched=true;
-        return (value instanceof StringType);
+        return ((value instanceof StringType) || ((value instanceof ValueRef) && 
+          UtilitiesFunctions.checkValueType(((ValueRef) value).getValue(), type)));
       }
     }
     if (!_matched) {
       if (type instanceof DataType) {
         _matched=true;
-        return ((value instanceof DataValue) && UtilitiesFunctions.typeCheckDataAndValue(((DataValue) value).getValue(), ((DataType) type).getType().getContent()));
+        return ((value instanceof DataValue) && 
+          UtilitiesFunctions.typeCheckDataAndValue(((DataValue) value).getValue(), ((DataType) type).getType().getContent()));
+      }
+    }
+    if (!_matched) {
+      if (type instanceof PureFunctionType) {
+        _matched=true;
+        return ((((value instanceof PureFunctionType) && 
+          (((PureFunctionType) value).getValue().getFunctionBody() instanceof CompositionFunctionBodyPure)) && 
+          UtilitiesFunctions.checkValueTypeEquals(((PureFunctionType) value).getValue().getArg().getType(), ((PureFunctionType)type).getArgType())) && 
+          UtilitiesFunctions.checkValueTypeEquals(UtilitiesFunctions.getReturnTypeCompositionFunctionBodyPure(((CompositionFunctionBodyPure) ((PureFunctionType) value).getValue().getFunctionBody())), ((PureFunctionType)type).getReturnType()));
       }
     }
     if (!_matched) {
@@ -300,11 +366,55 @@ public class UtilitiesFunctions {
         }
       }
       if (!_matched_1) {
+        if (value instanceof ValueRef) {
+          _matched_1=true;
+          Value _value = ((ValueRef) value).getValue();
+          return UtilitiesFunctions.checkValueType(_value, type);
+        }
+      }
+      if (!_matched_1) {
         _switchResult_1 = false;
       }
       _switchResult = _switchResult_1;
     }
     return _switchResult;
+  }
+  
+  public static boolean checkValueType(final Value v, final AdtType adtt) {
+    boolean _xblockexpression = false;
+    {
+      Expression _value = v.getValue();
+      final Type valueType = UtilitiesFunctions.getTypeFromExpression(_value);
+      boolean _switchResult = false;
+      boolean _matched = false;
+      if (adtt instanceof IntegerType) {
+        _matched=true;
+        return (valueType instanceof IntegerType);
+      }
+      if (!_matched) {
+        if (adtt instanceof StringType) {
+          _matched=true;
+          return (valueType instanceof StringType);
+        }
+      }
+      if (!_matched) {
+        if (adtt instanceof DataType) {
+          _matched=true;
+          return ((valueType instanceof DataType) && ((DataType)adtt).getType().getName().equals(((DataType) valueType).getType().getName()));
+        }
+      }
+      if (!_matched) {
+        if (adtt instanceof PureFunctionType) {
+          _matched=true;
+          _switchResult = (((valueType instanceof PureFunctionType) && UtilitiesFunctions.checkValueTypeEquals(((PureFunctionType)adtt).getArgType(), ((PureFunctionType) valueType).getArgType())) && UtilitiesFunctions.checkValueTypeEquals(((PureFunctionType)adtt).getReturnType(), ((PureFunctionType) valueType).getReturnType()));
+        }
+      }
+      if (!_matched) {
+        _switchResult = false;
+      }
+      _xblockexpression = _switchResult;
+    }
+    return _xblockexpression;
   }
   
   public static boolean checkValueTypeEquals(final ValueType v, final ValueType v2) {

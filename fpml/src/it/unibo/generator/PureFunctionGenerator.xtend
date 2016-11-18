@@ -9,6 +9,7 @@ import it.unibo.fPML.IntToString
 import it.unibo.fPML.IntPow
 import it.unibo.validation.UtilitiesFunctions
 import it.unibo.fPML.FPMLFactory
+import it.unibo.fPML.FunctionBodyPure
 
 class PureFunctionGenerator {
 	
@@ -29,42 +30,48 @@ class PureFunctionGenerator {
 	def compile(PureFunctionDefinition pf) '''
 
 		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
-			«IF pf.functionBody instanceof EmptyFunctionBody»
-				throw new UnsupportedOperationException("TODO");
-			«ELSEIF pf.functionBody instanceof CompositionFunctionBodyPure»
-				return «compile((pf.functionBody as CompositionFunctionBodyPure), pf.arg.name)»;
-			«ENDIF»
+			«compile(pf.functionBody, pf.arg.name, false)»
 		}'''
 
-	def compile(CompositionFunctionBodyPure cfbp, String argName) {
+	def compile(FunctionBodyPure fbp, String arg, boolean outsideCalls){
+		if (fbp instanceof EmptyFunctionBody)
+			return '''throw new UnsupportedOperationException("TODO");'''
+		else if (fbp instanceof CompositionFunctionBodyPure)
+			return 'return ' + compile((fbp as CompositionFunctionBodyPure), arg, outsideCalls) + ';'
+	}
+
+	def compile(CompositionFunctionBodyPure cfbp, String argName, boolean outsideCalls) {
 		var result = ""
 		val initialElement = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
 		switch initialElement {
-			PureFunctionDefinition: result = compileCall(initialElement, argName)
+			PureFunctionDefinition: result = compileCall(initialElement, argName, outsideCalls)
 			Value: result = "Value." + (initialElement as Value).name + "()"
 		}
 		for (f : cfbp.functionChain){
-			result = compileCall( UtilitiesFunctions.getFunctionDefinitionFromPureFactor(f), result)
+			result = compileCall( UtilitiesFunctions.getFunctionDefinitionFromPureFactor(f), result, outsideCalls)
 		}
 		return result
 	} 
 	
-	def String compileCall(PureFunctionDefinition pf, String args) {
-		if (pf.name == null ) return compilePrimitiveCall(pf, args)
-		return pf.name + "(" + args + ")"
+	def String compileCall(PureFunctionDefinition pf, String args, boolean outsideCalls) {
+		if (pf.name == null ) return compilePrimitiveCall(pf, args, outsideCalls)
+		if (!outsideCalls)
+			return pf.name + "(" + args + ")"
+		else 
+			return "PureFunctionDefinitions." + pf.name + "(" + args + ")"
 	}
 	
-	def compilePrimitiveCall(PureFunctionDefinition purePrimitive, String argName){
+	def compilePrimitiveCall(PureFunctionDefinition purePrimitive, String argName, boolean outsideCalls){
 		switch purePrimitive {
 			IntToString: {
 				val f = FPMLFactory.eINSTANCE.createPureFunctionDefinition()
 				f.name = "Integer.toString"
-				return compileCall(f, argName)
+				return compileCall(f, argName, outsideCalls)
 			}
       		IntPow: {
 				val f = FPMLFactory.eINSTANCE.createPureFunctionDefinition()
 				f.name = "(int) Math.pow"
-				return compileCall(f, argName + ", 2")
+				return compileCall(f, argName + ", 2", outsideCalls)
 			}
 		}
 	}

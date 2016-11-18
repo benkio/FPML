@@ -9,6 +9,7 @@ import it.unibo.fPML.Expression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.ProdType;
+import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
 import it.unibo.fPML.Type;
@@ -19,7 +20,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class TypeGenerator {
-  public CharSequence compile(final ValueType vt) {
+  public Object compile(final ValueType vt) {
     StringConcatenation _builder = new StringConcatenation();
     boolean _matched = false;
     if (vt instanceof DataType) {
@@ -39,13 +40,29 @@ public class TypeGenerator {
         return ((StringType)vt).getType();
       }
     }
+    if (!_matched) {
+      if (vt instanceof PureFunctionType) {
+        _matched=true;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("F<");
+        ValueType _argType = ((PureFunctionType)vt).getArgType();
+        Object _compile = this.compile(_argType);
+        _builder_1.append(_compile, "");
+        _builder_1.append(",");
+        ValueType _returnType = ((PureFunctionType)vt).getReturnType();
+        Object _compile_1 = this.compile(_returnType);
+        _builder_1.append(_compile_1, "");
+        _builder_1.append(">");
+        return _builder_1.toString();
+      }
+    }
     return _builder;
   }
   
   public CharSequence compile(final Argument arg) {
     StringConcatenation _builder = new StringConcatenation();
     ValueType _type = arg.getType();
-    CharSequence _compile = this.compile(_type);
+    Object _compile = this.compile(_type);
     _builder.append(_compile, "");
     _builder.append(" ");
     String _name = arg.getName();
@@ -56,7 +73,7 @@ public class TypeGenerator {
   public CharSequence compile(final EffectFullArgument arg) {
     StringConcatenation _builder = new StringConcatenation();
     Type _type = arg.getType();
-    CharSequence _compile = this.compile(_type);
+    Object _compile = this.compile(_type);
     _builder.append(_compile, "");
     _builder.append(" ");
     String _name = arg.getName();
@@ -64,7 +81,7 @@ public class TypeGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final Type t) {
+  public Object compile(final Type t) {
     boolean _matched = false;
     if (t instanceof UnitType) {
       _matched=true;
@@ -83,9 +100,9 @@ public class TypeGenerator {
   
   public String compile(final IOType iot) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("IO<");
+    _builder.append("IOW<");
     Type _type = iot.getType();
-    CharSequence _compile = this.compile(_type);
+    Object _compile = this.compile(_type);
     _builder.append(_compile, "");
     _builder.append(">");
     return _builder.toString();

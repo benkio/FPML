@@ -261,9 +261,19 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseFunctionType(FunctionType object)
+      public Adapter caseValueRef(ValueRef object)
       {
-        return createFunctionTypeAdapter();
+        return createValueRefAdapter();
+      }
+      @Override
+      public Adapter casePureLambda(PureLambda object)
+      {
+        return createPureLambdaAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullLambda(EffectFullLambda object)
+      {
+        return createEffectFullLambdaAdapter();
       }
       @Override
       public Adapter caseAdtValue(AdtValue object)
@@ -878,16 +888,46 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.FunctionType <em>Function Type</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ValueRef <em>Value Ref</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.FunctionType
+   * @see it.unibo.fPML.ValueRef
    * @generated
    */
-  public Adapter createFunctionTypeAdapter()
+  public Adapter createValueRefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureLambda <em>Pure Lambda</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PureLambda
+   * @generated
+   */
+  public Adapter createPureLambdaAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullLambda <em>Effect Full Lambda</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullLambda
+   * @generated
+   */
+  public Adapter createEffectFullLambdaAdapter()
   {
     return null;
   }

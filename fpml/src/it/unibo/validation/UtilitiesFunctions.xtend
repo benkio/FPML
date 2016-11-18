@@ -17,7 +17,7 @@ class UtilitiesFunctions {
 	def static ValueType getReturnType(PureFunctionDefinition pf){
 		val t = pf.getReturnType()
 		if (t == null)
-			return getReturnTypePurePrimitive(pf)
+			return UtilitiesFunctions.getReturnTypePurePrimitiveOrLambda(pf)
 		return t
 	}
 	
@@ -38,6 +38,7 @@ class UtilitiesFunctions {
             EffectFullFunctionDefinition : return getReturnType(f1)
             PureFunctionDefinition: return getReturnType(f1)
             Value: return getTypeFromExpression(f1.value)
+            EffectFullArgument: return f1.type
         }
     }
 
@@ -52,11 +53,25 @@ class UtilitiesFunctions {
         }
     }
     
-    def static ValueType getReturnTypePurePrimitive(PureFunctionDefinition pf){
+    def static ValueType getReturnTypePurePrimitiveOrLambda(PureFunctionDefinition pf){
     	switch pf {
     		IntToString: return FPMLFactory.eINSTANCE.createStringType()
-        IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
+        	IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
+        	default: {
+        		if (pf.functionBody instanceof CompositionFunctionBodyPure){
+        			
+        		}
+        	}
     	}
+    }
+    
+    def static ValueType getReturnTypeCompositionFunctionBodyPure(CompositionFunctionBodyPure cfbp) {
+		if (cfbp.returnFunction == null)
+			return getReturnType(getFunctionDefinitionFromPureFactor(cfbp.functionChain.last))			
+		else if (cfbp.returnFunction.lambdaFunctionBody.functionBody instanceof CompositionFunctionBodyPure)
+			return getReturnTypeCompositionFunctionBodyPure((cfbp.returnFunction.lambdaFunctionBody.functionBody as CompositionFunctionBodyPure))
+		else
+			throw new Exception("this cannot happen during the typechecking of a compositionFunction body pure")	
     }
     
     def static Type getReturnTypeEffectFullPrimitive(EffectFullFunctionDefinition ef){
@@ -115,7 +130,7 @@ class UtilitiesFunctions {
 	def static ValueType getArgTypePurePrimitive(PureFunctionDefinition pf){
     	switch pf {
     		IntToString: return FPMLFactory.eINSTANCE.createIntegerType()
-        IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
+        	IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
     	}
     }
     
@@ -135,6 +150,7 @@ class UtilitiesFunctions {
     		StringType: return (e as StringType)
     		UnitType: return (e as UnitType)
     		DataType: return (e as DataType)
+        	PureFunctionType: return (e as PureFunctionType) 
     	}
     }
 
@@ -144,9 +160,20 @@ class UtilitiesFunctions {
 
 	def static boolean typeCheckDataAndValue(AdtValue value, AdtType type) {
 		switch type {
-			IntegerType: return value instanceof IntegerType
-			StringType: return value instanceof StringType
-			DataType: return value instanceof DataValue && typeCheckDataAndValue((value as DataValue).value, (type as DataType).type.content) 
+			IntegerType: return value instanceof IntegerType || 
+						       (value instanceof ValueRef && 
+						       	checkValueType((value as ValueRef).value, type)
+						       )
+			StringType: return value instanceof StringType ||
+							  (value instanceof ValueRef && 
+							   checkValueType((value as ValueRef).value, type)
+							  )
+			DataType: return value instanceof DataValue && 
+							 typeCheckDataAndValue((value as DataValue).value, (type as DataType).type.content)
+			PureFunctionType: return value instanceof PureFunctionType && 
+									(value as PureFunctionType).value.functionBody instanceof CompositionFunctionBodyPure &&
+									 checkValueTypeEquals((value as PureFunctionType).value.arg.type, type.argType) && 
+									 checkValueTypeEquals(getReturnTypeCompositionFunctionBodyPure((value as PureFunctionType).value.functionBody as CompositionFunctionBodyPure), type.returnType) 
 			default: {
 				switch value{
 					SumValue: return (type.adtElement2 instanceof SumType) && 
@@ -155,9 +182,21 @@ class UtilitiesFunctions {
 					ProdValue: return (type.adtElement2 instanceof ProdType) && 
 									(   (typeCheckDataAndValue(value.prodAdtElement1, type.adtElement1)).booleanValue 
 									&& (typeCheckDataAndValue(value.prodAdtElement2, (type.adtElement2 as ProdType).adtElement)).booleanValue)
+          			ValueRef: return checkValueType((value as ValueRef).value, type)
 					default: false
 				}
 			}
+		}
+	}
+	
+	def static boolean checkValueType(Value v, AdtType adtt) {
+		val valueType = getTypeFromExpression(v.value)
+		switch adtt {
+			IntegerType: return valueType instanceof IntegerType
+			StringType: return valueType instanceof StringType
+			DataType: return valueType instanceof DataType && adtt.type.name.equals((valueType as DataType).type.name) 
+			PureFunctionType: valueType instanceof PureFunctionType && checkValueTypeEquals(adtt.argType, (valueType as PureFunctionType).argType) && checkValueTypeEquals(adtt.returnType, (valueType as PureFunctionType).returnType)
+			default: false
 		}
 	}
 	

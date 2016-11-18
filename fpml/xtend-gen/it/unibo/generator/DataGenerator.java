@@ -22,6 +22,8 @@ public class DataGenerator {
     _builder.newLine();
     _builder.append("import fj.P2;");
     _builder.newLine();
+    _builder.append("import fj.F;");
+    _builder.newLine();
     _builder.append("import fj.Unit;");
     _builder.newLine();
     _builder.newLine();

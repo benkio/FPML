@@ -194,6 +194,7 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         EffectFullArgument effectFullArgument = (EffectFullArgument)theEObject;
         T result = caseEffectFullArgument(effectFullArgument);
+        if (result == null) result = caseChainElement(effectFullArgument);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -344,6 +345,8 @@ public class FPMLSwitch<T> extends Switch<T>
         PureFunctionType pureFunctionType = (PureFunctionType)theEObject;
         T result = casePureFunctionType(pureFunctionType);
         if (result == null) result = caseValueType(pureFunctionType);
+        if (result == null) result = caseExpression(pureFunctionType);
+        if (result == null) result = caseAdtValue(pureFunctionType);
         if (result == null) result = caseAdtType(pureFunctionType);
         if (result == null) result = caseType(pureFunctionType);
         if (result == null) result = defaultCase(theEObject);
@@ -364,12 +367,25 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.FUNCTION_TYPE:
+      case FPMLPackage.VALUE_REF:
       {
-        FunctionType functionType = (FunctionType)theEObject;
-        T result = caseFunctionType(functionType);
-        if (result == null) result = caseExpression(functionType);
-        if (result == null) result = caseAdtValue(functionType);
+        ValueRef valueRef = (ValueRef)theEObject;
+        T result = caseValueRef(valueRef);
+        if (result == null) result = caseAdtValue(valueRef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PURE_LAMBDA:
+      {
+        PureLambda pureLambda = (PureLambda)theEObject;
+        T result = casePureLambda(pureLambda);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_LAMBDA:
+      {
+        EffectFullLambda effectFullLambda = (EffectFullLambda)theEObject;
+        T result = caseEffectFullLambda(effectFullLambda);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1035,17 +1051,49 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Function Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Value Ref</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Function Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Value Ref</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFunctionType(FunctionType object)
+  public T caseValueRef(ValueRef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pure Lambda</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pure Lambda</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePureLambda(PureLambda object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Lambda</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Lambda</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullLambda(EffectFullLambda object)
   {
     return null;
   }

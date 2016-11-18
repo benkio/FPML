@@ -3,6 +3,9 @@
  */
 package it.unibo.scoping
 
+import org.eclipse.xtext.scoping.IScope
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
 
 /**
  * This class contains custom scoping description.
@@ -11,5 +14,25 @@ package it.unibo.scoping
  * on how and when to use it.
  */
 class FPMLScopeProvider extends AbstractFPMLScopeProvider {
+/* 
+   override getScope(EObject ctx, EReference ref) {
+	   if (context instanceof FieldReference) {
+			FieldReference fieldReference = (FieldReference) context;
+			Greeting greeting = (Greeting) fieldReference.eContainer();
+			return getFields(greeting, new LinkedList<Greeting>());
+		}
 
+		return super.getScope(context, reference);
+	}
+	
+	def IScope getFields(Greeting greeting, Collection<Greeting> visited) {
+		// deal with possible cycle in the hierarchy
+		if (greeting == null || visited.contains(greeting))
+			return IScope.NULLSCOPE;
+		visited.add(greeting);
+		IScope parentScope = getFields(greeting.getSuperType(), visited);
+		return Scopes.scopeFor(greeting.getFields(), parentScope);
+	}
+	* 
+	*/
 }

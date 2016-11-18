@@ -15,12 +15,14 @@ import it.unibo.fPML.Data;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
+import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PureFunctionDefinition;
+import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.ReturnEffectFullFunction;
 import it.unibo.fPML.ReturnPureFunction;
 import it.unibo.fPML.Type;
@@ -30,7 +32,6 @@ import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
 import it.unibo.validation.UtilitiesFunctions;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.validation.Check;
 
 /**
@@ -75,10 +76,10 @@ public class FPMLValidator extends AbstractFPMLValidator {
     boolean _notEquals = (!Objects.equal(_returnFunction, null));
     if (_notEquals) {
       ReturnPureFunction _returnFunction_1 = cfbp.getReturnFunction();
-      FunctionBodyPure _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
+      PureLambda _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
       if ((_lambdaFunctionBody instanceof CompositionFunctionBodyPure)) {
         ReturnPureFunction _returnFunction_2 = cfbp.getReturnFunction();
-        FunctionBodyPure _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
+        PureLambda _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
         final InitialPureChainElement firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) _lambdaFunctionBody_1));
         if (((!(firstElem instanceof Value)) && (((firstElem instanceof PureFunctionDefinition) && 
           (!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType(((PureFunctionDefinition) firstElem), t))) || 
@@ -98,7 +99,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
     for (final CompositionFunctionBodyEffectFullFactor ef : _functionChain) {
       {
         final ChainElement efElement = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(ef);
-        if ((!(efElement instanceof Value))) {
+        if (((!(efElement instanceof Value)) || (!(efElement instanceof EffectFullArgument)))) {
           final Type t1 = UtilitiesFunctions.getArgType(efElement);
           boolean _checkTypeEquals = UtilitiesFunctions.checkTypeEquals(t, t1);
           boolean _not = (!_checkTypeEquals);
@@ -114,10 +115,10 @@ public class FPMLValidator extends AbstractFPMLValidator {
     boolean _notEquals = (!Objects.equal(_returnFunction, null));
     if (_notEquals) {
       ReturnEffectFullFunction _returnFunction_1 = cfbe.getReturnFunction();
-      FunctionBodyEffectFull _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
+      EffectFullLambda _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
       if ((_lambdaFunctionBody instanceof CompositionFunctionBodyEffect)) {
         ReturnEffectFullFunction _returnFunction_2 = cfbe.getReturnFunction();
-        FunctionBodyEffectFull _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
+        EffectFullLambda _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
         final ChainElement firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(((CompositionFunctionBodyEffect) _lambdaFunctionBody_1));
         if (((!(firstElem instanceof Value)) && (((firstElem instanceof PureFunctionDefinition) && 
           (!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType(((PureFunctionDefinition) firstElem), t))) || 
@@ -163,8 +164,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
       final ChainElement rt2 = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(_get);
       Type _returnType = UtilitiesFunctions.getReturnType(ef);
       Type _returnType_1 = UtilitiesFunctions.getReturnType(rt2);
-      boolean _equals = EcoreUtil.equals(_returnType, _returnType_1);
-      boolean _not = (!_equals);
+      boolean _checkTypeEquals = UtilitiesFunctions.checkTypeEquals(_returnType, _returnType_1);
+      boolean _not = (!_checkTypeEquals);
       if (_not) {
         this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE);
       }

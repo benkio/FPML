@@ -76,13 +76,13 @@ MainFunc:
 ///////////////////////////////////////////////////////////////////
 
 ChainElement:
-    PureFunctionDefinition | EffectFullFunctionDefinition | Value;
+    PureFunctionDefinition | EffectFullFunctionDefinition | Value | EffectFullArgument;
 
 InitialPureChainElement:
-	PureFunctionDefinition | Value;
+	PureFunctionDefinition | Value ;
 
 EffectFullArgument:
-	type=Type (name=ID)?;
+	type=Type name=ID;
 
 Argument:
 	type=ValueType name=ID;
@@ -113,10 +113,10 @@ CompositionFunctionBodyEffectFullFactor:
 	| ( '>>=' (PrimitiveElement=(PrimitiveEffectFullFunction | PrimitivePureFunction)));
 
 ReturnPureFunction:
-	'->' '(' lambdaFunctionBody=FunctionBodyPure ')';
+	'->' '(' lambdaFunctionBody=PureLambda ')';
 
 ReturnEffectFullFunction:
-	'->' '(' lambdaFunctionBody=FunctionBodyEffectFull ')';
+	'->' '(' lambdaFunctionBody=EffectFullLambda ')';
 
 //////////////////////////////////////////////////////////////////////
 // Types
@@ -154,7 +154,7 @@ EffectFullFunctionType:
 ////////////////////////////////////////////////////////////////////
 
 Expression:
-    IntValue | StringValue | UnitValue | DataValue | FunctionValue;
+    IntValue | StringValue | UnitValue | DataValue | FunctionValue ;
 
 IntValue returns IntegerType: {IntegerType} value=INT;
 
@@ -162,13 +162,22 @@ StringValue returns StringType: {StringType} value=STRING;
 
 UnitValue returns UnitType: {UnitType} '()';
 
-FunctionValue returns FunctionType: '(' arg=Argument ')' ':' functionBody=FunctionBodyPure;
+FunctionValue returns PureFunctionType: value=PureLambda;
 
 DataValue returns DataType: {DataValue} type=[Data]'(' value=AdtValue ')';
+
+ValueRef:
+	{ValueRef} value=[Value]
+;
+
+PureLambda: '(' arg=Argument ')' ':' functionBody=FunctionBodyPure;
+
+EffectFullLambda: '(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull;
 
 AdtValue:
 	  IntValue
 	| StringValue
+	| ValueRef
 	| DataValue
 	| SumValue
 	| FunctionValue
@@ -201,3 +210,4 @@ PrimitiveEffectFullFunction returns EffectFullFunctionDefinition:
 
 PrimitivePrint:
     {PrimitivePrint} "print";
+    
