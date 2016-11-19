@@ -429,6 +429,51 @@ public interface FPMLFactory extends EFactory
   IntPow createIntPow();
 
   /**
+   * Returns a new object of class '<em>Plus</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Plus</em>'.
+   * @generated
+   */
+  Plus createPlus();
+
+  /**
+   * Returns a new object of class '<em>Minus</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Minus</em>'.
+   * @generated
+   */
+  Minus createMinus();
+
+  /**
+   * Returns a new object of class '<em>Times</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Times</em>'.
+   * @generated
+   */
+  Times createTimes();
+
+  /**
+   * Returns a new object of class '<em>Mod</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mod</em>'.
+   * @generated
+   */
+  Mod createMod();
+
+  /**
+   * Returns a new object of class '<em>Apply</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Apply</em>'.
+   * @generated
+   */
+  Apply createApply();
+
+  /**
    * Returns a new object of class '<em>Primitive Print</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

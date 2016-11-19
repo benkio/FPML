@@ -36,15 +36,9 @@ class FPMLValidator extends AbstractFPMLValidator {
         }
         
         if (cfbp.returnFunction != null) {
-        	if (cfbp.returnFunction.lambdaFunctionBody instanceof CompositionFunctionBodyPure) {
-        		val firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure((cfbp.returnFunction.lambdaFunctionBody as CompositionFunctionBodyPure))
-        		if (!(firstElem instanceof Value) &&  	
-        			(( 	(firstElem instanceof PureFunctionDefinition) && 
-        				!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType((firstElem as PureFunctionDefinition),t)) ||
-        				(firstElem instanceof EffectFullFunctionDefinition) && 
-        				!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType((firstElem as EffectFullFunctionDefinition),t)))	
-        			error(TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
-        	}
+        		val firstElem = cfbp.returnFunction.lambdaFunctionBody.arg.type 
+        		if (!UtilitiesFunctions.isInputTypeCompatibleWithArgType(firstElem,t))
+     			error(TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
         }
     }
 
@@ -63,16 +57,10 @@ class FPMLValidator extends AbstractFPMLValidator {
         }
         
         if (cfbe.returnFunction != null) {
-        	if (cfbe.returnFunction.lambdaFunctionBody instanceof CompositionFunctionBodyEffect) {
-        		val firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull((cfbe.returnFunction.lambdaFunctionBody as CompositionFunctionBodyEffect))
-        		if (!(firstElem instanceof Value) &&  	
-        			(( 	(firstElem instanceof PureFunctionDefinition) && 
-        				!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType((firstElem as PureFunctionDefinition),t)) ||
-        				(firstElem instanceof EffectFullFunctionDefinition) && 
-        				!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType((firstElem as EffectFullFunctionDefinition),t)))	
-        			error(TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN)
+          		val firstElem = cfbe.returnFunction.lambdaFunctionBody.arg.type 
+        		if (!UtilitiesFunctions.isInputTypeCompatibleWithArgType(firstElem,t))
+     			error(TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
         	}
-        }
     }
 
     @Check
@@ -102,7 +90,7 @@ class FPMLValidator extends AbstractFPMLValidator {
         val rt = pf.getFunctionBody();
         if (rt != null && rt instanceof CompositionFunctionBodyPure) {
             val rt2 = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure((rt as CompositionFunctionBodyPure))
-            if((rt2 instanceof PureFunctionDefinition) && !(pf.getArg().getType.eClass == UtilitiesFunctions.getArgType(rt2).eClass))
+            if((rt2 instanceof PureFunctionDefinition) && !(UtilitiesFunctions.checkValueTypeEquals(pf.getArg().getType, UtilitiesFunctions.getArgType(rt2))))
                 error(TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG);
         }
     }

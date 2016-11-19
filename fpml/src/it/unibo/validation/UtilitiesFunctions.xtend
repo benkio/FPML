@@ -44,13 +44,13 @@ class UtilitiesFunctions {
     
     def static ValueType getReturnTypePurePrimitiveOrLambda(PureFunctionDefinition pf){
     	switch pf {
-    		IntToString: return FPMLFactory.eINSTANCE.createStringType()
-        	IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
-        	default: {
-        		if (pf.functionBody instanceof CompositionFunctionBodyPure){
-        			
-        		}
-        	}
+			IntToString: return FPMLFactory.eINSTANCE.createStringType()
+			IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
+			Plus: return createIntIntFuntionType()
+			Minus: return createIntIntFuntionType()
+			Times: return createIntIntFuntionType()
+			Mod: return createIntIntFuntionType()
+        	default: throw new UnsupportedOperationException("TODO")
     	}
     }
     
@@ -110,6 +110,10 @@ class UtilitiesFunctions {
     	switch pf {
     		IntToString: return FPMLFactory.eINSTANCE.createIntegerType()
         	IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
+          Plus: return FPMLFactory.eINSTANCE.createIntegerType()
+          Minus: return FPMLFactory.eINSTANCE.createIntegerType()
+          Times: return FPMLFactory.eINSTANCE.createIntegerType()
+          Mod: return FPMLFactory.eINSTANCE.createIntegerType()
     	}
     }
     
@@ -209,20 +213,12 @@ class UtilitiesFunctions {
 			default: return checkValueTypeEquals((t as ValueType), (t1 as ValueType))
 		}
 	}
-
-	def static isFirstFunctionBodyArgAProductTypeAndMatchTheType(EffectFullFunctionDefinition f, Type t){
-		return ((f as EffectFullFunctionDefinition).arg.type != null &&
-			((f as EffectFullFunctionDefinition).arg.type instanceof DataType) &&
-			((f as EffectFullFunctionDefinition).arg.type as DataType).type.content.adtElement2 != null &&
-			(((f as EffectFullFunctionDefinition).arg.type as DataType).type.content.adtElement2 instanceof ProdType) &&
-			(((f as EffectFullFunctionDefinition).arg.type as DataType).type.content.adtElement1.eClass == t.eClass))
-	}
-	def static isFirstFunctionBodyArgAProductTypeAndMatchTheType(PureFunctionDefinition f, Type t){
-		return ((f as PureFunctionDefinition).arg.type != null &&
-				((f as PureFunctionDefinition).arg.type instanceof DataType) &&
-				((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement2 != null &&
-				(((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement2 instanceof ProdType) &&
-				(((f as PureFunctionDefinition).arg.type as DataType).type.content.adtElement1.eClass == t.eClass))
+	
+	def static isInputTypeCompatibleWithArgType(Type argType, Type inputType){
+		return (argType instanceof DataType) &&
+				((argType as DataType).adtElement2 != null &&
+				((argType as DataType).adtElement2 instanceof ProdType) &&
+				((argType as DataType).adtElement1.eClass == inputType.eClass))
 	}
 	
 	/////////////////////////////////////////////////////
@@ -245,5 +241,15 @@ class UtilitiesFunctions {
 	def static getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect cfbe) {
 		if (cfbe.primitiveElement == null) return cfbe.referenceElement
 		else return cfbe.primitiveElement
+	}
+	
+	def static PureFunctionType createIntIntFuntionType(){
+		val func = FPMLFactory.eINSTANCE.createPureFunctionType()
+   	   	val returnFunc = FPMLFactory.eINSTANCE.createPureFunctionType()
+    	returnFunc.argType = FPMLFactory.eINSTANCE.createIntegerType()
+    	returnFunc.returnType = FPMLFactory.eINSTANCE.createIntegerType()
+      	func.argType = FPMLFactory.eINSTANCE.createIntegerType()
+      	func.returnType = returnFunc
+      	return func
 	}
 }

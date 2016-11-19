@@ -5,6 +5,7 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.AdtType;
 import it.unibo.fPML.AdtValue;
+import it.unibo.fPML.Apply;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
@@ -31,7 +32,10 @@ import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
+import it.unibo.fPML.Minus;
+import it.unibo.fPML.Mod;
 import it.unibo.fPML.Model;
+import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
@@ -46,6 +50,7 @@ import it.unibo.fPML.ReturnPureFunction;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
 import it.unibo.fPML.SumValue;
+import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
@@ -382,6 +387,41 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass intPowEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass plusEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass minusEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass timesEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass modEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass applyEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1565,6 +1605,66 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPlus()
+  {
+    return plusEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMinus()
+  {
+    return minusEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTimes()
+  {
+    return timesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMod()
+  {
+    return modEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getApply()
+  {
+    return applyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getApply_Value()
+  {
+    return (EReference)applyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPrimitivePrint()
   {
     return primitivePrintEClass;
@@ -1775,6 +1875,17 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     intPowEClass = createEClass(INT_POW);
 
+    plusEClass = createEClass(PLUS);
+
+    minusEClass = createEClass(MINUS);
+
+    timesEClass = createEClass(TIMES);
+
+    modEClass = createEClass(MOD);
+
+    applyEClass = createEClass(APPLY);
+    createEReference(applyEClass, APPLY__VALUE);
+
     primitivePrintEClass = createEClass(PRIMITIVE_PRINT);
 
     dataValueEClass = createEClass(DATA_VALUE);
@@ -1842,6 +1953,11 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     sumValueEClass.getESuperTypes().add(this.getAdtValue());
     intToStringEClass.getESuperTypes().add(this.getPureFunctionDefinition());
     intPowEClass.getESuperTypes().add(this.getPureFunctionDefinition());
+    plusEClass.getESuperTypes().add(this.getPureFunctionDefinition());
+    minusEClass.getESuperTypes().add(this.getPureFunctionDefinition());
+    timesEClass.getESuperTypes().add(this.getPureFunctionDefinition());
+    modEClass.getESuperTypes().add(this.getPureFunctionDefinition());
+    applyEClass.getESuperTypes().add(this.getPureFunctionDefinition());
     primitivePrintEClass.getESuperTypes().add(this.getEffectFullFunctionDefinition());
     dataValueEClass.getESuperTypes().add(this.getDataType());
 
@@ -2000,6 +2116,17 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(intToStringEClass, IntToString.class, "IntToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(intPowEClass, IntPow.class, "IntPow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(plusEClass, Plus.class, "Plus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(minusEClass, Minus.class, "Minus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(timesEClass, Times.class, "Times", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(modEClass, Mod.class, "Mod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(applyEClass, Apply.class, "Apply", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getApply_Value(), this.getValue(), null, "value", null, 0, 1, Apply.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primitivePrintEClass, PrimitivePrint.class, "PrimitivePrint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

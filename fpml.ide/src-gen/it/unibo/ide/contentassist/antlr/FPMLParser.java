@@ -98,6 +98,11 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSumValueAccess().getGroup_1(), "rule__SumValue__Group_1__0");
 					put(grammarAccess.getIntToStringAccess().getGroup(), "rule__IntToString__Group__0");
 					put(grammarAccess.getIntPowAccess().getGroup(), "rule__IntPow__Group__0");
+					put(grammarAccess.getPlusAccess().getGroup(), "rule__Plus__Group__0");
+					put(grammarAccess.getMinusAccess().getGroup(), "rule__Minus__Group__0");
+					put(grammarAccess.getTimesAccess().getGroup(), "rule__Times__Group__0");
+					put(grammarAccess.getModAccess().getGroup(), "rule__Mod__Group__0");
+					put(grammarAccess.getApplyAccess().getGroup(), "rule__Apply__Group__0");
 					put(grammarAccess.getPrimitivePrintAccess().getGroup(), "rule__PrimitivePrint__Group__0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_0(), "rule__Model__ElementsAssignment_0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_1(), "rule__Model__ElementsAssignment_1");
@@ -172,6 +177,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getProdValueAccess().getProdAdtElement2Assignment_3(), "rule__ProdValue__ProdAdtElement2Assignment_3");
 					put(grammarAccess.getSumValueAccess().getSumAdtElement1Assignment_0_2(), "rule__SumValue__SumAdtElement1Assignment_0_2");
 					put(grammarAccess.getSumValueAccess().getSumAdtElement2Assignment_1_2(), "rule__SumValue__SumAdtElement2Assignment_1_2");
+					put(grammarAccess.getApplyAccess().getValueAssignment_2(), "rule__Apply__ValueAssignment_2");
 				}
 			};
 		}

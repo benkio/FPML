@@ -192,15 +192,15 @@ SumValue:
 /////////////////////////////////////////////////////////////////////
 
 PrimitivePureFunction returns PureFunctionDefinition: 
-	IntToString | IntPow
-;
+	IntToString | IntPow | Plus | Minus | Times | Mod | Apply;
 
-IntToString:
-	{IntToString} 'IntToString';
-
-IntPow:
-	{IntPow} 'IntPow'
-;
+IntToString: {IntToString} 'IntToString';
+IntPow:	{IntPow} 'IntPow';
+Plus: {Plus} '+';
+Minus: {Minus} '-';
+Times: {Times} '*';
+Mod: {Mod} 'mod';
+Apply:{Apply} 'apply' value=[Value];
 
 PrimitiveEffectFullFunction returns EffectFullFunctionDefinition:
 	PrimitivePrint;

@@ -1755,15 +1755,20 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIntToStringParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIntPowParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPlusParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cMinusParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cTimesParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cModParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cApplyParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		///////////////////////////////////////////////////////////////////////
 		//// Primitives
 		///////////////////////////////////////////////////////////////////////
 		//PrimitivePureFunction PureFunctionDefinition:
-		//	IntToString | IntPow
+		//	IntToString | IntPow | Plus | Minus | Times | Mod | Apply
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IntToString | IntPow
+		//IntToString | IntPow | Plus | Minus | Times | Mod | Apply
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntToString
@@ -1771,6 +1776,21 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//IntPow
 		public RuleCall getIntPowParserRuleCall_1() { return cIntPowParserRuleCall_1; }
+		
+		//Plus
+		public RuleCall getPlusParserRuleCall_2() { return cPlusParserRuleCall_2; }
+		
+		//Minus
+		public RuleCall getMinusParserRuleCall_3() { return cMinusParserRuleCall_3; }
+		
+		//Times
+		public RuleCall getTimesParserRuleCall_4() { return cTimesParserRuleCall_4; }
+		
+		//Mod
+		public RuleCall getModParserRuleCall_5() { return cModParserRuleCall_5; }
+		
+		//Apply
+		public RuleCall getApplyParserRuleCall_6() { return cApplyParserRuleCall_6; }
 	}
 	public class IntToStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.IntToString");
@@ -1809,6 +1829,113 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'IntPow'
 		public Keyword getIntPowKeyword_1() { return cIntPowKeyword_1; }
+	}
+	public class PlusElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Plus");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPlusAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cPlusSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//Plus:
+		//	{Plus} '+';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Plus} '+'
+		public Group getGroup() { return cGroup; }
+		
+		//{Plus}
+		public Action getPlusAction_0() { return cPlusAction_0; }
+		
+		//'+'
+		public Keyword getPlusSignKeyword_1() { return cPlusSignKeyword_1; }
+	}
+	public class MinusElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Minus");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMinusAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//Minus:
+		//	{Minus} '-';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Minus} '-'
+		public Group getGroup() { return cGroup; }
+		
+		//{Minus}
+		public Action getMinusAction_0() { return cMinusAction_0; }
+		
+		//'-'
+		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
+	}
+	public class TimesElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Times");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cTimesAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//Times:
+		//	{Times} '*';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Times} '*'
+		public Group getGroup() { return cGroup; }
+		
+		//{Times}
+		public Action getTimesAction_0() { return cTimesAction_0; }
+		
+		//'*'
+		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
+	}
+	public class ModElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Mod");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cModAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cModKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//Mod:
+		//	{Mod} 'mod';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Mod} 'mod'
+		public Group getGroup() { return cGroup; }
+		
+		//{Mod}
+		public Action getModAction_0() { return cModAction_0; }
+		
+		//'mod'
+		public Keyword getModKeyword_1() { return cModKeyword_1; }
+	}
+	public class ApplyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Apply");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cApplyAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cApplyKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cValueValueCrossReference_2_0 = (CrossReference)cValueAssignment_2.eContents().get(0);
+		private final RuleCall cValueValueIDTerminalRuleCall_2_0_1 = (RuleCall)cValueValueCrossReference_2_0.eContents().get(1);
+		
+		//Apply:
+		//	{Apply} 'apply' value=[Value];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Apply} 'apply' value=[Value]
+		public Group getGroup() { return cGroup; }
+		
+		//{Apply}
+		public Action getApplyAction_0() { return cApplyAction_0; }
+		
+		//'apply'
+		public Keyword getApplyKeyword_1() { return cApplyKeyword_1; }
+		
+		//value=[Value]
+		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+		
+		//[Value]
+		public CrossReference getValueValueCrossReference_2_0() { return cValueValueCrossReference_2_0; }
+		
+		//ID
+		public RuleCall getValueValueIDTerminalRuleCall_2_0_1() { return cValueValueIDTerminalRuleCall_2_0_1; }
 	}
 	public class PrimitiveEffectFullFunctionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveEffectFullFunction");
@@ -1893,6 +2020,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final PrimitivePureFunctionElements pPrimitivePureFunction;
 	private final IntToStringElements pIntToString;
 	private final IntPowElements pIntPow;
+	private final PlusElements pPlus;
+	private final MinusElements pMinus;
+	private final TimesElements pTimes;
+	private final ModElements pMod;
+	private final ApplyElements pApply;
 	private final PrimitiveEffectFullFunctionElements pPrimitiveEffectFullFunction;
 	private final PrimitivePrintElements pPrimitivePrint;
 	
@@ -1956,6 +2088,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPrimitivePureFunction = new PrimitivePureFunctionElements();
 		this.pIntToString = new IntToStringElements();
 		this.pIntPow = new IntPowElements();
+		this.pPlus = new PlusElements();
+		this.pMinus = new MinusElements();
+		this.pTimes = new TimesElements();
+		this.pMod = new ModElements();
+		this.pApply = new ApplyElements();
 		this.pPrimitiveEffectFullFunction = new PrimitiveEffectFullFunctionElements();
 		this.pPrimitivePrint = new PrimitivePrintElements();
 	}
@@ -2517,7 +2654,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//// Primitives
 	///////////////////////////////////////////////////////////////////////
 	//PrimitivePureFunction PureFunctionDefinition:
-	//	IntToString | IntPow
+	//	IntToString | IntPow | Plus | Minus | Times | Mod | Apply
 	public PrimitivePureFunctionElements getPrimitivePureFunctionAccess() {
 		return pPrimitivePureFunction;
 	}
@@ -2544,6 +2681,56 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIntPowRule() {
 		return getIntPowAccess().getRule();
+	}
+	
+	//Plus:
+	//	{Plus} '+';
+	public PlusElements getPlusAccess() {
+		return pPlus;
+	}
+	
+	public ParserRule getPlusRule() {
+		return getPlusAccess().getRule();
+	}
+	
+	//Minus:
+	//	{Minus} '-';
+	public MinusElements getMinusAccess() {
+		return pMinus;
+	}
+	
+	public ParserRule getMinusRule() {
+		return getMinusAccess().getRule();
+	}
+	
+	//Times:
+	//	{Times} '*';
+	public TimesElements getTimesAccess() {
+		return pTimes;
+	}
+	
+	public ParserRule getTimesRule() {
+		return getTimesAccess().getRule();
+	}
+	
+	//Mod:
+	//	{Mod} 'mod';
+	public ModElements getModAccess() {
+		return pMod;
+	}
+	
+	public ParserRule getModRule() {
+		return getModAccess().getRule();
+	}
+	
+	//Apply:
+	//	{Apply} 'apply' value=[Value];
+	public ApplyElements getApplyAccess() {
+		return pApply;
+	}
+	
+	public ParserRule getApplyRule() {
+		return getApplyAccess().getRule();
 	}
 	
 	//PrimitiveEffectFullFunction EffectFullFunctionDefinition:

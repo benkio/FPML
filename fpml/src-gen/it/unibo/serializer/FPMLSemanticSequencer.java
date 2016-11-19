@@ -5,6 +5,7 @@ package it.unibo.serializer;
 
 import com.google.inject.Inject;
 import it.unibo.fPML.AdtType;
+import it.unibo.fPML.Apply;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
@@ -26,7 +27,10 @@ import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
+import it.unibo.fPML.Minus;
+import it.unibo.fPML.Mod;
 import it.unibo.fPML.Model;
+import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
@@ -40,6 +44,7 @@ import it.unibo.fPML.ReturnPureFunction;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
 import it.unibo.fPML.SumValue;
+import it.unibo.fPML.Times;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueBlock;
@@ -72,6 +77,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			switch (semanticObject.eClass().getClassifierID()) {
 			case FPMLPackage.ADT_TYPE:
 				sequence_AdtType(context, (AdtType) semanticObject); 
+				return; 
+			case FPMLPackage.APPLY:
+				sequence_Apply(context, (Apply) semanticObject); 
 				return; 
 			case FPMLPackage.ARGUMENT:
 				sequence_Argument(context, (Argument) semanticObject); 
@@ -145,8 +153,17 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.MAIN_FUNC:
 				sequence_MainFunc(context, (MainFunc) semanticObject); 
 				return; 
+			case FPMLPackage.MINUS:
+				sequence_Minus(context, (Minus) semanticObject); 
+				return; 
+			case FPMLPackage.MOD:
+				sequence_Mod(context, (Mod) semanticObject); 
+				return; 
 			case FPMLPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
+				return; 
+			case FPMLPackage.PLUS:
+				sequence_Plus(context, (Plus) semanticObject); 
 				return; 
 			case FPMLPackage.PRIMITIVE_PRINT:
 				sequence_PrimitivePrint(context, (PrimitivePrint) semanticObject); 
@@ -211,6 +228,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.SUM_VALUE:
 				sequence_SumValue(context, (SumValue) semanticObject); 
 				return; 
+			case FPMLPackage.TIMES:
+				sequence_Times(context, (Times) semanticObject); 
+				return; 
 			case FPMLPackage.UNIT_TYPE:
 				if (rule == grammarAccess.getTypeRule()
 						|| rule == grammarAccess.getUnitTypeRule()) {
@@ -246,6 +266,25 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_AdtType(ISerializationContext context, AdtType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PrimitivePureFunction returns Apply
+	 *     Apply returns Apply
+	 *
+	 * Constraint:
+	 *     value=[Value|ID]
+	 */
+	protected void sequence_Apply(ISerializationContext context, Apply semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.APPLY__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.APPLY__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getApplyAccess().getValueValueIDTerminalRuleCall_2_0_1(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
@@ -650,12 +689,51 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PrimitivePureFunction returns Minus
+	 *     Minus returns Minus
+	 *
+	 * Constraint:
+	 *     {Minus}
+	 */
+	protected void sequence_Minus(ISerializationContext context, Minus semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PrimitivePureFunction returns Mod
+	 *     Mod returns Mod
+	 *
+	 * Constraint:
+	 *     {Mod}
+	 */
+	protected void sequence_Mod(ISerializationContext context, Mod semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Model returns Model
 	 *
 	 * Constraint:
 	 *     (elements+=PureBlock elements+=EffectFullBlock)
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PrimitivePureFunction returns Plus
+	 *     Plus returns Plus
+	 *
+	 * Constraint:
+	 *     {Plus}
+	 */
+	protected void sequence_Plus(ISerializationContext context, Plus semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -915,6 +993,19 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (sumAdtElement1=AdtValue | sumAdtElement2=AdtValue)
 	 */
 	protected void sequence_SumValue(ISerializationContext context, SumValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PrimitivePureFunction returns Times
+	 *     Times returns Times
+	 *
+	 * Constraint:
+	 *     {Times}
+	 */
+	protected void sequence_Times(ISerializationContext context, Times semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

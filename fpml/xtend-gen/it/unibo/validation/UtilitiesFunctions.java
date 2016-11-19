@@ -21,6 +21,9 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
+import it.unibo.fPML.Minus;
+import it.unibo.fPML.Mod;
+import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
@@ -32,6 +35,7 @@ import it.unibo.fPML.ReturnPureFunction;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
 import it.unibo.fPML.SumValue;
+import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
@@ -101,7 +105,6 @@ public class UtilitiesFunctions {
   }
   
   public static ValueType getReturnTypePurePrimitiveOrLambda(final PureFunctionDefinition pf) {
-    Object _switchResult = null;
     boolean _matched = false;
     if (pf instanceof IntToString) {
       _matched=true;
@@ -114,14 +117,30 @@ public class UtilitiesFunctions {
       }
     }
     if (!_matched) {
-      Object _xifexpression = null;
-      FunctionBodyPure _functionBody = pf.getFunctionBody();
-      if ((_functionBody instanceof CompositionFunctionBodyPure)) {
-        _xifexpression = null;
+      if (pf instanceof Plus) {
+        _matched=true;
+        return UtilitiesFunctions.createIntIntFuntionType();
       }
-      _switchResult = _xifexpression;
     }
-    return ((ValueType)_switchResult);
+    if (!_matched) {
+      if (pf instanceof Minus) {
+        _matched=true;
+        return UtilitiesFunctions.createIntIntFuntionType();
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof Times) {
+        _matched=true;
+        return UtilitiesFunctions.createIntIntFuntionType();
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof Mod) {
+        _matched=true;
+        return UtilitiesFunctions.createIntIntFuntionType();
+      }
+    }
+    throw new UnsupportedOperationException("TODO");
   }
   
   public static ValueType getReturnTypeCompositionFunctionBodyPure(final CompositionFunctionBodyPure cfbp) {
@@ -230,6 +249,30 @@ public class UtilitiesFunctions {
     }
     if (!_matched) {
       if (pf instanceof IntPow) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createIntegerType();
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof Plus) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createIntegerType();
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof Minus) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createIntegerType();
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof Times) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createIntegerType();
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof Mod) {
         _matched=true;
         return FPMLFactory.eINSTANCE.createIntegerType();
       }
@@ -426,14 +469,8 @@ public class UtilitiesFunctions {
     return UtilitiesFunctions.checkValueTypeEquals(((ValueType) t), ((ValueType) t1));
   }
   
-  public static boolean isFirstFunctionBodyArgAProductTypeAndMatchTheType(final EffectFullFunctionDefinition f, final Type t) {
-    return (((((!Objects.equal(((EffectFullFunctionDefinition) f).getArg().getType(), null)) && (((EffectFullFunctionDefinition) f).getArg().getType() instanceof DataType)) && 
-      (!Objects.equal(((DataType) ((EffectFullFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement2(), null))) && (((DataType) ((EffectFullFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement2() instanceof ProdType)) && Objects.equal(((DataType) ((EffectFullFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement1().eClass(), t.eClass()));
-  }
-  
-  public static boolean isFirstFunctionBodyArgAProductTypeAndMatchTheType(final PureFunctionDefinition f, final Type t) {
-    return (((((!Objects.equal(((PureFunctionDefinition) f).getArg().getType(), null)) && (((PureFunctionDefinition) f).getArg().getType() instanceof DataType)) && 
-      (!Objects.equal(((DataType) ((PureFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement2(), null))) && (((DataType) ((PureFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement2() instanceof ProdType)) && Objects.equal(((DataType) ((PureFunctionDefinition) f).getArg().getType()).getType().getContent().getAdtElement1().eClass(), t.eClass()));
+  public static boolean isInputTypeCompatibleWithArgType(final Type argType, final Type inputType) {
+    return ((argType instanceof DataType) && (((!Objects.equal(((DataType) argType).getAdtElement2(), null)) && (((DataType) argType).getAdtElement2() instanceof ProdType)) && Objects.equal(((DataType) argType).getAdtElement1().eClass(), inputType.eClass())));
   }
   
   public static PureFunctionDefinition getFunctionDefinitionFromPureFactor(final CompositionFunctionBodyPureFactor cfbpf) {
@@ -474,5 +511,18 @@ public class UtilitiesFunctions {
     } else {
       return cfbe.getPrimitiveElement();
     }
+  }
+  
+  public static PureFunctionType createIntIntFuntionType() {
+    final PureFunctionType func = FPMLFactory.eINSTANCE.createPureFunctionType();
+    final PureFunctionType returnFunc = FPMLFactory.eINSTANCE.createPureFunctionType();
+    IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+    returnFunc.setArgType(_createIntegerType);
+    IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
+    returnFunc.setReturnType(_createIntegerType_1);
+    IntegerType _createIntegerType_2 = FPMLFactory.eINSTANCE.createIntegerType();
+    func.setArgType(_createIntegerType_2);
+    func.setReturnType(returnFunc);
+    return func;
   }
 }

@@ -1660,6 +1660,290 @@ public interface FPMLPackage extends EPackage
   int INT_POW_FEATURE_COUNT = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.PlusImpl <em>Plus</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.PlusImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getPlus()
+   * @generated
+   */
+  int PLUS = 45;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__RETURN_TYPE = PURE_FUNCTION_DEFINITION__RETURN_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__NAME = PURE_FUNCTION_DEFINITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Arg</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__ARG = PURE_FUNCTION_DEFINITION__ARG;
+
+  /**
+   * The feature id for the '<em><b>Function Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__FUNCTION_BODY = PURE_FUNCTION_DEFINITION__FUNCTION_BODY;
+
+  /**
+   * The number of structural features of the '<em>Plus</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS_FEATURE_COUNT = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.MinusImpl <em>Minus</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.MinusImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getMinus()
+   * @generated
+   */
+  int MINUS = 46;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__RETURN_TYPE = PURE_FUNCTION_DEFINITION__RETURN_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__NAME = PURE_FUNCTION_DEFINITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Arg</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__ARG = PURE_FUNCTION_DEFINITION__ARG;
+
+  /**
+   * The feature id for the '<em><b>Function Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__FUNCTION_BODY = PURE_FUNCTION_DEFINITION__FUNCTION_BODY;
+
+  /**
+   * The number of structural features of the '<em>Minus</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS_FEATURE_COUNT = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.TimesImpl <em>Times</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.TimesImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getTimes()
+   * @generated
+   */
+  int TIMES = 47;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIMES__RETURN_TYPE = PURE_FUNCTION_DEFINITION__RETURN_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIMES__NAME = PURE_FUNCTION_DEFINITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Arg</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIMES__ARG = PURE_FUNCTION_DEFINITION__ARG;
+
+  /**
+   * The feature id for the '<em><b>Function Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIMES__FUNCTION_BODY = PURE_FUNCTION_DEFINITION__FUNCTION_BODY;
+
+  /**
+   * The number of structural features of the '<em>Times</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIMES_FEATURE_COUNT = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.ModImpl <em>Mod</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.ModImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getMod()
+   * @generated
+   */
+  int MOD = 48;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOD__RETURN_TYPE = PURE_FUNCTION_DEFINITION__RETURN_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOD__NAME = PURE_FUNCTION_DEFINITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Arg</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOD__ARG = PURE_FUNCTION_DEFINITION__ARG;
+
+  /**
+   * The feature id for the '<em><b>Function Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOD__FUNCTION_BODY = PURE_FUNCTION_DEFINITION__FUNCTION_BODY;
+
+  /**
+   * The number of structural features of the '<em>Mod</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOD_FEATURE_COUNT = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.ApplyImpl <em>Apply</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.ApplyImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getApply()
+   * @generated
+   */
+  int APPLY = 49;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY__RETURN_TYPE = PURE_FUNCTION_DEFINITION__RETURN_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY__NAME = PURE_FUNCTION_DEFINITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Arg</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY__ARG = PURE_FUNCTION_DEFINITION__ARG;
+
+  /**
+   * The feature id for the '<em><b>Function Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY__FUNCTION_BODY = PURE_FUNCTION_DEFINITION__FUNCTION_BODY;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY__VALUE = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Apply</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FEATURE_COUNT = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PrimitivePrintImpl <em>Primitive Print</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1667,7 +1951,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePrint()
    * @generated
    */
-  int PRIMITIVE_PRINT = 45;
+  int PRIMITIVE_PRINT = 50;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -1722,7 +2006,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 46;
+  int DATA_VALUE = 51;
 
   /**
    * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
@@ -2936,6 +3220,67 @@ public interface FPMLPackage extends EPackage
   EClass getIntPow();
 
   /**
+   * Returns the meta object for class '{@link it.unibo.fPML.Plus <em>Plus</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Plus</em>'.
+   * @see it.unibo.fPML.Plus
+   * @generated
+   */
+  EClass getPlus();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.Minus <em>Minus</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Minus</em>'.
+   * @see it.unibo.fPML.Minus
+   * @generated
+   */
+  EClass getMinus();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.Times <em>Times</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Times</em>'.
+   * @see it.unibo.fPML.Times
+   * @generated
+   */
+  EClass getTimes();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.Mod <em>Mod</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mod</em>'.
+   * @see it.unibo.fPML.Mod
+   * @generated
+   */
+  EClass getMod();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.Apply <em>Apply</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Apply</em>'.
+   * @see it.unibo.fPML.Apply
+   * @generated
+   */
+  EClass getApply();
+
+  /**
+   * Returns the meta object for the reference '{@link it.unibo.fPML.Apply#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Value</em>'.
+   * @see it.unibo.fPML.Apply#getValue()
+   * @see #getApply()
+   * @generated
+   */
+  EReference getApply_Value();
+
+  /**
    * Returns the meta object for class '{@link it.unibo.fPML.PrimitivePrint <em>Primitive Print</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3958,6 +4303,64 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EClass INT_POW = eINSTANCE.getIntPow();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.PlusImpl <em>Plus</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.PlusImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getPlus()
+     * @generated
+     */
+    EClass PLUS = eINSTANCE.getPlus();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.MinusImpl <em>Minus</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.MinusImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getMinus()
+     * @generated
+     */
+    EClass MINUS = eINSTANCE.getMinus();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.TimesImpl <em>Times</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.TimesImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getTimes()
+     * @generated
+     */
+    EClass TIMES = eINSTANCE.getTimes();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.ModImpl <em>Mod</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.ModImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getMod()
+     * @generated
+     */
+    EClass MOD = eINSTANCE.getMod();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.ApplyImpl <em>Apply</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.ApplyImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getApply()
+     * @generated
+     */
+    EClass APPLY = eINSTANCE.getApply();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference APPLY__VALUE = eINSTANCE.getApply_Value();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitivePrintImpl <em>Primitive Print</em>}' class.

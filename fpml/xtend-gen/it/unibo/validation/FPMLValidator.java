@@ -6,6 +6,7 @@ package it.unibo.validation;
 import com.google.common.base.Objects;
 import it.unibo.fPML.AdtType;
 import it.unibo.fPML.AdtValue;
+import it.unibo.fPML.Argument;
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
@@ -76,16 +77,12 @@ public class FPMLValidator extends AbstractFPMLValidator {
     if (_notEquals) {
       ReturnPureFunction _returnFunction_1 = cfbp.getReturnFunction();
       PureLambda _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
-      if ((_lambdaFunctionBody instanceof CompositionFunctionBodyPure)) {
-        ReturnPureFunction _returnFunction_2 = cfbp.getReturnFunction();
-        PureLambda _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
-        final PureFunctionDefinition firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) _lambdaFunctionBody_1));
-        if (((!(firstElem instanceof Value)) && (((firstElem instanceof PureFunctionDefinition) && 
-          (!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType(((PureFunctionDefinition) firstElem), t))) || 
-          ((firstElem instanceof EffectFullFunctionDefinition) && 
-            (!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType(((EffectFullFunctionDefinition) firstElem), t)))))) {
-          this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
-        }
+      Argument _arg = _lambdaFunctionBody.getArg();
+      final ValueType firstElem = _arg.getType();
+      boolean _isInputTypeCompatibleWithArgType = UtilitiesFunctions.isInputTypeCompatibleWithArgType(firstElem, t);
+      boolean _not = (!_isInputTypeCompatibleWithArgType);
+      if (_not) {
+        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
       }
     }
   }
@@ -115,16 +112,12 @@ public class FPMLValidator extends AbstractFPMLValidator {
     if (_notEquals) {
       ReturnEffectFullFunction _returnFunction_1 = cfbe.getReturnFunction();
       EffectFullLambda _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
-      if ((_lambdaFunctionBody instanceof CompositionFunctionBodyEffect)) {
-        ReturnEffectFullFunction _returnFunction_2 = cfbe.getReturnFunction();
-        EffectFullLambda _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
-        final ChainElement firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(((CompositionFunctionBodyEffect) _lambdaFunctionBody_1));
-        if (((!(firstElem instanceof Value)) && (((firstElem instanceof PureFunctionDefinition) && 
-          (!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType(((PureFunctionDefinition) firstElem), t))) || 
-          ((firstElem instanceof EffectFullFunctionDefinition) && 
-            (!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType(((EffectFullFunctionDefinition) firstElem), t)))))) {
-          this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
-        }
+      EffectFullArgument _arg = _lambdaFunctionBody.getArg();
+      final Type firstElem = _arg.getType();
+      boolean _isInputTypeCompatibleWithArgType = UtilitiesFunctions.isInputTypeCompatibleWithArgType(firstElem, t);
+      boolean _not = (!_isInputTypeCompatibleWithArgType);
+      if (_not) {
+        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
       }
     }
   }
@@ -176,7 +169,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
     final FunctionBodyPure rt = pf.getFunctionBody();
     if (((!Objects.equal(rt, null)) && (rt instanceof CompositionFunctionBodyPure))) {
       final PureFunctionDefinition rt2 = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) rt));
-      if (((rt2 instanceof PureFunctionDefinition) && (!Objects.equal(pf.getArg().getType().eClass(), UtilitiesFunctions.getArgType(rt2).eClass())))) {
+      if (((rt2 instanceof PureFunctionDefinition) && (!UtilitiesFunctions.checkValueTypeEquals(pf.getArg().getType(), UtilitiesFunctions.getArgType(rt2))))) {
         this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG);
       }
     }

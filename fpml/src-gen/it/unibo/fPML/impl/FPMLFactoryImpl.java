@@ -110,6 +110,11 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.SUM_VALUE: return createSumValue();
       case FPMLPackage.INT_TO_STRING: return createIntToString();
       case FPMLPackage.INT_POW: return createIntPow();
+      case FPMLPackage.PLUS: return createPlus();
+      case FPMLPackage.MINUS: return createMinus();
+      case FPMLPackage.TIMES: return createTimes();
+      case FPMLPackage.MOD: return createMod();
+      case FPMLPackage.APPLY: return createApply();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
       case FPMLPackage.DATA_VALUE: return createDataValue();
       default:
@@ -610,6 +615,61 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     IntPowImpl intPow = new IntPowImpl();
     return intPow;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Plus createPlus()
+  {
+    PlusImpl plus = new PlusImpl();
+    return plus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Minus createMinus()
+  {
+    MinusImpl minus = new MinusImpl();
+    return minus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Times createTimes()
+  {
+    TimesImpl times = new TimesImpl();
+    return times;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Mod createMod()
+  {
+    ModImpl mod = new ModImpl();
+    return mod;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Apply createApply()
+  {
+    ApplyImpl apply = new ApplyImpl();
+    return apply;
   }
 
   /**

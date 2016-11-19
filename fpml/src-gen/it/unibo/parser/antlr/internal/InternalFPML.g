@@ -2952,6 +2952,51 @@ rulePrimitivePureFunction returns [EObject current=null]
 			$current = $this_IntPow_1.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPlusParserRuleCall_2());
+		}
+		this_Plus_2=rulePlus
+		{
+			$current = $this_Plus_2.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMinusParserRuleCall_3());
+		}
+		this_Minus_3=ruleMinus
+		{
+			$current = $this_Minus_3.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getTimesParserRuleCall_4());
+		}
+		this_Times_4=ruleTimes
+		{
+			$current = $this_Times_4.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getModParserRuleCall_5());
+		}
+		this_Mod_5=ruleMod
+		{
+			$current = $this_Mod_5.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getApplyParserRuleCall_6());
+		}
+		this_Apply_6=ruleApply
+		{
+			$current = $this_Apply_6.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -3012,6 +3057,169 @@ ruleIntPow returns [EObject current=null]
 		{
 			newLeafNode(otherlv_1, grammarAccess.getIntPowAccess().getIntPowKeyword_1());
 		}
+	)
+;
+
+// Entry rule entryRulePlus
+entryRulePlus returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPlusRule()); }
+	iv_rulePlus=rulePlus
+	{ $current=$iv_rulePlus.current; }
+	EOF;
+
+// Rule Plus
+rulePlus returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getPlusAccess().getPlusAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='+'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getPlusAccess().getPlusSignKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleMinus
+entryRuleMinus returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMinusRule()); }
+	iv_ruleMinus=ruleMinus
+	{ $current=$iv_ruleMinus.current; }
+	EOF;
+
+// Rule Minus
+ruleMinus returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getMinusAccess().getMinusAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='-'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getMinusAccess().getHyphenMinusKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleTimes
+entryRuleTimes returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTimesRule()); }
+	iv_ruleTimes=ruleTimes
+	{ $current=$iv_ruleTimes.current; }
+	EOF;
+
+// Rule Times
+ruleTimes returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getTimesAccess().getTimesAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='*'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getTimesAccess().getAsteriskKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleMod
+entryRuleMod returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getModRule()); }
+	iv_ruleMod=ruleMod
+	{ $current=$iv_ruleMod.current; }
+	EOF;
+
+// Rule Mod
+ruleMod returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getModAccess().getModAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='mod'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getModAccess().getModKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleApply
+entryRuleApply returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getApplyRule()); }
+	iv_ruleApply=ruleApply
+	{ $current=$iv_ruleApply.current; }
+	EOF;
+
+// Rule Apply
+ruleApply returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getApplyAccess().getApplyAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='apply'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getApplyAccess().getApplyKeyword_1());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getApplyRule());
+					}
+				}
+				otherlv_2=RULE_ID
+				{
+					newLeafNode(otherlv_2, grammarAccess.getApplyAccess().getValueValueCrossReference_2_0());
+				}
+			)
+		)
 	)
 ;
 

@@ -191,6 +191,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntToString" eSuperTypes="#//PureFunctionDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="IntPow" eSuperTypes="#//PureFunctionDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Plus" eSuperTypes="#//PureFunctionDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Minus" eSuperTypes="#//PureFunctionDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Times" eSuperTypes="#//PureFunctionDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mod" eSuperTypes="#//PureFunctionDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Apply" eSuperTypes="#//PureFunctionDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//EffectFullFunctionDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataValue" eSuperTypes="#//DataType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AdtValue"
