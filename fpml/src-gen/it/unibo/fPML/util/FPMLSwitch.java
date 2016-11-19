@@ -127,7 +127,7 @@ public class FPMLSwitch<T> extends Switch<T>
         Value value = (Value)theEObject;
         T result = caseValue(value);
         if (result == null) result = caseChainElement(value);
-        if (result == null) result = caseInitialPureChainElement(value);
+        if (result == null) result = casePureReference(value);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -157,7 +157,7 @@ public class FPMLSwitch<T> extends Switch<T>
         PureFunctionDefinition pureFunctionDefinition = (PureFunctionDefinition)theEObject;
         T result = casePureFunctionDefinition(pureFunctionDefinition);
         if (result == null) result = caseChainElement(pureFunctionDefinition);
-        if (result == null) result = caseInitialPureChainElement(pureFunctionDefinition);
+        if (result == null) result = casePureReference(pureFunctionDefinition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -183,10 +183,10 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.INITIAL_PURE_CHAIN_ELEMENT:
+      case FPMLPackage.PURE_REFERENCE:
       {
-        InitialPureChainElement initialPureChainElement = (InitialPureChainElement)theEObject;
-        T result = caseInitialPureChainElement(initialPureChainElement);
+        PureReference pureReference = (PureReference)theEObject;
+        T result = casePureReference(pureReference);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -418,7 +418,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseIntToString(intToString);
         if (result == null) result = casePureFunctionDefinition(intToString);
         if (result == null) result = caseChainElement(intToString);
-        if (result == null) result = caseInitialPureChainElement(intToString);
+        if (result == null) result = casePureReference(intToString);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -428,7 +428,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseIntPow(intPow);
         if (result == null) result = casePureFunctionDefinition(intPow);
         if (result == null) result = caseChainElement(intPow);
-        if (result == null) result = caseInitialPureChainElement(intPow);
+        if (result == null) result = casePureReference(intPow);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -699,17 +699,17 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Initial Pure Chain Element</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Reference</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Initial Pure Chain Element</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Reference</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseInitialPureChainElement(InitialPureChainElement object)
+  public T casePureReference(PureReference object)
   {
     return null;
   }

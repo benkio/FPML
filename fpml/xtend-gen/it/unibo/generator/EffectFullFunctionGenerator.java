@@ -216,10 +216,10 @@ public class EffectFullFunctionGenerator {
       if (e instanceof EffectFullArgument) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(");
+        _builder.append(".append(IOFunctions.unit(");
         String _name = ((EffectFullArgument) e).getName();
         _builder.append(_name, "");
-        _builder.append(")");
+        _builder.append("))");
         return _builder.toString();
       }
     }

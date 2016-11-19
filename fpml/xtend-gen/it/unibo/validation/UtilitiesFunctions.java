@@ -18,7 +18,6 @@ import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IOType;
-import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
@@ -28,6 +27,7 @@ import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.PureReference;
 import it.unibo.fPML.ReturnPureFunction;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
@@ -98,30 +98,6 @@ public class UtilitiesFunctions {
       }
     }
     return null;
-  }
-  
-  public static ValueType getReturnType(final InitialPureChainElement f1) {
-    try {
-      boolean _matched = false;
-      if (f1 instanceof PureFunctionDefinition) {
-        _matched=true;
-        return UtilitiesFunctions.getReturnType(((PureFunctionDefinition)f1));
-      }
-      if (!_matched) {
-        if (f1 instanceof Value) {
-          _matched=true;
-          Expression _value = ((Value)f1).getValue();
-          final Type x = UtilitiesFunctions.getTypeFromExpression(_value);
-          if ((x instanceof UnitType)) {
-            throw new Exception("cannot convert type to ValueType, unit type not allowed");
-          }
-          return ((ValueType) x);
-        }
-      }
-      return null;
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
   }
   
   public static ValueType getReturnTypePurePrimitiveOrLambda(final PureFunctionDefinition pf) {
@@ -237,31 +213,13 @@ public class UtilitiesFunctions {
         return UtilitiesFunctions.getTypeFromExpression(_value);
       }
     }
-    return null;
-  }
-  
-  public static ValueType getArgType(final InitialPureChainElement f1) {
-    try {
-      boolean _matched = false;
-      if (f1 instanceof PureFunctionDefinition) {
+    if (!_matched) {
+      if (f1 instanceof EffectFullArgument) {
         _matched=true;
-        return UtilitiesFunctions.getArgType(((PureFunctionDefinition)f1));
+        return ((EffectFullArgument)f1).getType();
       }
-      if (!_matched) {
-        if (f1 instanceof Value) {
-          _matched=true;
-          Expression _value = ((Value)f1).getValue();
-          final Type x = UtilitiesFunctions.getTypeFromExpression(_value);
-          if ((x instanceof UnitType)) {
-            throw new Exception("cannot convert type to ValueType, unit type not allowed");
-          }
-          return ((ValueType) x);
-        }
-      }
-      return null;
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
     }
+    return null;
   }
   
   public static ValueType getArgTypePurePrimitive(final PureFunctionDefinition pf) {
@@ -346,10 +304,16 @@ public class UtilitiesFunctions {
     if (!_matched) {
       if (type instanceof PureFunctionType) {
         _matched=true;
-        return ((((value instanceof PureFunctionType) && 
-          (((PureFunctionType) value).getValue().getFunctionBody() instanceof CompositionFunctionBodyPure)) && 
-          UtilitiesFunctions.checkValueTypeEquals(((PureFunctionType) value).getValue().getArg().getType(), ((PureFunctionType)type).getArgType())) && 
-          UtilitiesFunctions.checkValueTypeEquals(UtilitiesFunctions.getReturnTypeCompositionFunctionBodyPure(((CompositionFunctionBodyPure) ((PureFunctionType) value).getValue().getFunctionBody())), ((PureFunctionType)type).getReturnType()));
+        if ((value instanceof PureFunctionType)) {
+          return (((((PureFunctionType) value).getValue().getFunctionBody() instanceof CompositionFunctionBodyPure) && 
+            UtilitiesFunctions.checkValueTypeEquals(((PureFunctionType) value).getValue().getArg().getType(), ((PureFunctionType)type).getArgType())) && 
+            UtilitiesFunctions.checkValueTypeEquals(UtilitiesFunctions.getReturnTypeCompositionFunctionBodyPure(((CompositionFunctionBodyPure) ((PureFunctionType) value).getValue().getFunctionBody())), ((PureFunctionType)type).getReturnType()));
+        } else {
+          if (((value instanceof ValueRef) && (((ValueRef) value).getValue() instanceof PureFunctionDefinition))) {
+            return (UtilitiesFunctions.checkValueTypeEquals(UtilitiesFunctions.getArgType(((PureFunctionDefinition) ((ValueRef) value).getValue())), ((PureFunctionType)type).getArgType()) && 
+              UtilitiesFunctions.checkValueTypeEquals(((PureFunctionDefinition) ((ValueRef) value).getValue()).getReturnType(), ((PureFunctionType)type).getReturnType()));
+          }
+        }
       }
     }
     if (!_matched) {
@@ -368,7 +332,7 @@ public class UtilitiesFunctions {
       if (!_matched_1) {
         if (value instanceof ValueRef) {
           _matched_1=true;
-          Value _value = ((ValueRef) value).getValue();
+          PureReference _value = ((ValueRef)value).getValue();
           return UtilitiesFunctions.checkValueType(_value, type);
         }
       }
@@ -380,41 +344,47 @@ public class UtilitiesFunctions {
     return _switchResult;
   }
   
-  public static boolean checkValueType(final Value v, final AdtType adtt) {
-    boolean _xblockexpression = false;
-    {
-      Expression _value = v.getValue();
-      final Type valueType = UtilitiesFunctions.getTypeFromExpression(_value);
-      boolean _switchResult = false;
-      boolean _matched = false;
-      if (adtt instanceof IntegerType) {
-        _matched=true;
-        return (valueType instanceof IntegerType);
-      }
-      if (!_matched) {
-        if (adtt instanceof StringType) {
+  public static boolean checkValueType(final PureReference v, final AdtType adtt) {
+    boolean _xifexpression = false;
+    if ((v instanceof Value)) {
+      boolean _xblockexpression = false;
+      {
+        Expression _value = ((Value)v).getValue();
+        final Type valueType = UtilitiesFunctions.getTypeFromExpression(_value);
+        boolean _switchResult = false;
+        boolean _matched = false;
+        if (adtt instanceof IntegerType) {
           _matched=true;
-          return (valueType instanceof StringType);
+          return (valueType instanceof IntegerType);
         }
-      }
-      if (!_matched) {
-        if (adtt instanceof DataType) {
-          _matched=true;
-          return ((valueType instanceof DataType) && ((DataType)adtt).getType().getName().equals(((DataType) valueType).getType().getName()));
+        if (!_matched) {
+          if (adtt instanceof StringType) {
+            _matched=true;
+            return (valueType instanceof StringType);
+          }
         }
-      }
-      if (!_matched) {
-        if (adtt instanceof PureFunctionType) {
-          _matched=true;
-          _switchResult = (((valueType instanceof PureFunctionType) && UtilitiesFunctions.checkValueTypeEquals(((PureFunctionType)adtt).getArgType(), ((PureFunctionType) valueType).getArgType())) && UtilitiesFunctions.checkValueTypeEquals(((PureFunctionType)adtt).getReturnType(), ((PureFunctionType) valueType).getReturnType()));
+        if (!_matched) {
+          if (adtt instanceof DataType) {
+            _matched=true;
+            return ((valueType instanceof DataType) && ((DataType)adtt).getType().getName().equals(((DataType) valueType).getType().getName()));
+          }
         }
+        if (!_matched) {
+          if (adtt instanceof PureFunctionType) {
+            _matched=true;
+            _switchResult = (((valueType instanceof PureFunctionType) && UtilitiesFunctions.checkValueTypeEquals(((PureFunctionType)adtt).getArgType(), ((PureFunctionType) valueType).getArgType())) && UtilitiesFunctions.checkValueTypeEquals(((PureFunctionType)adtt).getReturnType(), ((PureFunctionType) valueType).getReturnType()));
+          }
+        }
+        if (!_matched) {
+          _switchResult = false;
+        }
+        _xblockexpression = _switchResult;
       }
-      if (!_matched) {
-        _switchResult = false;
-      }
-      _xblockexpression = _switchResult;
+      _xifexpression = _xblockexpression;
+    } else {
+      return (((adtt instanceof PureFunctionType) && UtilitiesFunctions.checkValueTypeEquals(UtilitiesFunctions.getArgType(((PureFunctionDefinition) v)), ((PureFunctionType) adtt).getArgType())) && UtilitiesFunctions.checkValueTypeEquals(((PureFunctionDefinition) v).getReturnType(), ((PureFunctionType) adtt).getReturnType()));
     }
-    return _xblockexpression;
+    return _xifexpression;
   }
   
   public static boolean checkValueTypeEquals(final ValueType v, final ValueType v2) {
@@ -486,7 +456,7 @@ public class UtilitiesFunctions {
     }
   }
   
-  public static InitialPureChainElement getFirstFunctionDefinitionFromCompositionBodyPure(final CompositionFunctionBodyPure cfbp) {
+  public static PureFunctionDefinition getFirstFunctionDefinitionFromCompositionBodyPure(final CompositionFunctionBodyPure cfbp) {
     PureFunctionDefinition _primitiveElement = cfbp.getPrimitiveElement();
     boolean _equals = Objects.equal(_primitiveElement, null);
     if (_equals) {

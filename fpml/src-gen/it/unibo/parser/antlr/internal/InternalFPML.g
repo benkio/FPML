@@ -1275,7 +1275,7 @@ ruleCompositionFunctionBodyPure returns [EObject current=null]
 					}
 					otherlv_0=RULE_ID
 					{
-						newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementInitialPureChainElementCrossReference_0_0_0());
+						newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementPureFunctionDefinitionCrossReference_0_0_0());
 					}
 				)
 			)
@@ -2538,7 +2538,7 @@ ruleValueRef returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getValueRefAccess().getValueValueCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getValueRefAccess().getValuePureReferenceCrossReference_1_0());
 				}
 			)
 		)

@@ -41,17 +41,6 @@ class UtilitiesFunctions {
             EffectFullArgument: return f1.type
         }
     }
-
-    def static ValueType getReturnType(InitialPureChainElement f1){
-        switch f1 {
-            PureFunctionDefinition: return getReturnType(f1)
-            Value: { 
-            	val x = getTypeFromExpression(f1.value)
-            	if (x instanceof UnitType) throw new Exception("cannot convert type to ValueType, unit type not allowed")
-            	return (x as ValueType)
-        	}
-        }
-    }
     
     def static ValueType getReturnTypePurePrimitiveOrLambda(PureFunctionDefinition pf){
     	switch pf {
@@ -113,17 +102,7 @@ class UtilitiesFunctions {
             EffectFullFunctionDefinition: return getArgType(f1)
             PureFunctionDefinition: return getArgType(f1)
             Value: return getTypeFromExpression(f1.value)
-        }
-    }
-
-    def static ValueType getArgType(InitialPureChainElement f1){
-        switch f1 {
-            PureFunctionDefinition: return getArgType(f1)
-            Value: { 
-            	val x = getTypeFromExpression(f1.value)
-            	if (x instanceof UnitType) throw new Exception("cannot convert type to ValueType, unit type not allowed")
-            	return (x as ValueType)
-        	}
+            EffectFullArgument: return f1.type
         }
     }
 
@@ -161,19 +140,25 @@ class UtilitiesFunctions {
 	def static boolean typeCheckDataAndValue(AdtValue value, AdtType type) {
 		switch type {
 			IntegerType: return value instanceof IntegerType || 
-						       (value instanceof ValueRef && 
+						       (value instanceof ValueRef &&
 						       	checkValueType((value as ValueRef).value, type)
 						       )
 			StringType: return value instanceof StringType ||
-							  (value instanceof ValueRef && 
-							   checkValueType((value as ValueRef).value, type)
-							  )
+							  (value instanceof ValueRef &&
+						       	checkValueType((value as ValueRef).value, type)
+						       )
 			DataType: return value instanceof DataValue && 
 							 typeCheckDataAndValue((value as DataValue).value, (type as DataType).type.content)
-			PureFunctionType: return value instanceof PureFunctionType && 
-									(value as PureFunctionType).value.functionBody instanceof CompositionFunctionBodyPure &&
-									 checkValueTypeEquals((value as PureFunctionType).value.arg.type, type.argType) && 
-									 checkValueTypeEquals(getReturnTypeCompositionFunctionBodyPure((value as PureFunctionType).value.functionBody as CompositionFunctionBodyPure), type.returnType) 
+			PureFunctionType: {
+				if ( value instanceof PureFunctionType) 
+					return (value as PureFunctionType).value.functionBody instanceof CompositionFunctionBodyPure &&
+					 checkValueTypeEquals((value as PureFunctionType).value.arg.type, type.argType) && 
+					 checkValueTypeEquals(getReturnTypeCompositionFunctionBodyPure((value as PureFunctionType).value.functionBody as CompositionFunctionBodyPure), type.returnType)
+				else if ( value instanceof ValueRef && (value as ValueRef).value instanceof PureFunctionDefinition) {
+					return  checkValueTypeEquals(((value as ValueRef).value as PureFunctionDefinition).argType, type.argType) &&
+							checkValueTypeEquals(((value as ValueRef).value as PureFunctionDefinition).returnType, type.returnType)
+				} 
+			}
 			default: {
 				switch value{
 					SumValue: return (type.adtElement2 instanceof SumType) && 
@@ -182,21 +167,25 @@ class UtilitiesFunctions {
 					ProdValue: return (type.adtElement2 instanceof ProdType) && 
 									(   (typeCheckDataAndValue(value.prodAdtElement1, type.adtElement1)).booleanValue 
 									&& (typeCheckDataAndValue(value.prodAdtElement2, (type.adtElement2 as ProdType).adtElement)).booleanValue)
-          			ValueRef: return checkValueType((value as ValueRef).value, type)
+          			ValueRef: return checkValueType(value.value, type)
 					default: false
 				}
 			}
 		}
 	}
 	
-	def static boolean checkValueType(Value v, AdtType adtt) {
-		val valueType = getTypeFromExpression(v.value)
-		switch adtt {
-			IntegerType: return valueType instanceof IntegerType
-			StringType: return valueType instanceof StringType
-			DataType: return valueType instanceof DataType && adtt.type.name.equals((valueType as DataType).type.name) 
-			PureFunctionType: valueType instanceof PureFunctionType && checkValueTypeEquals(adtt.argType, (valueType as PureFunctionType).argType) && checkValueTypeEquals(adtt.returnType, (valueType as PureFunctionType).returnType)
-			default: false
+	def static boolean checkValueType(PureReference v, AdtType adtt) {
+		if (v instanceof Value) {
+			val valueType = getTypeFromExpression(v.value)
+			switch adtt {
+				IntegerType: return valueType instanceof IntegerType
+				StringType: return valueType instanceof StringType
+				DataType: return valueType instanceof DataType && adtt.type.name.equals((valueType as DataType).type.name) 
+				PureFunctionType: valueType instanceof PureFunctionType && checkValueTypeEquals(adtt.argType, (valueType as PureFunctionType).argType) && checkValueTypeEquals(adtt.returnType, (valueType as PureFunctionType).returnType)
+				default: false
+			}
+		} else {
+			return adtt instanceof PureFunctionType && checkValueTypeEquals((v as PureFunctionDefinition).argType, (adtt as PureFunctionType).argType) && checkValueTypeEquals((v as PureFunctionDefinition).returnType, (adtt as PureFunctionType).returnType)  
 		}
 	}
 	

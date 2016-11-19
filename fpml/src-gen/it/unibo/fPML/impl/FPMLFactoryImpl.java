@@ -80,7 +80,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION: return createEffectFullFunctionDefinition();
       case FPMLPackage.MAIN_FUNC: return createMainFunc();
       case FPMLPackage.CHAIN_ELEMENT: return createChainElement();
-      case FPMLPackage.INITIAL_PURE_CHAIN_ELEMENT: return createInitialPureChainElement();
+      case FPMLPackage.PURE_REFERENCE: return createPureReference();
       case FPMLPackage.EFFECT_FULL_ARGUMENT: return createEffectFullArgument();
       case FPMLPackage.ARGUMENT: return createArgument();
       case FPMLPackage.FUNCTION_BODY_PURE: return createFunctionBodyPure();
@@ -287,10 +287,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public InitialPureChainElement createInitialPureChainElement()
+  public PureReference createPureReference()
   {
-    InitialPureChainElementImpl initialPureChainElement = new InitialPureChainElementImpl();
-    return initialPureChainElement;
+    PureReferenceImpl pureReference = new PureReferenceImpl();
+    return pureReference;
   }
 
   /**

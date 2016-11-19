@@ -54,7 +54,7 @@ class FPMLValidator extends AbstractFPMLValidator {
         
         for (CompositionFunctionBodyEffectFullFactor ef : cfbe.getFunctionChain()) {
         	val efElement = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(ef)
-            if (!(efElement instanceof Value) || !(efElement instanceof EffectFullArgument)) {
+            if (!(efElement instanceof Value) && !(efElement instanceof EffectFullArgument)) {
                 val Type t1 = UtilitiesFunctions.getArgType(efElement); 
                 if(!UtilitiesFunctions.checkTypeEquals(t, t1))
                     error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);

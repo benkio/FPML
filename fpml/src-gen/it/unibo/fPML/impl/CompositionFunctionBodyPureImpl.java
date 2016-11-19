@@ -6,7 +6,6 @@ package it.unibo.fPML.impl;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.ReturnPureFunction;
 
@@ -51,7 +50,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * @generated
    * @ordered
    */
-  protected InitialPureChainElement referenceElement;
+  protected PureFunctionDefinition referenceElement;
 
   /**
    * The cached value of the '{@link #getFunctionChain() <em>Function Chain</em>}' containment reference list.
@@ -109,12 +108,12 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public InitialPureChainElement getReferenceElement()
+  public PureFunctionDefinition getReferenceElement()
   {
     if (referenceElement != null && referenceElement.eIsProxy())
     {
       InternalEObject oldReferenceElement = (InternalEObject)referenceElement;
-      referenceElement = (InitialPureChainElement)eResolveProxy(oldReferenceElement);
+      referenceElement = (PureFunctionDefinition)eResolveProxy(oldReferenceElement);
       if (referenceElement != oldReferenceElement)
       {
         if (eNotificationRequired())
@@ -129,7 +128,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public InitialPureChainElement basicGetReferenceElement()
+  public PureFunctionDefinition basicGetReferenceElement()
   {
     return referenceElement;
   }
@@ -139,9 +138,9 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setReferenceElement(InitialPureChainElement newReferenceElement)
+  public void setReferenceElement(PureFunctionDefinition newReferenceElement)
   {
-    InitialPureChainElement oldReferenceElement = referenceElement;
+    PureFunctionDefinition oldReferenceElement = referenceElement;
     referenceElement = newReferenceElement;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__REFERENCE_ELEMENT, oldReferenceElement, referenceElement));
@@ -312,7 +311,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
     switch (featureID)
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__REFERENCE_ELEMENT:
-        setReferenceElement((InitialPureChainElement)newValue);
+        setReferenceElement((PureFunctionDefinition)newValue);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN:
         getFunctionChain().clear();
@@ -339,7 +338,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
     switch (featureID)
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__REFERENCE_ELEMENT:
-        setReferenceElement((InitialPureChainElement)null);
+        setReferenceElement((PureFunctionDefinition)null);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN:
         getFunctionChain().clear();

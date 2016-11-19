@@ -14,8 +14,10 @@ import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.PureReference;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
 import it.unibo.fPML.SumValue;
@@ -231,13 +233,23 @@ public class ValueGenerator {
     if (!_matched) {
       if (v instanceof ValueRef) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("Value.");
-        Value _value = ((ValueRef)v).getValue();
-        String _name = _value.getName();
-        _builder.append(_name, "");
-        _builder.append("()");
-        return _builder.toString();
+        PureReference _value = ((ValueRef)v).getValue();
+        if ((_value instanceof Value)) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Value.");
+          PureReference _value_1 = ((ValueRef)v).getValue();
+          String _name = ((Value) _value_1).getName();
+          _builder.append(_name, "");
+          _builder.append("()");
+          return _builder.toString();
+        } else {
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("PureFunctionDefinitions::");
+          PureReference _value_2 = ((ValueRef)v).getValue();
+          String _name_1 = ((PureFunctionDefinition) _value_2).getName();
+          _builder_1.append(_name_1, "");
+          return _builder_1.toString();
+        }
       }
     }
     if (!_matched) {

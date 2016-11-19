@@ -317,7 +317,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (referenceElement=[InitialPureChainElement|ID] functionChain+=CompositionFunctionBodyPureFactor+ returnFunction=ReturnPureFunction?) | 
+	 *         (referenceElement=[PureFunctionDefinition|ID] functionChain+=CompositionFunctionBodyPureFactor+ returnFunction=ReturnPureFunction?) | 
 	 *         (primitiveElement=PrimitivePureFunction functionChain+=CompositionFunctionBodyPureFactor+ returnFunction=ReturnPureFunction?)
 	 *     )
 	 */
@@ -741,7 +741,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     PureFunctionDefinition returns PureFunctionDefinition
 	 *     ChainElement returns PureFunctionDefinition
-	 *     InitialPureChainElement returns PureFunctionDefinition
+	 *     PureReference returns PureFunctionDefinition
 	 *
 	 * Constraint:
 	 *     (returnType=ValueType name=ID arg=Argument functionBody=FunctionBodyPure)
@@ -969,7 +969,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AdtValue returns ValueRef
 	 *
 	 * Constraint:
-	 *     value=[Value|ID]
+	 *     value=[PureReference|ID]
 	 */
 	protected void sequence_ValueRef(ISerializationContext context, ValueRef semanticObject) {
 		if (errorAcceptor != null) {
@@ -977,7 +977,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.VALUE_REF__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getValueRefAccess().getValueValueIDTerminalRuleCall_1_0_1(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getValueRefAccess().getValuePureReferenceIDTerminalRuleCall_1_0_1(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -986,7 +986,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Value returns Value
 	 *     ChainElement returns Value
-	 *     InitialPureChainElement returns Value
+	 *     PureReference returns Value
 	 *
 	 * Constraint:
 	 *     (name=ID value=Expression)

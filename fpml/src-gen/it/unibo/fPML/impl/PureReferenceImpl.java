@@ -4,7 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.InitialPureChainElement;
+import it.unibo.fPML.PureReference;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -12,19 +12,19 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Initial Pure Chain Element</b></em>'.
+ * An implementation of the model object '<em><b>Pure Reference</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class InitialPureChainElementImpl extends MinimalEObjectImpl.Container implements InitialPureChainElement
+public class PureReferenceImpl extends MinimalEObjectImpl.Container implements PureReference
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected InitialPureChainElementImpl()
+  protected PureReferenceImpl()
   {
     super();
   }
@@ -37,7 +37,7 @@ public class InitialPureChainElementImpl extends MinimalEObjectImpl.Container im
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.INITIAL_PURE_CHAIN_ELEMENT;
+    return FPMLPackage.Literals.PURE_REFERENCE;
   }
 
-} //InitialPureChainElementImpl
+} //PureReferenceImpl

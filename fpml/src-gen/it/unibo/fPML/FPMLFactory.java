@@ -159,13 +159,13 @@ public interface FPMLFactory extends EFactory
   ChainElement createChainElement();
 
   /**
-   * Returns a new object of class '<em>Initial Pure Chain Element</em>'.
+   * Returns a new object of class '<em>Pure Reference</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Initial Pure Chain Element</em>'.
+   * @return a new object of class '<em>Pure Reference</em>'.
    * @generated
    */
-  InitialPureChainElement createInitialPureChainElement();
+  PureReference createPureReference();
 
   /**
    * Returns a new object of class '<em>Effect Full Argument</em>'.

@@ -7,7 +7,6 @@ import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyPure;
-import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.PureFunctionBlock;
@@ -98,11 +97,11 @@ public class PureFunctionGenerator {
   
   public String compile(final CompositionFunctionBodyPure cfbp, final String argName, final boolean outsideCalls) {
     String result = "";
-    final InitialPureChainElement initialElement = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
+    final PureFunctionDefinition initialElement = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
     boolean _matched = false;
     if (initialElement instanceof PureFunctionDefinition) {
       _matched=true;
-      String _compileCall = this.compileCall(((PureFunctionDefinition)initialElement), argName, outsideCalls);
+      String _compileCall = this.compileCall(initialElement, argName, outsideCalls);
       result = _compileCall;
     }
     if (!_matched) {

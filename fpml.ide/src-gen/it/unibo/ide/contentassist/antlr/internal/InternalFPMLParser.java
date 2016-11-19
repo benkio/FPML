@@ -20142,17 +20142,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:6730:2: ( ( RULE_ID ) )
             // InternalFPML.g:6731:3: ( RULE_ID )
             {
-             before(grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementInitialPureChainElementCrossReference_0_0_0()); 
+             before(grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementPureFunctionDefinitionCrossReference_0_0_0()); 
             // InternalFPML.g:6732:3: ( RULE_ID )
             // InternalFPML.g:6733:4: RULE_ID
             {
-             before(grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementInitialPureChainElementIDTerminalRuleCall_0_0_0_1()); 
+             before(grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementPureFunctionDefinitionIDTerminalRuleCall_0_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementInitialPureChainElementIDTerminalRuleCall_0_0_0_1()); 
+             after(grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementPureFunctionDefinitionIDTerminalRuleCall_0_0_0_1()); 
 
             }
 
-             after(grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementInitialPureChainElementCrossReference_0_0_0()); 
+             after(grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementPureFunctionDefinitionCrossReference_0_0_0()); 
 
             }
 
@@ -21488,17 +21488,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:7246:2: ( ( RULE_ID ) )
             // InternalFPML.g:7247:3: ( RULE_ID )
             {
-             before(grammarAccess.getValueRefAccess().getValueValueCrossReference_1_0()); 
+             before(grammarAccess.getValueRefAccess().getValuePureReferenceCrossReference_1_0()); 
             // InternalFPML.g:7248:3: ( RULE_ID )
             // InternalFPML.g:7249:4: RULE_ID
             {
-             before(grammarAccess.getValueRefAccess().getValueValueIDTerminalRuleCall_1_0_1()); 
+             before(grammarAccess.getValueRefAccess().getValuePureReferenceIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getValueRefAccess().getValueValueIDTerminalRuleCall_1_0_1()); 
+             after(grammarAccess.getValueRefAccess().getValuePureReferenceIDTerminalRuleCall_1_0_1()); 
 
             }
 
-             after(grammarAccess.getValueRefAccess().getValueValueCrossReference_1_0()); 
+             after(grammarAccess.getValueRefAccess().getValuePureReferenceCrossReference_1_0()); 
 
             }
 

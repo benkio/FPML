@@ -19,7 +19,6 @@ import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
-import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
@@ -55,7 +54,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   @Check
   public void CompositionFunctionTypePure(final CompositionFunctionBodyPure cfbp) {
-    InitialPureChainElement _firstFunctionDefinitionFromCompositionBodyPure = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
+    PureFunctionDefinition _firstFunctionDefinitionFromCompositionBodyPure = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
     ValueType t = UtilitiesFunctions.getReturnType(_firstFunctionDefinitionFromCompositionBodyPure);
     EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
     for (final CompositionFunctionBodyPureFactor pf : _functionChain) {
@@ -80,7 +79,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
       if ((_lambdaFunctionBody instanceof CompositionFunctionBodyPure)) {
         ReturnPureFunction _returnFunction_2 = cfbp.getReturnFunction();
         PureLambda _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
-        final InitialPureChainElement firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) _lambdaFunctionBody_1));
+        final PureFunctionDefinition firstElem = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) _lambdaFunctionBody_1));
         if (((!(firstElem instanceof Value)) && (((firstElem instanceof PureFunctionDefinition) && 
           (!UtilitiesFunctions.isFirstFunctionBodyArgAProductTypeAndMatchTheType(((PureFunctionDefinition) firstElem), t))) || 
           ((firstElem instanceof EffectFullFunctionDefinition) && 
@@ -99,7 +98,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
     for (final CompositionFunctionBodyEffectFullFactor ef : _functionChain) {
       {
         final ChainElement efElement = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(ef);
-        if (((!(efElement instanceof Value)) || (!(efElement instanceof EffectFullArgument)))) {
+        if (((!(efElement instanceof Value)) && (!(efElement instanceof EffectFullArgument)))) {
           final Type t1 = UtilitiesFunctions.getArgType(efElement);
           boolean _checkTypeEquals = UtilitiesFunctions.checkTypeEquals(t, t1);
           boolean _not = (!_checkTypeEquals);
@@ -176,7 +175,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public void FunctionCompositionArgType(final PureFunctionDefinition pf) {
     final FunctionBodyPure rt = pf.getFunctionBody();
     if (((!Objects.equal(rt, null)) && (rt instanceof CompositionFunctionBodyPure))) {
-      final InitialPureChainElement rt2 = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) rt));
+      final PureFunctionDefinition rt2 = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) rt));
       if (((rt2 instanceof PureFunctionDefinition) && (!Objects.equal(pf.getArg().getType().eClass(), UtilitiesFunctions.getArgType(rt2).eClass())))) {
         this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG);
       }

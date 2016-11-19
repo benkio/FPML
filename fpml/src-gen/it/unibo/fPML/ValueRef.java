@@ -31,12 +31,12 @@ public interface ValueRef extends AdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' reference.
-   * @see #setValue(Value)
+   * @see #setValue(PureReference)
    * @see it.unibo.fPML.FPMLPackage#getValueRef_Value()
    * @model
    * @generated
    */
-  Value getValue();
+  PureReference getValue();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.ValueRef#getValue <em>Value</em>}' reference.
@@ -46,6 +46,6 @@ public interface ValueRef extends AdtValue
    * @see #getValue()
    * @generated
    */
-  void setValue(Value value);
+  void setValue(PureReference value);
 
 } // ValueRef

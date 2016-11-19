@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface Value extends ChainElement, InitialPureChainElement
+public interface Value extends ChainElement, PureReference
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

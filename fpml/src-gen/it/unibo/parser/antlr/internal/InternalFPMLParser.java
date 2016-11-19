@@ -3114,7 +3114,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     					
                     otherlv_0=(Token)match(input,RULE_ID,FOLLOW_27); 
 
-                    						newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementInitialPureChainElementCrossReference_0_0_0());
+                    						newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementPureFunctionDefinitionCrossReference_0_0_0());
                     					
 
                     }
@@ -6504,7 +6504,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             				
             otherlv_1=(Token)match(input,RULE_ID,FOLLOW_2); 
 
-            					newLeafNode(otherlv_1, grammarAccess.getValueRefAccess().getValueValueCrossReference_1_0());
+            					newLeafNode(otherlv_1, grammarAccess.getValueRefAccess().getValuePureReferenceCrossReference_1_0());
             				
 
             }

@@ -151,9 +151,9 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createChainElementAdapter();
       }
       @Override
-      public Adapter caseInitialPureChainElement(InitialPureChainElement object)
+      public Adapter casePureReference(PureReference object)
       {
-        return createInitialPureChainElementAdapter();
+        return createPureReferenceAdapter();
       }
       @Override
       public Adapter caseEffectFullArgument(EffectFullArgument object)
@@ -558,16 +558,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.InitialPureChainElement <em>Initial Pure Chain Element</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureReference <em>Pure Reference</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.InitialPureChainElement
+   * @see it.unibo.fPML.PureReference
    * @generated
    */
-  public Adapter createInitialPureChainElementAdapter()
+  public Adapter createPureReferenceAdapter()
   {
     return null;
   }

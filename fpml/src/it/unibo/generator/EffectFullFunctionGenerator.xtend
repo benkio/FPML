@@ -74,7 +74,7 @@ class EffectFullFunctionGenerator {
 			PrimitivePrint: return '''.bind(IOFunctions::stdoutPrint)'''
 			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
 			Value: return '''.append(IOFunctions.unit(Value.«(e as Value).name»()))'''
-      		EffectFullArgument: return '''.append(«(e as EffectFullArgument).name»)'''
+      		EffectFullArgument: return '''.append(IOFunctions.unit(«(e as EffectFullArgument).name»))'''
 			EffectFullFunctionDefinition: return '''.bind(EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
 		}
 	}

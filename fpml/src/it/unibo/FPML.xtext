@@ -78,8 +78,7 @@ MainFunc:
 ChainElement:
     PureFunctionDefinition | EffectFullFunctionDefinition | Value | EffectFullArgument;
 
-InitialPureChainElement:
-	PureFunctionDefinition | Value ;
+PureReference: Value | PureFunctionDefinition;
 
 EffectFullArgument:
 	type=Type name=ID;
@@ -97,7 +96,7 @@ EmptyFunctionBody:
     {EmptyFunctionBody} 'Undefined';
 
 CompositionFunctionBodyPure:
-      referenceElement=[InitialPureChainElement] (functionChain+=CompositionFunctionBodyPureFactor)+ (returnFunction=ReturnPureFunction)?
+      referenceElement=[PureFunctionDefinition] (functionChain+=CompositionFunctionBodyPureFactor)+ (returnFunction=ReturnPureFunction)?
     | primitiveElement=PrimitivePureFunction (functionChain+=CompositionFunctionBodyPureFactor)+ (returnFunction=ReturnPureFunction)?;
     
 CompositionFunctionBodyPureFactor:
@@ -166,9 +165,7 @@ FunctionValue returns PureFunctionType: value=PureLambda;
 
 DataValue returns DataType: {DataValue} type=[Data]'(' value=AdtValue ')';
 
-ValueRef:
-	{ValueRef} value=[Value]
-;
+ValueRef: {ValueRef} value=[PureReference];
 
 PureLambda: '(' arg=Argument ')' ':' functionBody=FunctionBodyPure;
 

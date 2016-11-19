@@ -27,7 +27,6 @@ import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IOType;
-import it.unibo.fPML.InitialPureChainElement;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
@@ -41,6 +40,7 @@ import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.PureReference;
 import it.unibo.fPML.ReturnEffectFullFunction;
 import it.unibo.fPML.ReturnPureFunction;
 import it.unibo.fPML.StringType;
@@ -178,7 +178,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass initialPureChainElementEClass = null;
+  private EClass pureReferenceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -875,9 +875,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getInitialPureChainElement()
+  public EClass getPureReference()
   {
-    return initialPureChainElementEClass;
+    return pureReferenceEClass;
   }
 
   /**
@@ -1676,7 +1676,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     chainElementEClass = createEClass(CHAIN_ELEMENT);
 
-    initialPureChainElementEClass = createEClass(INITIAL_PURE_CHAIN_ELEMENT);
+    pureReferenceEClass = createEClass(PURE_REFERENCE);
 
     effectFullArgumentEClass = createEClass(EFFECT_FULL_ARGUMENT);
     createEReference(effectFullArgumentEClass, EFFECT_FULL_ARGUMENT__TYPE);
@@ -1811,9 +1811,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     // Add supertypes to classes
     valueEClass.getESuperTypes().add(this.getChainElement());
-    valueEClass.getESuperTypes().add(this.getInitialPureChainElement());
+    valueEClass.getESuperTypes().add(this.getPureReference());
     pureFunctionDefinitionEClass.getESuperTypes().add(this.getChainElement());
-    pureFunctionDefinitionEClass.getESuperTypes().add(this.getInitialPureChainElement());
+    pureFunctionDefinitionEClass.getESuperTypes().add(this.getPureReference());
     effectFullFunctionDefinitionEClass.getESuperTypes().add(this.getChainElement());
     effectFullArgumentEClass.getESuperTypes().add(this.getChainElement());
     emptyFunctionBodyEClass.getESuperTypes().add(this.getFunctionBodyPure());
@@ -1902,7 +1902,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(chainElementEClass, ChainElement.class, "ChainElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(initialPureChainElementEClass, InitialPureChainElement.class, "InitialPureChainElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(pureReferenceEClass, PureReference.class, "PureReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(effectFullArgumentEClass, EffectFullArgument.class, "EffectFullArgument", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEffectFullArgument_Type(), this.getType(), null, "type", null, 0, 1, EffectFullArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1919,7 +1919,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(emptyFunctionBodyEClass, EmptyFunctionBody.class, "EmptyFunctionBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(compositionFunctionBodyPureEClass, CompositionFunctionBodyPure.class, "CompositionFunctionBodyPure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCompositionFunctionBodyPure_ReferenceElement(), this.getInitialPureChainElement(), null, "referenceElement", null, 0, 1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompositionFunctionBodyPure_ReferenceElement(), this.getPureFunctionDefinition(), null, "referenceElement", null, 0, 1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompositionFunctionBodyPure_FunctionChain(), this.getCompositionFunctionBodyPureFactor(), null, "functionChain", null, 0, -1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompositionFunctionBodyPure_ReturnFunction(), this.getReturnPureFunction(), null, "returnFunction", null, 0, 1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompositionFunctionBodyPure_PrimitiveElement(), this.getPureFunctionDefinition(), null, "primitiveElement", null, 0, 1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1977,7 +1977,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(valueRefEClass, ValueRef.class, "ValueRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getValueRef_Value(), this.getValue(), null, "value", null, 0, 1, ValueRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getValueRef_Value(), this.getPureReference(), null, "value", null, 0, 1, ValueRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pureLambdaEClass, PureLambda.class, "PureLambda", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPureLambda_Arg(), this.getArgument(), null, "arg", null, 0, 1, PureLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

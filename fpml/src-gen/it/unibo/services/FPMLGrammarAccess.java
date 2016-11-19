@@ -624,24 +624,24 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//EffectFullArgument
 		public RuleCall getEffectFullArgumentParserRuleCall_3() { return cEffectFullArgumentParserRuleCall_3; }
 	}
-	public class InitialPureChainElementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.InitialPureChainElement");
+	public class PureReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PureReference");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPureFunctionDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPureFunctionDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//InitialPureChainElement:
-		//	PureFunctionDefinition | Value;
+		//PureReference:
+		//	Value | PureFunctionDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PureFunctionDefinition | Value
+		//Value | PureFunctionDefinition
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//PureFunctionDefinition
-		public RuleCall getPureFunctionDefinitionParserRuleCall_0() { return cPureFunctionDefinitionParserRuleCall_0; }
-		
 		//Value
-		public RuleCall getValueParserRuleCall_1() { return cValueParserRuleCall_1; }
+		public RuleCall getValueParserRuleCall_0() { return cValueParserRuleCall_0; }
+		
+		//PureFunctionDefinition
+		public RuleCall getPureFunctionDefinitionParserRuleCall_1() { return cPureFunctionDefinitionParserRuleCall_1; }
 	}
 	public class EffectFullArgumentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EffectFullArgument");
@@ -759,8 +759,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cReferenceElementAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final CrossReference cReferenceElementInitialPureChainElementCrossReference_0_0_0 = (CrossReference)cReferenceElementAssignment_0_0.eContents().get(0);
-		private final RuleCall cReferenceElementInitialPureChainElementIDTerminalRuleCall_0_0_0_1 = (RuleCall)cReferenceElementInitialPureChainElementCrossReference_0_0_0.eContents().get(1);
+		private final CrossReference cReferenceElementPureFunctionDefinitionCrossReference_0_0_0 = (CrossReference)cReferenceElementAssignment_0_0.eContents().get(0);
+		private final RuleCall cReferenceElementPureFunctionDefinitionIDTerminalRuleCall_0_0_0_1 = (RuleCall)cReferenceElementPureFunctionDefinitionCrossReference_0_0_0.eContents().get(1);
 		private final Assignment cFunctionChainAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
 		private final RuleCall cFunctionChainCompositionFunctionBodyPureFactorParserRuleCall_0_1_0 = (RuleCall)cFunctionChainAssignment_0_1.eContents().get(0);
 		private final Assignment cReturnFunctionAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
@@ -774,29 +774,29 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReturnFunctionReturnPureFunctionParserRuleCall_1_2_0 = (RuleCall)cReturnFunctionAssignment_1_2.eContents().get(0);
 		
 		//CompositionFunctionBodyPure:
-		//	referenceElement=[InitialPureChainElement] functionChain+=CompositionFunctionBodyPureFactor+
+		//	referenceElement=[PureFunctionDefinition] functionChain+=CompositionFunctionBodyPureFactor+
 		//	returnFunction=ReturnPureFunction?
 		//	| primitiveElement=PrimitivePureFunction functionChain+=CompositionFunctionBodyPureFactor+
 		//	returnFunction=ReturnPureFunction?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//referenceElement=[InitialPureChainElement] functionChain+=CompositionFunctionBodyPureFactor+
+		//referenceElement=[PureFunctionDefinition] functionChain+=CompositionFunctionBodyPureFactor+
 		//returnFunction=ReturnPureFunction? | primitiveElement=PrimitivePureFunction
 		//functionChain+=CompositionFunctionBodyPureFactor+ returnFunction=ReturnPureFunction?
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//referenceElement=[InitialPureChainElement] functionChain+=CompositionFunctionBodyPureFactor+
+		//referenceElement=[PureFunctionDefinition] functionChain+=CompositionFunctionBodyPureFactor+
 		//returnFunction=ReturnPureFunction?
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//referenceElement=[InitialPureChainElement]
+		//referenceElement=[PureFunctionDefinition]
 		public Assignment getReferenceElementAssignment_0_0() { return cReferenceElementAssignment_0_0; }
 		
-		//[InitialPureChainElement]
-		public CrossReference getReferenceElementInitialPureChainElementCrossReference_0_0_0() { return cReferenceElementInitialPureChainElementCrossReference_0_0_0; }
+		//[PureFunctionDefinition]
+		public CrossReference getReferenceElementPureFunctionDefinitionCrossReference_0_0_0() { return cReferenceElementPureFunctionDefinitionCrossReference_0_0_0; }
 		
 		//ID
-		public RuleCall getReferenceElementInitialPureChainElementIDTerminalRuleCall_0_0_0_1() { return cReferenceElementInitialPureChainElementIDTerminalRuleCall_0_0_0_1; }
+		public RuleCall getReferenceElementPureFunctionDefinitionIDTerminalRuleCall_0_0_0_1() { return cReferenceElementPureFunctionDefinitionIDTerminalRuleCall_0_0_0_1; }
 		
 		//functionChain+=CompositionFunctionBodyPureFactor+
 		public Assignment getFunctionChainAssignment_0_1() { return cFunctionChainAssignment_0_1; }
@@ -1506,27 +1506,27 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cValueRefAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cValueValueCrossReference_1_0 = (CrossReference)cValueAssignment_1.eContents().get(0);
-		private final RuleCall cValueValueIDTerminalRuleCall_1_0_1 = (RuleCall)cValueValueCrossReference_1_0.eContents().get(1);
+		private final CrossReference cValuePureReferenceCrossReference_1_0 = (CrossReference)cValueAssignment_1.eContents().get(0);
+		private final RuleCall cValuePureReferenceIDTerminalRuleCall_1_0_1 = (RuleCall)cValuePureReferenceCrossReference_1_0.eContents().get(1);
 		
 		//ValueRef:
-		//	{ValueRef} value=[Value];
+		//	{ValueRef} value=[PureReference];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ValueRef} value=[Value]
+		//{ValueRef} value=[PureReference]
 		public Group getGroup() { return cGroup; }
 		
 		//{ValueRef}
 		public Action getValueRefAction_0() { return cValueRefAction_0; }
 		
-		//value=[Value]
+		//value=[PureReference]
 		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
 		
-		//[Value]
-		public CrossReference getValueValueCrossReference_1_0() { return cValueValueCrossReference_1_0; }
+		//[PureReference]
+		public CrossReference getValuePureReferenceCrossReference_1_0() { return cValuePureReferenceCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getValueValueIDTerminalRuleCall_1_0_1() { return cValueValueIDTerminalRuleCall_1_0_1; }
+		public RuleCall getValuePureReferenceIDTerminalRuleCall_1_0_1() { return cValuePureReferenceIDTerminalRuleCall_1_0_1; }
 	}
 	public class PureLambdaElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PureLambda");
@@ -1857,7 +1857,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final EffectFullFunctionDefinitionElements pEffectFullFunctionDefinition;
 	private final MainFuncElements pMainFunc;
 	private final ChainElementElements pChainElement;
-	private final InitialPureChainElementElements pInitialPureChainElement;
+	private final PureReferenceElements pPureReference;
 	private final EffectFullArgumentElements pEffectFullArgument;
 	private final ArgumentElements pArgument;
 	private final FunctionBodyPureElements pFunctionBodyPure;
@@ -1920,7 +1920,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pEffectFullFunctionDefinition = new EffectFullFunctionDefinitionElements();
 		this.pMainFunc = new MainFuncElements();
 		this.pChainElement = new ChainElementElements();
-		this.pInitialPureChainElement = new InitialPureChainElementElements();
+		this.pPureReference = new PureReferenceElements();
 		this.pEffectFullArgument = new EffectFullArgumentElements();
 		this.pArgument = new ArgumentElements();
 		this.pFunctionBodyPure = new FunctionBodyPureElements();
@@ -2164,14 +2164,14 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getChainElementAccess().getRule();
 	}
 	
-	//InitialPureChainElement:
-	//	PureFunctionDefinition | Value;
-	public InitialPureChainElementElements getInitialPureChainElementAccess() {
-		return pInitialPureChainElement;
+	//PureReference:
+	//	Value | PureFunctionDefinition;
+	public PureReferenceElements getPureReferenceAccess() {
+		return pPureReference;
 	}
 	
-	public ParserRule getInitialPureChainElementRule() {
-		return getInitialPureChainElementAccess().getRule();
+	public ParserRule getPureReferenceRule() {
+		return getPureReferenceAccess().getRule();
 	}
 	
 	//EffectFullArgument:
@@ -2225,7 +2225,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CompositionFunctionBodyPure:
-	//	referenceElement=[InitialPureChainElement] functionChain+=CompositionFunctionBodyPureFactor+
+	//	referenceElement=[PureFunctionDefinition] functionChain+=CompositionFunctionBodyPureFactor+
 	//	returnFunction=ReturnPureFunction?
 	//	| primitiveElement=PrimitivePureFunction functionChain+=CompositionFunctionBodyPureFactor+
 	//	returnFunction=ReturnPureFunction?;
@@ -2447,7 +2447,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ValueRef:
-	//	{ValueRef} value=[Value];
+	//	{ValueRef} value=[PureReference];
 	public ValueRefElements getValueRefAccess() {
 		return pValueRef;
 	}

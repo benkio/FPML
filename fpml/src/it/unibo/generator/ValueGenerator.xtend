@@ -1,23 +1,8 @@
 package it.unibo.generator
 
-import it.unibo.fPML.Value
-import it.unibo.fPML.Expression
-import it.unibo.fPML.IntegerType
-import it.unibo.fPML.UnitType
-import it.unibo.fPML.StringType
-import it.unibo.fPML.DataType
-import it.unibo.fPML.DataValue
-import it.unibo.fPML.AdtValue
-import it.unibo.fPML.SumValue
-import it.unibo.fPML.ProdValue
-import it.unibo.fPML.AdtType
-import it.unibo.fPML.SumType
-import it.unibo.fPML.ProdType
-import it.unibo.fPML.PureFunctionType
-import it.unibo.fPML.ValueRef
+import it.unibo.fPML.*
 import it.unibo.validation.UtilitiesFunctions
-import it.unibo.fPML.CompositionFunctionBodyPure
-import it.unibo.fPML.EmptyFunctionBody
+
 
 class ValueGenerator {
 	
@@ -68,7 +53,7 @@ class ValueGenerator {
 				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as AdtType).adtElement1))»)'''
 			}
 			ProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,d.adtElement1)»,«compileAdtValue(v.prodAdtElement2, (d.adtElement2 as ProdType).adtElement)»)'''			
-			ValueRef: return '''Value.«v.value.name»()'''
+			ValueRef: if ( v.value instanceof Value ) return '''Value.«(v.value as Value).name»()''' else return '''PureFunctionDefinitions::«(v.value as PureFunctionDefinition).name»'''
 			PureFunctionType: return v.compile
 		}
 	}

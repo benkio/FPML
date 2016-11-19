@@ -38,7 +38,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAdtTypeAccess().getAlternatives(), "rule__AdtType__Alternatives");
 					put(grammarAccess.getAdtTypeAccess().getAdtElement2Alternatives_1_2_0(), "rule__AdtType__AdtElement2Alternatives_1_2_0");
 					put(grammarAccess.getChainElementAccess().getAlternatives(), "rule__ChainElement__Alternatives");
-					put(grammarAccess.getInitialPureChainElementAccess().getAlternatives(), "rule__InitialPureChainElement__Alternatives");
+					put(grammarAccess.getPureReferenceAccess().getAlternatives(), "rule__PureReference__Alternatives");
 					put(grammarAccess.getFunctionBodyPureAccess().getAlternatives(), "rule__FunctionBodyPure__Alternatives");
 					put(grammarAccess.getFunctionBodyEffectFullAccess().getAlternatives(), "rule__FunctionBodyEffectFull__Alternatives");
 					put(grammarAccess.getCompositionFunctionBodyPureAccess().getAlternatives(), "rule__CompositionFunctionBodyPure__Alternatives");

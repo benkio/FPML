@@ -35,12 +35,12 @@ public interface CompositionFunctionBodyPure extends FunctionBodyPure
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Reference Element</em>' reference.
-   * @see #setReferenceElement(InitialPureChainElement)
+   * @see #setReferenceElement(PureFunctionDefinition)
    * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPure_ReferenceElement()
    * @model
    * @generated
    */
-  InitialPureChainElement getReferenceElement();
+  PureFunctionDefinition getReferenceElement();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyPure#getReferenceElement <em>Reference Element</em>}' reference.
@@ -50,7 +50,7 @@ public interface CompositionFunctionBodyPure extends FunctionBodyPure
    * @see #getReferenceElement()
    * @generated
    */
-  void setReferenceElement(InitialPureChainElement value);
+  void setReferenceElement(PureFunctionDefinition value);
 
   /**
    * Returns the value of the '<em><b>Function Chain</b></em>' containment reference list.

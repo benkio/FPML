@@ -577,23 +577,23 @@ public interface FPMLPackage extends EPackage
   int MAIN_FUNC_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link it.unibo.fPML.impl.InitialPureChainElementImpl <em>Initial Pure Chain Element</em>}' class.
+   * The meta object id for the '{@link it.unibo.fPML.impl.PureReferenceImpl <em>Pure Reference</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see it.unibo.fPML.impl.InitialPureChainElementImpl
-   * @see it.unibo.fPML.impl.FPMLPackageImpl#getInitialPureChainElement()
+   * @see it.unibo.fPML.impl.PureReferenceImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureReference()
    * @generated
    */
-  int INITIAL_PURE_CHAIN_ELEMENT = 15;
+  int PURE_REFERENCE = 15;
 
   /**
-   * The number of structural features of the '<em>Initial Pure Chain Element</em>' class.
+   * The number of structural features of the '<em>Pure Reference</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INITIAL_PURE_CHAIN_ELEMENT_FEATURE_COUNT = 0;
+  int PURE_REFERENCE_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.EffectFullArgumentImpl <em>Effect Full Argument</em>}' class.
@@ -2207,14 +2207,14 @@ public interface FPMLPackage extends EPackage
   EClass getChainElement();
 
   /**
-   * Returns the meta object for class '{@link it.unibo.fPML.InitialPureChainElement <em>Initial Pure Chain Element</em>}'.
+   * Returns the meta object for class '{@link it.unibo.fPML.PureReference <em>Pure Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Initial Pure Chain Element</em>'.
-   * @see it.unibo.fPML.InitialPureChainElement
+   * @return the meta object for class '<em>Pure Reference</em>'.
+   * @see it.unibo.fPML.PureReference
    * @generated
    */
-  EClass getInitialPureChainElement();
+  EClass getPureReference();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.EffectFullArgument <em>Effect Full Argument</em>}'.
@@ -3348,14 +3348,14 @@ public interface FPMLPackage extends EPackage
     EClass CHAIN_ELEMENT = eINSTANCE.getChainElement();
 
     /**
-     * The meta object literal for the '{@link it.unibo.fPML.impl.InitialPureChainElementImpl <em>Initial Pure Chain Element</em>}' class.
+     * The meta object literal for the '{@link it.unibo.fPML.impl.PureReferenceImpl <em>Pure Reference</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see it.unibo.fPML.impl.InitialPureChainElementImpl
-     * @see it.unibo.fPML.impl.FPMLPackageImpl#getInitialPureChainElement()
+     * @see it.unibo.fPML.impl.PureReferenceImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureReference()
      * @generated
      */
-    EClass INITIAL_PURE_CHAIN_ELEMENT = eINSTANCE.getInitialPureChainElement();
+    EClass PURE_REFERENCE = eINSTANCE.getPureReference();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.EffectFullArgumentImpl <em>Effect Full Argument</em>}' class.
