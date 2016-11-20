@@ -321,14 +321,19 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createModAdapter();
       }
       @Override
-      public Adapter caseApply(Apply object)
+      public Adapter caseApplyF(ApplyF object)
       {
-        return createApplyAdapter();
+        return createApplyFAdapter();
       }
       @Override
       public Adapter casePrimitivePrint(PrimitivePrint object)
       {
         return createPrimitivePrintAdapter();
+      }
+      @Override
+      public Adapter caseApplyFIO(ApplyFIO object)
+      {
+        return createApplyFIOAdapter();
       }
       @Override
       public Adapter caseDataValue(DataValue object)
@@ -1093,16 +1098,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Apply <em>Apply</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ApplyF <em>Apply F</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.Apply
+   * @see it.unibo.fPML.ApplyF
    * @generated
    */
-  public Adapter createApplyAdapter()
+  public Adapter createApplyFAdapter()
   {
     return null;
   }
@@ -1118,6 +1123,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrimitivePrintAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ApplyFIO <em>Apply FIO</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.ApplyFIO
+   * @generated
+   */
+  public Adapter createApplyFIOAdapter()
   {
     return null;
   }

@@ -154,10 +154,13 @@
     <genClasses ecoreClass="FPML.ecore#//Minus"/>
     <genClasses ecoreClass="FPML.ecore#//Times"/>
     <genClasses ecoreClass="FPML.ecore#//Mod"/>
-    <genClasses ecoreClass="FPML.ecore#//Apply">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//Apply/value"/>
+    <genClasses ecoreClass="FPML.ecore#//ApplyF">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyF/value"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PrimitivePrint"/>
+    <genClasses ecoreClass="FPML.ecore#//ApplyFIO">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFIO/value"/>
+    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//DataValue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//DataValue/value"/>
     </genClasses>

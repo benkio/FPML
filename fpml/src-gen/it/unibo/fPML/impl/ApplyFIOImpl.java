@@ -3,7 +3,7 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.Apply;
+import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Value;
 
@@ -16,18 +16,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Apply</b></em>'.
+ * An implementation of the model object '<em><b>Apply FIO</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.ApplyImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.ApplyFIOImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ApplyImpl extends PureFunctionDefinitionImpl implements Apply
+public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements ApplyFIO
 {
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
@@ -44,7 +44,7 @@ public class ApplyImpl extends PureFunctionDefinitionImpl implements Apply
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ApplyImpl()
+  protected ApplyFIOImpl()
   {
     super();
   }
@@ -57,7 +57,7 @@ public class ApplyImpl extends PureFunctionDefinitionImpl implements Apply
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.APPLY;
+    return FPMLPackage.Literals.APPLY_FIO;
   }
 
   /**
@@ -74,7 +74,7 @@ public class ApplyImpl extends PureFunctionDefinitionImpl implements Apply
       if (value != oldValue)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FPMLPackage.APPLY__VALUE, oldValue, value));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FPMLPackage.APPLY_FIO__VALUE, oldValue, value));
       }
     }
     return value;
@@ -100,7 +100,7 @@ public class ApplyImpl extends PureFunctionDefinitionImpl implements Apply
     Value oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FIO__VALUE, oldValue, value));
   }
 
   /**
@@ -113,7 +113,7 @@ public class ApplyImpl extends PureFunctionDefinitionImpl implements Apply
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY__VALUE:
+      case FPMLPackage.APPLY_FIO__VALUE:
         if (resolve) return getValue();
         return basicGetValue();
     }
@@ -130,7 +130,7 @@ public class ApplyImpl extends PureFunctionDefinitionImpl implements Apply
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY__VALUE:
+      case FPMLPackage.APPLY_FIO__VALUE:
         setValue((Value)newValue);
         return;
     }
@@ -147,7 +147,7 @@ public class ApplyImpl extends PureFunctionDefinitionImpl implements Apply
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY__VALUE:
+      case FPMLPackage.APPLY_FIO__VALUE:
         setValue((Value)null);
         return;
     }
@@ -164,10 +164,10 @@ public class ApplyImpl extends PureFunctionDefinitionImpl implements Apply
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY__VALUE:
+      case FPMLPackage.APPLY_FIO__VALUE:
         return value != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ApplyImpl
+} //ApplyFIOImpl

@@ -6,21 +6,21 @@ package it.unibo.fPML;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Apply</b></em>'.
+ * A representation of the model object '<em><b>Apply F</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.Apply#getValue <em>Value</em>}</li>
+ *   <li>{@link it.unibo.fPML.ApplyF#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getApply()
+ * @see it.unibo.fPML.FPMLPackage#getApplyF()
  * @model
  * @generated
  */
-public interface Apply extends PureFunctionDefinition
+public interface ApplyF extends PureFunctionDefinition
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' reference.
@@ -32,14 +32,14 @@ public interface Apply extends PureFunctionDefinition
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' reference.
    * @see #setValue(Value)
-   * @see it.unibo.fPML.FPMLPackage#getApply_Value()
+   * @see it.unibo.fPML.FPMLPackage#getApplyF_Value()
    * @model
    * @generated
    */
   Value getValue();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.Apply#getValue <em>Value</em>}' reference.
+   * Sets the value of the '{@link it.unibo.fPML.ApplyF#getValue <em>Value</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Value</em>' reference.
@@ -48,4 +48,4 @@ public interface Apply extends PureFunctionDefinition
    */
   void setValue(Value value);
 
-} // Apply
+} // ApplyF

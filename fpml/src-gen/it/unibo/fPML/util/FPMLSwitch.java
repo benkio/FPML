@@ -472,13 +472,13 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.APPLY:
+      case FPMLPackage.APPLY_F:
       {
-        Apply apply = (Apply)theEObject;
-        T result = caseApply(apply);
-        if (result == null) result = casePureFunctionDefinition(apply);
-        if (result == null) result = caseChainElement(apply);
-        if (result == null) result = casePureReference(apply);
+        ApplyF applyF = (ApplyF)theEObject;
+        T result = caseApplyF(applyF);
+        if (result == null) result = casePureFunctionDefinition(applyF);
+        if (result == null) result = caseChainElement(applyF);
+        if (result == null) result = casePureReference(applyF);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -488,6 +488,15 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = casePrimitivePrint(primitivePrint);
         if (result == null) result = caseEffectFullFunctionDefinition(primitivePrint);
         if (result == null) result = caseChainElement(primitivePrint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.APPLY_FIO:
+      {
+        ApplyFIO applyFIO = (ApplyFIO)theEObject;
+        T result = caseApplyFIO(applyFIO);
+        if (result == null) result = caseEffectFullFunctionDefinition(applyFIO);
+        if (result == null) result = caseChainElement(applyFIO);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1293,17 +1302,17 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Apply</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Apply F</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Apply</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Apply F</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseApply(Apply object)
+  public T caseApplyF(ApplyF object)
   {
     return null;
   }
@@ -1320,6 +1329,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrimitivePrint(PrimitivePrint object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Apply FIO</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Apply FIO</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseApplyFIO(ApplyFIO object)
   {
     return null;
   }

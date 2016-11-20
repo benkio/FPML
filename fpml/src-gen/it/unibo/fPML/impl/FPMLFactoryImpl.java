@@ -114,8 +114,9 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.MINUS: return createMinus();
       case FPMLPackage.TIMES: return createTimes();
       case FPMLPackage.MOD: return createMod();
-      case FPMLPackage.APPLY: return createApply();
+      case FPMLPackage.APPLY_F: return createApplyF();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
+      case FPMLPackage.APPLY_FIO: return createApplyFIO();
       case FPMLPackage.DATA_VALUE: return createDataValue();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -666,10 +667,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Apply createApply()
+  public ApplyF createApplyF()
   {
-    ApplyImpl apply = new ApplyImpl();
-    return apply;
+    ApplyFImpl applyF = new ApplyFImpl();
+    return applyF;
   }
 
   /**
@@ -681,6 +682,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     PrimitivePrintImpl primitivePrint = new PrimitivePrintImpl();
     return primitivePrint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ApplyFIO createApplyFIO()
+  {
+    ApplyFIOImpl applyFIO = new ApplyFIOImpl();
+    return applyFIO;
   }
 
   /**

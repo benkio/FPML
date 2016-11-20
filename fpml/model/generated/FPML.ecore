@@ -111,7 +111,7 @@
         eType="#//CompositionFunctionBodyEffectFullFactor" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnFunction" eType="#//ReturnEffectFullFunction"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveElement" eType="#//EffectFullFunctionDefinition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveElement" eType="#//ChainElement"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyEffectFullFactor">
@@ -157,7 +157,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullFunctionType" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="argType" eType="#//Type"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//IOType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//Type"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
@@ -195,10 +195,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="Minus" eSuperTypes="#//PureFunctionDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="Times" eSuperTypes="#//PureFunctionDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="Mod" eSuperTypes="#//PureFunctionDefinition"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Apply" eSuperTypes="#//PureFunctionDefinition">
+  <eClassifiers xsi:type="ecore:EClass" name="ApplyF" eSuperTypes="#//PureFunctionDefinition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//EffectFullFunctionDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ApplyFIO" eSuperTypes="#//EffectFullFunctionDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataValue" eSuperTypes="#//DataType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AdtValue"
         containment="true"/>

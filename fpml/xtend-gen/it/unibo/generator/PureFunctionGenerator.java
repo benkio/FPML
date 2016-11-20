@@ -3,7 +3,6 @@ package it.unibo.generator;
 import com.google.common.base.Objects;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyPure;
-import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyPure;
@@ -11,11 +10,9 @@ import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureFunctionDefinition;
-import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
-import it.unibo.validation.UtilitiesFunctions;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
@@ -96,30 +93,11 @@ public class PureFunctionGenerator {
   }
   
   public String compile(final CompositionFunctionBodyPure cfbp, final String argName, final boolean outsideCalls) {
-    String result = "";
-    final PureFunctionDefinition initialElement = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
-    boolean _matched = false;
-    if (initialElement instanceof PureFunctionDefinition) {
-      _matched=true;
-      String _compileCall = this.compileCall(initialElement, argName, outsideCalls);
-      result = _compileCall;
-    }
-    if (!_matched) {
-      if (initialElement instanceof Value) {
-        _matched=true;
-        String _name = ((Value) initialElement).getName();
-        String _plus = ("Value." + _name);
-        String _plus_1 = (_plus + "()");
-        result = _plus_1;
-      }
-    }
-    EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
-    for (final CompositionFunctionBodyPureFactor f : _functionChain) {
-      PureFunctionDefinition _functionDefinitionFromPureFactor = UtilitiesFunctions.getFunctionDefinitionFromPureFactor(f);
-      String _compileCall = this.compileCall(_functionDefinitionFromPureFactor, result, outsideCalls);
-      result = _compileCall;
-    }
-    return result;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field UtilitiesFunctions is undefined"
+      + "\nThe method or field UtilitiesFunctions is undefined"
+      + "\ngetFirstFunctionDefinitionFromCompositionBodyPure cannot be resolved"
+      + "\ngetFunctionDefinitionFromPureFactor cannot be resolved");
   }
   
   public String compileCall(final PureFunctionDefinition pf, final String args, final boolean outsideCalls) {

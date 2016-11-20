@@ -465,13 +465,13 @@ public interface FPMLFactory extends EFactory
   Mod createMod();
 
   /**
-   * Returns a new object of class '<em>Apply</em>'.
+   * Returns a new object of class '<em>Apply F</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Apply</em>'.
+   * @return a new object of class '<em>Apply F</em>'.
    * @generated
    */
-  Apply createApply();
+  ApplyF createApplyF();
 
   /**
    * Returns a new object of class '<em>Primitive Print</em>'.
@@ -481,6 +481,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   PrimitivePrint createPrimitivePrint();
+
+  /**
+   * Returns a new object of class '<em>Apply FIO</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Apply FIO</em>'.
+   * @generated
+   */
+  ApplyFIO createApplyFIO();
 
   /**
    * Returns a new object of class '<em>Data Value</em>'.

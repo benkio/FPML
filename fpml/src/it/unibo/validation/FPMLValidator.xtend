@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import it.unibo.validation.UtilitiesFunctions
 
 import org.eclipse.emf.ecore.EObject
+import it.unibo.validation.utilitiesFunctions.*
 
 /**
  * This class contains custom validation rules. 
@@ -26,25 +27,25 @@ class FPMLValidator extends AbstractFPMLValidator {
 
     @Check
     def CompositionFunctionTypePure(CompositionFunctionBodyPure cfbp ) {
-    	var ValueType t = UtilitiesFunctions.getReturnType(UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp));
+    	var ValueType t = GetReturnType.getReturnValueType(Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp), GetArgType.getArgTypeCompositionFunctionBodyPureContainer(cfbp));
         
         for (CompositionFunctionBodyPureFactor pf : cfbp.getFunctionChain()){
-	        var ValueType t1 = UtilitiesFunctions.getArgType( UtilitiesFunctions.getFunctionDefinitionFromPureFactor(pf));
-	        if(!UtilitiesFunctions.checkValueTypeEquals(t, t1))
+	        var ValueType t1 = GetArgType.getArgType(Others.getFunctionDefinitionFromPureFactor(pf), t);
+	        if(!Checks.checkValueTypeEquals(t, t1))
 	           error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN );
-            t = UtilitiesFunctions.getReturnType(UtilitiesFunctions.getFunctionDefinitionFromPureFactor(pf))
+            t = GetReturnType.getReturnValueType(Others.getFunctionDefinitionFromPureFactor(pf), t)
         }
         
         if (cfbp.returnFunction != null) {
         		val firstElem = cfbp.returnFunction.lambdaFunctionBody.arg.type 
-        		if (!UtilitiesFunctions.isInputTypeCompatibleWithArgType(firstElem,t))
+        		if (!Checks.isInputTypeCompatibleWithArgType(firstElem,t))
      			error(TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
         }
     }
 
     @Check
     def CompositionFunctionTypeEffect(CompositionFunctionBodyEffect cfbe ) {
-        var Type t = UtilitiesFunctions.getReturnType(UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe))
+        var Type t = GetReturnType.getReturnEffectFullType(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), GetArgType.getArgTypeCompositionFunctionBodyEffectFullContainer(cfbe))
         
         for (CompositionFunctionBodyEffectFullFactor ef : cfbe.getFunctionChain()) {
         	val efElement = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(ef)

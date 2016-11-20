@@ -5,7 +5,6 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.IOType;
 import it.unibo.fPML.Type;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -50,7 +49,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * @generated
    * @ordered
    */
-  protected IOType returnType;
+  protected Type returnType;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,7 +125,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public IOType getReturnType()
+  public Type getReturnType()
   {
     return returnType;
   }
@@ -136,9 +135,9 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetReturnType(IOType newReturnType, NotificationChain msgs)
+  public NotificationChain basicSetReturnType(Type newReturnType, NotificationChain msgs)
   {
-    IOType oldReturnType = returnType;
+    Type oldReturnType = returnType;
     returnType = newReturnType;
     if (eNotificationRequired())
     {
@@ -153,7 +152,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setReturnType(IOType newReturnType)
+  public void setReturnType(Type newReturnType)
   {
     if (newReturnType != returnType)
     {
@@ -219,7 +218,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
         setArgType((Type)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE:
-        setReturnType((IOType)newValue);
+        setReturnType((Type)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -239,7 +238,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
         setArgType((Type)null);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE:
-        setReturnType((IOType)null);
+        setReturnType((Type)null);
         return;
     }
     super.eUnset(featureID);

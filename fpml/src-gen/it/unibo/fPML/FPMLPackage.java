@@ -1880,14 +1880,14 @@ public interface FPMLPackage extends EPackage
   int MOD_FEATURE_COUNT = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link it.unibo.fPML.impl.ApplyImpl <em>Apply</em>}' class.
+   * The meta object id for the '{@link it.unibo.fPML.impl.ApplyFImpl <em>Apply F</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see it.unibo.fPML.impl.ApplyImpl
-   * @see it.unibo.fPML.impl.FPMLPackageImpl#getApply()
+   * @see it.unibo.fPML.impl.ApplyFImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyF()
    * @generated
    */
-  int APPLY = 49;
+  int APPLY_F = 49;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -1896,7 +1896,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPLY__RETURN_TYPE = PURE_FUNCTION_DEFINITION__RETURN_TYPE;
+  int APPLY_F__RETURN_TYPE = PURE_FUNCTION_DEFINITION__RETURN_TYPE;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1905,7 +1905,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPLY__NAME = PURE_FUNCTION_DEFINITION__NAME;
+  int APPLY_F__NAME = PURE_FUNCTION_DEFINITION__NAME;
 
   /**
    * The feature id for the '<em><b>Arg</b></em>' containment reference.
@@ -1914,7 +1914,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPLY__ARG = PURE_FUNCTION_DEFINITION__ARG;
+  int APPLY_F__ARG = PURE_FUNCTION_DEFINITION__ARG;
 
   /**
    * The feature id for the '<em><b>Function Body</b></em>' containment reference.
@@ -1923,7 +1923,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPLY__FUNCTION_BODY = PURE_FUNCTION_DEFINITION__FUNCTION_BODY;
+  int APPLY_F__FUNCTION_BODY = PURE_FUNCTION_DEFINITION__FUNCTION_BODY;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -1932,16 +1932,16 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPLY__VALUE = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
+  int APPLY_F__VALUE = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Apply</em>' class.
+   * The number of structural features of the '<em>Apply F</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int APPLY_FEATURE_COUNT = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 1;
+  int APPLY_F_FEATURE_COUNT = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PrimitivePrintImpl <em>Primitive Print</em>}' class.
@@ -1999,6 +1999,70 @@ public interface FPMLPackage extends EPackage
   int PRIMITIVE_PRINT_FEATURE_COUNT = EFFECT_FULL_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.ApplyFIOImpl <em>Apply FIO</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.ApplyFIOImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIO()
+   * @generated
+   */
+  int APPLY_FIO = 51;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FIO__RETURN_TYPE = EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FIO__NAME = EFFECT_FULL_FUNCTION_DEFINITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Arg</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FIO__ARG = EFFECT_FULL_FUNCTION_DEFINITION__ARG;
+
+  /**
+   * The feature id for the '<em><b>Function Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FIO__FUNCTION_BODY = EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FIO__VALUE = EFFECT_FULL_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Apply FIO</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FIO_FEATURE_COUNT = EFFECT_FULL_FUNCTION_DEFINITION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.DataValueImpl <em>Data Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2006,7 +2070,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 51;
+  int DATA_VALUE = 52;
 
   /**
    * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
@@ -3260,25 +3324,25 @@ public interface FPMLPackage extends EPackage
   EClass getMod();
 
   /**
-   * Returns the meta object for class '{@link it.unibo.fPML.Apply <em>Apply</em>}'.
+   * Returns the meta object for class '{@link it.unibo.fPML.ApplyF <em>Apply F</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Apply</em>'.
-   * @see it.unibo.fPML.Apply
+   * @return the meta object for class '<em>Apply F</em>'.
+   * @see it.unibo.fPML.ApplyF
    * @generated
    */
-  EClass getApply();
+  EClass getApplyF();
 
   /**
-   * Returns the meta object for the reference '{@link it.unibo.fPML.Apply#getValue <em>Value</em>}'.
+   * Returns the meta object for the reference '{@link it.unibo.fPML.ApplyF#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Value</em>'.
-   * @see it.unibo.fPML.Apply#getValue()
-   * @see #getApply()
+   * @see it.unibo.fPML.ApplyF#getValue()
+   * @see #getApplyF()
    * @generated
    */
-  EReference getApply_Value();
+  EReference getApplyF_Value();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.PrimitivePrint <em>Primitive Print</em>}'.
@@ -3289,6 +3353,27 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EClass getPrimitivePrint();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.ApplyFIO <em>Apply FIO</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Apply FIO</em>'.
+   * @see it.unibo.fPML.ApplyFIO
+   * @generated
+   */
+  EClass getApplyFIO();
+
+  /**
+   * Returns the meta object for the reference '{@link it.unibo.fPML.ApplyFIO#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Value</em>'.
+   * @see it.unibo.fPML.ApplyFIO#getValue()
+   * @see #getApplyFIO()
+   * @generated
+   */
+  EReference getApplyFIO_Value();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.DataValue <em>Data Value</em>}'.
@@ -4345,14 +4430,14 @@ public interface FPMLPackage extends EPackage
     EClass MOD = eINSTANCE.getMod();
 
     /**
-     * The meta object literal for the '{@link it.unibo.fPML.impl.ApplyImpl <em>Apply</em>}' class.
+     * The meta object literal for the '{@link it.unibo.fPML.impl.ApplyFImpl <em>Apply F</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see it.unibo.fPML.impl.ApplyImpl
-     * @see it.unibo.fPML.impl.FPMLPackageImpl#getApply()
+     * @see it.unibo.fPML.impl.ApplyFImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyF()
      * @generated
      */
-    EClass APPLY = eINSTANCE.getApply();
+    EClass APPLY_F = eINSTANCE.getApplyF();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' reference feature.
@@ -4360,7 +4445,7 @@ public interface FPMLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference APPLY__VALUE = eINSTANCE.getApply_Value();
+    EReference APPLY_F__VALUE = eINSTANCE.getApplyF_Value();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitivePrintImpl <em>Primitive Print</em>}' class.
@@ -4371,6 +4456,24 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EClass PRIMITIVE_PRINT = eINSTANCE.getPrimitivePrint();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.ApplyFIOImpl <em>Apply FIO</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.ApplyFIOImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIO()
+     * @generated
+     */
+    EClass APPLY_FIO = eINSTANCE.getApplyFIO();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference APPLY_FIO__VALUE = eINSTANCE.getApplyFIO_Value();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.DataValueImpl <em>Data Value</em>}' class.
