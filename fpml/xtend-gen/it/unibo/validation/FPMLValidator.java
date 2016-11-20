@@ -5,18 +5,27 @@ package it.unibo.validation;
 
 import com.google.common.base.Objects;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
+import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
+import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.FunctionBodyEffectFull;
+import it.unibo.fPML.FunctionBodyPure;
+import it.unibo.fPML.IOType;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.ReturnEffectFullFunction;
 import it.unibo.fPML.ReturnPureFunction;
+import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
+import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
 import it.unibo.validation.utilitiesFunctions.Checks;
@@ -82,46 +91,70 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   @Check
   public void CompositionFunctionTypeEffect(final CompositionFunctionBodyEffect cfbe) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nType mismatch: cannot convert from ChainElement to EffectFullFunctionDefinition"
-      + "\ngetFunctionDefinitionFromEffectFullFactor cannot be resolved"
-      + "\ngetArgType cannot be resolved"
-      + "\ncheckTypeEquals cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\ngetReturnType cannot be resolved"
-      + "\nisInputTypeCompatibleWithArgType cannot be resolved"
-      + "\n! cannot be resolved");
+    ChainElement _firstFunctionDefinitionFromCompositionBodyEffectFull = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe);
+    Type _argTypeCompositionFunctionBodyEffectFullContainer = GetArgType.getArgTypeCompositionFunctionBodyEffectFullContainer(cfbe);
+    Type t = GetReturnType.getReturnType(_firstFunctionDefinitionFromCompositionBodyEffectFull, _argTypeCompositionFunctionBodyEffectFullContainer);
+    EList<CompositionFunctionBodyEffectFullFactor> _functionChain = cfbe.getFunctionChain();
+    for (final CompositionFunctionBodyEffectFullFactor ef : _functionChain) {
+      {
+        final ChainElement efElement = Others.getFunctionDefinitionFromEffectFullFactor(ef);
+        if (((!(efElement instanceof Value)) && (!(efElement instanceof EffectFullArgument)))) {
+          final Type t1 = GetArgType.getArgType(efElement);
+          boolean _checkTypeEquals = Checks.checkTypeEquals(t, t1);
+          boolean _not = (!_checkTypeEquals);
+          if (_not) {
+            this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
+          }
+        }
+        Type _returnType = GetReturnType.getReturnType(efElement, t);
+        t = _returnType;
+      }
+    }
+    ReturnEffectFullFunction _returnFunction = cfbe.getReturnFunction();
+    boolean _notEquals = (!Objects.equal(_returnFunction, null));
+    if (_notEquals) {
+      ReturnEffectFullFunction _returnFunction_1 = cfbe.getReturnFunction();
+      EffectFullLambda _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
+      EffectFullArgument _arg = _lambdaFunctionBody.getArg();
+      final Type firstElem = _arg.getType();
+      boolean _isInputTypeCompatibleWithArgType = Checks.isInputTypeCompatibleWithArgType(firstElem, t);
+      boolean _not = (!_isInputTypeCompatibleWithArgType);
+      if (_not) {
+        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
+      }
+    }
   }
   
   @Check
   public void FunctionCompositionReturnType(final PureFunctionDefinition pf) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\ngetFunctionDefinitionFromPureFactor cannot be resolved"
-      + "\ncheckValueTypeEquals cannot be resolved"
-      + "\ngetReturnType cannot be resolved"
-      + "\n! cannot be resolved");
+    final FunctionBodyPure rt = pf.getFunctionBody();
+    if (((!Objects.equal(rt, null)) && (rt instanceof CompositionFunctionBodyPure))) {
+      final ValueType rt2 = GetReturnType.getReturnTypeCompositionFunctionBodyPure(((CompositionFunctionBodyPure) rt));
+      ValueType _returnType = pf.getReturnType();
+      boolean _checkValueTypeEquals = Checks.checkValueTypeEquals(_returnType, rt2);
+      boolean _not = (!_checkValueTypeEquals);
+      if (_not) {
+        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE);
+      }
+    }
   }
   
   @Check
   public void FunctionCompositionReturnType(final EffectFullFunctionDefinition ef) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\ngetFunctionDefinitionFromEffectFullFactor cannot be resolved"
-      + "\ncheckTypeEquals cannot be resolved"
-      + "\ngetReturnType cannot be resolved"
-      + "\ngetReturnType cannot be resolved"
-      + "\n! cannot be resolved");
+    final FunctionBodyEffectFull rt = ef.getFunctionBody();
+    if ((((!Objects.equal(rt, null)) && 
+      (rt instanceof CompositionFunctionBodyEffect)) && 
+      Objects.equal(((CompositionFunctionBodyEffect) rt).getReturnFunction(), null))) {
+      EffectFullArgument _arg = ef.getArg();
+      final Type rt2 = GetReturnType.getReturnTypeCompositionBodyEffect(((CompositionFunctionBodyEffect) rt), _arg);
+      IOType _returnType = ef.getReturnType();
+      Type _type = _returnType.getType();
+      boolean _checkTypeEquals = Checks.checkTypeEquals(_type, rt2);
+      boolean _not = (!_checkTypeEquals);
+      if (_not) {
+        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE);
+      }
+    }
   }
   
   @Check

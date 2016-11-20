@@ -1,6 +1,10 @@
 package it.unibo.validation.utilitiesFunctions
 
 import it.unibo.fPML.*
+import org.eclipse.emf.common.util.EList
+import java.util.List
+import it.unibo.fPML.ChainElement
+import it.unibo.fPML.EffectFullArgument
 
 class GetReturnType {
 		def static ValueType getReturnValueType(PureFunctionDefinition pf, ValueType previousChainType){
@@ -76,10 +80,23 @@ class GetReturnType {
 			throw new Exception("this cannot happen during the typechecking of a compositionFunction body pure")	
     }
     
+    def static Type getReturnTypeCompositionBodyEffect(CompositionFunctionBodyEffect cfbe, EffectFullArgument arg) {
+    	val firstElement = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe)
+    	val functionChain = cfbe.functionChain.map[x | Others.getFunctionDefinitionFromEffectFullFactor(x)]
+    	return getReturnTypeFunctionChainEffect(functionChain, firstElement, arg)
+    }
+	
+	def static Type getReturnTypeFunctionChainEffect(List<ChainElement> elements, ChainElement element, EffectFullArgument argument) {
+		if (elements.size == 1)
+			return getReturnType(elements.last, getReturnType(element, argument.type))
+		else
+			return getReturnType(elements.last, getReturnTypeFunctionChainEffect(elements.tail.toList, element, argument))
+	}
+    
     def static Type getReturnTypeEffectFullPrimitive(EffectFullFunctionDefinition ef, EffectFullFunctionType previousFunction){
     	switch ef {
     		PrimitivePrint: return FPMLFactory.eINSTANCE.createUnitType
-    		ApplyF: {
+    		ApplyFIO: {
 				if (previousFunction != null) {
 					return previousFunction.returnType
 				} else 
