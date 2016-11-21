@@ -4,16 +4,20 @@
 package it.unibo.validation;
 
 import com.google.common.base.Objects;
+import it.unibo.fPML.AdtType;
+import it.unibo.fPML.AdtValue;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
+import it.unibo.fPML.Data;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullLambda;
+import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
@@ -63,7 +67,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
     for (final CompositionFunctionBodyPureFactor pf : _functionChain) {
       {
         PureFunctionDefinition _functionDefinitionFromPureFactor = Others.getFunctionDefinitionFromPureFactor(pf);
-        ValueType t1 = GetArgType.getArgType(_functionDefinitionFromPureFactor, t);
+        ValueType t1 = GetArgType.getArgTypePure(_functionDefinitionFromPureFactor, t);
         boolean _checkValueTypeEquals = Checks.checkValueTypeEquals(t, t1);
         boolean _not = (!_checkValueTypeEquals);
         if (_not) {
@@ -99,7 +103,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
       {
         final ChainElement efElement = Others.getFunctionDefinitionFromEffectFullFactor(ef);
         if (((!(efElement instanceof Value)) && (!(efElement instanceof EffectFullArgument)))) {
-          final Type t1 = GetArgType.getArgType(efElement);
+          final Type t1 = GetArgType.getArgType(efElement, t);
           boolean _checkTypeEquals = Checks.checkTypeEquals(t, t1);
           boolean _not = (!_checkTypeEquals);
           if (_not) {
@@ -159,26 +163,39 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   @Check
   public void FunctionCompositionArgType(final PureFunctionDefinition pf) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\ngetFirstFunctionDefinitionFromCompositionBodyPure cannot be resolved"
-      + "\ncheckValueTypeEquals cannot be resolved"
-      + "\ngetArgType cannot be resolved"
-      + "\n! cannot be resolved");
+    final FunctionBodyPure rt = pf.getFunctionBody();
+    if (((!Objects.equal(rt, null)) && (rt instanceof CompositionFunctionBodyPure))) {
+      final PureFunctionDefinition rt2 = Others.getFirstFunctionDefinitionFromCompositionBodyPure(((CompositionFunctionBodyPure) rt));
+      if (((rt2 instanceof PureFunctionDefinition) && (!Checks.checkValueTypeEquals(pf.getArg().getType(), GetArgType.getArgTypePure(rt2, pf.getArg().getType()))))) {
+        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG);
+      }
+    }
   }
   
   @Check
   public void FunctionCompositionArgType(final EffectFullFunctionDefinition ef) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\ngetArgType cannot be resolved"
-      + "\ngetFirstFunctionDefinitionFromCompositionBodyEffectFull cannot be resolved"
-      + "\ncheckTypeEquals cannot be resolved"
-      + "\n! cannot be resolved");
+    final FunctionBodyEffectFull rt = ef.getFunctionBody();
+    final ChainElement firstChainElement = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(((CompositionFunctionBodyEffect) rt));
+    if ((((!Objects.equal(rt, null)) && 
+      (rt instanceof CompositionFunctionBodyEffect)) && ((firstChainElement instanceof PureFunctionDefinition) || (firstChainElement instanceof EffectFullFunctionDefinition)))) {
+      EffectFullArgument _arg = ef.getArg();
+      final Type t = _arg.getType();
+      Type t1 = null;
+      if (((firstChainElement instanceof PureFunctionDefinition) && (t instanceof ValueType))) {
+        ValueType _argTypePure = GetArgType.getArgTypePure(((PureFunctionDefinition) firstChainElement), ((ValueType) t));
+        t1 = _argTypePure;
+      } else {
+        if ((firstChainElement instanceof EffectFullFunctionDefinition)) {
+          Type _argTypeEffectFull = GetArgType.getArgTypeEffectFull(((EffectFullFunctionDefinition) firstChainElement), t);
+          t1 = _argTypeEffectFull;
+        }
+      }
+      boolean _checkTypeEquals = Checks.checkTypeEquals(t, t1);
+      boolean _not = (!_checkTypeEquals);
+      if (_not) {
+        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG);
+      }
+    }
   }
   
   @Check
@@ -190,21 +207,31 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   @Check
   public void MainFuncReturnTypeCheck(final MainFunc m) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\ngetFunctionDefinitionFromEffectFullFactor cannot be resolved"
-      + "\ncheckTypeEquals cannot be resolved"
-      + "\ngetReturnType cannot be resolved"
-      + "\n! cannot be resolved");
+    final FunctionBodyEffectFull rt = m.getFunctionBody();
+    final EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument();
+    final IOType argType = FPMLFactory.eINSTANCE.createIOType();
+    UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+    argType.setType(_createUnitType);
+    if ((rt instanceof CompositionFunctionBodyEffect)) {
+      final Type rt2 = GetReturnType.getReturnTypeCompositionBodyEffect(((CompositionFunctionBodyEffect)rt), arg);
+      UnitType _returnType = m.getReturnType();
+      boolean _checkTypeEquals = Checks.checkTypeEquals(_returnType, rt2);
+      boolean _not = (!_checkTypeEquals);
+      if (_not) {
+        this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE);
+      }
+    }
   }
   
   @Check
   public void ValueDataTypeCheck(final DataValue dv) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\ntypeCheckDataAndValue cannot be resolved"
-      + "\n! cannot be resolved");
+    AdtValue _value = dv.getValue();
+    Data _type = dv.getType();
+    AdtType _content = _type.getContent();
+    boolean _typeCheckDataAndValue = Checks.typeCheckDataAndValue(_value, _content);
+    boolean _not = (!_typeCheckDataAndValue);
+    if (_not) {
+      this.error(FPMLValidator.TYPEVMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.DATA_VALUE__VALUE);
+    }
   }
 }

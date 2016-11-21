@@ -4,7 +4,7 @@ import it.unibo.fPML.*
 
 class GetArgType {
 	
-		def static ValueType getArgType(PureFunctionDefinition pf, ValueType previousChainType){
+		def static ValueType getArgTypePure(PureFunctionDefinition pf, ValueType previousChainType){
 		val t = pf.getArg()
 		if (t == null) {
 			if ( previousChainType instanceof PureFunctionType) {
@@ -20,7 +20,7 @@ class GetArgType {
 		}
 	}
 	
- 	def static Type getArgType(EffectFullFunctionDefinition ef, Type previousChainType){
+ 	def static Type getArgTypeEffectFull(EffectFullFunctionDefinition ef, Type previousChainType){
  		val t = ef.getArg()
  		if (t == null){
  			if ( previousChainType instanceof EffectFullFunctionType) {
@@ -36,10 +36,10 @@ class GetArgType {
  		}
  	}
 
-    def static Type getArgType(ChainElement f1){
+    def static Type getArgType(ChainElement f1, Type previousChainType){
         switch f1 {
-            EffectFullFunctionDefinition: return getArgType(f1)
-            PureFunctionDefinition: return getArgType(f1)
+            EffectFullFunctionDefinition: return getArgTypeEffectFull(f1, previousChainType)
+            PureFunctionDefinition: return getArgTypePure(f1, (previousChainType as ValueType))
             Value: return Others.getTypeFromExpression(f1.value)
             EffectFullArgument: return f1.type
         }

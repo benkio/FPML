@@ -33,7 +33,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
 public class GetArgType {
-  public static ValueType getArgType(final PureFunctionDefinition pf, final ValueType previousChainType) {
+  public static ValueType getArgTypePure(final PureFunctionDefinition pf, final ValueType previousChainType) {
     final Argument t = pf.getArg();
     boolean _equals = Objects.equal(t, null);
     if (_equals) {
@@ -54,7 +54,7 @@ public class GetArgType {
     }
   }
   
-  public static Type getArgType(final EffectFullFunctionDefinition ef, final Type previousChainType) {
+  public static Type getArgTypeEffectFull(final EffectFullFunctionDefinition ef, final Type previousChainType) {
     final EffectFullArgument t = ef.getArg();
     boolean _equals = Objects.equal(t, null);
     if (_equals) {
@@ -75,16 +75,16 @@ public class GetArgType {
     }
   }
   
-  public static Type getArgType(final ChainElement f1) {
+  public static Type getArgType(final ChainElement f1, final Type previousChainType) {
     boolean _matched = false;
     if (f1 instanceof EffectFullFunctionDefinition) {
       _matched=true;
-      return GetArgType.getArgType(f1);
+      return GetArgType.getArgTypeEffectFull(((EffectFullFunctionDefinition)f1), previousChainType);
     }
     if (!_matched) {
       if (f1 instanceof PureFunctionDefinition) {
         _matched=true;
-        return GetArgType.getArgType(f1);
+        return GetArgType.getArgTypePure(((PureFunctionDefinition)f1), ((ValueType) previousChainType));
       }
     }
     if (!_matched) {
