@@ -3,6 +3,7 @@ package it.unibo.validation.utilitiesFunctions;
 import com.google.common.base.Objects;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
+import it.unibo.fPML.Argument;
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
@@ -24,8 +25,6 @@ import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
-import it.unibo.fPML.PureLambda;
-import it.unibo.fPML.ReturnPureFunction;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.Value;
@@ -33,6 +32,7 @@ import it.unibo.fPML.ValueType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -163,49 +163,37 @@ public class GetReturnType {
     }
   }
   
-  public static ValueType getReturnTypeCompositionFunctionBodyPure(final CompositionFunctionBodyPure cfbp) {
-    try {
-      ReturnPureFunction _returnFunction = cfbp.getReturnFunction();
-      boolean _equals = Objects.equal(_returnFunction, null);
-      if (_equals) {
-        EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
-        int _size = _functionChain.size();
-        boolean _equals_1 = (_size == 1);
-        if (_equals_1) {
-          EList<CompositionFunctionBodyPureFactor> _functionChain_1 = cfbp.getFunctionChain();
-          CompositionFunctionBodyPureFactor _last = IterableExtensions.<CompositionFunctionBodyPureFactor>last(_functionChain_1);
-          PureFunctionDefinition _functionDefinitionFromPureFactor = Others.getFunctionDefinitionFromPureFactor(_last);
-          PureFunctionDefinition _firstFunctionDefinitionFromCompositionBodyPure = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
-          ValueType _returnType = _firstFunctionDefinitionFromCompositionBodyPure.getReturnType();
-          return GetReturnType.getReturnValueType(_functionDefinitionFromPureFactor, _returnType);
-        } else {
-          EList<CompositionFunctionBodyPureFactor> _functionChain_2 = cfbp.getFunctionChain();
-          CompositionFunctionBodyPureFactor _last_1 = IterableExtensions.<CompositionFunctionBodyPureFactor>last(_functionChain_2);
-          PureFunctionDefinition _functionDefinitionFromPureFactor_1 = Others.getFunctionDefinitionFromPureFactor(_last_1);
-          EList<CompositionFunctionBodyPureFactor> _functionChain_3 = cfbp.getFunctionChain();
-          EList<CompositionFunctionBodyPureFactor> _functionChain_4 = cfbp.getFunctionChain();
-          int _size_1 = _functionChain_4.size();
-          int _minus = (_size_1 - 2);
-          CompositionFunctionBodyPureFactor _get = _functionChain_3.get(_minus);
-          PureFunctionDefinition _functionDefinitionFromPureFactor_2 = Others.getFunctionDefinitionFromPureFactor(_get);
-          ValueType _returnType_1 = _functionDefinitionFromPureFactor_2.getReturnType();
-          return GetReturnType.getReturnValueType(_functionDefinitionFromPureFactor_1, _returnType_1);
-        }
-      } else {
-        ReturnPureFunction _returnFunction_1 = cfbp.getReturnFunction();
-        PureLambda _lambdaFunctionBody = _returnFunction_1.getLambdaFunctionBody();
-        FunctionBodyPure _functionBody = _lambdaFunctionBody.getFunctionBody();
-        if ((_functionBody instanceof CompositionFunctionBodyPure)) {
-          ReturnPureFunction _returnFunction_2 = cfbp.getReturnFunction();
-          PureLambda _lambdaFunctionBody_1 = _returnFunction_2.getLambdaFunctionBody();
-          FunctionBodyPure _functionBody_1 = _lambdaFunctionBody_1.getFunctionBody();
-          return GetReturnType.getReturnTypeCompositionFunctionBodyPure(((CompositionFunctionBodyPure) _functionBody_1));
-        } else {
-          throw new Exception("this cannot happen during the typechecking of a compositionFunction body pure");
-        }
-      }
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
+  public static ValueType getReturnTypeCompositionFunctionBodyPureFunctionDefinition(final PureFunctionDefinition pf) {
+    FunctionBodyPure _functionBody = pf.getFunctionBody();
+    if ((_functionBody instanceof CompositionFunctionBodyPure)) {
+      FunctionBodyPure _functionBody_1 = pf.getFunctionBody();
+      final CompositionFunctionBodyPure fcBody = ((CompositionFunctionBodyPure) _functionBody_1);
+      EList<CompositionFunctionBodyPureFactor> _functionChain = fcBody.getFunctionChain();
+      final Function1<CompositionFunctionBodyPureFactor, PureFunctionDefinition> _function = (CompositionFunctionBodyPureFactor x) -> {
+        return Others.getFunctionDefinitionFromPureFactor(x);
+      };
+      List<PureFunctionDefinition> _map = ListExtensions.<CompositionFunctionBodyPureFactor, PureFunctionDefinition>map(_functionChain, _function);
+      Argument _arg = pf.getArg();
+      ValueType _type = _arg.getType();
+      PureFunctionDefinition _firstFunctionDefinitionFromCompositionBodyPure = Others.getFirstFunctionDefinitionFromCompositionBodyPure(fcBody);
+      return GetReturnType.getReturnTypeFunctionChainPure(_map, _type, _firstFunctionDefinitionFromCompositionBodyPure);
+    }
+    return null;
+  }
+  
+  public static ValueType getReturnTypeFunctionChainPure(final List<PureFunctionDefinition> list, final ValueType argType, final PureFunctionDefinition firstElement) {
+    int _size = list.size();
+    boolean _equals = (_size == 1);
+    if (_equals) {
+      PureFunctionDefinition _last = IterableExtensions.<PureFunctionDefinition>last(list);
+      ValueType _returnValueType = GetReturnType.getReturnValueType(firstElement, argType);
+      return GetReturnType.getReturnValueType(_last, _returnValueType);
+    } else {
+      PureFunctionDefinition _last_1 = IterableExtensions.<PureFunctionDefinition>last(list);
+      Iterable<PureFunctionDefinition> _tail = IterableExtensions.<PureFunctionDefinition>tail(list);
+      List<PureFunctionDefinition> _list = IterableExtensions.<PureFunctionDefinition>toList(_tail);
+      ValueType _returnTypeFunctionChainPure = GetReturnType.getReturnTypeFunctionChainPure(_list, argType, firstElement);
+      return GetReturnType.getReturnValueType(_last_1, _returnTypeFunctionChainPure);
     }
   }
   
@@ -257,6 +245,23 @@ public class GetReturnType {
       throw new Exception("this cannot happen during the typechecking, get return type Effectfull primitive");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public static ValueType getPreviousFunctionChainElementReturnType(final List<PureFunctionDefinition> elements, final PureFunctionDefinition element, final PureFunctionDefinition firstElement, final Argument arg) {
+    final Function1<PureFunctionDefinition, Boolean> _function = (PureFunctionDefinition x) -> {
+      boolean _equals = EcoreUtil2.class.equals(element);
+      return Boolean.valueOf((!_equals));
+    };
+    final Iterable<PureFunctionDefinition> functionChainToElement = IterableExtensions.<PureFunctionDefinition>takeWhile(elements, _function);
+    int _size = IterableExtensions.size(functionChainToElement);
+    boolean _equals = (_size == 0);
+    if (_equals) {
+      ValueType _type = arg.getType();
+      return GetReturnType.getReturnValueType(firstElement, _type);
+    } else {
+      PureFunctionDefinition _last = IterableExtensions.<PureFunctionDefinition>last(elements);
+      return GetReturnType.getPreviousFunctionChainElementReturnType(elements, _last, firstElement, arg);
     }
   }
 }

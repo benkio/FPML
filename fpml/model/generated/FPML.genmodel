@@ -131,14 +131,6 @@
     <genClasses ecoreClass="FPML.ecore#//ValueRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//ValueRef/value"/>
     </genClasses>
-    <genClasses ecoreClass="FPML.ecore#//PureLambda">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureLambda/arg"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureLambda/functionBody"/>
-    </genClasses>
-    <genClasses ecoreClass="FPML.ecore#//EffectFullLambda">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullLambda/arg"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullLambda/functionBody"/>
-    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//AdtValue"/>
     <genClasses ecoreClass="FPML.ecore#//ProdValue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ProdValue/prodAdtElement1"/>

@@ -85,12 +85,12 @@ public interface PureFunctionType extends ValueType, Expression, AdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(PureLambda)
+   * @see #setValue(PureFunctionDefinition)
    * @see it.unibo.fPML.FPMLPackage#getPureFunctionType_Value()
    * @model containment="true"
    * @generated
    */
-  PureLambda getValue();
+  PureFunctionDefinition getValue();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureFunctionType#getValue <em>Value</em>}' containment reference.
@@ -100,6 +100,6 @@ public interface PureFunctionType extends ValueType, Expression, AdtValue
    * @see #getValue()
    * @generated
    */
-  void setValue(PureLambda value);
+  void setValue(PureFunctionDefinition value);
 
 } // PureFunctionType

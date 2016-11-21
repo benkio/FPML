@@ -17,9 +17,9 @@ class Checks {
 							 typeCheckDataAndValue((value as DataValue).value, (type as DataType).type.content)
 			PureFunctionType: {
 				if ( value instanceof PureFunctionType) 
-					return (value as PureFunctionType).value.functionBody instanceof CompositionFunctionBodyPure &&
+					return (value as PureFunctionType).value.getFunctionBody instanceof CompositionFunctionBodyPure &&
 					 checkValueTypeEquals((value as PureFunctionType).value.arg.type, type.argType) && 
-					 checkValueTypeEquals(GetReturnType.getReturnTypeCompositionFunctionBodyPure((value as PureFunctionType).value.functionBody as CompositionFunctionBodyPure), type.returnType)
+					 checkValueTypeEquals(GetReturnType.getReturnTypeCompositionFunctionBodyPureFunctionDefinition((value as PureFunctionType).value), type.returnType)
 				else if ( value instanceof ValueRef && (value as ValueRef).value instanceof PureFunctionDefinition) {
 					return  checkValueTypeEquals(((value as ValueRef).value as PureFunctionDefinition).arg.type, type.argType) &&
 							checkValueTypeEquals(((value as ValueRef).value as PureFunctionDefinition).returnType, type.returnType)

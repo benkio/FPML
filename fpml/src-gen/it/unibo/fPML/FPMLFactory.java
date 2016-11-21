@@ -366,24 +366,6 @@ public interface FPMLFactory extends EFactory
   ValueRef createValueRef();
 
   /**
-   * Returns a new object of class '<em>Pure Lambda</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Lambda</em>'.
-   * @generated
-   */
-  PureLambda createPureLambda();
-
-  /**
-   * Returns a new object of class '<em>Effect Full Lambda</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect Full Lambda</em>'.
-   * @generated
-   */
-  EffectFullLambda createEffectFullLambda();
-
-  /**
    * Returns a new object of class '<em>Adt Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -4,7 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.ReturnPureFunction;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -39,7 +39,7 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    * @ordered
    */
-  protected PureLambda lambdaFunctionBody;
+  protected PureFunctionDefinition lambdaFunctionBody;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureLambda getLambdaFunctionBody()
+  public PureFunctionDefinition getLambdaFunctionBody()
   {
     return lambdaFunctionBody;
   }
@@ -77,9 +77,9 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLambdaFunctionBody(PureLambda newLambdaFunctionBody, NotificationChain msgs)
+  public NotificationChain basicSetLambdaFunctionBody(PureFunctionDefinition newLambdaFunctionBody, NotificationChain msgs)
   {
-    PureLambda oldLambdaFunctionBody = lambdaFunctionBody;
+    PureFunctionDefinition oldLambdaFunctionBody = lambdaFunctionBody;
     lambdaFunctionBody = newLambdaFunctionBody;
     if (eNotificationRequired())
     {
@@ -94,7 +94,7 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLambdaFunctionBody(PureLambda newLambdaFunctionBody)
+  public void setLambdaFunctionBody(PureFunctionDefinition newLambdaFunctionBody)
   {
     if (newLambdaFunctionBody != lambdaFunctionBody)
     {
@@ -153,7 +153,7 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
     switch (featureID)
     {
       case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY:
-        setLambdaFunctionBody((PureLambda)newValue);
+        setLambdaFunctionBody((PureFunctionDefinition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,7 +170,7 @@ public class ReturnPureFunctionImpl extends MinimalEObjectImpl.Container impleme
     switch (featureID)
     {
       case FPMLPackage.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY:
-        setLambdaFunctionBody((PureLambda)null);
+        setLambdaFunctionBody((PureFunctionDefinition)null);
         return;
     }
     super.eUnset(featureID);

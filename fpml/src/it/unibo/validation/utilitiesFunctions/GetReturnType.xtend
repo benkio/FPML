@@ -2,9 +2,12 @@ package it.unibo.validation.utilitiesFunctions
 
 import it.unibo.fPML.*
 import org.eclipse.emf.common.util.EList
-import java.util.List
 import it.unibo.fPML.ChainElement
 import it.unibo.fPML.EffectFullArgument
+import org.eclipse.xtext.EcoreUtil2
+import java.util.List
+import it.unibo.fPML.CompositionFunctionBodyPureFactor
+import it.unibo.fPML.ValueType
 
 class GetReturnType {
 		def static ValueType getReturnValueType(PureFunctionDefinition pf, ValueType previousChainType){
@@ -68,17 +71,20 @@ class GetReturnType {
     	}
     }
     
-    def static ValueType getReturnTypeCompositionFunctionBodyPure(CompositionFunctionBodyPure cfbp) {
-		if (cfbp.returnFunction == null){
-			if (cfbp.functionChain.size == 1)
-				return getReturnValueType(Others.getFunctionDefinitionFromPureFactor(cfbp.functionChain.last), Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp).returnType)
-			else 
-				return getReturnValueType(Others.getFunctionDefinitionFromPureFactor(cfbp.functionChain.last), Others.getFunctionDefinitionFromPureFactor(cfbp.functionChain.get(cfbp.functionChain.size - 2)).returnType)
-		}else if (cfbp.returnFunction.lambdaFunctionBody.functionBody instanceof CompositionFunctionBodyPure)
-			return getReturnTypeCompositionFunctionBodyPure((cfbp.returnFunction.lambdaFunctionBody.functionBody as CompositionFunctionBodyPure))
-		else
-			throw new Exception("this cannot happen during the typechecking of a compositionFunction body pure")	
+    def static ValueType getReturnTypeCompositionFunctionBodyPureFunctionDefinition(PureFunctionDefinition pf) {
+		if (pf.functionBody instanceof CompositionFunctionBodyPure){
+			val fcBody = (pf.functionBody as CompositionFunctionBodyPure)
+			return getReturnTypeFunctionChainPure(fcBody.functionChain.map[x | Others.getFunctionDefinitionFromPureFactor(x)], pf.arg.type, Others.getFirstFunctionDefinitionFromCompositionBodyPure(fcBody))
+		}
     }
+	
+	def static ValueType getReturnTypeFunctionChainPure(List<PureFunctionDefinition> list, ValueType argType, PureFunctionDefinition firstElement) {
+		if (list.size == 1)
+			return getReturnValueType(list.last, getReturnValueType(firstElement, argType))
+		else
+			return getReturnValueType(list.last, getReturnTypeFunctionChainPure(list.tail.toList, argType, firstElement))
+
+	}
     
     def static Type getReturnTypeCompositionBodyEffect(CompositionFunctionBodyEffect cfbe, EffectFullArgument arg) {
     	val firstElement = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe)
@@ -106,4 +112,12 @@ class GetReturnType {
 			
     	}
     }
+    
+    def static ValueType getPreviousFunctionChainElementReturnType(List<PureFunctionDefinition> elements, PureFunctionDefinition element, PureFunctionDefinition firstElement, Argument arg) {
+		val functionChainToElement = elements.takeWhile[x | !EcoreUtil2.equals(element)]
+		if (functionChainToElement.size == 0)
+			return getReturnValueType(firstElement, arg.type)
+		else 
+			return getPreviousFunctionChainElementReturnType(elements, elements.last, firstElement, arg)
+		}
 }

@@ -4,8 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
-import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.ValueType;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -61,7 +61,7 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
    * @generated
    * @ordered
    */
-  protected PureLambda value;
+  protected PureFunctionDefinition value;
 
   /**
    * <!-- begin-user-doc -->
@@ -185,7 +185,7 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureLambda getValue()
+  public PureFunctionDefinition getValue()
   {
     return value;
   }
@@ -195,9 +195,9 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(PureLambda newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(PureFunctionDefinition newValue, NotificationChain msgs)
   {
-    PureLambda oldValue = value;
+    PureFunctionDefinition oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -212,7 +212,7 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(PureLambda newValue)
+  public void setValue(PureFunctionDefinition newValue)
   {
     if (newValue != value)
     {
@@ -285,7 +285,7 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
         setReturnType((ValueType)newValue);
         return;
       case FPMLPackage.PURE_FUNCTION_TYPE__VALUE:
-        setValue((PureLambda)newValue);
+        setValue((PureFunctionDefinition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -308,7 +308,7 @@ public class PureFunctionTypeImpl extends ValueTypeImpl implements PureFunctionT
         setReturnType((ValueType)null);
         return;
       case FPMLPackage.PURE_FUNCTION_TYPE__VALUE:
-        setValue((PureLambda)null);
+        setValue((PureFunctionDefinition)null);
         return;
     }
     super.eUnset(featureID);

@@ -56,7 +56,7 @@ public class Checks {
         if ((value instanceof PureFunctionType)) {
           return (((((PureFunctionType) value).getValue().getFunctionBody() instanceof CompositionFunctionBodyPure) && 
             Checks.checkValueTypeEquals(((PureFunctionType) value).getValue().getArg().getType(), ((PureFunctionType)type).getArgType())) && 
-            Checks.checkValueTypeEquals(GetReturnType.getReturnTypeCompositionFunctionBodyPure(((CompositionFunctionBodyPure) ((PureFunctionType) value).getValue().getFunctionBody())), ((PureFunctionType)type).getReturnType()));
+            Checks.checkValueTypeEquals(GetReturnType.getReturnTypeCompositionFunctionBodyPureFunctionDefinition(((PureFunctionType) value).getValue()), ((PureFunctionType)type).getReturnType()));
         } else {
           if (((value instanceof ValueRef) && (((ValueRef) value).getValue() instanceof PureFunctionDefinition))) {
             return (Checks.checkValueTypeEquals(((PureFunctionDefinition) ((ValueRef) value).getValue()).getArg().getType(), ((PureFunctionType)type).getArgType()) && 

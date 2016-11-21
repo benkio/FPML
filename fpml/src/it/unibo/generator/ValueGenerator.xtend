@@ -59,9 +59,9 @@ class ValueGenerator {
 	
 	def compile(PureFunctionType pft) '''
 	«IF (pft.value.functionBody instanceof CompositionFunctionBodyPure)»
-	new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.getReturnTypeCompositionFunctionBodyPure((pft.value.functionBody as CompositionFunctionBodyPure)))»>() {
+	new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.getReturnTypeCompositionFunctionBodyPureFunctionDefinition(pft.value))»>() {
 				@Override
-				public «typeGenerator.compile(GetReturnType.getReturnTypeCompositionFunctionBodyPure((pft.value.functionBody as CompositionFunctionBodyPure)))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
+				public «typeGenerator.compile(GetReturnType.getReturnTypeCompositionFunctionBodyPureFunctionDefinition(pft.value))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
 					«pureFunctionGenerator.compile(pft.value.functionBody, pft.value.arg.name, true)»
 				}
 		}

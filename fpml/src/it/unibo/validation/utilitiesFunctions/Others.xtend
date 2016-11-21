@@ -22,11 +22,8 @@ class Others {
 	
 	def static PureFunctionType createIntIntFuntionType(){
 		val func = FPMLFactory.eINSTANCE.createPureFunctionType()
-   	   	val returnFunc = FPMLFactory.eINSTANCE.createPureFunctionType()
-    	returnFunc.argType = FPMLFactory.eINSTANCE.createIntegerType()
-    	returnFunc.returnType = FPMLFactory.eINSTANCE.createIntegerType()
       	func.argType = FPMLFactory.eINSTANCE.createIntegerType()
-      	func.returnType = returnFunc
+      	func.returnType = FPMLFactory.eINSTANCE.createIntegerType()
       	return func
 	}
 	

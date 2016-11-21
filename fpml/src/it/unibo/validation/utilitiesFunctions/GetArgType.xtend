@@ -1,9 +1,13 @@
 package it.unibo.validation.utilitiesFunctions
 
 import it.unibo.fPML.*
+import it.unibo.validation.FPMLValidator
+import org.eclipse.emf.ecore.EReference
+import java.util.List
+import org.eclipse.xtext.EcoreUtil2
 
 class GetArgType {
-	
+		
 		def static ValueType getArgTypePure(PureFunctionDefinition pf, ValueType previousChainType){
 		val t = pf.getArg()
 		if (t == null) {
@@ -54,13 +58,12 @@ class GetArgType {
           Times: return FPMLFactory.eINSTANCE.createIntegerType()
           Mod: return FPMLFactory.eINSTANCE.createIntegerType()
           ApplyF: {
-				if (previousFunction != null) {
-					return previousFunction.argType
-				} else 
-					throw new Exception("this cannot happen during the typechecking, get argument type pure primitive")
+				if (previousFunction != null && (Others.getTypeFromExpression(pf.value.value) instanceof ValueType)) {
+					previousFunction.argType = Others.getTypeFromExpression(pf.value.value) as ValueType
+					return previousFunction
+				}
 			}
         	default: throw new Exception("this cannot happen during the typechecking, get argument type pure primitive")
-          
     	}
     }
     
@@ -79,17 +82,18 @@ class GetArgType {
     
     def static ValueType getArgTypeCompositionFunctionBodyPureContainer(CompositionFunctionBodyPure cfbp) {
     	val container = cfbp.eContainer
-    	switch container {
-    		PureFunctionDefinition: return container.arg.type	
-    		PureLambda: return container.arg.type
-    	}
+    	if (container instanceof PureFunctionDefinition)
+    		return container.arg.type
+    	throw new Exception("this cannot happen during the typechecking, getArgTypeCompositionBodyPureContainer")
     }
     
     def static Type getArgTypeCompositionFunctionBodyEffectFullContainer(CompositionFunctionBodyEffect cfbe) {
     	val container = cfbe.eContainer
-    	switch container {
-    		EffectFullFunctionDefinition: return container.arg.type	
-    		EffectFullLambda: return container.arg.type
-    	}
+    	if (container instanceof EffectFullFunctionDefinition || container instanceof MainFunc)
+    		switch container{
+    			EffectFullFunctionDefinition: return container.arg.type
+    			MainFunc: return FPMLFactory.eINSTANCE.createUnitType
+    		}
+    	throw new Exception("this cannot happen during the typechecking, getArgTypeCompositionFunctionBodyEffectFullContainer")
     }
 }

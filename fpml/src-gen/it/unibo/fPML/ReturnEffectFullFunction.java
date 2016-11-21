@@ -32,12 +32,12 @@ public interface ReturnEffectFullFunction extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Lambda Function Body</em>' containment reference.
-   * @see #setLambdaFunctionBody(EffectFullLambda)
+   * @see #setLambdaFunctionBody(EffectFullFunctionDefinition)
    * @see it.unibo.fPML.FPMLPackage#getReturnEffectFullFunction_LambdaFunctionBody()
    * @model containment="true"
    * @generated
    */
-  EffectFullLambda getLambdaFunctionBody();
+  EffectFullFunctionDefinition getLambdaFunctionBody();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.ReturnEffectFullFunction#getLambdaFunctionBody <em>Lambda Function Body</em>}' containment reference.
@@ -47,6 +47,6 @@ public interface ReturnEffectFullFunction extends EObject
    * @see #getLambdaFunctionBody()
    * @generated
    */
-  void setLambdaFunctionBody(EffectFullLambda value);
+  void setLambdaFunctionBody(EffectFullFunctionDefinition value);
 
 } // ReturnEffectFullFunction

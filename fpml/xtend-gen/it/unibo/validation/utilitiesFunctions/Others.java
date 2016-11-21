@@ -60,14 +60,10 @@ public class Others {
   
   public static PureFunctionType createIntIntFuntionType() {
     final PureFunctionType func = FPMLFactory.eINSTANCE.createPureFunctionType();
-    final PureFunctionType returnFunc = FPMLFactory.eINSTANCE.createPureFunctionType();
     IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
-    returnFunc.setArgType(_createIntegerType);
+    func.setArgType(_createIntegerType);
     IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
-    returnFunc.setReturnType(_createIntegerType_1);
-    IntegerType _createIntegerType_2 = FPMLFactory.eINSTANCE.createIntegerType();
-    func.setArgType(_createIntegerType_2);
-    func.setReturnType(returnFunc);
+    func.setReturnType(_createIntegerType_1);
     return func;
   }
   

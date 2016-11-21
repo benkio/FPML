@@ -11,18 +11,17 @@ import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
-import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
+import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
-import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.Value;
@@ -143,15 +142,19 @@ public class GetArgType {
       if (!_matched) {
         if (pf instanceof ApplyF) {
           _matched=true;
-          boolean _notEquals = (!Objects.equal(previousFunction, null));
-          if (_notEquals) {
-            return previousFunction.getArgType();
-          } else {
-            throw new Exception("this cannot happen during the typechecking, get argument type pure primitive");
+          if (((!Objects.equal(previousFunction, null)) && (Others.getTypeFromExpression(((ApplyF)pf).getValue().getValue()) instanceof ValueType))) {
+            Value _value = ((ApplyF)pf).getValue();
+            Expression _value_1 = _value.getValue();
+            Type _typeFromExpression = Others.getTypeFromExpression(_value_1);
+            previousFunction.setArgType(((ValueType) _typeFromExpression));
+            return previousFunction;
           }
         }
       }
-      throw new Exception("this cannot happen during the typechecking, get argument type pure primitive");
+      if (!_matched) {
+        throw new Exception("this cannot happen during the typechecking, get argument type pure primitive");
+      }
+      return null;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -182,38 +185,38 @@ public class GetArgType {
   }
   
   public static ValueType getArgTypeCompositionFunctionBodyPureContainer(final CompositionFunctionBodyPure cfbp) {
-    final EObject container = cfbp.eContainer();
-    boolean _matched = false;
-    if (container instanceof PureFunctionDefinition) {
-      _matched=true;
-      Argument _arg = ((PureFunctionDefinition)container).getArg();
-      return _arg.getType();
-    }
-    if (!_matched) {
-      if (container instanceof PureLambda) {
-        _matched=true;
-        Argument _arg = ((PureLambda)container).getArg();
+    try {
+      final EObject container = cfbp.eContainer();
+      if ((container instanceof PureFunctionDefinition)) {
+        Argument _arg = ((PureFunctionDefinition)container).getArg();
         return _arg.getType();
       }
+      throw new Exception("this cannot happen during the typechecking, getArgTypeCompositionBodyPureContainer");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
-    return null;
   }
   
   public static Type getArgTypeCompositionFunctionBodyEffectFullContainer(final CompositionFunctionBodyEffect cfbe) {
-    final EObject container = cfbe.eContainer();
-    boolean _matched = false;
-    if (container instanceof EffectFullFunctionDefinition) {
-      _matched=true;
-      EffectFullArgument _arg = ((EffectFullFunctionDefinition)container).getArg();
-      return _arg.getType();
-    }
-    if (!_matched) {
-      if (container instanceof EffectFullLambda) {
-        _matched=true;
-        EffectFullArgument _arg = ((EffectFullLambda)container).getArg();
-        return _arg.getType();
+    try {
+      final EObject container = cfbe.eContainer();
+      if (((container instanceof EffectFullFunctionDefinition) || (container instanceof MainFunc))) {
+        boolean _matched = false;
+        if (container instanceof EffectFullFunctionDefinition) {
+          _matched=true;
+          EffectFullArgument _arg = ((EffectFullFunctionDefinition)container).getArg();
+          return _arg.getType();
+        }
+        if (!_matched) {
+          if (container instanceof MainFunc) {
+            _matched=true;
+            return FPMLFactory.eINSTANCE.createUnitType();
+          }
+        }
       }
+      throw new Exception("this cannot happen during the typechecking, getArgTypeCompositionFunctionBodyEffectFullContainer");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
-    return null;
   }
 }

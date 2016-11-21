@@ -16,7 +16,6 @@ import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
-import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureReference;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
@@ -264,20 +263,19 @@ public class ValueGenerator {
   public CharSequence compile(final PureFunctionType pft) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      PureLambda _value = pft.getValue();
+      PureFunctionDefinition _value = pft.getValue();
       FunctionBodyPure _functionBody = _value.getFunctionBody();
       if ((_functionBody instanceof CompositionFunctionBodyPure)) {
         _builder.append("new F<");
-        PureLambda _value_1 = pft.getValue();
+        PureFunctionDefinition _value_1 = pft.getValue();
         Argument _arg = _value_1.getArg();
         ValueType _type = _arg.getType();
         Object _compile = this.typeGenerator.compile(_type);
         _builder.append(_compile, "");
         _builder.append(",");
-        PureLambda _value_2 = pft.getValue();
-        FunctionBodyPure _functionBody_1 = _value_2.getFunctionBody();
-        ValueType _returnTypeCompositionFunctionBodyPure = GetReturnType.getReturnTypeCompositionFunctionBodyPure(((CompositionFunctionBodyPure) _functionBody_1));
-        Object _compile_1 = this.typeGenerator.compile(_returnTypeCompositionFunctionBodyPure);
+        PureFunctionDefinition _value_2 = pft.getValue();
+        ValueType _returnTypeCompositionFunctionBodyPureFunctionDefinition = GetReturnType.getReturnTypeCompositionFunctionBodyPureFunctionDefinition(_value_2);
+        Object _compile_1 = this.typeGenerator.compile(_returnTypeCompositionFunctionBodyPureFunctionDefinition);
         _builder.append(_compile_1, "");
         _builder.append(">() {");
         _builder.newLineIfNotEmpty();
@@ -286,31 +284,30 @@ public class ValueGenerator {
         _builder.newLine();
         _builder.append("\t\t\t");
         _builder.append("public ");
-        PureLambda _value_3 = pft.getValue();
-        FunctionBodyPure _functionBody_2 = _value_3.getFunctionBody();
-        ValueType _returnTypeCompositionFunctionBodyPure_1 = GetReturnType.getReturnTypeCompositionFunctionBodyPure(((CompositionFunctionBodyPure) _functionBody_2));
-        Object _compile_2 = this.typeGenerator.compile(_returnTypeCompositionFunctionBodyPure_1);
+        PureFunctionDefinition _value_3 = pft.getValue();
+        ValueType _returnTypeCompositionFunctionBodyPureFunctionDefinition_1 = GetReturnType.getReturnTypeCompositionFunctionBodyPureFunctionDefinition(_value_3);
+        Object _compile_2 = this.typeGenerator.compile(_returnTypeCompositionFunctionBodyPureFunctionDefinition_1);
         _builder.append(_compile_2, "\t\t\t");
         _builder.append(" f(");
-        PureLambda _value_4 = pft.getValue();
+        PureFunctionDefinition _value_4 = pft.getValue();
         Argument _arg_1 = _value_4.getArg();
         ValueType _type_1 = _arg_1.getType();
         Object _compile_3 = this.typeGenerator.compile(_type_1);
         _builder.append(_compile_3, "\t\t\t");
         _builder.append(" ");
-        PureLambda _value_5 = pft.getValue();
+        PureFunctionDefinition _value_5 = pft.getValue();
         Argument _arg_2 = _value_5.getArg();
         String _name = _arg_2.getName();
         _builder.append(_name, "\t\t\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t\t");
-        PureLambda _value_6 = pft.getValue();
-        FunctionBodyPure _functionBody_3 = _value_6.getFunctionBody();
-        PureLambda _value_7 = pft.getValue();
+        PureFunctionDefinition _value_6 = pft.getValue();
+        FunctionBodyPure _functionBody_1 = _value_6.getFunctionBody();
+        PureFunctionDefinition _value_7 = pft.getValue();
         Argument _arg_3 = _value_7.getArg();
         String _name_1 = _arg_3.getName();
-        String _compile_4 = this.pureFunctionGenerator.compile(_functionBody_3, _name_1, true);
+        String _compile_4 = this.pureFunctionGenerator.compile(_functionBody_1, _name_1, true);
         _builder.append(_compile_4, "\t\t\t\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t");
@@ -320,9 +317,9 @@ public class ValueGenerator {
         _builder.append("}");
         _builder.newLine();
       } else {
-        PureLambda _value_8 = pft.getValue();
-        FunctionBodyPure _functionBody_4 = _value_8.getFunctionBody();
-        if ((_functionBody_4 instanceof EmptyFunctionBody)) {
+        PureFunctionDefinition _value_8 = pft.getValue();
+        FunctionBodyPure _functionBody_2 = _value_8.getFunctionBody();
+        if ((_functionBody_2 instanceof EmptyFunctionBody)) {
           _builder.append("new F<() {");
           _builder.newLine();
           _builder.append("\t\t\t\t");
@@ -330,7 +327,7 @@ public class ValueGenerator {
           _builder.newLine();
           _builder.append("\t\t\t\t");
           _builder.append("public Object f(Object ");
-          PureLambda _value_9 = pft.getValue();
+          PureFunctionDefinition _value_9 = pft.getValue();
           Argument _arg_4 = _value_9.getArg();
           String _name_2 = _arg_4.getName();
           _builder.append(_name_2, "\t\t\t\t");

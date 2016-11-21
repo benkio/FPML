@@ -1547,8 +1547,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFunctionBodyAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cFunctionBodyFunctionBodyPureParserRuleCall_4_0 = (RuleCall)cFunctionBodyAssignment_4.eContents().get(0);
 		
-		//PureLambda:
-		//	'(' arg=Argument ')' ':' functionBody=FunctionBodyPure;
+		//PureLambda PureFunctionDefinition:
+		//	'(' arg=Argument ')' ':' functionBody=FunctionBodyPure
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'(' arg=Argument ')' ':' functionBody=FunctionBodyPure
@@ -1586,8 +1586,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFunctionBodyAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cFunctionBodyFunctionBodyEffectFullParserRuleCall_4_0 = (RuleCall)cFunctionBodyAssignment_4.eContents().get(0);
 		
-		//EffectFullLambda:
-		//	'(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull;
+		//EffectFullLambda EffectFullFunctionDefinition:
+		//	'(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull
@@ -2642,8 +2642,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getValueRefAccess().getRule();
 	}
 	
-	//PureLambda:
-	//	'(' arg=Argument ')' ':' functionBody=FunctionBodyPure;
+	//PureLambda PureFunctionDefinition:
+	//	'(' arg=Argument ')' ':' functionBody=FunctionBodyPure
 	public PureLambdaElements getPureLambdaAccess() {
 		return pPureLambda;
 	}
@@ -2652,8 +2652,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPureLambdaAccess().getRule();
 	}
 	
-	//EffectFullLambda:
-	//	'(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull;
+	//EffectFullLambda EffectFullFunctionDefinition:
+	//	'(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull
 	public EffectFullLambdaElements getEffectFullLambdaAccess() {
 		return pEffectFullLambda;
 	}

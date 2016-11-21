@@ -167,9 +167,9 @@ DataValue returns DataType: {DataValue} type=[Data]'(' value=AdtValue ')';
 
 ValueRef: {ValueRef} value=[PureReference];
 
-PureLambda: '(' arg=Argument ')' ':' functionBody=FunctionBodyPure;
+PureLambda returns PureFunctionDefinition: '(' arg=Argument ')' ':' functionBody=FunctionBodyPure;
 
-EffectFullLambda: '(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull;
+EffectFullLambda returns EffectFullFunctionDefinition: '(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull;
 
 AdtValue:
 	  IntValue

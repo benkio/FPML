@@ -3,7 +3,7 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullLambda;
+import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.ReturnEffectFullFunction;
 
@@ -39,7 +39,7 @@ public class ReturnEffectFullFunctionImpl extends MinimalEObjectImpl.Container i
    * @generated
    * @ordered
    */
-  protected EffectFullLambda lambdaFunctionBody;
+  protected EffectFullFunctionDefinition lambdaFunctionBody;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class ReturnEffectFullFunctionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullLambda getLambdaFunctionBody()
+  public EffectFullFunctionDefinition getLambdaFunctionBody()
   {
     return lambdaFunctionBody;
   }
@@ -77,9 +77,9 @@ public class ReturnEffectFullFunctionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLambdaFunctionBody(EffectFullLambda newLambdaFunctionBody, NotificationChain msgs)
+  public NotificationChain basicSetLambdaFunctionBody(EffectFullFunctionDefinition newLambdaFunctionBody, NotificationChain msgs)
   {
-    EffectFullLambda oldLambdaFunctionBody = lambdaFunctionBody;
+    EffectFullFunctionDefinition oldLambdaFunctionBody = lambdaFunctionBody;
     lambdaFunctionBody = newLambdaFunctionBody;
     if (eNotificationRequired())
     {
@@ -94,7 +94,7 @@ public class ReturnEffectFullFunctionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLambdaFunctionBody(EffectFullLambda newLambdaFunctionBody)
+  public void setLambdaFunctionBody(EffectFullFunctionDefinition newLambdaFunctionBody)
   {
     if (newLambdaFunctionBody != lambdaFunctionBody)
     {
@@ -153,7 +153,7 @@ public class ReturnEffectFullFunctionImpl extends MinimalEObjectImpl.Container i
     switch (featureID)
     {
       case FPMLPackage.RETURN_EFFECT_FULL_FUNCTION__LAMBDA_FUNCTION_BODY:
-        setLambdaFunctionBody((EffectFullLambda)newValue);
+        setLambdaFunctionBody((EffectFullFunctionDefinition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,7 +170,7 @@ public class ReturnEffectFullFunctionImpl extends MinimalEObjectImpl.Container i
     switch (featureID)
     {
       case FPMLPackage.RETURN_EFFECT_FULL_FUNCTION__LAMBDA_FUNCTION_BODY:
-        setLambdaFunctionBody((EffectFullLambda)null);
+        setLambdaFunctionBody((EffectFullFunctionDefinition)null);
         return;
     }
     super.eUnset(featureID);

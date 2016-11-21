@@ -103,8 +103,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE: return createEffectFullFunctionType();
       case FPMLPackage.EXPRESSION: return createExpression();
       case FPMLPackage.VALUE_REF: return createValueRef();
-      case FPMLPackage.PURE_LAMBDA: return createPureLambda();
-      case FPMLPackage.EFFECT_FULL_LAMBDA: return createEffectFullLambda();
       case FPMLPackage.ADT_VALUE: return createAdtValue();
       case FPMLPackage.PROD_VALUE: return createProdValue();
       case FPMLPackage.SUM_VALUE: return createSumValue();
@@ -539,28 +537,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     ValueRefImpl valueRef = new ValueRefImpl();
     return valueRef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PureLambda createPureLambda()
-  {
-    PureLambdaImpl pureLambda = new PureLambdaImpl();
-    return pureLambda;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EffectFullLambda createEffectFullLambda()
-  {
-    EffectFullLambdaImpl effectFullLambda = new EffectFullLambdaImpl();
-    return effectFullLambda;
   }
 
   /**

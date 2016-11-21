@@ -9,6 +9,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 
 import org.eclipse.emf.ecore.EObject
 import it.unibo.validation.utilitiesFunctions.*
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.EcoreUtil2
 
 /**
  * This class contains custom validation rules. 
@@ -23,13 +25,15 @@ class FPMLValidator extends AbstractFPMLValidator {
     public static val TYPEMISMATCHFUNCTIONCOMPOSITIONARGS = "The argument type of the function is not the same as the first argument of the function chain";
     public static val EFFECTFULLARGUMENTUNITTYPEID = "The Unit Type don't require and ID";
     public static val TYPEVMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
-
+	public static val APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type"
+	
     @Check
     def CompositionFunctionTypePure(CompositionFunctionBodyPure cfbp ) {
     	var ValueType t = GetReturnType.getReturnValueType(Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp), GetArgType.getArgTypeCompositionFunctionBodyPureContainer(cfbp));
-        
+                	
         for (CompositionFunctionBodyPureFactor pf : cfbp.getFunctionChain()){
 	        var ValueType t1 = GetArgType.getArgTypePure(Others.getFunctionDefinitionFromPureFactor(pf), t);
+	             	    
 	        if(!Checks.checkValueTypeEquals(t, t1))
 	           error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN );
             t = GetReturnType.getReturnValueType(Others.getFunctionDefinitionFromPureFactor(pf), t)
@@ -67,7 +71,7 @@ class FPMLValidator extends AbstractFPMLValidator {
     def FunctionCompositionReturnType(PureFunctionDefinition pf){
         val rt = pf.getFunctionBody();
         if (rt != null && rt instanceof CompositionFunctionBodyPure) {
-            val rt2 = GetReturnType.getReturnTypeCompositionFunctionBodyPure((rt as CompositionFunctionBodyPure))
+            val rt2 = GetReturnType.getReturnTypeCompositionFunctionBodyPureFunctionDefinition(pf)
             if(!(Checks.checkValueTypeEquals(pf.getReturnType(), rt2)))
                 error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE);
         }
@@ -98,18 +102,19 @@ class FPMLValidator extends AbstractFPMLValidator {
     @Check
     def FunctionCompositionArgType(EffectFullFunctionDefinition ef){
         val rt = ef.getFunctionBody();
-        val firstChainElement = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull((rt as CompositionFunctionBodyEffect))
         if (rt != null && 
-        	rt instanceof CompositionFunctionBodyEffect && 
-        	(firstChainElement instanceof PureFunctionDefinition || firstChainElement instanceof EffectFullFunctionDefinition)) {
-            val t = ef.getArg().getType()
-            var Type t1
-            if (firstChainElement instanceof PureFunctionDefinition && t instanceof ValueType)
-            	t1 = GetArgType.getArgTypePure((firstChainElement as PureFunctionDefinition), (t as ValueType))
-            else if (firstChainElement instanceof EffectFullFunctionDefinition)
-            	t1 = GetArgType.getArgTypeEffectFull((firstChainElement  as EffectFullFunctionDefinition), t);
-            if(!(Checks.checkTypeEquals(t,t1)))
-                error(TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG);
+        	rt instanceof CompositionFunctionBodyEffect) {
+	        val firstChainElement = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull((rt as CompositionFunctionBodyEffect))
+	        if (firstChainElement instanceof PureFunctionDefinition || firstChainElement instanceof EffectFullFunctionDefinition) {
+	            val t = ef.getArg().getType()
+	            var Type t1
+	            if (firstChainElement instanceof PureFunctionDefinition && t instanceof ValueType)
+	            	t1 = GetArgType.getArgTypePure((firstChainElement as PureFunctionDefinition), (t as ValueType))
+	            else if (firstChainElement instanceof EffectFullFunctionDefinition)
+	            	t1 = GetArgType.getArgTypeEffectFull((firstChainElement  as EffectFullFunctionDefinition), t);
+	            if(!(Checks.checkTypeEquals(t,t1)))
+	                error(TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG);
+	   		}
    		}
 	}
 
@@ -136,5 +141,37 @@ class FPMLValidator extends AbstractFPMLValidator {
     def ValueDataTypeCheck(DataValue dv) {
     	if (!Checks.typeCheckDataAndValue(dv.value, dv.type.content))
     		error(TYPEVMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.DATA_VALUE__VALUE)
+    }
+    
+    @Check
+    def ApplyValueCheck(ApplyF a){
+    	var CompositionFunctionBodyPure functionChain
+    	if (a.eContainer instanceof CompositionFunctionBodyPure)
+    		functionChain = (a.eContainer as CompositionFunctionBodyPure)
+    	else
+    		functionChain = (a.eContainer.eContainer as CompositionFunctionBodyPure)
+    	val firstElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(functionChain)
+    	val applyValueType = Others.getTypeFromExpression(a.value.value)
+    	if (applyValueType != null) {
+	    	if (EcoreUtil2.equals(firstElement, a)) {
+	    		val functionDef = functionChain.eContainer
+	    		switch functionDef {
+	    			PureFunctionDefinition: {
+	    				if (!Checks.checkTypeEquals(applyValueType, functionDef.arg.type)) {
+	    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__VALUE)	
+	    				}
+	    			} 
+	    		}	
+	    	} else {
+	    		val functionDef = functionChain.eContainer
+	    		switch functionDef {
+	    			PureFunctionDefinition: {
+	   					val returnPreviousApplyElement = GetReturnType.getPreviousFunctionChainElementReturnType(functionChain.functionChain.map[x | Others.getFunctionDefinitionFromPureFactor(x)], a, firstElement, functionDef.arg)
+	   					if (!Checks.checkTypeEquals(returnPreviousApplyElement, applyValueType))
+	   						error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__VALUE)
+	   				}
+	    		}
+       		}
+       	}
     }
 }

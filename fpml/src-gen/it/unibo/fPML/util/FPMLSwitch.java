@@ -375,20 +375,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.PURE_LAMBDA:
-      {
-        PureLambda pureLambda = (PureLambda)theEObject;
-        T result = casePureLambda(pureLambda);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case FPMLPackage.EFFECT_FULL_LAMBDA:
-      {
-        EffectFullLambda effectFullLambda = (EffectFullLambda)theEObject;
-        T result = caseEffectFullLambda(effectFullLambda);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case FPMLPackage.ADT_VALUE:
       {
         AdtValue adtValue = (AdtValue)theEObject;
@@ -1121,38 +1107,6 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseValueRef(ValueRef object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pure Lambda</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pure Lambda</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePureLambda(PureLambda object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Effect Full Lambda</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Effect Full Lambda</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEffectFullLambda(EffectFullLambda object)
   {
     return null;
   }
