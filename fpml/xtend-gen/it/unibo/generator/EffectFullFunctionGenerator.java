@@ -20,8 +20,11 @@ import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
+import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Functions.Function2;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class EffectFullFunctionGenerator {
@@ -141,19 +144,26 @@ public class EffectFullFunctionGenerator {
   }
   
   public CharSequence compile(final CompositionFunctionBodyEffect cfbe) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\nThe method compile(CompositionFunctionBodyEffectFullFactor) from the type EffectFullFunctionGenerator refers to the missing type Object"
-      + "\ngetFirstFunctionDefinitionFromCompositionBodyEffectFull cannot be resolved"
-      + "\ncompile cannot be resolved"
-      + "\n+ cannot be resolved");
+    StringConcatenation _builder = new StringConcatenation();
+    ChainElement _firstFunctionDefinitionFromCompositionBodyEffectFull = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe);
+    final String firstElementCompiled = this.compile(_firstFunctionDefinitionFromCompositionBodyEffectFull);
+    _builder.newLineIfNotEmpty();
+    final Function2<String, CompositionFunctionBodyEffectFullFactor, String> _function = (String acc, CompositionFunctionBodyEffectFullFactor x) -> {
+      String _compile = this.compile(x);
+      String _plus = (acc + _compile);
+      return (_plus + "\n\t");
+    };
+    final Function2<String, CompositionFunctionBodyEffectFullFactor, String> f = _function;
+    _builder.newLineIfNotEmpty();
+    EList<CompositionFunctionBodyEffectFullFactor> _functionChain = cfbe.getFunctionChain();
+    String _fold = IterableExtensions.<CompositionFunctionBodyEffectFullFactor, String>fold(_functionChain, (firstElementCompiled + "\n\t"), f);
+    _builder.append(_fold, "");
+    return _builder;
   }
   
-  public Object compile(final CompositionFunctionBodyEffectFullFactor f) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field UtilitiesFunctions is undefined"
-      + "\ngetFunctionDefinitionFromEffectFullFactor cannot be resolved"
-      + "\ncompile cannot be resolved");
+  public String compile(final CompositionFunctionBodyEffectFullFactor f) {
+    final ChainElement e = Others.getFunctionDefinitionFromEffectFullFactor(f);
+    return this.compile(e);
   }
   
   public String compile(final ChainElement e) {

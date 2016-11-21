@@ -9,13 +9,13 @@ import org.eclipse.xtext.xbase.lib.Functions.Function2
 import it.unibo.fPML.PureFunctionDefinition
 import it.unibo.fPML.Value
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor
-import it.unibo.validation.UtilitiesFunctions
 import it.unibo.fPML.IntToString
 import it.unibo.fPML.IntPow
 import it.unibo.fPML.PrimitivePrint
 import it.unibo.fPML.MainFunc
 import it.unibo.fPML.FPMLFactory
 import it.unibo.fPML.EffectFullArgument
+import it.unibo.validation.utilitiesFunctions.Others
 
 class EffectFullFunctionGenerator {
 	
@@ -58,12 +58,12 @@ class EffectFullFunctionGenerator {
 	}
 
 	def compile(CompositionFunctionBodyEffect cfbe) '''
-		«val firstElementCompiled = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe).compile»
+		«val firstElementCompiled = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe).compile»
 		«val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | acc + x.compile + "\n\t"]»
 		«cfbe.functionChain.fold(firstElementCompiled + "\n\t", f) »'''
 	
 	def compile(CompositionFunctionBodyEffectFullFactor f) {
-		val e = UtilitiesFunctions.getFunctionDefinitionFromEffectFullFactor(f)
+		val e = Others.getFunctionDefinitionFromEffectFullFactor(f)
 		return e.compile	
 	}	
 	

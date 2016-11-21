@@ -1,8 +1,7 @@
 package it.unibo.generator
 
 import it.unibo.fPML.*
-import it.unibo.validation.UtilitiesFunctions
-
+import it.unibo.validation.utilitiesFunctions.GetReturnType
 
 class ValueGenerator {
 	
@@ -60,9 +59,9 @@ class ValueGenerator {
 	
 	def compile(PureFunctionType pft) '''
 	«IF (pft.value.functionBody instanceof CompositionFunctionBodyPure)»
-	new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(UtilitiesFunctions.getReturnTypeCompositionFunctionBodyPure((pft.value.functionBody as CompositionFunctionBodyPure)))»>() {
+	new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.getReturnTypeCompositionFunctionBodyPure((pft.value.functionBody as CompositionFunctionBodyPure)))»>() {
 				@Override
-				public «typeGenerator.compile(UtilitiesFunctions.getReturnTypeCompositionFunctionBodyPure((pft.value.functionBody as CompositionFunctionBodyPure)))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
+				public «typeGenerator.compile(GetReturnType.getReturnTypeCompositionFunctionBodyPure((pft.value.functionBody as CompositionFunctionBodyPure)))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
 					«pureFunctionGenerator.compile(pft.value.functionBody, pft.value.arg.name, true)»
 				}
 		}

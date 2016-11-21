@@ -7,9 +7,9 @@ import it.unibo.fPML.PureFunctionDefinition
 import it.unibo.fPML.Value
 import it.unibo.fPML.IntToString
 import it.unibo.fPML.IntPow
-import it.unibo.validation.UtilitiesFunctions
 import it.unibo.fPML.FPMLFactory
 import it.unibo.fPML.FunctionBodyPure
+import it.unibo.validation.utilitiesFunctions.Others
 
 class PureFunctionGenerator {
 	
@@ -42,13 +42,13 @@ class PureFunctionGenerator {
 
 	def compile(CompositionFunctionBodyPure cfbp, String argName, boolean outsideCalls) {
 		var result = ""
-		val initialElement = UtilitiesFunctions.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
+		val initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
 		switch initialElement {
 			PureFunctionDefinition: result = compileCall(initialElement, argName, outsideCalls)
 			Value: result = "Value." + (initialElement as Value).name + "()"
 		}
 		for (f : cfbp.functionChain){
-			result = compileCall( UtilitiesFunctions.getFunctionDefinitionFromPureFactor(f), result, outsideCalls)
+			result = compileCall( Others.getFunctionDefinitionFromPureFactor(f), result, outsideCalls)
 		}
 		return result
 	} 

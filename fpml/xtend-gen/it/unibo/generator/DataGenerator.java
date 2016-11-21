@@ -10,7 +10,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 public class DataGenerator {
   private final TypeGenerator typeGenerator = new TypeGenerator();
   
-  public Object compile(final Data d) {
+  public String compile(final Data d) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _basePackageJava = FPMLGenerator.getBasePackageJava();
