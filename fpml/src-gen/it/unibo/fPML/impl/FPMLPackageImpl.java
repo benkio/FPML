@@ -1587,7 +1587,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getApplyF_Value()
+  public EReference getApplyF_ValueRef()
   {
     return (EReference)applyFEClass.getEStructuralFeatures().get(0);
   }
@@ -1828,7 +1828,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     modEClass = createEClass(MOD);
 
     applyFEClass = createEClass(APPLY_F);
-    createEReference(applyFEClass, APPLY_F__VALUE);
+    createEReference(applyFEClass, APPLY_F__VALUE_REF);
 
     primitivePrintEClass = createEClass(PRIMITIVE_PRINT);
 
@@ -2066,7 +2066,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(modEClass, Mod.class, "Mod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(applyFEClass, ApplyF.class, "ApplyF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getApplyF_Value(), this.getValue(), null, "value", null, 0, 1, ApplyF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getApplyF_ValueRef(), this.getValue(), null, "valueRef", null, 0, 1, ApplyF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primitivePrintEClass, PrimitivePrint.class, "PrimitivePrint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

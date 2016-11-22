@@ -10,6 +10,11 @@ import it.unibo.fPML.IntPow
 import it.unibo.fPML.FPMLFactory
 import it.unibo.fPML.FunctionBodyPure
 import it.unibo.validation.utilitiesFunctions.Others
+import it.unibo.fPML.Plus
+import it.unibo.fPML.Minus
+import it.unibo.fPML.Times
+import it.unibo.fPML.Mod
+import it.unibo.fPML.ApplyF
 
 class PureFunctionGenerator {
 	
@@ -73,6 +78,11 @@ class PureFunctionGenerator {
 				f.name = "(int) Math.pow"
 				return compileCall(f, argName + ", 2", outsideCalls)
 			}
+			Plus: return "Primitives.plus(" + argName + ")"
+			Minus: "Primitives.minus(" + argName + ")"
+			Times: "Primitives.times(" + argName + ")"
+			Mod: "Primitives.mod(" + argName + ")"
+			ApplyF: argName + ".f(Value." + (purePrimitive as ApplyF).valueRef.name + "())"
 		}
 	}
 }

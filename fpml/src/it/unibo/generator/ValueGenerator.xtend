@@ -16,6 +16,7 @@ class ValueGenerator {
 	    import fj.P;
 	    import fj.P2;
 	    import fj.Unit;
+	    import it.unibo.Pure.Primitives;
 	    import it.unibo.Pure.PureFunctionDefinitions;
 	    import fj.F;
 	    

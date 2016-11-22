@@ -40,13 +40,13 @@ public class ValueGenerator {
   public CharSequence compile(final Iterable<Value> values) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    String _basePackageJava = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava, "");
     _builder.append("Pure.Data;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("import ");
-    String _basePackageJava_1 = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava_1 = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava_1, "");
     _builder.append("Pure.Data.*;");
     _builder.newLineIfNotEmpty();
@@ -57,6 +57,8 @@ public class ValueGenerator {
     _builder.append("import fj.P2;");
     _builder.newLine();
     _builder.append("import fj.Unit;");
+    _builder.newLine();
+    _builder.append("import it.unibo.Pure.Primitives;");
     _builder.newLine();
     _builder.append("import it.unibo.Pure.PureFunctionDefinitions;");
     _builder.newLine();

@@ -307,15 +307,15 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ApplyF returns ApplyF
 	 *
 	 * Constraint:
-	 *     value=[Value|ID]
+	 *     valueRef=[Value|ID]
 	 */
 	protected void sequence_ApplyF(ISerializationContext context, ApplyF semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.APPLY_F__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.APPLY_F__VALUE));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.APPLY_F__VALUE_REF) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.APPLY_F__VALUE_REF));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getApplyFAccess().getValueValueIDTerminalRuleCall_2_0_1(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getApplyFAccess().getValueRefValueIDTerminalRuleCall_2_0_1(), semanticObject.getValueRef());
 		feeder.finish();
 	}
 	

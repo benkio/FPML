@@ -143,11 +143,11 @@ public class GetArgType {
       if (!_matched) {
         if (pf instanceof ApplyF) {
           _matched=true;
-          if ((((!Objects.equal(previousFunction, null)) && (Others.getTypeFromExpression(((ApplyF)pf).getValue().getValue()) instanceof ValueType)) && 
-            Checks.checkValueTypeEquals(previousFunction.getArgType(), ((ValueType) Others.getTypeFromExpression(((ApplyF)pf).getValue().getValue()))))) {
-            Value _value = ((ApplyF)pf).getValue();
-            Expression _value_1 = _value.getValue();
-            Type _typeFromExpression = Others.getTypeFromExpression(_value_1);
+          if (((((!Objects.equal(previousFunction, null)) && (((ApplyF)pf).getValueRef() instanceof Value)) && (Others.getTypeFromExpression(((Value) ((ApplyF)pf).getValueRef()).getValue()) instanceof ValueType)) && 
+            Checks.checkValueTypeEquals(previousFunction.getArgType(), ((ValueType) Others.getTypeFromExpression(((Value) ((ApplyF)pf).getValueRef()).getValue()))))) {
+            Value _valueRef = ((ApplyF)pf).getValueRef();
+            Expression _value = ((Value) _valueRef).getValue();
+            Type _typeFromExpression = Others.getTypeFromExpression(_value);
             previousFunction.setArgType(((ValueType) _typeFromExpression));
             return previousFunction;
           } else {

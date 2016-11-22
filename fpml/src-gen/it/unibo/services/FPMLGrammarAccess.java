@@ -1919,15 +1919,15 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cApplyFAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cApplyFKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cValueValueCrossReference_2_0 = (CrossReference)cValueAssignment_2.eContents().get(0);
-		private final RuleCall cValueValueIDTerminalRuleCall_2_0_1 = (RuleCall)cValueValueCrossReference_2_0.eContents().get(1);
+		private final Assignment cValueRefAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cValueRefValueCrossReference_2_0 = (CrossReference)cValueRefAssignment_2.eContents().get(0);
+		private final RuleCall cValueRefValueIDTerminalRuleCall_2_0_1 = (RuleCall)cValueRefValueCrossReference_2_0.eContents().get(1);
 		
 		//ApplyF:
-		//	{ApplyF} 'applyF' value=[Value];
+		//	{ApplyF} 'applyF' valueRef=[Value];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ApplyF} 'applyF' value=[Value]
+		//{ApplyF} 'applyF' valueRef=[Value]
 		public Group getGroup() { return cGroup; }
 		
 		//{ApplyF}
@@ -1936,14 +1936,14 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'applyF'
 		public Keyword getApplyFKeyword_1() { return cApplyFKeyword_1; }
 		
-		//value=[Value]
-		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+		//valueRef=[Value]
+		public Assignment getValueRefAssignment_2() { return cValueRefAssignment_2; }
 		
 		//[Value]
-		public CrossReference getValueValueCrossReference_2_0() { return cValueValueCrossReference_2_0; }
+		public CrossReference getValueRefValueCrossReference_2_0() { return cValueRefValueCrossReference_2_0; }
 		
 		//ID
-		public RuleCall getValueValueIDTerminalRuleCall_2_0_1() { return cValueValueIDTerminalRuleCall_2_0_1; }
+		public RuleCall getValueRefValueIDTerminalRuleCall_2_0_1() { return cValueRefValueIDTerminalRuleCall_2_0_1; }
 	}
 	public class PrimitiveEffectFullFunctionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveEffectFullFunction");
@@ -2773,7 +2773,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ApplyF:
-	//	{ApplyF} 'applyF' value=[Value];
+	//	{ApplyF} 'applyF' valueRef=[Value];
 	public ApplyFElements getApplyFAccess() {
 		return pApplyF;
 	}

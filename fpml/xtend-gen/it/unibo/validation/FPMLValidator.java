@@ -71,11 +71,12 @@ public class FPMLValidator extends AbstractFPMLValidator {
         boolean _equals = Objects.equal(t1, null);
         if (_equals) {
           this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
-        }
-        boolean _checkValueTypeEquals = Checks.checkValueTypeEquals(t, t1);
-        boolean _not = (!_checkValueTypeEquals);
-        if (_not) {
-          this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
+        } else {
+          boolean _checkValueTypeEquals = Checks.checkValueTypeEquals(t, t1);
+          boolean _not = (!_checkValueTypeEquals);
+          if (_not) {
+            this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
+          }
         }
         PureFunctionDefinition _functionDefinitionFromPureFactor_1 = Others.getFunctionDefinitionFromPureFactor(pf);
         ValueType _returnValueType = GetReturnType.getReturnValueType(_functionDefinitionFromPureFactor_1, t);

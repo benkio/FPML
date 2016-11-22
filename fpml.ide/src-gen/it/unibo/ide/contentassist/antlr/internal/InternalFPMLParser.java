@@ -20208,31 +20208,31 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyF__Group__2__Impl"
-    // InternalFPML.g:6694:1: rule__ApplyF__Group__2__Impl : ( ( rule__ApplyF__ValueAssignment_2 ) ) ;
+    // InternalFPML.g:6694:1: rule__ApplyF__Group__2__Impl : ( ( rule__ApplyF__ValueRefAssignment_2 ) ) ;
     public final void rule__ApplyF__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:6698:1: ( ( ( rule__ApplyF__ValueAssignment_2 ) ) )
-            // InternalFPML.g:6699:1: ( ( rule__ApplyF__ValueAssignment_2 ) )
+            // InternalFPML.g:6698:1: ( ( ( rule__ApplyF__ValueRefAssignment_2 ) ) )
+            // InternalFPML.g:6699:1: ( ( rule__ApplyF__ValueRefAssignment_2 ) )
             {
-            // InternalFPML.g:6699:1: ( ( rule__ApplyF__ValueAssignment_2 ) )
-            // InternalFPML.g:6700:2: ( rule__ApplyF__ValueAssignment_2 )
+            // InternalFPML.g:6699:1: ( ( rule__ApplyF__ValueRefAssignment_2 ) )
+            // InternalFPML.g:6700:2: ( rule__ApplyF__ValueRefAssignment_2 )
             {
-             before(grammarAccess.getApplyFAccess().getValueAssignment_2()); 
-            // InternalFPML.g:6701:2: ( rule__ApplyF__ValueAssignment_2 )
-            // InternalFPML.g:6701:3: rule__ApplyF__ValueAssignment_2
+             before(grammarAccess.getApplyFAccess().getValueRefAssignment_2()); 
+            // InternalFPML.g:6701:2: ( rule__ApplyF__ValueRefAssignment_2 )
+            // InternalFPML.g:6701:3: rule__ApplyF__ValueRefAssignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__ApplyF__ValueAssignment_2();
+            rule__ApplyF__ValueRefAssignment_2();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getApplyFAccess().getValueAssignment_2()); 
+             after(grammarAccess.getApplyFAccess().getValueRefAssignment_2()); 
 
             }
 
@@ -23648,9 +23648,9 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__SumValue__SumAdtElement2Assignment_1_2"
 
 
-    // $ANTLR start "rule__ApplyF__ValueAssignment_2"
-    // InternalFPML.g:7980:1: rule__ApplyF__ValueAssignment_2 : ( ( RULE_ID ) ) ;
-    public final void rule__ApplyF__ValueAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__ApplyF__ValueRefAssignment_2"
+    // InternalFPML.g:7980:1: rule__ApplyF__ValueRefAssignment_2 : ( ( RULE_ID ) ) ;
+    public final void rule__ApplyF__ValueRefAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -23661,17 +23661,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:7985:2: ( ( RULE_ID ) )
             // InternalFPML.g:7986:3: ( RULE_ID )
             {
-             before(grammarAccess.getApplyFAccess().getValueValueCrossReference_2_0()); 
+             before(grammarAccess.getApplyFAccess().getValueRefValueCrossReference_2_0()); 
             // InternalFPML.g:7987:3: ( RULE_ID )
             // InternalFPML.g:7988:4: RULE_ID
             {
-             before(grammarAccess.getApplyFAccess().getValueValueIDTerminalRuleCall_2_0_1()); 
+             before(grammarAccess.getApplyFAccess().getValueRefValueIDTerminalRuleCall_2_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getApplyFAccess().getValueValueIDTerminalRuleCall_2_0_1()); 
+             after(grammarAccess.getApplyFAccess().getValueRefValueIDTerminalRuleCall_2_0_1()); 
 
             }
 
-             after(grammarAccess.getApplyFAccess().getValueValueCrossReference_2_0()); 
+             after(grammarAccess.getApplyFAccess().getValueRefValueCrossReference_2_0()); 
 
             }
 
@@ -23690,7 +23690,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ApplyF__ValueAssignment_2"
+    // $ANTLR end "rule__ApplyF__ValueRefAssignment_2"
 
 
     // $ANTLR start "rule__ApplyFIO__ValueAssignment_2"

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.ApplyFImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.ApplyFImpl#getValueRef <em>Value Ref</em>}</li>
  * </ul>
  *
  * @generated
@@ -30,14 +30,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
 {
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
+   * The cached value of the '{@link #getValueRef() <em>Value Ref</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getValueRef()
    * @generated
    * @ordered
    */
-  protected Value value;
+  protected Value valueRef;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,19 +65,19 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value getValue()
+  public Value getValueRef()
   {
-    if (value != null && value.eIsProxy())
+    if (valueRef != null && valueRef.eIsProxy())
     {
-      InternalEObject oldValue = (InternalEObject)value;
-      value = (Value)eResolveProxy(oldValue);
-      if (value != oldValue)
+      InternalEObject oldValueRef = (InternalEObject)valueRef;
+      valueRef = (Value)eResolveProxy(oldValueRef);
+      if (valueRef != oldValueRef)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FPMLPackage.APPLY_F__VALUE, oldValue, value));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FPMLPackage.APPLY_F__VALUE_REF, oldValueRef, valueRef));
       }
     }
-    return value;
+    return valueRef;
   }
 
   /**
@@ -85,9 +85,9 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value basicGetValue()
+  public Value basicGetValueRef()
   {
-    return value;
+    return valueRef;
   }
 
   /**
@@ -95,12 +95,12 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(Value newValue)
+  public void setValueRef(Value newValueRef)
   {
-    Value oldValue = value;
-    value = newValue;
+    Value oldValueRef = valueRef;
+    valueRef = newValueRef;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_F__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_F__VALUE_REF, oldValueRef, valueRef));
   }
 
   /**
@@ -113,9 +113,9 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY_F__VALUE:
-        if (resolve) return getValue();
-        return basicGetValue();
+      case FPMLPackage.APPLY_F__VALUE_REF:
+        if (resolve) return getValueRef();
+        return basicGetValueRef();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -130,8 +130,8 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY_F__VALUE:
-        setValue((Value)newValue);
+      case FPMLPackage.APPLY_F__VALUE_REF:
+        setValueRef((Value)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -147,8 +147,8 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY_F__VALUE:
-        setValue((Value)null);
+      case FPMLPackage.APPLY_F__VALUE_REF:
+        setValueRef((Value)null);
         return;
     }
     super.eUnset(featureID);
@@ -164,8 +164,8 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY_F__VALUE:
-        return value != null;
+      case FPMLPackage.APPLY_F__VALUE_REF:
+        return valueRef != null;
     }
     return super.eIsSet(featureID);
   }

@@ -1,6 +1,7 @@
 package it.unibo.generator;
 
 import com.google.common.base.Objects;
+import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
@@ -9,8 +10,12 @@ import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
+import it.unibo.fPML.Minus;
+import it.unibo.fPML.Mod;
+import it.unibo.fPML.Plus;
 import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureFunctionDefinition;
+import it.unibo.fPML.Times;
 import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
@@ -26,13 +31,13 @@ public class PureFunctionGenerator {
   public CharSequence compile(final PureFunctionBlock pfb) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    String _basePackageJava = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava, "");
     _builder.append("Pure;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("import ");
-    String _basePackageJava_1 = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava_1 = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava_1, "");
     _builder.append("Pure.Data.*;");
     _builder.newLineIfNotEmpty();
@@ -143,6 +148,7 @@ public class PureFunctionGenerator {
   }
   
   public String compilePrimitiveCall(final PureFunctionDefinition purePrimitive, final String argName, final boolean outsideCalls) {
+    String _switchResult = null;
     boolean _matched = false;
     if (purePrimitive instanceof IntToString) {
       _matched=true;
@@ -158,6 +164,39 @@ public class PureFunctionGenerator {
         return this.compileCall(f, (argName + ", 2"), outsideCalls);
       }
     }
-    return null;
+    if (!_matched) {
+      if (purePrimitive instanceof Plus) {
+        _matched=true;
+        return (("Primitives.plus(" + argName) + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof Minus) {
+        _matched=true;
+        _switchResult = (("Primitives.minus(" + argName) + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof Times) {
+        _matched=true;
+        _switchResult = (("Primitives.times(" + argName) + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof Mod) {
+        _matched=true;
+        _switchResult = (("Primitives.mod(" + argName) + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof ApplyF) {
+        _matched=true;
+        Value _valueRef = ((ApplyF) purePrimitive).getValueRef();
+        String _name = _valueRef.getName();
+        String _plus = ((argName + ".f(Value.") + _name);
+        _switchResult = (_plus + "())");
+      }
+    }
+    return _switchResult;
   }
 }

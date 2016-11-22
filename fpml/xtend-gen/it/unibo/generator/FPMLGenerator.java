@@ -12,6 +12,7 @@ import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.Value;
 import it.unibo.generator.DataGenerator;
 import it.unibo.generator.EffectFullFunctionGenerator;
+import it.unibo.generator.PrimitiveGenerator;
 import it.unibo.generator.PureFunctionGenerator;
 import it.unibo.generator.ValueGenerator;
 import java.util.Iterator;
@@ -31,9 +32,11 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
  */
 @SuppressWarnings("all")
 public class FPMLGenerator extends AbstractGenerator {
-  private final String basePackage = "it/unibo/";
+  public static String basePackageJava() {
+    return "it.unibo.";
+  }
   
-  private final static String basePackageJava = "it.unibo.";
+  private final String basePackage = "it/unibo/";
   
   private final PureFunctionGenerator pureFunctionGenerator = new PureFunctionGenerator();
   
@@ -42,6 +45,8 @@ public class FPMLGenerator extends AbstractGenerator {
   private final DataGenerator dataGenerator = new DataGenerator();
   
   private final ValueGenerator valueGenerator = new ValueGenerator();
+  
+  private final PrimitiveGenerator primitiveGenerator = new PrimitiveGenerator();
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
@@ -71,15 +76,14 @@ public class FPMLGenerator extends AbstractGenerator {
     CharSequence _compile_3 = this.valueGenerator.compile(_filter_3);
     fsa.generateFile(
       (this.basePackage + "Pure/Data/Value.java"), _compile_3);
+    CharSequence _compile_4 = this.primitiveGenerator.compile();
+    fsa.generateFile(
+      (this.basePackage + "Pure/Primitives.java"), _compile_4);
     TreeIterator<EObject> _allContents_4 = resource.getAllContents();
     Iterable<EObject> _iterable_2 = IteratorExtensions.<EObject>toIterable(_allContents_4);
     Iterable<MainFunc> _filter_4 = Iterables.<MainFunc>filter(_iterable_2, MainFunc.class);
     MainFunc _head_2 = IterableExtensions.<MainFunc>head(_filter_4);
-    CharSequence _compile_4 = this.effectFullFunctionGenerator.compile(_head_2);
-    fsa.generateFile((this.basePackage + "Effectfull/EntryPoint.java"), _compile_4);
-  }
-  
-  public static String getBasePackageJava() {
-    return FPMLGenerator.basePackageJava;
+    CharSequence _compile_5 = this.effectFullFunctionGenerator.compile(_head_2);
+    fsa.generateFile((this.basePackage + "Effectfull/EntryPoint.java"), _compile_5);
   }
 }

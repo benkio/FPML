@@ -223,7 +223,7 @@ public abstract class AbstractFPMLProposalProvider extends TerminalsProposalProv
 	public void completeSumValue_SumAdtElement2(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeApplyF_Value(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeApplyF_ValueRef(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeApplyFIO_Value(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {

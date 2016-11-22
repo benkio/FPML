@@ -13,7 +13,7 @@ public class DataGenerator {
   public String compile(final Data d) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    String _basePackageJava = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava, "");
     _builder.append("Pure.Data;");
     _builder.newLineIfNotEmpty();

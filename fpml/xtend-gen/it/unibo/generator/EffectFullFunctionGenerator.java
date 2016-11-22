@@ -33,21 +33,21 @@ public class EffectFullFunctionGenerator {
   public CharSequence compile(final EffectFullBlock efb) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    String _basePackageJava = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava, "");
     _builder.append("Effectfull;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.newLine();
     _builder.append("import ");
-    String _basePackageJava_1 = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava_1 = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava_1, "");
     _builder.append("Pure.Data.*;");
     _builder.newLineIfNotEmpty();
     _builder.append("import fj.data.*;");
     _builder.newLine();
     _builder.append("import ");
-    String _basePackageJava_2 = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava_2 = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava_2, "");
     _builder.append("Pure.*;");
     _builder.newLineIfNotEmpty();
@@ -240,13 +240,13 @@ public class EffectFullFunctionGenerator {
   public CharSequence compile(final MainFunc mf) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    String _basePackageJava = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava, "");
     _builder.append("Effectfull;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("import ");
-    String _basePackageJava_1 = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava_1 = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava_1, "");
     _builder.append("Pure.Data.*;");
     _builder.newLineIfNotEmpty();
@@ -257,7 +257,7 @@ public class EffectFullFunctionGenerator {
     _builder.append("import fj.Unit;");
     _builder.newLine();
     _builder.append("import ");
-    String _basePackageJava_2 = FPMLGenerator.getBasePackageJava();
+    String _basePackageJava_2 = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava_2, "");
     _builder.append("Pure.*;");
     _builder.newLineIfNotEmpty();

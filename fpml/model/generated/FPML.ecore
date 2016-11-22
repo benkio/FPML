@@ -184,7 +184,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Times" eSuperTypes="#//PureFunctionDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="Mod" eSuperTypes="#//PureFunctionDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="ApplyF" eSuperTypes="#//PureFunctionDefinition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueRef" eType="#//Value"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//EffectFullFunctionDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="ApplyFIO" eSuperTypes="#//EffectFullFunctionDefinition">

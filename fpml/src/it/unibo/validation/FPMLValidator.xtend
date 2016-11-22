@@ -34,11 +34,10 @@ class FPMLValidator extends AbstractFPMLValidator {
         for (CompositionFunctionBodyPureFactor pf : cfbp.getFunctionChain()){
 	        var ValueType t1 = GetArgType.getArgTypePure(Others.getFunctionDefinitionFromPureFactor(pf), t);
 	        
-	        if (t1 == null) 
+	        if (t1 == null)
 	        	error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
-	        if(!Checks.checkValueTypeEquals(t, t1))
+	        else if(!Checks.checkValueTypeEquals(t, t1))
 	           error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN );
-            
             t = GetReturnType.getReturnValueType(Others.getFunctionDefinitionFromPureFactor(pf), t)
         }
         
@@ -115,6 +114,7 @@ class FPMLValidator extends AbstractFPMLValidator {
 	            	t1 = GetArgType.getArgTypePure((firstChainElement as PureFunctionDefinition), (t as ValueType))
 	            else if (firstChainElement instanceof EffectFullFunctionDefinition)
 	            	t1 = GetArgType.getArgTypeEffectFull((firstChainElement  as EffectFullFunctionDefinition), t);
+	            
 	            if(!(Checks.checkTypeEquals(t,t1)))
 	                error(TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG);
 	   		}

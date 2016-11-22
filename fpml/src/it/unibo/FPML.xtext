@@ -200,7 +200,7 @@ Plus: {Plus} '+';
 Minus: {Minus} '-';
 Times: {Times} '*';
 Mod: {Mod} 'mod';
-ApplyF:{ApplyF} 'applyF' value=[Value];
+ApplyF:{ApplyF} 'applyF' valueRef=[Value];
 
 PrimitiveEffectFullFunction returns EffectFullFunctionDefinition:
 	PrimitivePrint | ApplyFIO;

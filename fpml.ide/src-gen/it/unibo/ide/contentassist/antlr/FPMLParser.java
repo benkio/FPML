@@ -180,7 +180,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getProdValueAccess().getProdAdtElement2Assignment_3(), "rule__ProdValue__ProdAdtElement2Assignment_3");
 					put(grammarAccess.getSumValueAccess().getSumAdtElement1Assignment_0_2(), "rule__SumValue__SumAdtElement1Assignment_0_2");
 					put(grammarAccess.getSumValueAccess().getSumAdtElement2Assignment_1_2(), "rule__SumValue__SumAdtElement2Assignment_1_2");
-					put(grammarAccess.getApplyFAccess().getValueAssignment_2(), "rule__ApplyF__ValueAssignment_2");
+					put(grammarAccess.getApplyFAccess().getValueRefAssignment_2(), "rule__ApplyF__ValueRefAssignment_2");
 					put(grammarAccess.getApplyFIOAccess().getValueAssignment_2(), "rule__ApplyFIO__ValueAssignment_2");
 				}
 			};

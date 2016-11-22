@@ -1852,13 +1852,13 @@ public interface FPMLPackage extends EPackage
   int APPLY_F__FUNCTION_BODY = PURE_FUNCTION_DEFINITION__FUNCTION_BODY;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' reference.
+   * The feature id for the '<em><b>Value Ref</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int APPLY_F__VALUE = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
+  int APPLY_F__VALUE_REF = PURE_FUNCTION_DEFINITION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Apply F</em>' class.
@@ -3196,15 +3196,15 @@ public interface FPMLPackage extends EPackage
   EClass getApplyF();
 
   /**
-   * Returns the meta object for the reference '{@link it.unibo.fPML.ApplyF#getValue <em>Value</em>}'.
+   * Returns the meta object for the reference '{@link it.unibo.fPML.ApplyF#getValueRef <em>Value Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Value</em>'.
-   * @see it.unibo.fPML.ApplyF#getValue()
+   * @return the meta object for the reference '<em>Value Ref</em>'.
+   * @see it.unibo.fPML.ApplyF#getValueRef()
    * @see #getApplyF()
    * @generated
    */
-  EReference getApplyF_Value();
+  EReference getApplyF_ValueRef();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.PrimitivePrint <em>Primitive Print</em>}'.
@@ -4250,12 +4250,12 @@ public interface FPMLPackage extends EPackage
     EClass APPLY_F = eINSTANCE.getApplyF();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Value Ref</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference APPLY_F__VALUE = eINSTANCE.getApplyF_Value();
+    EReference APPLY_F__VALUE_REF = eINSTANCE.getApplyF_ValueRef();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitivePrintImpl <em>Primitive Print</em>}' class.

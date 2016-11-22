@@ -3234,7 +3234,7 @@ ruleApplyF returns [EObject current=null]
 				}
 				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_2, grammarAccess.getApplyFAccess().getValueValueCrossReference_2_0());
+					newLeafNode(otherlv_2, grammarAccess.getApplyFAccess().getValueRefValueCrossReference_2_0());
 				}
 			)
 		)
