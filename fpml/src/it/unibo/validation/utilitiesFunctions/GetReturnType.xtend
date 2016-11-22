@@ -64,8 +64,8 @@ class GetReturnType {
 			ApplyF: {
 				if (previousFunction != null) {
 					return previousFunction.returnType
-				} else 
-					throw new Exception("this cannot happen during the typechecking, get return type pure primitive")
+				} else
+					return null 
 			}
         	default: throw new Exception("this cannot happen during the typechecking, get return type pure primitive")
     	}
@@ -79,11 +79,14 @@ class GetReturnType {
     }
 	
 	def static ValueType getReturnTypeFunctionChainPure(List<PureFunctionDefinition> list, ValueType argType, PureFunctionDefinition firstElement) {
-		if (list.size == 1)
-			return getReturnValueType(list.last, getReturnValueType(firstElement, argType))
-		else
-			return getReturnValueType(list.last, getReturnTypeFunctionChainPure(list.tail.toList, argType, firstElement))
-
+		if (list.size != 0){
+			if (list.size == 1)
+				return getReturnValueType(list.last, getReturnValueType(firstElement, argType))
+			else
+				return getReturnValueType(list.last, getReturnTypeFunctionChainPure(list.tail.toList, argType, firstElement))
+		} else {
+			return null
+		}
 	}
     
     def static Type getReturnTypeCompositionBodyEffect(CompositionFunctionBodyEffect cfbe, EffectFullArgument arg) {
@@ -115,9 +118,9 @@ class GetReturnType {
     
     def static ValueType getPreviousFunctionChainElementReturnType(List<PureFunctionDefinition> elements, PureFunctionDefinition element, PureFunctionDefinition firstElement, Argument arg) {
 		val functionChainToElement = elements.takeWhile[x | !EcoreUtil2.equals(element)]
-		if (functionChainToElement.size == 0)
+		if (functionChainToElement.size == 1)
 			return getReturnValueType(firstElement, arg.type)
 		else 
-			return getPreviousFunctionChainElementReturnType(elements, elements.last, firstElement, arg)
+			return getPreviousFunctionChainElementReturnType(functionChainToElement.toList, functionChainToElement.last, firstElement, arg)
 		}
 }

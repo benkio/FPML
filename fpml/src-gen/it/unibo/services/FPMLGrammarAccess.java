@@ -61,9 +61,9 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPureKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cElementsPureFunctionBlockParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
+		private final RuleCall cElementsDataBlockParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
 		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cElementsDataBlockParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
+		private final RuleCall cElementsPureFunctionBlockParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		////////////////////////////////////////////////////////////////
@@ -71,12 +71,12 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		////////////////////////////////////////////////////////////////
 		//PureBlock:
 		//	'Pure' '{'
-		//	elements+=PureFunctionBlock
 		//	elements+=DataBlock
+		//	elements+=PureFunctionBlock
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Pure' '{' elements+=PureFunctionBlock elements+=DataBlock '}'
+		//'Pure' '{' elements+=DataBlock elements+=PureFunctionBlock '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Pure'
@@ -85,17 +85,17 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//elements+=PureFunctionBlock
+		//elements+=DataBlock
 		public Assignment getElementsAssignment_2() { return cElementsAssignment_2; }
 		
-		//PureFunctionBlock
-		public RuleCall getElementsPureFunctionBlockParserRuleCall_2_0() { return cElementsPureFunctionBlockParserRuleCall_2_0; }
+		//DataBlock
+		public RuleCall getElementsDataBlockParserRuleCall_2_0() { return cElementsDataBlockParserRuleCall_2_0; }
 		
-		//elements+=DataBlock
+		//elements+=PureFunctionBlock
 		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
 		
-		//DataBlock
-		public RuleCall getElementsDataBlockParserRuleCall_3_0() { return cElementsDataBlockParserRuleCall_3_0; }
+		//PureFunctionBlock
+		public RuleCall getElementsPureFunctionBlockParserRuleCall_3_0() { return cElementsPureFunctionBlockParserRuleCall_3_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
@@ -2192,8 +2192,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	////////////////////////////////////////////////////////////////
 	//PureBlock:
 	//	'Pure' '{'
-	//	elements+=PureFunctionBlock
 	//	elements+=DataBlock
+	//	elements+=PureFunctionBlock
 	//	'}';
 	public PureBlockElements getPureBlockAccess() {
 		return pPureBlock;

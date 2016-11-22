@@ -17,8 +17,8 @@ Model:
 
 PureBlock:
 	'Pure' '{'
-		elements+=PureFunctionBlock
 		elements+=DataBlock
+		elements+=PureFunctionBlock
 	'}';
 
 PureFunctionBlock:

@@ -153,7 +153,7 @@ public class GetReturnType {
           if (_notEquals) {
             return previousFunction.getReturnType();
           } else {
-            throw new Exception("this cannot happen during the typechecking, get return type pure primitive");
+            return null;
           }
         }
       }
@@ -183,17 +183,23 @@ public class GetReturnType {
   
   public static ValueType getReturnTypeFunctionChainPure(final List<PureFunctionDefinition> list, final ValueType argType, final PureFunctionDefinition firstElement) {
     int _size = list.size();
-    boolean _equals = (_size == 1);
-    if (_equals) {
-      PureFunctionDefinition _last = IterableExtensions.<PureFunctionDefinition>last(list);
-      ValueType _returnValueType = GetReturnType.getReturnValueType(firstElement, argType);
-      return GetReturnType.getReturnValueType(_last, _returnValueType);
+    boolean _notEquals = (_size != 0);
+    if (_notEquals) {
+      int _size_1 = list.size();
+      boolean _equals = (_size_1 == 1);
+      if (_equals) {
+        PureFunctionDefinition _last = IterableExtensions.<PureFunctionDefinition>last(list);
+        ValueType _returnValueType = GetReturnType.getReturnValueType(firstElement, argType);
+        return GetReturnType.getReturnValueType(_last, _returnValueType);
+      } else {
+        PureFunctionDefinition _last_1 = IterableExtensions.<PureFunctionDefinition>last(list);
+        Iterable<PureFunctionDefinition> _tail = IterableExtensions.<PureFunctionDefinition>tail(list);
+        List<PureFunctionDefinition> _list = IterableExtensions.<PureFunctionDefinition>toList(_tail);
+        ValueType _returnTypeFunctionChainPure = GetReturnType.getReturnTypeFunctionChainPure(_list, argType, firstElement);
+        return GetReturnType.getReturnValueType(_last_1, _returnTypeFunctionChainPure);
+      }
     } else {
-      PureFunctionDefinition _last_1 = IterableExtensions.<PureFunctionDefinition>last(list);
-      Iterable<PureFunctionDefinition> _tail = IterableExtensions.<PureFunctionDefinition>tail(list);
-      List<PureFunctionDefinition> _list = IterableExtensions.<PureFunctionDefinition>toList(_tail);
-      ValueType _returnTypeFunctionChainPure = GetReturnType.getReturnTypeFunctionChainPure(_list, argType, firstElement);
-      return GetReturnType.getReturnValueType(_last_1, _returnTypeFunctionChainPure);
+      return null;
     }
   }
   
@@ -255,13 +261,14 @@ public class GetReturnType {
     };
     final Iterable<PureFunctionDefinition> functionChainToElement = IterableExtensions.<PureFunctionDefinition>takeWhile(elements, _function);
     int _size = IterableExtensions.size(functionChainToElement);
-    boolean _equals = (_size == 0);
+    boolean _equals = (_size == 1);
     if (_equals) {
       ValueType _type = arg.getType();
       return GetReturnType.getReturnValueType(firstElement, _type);
     } else {
-      PureFunctionDefinition _last = IterableExtensions.<PureFunctionDefinition>last(elements);
-      return GetReturnType.getPreviousFunctionChainElementReturnType(elements, _last, firstElement, arg);
+      List<PureFunctionDefinition> _list = IterableExtensions.<PureFunctionDefinition>toList(functionChainToElement);
+      PureFunctionDefinition _last = IterableExtensions.<PureFunctionDefinition>last(functionChainToElement);
+      return GetReturnType.getPreviousFunctionChainElementReturnType(_list, _last, firstElement, arg);
     }
   }
 }

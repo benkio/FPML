@@ -58,10 +58,15 @@ class GetArgType {
           Times: return FPMLFactory.eINSTANCE.createIntegerType()
           Mod: return FPMLFactory.eINSTANCE.createIntegerType()
           ApplyF: {
-				if (previousFunction != null && (Others.getTypeFromExpression(pf.value.value) instanceof ValueType)) {
+				if (previousFunction != null && 
+					(Others.getTypeFromExpression(pf.value.value) instanceof ValueType) &&
+					Checks.checkValueTypeEquals(previousFunction.argType, (Others.getTypeFromExpression(pf.value.value) as ValueType))
+				) {
 					previousFunction.argType = Others.getTypeFromExpression(pf.value.value) as ValueType
 					return previousFunction
 				}
+				else
+					return null
 			}
         	default: throw new Exception("this cannot happen during the typechecking, get argument type pure primitive")
     	}

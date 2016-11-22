@@ -832,7 +832,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     PureBlock returns PureBlock
 	 *
 	 * Constraint:
-	 *     (elements+=PureFunctionBlock elements+=DataBlock)
+	 *     (elements+=DataBlock elements+=PureFunctionBlock)
 	 */
 	protected void sequence_PureBlock(ISerializationContext context, PureBlock semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

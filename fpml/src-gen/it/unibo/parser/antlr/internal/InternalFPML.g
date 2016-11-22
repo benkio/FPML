@@ -144,9 +144,9 @@ rulePureBlock returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_2_0());
 				}
-				lv_elements_2_0=rulePureFunctionBlock
+				lv_elements_2_0=ruleDataBlock
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPureBlockRule());
@@ -155,7 +155,7 @@ rulePureBlock returns [EObject current=null]
 						$current,
 						"elements",
 						lv_elements_2_0,
-						"it.unibo.FPML.PureFunctionBlock");
+						"it.unibo.FPML.DataBlock");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -163,9 +163,9 @@ rulePureBlock returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_3_0());
 				}
-				lv_elements_3_0=ruleDataBlock
+				lv_elements_3_0=rulePureFunctionBlock
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPureBlockRule());
@@ -174,7 +174,7 @@ rulePureBlock returns [EObject current=null]
 						$current,
 						"elements",
 						lv_elements_3_0,
-						"it.unibo.FPML.DataBlock");
+						"it.unibo.FPML.PureFunctionBlock");
 					afterParserOrEnumRuleCall();
 				}
 			)

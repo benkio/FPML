@@ -6878,9 +6878,9 @@ rule__PureBlock__ElementsAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_2_0()); }
-		rulePureFunctionBlock
-		{ after(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_2_0()); }
+		{ before(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_2_0()); }
+		ruleDataBlock
+		{ after(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_2_0()); }
 	)
 ;
 finally {
@@ -6893,9 +6893,9 @@ rule__PureBlock__ElementsAssignment_3
 	}
 :
 	(
-		{ before(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_3_0()); }
-		ruleDataBlock
-		{ after(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_3_0()); }
+		{ before(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_3_0()); }
+		rulePureFunctionBlock
+		{ after(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_3_0()); }
 	)
 ;
 finally {

@@ -6,7 +6,6 @@ package it.unibo.validation;
 import com.google.common.base.Objects;
 import it.unibo.fPML.AdtType;
 import it.unibo.fPML.AdtValue;
-import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
@@ -17,7 +16,6 @@ import it.unibo.fPML.Data;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
-import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyEffectFull;
@@ -36,13 +34,8 @@ import it.unibo.validation.utilitiesFunctions.Checks;
 import it.unibo.validation.utilitiesFunctions.GetArgType;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
-import java.util.List;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 /**
  * This class contains custom validation rules.
@@ -75,6 +68,10 @@ public class FPMLValidator extends AbstractFPMLValidator {
       {
         PureFunctionDefinition _functionDefinitionFromPureFactor = Others.getFunctionDefinitionFromPureFactor(pf);
         ValueType t1 = GetArgType.getArgTypePure(_functionDefinitionFromPureFactor, t);
+        boolean _equals = Objects.equal(t1, null);
+        if (_equals) {
+          this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN);
+        }
         boolean _checkValueTypeEquals = Checks.checkValueTypeEquals(t, t1);
         boolean _not = (!_checkValueTypeEquals);
         if (_not) {
@@ -241,60 +238,6 @@ public class FPMLValidator extends AbstractFPMLValidator {
     boolean _not = (!_typeCheckDataAndValue);
     if (_not) {
       this.error(FPMLValidator.TYPEVMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.DATA_VALUE__VALUE);
-    }
-  }
-  
-  @Check
-  public void ApplyValueCheck(final ApplyF a) {
-    CompositionFunctionBodyPure functionChain = null;
-    EObject _eContainer = a.eContainer();
-    if ((_eContainer instanceof CompositionFunctionBodyPure)) {
-      EObject _eContainer_1 = a.eContainer();
-      functionChain = ((CompositionFunctionBodyPure) _eContainer_1);
-    } else {
-      EObject _eContainer_2 = a.eContainer();
-      EObject _eContainer_3 = _eContainer_2.eContainer();
-      functionChain = ((CompositionFunctionBodyPure) _eContainer_3);
-    }
-    final PureFunctionDefinition firstElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(functionChain);
-    Value _value = a.getValue();
-    Expression _value_1 = _value.getValue();
-    final Type applyValueType = Others.getTypeFromExpression(_value_1);
-    boolean _notEquals = (!Objects.equal(applyValueType, null));
-    if (_notEquals) {
-      boolean _equals = EcoreUtil2.equals(firstElement, a);
-      if (_equals) {
-        final EObject functionDef = functionChain.eContainer();
-        boolean _matched = false;
-        if (functionDef instanceof PureFunctionDefinition) {
-          _matched=true;
-          Argument _arg = ((PureFunctionDefinition)functionDef).getArg();
-          ValueType _type = _arg.getType();
-          boolean _checkTypeEquals = Checks.checkTypeEquals(applyValueType, _type);
-          boolean _not = (!_checkTypeEquals);
-          if (_not) {
-            this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__VALUE);
-          }
-        }
-      } else {
-        final EObject functionDef_1 = functionChain.eContainer();
-        boolean _matched_1 = false;
-        if (functionDef_1 instanceof PureFunctionDefinition) {
-          _matched_1=true;
-          EList<CompositionFunctionBodyPureFactor> _functionChain = functionChain.getFunctionChain();
-          final Function1<CompositionFunctionBodyPureFactor, PureFunctionDefinition> _function = (CompositionFunctionBodyPureFactor x) -> {
-            return Others.getFunctionDefinitionFromPureFactor(x);
-          };
-          List<PureFunctionDefinition> _map = ListExtensions.<CompositionFunctionBodyPureFactor, PureFunctionDefinition>map(_functionChain, _function);
-          Argument _arg = ((PureFunctionDefinition)functionDef_1).getArg();
-          final ValueType returnPreviousApplyElement = GetReturnType.getPreviousFunctionChainElementReturnType(_map, a, firstElement, _arg);
-          boolean _checkTypeEquals = Checks.checkTypeEquals(returnPreviousApplyElement, applyValueType);
-          boolean _not = (!_checkTypeEquals);
-          if (_not) {
-            this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__VALUE);
-          }
-        }
-      }
     }
   }
 }

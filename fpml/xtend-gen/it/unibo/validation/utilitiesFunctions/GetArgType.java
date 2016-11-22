@@ -26,6 +26,7 @@ import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
+import it.unibo.validation.utilitiesFunctions.Checks;
 import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Exceptions;
@@ -142,19 +143,19 @@ public class GetArgType {
       if (!_matched) {
         if (pf instanceof ApplyF) {
           _matched=true;
-          if (((!Objects.equal(previousFunction, null)) && (Others.getTypeFromExpression(((ApplyF)pf).getValue().getValue()) instanceof ValueType))) {
+          if ((((!Objects.equal(previousFunction, null)) && (Others.getTypeFromExpression(((ApplyF)pf).getValue().getValue()) instanceof ValueType)) && 
+            Checks.checkValueTypeEquals(previousFunction.getArgType(), ((ValueType) Others.getTypeFromExpression(((ApplyF)pf).getValue().getValue()))))) {
             Value _value = ((ApplyF)pf).getValue();
             Expression _value_1 = _value.getValue();
             Type _typeFromExpression = Others.getTypeFromExpression(_value_1);
             previousFunction.setArgType(((ValueType) _typeFromExpression));
             return previousFunction;
+          } else {
+            return null;
           }
         }
       }
-      if (!_matched) {
-        throw new Exception("this cannot happen during the typechecking, get argument type pure primitive");
-      }
-      return null;
+      throw new Exception("this cannot happen during the typechecking, get argument type pure primitive");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

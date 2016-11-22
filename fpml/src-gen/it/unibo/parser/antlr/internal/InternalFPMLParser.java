@@ -288,7 +288,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePureBlock"
-    // InternalFPML.g:128:1: rulePureBlock returns [EObject current=null] : (otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= rulePureFunctionBlock ) ) ( (lv_elements_3_0= ruleDataBlock ) ) otherlv_4= '}' ) ;
+    // InternalFPML.g:128:1: rulePureBlock returns [EObject current=null] : (otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= ruleDataBlock ) ) ( (lv_elements_3_0= rulePureFunctionBlock ) ) otherlv_4= '}' ) ;
     public final EObject rulePureBlock() throws RecognitionException {
         EObject current = null;
 
@@ -304,11 +304,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:134:2: ( (otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= rulePureFunctionBlock ) ) ( (lv_elements_3_0= ruleDataBlock ) ) otherlv_4= '}' ) )
-            // InternalFPML.g:135:2: (otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= rulePureFunctionBlock ) ) ( (lv_elements_3_0= ruleDataBlock ) ) otherlv_4= '}' )
+            // InternalFPML.g:134:2: ( (otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= ruleDataBlock ) ) ( (lv_elements_3_0= rulePureFunctionBlock ) ) otherlv_4= '}' ) )
+            // InternalFPML.g:135:2: (otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= ruleDataBlock ) ) ( (lv_elements_3_0= rulePureFunctionBlock ) ) otherlv_4= '}' )
             {
-            // InternalFPML.g:135:2: (otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= rulePureFunctionBlock ) ) ( (lv_elements_3_0= ruleDataBlock ) ) otherlv_4= '}' )
-            // InternalFPML.g:136:3: otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= rulePureFunctionBlock ) ) ( (lv_elements_3_0= ruleDataBlock ) ) otherlv_4= '}'
+            // InternalFPML.g:135:2: (otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= ruleDataBlock ) ) ( (lv_elements_3_0= rulePureFunctionBlock ) ) otherlv_4= '}' )
+            // InternalFPML.g:136:3: otherlv_0= 'Pure' otherlv_1= '{' ( (lv_elements_2_0= ruleDataBlock ) ) ( (lv_elements_3_0= rulePureFunctionBlock ) ) otherlv_4= '}'
             {
             otherlv_0=(Token)match(input,11,FOLLOW_4); 
 
@@ -318,17 +318,17 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getPureBlockAccess().getLeftCurlyBracketKeyword_1());
             		
-            // InternalFPML.g:144:3: ( (lv_elements_2_0= rulePureFunctionBlock ) )
-            // InternalFPML.g:145:4: (lv_elements_2_0= rulePureFunctionBlock )
+            // InternalFPML.g:144:3: ( (lv_elements_2_0= ruleDataBlock ) )
+            // InternalFPML.g:145:4: (lv_elements_2_0= ruleDataBlock )
             {
-            // InternalFPML.g:145:4: (lv_elements_2_0= rulePureFunctionBlock )
-            // InternalFPML.g:146:5: lv_elements_2_0= rulePureFunctionBlock
+            // InternalFPML.g:145:4: (lv_elements_2_0= ruleDataBlock )
+            // InternalFPML.g:146:5: lv_elements_2_0= ruleDataBlock
             {
 
-            					newCompositeNode(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_2_0());
+            					newCompositeNode(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_2_0());
             				
             pushFollow(FOLLOW_6);
-            lv_elements_2_0=rulePureFunctionBlock();
+            lv_elements_2_0=ruleDataBlock();
 
             state._fsp--;
 
@@ -340,7 +340,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             						current,
             						"elements",
             						lv_elements_2_0,
-            						"it.unibo.FPML.PureFunctionBlock");
+            						"it.unibo.FPML.DataBlock");
             					afterParserOrEnumRuleCall();
             				
 
@@ -349,17 +349,17 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalFPML.g:163:3: ( (lv_elements_3_0= ruleDataBlock ) )
-            // InternalFPML.g:164:4: (lv_elements_3_0= ruleDataBlock )
+            // InternalFPML.g:163:3: ( (lv_elements_3_0= rulePureFunctionBlock ) )
+            // InternalFPML.g:164:4: (lv_elements_3_0= rulePureFunctionBlock )
             {
-            // InternalFPML.g:164:4: (lv_elements_3_0= ruleDataBlock )
-            // InternalFPML.g:165:5: lv_elements_3_0= ruleDataBlock
+            // InternalFPML.g:164:4: (lv_elements_3_0= rulePureFunctionBlock )
+            // InternalFPML.g:165:5: lv_elements_3_0= rulePureFunctionBlock
             {
 
-            					newCompositeNode(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_3_0());
+            					newCompositeNode(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_3_0());
             				
             pushFollow(FOLLOW_7);
-            lv_elements_3_0=ruleDataBlock();
+            lv_elements_3_0=rulePureFunctionBlock();
 
             state._fsp--;
 
@@ -371,7 +371,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             						current,
             						"elements",
             						lv_elements_3_0,
-            						"it.unibo.FPML.DataBlock");
+            						"it.unibo.FPML.PureFunctionBlock");
             					afterParserOrEnumRuleCall();
             				
 
@@ -8771,8 +8771,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000802000L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000010010L});

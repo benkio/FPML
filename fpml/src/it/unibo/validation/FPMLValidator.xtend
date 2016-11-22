@@ -33,9 +33,12 @@ class FPMLValidator extends AbstractFPMLValidator {
                 	
         for (CompositionFunctionBodyPureFactor pf : cfbp.getFunctionChain()){
 	        var ValueType t1 = GetArgType.getArgTypePure(Others.getFunctionDefinitionFromPureFactor(pf), t);
-	             	    
+	        
+	        if (t1 == null) 
+	        	error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
 	        if(!Checks.checkValueTypeEquals(t, t1))
 	           error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN );
+            
             t = GetReturnType.getReturnValueType(Others.getFunctionDefinitionFromPureFactor(pf), t)
         }
         
@@ -141,37 +144,5 @@ class FPMLValidator extends AbstractFPMLValidator {
     def ValueDataTypeCheck(DataValue dv) {
     	if (!Checks.typeCheckDataAndValue(dv.value, dv.type.content))
     		error(TYPEVMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.DATA_VALUE__VALUE)
-    }
-    
-    @Check
-    def ApplyValueCheck(ApplyF a){
-    	var CompositionFunctionBodyPure functionChain
-    	if (a.eContainer instanceof CompositionFunctionBodyPure)
-    		functionChain = (a.eContainer as CompositionFunctionBodyPure)
-    	else
-    		functionChain = (a.eContainer.eContainer as CompositionFunctionBodyPure)
-    	val firstElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(functionChain)
-    	val applyValueType = Others.getTypeFromExpression(a.value.value)
-    	if (applyValueType != null) {
-	    	if (EcoreUtil2.equals(firstElement, a)) {
-	    		val functionDef = functionChain.eContainer
-	    		switch functionDef {
-	    			PureFunctionDefinition: {
-	    				if (!Checks.checkTypeEquals(applyValueType, functionDef.arg.type)) {
-	    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__VALUE)	
-	    				}
-	    			} 
-	    		}	
-	    	} else {
-	    		val functionDef = functionChain.eContainer
-	    		switch functionDef {
-	    			PureFunctionDefinition: {
-	   					val returnPreviousApplyElement = GetReturnType.getPreviousFunctionChainElementReturnType(functionChain.functionChain.map[x | Others.getFunctionDefinitionFromPureFactor(x)], a, firstElement, functionDef.arg)
-	   					if (!Checks.checkTypeEquals(returnPreviousApplyElement, applyValueType))
-	   						error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__VALUE)
-	   				}
-	    		}
-       		}
-       	}
     }
 }

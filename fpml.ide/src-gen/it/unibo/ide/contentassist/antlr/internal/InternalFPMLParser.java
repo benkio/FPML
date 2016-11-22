@@ -20712,25 +20712,25 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureBlock__ElementsAssignment_2"
-    // InternalFPML.g:6875:1: rule__PureBlock__ElementsAssignment_2 : ( rulePureFunctionBlock ) ;
+    // InternalFPML.g:6875:1: rule__PureBlock__ElementsAssignment_2 : ( ruleDataBlock ) ;
     public final void rule__PureBlock__ElementsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:6879:1: ( ( rulePureFunctionBlock ) )
-            // InternalFPML.g:6880:2: ( rulePureFunctionBlock )
+            // InternalFPML.g:6879:1: ( ( ruleDataBlock ) )
+            // InternalFPML.g:6880:2: ( ruleDataBlock )
             {
-            // InternalFPML.g:6880:2: ( rulePureFunctionBlock )
-            // InternalFPML.g:6881:3: rulePureFunctionBlock
+            // InternalFPML.g:6880:2: ( ruleDataBlock )
+            // InternalFPML.g:6881:3: ruleDataBlock
             {
-             before(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_2_0()); 
+             before(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
-            rulePureFunctionBlock();
+            ruleDataBlock();
 
             state._fsp--;
 
-             after(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_2_0()); 
+             after(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_2_0()); 
 
             }
 
@@ -20753,25 +20753,25 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureBlock__ElementsAssignment_3"
-    // InternalFPML.g:6890:1: rule__PureBlock__ElementsAssignment_3 : ( ruleDataBlock ) ;
+    // InternalFPML.g:6890:1: rule__PureBlock__ElementsAssignment_3 : ( rulePureFunctionBlock ) ;
     public final void rule__PureBlock__ElementsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:6894:1: ( ( ruleDataBlock ) )
-            // InternalFPML.g:6895:2: ( ruleDataBlock )
+            // InternalFPML.g:6894:1: ( ( rulePureFunctionBlock ) )
+            // InternalFPML.g:6895:2: ( rulePureFunctionBlock )
             {
-            // InternalFPML.g:6895:2: ( ruleDataBlock )
-            // InternalFPML.g:6896:3: ruleDataBlock
+            // InternalFPML.g:6895:2: ( rulePureFunctionBlock )
+            // InternalFPML.g:6896:3: rulePureFunctionBlock
             {
-             before(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_3_0()); 
+             before(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
-            ruleDataBlock();
+            rulePureFunctionBlock();
 
             state._fsp--;
 
-             after(grammarAccess.getPureBlockAccess().getElementsDataBlockParserRuleCall_3_0()); 
+             after(grammarAccess.getPureBlockAccess().getElementsPureFunctionBlockParserRuleCall_3_0()); 
 
             }
 
@@ -23791,8 +23791,8 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000802000L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000800002L});
