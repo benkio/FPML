@@ -5,9 +5,11 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.Value;
+import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureReference;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -22,22 +24,33 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.ApplyFImpl#getValueRef <em>Value Ref</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.ApplyFImpl#getFunctionType <em>Function Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.ApplyFImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
+public class ApplyFImpl extends PrimitivePureFunctionImpl implements ApplyF
 {
   /**
-   * The cached value of the '{@link #getValueRef() <em>Value Ref</em>}' reference.
+   * The cached value of the '{@link #getFunctionType() <em>Function Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValueRef()
+   * @see #getFunctionType()
    * @generated
    * @ordered
    */
-  protected Value valueRef;
+  protected PureFunctionType functionType;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected PureReference value;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,19 +78,67 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value getValueRef()
+  public PureFunctionType getFunctionType()
   {
-    if (valueRef != null && valueRef.eIsProxy())
+    return functionType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetFunctionType(PureFunctionType newFunctionType, NotificationChain msgs)
+  {
+    PureFunctionType oldFunctionType = functionType;
+    functionType = newFunctionType;
+    if (eNotificationRequired())
     {
-      InternalEObject oldValueRef = (InternalEObject)valueRef;
-      valueRef = (Value)eResolveProxy(oldValueRef);
-      if (valueRef != oldValueRef)
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_F__FUNCTION_TYPE, oldFunctionType, newFunctionType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFunctionType(PureFunctionType newFunctionType)
+  {
+    if (newFunctionType != functionType)
+    {
+      NotificationChain msgs = null;
+      if (functionType != null)
+        msgs = ((InternalEObject)functionType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_F__FUNCTION_TYPE, null, msgs);
+      if (newFunctionType != null)
+        msgs = ((InternalEObject)newFunctionType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_F__FUNCTION_TYPE, null, msgs);
+      msgs = basicSetFunctionType(newFunctionType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_F__FUNCTION_TYPE, newFunctionType, newFunctionType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureReference getValue()
+  {
+    if (value != null && value.eIsProxy())
+    {
+      InternalEObject oldValue = (InternalEObject)value;
+      value = (PureReference)eResolveProxy(oldValue);
+      if (value != oldValue)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FPMLPackage.APPLY_F__VALUE_REF, oldValueRef, valueRef));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FPMLPackage.APPLY_F__VALUE, oldValue, value));
       }
     }
-    return valueRef;
+    return value;
   }
 
   /**
@@ -85,9 +146,9 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value basicGetValueRef()
+  public PureReference basicGetValue()
   {
-    return valueRef;
+    return value;
   }
 
   /**
@@ -95,12 +156,28 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValueRef(Value newValueRef)
+  public void setValue(PureReference newValue)
   {
-    Value oldValueRef = valueRef;
-    valueRef = newValueRef;
+    PureReference oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_F__VALUE_REF, oldValueRef, valueRef));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_F__VALUE, oldValue, value));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case FPMLPackage.APPLY_F__FUNCTION_TYPE:
+        return basicSetFunctionType(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -113,9 +190,11 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY_F__VALUE_REF:
-        if (resolve) return getValueRef();
-        return basicGetValueRef();
+      case FPMLPackage.APPLY_F__FUNCTION_TYPE:
+        return getFunctionType();
+      case FPMLPackage.APPLY_F__VALUE:
+        if (resolve) return getValue();
+        return basicGetValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -130,8 +209,11 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY_F__VALUE_REF:
-        setValueRef((Value)newValue);
+      case FPMLPackage.APPLY_F__FUNCTION_TYPE:
+        setFunctionType((PureFunctionType)newValue);
+        return;
+      case FPMLPackage.APPLY_F__VALUE:
+        setValue((PureReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -147,8 +229,11 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY_F__VALUE_REF:
-        setValueRef((Value)null);
+      case FPMLPackage.APPLY_F__FUNCTION_TYPE:
+        setFunctionType((PureFunctionType)null);
+        return;
+      case FPMLPackage.APPLY_F__VALUE:
+        setValue((PureReference)null);
         return;
     }
     super.eUnset(featureID);
@@ -164,8 +249,10 @@ public class ApplyFImpl extends PureFunctionDefinitionImpl implements ApplyF
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY_F__VALUE_REF:
-        return valueRef != null;
+      case FPMLPackage.APPLY_F__FUNCTION_TYPE:
+        return functionType != null;
+      case FPMLPackage.APPLY_F__VALUE:
+        return value != null;
     }
     return super.eIsSet(featureID);
   }

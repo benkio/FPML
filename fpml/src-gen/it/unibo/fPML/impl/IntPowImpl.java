@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IntPowImpl extends PureFunctionDefinitionImpl implements IntPow
+public class IntPowImpl extends PrimitivePureFunctionImpl implements IntPow
 {
   /**
    * <!-- begin-user-doc -->

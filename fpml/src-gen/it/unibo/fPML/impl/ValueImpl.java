@@ -23,34 +23,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.ValueImpl#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.ValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ValueImpl extends ChainElementImpl implements Value
+public class ValueImpl extends PureFunctionDefinitionImpl implements Value
 {
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -80,29 +59,6 @@ public class ValueImpl extends ChainElementImpl implements Value
   protected EClass eStaticClass()
   {
     return FPMLPackage.Literals.VALUE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.VALUE__NAME, oldName, name));
   }
 
   /**
@@ -179,8 +135,6 @@ public class ValueImpl extends ChainElementImpl implements Value
   {
     switch (featureID)
     {
-      case FPMLPackage.VALUE__NAME:
-        return getName();
       case FPMLPackage.VALUE__VALUE:
         return getValue();
     }
@@ -197,9 +151,6 @@ public class ValueImpl extends ChainElementImpl implements Value
   {
     switch (featureID)
     {
-      case FPMLPackage.VALUE__NAME:
-        setName((String)newValue);
-        return;
       case FPMLPackage.VALUE__VALUE:
         setValue((Expression)newValue);
         return;
@@ -217,9 +168,6 @@ public class ValueImpl extends ChainElementImpl implements Value
   {
     switch (featureID)
     {
-      case FPMLPackage.VALUE__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case FPMLPackage.VALUE__VALUE:
         setValue((Expression)null);
         return;
@@ -237,29 +185,10 @@ public class ValueImpl extends ChainElementImpl implements Value
   {
     switch (featureID)
     {
-      case FPMLPackage.VALUE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case FPMLPackage.VALUE__VALUE:
         return value != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //ValueImpl

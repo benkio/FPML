@@ -28,12 +28,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getArg2 <em>Arg2</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EffectFullFunctionDefinitionImpl extends ChainElementImpl implements EffectFullFunctionDefinition
+public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl implements EffectFullFunctionDefinition
 {
   /**
    * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
@@ -74,6 +75,16 @@ public class EffectFullFunctionDefinitionImpl extends ChainElementImpl implement
    * @ordered
    */
   protected EffectFullArgument arg;
+
+  /**
+   * The cached value of the '{@link #getArg2() <em>Arg2</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getArg2()
+   * @generated
+   * @ordered
+   */
+  protected EffectFullArgument arg2;
 
   /**
    * The cached value of the '{@link #getFunctionBody() <em>Function Body</em>}' containment reference.
@@ -230,6 +241,54 @@ public class EffectFullFunctionDefinitionImpl extends ChainElementImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
+  public EffectFullArgument getArg2()
+  {
+    return arg2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetArg2(EffectFullArgument newArg2, NotificationChain msgs)
+  {
+    EffectFullArgument oldArg2 = arg2;
+    arg2 = newArg2;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG2, oldArg2, newArg2);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setArg2(EffectFullArgument newArg2)
+  {
+    if (newArg2 != arg2)
+    {
+      NotificationChain msgs = null;
+      if (arg2 != null)
+        msgs = ((InternalEObject)arg2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG2, null, msgs);
+      if (newArg2 != null)
+        msgs = ((InternalEObject)newArg2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG2, null, msgs);
+      msgs = basicSetArg2(newArg2, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG2, newArg2, newArg2));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FunctionBodyEffectFull getFunctionBody()
   {
     return functionBody;
@@ -287,6 +346,8 @@ public class EffectFullFunctionDefinitionImpl extends ChainElementImpl implement
         return basicSetReturnType(null, msgs);
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         return basicSetArg(null, msgs);
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG2:
+        return basicSetArg2(null, msgs);
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return basicSetFunctionBody(null, msgs);
     }
@@ -309,6 +370,8 @@ public class EffectFullFunctionDefinitionImpl extends ChainElementImpl implement
         return getName();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         return getArg();
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG2:
+        return getArg2();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return getFunctionBody();
     }
@@ -333,6 +396,9 @@ public class EffectFullFunctionDefinitionImpl extends ChainElementImpl implement
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         setArg((EffectFullArgument)newValue);
+        return;
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG2:
+        setArg2((EffectFullArgument)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyEffectFull)newValue);
@@ -360,6 +426,9 @@ public class EffectFullFunctionDefinitionImpl extends ChainElementImpl implement
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         setArg((EffectFullArgument)null);
         return;
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG2:
+        setArg2((EffectFullArgument)null);
+        return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyEffectFull)null);
         return;
@@ -383,6 +452,8 @@ public class EffectFullFunctionDefinitionImpl extends ChainElementImpl implement
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
         return arg != null;
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG2:
+        return arg2 != null;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return functionBody != null;
     }

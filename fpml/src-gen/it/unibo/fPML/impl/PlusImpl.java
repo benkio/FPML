@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PlusImpl extends PureFunctionDefinitionImpl implements Plus
+public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
 {
   /**
    * <!-- begin-user-doc -->

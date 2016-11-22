@@ -2,125 +2,91 @@ package it.unibo.validation.utilitiesFunctions
 
 import it.unibo.fPML.*
 import org.eclipse.emf.common.util.EList
-import it.unibo.fPML.ChainElement
 import it.unibo.fPML.EffectFullArgument
 import org.eclipse.xtext.EcoreUtil2
 import java.util.List
 import it.unibo.fPML.CompositionFunctionBodyPureFactor
 import it.unibo.fPML.ValueType
+import it.unibo.fPML.FunctionBodyPure
+import it.unibo.fPML.Expression
+import it.unibo.fPML.CompositionFunctionBodyPure
+import it.unibo.fPML.PureFunctionDefinition
+import it.unibo.fPML.Argument
 
 class GetReturnType {
-		def static ValueType getReturnValueType(PureFunctionDefinition pf, ValueType previousChainType){
-		val t = pf.getReturnType()
-		if (t == null){
-			if ( previousChainType instanceof PureFunctionType) {
-				return GetReturnType.getReturnTypePurePrimitive(pf, previousChainType)
-			} else {
-				return GetReturnType.getReturnTypePurePrimitive(pf, null)
-			}
+	
+	def static ValueType pureFunction(PureFunction f){
+		switch f {
+			PureFunctionDefinition: pureFunction(f)
+			PrimitivePureFunction: primitivePureFunction(f)
 		}
-		return t
-	}
+	}	
 	
-	def static Type getReturnEffectFullType(EffectFullFunctionDefinition ef, Type previousChainType){
-        val t = ef.getReturnType()
-        if (t == null) {
-        	if (previousChainType instanceof EffectFullFunctionType) {
-        		return getReturnTypeEffectFullPrimitive(ef, previousChainType)
-        	} else {
-        		return getReturnTypeEffectFullPrimitive(ef, null)
-        	}
-	    }else{   
-	    	 switch t.getType() {
-	        	DataType: return (t as DataType)
-	        	default: return t.type
-	        }
-        }
-    }
-	
-    def static Type getReturnType(ChainElement f1, Type previousChainType){
-        switch f1 {
-            EffectFullFunctionDefinition : return getReturnEffectFullType((f1 as EffectFullFunctionDefinition), previousChainType)
-            PureFunctionDefinition: {
-            	if (previousChainType instanceof ValueType){
-            		return getReturnValueType((f1 as PureFunctionDefinition), previousChainType)
-            	} else {
-            		throw new Exception("get return Type from pure function with an effectfull argument")
-            	}
-            }
-            Value: return Others.getTypeFromExpression(f1.value)
-            EffectFullArgument: return f1.type
-        }
-    }
-    
-    def static ValueType getReturnTypePurePrimitive(PureFunctionDefinition pf, PureFunctionType previousFunction){
-    	switch pf {
-			IntToString: return FPMLFactory.eINSTANCE.createStringType()
-			IntPow: return FPMLFactory.eINSTANCE.createIntegerType()
-			Plus: return Others.createIntIntFuntionType()
-			Minus: return Others.createIntIntFuntionType()
-			Times: return Others.createIntIntFuntionType()
-			Mod: return Others.createIntIntFuntionType()
-			ApplyF: {
-				if (previousFunction != null) {
-					return previousFunction.returnType
-				} else
-					return null 
-			}
-        	default: throw new Exception("this cannot happen during the typechecking, get return type pure primitive")
-    	}
-    }
-    
-    def static ValueType getReturnTypeCompositionFunctionBodyPureFunctionDefinition(PureFunctionDefinition pf) {
-		if (pf.functionBody instanceof CompositionFunctionBodyPure){
-			val fcBody = (pf.functionBody as CompositionFunctionBodyPure)
-			return getReturnTypeFunctionChainPure(fcBody.functionChain.map[x | Others.getFunctionDefinitionFromPureFactor(x)], pf.arg.type, Others.getFirstFunctionDefinitionFromCompositionBodyPure(fcBody))
-		}
-    }
-	
-	def static ValueType getReturnTypeFunctionChainPure(List<PureFunctionDefinition> list, ValueType argType, PureFunctionDefinition firstElement) {
-		if (list.size != 0){
-			if (list.size == 1)
-				return getReturnValueType(list.last, getReturnValueType(firstElement, argType))
-			else
-				return getReturnValueType(list.last, getReturnTypeFunctionChainPure(list.tail.toList, argType, firstElement))
-		} else {
-			return null
+	def static ValueType pureFunctionDefinition(PureFunctionDefinition f){
+		switch f {
+			Value: expression(f.value)
+			PureLambda: functionBodyPure(f.functionBody, f.arg, f.arg2)
+			PureFunctionDefinition: functionBodyPure(f.functionBody, f.arg, f.arg2)
 		}
 	}
-    
-    def static Type getReturnTypeCompositionBodyEffect(CompositionFunctionBodyEffect cfbe, EffectFullArgument arg) {
-    	val firstElement = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe)
-    	val functionChain = cfbe.functionChain.map[x | Others.getFunctionDefinitionFromEffectFullFactor(x)]
-    	return getReturnTypeFunctionChainEffect(functionChain, firstElement, arg)
-    }
 	
-	def static Type getReturnTypeFunctionChainEffect(List<ChainElement> elements, ChainElement element, EffectFullArgument argument) {
-		if (elements.size == 1)
-			return getReturnType(elements.last, getReturnType(element, argument.type))
-		else
-			return getReturnType(elements.last, getReturnTypeFunctionChainEffect(elements.tail.toList, element, argument))
-	}
-    
-    def static Type getReturnTypeEffectFullPrimitive(EffectFullFunctionDefinition ef, EffectFullFunctionType previousFunction){
-    	switch ef {
-    		PrimitivePrint: return FPMLFactory.eINSTANCE.createUnitType
-    		ApplyFIO: {
-				if (previousFunction != null) {
-					return previousFunction.returnType
-				} else 
-					throw new Exception("this cannot happen during the typechecking, get return type Effectfull primitive")
-			}
-			default: throw new Exception("this cannot happen during the typechecking, get return type Effectfull primitive")
-			
-    	}
-    }
-    
-    def static ValueType getPreviousFunctionChainElementReturnType(List<PureFunctionDefinition> elements, PureFunctionDefinition element, PureFunctionDefinition firstElement, Argument arg) {
-		val functionChainToElement = elements.takeWhile[x | !EcoreUtil2.equals(element)]
-		if (functionChainToElement.size == 1)
-			return getReturnValueType(firstElement, arg.type)
-		else 
-			return getPreviousFunctionChainElementReturnType(functionChainToElement.toList, functionChainToElement.last, firstElement, arg)
+	def static ValueType expression(Expression expression) {
+		switch expression {
+			IntegerType: return FPMLFactory.eINSTANCE.createIntegerType
+			StringType: return FPMLFactory.eINSTANCE.createStringType 
+			DataValue: return expression
+			PureFunctionType: return expression
 		}
+	}
+	
+	def static ValueType functionBodyPure(FunctionBodyPure pure, Argument arg1, Argument arg2) {
+		switch pure {
+			EmptyFunctionBody: return null
+			CompositionFunctionBodyPure: compositionFunctionBodyPure(pure, arg1, arg2)
+		}
+	}
+	
+	def static ValueType compositionFunctionBodyPure(CompositionFunctionBodyPure pure, Argument arg1, Argument arg2) {
+		val first = Others.getFirstFunctionDefinitionFromCompositionBodyPure(pure)
+		val chain = pure.functionChain.map[x | Others.getFunctionDefinitionFromPureFactor(x)]
+		chain.add(0, first)
+		pureFunctionChain(chain, arg1, arg2)
+	}
+	
+	def static ValueType pureFunctionChain(List<PureFunction> definitions, Argument argument, Argument argument2) {
+		if (argument2 != null) { //HigherOrder
+			val functionType = FPMLFactory.eINSTANCE.createPureFunctionType
+			functionType.argType = argument2.type
+			functionType.returnType = pureFunctionChain(definitions, argument, null)
+			return functionType
+		} else { //Normal single argument function
+			val firstFunctionReturnType = pureFunction(definitions.head)
+			if (definitions.size == 1)
+				return firstFunctionReturnType
+			else {
+				val arg = FPMLFactory.eINSTANCE.createArgument
+				argument.type = firstFunctionReturnType
+				return pureFunctionChain(definitions.tail.toList, arg, null)
+			}
+		}
+	}
+	
+	def static ValueType primitivePureFunction(PrimitivePureFunction f) {
+		switch f {
+			IntToString: return IntIntFunc
+			IntPow: return IntIntFunc
+			Plus: return IntIntFunc
+			Minus: return IntIntFunc
+			Times: return IntIntFunc
+			Mod: return IntIntFunc
+			ApplyF: return f.functionType.returnType
+		}
+	}
+	
+	def static PureFunctionType IntIntFunc() {
+		val func = FPMLFactory.eINSTANCE.createPureFunctionType
+		func.argType = FPMLFactory.eINSTANCE.createIntegerType
+		func.returnType = FPMLFactory.eINSTANCE.createIntegerType
+		return func
+	}
 }

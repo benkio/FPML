@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IntToStringImpl extends PureFunctionDefinitionImpl implements IntToString
+public class IntToStringImpl extends PrimitivePureFunctionImpl implements IntToString
 {
   /**
    * <!-- begin-user-doc -->

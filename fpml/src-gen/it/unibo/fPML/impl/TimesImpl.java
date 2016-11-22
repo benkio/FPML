@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class TimesImpl extends PureFunctionDefinitionImpl implements Times
+public class TimesImpl extends PrimitivePureFunctionImpl implements Times
 {
   /**
    * <!-- begin-user-doc -->

@@ -1,7 +1,6 @@
 package it.unibo.generator;
 
 import com.google.common.base.Objects;
-import it.unibo.fPML.ChainElement;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.EffectFullArgument;
@@ -11,20 +10,12 @@ import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
-import it.unibo.fPML.IntPow;
-import it.unibo.fPML.IntToString;
 import it.unibo.fPML.MainFunc;
-import it.unibo.fPML.PrimitivePrint;
-import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.UnitType;
-import it.unibo.fPML.Value;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
-import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.Functions.Function2;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class EffectFullFunctionGenerator {
@@ -144,97 +135,18 @@ public class EffectFullFunctionGenerator {
   }
   
   public CharSequence compile(final CompositionFunctionBodyEffect cfbe) {
-    StringConcatenation _builder = new StringConcatenation();
-    ChainElement _firstFunctionDefinitionFromCompositionBodyEffectFull = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe);
-    final String firstElementCompiled = this.compile(_firstFunctionDefinitionFromCompositionBodyEffectFull);
-    _builder.newLineIfNotEmpty();
-    final Function2<String, CompositionFunctionBodyEffectFullFactor, String> _function = (String acc, CompositionFunctionBodyEffectFullFactor x) -> {
-      String _compile = this.compile(x);
-      String _plus = (acc + _compile);
-      return (_plus + "\n\t");
-    };
-    final Function2<String, CompositionFunctionBodyEffectFullFactor, String> f = _function;
-    _builder.newLineIfNotEmpty();
-    EList<CompositionFunctionBodyEffectFullFactor> _functionChain = cfbe.getFunctionChain();
-    String _fold = IterableExtensions.<CompositionFunctionBodyEffectFullFactor, String>fold(_functionChain, (firstElementCompiled + "\n\t"), f);
-    _builder.append(_fold, "");
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method compile(ChainElement) from the type EffectFullFunctionGenerator refers to the missing type ChainElement");
   }
   
   public String compile(final CompositionFunctionBodyEffectFullFactor f) {
-    final ChainElement e = Others.getFunctionDefinitionFromEffectFullFactor(f);
-    return this.compile(e);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method compile(ChainElement) from the type EffectFullFunctionGenerator refers to the missing type ChainElement");
   }
   
-  public String compile(final ChainElement e) {
-    boolean _matched = false;
-    if (e instanceof IntToString) {
-      _matched=true;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append(".map(String::valueOf)");
-      return _builder.toString();
-    }
-    if (!_matched) {
-      if (e instanceof IntPow) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".map(x -> x * x) ");
-        return _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof PrimitivePrint) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(IOFunctions::stdoutPrint)");
-        return _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof PureFunctionDefinition) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".map(PureFunctionDefinitions::");
-        String _name = ((PureFunctionDefinition) e).getName();
-        _builder.append(_name, "");
-        _builder.append(")");
-        return _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof Value) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(IOFunctions.unit(Value.");
-        String _name = ((Value) e).getName();
-        _builder.append(_name, "");
-        _builder.append("()))");
-        return _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof EffectFullArgument) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(IOFunctions.unit(");
-        String _name = ((EffectFullArgument) e).getName();
-        _builder.append(_name, "");
-        _builder.append("))");
-        return _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof EffectFullFunctionDefinition) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(EffectFullFunctionDefinitions::");
-        String _name = ((EffectFullFunctionDefinition) e).getName();
-        _builder.append(_name, "");
-        _builder.append(")");
-        return _builder.toString();
-      }
-    }
-    return null;
+  public String compile(final /* ChainElement */Object e) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition.");
   }
   
   public CharSequence compile(final MainFunc mf) {

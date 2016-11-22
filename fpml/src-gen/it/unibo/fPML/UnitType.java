@@ -20,7 +20,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface UnitType extends Type, Expression
+public interface UnitType extends Type
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.

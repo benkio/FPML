@@ -16,6 +16,7 @@ package it.unibo.fPML;
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg2 <em>Arg2</em>}</li>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
@@ -23,7 +24,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullFunctionDefinition extends ChainElement
+public interface EffectFullFunctionDefinition extends EffectFullFunction
 {
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
@@ -102,6 +103,32 @@ public interface EffectFullFunctionDefinition extends ChainElement
    * @generated
    */
   void setArg(EffectFullArgument value);
+
+  /**
+   * Returns the value of the '<em><b>Arg2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Arg2</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Arg2</em>' containment reference.
+   * @see #setArg2(EffectFullArgument)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition_Arg2()
+   * @model containment="true"
+   * @generated
+   */
+  EffectFullArgument getArg2();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg2 <em>Arg2</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Arg2</em>' containment reference.
+   * @see #getArg2()
+   * @generated
+   */
+  void setArg2(EffectFullArgument value);
 
   /**
    * Returns the value of the '<em><b>Function Body</b></em>' containment reference.

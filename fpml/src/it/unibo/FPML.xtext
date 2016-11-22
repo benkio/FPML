@@ -49,9 +49,9 @@ EffectFullBlock:
 /////////////////////////////////////////////////////////////////
 
 Data:
-    name=ID ':' content=(AdtType);
+    name=ID ':' content=AdtType;
 
-Value: name=ID ':' value=Expression;
+Value returns PureFunctionDefinition: {Value} name=ID ':' value=Expression;
 
 AdtType:
       ValueType
@@ -63,22 +63,27 @@ ProdType:
     '*' adtElement=AdtType;
     
 PureFunctionDefinition:
-	'def' returnType=ValueType name=ID '(' arg=Argument ')' ':' '{' functionBody=FunctionBodyPure '}';
+	'def' returnType=ValueType name=ID '(' arg=Argument (',' arg2=Argument)? ')' ':' '{' functionBody=FunctionBodyPure '}';
 
 EffectFullFunctionDefinition:
-	'def' returnType=IOType name=ID '(' arg=EffectFullArgument ')' ':' '{'  functionBody=FunctionBodyEffectFull '}';
+	'def' returnType=IOType name=ID '(' arg=EffectFullArgument (',' arg2=EffectFullArgument)? ')' ':' '{'  functionBody=FunctionBodyEffectFull '}';
 
 MainFunc:
 	'IO' returnType=UnitType 'main' ':' '{' functionBody=FunctionBodyEffectFull '}';
+
+Function: EffectFullFunction | PureFunction;
+
+PureFunction: PureFunctionDefinition | PrimitivePureFunction;
+
+EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
 
 ///////////////////////////////////////////////////////////////////
 // Function Body Elements
 ///////////////////////////////////////////////////////////////////
 
-ChainElement:
-    PureFunctionDefinition | EffectFullFunctionDefinition | Value | EffectFullArgument;
+EffectFullReference: Function | EffectFullArgument;
 
-PureReference: Value | PureFunctionDefinition;
+PureReference: PureFunctionDefinition | Argument;
 
 EffectFullArgument:
 	type=Type name=ID;
@@ -96,26 +101,20 @@ EmptyFunctionBody:
     {EmptyFunctionBody} 'Undefined';
 
 CompositionFunctionBodyPure:
-      referenceElement=[PureFunctionDefinition] (functionChain+=CompositionFunctionBodyPureFactor)+ (returnFunction=ReturnPureFunction)?
-    | primitiveElement=PrimitivePureFunction (functionChain+=CompositionFunctionBodyPureFactor)+ (returnFunction=ReturnPureFunction)?;
+      referenceElement=[PureFunctionDefinition] (functionChain+=CompositionFunctionBodyPureFactor)+ 
+    | primitiveElement=PrimitivePureFunction (functionChain+=CompositionFunctionBodyPureFactor)+;
     
 CompositionFunctionBodyPureFactor:
 	  ( '|>' (referenceElement=[PureFunctionDefinition]))
 	| ( '|>' (PrimitiveElement=PrimitivePureFunction));
 
 CompositionFunctionBodyEffect:
-      referenceElement=[ChainElement] (functionChain+=CompositionFunctionBodyEffectFullFactor)+ (returnFunction=ReturnEffectFullFunction)?
-    | primitiveElement=(PrimitiveEffectFullFunction | PrimitivePureFunction) (functionChain+=CompositionFunctionBodyEffectFullFactor)+ (returnFunction=ReturnEffectFullFunction)?;
+      referenceElement=[EffectFullReference] (functionChain+=CompositionFunctionBodyEffectFullFactor)+
+    | primitiveElement=(PrimitiveEffectFullFunction | PrimitivePureFunction) (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
     
 CompositionFunctionBodyEffectFullFactor:
-	  ( '>>=' (referenceElement=[ChainElement]))
+	  ( '>>=' (referenceElement=[EffectFullReference]))
 	| ( '>>=' (PrimitiveElement=(PrimitiveEffectFullFunction | PrimitivePureFunction)));
-
-ReturnPureFunction:
-	'->' '(' lambdaFunctionBody=PureLambda ')';
-
-ReturnEffectFullFunction:
-	'->' '(' lambdaFunctionBody=EffectFullLambda ')';
 
 //////////////////////////////////////////////////////////////////////
 // Types
@@ -153,23 +152,21 @@ EffectFullFunctionType:
 ////////////////////////////////////////////////////////////////////
 
 Expression:
-    IntValue | StringValue | UnitValue | DataValue | FunctionValue ;
+    IntValue | StringValue | DataValue | FunctionValue;
 
 IntValue returns IntegerType: {IntegerType} value=INT;
 
 StringValue returns StringType: {StringType} value=STRING;
 
-UnitValue returns UnitType: {UnitType} '()';
-
 FunctionValue returns PureFunctionType: value=PureLambda;
 
 DataValue returns DataType: {DataValue} type=[Data]'(' value=AdtValue ')';
 
-ValueRef: {ValueRef} value=[PureReference];
+ValueRef: {ValueRef} value=[Value];
 
-PureLambda returns PureFunctionDefinition: '(' arg=Argument ')' ':' functionBody=FunctionBodyPure;
-
-EffectFullLambda returns EffectFullFunctionDefinition: '(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull;
+PureLambda returns PureFunctionDefinition: 
+	{PureLambda} '(' arg=Argument ')' ':' functionBody=FunctionBodyPure
+;
 
 AdtValue:
 	  IntValue
@@ -191,7 +188,7 @@ SumValue:
 // Primitives
 /////////////////////////////////////////////////////////////////////
 
-PrimitivePureFunction returns PureFunctionDefinition: 
+PrimitivePureFunction: 
 	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF;
 
 IntToString: {IntToString} 'IntToString';
@@ -200,13 +197,13 @@ Plus: {Plus} '+';
 Minus: {Minus} '-';
 Times: {Times} '*';
 Mod: {Mod} 'mod';
-ApplyF:{ApplyF} 'applyF' valueRef=[Value];
+ApplyF:{ApplyF} 'applyF' functionType=PureFunctionType value=[PureReference];
 
-PrimitiveEffectFullFunction returns EffectFullFunctionDefinition:
+PrimitiveEffectFullFunction:
 	PrimitivePrint | ApplyFIO;
 
 PrimitivePrint:
     {PrimitivePrint} "print";
 
-ApplyFIO:{ApplyFIO} 'applyFIO' value=[Value];
+ApplyFIO:{ApplyFIO} 'applyFIO' functionType=EffectFullFunctionType value=[EffectFullReference];
     

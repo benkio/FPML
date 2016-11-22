@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface Mod extends PureFunctionDefinition
+public interface Mod extends PrimitivePureFunction
 {
 } // Mod

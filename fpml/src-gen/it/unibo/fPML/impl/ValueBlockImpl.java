@@ -4,7 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.Value;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.ValueBlock;
 
 import java.util.Collection;
@@ -44,7 +44,7 @@ public class ValueBlockImpl extends MinimalEObjectImpl.Container implements Valu
    * @generated
    * @ordered
    */
-  protected EList<Value> elements;
+  protected EList<PureFunctionDefinition> elements;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,11 +72,11 @@ public class ValueBlockImpl extends MinimalEObjectImpl.Container implements Valu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Value> getElements()
+  public EList<PureFunctionDefinition> getElements()
   {
     if (elements == null)
     {
-      elements = new EObjectContainmentEList<Value>(Value.class, this, FPMLPackage.VALUE_BLOCK__ELEMENTS);
+      elements = new EObjectContainmentEList<PureFunctionDefinition>(PureFunctionDefinition.class, this, FPMLPackage.VALUE_BLOCK__ELEMENTS);
     }
     return elements;
   }
@@ -126,7 +126,7 @@ public class ValueBlockImpl extends MinimalEObjectImpl.Container implements Valu
     {
       case FPMLPackage.VALUE_BLOCK__ELEMENTS:
         getElements().clear();
-        getElements().addAll((Collection<? extends Value>)newValue);
+        getElements().addAll((Collection<? extends PureFunctionDefinition>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

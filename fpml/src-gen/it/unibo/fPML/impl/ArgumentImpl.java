@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,12 +24,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.ArgumentImpl#getType <em>Type</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.ArgumentImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ArgumentImpl extends MinimalEObjectImpl.Container implements Argument
+public class ArgumentImpl extends PureReferenceImpl implements Argument
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -41,26 +39,6 @@ public class ArgumentImpl extends MinimalEObjectImpl.Container implements Argume
    * @ordered
    */
   protected ValueType type;
-
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -136,29 +114,6 @@ public class ArgumentImpl extends MinimalEObjectImpl.Container implements Argume
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.ARGUMENT__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -182,8 +137,6 @@ public class ArgumentImpl extends MinimalEObjectImpl.Container implements Argume
     {
       case FPMLPackage.ARGUMENT__TYPE:
         return getType();
-      case FPMLPackage.ARGUMENT__NAME:
-        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -200,9 +153,6 @@ public class ArgumentImpl extends MinimalEObjectImpl.Container implements Argume
     {
       case FPMLPackage.ARGUMENT__TYPE:
         setType((ValueType)newValue);
-        return;
-      case FPMLPackage.ARGUMENT__NAME:
-        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,9 +171,6 @@ public class ArgumentImpl extends MinimalEObjectImpl.Container implements Argume
       case FPMLPackage.ARGUMENT__TYPE:
         setType((ValueType)null);
         return;
-      case FPMLPackage.ARGUMENT__NAME:
-        setName(NAME_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -240,27 +187,8 @@ public class ArgumentImpl extends MinimalEObjectImpl.Container implements Argume
     {
       case FPMLPackage.ARGUMENT__TYPE:
         return type != null;
-      case FPMLPackage.ARGUMENT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //ArgumentImpl

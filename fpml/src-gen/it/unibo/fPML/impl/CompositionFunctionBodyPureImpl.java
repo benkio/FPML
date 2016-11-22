@@ -6,8 +6,8 @@ package it.unibo.fPML.impl;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
-import it.unibo.fPML.ReturnPureFunction;
 
 import java.util.Collection;
 
@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyPureImpl#getReferenceElement <em>Reference Element</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyPureImpl#getFunctionChain <em>Function Chain</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyPureImpl#getReturnFunction <em>Return Function</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyPureImpl#getPrimitiveElement <em>Primitive Element</em>}</li>
  * </ul>
  *
@@ -63,16 +62,6 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
   protected EList<CompositionFunctionBodyPureFactor> functionChain;
 
   /**
-   * The cached value of the '{@link #getReturnFunction() <em>Return Function</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReturnFunction()
-   * @generated
-   * @ordered
-   */
-  protected ReturnPureFunction returnFunction;
-
-  /**
    * The cached value of the '{@link #getPrimitiveElement() <em>Primitive Element</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -80,7 +69,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * @generated
    * @ordered
    */
-  protected PureFunctionDefinition primitiveElement;
+  protected PrimitivePureFunction primitiveElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -165,55 +154,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public ReturnPureFunction getReturnFunction()
-  {
-    return returnFunction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetReturnFunction(ReturnPureFunction newReturnFunction, NotificationChain msgs)
-  {
-    ReturnPureFunction oldReturnFunction = returnFunction;
-    returnFunction = newReturnFunction;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION, oldReturnFunction, newReturnFunction);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setReturnFunction(ReturnPureFunction newReturnFunction)
-  {
-    if (newReturnFunction != returnFunction)
-    {
-      NotificationChain msgs = null;
-      if (returnFunction != null)
-        msgs = ((InternalEObject)returnFunction).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION, null, msgs);
-      if (newReturnFunction != null)
-        msgs = ((InternalEObject)newReturnFunction).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION, null, msgs);
-      msgs = basicSetReturnFunction(newReturnFunction, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION, newReturnFunction, newReturnFunction));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PureFunctionDefinition getPrimitiveElement()
+  public PrimitivePureFunction getPrimitiveElement()
   {
     return primitiveElement;
   }
@@ -223,9 +164,9 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPrimitiveElement(PureFunctionDefinition newPrimitiveElement, NotificationChain msgs)
+  public NotificationChain basicSetPrimitiveElement(PrimitivePureFunction newPrimitiveElement, NotificationChain msgs)
   {
-    PureFunctionDefinition oldPrimitiveElement = primitiveElement;
+    PrimitivePureFunction oldPrimitiveElement = primitiveElement;
     primitiveElement = newPrimitiveElement;
     if (eNotificationRequired())
     {
@@ -240,7 +181,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPrimitiveElement(PureFunctionDefinition newPrimitiveElement)
+  public void setPrimitiveElement(PrimitivePureFunction newPrimitiveElement)
   {
     if (newPrimitiveElement != primitiveElement)
     {
@@ -268,8 +209,6 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN:
         return ((InternalEList<?>)getFunctionChain()).basicRemove(otherEnd, msgs);
-      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION:
-        return basicSetReturnFunction(null, msgs);
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__PRIMITIVE_ELEMENT:
         return basicSetPrimitiveElement(null, msgs);
     }
@@ -291,8 +230,6 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
         return basicGetReferenceElement();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN:
         return getFunctionChain();
-      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION:
-        return getReturnFunction();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__PRIMITIVE_ELEMENT:
         return getPrimitiveElement();
     }
@@ -317,11 +254,8 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
         getFunctionChain().clear();
         getFunctionChain().addAll((Collection<? extends CompositionFunctionBodyPureFactor>)newValue);
         return;
-      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION:
-        setReturnFunction((ReturnPureFunction)newValue);
-        return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((PureFunctionDefinition)newValue);
+        setPrimitiveElement((PrimitivePureFunction)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -343,11 +277,8 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN:
         getFunctionChain().clear();
         return;
-      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION:
-        setReturnFunction((ReturnPureFunction)null);
-        return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((PureFunctionDefinition)null);
+        setPrimitiveElement((PrimitivePureFunction)null);
         return;
     }
     super.eUnset(featureID);
@@ -367,8 +298,6 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
         return referenceElement != null;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN:
         return functionChain != null && !functionChain.isEmpty();
-      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__RETURN_FUNCTION:
-        return returnFunction != null;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__PRIMITIVE_ELEMENT:
         return primitiveElement != null;
     }

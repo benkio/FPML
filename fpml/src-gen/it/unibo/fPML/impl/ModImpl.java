@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModImpl extends PureFunctionDefinitionImpl implements Mod
+public class ModImpl extends PrimitivePureFunctionImpl implements Mod
 {
   /**
    * <!-- begin-user-doc -->

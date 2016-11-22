@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PrimitivePrintImpl extends EffectFullFunctionDefinitionImpl implements PrimitivePrint
+public class PrimitivePrintImpl extends PrimitiveEffectFullFunctionImpl implements PrimitivePrint
 {
   /**
    * <!-- begin-user-doc -->

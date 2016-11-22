@@ -4,10 +4,12 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.ApplyFIO;
+import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.Value;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -22,13 +24,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link it.unibo.fPML.impl.ApplyFIOImpl#getFunctionType <em>Function Type</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.ApplyFIOImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements ApplyFIO
+public class ApplyFIOImpl extends PrimitiveEffectFullFunctionImpl implements ApplyFIO
 {
+  /**
+   * The cached value of the '{@link #getFunctionType() <em>Function Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFunctionType()
+   * @generated
+   * @ordered
+   */
+  protected EffectFullFunctionType functionType;
+
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
    * <!-- begin-user-doc -->
@@ -37,7 +50,7 @@ public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements Ap
    * @generated
    * @ordered
    */
-  protected Value value;
+  protected EffectFullReference value;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,12 +78,60 @@ public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements Ap
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value getValue()
+  public EffectFullFunctionType getFunctionType()
+  {
+    return functionType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetFunctionType(EffectFullFunctionType newFunctionType, NotificationChain msgs)
+  {
+    EffectFullFunctionType oldFunctionType = functionType;
+    functionType = newFunctionType;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FIO__FUNCTION_TYPE, oldFunctionType, newFunctionType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFunctionType(EffectFullFunctionType newFunctionType)
+  {
+    if (newFunctionType != functionType)
+    {
+      NotificationChain msgs = null;
+      if (functionType != null)
+        msgs = ((InternalEObject)functionType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FIO__FUNCTION_TYPE, null, msgs);
+      if (newFunctionType != null)
+        msgs = ((InternalEObject)newFunctionType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FIO__FUNCTION_TYPE, null, msgs);
+      msgs = basicSetFunctionType(newFunctionType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FIO__FUNCTION_TYPE, newFunctionType, newFunctionType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullReference getValue()
   {
     if (value != null && value.eIsProxy())
     {
       InternalEObject oldValue = (InternalEObject)value;
-      value = (Value)eResolveProxy(oldValue);
+      value = (EffectFullReference)eResolveProxy(oldValue);
       if (value != oldValue)
       {
         if (eNotificationRequired())
@@ -85,7 +146,7 @@ public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements Ap
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value basicGetValue()
+  public EffectFullReference basicGetValue()
   {
     return value;
   }
@@ -95,12 +156,28 @@ public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements Ap
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(Value newValue)
+  public void setValue(EffectFullReference newValue)
   {
-    Value oldValue = value;
+    EffectFullReference oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FIO__VALUE, oldValue, value));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case FPMLPackage.APPLY_FIO__FUNCTION_TYPE:
+        return basicSetFunctionType(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -113,6 +190,8 @@ public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements Ap
   {
     switch (featureID)
     {
+      case FPMLPackage.APPLY_FIO__FUNCTION_TYPE:
+        return getFunctionType();
       case FPMLPackage.APPLY_FIO__VALUE:
         if (resolve) return getValue();
         return basicGetValue();
@@ -130,8 +209,11 @@ public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements Ap
   {
     switch (featureID)
     {
+      case FPMLPackage.APPLY_FIO__FUNCTION_TYPE:
+        setFunctionType((EffectFullFunctionType)newValue);
+        return;
       case FPMLPackage.APPLY_FIO__VALUE:
-        setValue((Value)newValue);
+        setValue((EffectFullReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -147,8 +229,11 @@ public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements Ap
   {
     switch (featureID)
     {
+      case FPMLPackage.APPLY_FIO__FUNCTION_TYPE:
+        setFunctionType((EffectFullFunctionType)null);
+        return;
       case FPMLPackage.APPLY_FIO__VALUE:
-        setValue((Value)null);
+        setValue((EffectFullReference)null);
         return;
     }
     super.eUnset(featureID);
@@ -164,6 +249,8 @@ public class ApplyFIOImpl extends EffectFullFunctionDefinitionImpl implements Ap
   {
     switch (featureID)
     {
+      case FPMLPackage.APPLY_FIO__FUNCTION_TYPE:
+        return functionType != null;
       case FPMLPackage.APPLY_FIO__VALUE:
         return value != null;
     }

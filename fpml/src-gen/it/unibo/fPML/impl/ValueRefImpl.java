@@ -4,7 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PureReference;
+import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueRef;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -37,7 +37,7 @@ public class ValueRefImpl extends AdtValueImpl implements ValueRef
    * @generated
    * @ordered
    */
-  protected PureReference value;
+  protected Value value;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,12 +65,12 @@ public class ValueRefImpl extends AdtValueImpl implements ValueRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureReference getValue()
+  public Value getValue()
   {
     if (value != null && value.eIsProxy())
     {
       InternalEObject oldValue = (InternalEObject)value;
-      value = (PureReference)eResolveProxy(oldValue);
+      value = (Value)eResolveProxy(oldValue);
       if (value != oldValue)
       {
         if (eNotificationRequired())
@@ -85,7 +85,7 @@ public class ValueRefImpl extends AdtValueImpl implements ValueRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureReference basicGetValue()
+  public Value basicGetValue()
   {
     return value;
   }
@@ -95,9 +95,9 @@ public class ValueRefImpl extends AdtValueImpl implements ValueRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(PureReference newValue)
+  public void setValue(Value newValue)
   {
-    PureReference oldValue = value;
+    Value oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.VALUE_REF__VALUE, oldValue, value));
@@ -131,7 +131,7 @@ public class ValueRefImpl extends AdtValueImpl implements ValueRef
     switch (featureID)
     {
       case FPMLPackage.VALUE_REF__VALUE:
-        setValue((PureReference)newValue);
+        setValue((Value)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -148,7 +148,7 @@ public class ValueRefImpl extends AdtValueImpl implements ValueRef
     switch (featureID)
     {
       case FPMLPackage.VALUE_REF__VALUE:
-        setValue((PureReference)null);
+        setValue((Value)null);
         return;
     }
     super.eUnset(featureID);

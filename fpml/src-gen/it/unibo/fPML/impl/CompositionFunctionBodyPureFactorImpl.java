@@ -5,6 +5,7 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -50,7 +51,7 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * @generated
    * @ordered
    */
-  protected PureFunctionDefinition primitiveElement;
+  protected PrimitivePureFunction primitiveElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -121,7 +122,7 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureFunctionDefinition getPrimitiveElement()
+  public PrimitivePureFunction getPrimitiveElement()
   {
     return primitiveElement;
   }
@@ -131,9 +132,9 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPrimitiveElement(PureFunctionDefinition newPrimitiveElement, NotificationChain msgs)
+  public NotificationChain basicSetPrimitiveElement(PrimitivePureFunction newPrimitiveElement, NotificationChain msgs)
   {
-    PureFunctionDefinition oldPrimitiveElement = primitiveElement;
+    PrimitivePureFunction oldPrimitiveElement = primitiveElement;
     primitiveElement = newPrimitiveElement;
     if (eNotificationRequired())
     {
@@ -148,7 +149,7 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPrimitiveElement(PureFunctionDefinition newPrimitiveElement)
+  public void setPrimitiveElement(PrimitivePureFunction newPrimitiveElement)
   {
     if (newPrimitiveElement != primitiveElement)
     {
@@ -213,7 +214,7 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
         setReferenceElement((PureFunctionDefinition)newValue);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((PureFunctionDefinition)newValue);
+        setPrimitiveElement((PrimitivePureFunction)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -233,7 +234,7 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
         setReferenceElement((PureFunctionDefinition)null);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((PureFunctionDefinition)null);
+        setPrimitiveElement((PrimitivePureFunction)null);
         return;
     }
     super.eUnset(featureID);

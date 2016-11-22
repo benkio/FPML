@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullArgument extends ChainElement
+public interface EffectFullArgument extends EffectFullReference
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

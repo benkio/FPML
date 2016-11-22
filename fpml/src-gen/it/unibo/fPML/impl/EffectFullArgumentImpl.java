@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EffectFullArgumentImpl extends ChainElementImpl implements EffectFullArgument
+public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements EffectFullArgument
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.

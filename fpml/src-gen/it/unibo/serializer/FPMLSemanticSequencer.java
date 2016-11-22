@@ -38,8 +38,7 @@ import it.unibo.fPML.PureBlock;
 import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
-import it.unibo.fPML.ReturnEffectFullFunction;
-import it.unibo.fPML.ReturnPureFunction;
+import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.SumType;
 import it.unibo.fPML.SumValue;
@@ -117,16 +116,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_EffectFullBlock(context, (EffectFullBlock) semanticObject); 
 				return; 
 			case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION:
-				if (rule == grammarAccess.getEffectFullFunctionDefinitionRule()
-						|| rule == grammarAccess.getChainElementRule()) {
-					sequence_EffectFullFunctionDefinition(context, (EffectFullFunctionDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getEffectFullLambdaRule()) {
-					sequence_EffectFullLambda(context, (EffectFullFunctionDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_EffectFullFunctionDefinition(context, (EffectFullFunctionDefinition) semanticObject); 
+				return; 
 			case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE:
 				sequence_EffectFullFunctionType(context, (EffectFullFunctionType) semanticObject); 
 				return; 
@@ -188,17 +179,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_PureFunctionBlock(context, (PureFunctionBlock) semanticObject); 
 				return; 
 			case FPMLPackage.PURE_FUNCTION_DEFINITION:
-				if (rule == grammarAccess.getPureFunctionDefinitionRule()
-						|| rule == grammarAccess.getChainElementRule()
-						|| rule == grammarAccess.getPureReferenceRule()) {
-					sequence_PureFunctionDefinition(context, (PureFunctionDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPureLambdaRule()) {
-					sequence_PureLambda(context, (PureFunctionDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_PureFunctionDefinition(context, (PureFunctionDefinition) semanticObject); 
+				return; 
 			case FPMLPackage.PURE_FUNCTION_TYPE:
 				if (rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getFunctionValueRule()
@@ -214,11 +196,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
-			case FPMLPackage.RETURN_EFFECT_FULL_FUNCTION:
-				sequence_ReturnEffectFullFunction(context, (ReturnEffectFullFunction) semanticObject); 
-				return; 
-			case FPMLPackage.RETURN_PURE_FUNCTION:
-				sequence_ReturnPureFunction(context, (ReturnPureFunction) semanticObject); 
+			case FPMLPackage.PURE_LAMBDA:
+				sequence_PureLambda(context, (PureLambda) semanticObject); 
 				return; 
 			case FPMLPackage.STRING_TYPE:
 				if (rule == grammarAccess.getAdtTypeRule()
@@ -245,17 +224,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_Times(context, (Times) semanticObject); 
 				return; 
 			case FPMLPackage.UNIT_TYPE:
-				if (rule == grammarAccess.getTypeRule()
-						|| rule == grammarAccess.getUnitTypeRule()) {
-					sequence_UnitType(context, (UnitType) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getExpressionRule()
-						|| rule == grammarAccess.getUnitValueRule()) {
-					sequence_UnitValue(context, (UnitType) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_UnitType(context, (UnitType) semanticObject); 
+				return; 
 			case FPMLPackage.VALUE:
 				sequence_Value(context, (Value) semanticObject); 
 				return; 
@@ -284,44 +254,57 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns ApplyFIO
+	 *     EffectFullFunction returns ApplyFIO
+	 *     EffectFullReference returns ApplyFIO
 	 *     PrimitiveEffectFullFunction returns ApplyFIO
 	 *     ApplyFIO returns ApplyFIO
 	 *
 	 * Constraint:
-	 *     value=[Value|ID]
+	 *     (functionType=EffectFullFunctionType value=[EffectFullReference|ID])
 	 */
 	protected void sequence_ApplyFIO(ISerializationContext context, ApplyFIO semanticObject) {
 		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE));
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.APPLY_FIO__VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.APPLY_FIO__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getApplyFIOAccess().getValueValueIDTerminalRuleCall_2_0_1(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getApplyFIOAccess().getFunctionTypeEffectFullFunctionTypeParserRuleCall_2_0(), semanticObject.getFunctionType());
+		feeder.accept(grammarAccess.getApplyFIOAccess().getValueEffectFullReferenceIDTerminalRuleCall_3_0_1(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
+	 *     Function returns ApplyF
+	 *     PureFunction returns ApplyF
+	 *     EffectFullReference returns ApplyF
 	 *     PrimitivePureFunction returns ApplyF
 	 *     ApplyF returns ApplyF
 	 *
 	 * Constraint:
-	 *     valueRef=[Value|ID]
+	 *     (functionType=PureFunctionType value=[PureReference|ID])
 	 */
 	protected void sequence_ApplyF(ISerializationContext context, ApplyF semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.APPLY_F__VALUE_REF) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.APPLY_F__VALUE_REF));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.APPLY_F__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.APPLY_F__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getApplyFAccess().getValueRefValueIDTerminalRuleCall_2_0_1(), semanticObject.getValueRef());
+		feeder.accept(grammarAccess.getApplyFAccess().getFunctionTypePureFunctionTypeParserRuleCall_2_0(), semanticObject.getFunctionType());
+		feeder.accept(grammarAccess.getApplyFAccess().getValuePureReferenceIDTerminalRuleCall_3_0_1(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
+	 *     PureReference returns Argument
 	 *     Argument returns Argument
 	 *
 	 * Constraint:
@@ -331,8 +314,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.ARGUMENT__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.ARGUMENT__TYPE));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.ARGUMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.ARGUMENT__NAME));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_REFERENCE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_REFERENCE__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getArgumentAccess().getTypeValueTypeParserRuleCall_0_0(), semanticObject.getType());
@@ -346,7 +329,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     CompositionFunctionBodyEffectFullFactor returns CompositionFunctionBodyEffectFullFactor
 	 *
 	 * Constraint:
-	 *     (referenceElement=[ChainElement|ID] | PrimitiveElement=PrimitiveEffectFullFunction | PrimitiveElement=PrimitivePureFunction)
+	 *     (referenceElement=[EffectFullReference|ID] | PrimitiveElement=PrimitiveEffectFullFunction | PrimitiveElement=PrimitivePureFunction)
 	 */
 	protected void sequence_CompositionFunctionBodyEffectFullFactor(ISerializationContext context, CompositionFunctionBodyEffectFullFactor semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -360,11 +343,10 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (referenceElement=[ChainElement|ID] functionChain+=CompositionFunctionBodyEffectFullFactor+ returnFunction=ReturnEffectFullFunction?) | 
+	 *         (referenceElement=[EffectFullReference|ID] functionChain+=CompositionFunctionBodyEffectFullFactor+) | 
 	 *         (
 	 *             (primitiveElement=PrimitiveEffectFullFunction | primitiveElement=PrimitivePureFunction) 
-	 *             functionChain+=CompositionFunctionBodyEffectFullFactor+ 
-	 *             returnFunction=ReturnEffectFullFunction?
+	 *             functionChain+=CompositionFunctionBodyEffectFullFactor+
 	 *         )
 	 *     )
 	 */
@@ -392,8 +374,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (referenceElement=[PureFunctionDefinition|ID] functionChain+=CompositionFunctionBodyPureFactor+ returnFunction=ReturnPureFunction?) | 
-	 *         (primitiveElement=PrimitivePureFunction functionChain+=CompositionFunctionBodyPureFactor+ returnFunction=ReturnPureFunction?)
+	 *         (referenceElement=[PureFunctionDefinition|ID] functionChain+=CompositionFunctionBodyPureFactor+) | 
+	 *         (primitiveElement=PrimitivePureFunction functionChain+=CompositionFunctionBodyPureFactor+)
 	 *     )
 	 */
 	protected void sequence_CompositionFunctionBodyPure(ISerializationContext context, CompositionFunctionBodyPure semanticObject) {
@@ -480,7 +462,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ChainElement returns EffectFullArgument
+	 *     EffectFullReference returns EffectFullArgument
 	 *     EffectFullArgument returns EffectFullArgument
 	 *
 	 * Constraint:
@@ -515,28 +497,15 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     EffectFullFunctionDefinition returns EffectFullFunctionDefinition
-	 *     ChainElement returns EffectFullFunctionDefinition
+	 *     Function returns EffectFullFunctionDefinition
+	 *     EffectFullFunction returns EffectFullFunctionDefinition
+	 *     EffectFullReference returns EffectFullFunctionDefinition
 	 *
 	 * Constraint:
-	 *     (returnType=IOType name=ID arg=EffectFullArgument functionBody=FunctionBodyEffectFull)
+	 *     (returnType=IOType name=ID arg=EffectFullArgument arg2=EffectFullArgument? functionBody=FunctionBodyEffectFull)
 	 */
 	protected void sequence_EffectFullFunctionDefinition(ISerializationContext context, EffectFullFunctionDefinition semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__NAME));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEffectFullFunctionDefinitionAccess().getReturnTypeIOTypeParserRuleCall_1_0(), semanticObject.getReturnType());
-		feeder.accept(grammarAccess.getEffectFullFunctionDefinitionAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgEffectFullArgumentParserRuleCall_4_0(), semanticObject.getArg());
-		feeder.accept(grammarAccess.getEffectFullFunctionDefinitionAccess().getFunctionBodyFunctionBodyEffectFullParserRuleCall_8_0(), semanticObject.getFunctionBody());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -558,27 +527,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeTypeParserRuleCall_3_0(), semanticObject.getArgType());
 		feeder.accept(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeTypeParserRuleCall_5_0(), semanticObject.getReturnType());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     EffectFullLambda returns EffectFullFunctionDefinition
-	 *
-	 * Constraint:
-	 *     (arg=EffectFullArgument functionBody=FunctionBodyEffectFull)
-	 */
-	protected void sequence_EffectFullLambda(ISerializationContext context, EffectFullFunctionDefinition semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEffectFullLambdaAccess().getArgEffectFullArgumentParserRuleCall_1_0(), semanticObject.getArg());
-		feeder.accept(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyFunctionBodyEffectFullParserRuleCall_4_0(), semanticObject.getFunctionBody());
 		feeder.finish();
 	}
 	
@@ -637,6 +585,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns IntPow
+	 *     PureFunction returns IntPow
+	 *     EffectFullReference returns IntPow
 	 *     PrimitivePureFunction returns IntPow
 	 *     IntPow returns IntPow
 	 *
@@ -650,6 +601,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns IntToString
+	 *     PureFunction returns IntToString
+	 *     EffectFullReference returns IntToString
 	 *     PrimitivePureFunction returns IntToString
 	 *     IntToString returns IntToString
 	 *
@@ -725,6 +679,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns Minus
+	 *     PureFunction returns Minus
+	 *     EffectFullReference returns Minus
 	 *     PrimitivePureFunction returns Minus
 	 *     Minus returns Minus
 	 *
@@ -738,6 +695,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns Mod
+	 *     PureFunction returns Mod
+	 *     EffectFullReference returns Mod
 	 *     PrimitivePureFunction returns Mod
 	 *     Mod returns Mod
 	 *
@@ -763,6 +723,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns Plus
+	 *     PureFunction returns Plus
+	 *     EffectFullReference returns Plus
 	 *     PrimitivePureFunction returns Plus
 	 *     Plus returns Plus
 	 *
@@ -776,6 +739,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns PrimitivePrint
+	 *     EffectFullFunction returns PrimitivePrint
+	 *     EffectFullReference returns PrimitivePrint
 	 *     PrimitiveEffectFullFunction returns PrimitivePrint
 	 *     PrimitivePrint returns PrimitivePrint
 	 *
@@ -854,29 +820,16 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     PureFunctionDefinition returns PureFunctionDefinition
-	 *     ChainElement returns PureFunctionDefinition
+	 *     Function returns PureFunctionDefinition
+	 *     PureFunction returns PureFunctionDefinition
+	 *     EffectFullReference returns PureFunctionDefinition
 	 *     PureReference returns PureFunctionDefinition
 	 *
 	 * Constraint:
-	 *     (returnType=ValueType name=ID arg=Argument functionBody=FunctionBodyPure)
+	 *     (returnType=ValueType name=ID arg=Argument arg2=Argument? functionBody=FunctionBodyPure)
 	 */
 	protected void sequence_PureFunctionDefinition(ISerializationContext context, PureFunctionDefinition semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__NAME));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPureFunctionDefinitionAccess().getReturnTypeValueTypeParserRuleCall_1_0(), semanticObject.getReturnType());
-		feeder.accept(grammarAccess.getPureFunctionDefinitionAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPureFunctionDefinitionAccess().getArgArgumentParserRuleCall_4_0(), semanticObject.getArg());
-		feeder.accept(grammarAccess.getPureFunctionDefinitionAccess().getFunctionBodyFunctionBodyPureParserRuleCall_8_0(), semanticObject.getFunctionBody());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -906,12 +859,12 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     PureLambda returns PureFunctionDefinition
+	 *     PureLambda returns PureLambda
 	 *
 	 * Constraint:
 	 *     (arg=Argument functionBody=FunctionBodyPure)
 	 */
-	protected void sequence_PureLambda(ISerializationContext context, PureFunctionDefinition semanticObject) {
+	protected void sequence_PureLambda(ISerializationContext context, PureLambda semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG));
@@ -919,44 +872,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPureLambdaAccess().getArgArgumentParserRuleCall_1_0(), semanticObject.getArg());
-		feeder.accept(grammarAccess.getPureLambdaAccess().getFunctionBodyFunctionBodyPureParserRuleCall_4_0(), semanticObject.getFunctionBody());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ReturnEffectFullFunction returns ReturnEffectFullFunction
-	 *
-	 * Constraint:
-	 *     lambdaFunctionBody=EffectFullLambda
-	 */
-	protected void sequence_ReturnEffectFullFunction(ISerializationContext context, ReturnEffectFullFunction semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RETURN_EFFECT_FULL_FUNCTION__LAMBDA_FUNCTION_BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RETURN_EFFECT_FULL_FUNCTION__LAMBDA_FUNCTION_BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getReturnEffectFullFunctionAccess().getLambdaFunctionBodyEffectFullLambdaParserRuleCall_2_0(), semanticObject.getLambdaFunctionBody());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ReturnPureFunction returns ReturnPureFunction
-	 *
-	 * Constraint:
-	 *     lambdaFunctionBody=PureLambda
-	 */
-	protected void sequence_ReturnPureFunction(ISerializationContext context, ReturnPureFunction semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RETURN_PURE_FUNCTION__LAMBDA_FUNCTION_BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getReturnPureFunctionAccess().getLambdaFunctionBodyPureLambdaParserRuleCall_2_0(), semanticObject.getLambdaFunctionBody());
+		feeder.accept(grammarAccess.getPureLambdaAccess().getArgArgumentParserRuleCall_2_0(), semanticObject.getArg());
+		feeder.accept(grammarAccess.getPureLambdaAccess().getFunctionBodyFunctionBodyPureParserRuleCall_5_0(), semanticObject.getFunctionBody());
 		feeder.finish();
 	}
 	
@@ -1035,6 +952,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns Times
+	 *     PureFunction returns Times
+	 *     EffectFullReference returns Times
 	 *     PrimitivePureFunction returns Times
 	 *     Times returns Times
 	 *
@@ -1067,19 +987,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Expression returns UnitType
-	 *     UnitValue returns UnitType
-	 *
-	 * Constraint:
-	 *     {UnitType}
-	 */
-	protected void sequence_UnitValue(ISerializationContext context, UnitType semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     ValueBlock returns ValueBlock
 	 *
 	 * Constraint:
@@ -1096,7 +1003,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AdtValue returns ValueRef
 	 *
 	 * Constraint:
-	 *     value=[PureReference|ID]
+	 *     value=[Value|ID]
 	 */
 	protected void sequence_ValueRef(ISerializationContext context, ValueRef semanticObject) {
 		if (errorAcceptor != null) {
@@ -1104,7 +1011,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.VALUE_REF__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getValueRefAccess().getValuePureReferenceIDTerminalRuleCall_1_0_1(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getValueRefAccess().getValueValueIDTerminalRuleCall_1_0_1(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -1112,22 +1019,20 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Value returns Value
-	 *     ChainElement returns Value
-	 *     PureReference returns Value
 	 *
 	 * Constraint:
 	 *     (name=ID value=Expression)
 	 */
 	protected void sequence_Value(ISerializationContext context, Value semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.VALUE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.VALUE__NAME));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_REFERENCE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_REFERENCE__NAME));
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.VALUE__VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.VALUE__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getValueAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getValueAccess().getValueExpressionParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getValueAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getValueAccess().getValueExpressionParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

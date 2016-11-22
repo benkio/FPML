@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class MinusImpl extends PureFunctionDefinitionImpl implements Minus
+public class MinusImpl extends PrimitivePureFunctionImpl implements Minus
 {
   /**
    * <!-- begin-user-doc -->

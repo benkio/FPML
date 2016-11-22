@@ -3,7 +3,7 @@ package it.unibo.validation.utilitiesFunctions
 import it.unibo.fPML.*
 
 class Others {
-	def static PureFunctionDefinition getFunctionDefinitionFromPureFactor(CompositionFunctionBodyPureFactor cfbpf) {
+	def static PureFunction getFunctionDefinitionFromPureFactor(CompositionFunctionBodyPureFactor cfbpf) {
 		if (cfbpf.primitiveElement == null) return cfbpf.referenceElement
 		else return cfbpf.primitiveElement
 	}
@@ -11,11 +11,11 @@ class Others {
 		if (cfbef.primitiveElement == null) return cfbef.referenceElement
 		else return cfbef.primitiveElement
 	}
-	def static PureFunctionDefinition getFirstFunctionDefinitionFromCompositionBodyPure(CompositionFunctionBodyPure cfbp) {
+	def static PureFunction  getFirstFunctionDefinitionFromCompositionBodyPure(CompositionFunctionBodyPure cfbp) {
 		if (cfbp.primitiveElement == null) return cfbp.referenceElement
 		else return cfbp.primitiveElement
 	}
-	def static ChainElement getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect cfbe) {
+	def static EffectFullReference getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect cfbe) {
 		if (cfbe.primitiveElement == null) return cfbe.referenceElement
 		else return cfbe.primitiveElement
 	}

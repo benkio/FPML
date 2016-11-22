@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EObject
 import it.unibo.validation.utilitiesFunctions.*
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.EcoreUtil2
+import it.unibo.services.FPMLGrammarAccess.PrimitivePureFunctionElements
+import it.unibo.services.FPMLGrammarAccess.PrimitiveEffectFullFunctionElements
 
 /**
  * This class contains custom validation rules. 
@@ -20,129 +22,49 @@ import org.eclipse.xtext.EcoreUtil2
 class FPMLValidator extends AbstractFPMLValidator {
 
     public static val TYPEMISMATCHFUNCTIONCOMPOSITION = "Type mismatch between the input of one function and the return of another in the function chain";
-    public static val TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN = "The return type of the last function and the outside function doesn't match";
-    public static val TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA = "The first argument of the product type in the lambda function chain doesn't match the return type of the function before the lambda"
+    public static val TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN = "The return type of the function chain and the outside function doesn't match";
     public static val TYPEMISMATCHFUNCTIONCOMPOSITIONARGS = "The argument type of the function is not the same as the first argument of the function chain";
     public static val EFFECTFULLARGUMENTUNITTYPEID = "The Unit Type don't require and ID";
-    public static val TYPEVMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
+    public static val TYPEMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
 	public static val APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type"
 	
-    @Check
-    def CompositionFunctionTypePure(CompositionFunctionBodyPure cfbp ) {
-    	var ValueType t = GetReturnType.getReturnValueType(Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp), GetArgType.getArgTypeCompositionFunctionBodyPureContainer(cfbp));
-                	
-        for (CompositionFunctionBodyPureFactor pf : cfbp.getFunctionChain()){
-	        var ValueType t1 = GetArgType.getArgTypePure(Others.getFunctionDefinitionFromPureFactor(pf), t);
-	        
-	        if (t1 == null)
-	        	error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
-	        else if(!Checks.checkValueTypeEquals(t, t1))
-	           error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN );
-            t = GetReturnType.getReturnValueType(Others.getFunctionDefinitionFromPureFactor(pf), t)
-        }
-        
-        if (cfbp.returnFunction != null) {
-        		val firstElem = cfbp.returnFunction.lambdaFunctionBody.arg.type 
-        		if (!Checks.isInputTypeCompatibleWithArgType(firstElem,t))
-     			error(TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
-        }
-    }
-
-    @Check
-    def CompositionFunctionTypeEffect(CompositionFunctionBodyEffect cfbe ) {
-        var Type t = GetReturnType.getReturnType(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), GetArgType.getArgTypeCompositionFunctionBodyEffectFullContainer(cfbe))
-        
-        for (CompositionFunctionBodyEffectFullFactor ef : cfbe.getFunctionChain()) {
-        	val efElement = Others.getFunctionDefinitionFromEffectFullFactor(ef)
-            if (!(efElement instanceof Value) && !(efElement instanceof EffectFullArgument)) {
-                val Type t1 = GetArgType.getArgType(efElement, t); 
-                if(!Checks.checkTypeEquals(t, t1))
-                    error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN);
-            }
-            t = GetReturnType.getReturnType(efElement, t);
-        }
-        
-        if (cfbe.returnFunction != null) {
-          		val firstElem = cfbe.returnFunction.lambdaFunctionBody.arg.type 
-        		if (!Checks.isInputTypeCompatibleWithArgType(firstElem,t))
-     			error(TYPEMISMATCHFUNCTIONCOMPOSITIONLAMBDA, FPMLPackage.Literals.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN)
-        	}
-    }
-
-    @Check
-    def FunctionCompositionReturnType(PureFunctionDefinition pf){
-        val rt = pf.getFunctionBody();
-        if (rt != null && rt instanceof CompositionFunctionBodyPure) {
-            val rt2 = GetReturnType.getReturnTypeCompositionFunctionBodyPureFunctionDefinition(pf)
-            if(!(Checks.checkValueTypeEquals(pf.getReturnType(), rt2)))
-                error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE);
-        }
-    }
-
-    @Check
-    def FunctionCompositionReturnType(EffectFullFunctionDefinition ef){
-        val rt = ef.getFunctionBody();
-        if ( rt != null &&
-        	rt instanceof CompositionFunctionBodyEffect && 
-        	(rt as CompositionFunctionBodyEffect).returnFunction == null) {
-            val rt2 = GetReturnType.getReturnTypeCompositionBodyEffect((rt as CompositionFunctionBodyEffect), ef.arg)
-            if(!(Checks.checkTypeEquals(ef.returnType.type, rt2)))
-                error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE);
-        }
-    }
-
-    @Check
-    def FunctionCompositionArgType(PureFunctionDefinition pf){
-        val rt = pf.getFunctionBody();
-        if (rt != null && rt instanceof CompositionFunctionBodyPure) {
-            val rt2 = Others.getFirstFunctionDefinitionFromCompositionBodyPure((rt as CompositionFunctionBodyPure))
-            if((rt2 instanceof PureFunctionDefinition) && !(Checks.checkValueTypeEquals(pf.getArg().getType, GetArgType.getArgTypePure(rt2, pf.getArg().getType))))
-                error(TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG);
-        }
-    }
-
-    @Check
-    def FunctionCompositionArgType(EffectFullFunctionDefinition ef){
-        val rt = ef.getFunctionBody();
-        if (rt != null && 
-        	rt instanceof CompositionFunctionBodyEffect) {
-	        val firstChainElement = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull((rt as CompositionFunctionBodyEffect))
-	        if (firstChainElement instanceof PureFunctionDefinition || firstChainElement instanceof EffectFullFunctionDefinition) {
-	            val t = ef.getArg().getType()
-	            var Type t1
-	            if (firstChainElement instanceof PureFunctionDefinition && t instanceof ValueType)
-	            	t1 = GetArgType.getArgTypePure((firstChainElement as PureFunctionDefinition), (t as ValueType))
-	            else if (firstChainElement instanceof EffectFullFunctionDefinition)
-	            	t1 = GetArgType.getArgTypeEffectFull((firstChainElement  as EffectFullFunctionDefinition), t);
-	            
-	            if(!(Checks.checkTypeEquals(t,t1)))
-	                error(TYPEMISMATCHFUNCTIONCOMPOSITIONARGS, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__ARG);
-	   		}
-   		}
+   @Check
+   def typeCheck(Function f){
+		switch f {
+			PureFunction: {
+				switch f {
+					Value: typeCheck(f as Value)
+					PureLambda: typeCheck(f as PureLambda)
+					PrimitivePureFunction: typeCheck(f as PrimitivePureFunction)
+					PureFunctionDefinition: typeCheck(f as PureFunctionDefinition)
+				}
+			}
+			EffectFullFunction: {
+				switch f {
+					EffectFullFunctionDefinition: typeCheck(f as EffectFullFunctionDefinition)
+					PrimitiveEffectFullFunction: typeCheck(f as PrimitiveEffectFullFunction)
+				}
+			}
+		}
+   }
+   
+   def typeCheck(Value v){
+   	if (v.value instanceof DataValue &&
+   		!Checks.DataAndValue((v.value as DataValue).value, (v.value as DataValue).type.content)) {
+   		error(TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.VALUE__VALUE)
 	}
+   }
+   def typeCheck(PureLambda l){
+   		if (!Checks.pureLambda(l)){
+   			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY)
+   		}
+   }
+   def typeCheck(PrimitivePureFunction p){}
+   def typeCheck(PureFunctionDefinition f){
+   		if (!Checks.functionReturnType(f))
+   			error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE)
+   }
 
-    @Check
-    def EffectFullArgumentUnitTypeNoID(EffectFullArgument efa){
-        if (efa.getType() instanceof UnitType && efa.getName() != null)
-            error(EFFECTFULLARGUMENTUNITTYPEID, FPMLPackage.Literals.EFFECT_FULL_ARGUMENT__TYPE);
-    }
-
-    @Check
-    def MainFuncReturnTypeCheck(MainFunc m) {
-        val rt = m.getFunctionBody();
-        val arg = FPMLFactory.eINSTANCE.createEffectFullArgument()
-        val  argType = FPMLFactory.eINSTANCE.createIOType()
-        argType.type = FPMLFactory.eINSTANCE.createUnitType()
-        if (rt instanceof CompositionFunctionBodyEffect) {
-            val rt2 = GetReturnType.getReturnTypeCompositionBodyEffect(rt, arg)
-            if(!(Checks.checkTypeEquals(m.getReturnType(), rt2)))
-                error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE);
-        }
-    }
-    
-    @Check
-    def ValueDataTypeCheck(DataValue dv) {
-    	if (!Checks.typeCheckDataAndValue(dv.value, dv.type.content))
-    		error(TYPEVMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.DATA_VALUE__VALUE)
-    }
+   def typeCheck(EffectFullFunctionDefinition f){}
+   def typeCheck(PrimitiveEffectFullFunction p){}
 }

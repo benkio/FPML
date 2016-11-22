@@ -13,6 +13,7 @@ package it.unibo.fPML;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link it.unibo.fPML.ApplyFIO#getFunctionType <em>Function Type</em>}</li>
  *   <li>{@link it.unibo.fPML.ApplyFIO#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -20,8 +21,34 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface ApplyFIO extends EffectFullFunctionDefinition
+public interface ApplyFIO extends PrimitiveEffectFullFunction
 {
+  /**
+   * Returns the value of the '<em><b>Function Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Function Type</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Function Type</em>' containment reference.
+   * @see #setFunctionType(EffectFullFunctionType)
+   * @see it.unibo.fPML.FPMLPackage#getApplyFIO_FunctionType()
+   * @model containment="true"
+   * @generated
+   */
+  EffectFullFunctionType getFunctionType();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.ApplyFIO#getFunctionType <em>Function Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Function Type</em>' containment reference.
+   * @see #getFunctionType()
+   * @generated
+   */
+  void setFunctionType(EffectFullFunctionType value);
+
   /**
    * Returns the value of the '<em><b>Value</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -31,12 +58,12 @@ public interface ApplyFIO extends EffectFullFunctionDefinition
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' reference.
-   * @see #setValue(Value)
+   * @see #setValue(EffectFullReference)
    * @see it.unibo.fPML.FPMLPackage#getApplyFIO_Value()
    * @model
    * @generated
    */
-  Value getValue();
+  EffectFullReference getValue();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.ApplyFIO#getValue <em>Value</em>}' reference.
@@ -46,6 +73,6 @@ public interface ApplyFIO extends EffectFullFunctionDefinition
    * @see #getValue()
    * @generated
    */
-  void setValue(Value value);
+  void setValue(EffectFullReference value);
 
 } // ApplyFIO

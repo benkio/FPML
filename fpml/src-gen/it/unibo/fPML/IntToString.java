@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface IntToString extends PureFunctionDefinition
+public interface IntToString extends PrimitivePureFunction
 {
 } // IntToString

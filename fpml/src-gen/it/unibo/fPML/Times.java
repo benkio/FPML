@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface Times extends PureFunctionDefinition
+public interface Times extends PrimitivePureFunction
 {
 } // Times

@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface Minus extends PureFunctionDefinition
+public interface Minus extends PrimitivePureFunction
 {
 } // Minus

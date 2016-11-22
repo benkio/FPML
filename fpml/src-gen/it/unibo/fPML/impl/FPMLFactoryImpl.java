@@ -72,14 +72,16 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.VALUE_BLOCK: return createValueBlock();
       case FPMLPackage.EFFECT_FULL_BLOCK: return createEffectFullBlock();
       case FPMLPackage.DATA: return createData();
-      case FPMLPackage.VALUE: return createValue();
+      case FPMLPackage.PURE_FUNCTION_DEFINITION: return createPureFunctionDefinition();
       case FPMLPackage.ADT_TYPE: return createAdtType();
       case FPMLPackage.SUM_TYPE: return createSumType();
       case FPMLPackage.PROD_TYPE: return createProdType();
-      case FPMLPackage.PURE_FUNCTION_DEFINITION: return createPureFunctionDefinition();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION: return createEffectFullFunctionDefinition();
       case FPMLPackage.MAIN_FUNC: return createMainFunc();
-      case FPMLPackage.CHAIN_ELEMENT: return createChainElement();
+      case FPMLPackage.FUNCTION: return createFunction();
+      case FPMLPackage.PURE_FUNCTION: return createPureFunction();
+      case FPMLPackage.EFFECT_FULL_FUNCTION: return createEffectFullFunction();
+      case FPMLPackage.EFFECT_FULL_REFERENCE: return createEffectFullReference();
       case FPMLPackage.PURE_REFERENCE: return createPureReference();
       case FPMLPackage.EFFECT_FULL_ARGUMENT: return createEffectFullArgument();
       case FPMLPackage.ARGUMENT: return createArgument();
@@ -90,8 +92,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR: return createCompositionFunctionBodyPureFactor();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT: return createCompositionFunctionBodyEffect();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT_FULL_FACTOR: return createCompositionFunctionBodyEffectFullFactor();
-      case FPMLPackage.RETURN_PURE_FUNCTION: return createReturnPureFunction();
-      case FPMLPackage.RETURN_EFFECT_FULL_FUNCTION: return createReturnEffectFullFunction();
       case FPMLPackage.IO_TYPE: return createIOType();
       case FPMLPackage.VALUE_TYPE: return createValueType();
       case FPMLPackage.TYPE: return createType();
@@ -106,6 +106,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.ADT_VALUE: return createAdtValue();
       case FPMLPackage.PROD_VALUE: return createProdValue();
       case FPMLPackage.SUM_VALUE: return createSumValue();
+      case FPMLPackage.PRIMITIVE_PURE_FUNCTION: return createPrimitivePureFunction();
       case FPMLPackage.INT_TO_STRING: return createIntToString();
       case FPMLPackage.INT_POW: return createIntPow();
       case FPMLPackage.PLUS: return createPlus();
@@ -113,9 +114,12 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.TIMES: return createTimes();
       case FPMLPackage.MOD: return createMod();
       case FPMLPackage.APPLY_F: return createApplyF();
+      case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
       case FPMLPackage.APPLY_FIO: return createApplyFIO();
+      case FPMLPackage.VALUE: return createValue();
       case FPMLPackage.DATA_VALUE: return createDataValue();
+      case FPMLPackage.PURE_LAMBDA: return createPureLambda();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -203,10 +207,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value createValue()
+  public PureFunctionDefinition createPureFunctionDefinition()
   {
-    ValueImpl value = new ValueImpl();
-    return value;
+    PureFunctionDefinitionImpl pureFunctionDefinition = new PureFunctionDefinitionImpl();
+    return pureFunctionDefinition;
   }
 
   /**
@@ -247,17 +251,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureFunctionDefinition createPureFunctionDefinition()
-  {
-    PureFunctionDefinitionImpl pureFunctionDefinition = new PureFunctionDefinitionImpl();
-    return pureFunctionDefinition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EffectFullFunctionDefinition createEffectFullFunctionDefinition()
   {
     EffectFullFunctionDefinitionImpl effectFullFunctionDefinition = new EffectFullFunctionDefinitionImpl();
@@ -280,10 +273,43 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ChainElement createChainElement()
+  public Function createFunction()
   {
-    ChainElementImpl chainElement = new ChainElementImpl();
-    return chainElement;
+    FunctionImpl function = new FunctionImpl();
+    return function;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureFunction createPureFunction()
+  {
+    PureFunctionImpl pureFunction = new PureFunctionImpl();
+    return pureFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullFunction createEffectFullFunction()
+  {
+    EffectFullFunctionImpl effectFullFunction = new EffectFullFunctionImpl();
+    return effectFullFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullReference createEffectFullReference()
+  {
+    EffectFullReferenceImpl effectFullReference = new EffectFullReferenceImpl();
+    return effectFullReference;
   }
 
   /**
@@ -394,28 +420,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     CompositionFunctionBodyEffectFullFactorImpl compositionFunctionBodyEffectFullFactor = new CompositionFunctionBodyEffectFullFactorImpl();
     return compositionFunctionBodyEffectFullFactor;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ReturnPureFunction createReturnPureFunction()
-  {
-    ReturnPureFunctionImpl returnPureFunction = new ReturnPureFunctionImpl();
-    return returnPureFunction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ReturnEffectFullFunction createReturnEffectFullFunction()
-  {
-    ReturnEffectFullFunctionImpl returnEffectFullFunction = new ReturnEffectFullFunctionImpl();
-    return returnEffectFullFunction;
   }
 
   /**
@@ -577,6 +581,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PrimitivePureFunction createPrimitivePureFunction()
+  {
+    PrimitivePureFunctionImpl primitivePureFunction = new PrimitivePureFunctionImpl();
+    return primitivePureFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public IntToString createIntToString()
   {
     IntToStringImpl intToString = new IntToStringImpl();
@@ -654,6 +669,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PrimitiveEffectFullFunction createPrimitiveEffectFullFunction()
+  {
+    PrimitiveEffectFullFunctionImpl primitiveEffectFullFunction = new PrimitiveEffectFullFunctionImpl();
+    return primitiveEffectFullFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PrimitivePrint createPrimitivePrint()
   {
     PrimitivePrintImpl primitivePrint = new PrimitivePrintImpl();
@@ -676,10 +702,32 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Value createValue()
+  {
+    ValueImpl value = new ValueImpl();
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public DataValue createDataValue()
   {
     DataValueImpl dataValue = new DataValueImpl();
     return dataValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureLambda createPureLambda()
+  {
+    PureLambdaImpl pureLambda = new PureLambdaImpl();
+    return pureLambda;
   }
 
   /**

@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface IntPow extends PureFunctionDefinition
+public interface IntPow extends PrimitivePureFunction
 {
 } // IntPow

@@ -1,26 +1,15 @@
 package it.unibo.generator;
 
 import com.google.common.base.Objects;
-import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyPure;
-import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.EmptyFunctionBody;
-import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyPure;
-import it.unibo.fPML.IntPow;
-import it.unibo.fPML.IntToString;
-import it.unibo.fPML.Minus;
-import it.unibo.fPML.Mod;
-import it.unibo.fPML.Plus;
 import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureFunctionDefinition;
-import it.unibo.fPML.Times;
-import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
-import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
@@ -101,30 +90,9 @@ public class PureFunctionGenerator {
   }
   
   public String compile(final CompositionFunctionBodyPure cfbp, final String argName, final boolean outsideCalls) {
-    String result = "";
-    final PureFunctionDefinition initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
-    boolean _matched = false;
-    if (initialElement instanceof PureFunctionDefinition) {
-      _matched=true;
-      String _compileCall = this.compileCall(initialElement, argName, outsideCalls);
-      result = _compileCall;
-    }
-    if (!_matched) {
-      if (initialElement instanceof Value) {
-        _matched=true;
-        String _name = ((Value) initialElement).getName();
-        String _plus = ("Value." + _name);
-        String _plus_1 = (_plus + "()");
-        result = _plus_1;
-      }
-    }
-    EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
-    for (final CompositionFunctionBodyPureFactor f : _functionChain) {
-      PureFunctionDefinition _functionDefinitionFromPureFactor = Others.getFunctionDefinitionFromPureFactor(f);
-      String _compileCall = this.compileCall(_functionDefinitionFromPureFactor, result, outsideCalls);
-      result = _compileCall;
-    }
-    return result;
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from PureFunction to PureFunctionDefinition"
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition.");
   }
   
   public String compileCall(final PureFunctionDefinition pf, final String args, final boolean outsideCalls) {
@@ -148,55 +116,8 @@ public class PureFunctionGenerator {
   }
   
   public String compilePrimitiveCall(final PureFunctionDefinition purePrimitive, final String argName, final boolean outsideCalls) {
-    String _switchResult = null;
-    boolean _matched = false;
-    if (purePrimitive instanceof IntToString) {
-      _matched=true;
-      final PureFunctionDefinition f = FPMLFactory.eINSTANCE.createPureFunctionDefinition();
-      f.setName("Integer.toString");
-      return this.compileCall(f, argName, outsideCalls);
-    }
-    if (!_matched) {
-      if (purePrimitive instanceof IntPow) {
-        _matched=true;
-        final PureFunctionDefinition f = FPMLFactory.eINSTANCE.createPureFunctionDefinition();
-        f.setName("(int) Math.pow");
-        return this.compileCall(f, (argName + ", 2"), outsideCalls);
-      }
-    }
-    if (!_matched) {
-      if (purePrimitive instanceof Plus) {
-        _matched=true;
-        return (("Primitives.plus(" + argName) + ")");
-      }
-    }
-    if (!_matched) {
-      if (purePrimitive instanceof Minus) {
-        _matched=true;
-        _switchResult = (("Primitives.minus(" + argName) + ")");
-      }
-    }
-    if (!_matched) {
-      if (purePrimitive instanceof Times) {
-        _matched=true;
-        _switchResult = (("Primitives.times(" + argName) + ")");
-      }
-    }
-    if (!_matched) {
-      if (purePrimitive instanceof Mod) {
-        _matched=true;
-        _switchResult = (("Primitives.mod(" + argName) + ")");
-      }
-    }
-    if (!_matched) {
-      if (purePrimitive instanceof ApplyF) {
-        _matched=true;
-        Value _valueRef = ((ApplyF) purePrimitive).getValueRef();
-        String _name = _valueRef.getName();
-        String _plus = ((argName + ".f(Value.") + _name);
-        _switchResult = (_plus + "())");
-      }
-    }
-    return _switchResult;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field valueRef is undefined for the type ApplyF"
+      + "\nname cannot be resolved");
   }
 }

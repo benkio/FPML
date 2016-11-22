@@ -87,13 +87,13 @@ public interface FPMLFactory extends EFactory
   Data createData();
 
   /**
-   * Returns a new object of class '<em>Value</em>'.
+   * Returns a new object of class '<em>Pure Function Definition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value</em>'.
+   * @return a new object of class '<em>Pure Function Definition</em>'.
    * @generated
    */
-  Value createValue();
+  PureFunctionDefinition createPureFunctionDefinition();
 
   /**
    * Returns a new object of class '<em>Adt Type</em>'.
@@ -123,15 +123,6 @@ public interface FPMLFactory extends EFactory
   ProdType createProdType();
 
   /**
-   * Returns a new object of class '<em>Pure Function Definition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Function Definition</em>'.
-   * @generated
-   */
-  PureFunctionDefinition createPureFunctionDefinition();
-
-  /**
    * Returns a new object of class '<em>Effect Full Function Definition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -150,13 +141,40 @@ public interface FPMLFactory extends EFactory
   MainFunc createMainFunc();
 
   /**
-   * Returns a new object of class '<em>Chain Element</em>'.
+   * Returns a new object of class '<em>Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Chain Element</em>'.
+   * @return a new object of class '<em>Function</em>'.
    * @generated
    */
-  ChainElement createChainElement();
+  Function createFunction();
+
+  /**
+   * Returns a new object of class '<em>Pure Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Function</em>'.
+   * @generated
+   */
+  PureFunction createPureFunction();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Function</em>'.
+   * @generated
+   */
+  EffectFullFunction createEffectFullFunction();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Reference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Reference</em>'.
+   * @generated
+   */
+  EffectFullReference createEffectFullReference();
 
   /**
    * Returns a new object of class '<em>Pure Reference</em>'.
@@ -247,24 +265,6 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   CompositionFunctionBodyEffectFullFactor createCompositionFunctionBodyEffectFullFactor();
-
-  /**
-   * Returns a new object of class '<em>Return Pure Function</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Return Pure Function</em>'.
-   * @generated
-   */
-  ReturnPureFunction createReturnPureFunction();
-
-  /**
-   * Returns a new object of class '<em>Return Effect Full Function</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Return Effect Full Function</em>'.
-   * @generated
-   */
-  ReturnEffectFullFunction createReturnEffectFullFunction();
 
   /**
    * Returns a new object of class '<em>IO Type</em>'.
@@ -393,6 +393,15 @@ public interface FPMLFactory extends EFactory
   SumValue createSumValue();
 
   /**
+   * Returns a new object of class '<em>Primitive Pure Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Primitive Pure Function</em>'.
+   * @generated
+   */
+  PrimitivePureFunction createPrimitivePureFunction();
+
+  /**
    * Returns a new object of class '<em>Int To String</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -456,6 +465,15 @@ public interface FPMLFactory extends EFactory
   ApplyF createApplyF();
 
   /**
+   * Returns a new object of class '<em>Primitive Effect Full Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Primitive Effect Full Function</em>'.
+   * @generated
+   */
+  PrimitiveEffectFullFunction createPrimitiveEffectFullFunction();
+
+  /**
    * Returns a new object of class '<em>Primitive Print</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -474,6 +492,15 @@ public interface FPMLFactory extends EFactory
   ApplyFIO createApplyFIO();
 
   /**
+   * Returns a new object of class '<em>Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Value</em>'.
+   * @generated
+   */
+  Value createValue();
+
+  /**
    * Returns a new object of class '<em>Data Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -481,6 +508,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   DataValue createDataValue();
+
+  /**
+   * Returns a new object of class '<em>Pure Lambda</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Lambda</em>'.
+   * @generated
+   */
+  PureLambda createPureLambda();
 
   /**
    * Returns the package supported by this factory.

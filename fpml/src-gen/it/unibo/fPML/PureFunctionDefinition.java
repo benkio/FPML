@@ -14,8 +14,8 @@ package it.unibo.fPML;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.PureFunctionDefinition#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link it.unibo.fPML.PureFunctionDefinition#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.PureFunctionDefinition#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.PureFunctionDefinition#getArg2 <em>Arg2</em>}</li>
  *   <li>{@link it.unibo.fPML.PureFunctionDefinition#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
@@ -23,7 +23,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PureFunctionDefinition extends ChainElement, PureReference
+public interface PureFunctionDefinition extends PureFunction, PureReference
 {
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
@@ -52,32 +52,6 @@ public interface PureFunctionDefinition extends ChainElement, PureReference
   void setReturnType(ValueType value);
 
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see it.unibo.fPML.FPMLPackage#getPureFunctionDefinition_Name()
-   * @model
-   * @generated
-   */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link it.unibo.fPML.PureFunctionDefinition#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
-
-  /**
    * Returns the value of the '<em><b>Arg</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -102,6 +76,32 @@ public interface PureFunctionDefinition extends ChainElement, PureReference
    * @generated
    */
   void setArg(Argument value);
+
+  /**
+   * Returns the value of the '<em><b>Arg2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Arg2</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Arg2</em>' containment reference.
+   * @see #setArg2(Argument)
+   * @see it.unibo.fPML.FPMLPackage#getPureFunctionDefinition_Arg2()
+   * @model containment="true"
+   * @generated
+   */
+  Argument getArg2();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.PureFunctionDefinition#getArg2 <em>Arg2</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Arg2</em>' containment reference.
+   * @see #getArg2()
+   * @generated
+   */
+  void setArg2(Argument value);
 
   /**
    * Returns the value of the '<em><b>Function Body</b></em>' containment reference.

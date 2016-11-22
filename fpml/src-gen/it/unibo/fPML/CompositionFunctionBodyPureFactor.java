@@ -59,12 +59,12 @@ public interface CompositionFunctionBodyPureFactor extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Primitive Element</em>' containment reference.
-   * @see #setPrimitiveElement(PureFunctionDefinition)
+   * @see #setPrimitiveElement(PrimitivePureFunction)
    * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPureFactor_PrimitiveElement()
    * @model containment="true"
    * @generated
    */
-  PureFunctionDefinition getPrimitiveElement();
+  PrimitivePureFunction getPrimitiveElement();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyPureFactor#getPrimitiveElement <em>Primitive Element</em>}' containment reference.
@@ -74,6 +74,6 @@ public interface CompositionFunctionBodyPureFactor extends EObject
    * @see #getPrimitiveElement()
    * @generated
    */
-  void setPrimitiveElement(PureFunctionDefinition value);
+  void setPrimitiveElement(PrimitivePureFunction value);
 
 } // CompositionFunctionBodyPureFactor
