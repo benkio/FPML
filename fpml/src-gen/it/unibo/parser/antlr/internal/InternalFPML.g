@@ -2184,9 +2184,9 @@ ruleEffectFullFunctionType returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeTypeParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeIOTypeParserRuleCall_3_0());
 				}
-				lv_argType_3_0=ruleType
+				lv_argType_3_0=ruleIOType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getEffectFullFunctionTypeRule());
@@ -2195,7 +2195,7 @@ ruleEffectFullFunctionType returns [EObject current=null]
 						$current,
 						"argType",
 						lv_argType_3_0,
-						"it.unibo.FPML.Type");
+						"it.unibo.FPML.IOType");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2207,9 +2207,9 @@ ruleEffectFullFunctionType returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeTypeParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeIOTypeParserRuleCall_5_0());
 				}
-				lv_returnType_5_0=ruleType
+				lv_returnType_5_0=ruleIOType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getEffectFullFunctionTypeRule());
@@ -2218,7 +2218,7 @@ ruleEffectFullFunctionType returns [EObject current=null]
 						$current,
 						"returnType",
 						lv_returnType_5_0,
-						"it.unibo.FPML.Type");
+						"it.unibo.FPML.IOType");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -3174,11 +3174,20 @@ rulePrimitiveEffectFullFunction returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getApplyFIOParserRuleCall_1());
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getPrimitiveRandomParserRuleCall_1());
 		}
-		this_ApplyFIO_1=ruleApplyFIO
+		this_PrimitiveRandom_1=rulePrimitiveRandom
 		{
-			$current = $this_ApplyFIO_1.current;
+			$current = $this_PrimitiveRandom_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getApplyFIOParserRuleCall_2());
+		}
+		this_ApplyFIO_2=ruleApplyFIO
+		{
+			$current = $this_ApplyFIO_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -3210,6 +3219,36 @@ rulePrimitivePrint returns [EObject current=null]
 		otherlv_1='print'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getPrimitivePrintAccess().getPrintKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRulePrimitiveRandom
+entryRulePrimitiveRandom returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPrimitiveRandomRule()); }
+	iv_rulePrimitiveRandom=rulePrimitiveRandom
+	{ $current=$iv_rulePrimitiveRandom.current; }
+	EOF;
+
+// Rule PrimitiveRandom
+rulePrimitiveRandom returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getPrimitiveRandomAccess().getPrimitiveRandomAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='randomInt'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getPrimitiveRandomAccess().getRandomIntKeyword_1());
 		}
 	)
 ;

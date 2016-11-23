@@ -1,20 +1,7 @@
 package it.unibo.generator
 
-import it.unibo.fPML.EffectFullBlock
-import it.unibo.fPML.EffectFullFunctionDefinition
-import it.unibo.fPML.EmptyFunctionBody
-import it.unibo.fPML.CompositionFunctionBodyEffect
-import it.unibo.fPML.ChainElement
+import it.unibo.fPML.*
 import org.eclipse.xtext.xbase.lib.Functions.Function2
-import it.unibo.fPML.PureFunctionDefinition
-import it.unibo.fPML.Value
-import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor
-import it.unibo.fPML.IntToString
-import it.unibo.fPML.IntPow
-import it.unibo.fPML.PrimitivePrint
-import it.unibo.fPML.MainFunc
-import it.unibo.fPML.FPMLFactory
-import it.unibo.fPML.EffectFullArgument
 import it.unibo.validation.utilitiesFunctions.Others
 
 class EffectFullFunctionGenerator {
@@ -67,13 +54,19 @@ class EffectFullFunctionGenerator {
 		return e.compile	
 	}	
 	
-	def compile(ChainElement e){
+	def compile(EffectFullReference e){
 		switch e {
-			IntToString: return '''.map(String::valueOf)'''
-      		IntPow: return '''.map(x -> x * x) '''
-			PrimitivePrint: return '''.bind(IOFunctions::stdoutPrint)'''
-			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
+			IntToString: '''.map(Primitives::intToString)'''
+      		IntPow: '''.map(Primitives::intPow) '''
+			Plus: ".map(Primitives::plus)"
+			Minus: ".map(Primitives::minus)"
+			Times: ".map(Primitives::times)"
+			Mod: ".map(Primitives::mod)"
+			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
+			PrimitiveRandom: '''.bind(PrimitivesEffectFull::primitiveRandom)'''
+			ApplyFIO: '''.bind(PrimitivesEffectFull::ApplyFIO(«e.value.compile»))'''
 			Value: return '''.append(IOFunctions.unit(Value.«(e as Value).name»()))'''
+			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: return '''.append(IOFunctions.unit(«(e as EffectFullArgument).name»))'''
 			EffectFullFunctionDefinition: return '''.bind(EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
 		}

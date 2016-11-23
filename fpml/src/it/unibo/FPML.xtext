@@ -145,7 +145,7 @@ PureFunctionType:
 	{PureFunctionType} 'F' '<' argType=ValueType ',' returnType=ValueType '>';
 
 EffectFullFunctionType:
-	{EffectFullFunctionType} 'FIO' '<' argType=Type ',' returnType=Type '>';
+	{EffectFullFunctionType} 'FIO' '<' argType=IOType ',' returnType=IOType '>';
 
 ////////////////////////////////////////////////////////////////////
 // Values
@@ -200,10 +200,13 @@ Mod: {Mod} 'mod';
 ApplyF:{ApplyF} 'applyF' functionType=PureFunctionType value=[PureReference];
 
 PrimitiveEffectFullFunction:
-	PrimitivePrint | ApplyFIO;
+	PrimitivePrint | PrimitiveRandom | ApplyFIO;
 
 PrimitivePrint:
     {PrimitivePrint} "print";
 
-ApplyFIO:{ApplyFIO} 'applyFIO' functionType=EffectFullFunctionType value=[EffectFullReference];
+PrimitiveRandom:
+	{PrimitiveRandom} "randomInt";
+
+ApplyFIO: {ApplyFIO} 'applyFIO' functionType=EffectFullFunctionType value=[EffectFullReference];
     

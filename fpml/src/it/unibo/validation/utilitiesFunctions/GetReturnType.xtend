@@ -5,19 +5,20 @@ import org.eclipse.emf.common.util.EList
 import it.unibo.fPML.EffectFullArgument
 import org.eclipse.xtext.EcoreUtil2
 import java.util.List
-import it.unibo.fPML.CompositionFunctionBodyPureFactor
-import it.unibo.fPML.ValueType
-import it.unibo.fPML.FunctionBodyPure
-import it.unibo.fPML.Expression
-import it.unibo.fPML.CompositionFunctionBodyPure
-import it.unibo.fPML.PureFunctionDefinition
-import it.unibo.fPML.Argument
+import org.eclipse.emf.ecore.EObject
 
 class GetReturnType {
 	
+	def static Type function(Function f){
+		switch f {
+			EffectFullFunction: effectFullFunction(f) 
+			PureFunction: pureFunction(f)
+		}
+	}
+	
 	def static ValueType pureFunction(PureFunction f){
 		switch f {
-			PureFunctionDefinition: pureFunction(f)
+			PureFunctionDefinition: pureFunctionDefinition(f)
 			PrimitivePureFunction: primitivePureFunction(f)
 		}
 	}	
@@ -25,8 +26,8 @@ class GetReturnType {
 	def static ValueType pureFunctionDefinition(PureFunctionDefinition f){
 		switch f {
 			Value: expression(f.value)
-			PureLambda: functionBodyPure(f.functionBody, f.arg, f.arg2)
-			PureFunctionDefinition: functionBodyPure(f.functionBody, f.arg, f.arg2)
+			PureLambda: functionBodyPure(f.functionBody, f.arg, f.arg2, f.returnType)
+			PureFunctionDefinition: functionBodyPure(f.functionBody, f.arg, f.arg2, f.returnType)
 		}
 	}
 	
@@ -39,42 +40,39 @@ class GetReturnType {
 		}
 	}
 	
-	def static ValueType functionBodyPure(FunctionBodyPure pure, Argument arg1, Argument arg2) {
+	def static ValueType functionBodyPure(FunctionBodyPure pure, Argument arg1, Argument arg2, ValueType returnType) {
 		switch pure {
-			EmptyFunctionBody: return null
+			EmptyFunctionBody: returnType
 			CompositionFunctionBodyPure: compositionFunctionBodyPure(pure, arg1, arg2)
 		}
 	}
 	
 	def static ValueType compositionFunctionBodyPure(CompositionFunctionBodyPure pure, Argument arg1, Argument arg2) {
-		val first = Others.getFirstFunctionDefinitionFromCompositionBodyPure(pure)
-		val chain = pure.functionChain.map[x | Others.getFunctionDefinitionFromPureFactor(x)]
-		chain.add(0, first)
-		pureFunctionChain(chain, arg1, arg2)
+		var first = Others.getFirstFunctionDefinitionFromCompositionBodyPure(pure)
+		var chain = pure.functionChain.map[x | Others.getFunctionDefinitionFromPureFactor(x)]
+		pureFunctionChain(chain,first, arg1, arg2)
 	}
 	
-	def static ValueType pureFunctionChain(List<PureFunction> definitions, Argument argument, Argument argument2) {
+	def static ValueType pureFunctionChain(List<PureFunction> definitions, PureFunction first ,Argument argument, Argument argument2) {
 		if (argument2 != null) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createPureFunctionType
 			functionType.argType = argument2.type
-			functionType.returnType = pureFunctionChain(definitions, argument, null)
+			functionType.returnType = pureFunctionChain(definitions, first, argument, null)
 			return functionType
 		} else { //Normal single argument function
-			val firstFunctionReturnType = pureFunction(definitions.head)
-			if (definitions.size == 1)
+			val firstFunctionReturnType = pureFunction(first)
+			if (definitions.size == 0)
 				return firstFunctionReturnType
 			else {
-				val arg = FPMLFactory.eINSTANCE.createArgument
-				argument.type = firstFunctionReturnType
-				return pureFunctionChain(definitions.tail.toList, arg, null)
+				return pureFunctionChain(definitions.tail.toList, definitions.head ,argument, null)
 			}
 		}
 	}
 	
 	def static ValueType primitivePureFunction(PrimitivePureFunction f) {
 		switch f {
-			IntToString: return IntIntFunc
-			IntPow: return IntIntFunc
+			IntToString: return FPMLFactory.eINSTANCE.createStringType
+			IntPow: return FPMLFactory.eINSTANCE.createIntegerType
 			Plus: return IntIntFunc
 			Minus: return IntIntFunc
 			Times: return IntIntFunc
@@ -89,4 +87,78 @@ class GetReturnType {
 		func.returnType = FPMLFactory.eINSTANCE.createIntegerType
 		return func
 	}
+	
+	def static ValueType pureReference(PureReference reference) {
+		switch reference {
+			PureFunctionDefinition: return pureFunctionDefinition(reference)
+			Argument: return reference.type
+		}
+	}
+	
+	
+	def static Type effectFullFunction(EffectFullFunction function) {
+		switch function {
+			EffectFullFunctionDefinition: effectFullFunctionDefinition(function)
+			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)
+		}
+	}
+	
+	def static Type effectFullFunctionDefinition(EffectFullFunctionDefinition definition) {
+		functionBodyEffectFull(definition.functionBody, definition.arg, definition.arg2, definition.returnType)
+	}
+	
+	def static Type functionBodyEffectFull(FunctionBodyEffectFull full, EffectFullArgument argument, EffectFullArgument argument2, IOType type) {
+		switch full {
+			EmptyFunctionBody: type.type
+			CompositionFunctionBodyEffect: compositionFunctionBodyEffectFull(full, argument, argument2)
+		}
+	}
+	
+	def static Type compositionFunctionBodyEffectFull(CompositionFunctionBodyEffect effect, EffectFullArgument argument, EffectFullArgument argument2) {
+		var first = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(effect)
+		var chain = effect.functionChain.map[x | Others.getFunctionDefinitionFromEffectFullFactor(x)]
+		effectFullFunctionChain(chain, first, argument, argument2)
+	}
+	
+	def static Type effectFullFunctionChain(List<EffectFullReference> references, EffectFullReference first, EffectFullArgument argument, EffectFullArgument argument2) {
+		if (argument2 != null) { //HigherOrder
+			val functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType
+			val ioTypeArg = FPMLFactory.eINSTANCE.createIOType
+			val ioTypeReturn = FPMLFactory.eINSTANCE.createIOType
+			ioTypeArg.type = argument2.type
+			ioTypeReturn.type = effectFullFunctionChain(references, first, argument, null)
+			functionType.argType = ioTypeArg
+			functionType.returnType = ioTypeReturn
+			return functionType
+		} else { //Normal single argument function
+			val firstFunctionReturnType = effectFullReference(first)
+			if (references.size == 0)
+				return firstFunctionReturnType
+			else {
+				return effectFullFunctionChain(references.tail.toList, references.head ,argument, null)
+			}
+		}
+	}
+	
+	def static Type effectFullReference(EffectFullReference r) {
+		switch r {
+			Function: function(r)
+			EffectFullArgument: r.type
+		}
+	}
+	
+	def static primitiveEffectFullFunction(PrimitiveEffectFullFunction function) {
+		switch function {
+			PrimitivePrint: FPMLFactory.eINSTANCE.createUnitType
+			PrimitiveRandom: FPMLFactory.eINSTANCE.createIntegerType
+			ApplyFIO: function.functionType.returnType.type
+		}
+	}
+	
+	def static Type mainFunc(MainFunc m) {
+		val ioType = FPMLFactory.eINSTANCE.createIOType
+		ioType.type = FPMLFactory.eINSTANCE.createUnitType
+		functionBodyEffectFull(m.functionBody, null, null, ioType)
+	}
+	
 }

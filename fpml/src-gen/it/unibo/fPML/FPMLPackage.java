@@ -1657,6 +1657,25 @@ public interface FPMLPackage extends EPackage
   int PRIMITIVE_PRINT_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.PrimitiveRandomImpl <em>Primitive Random</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.PrimitiveRandomImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveRandom()
+   * @generated
+   */
+  int PRIMITIVE_RANDOM = 51;
+
+  /**
+   * The number of structural features of the '<em>Primitive Random</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_RANDOM_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.ApplyFIOImpl <em>Apply FIO</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1664,7 +1683,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIO()
    * @generated
    */
-  int APPLY_FIO = 51;
+  int APPLY_FIO = 52;
 
   /**
    * The feature id for the '<em><b>Function Type</b></em>' containment reference.
@@ -1701,7 +1720,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getValue()
    * @generated
    */
-  int VALUE = 52;
+  int VALUE = 53;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1774,7 +1793,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 53;
+  int DATA_VALUE = 54;
 
   /**
    * The feature id for the '<em><b>Adt Element1</b></em>' containment reference.
@@ -1829,7 +1848,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureLambda()
    * @generated
    */
-  int PURE_LAMBDA = 54;
+  int PURE_LAMBDA = 55;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3035,6 +3054,16 @@ public interface FPMLPackage extends EPackage
   EClass getPrimitivePrint();
 
   /**
+   * Returns the meta object for class '{@link it.unibo.fPML.PrimitiveRandom <em>Primitive Random</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Primitive Random</em>'.
+   * @see it.unibo.fPML.PrimitiveRandom
+   * @generated
+   */
+  EClass getPrimitiveRandom();
+
+  /**
    * Returns the meta object for class '{@link it.unibo.fPML.ApplyFIO <em>Apply FIO</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4114,6 +4143,16 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EClass PRIMITIVE_PRINT = eINSTANCE.getPrimitivePrint();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitiveRandomImpl <em>Primitive Random</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.PrimitiveRandomImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveRandom()
+     * @generated
+     */
+    EClass PRIMITIVE_RANDOM = eINSTANCE.getPrimitiveRandom();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.ApplyFIOImpl <em>Apply FIO</em>}' class.

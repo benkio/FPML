@@ -1301,17 +1301,17 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFIOKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLessThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cArgTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cArgTypeTypeParserRuleCall_3_0 = (RuleCall)cArgTypeAssignment_3.eContents().get(0);
+		private final RuleCall cArgTypeIOTypeParserRuleCall_3_0 = (RuleCall)cArgTypeAssignment_3.eContents().get(0);
 		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cReturnTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cReturnTypeTypeParserRuleCall_5_0 = (RuleCall)cReturnTypeAssignment_5.eContents().get(0);
+		private final RuleCall cReturnTypeIOTypeParserRuleCall_5_0 = (RuleCall)cReturnTypeAssignment_5.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//EffectFullFunctionType:
-		//	{EffectFullFunctionType} 'FIO' '<' argType=Type ',' returnType=Type '>';
+		//	{EffectFullFunctionType} 'FIO' '<' argType=IOType ',' returnType=IOType '>';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{EffectFullFunctionType} 'FIO' '<' argType=Type ',' returnType=Type '>'
+		//{EffectFullFunctionType} 'FIO' '<' argType=IOType ',' returnType=IOType '>'
 		public Group getGroup() { return cGroup; }
 		
 		//{EffectFullFunctionType}
@@ -1323,20 +1323,20 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'<'
 		public Keyword getLessThanSignKeyword_2() { return cLessThanSignKeyword_2; }
 		
-		//argType=Type
+		//argType=IOType
 		public Assignment getArgTypeAssignment_3() { return cArgTypeAssignment_3; }
 		
-		//Type
-		public RuleCall getArgTypeTypeParserRuleCall_3_0() { return cArgTypeTypeParserRuleCall_3_0; }
+		//IOType
+		public RuleCall getArgTypeIOTypeParserRuleCall_3_0() { return cArgTypeIOTypeParserRuleCall_3_0; }
 		
 		//','
 		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
 		
-		//returnType=Type
+		//returnType=IOType
 		public Assignment getReturnTypeAssignment_5() { return cReturnTypeAssignment_5; }
 		
-		//Type
-		public RuleCall getReturnTypeTypeParserRuleCall_5_0() { return cReturnTypeTypeParserRuleCall_5_0; }
+		//IOType
+		public RuleCall getReturnTypeIOTypeParserRuleCall_5_0() { return cReturnTypeIOTypeParserRuleCall_5_0; }
 		
 		//'>'
 		public Keyword getGreaterThanSignKeyword_6() { return cGreaterThanSignKeyword_6; }
@@ -1888,20 +1888,24 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveEffectFullFunction");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPrimitivePrintParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cApplyFIOParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPrimitiveRandomParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cApplyFIOParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//PrimitiveEffectFullFunction:
-		//	PrimitivePrint | ApplyFIO;
+		//	PrimitivePrint | PrimitiveRandom | ApplyFIO;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PrimitivePrint | ApplyFIO
+		//PrimitivePrint | PrimitiveRandom | ApplyFIO
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//PrimitivePrint
 		public RuleCall getPrimitivePrintParserRuleCall_0() { return cPrimitivePrintParserRuleCall_0; }
 		
+		//PrimitiveRandom
+		public RuleCall getPrimitiveRandomParserRuleCall_1() { return cPrimitiveRandomParserRuleCall_1; }
+		
 		//ApplyFIO
-		public RuleCall getApplyFIOParserRuleCall_1() { return cApplyFIOParserRuleCall_1; }
+		public RuleCall getApplyFIOParserRuleCall_2() { return cApplyFIOParserRuleCall_2; }
 	}
 	public class PrimitivePrintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitivePrint");
@@ -1921,6 +1925,25 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//"print"
 		public Keyword getPrintKeyword_1() { return cPrintKeyword_1; }
+	}
+	public class PrimitiveRandomElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveRandom");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPrimitiveRandomAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cRandomIntKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//PrimitiveRandom:
+		//	{PrimitiveRandom} "randomInt";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{PrimitiveRandom} "randomInt"
+		public Group getGroup() { return cGroup; }
+		
+		//{PrimitiveRandom}
+		public Action getPrimitiveRandomAction_0() { return cPrimitiveRandomAction_0; }
+		
+		//"randomInt"
+		public Keyword getRandomIntKeyword_1() { return cRandomIntKeyword_1; }
 	}
 	public class ApplyFIOElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.ApplyFIO");
@@ -2020,6 +2043,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final ApplyFElements pApplyF;
 	private final PrimitiveEffectFullFunctionElements pPrimitiveEffectFullFunction;
 	private final PrimitivePrintElements pPrimitivePrint;
+	private final PrimitiveRandomElements pPrimitiveRandom;
 	private final ApplyFIOElements pApplyFIO;
 	
 	private final Grammar grammar;
@@ -2088,6 +2112,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pApplyF = new ApplyFElements();
 		this.pPrimitiveEffectFullFunction = new PrimitiveEffectFullFunctionElements();
 		this.pPrimitivePrint = new PrimitivePrintElements();
+		this.pPrimitiveRandom = new PrimitiveRandomElements();
 		this.pApplyFIO = new ApplyFIOElements();
 	}
 	
@@ -2515,7 +2540,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//EffectFullFunctionType:
-	//	{EffectFullFunctionType} 'FIO' '<' argType=Type ',' returnType=Type '>';
+	//	{EffectFullFunctionType} 'FIO' '<' argType=IOType ',' returnType=IOType '>';
 	public EffectFullFunctionTypeElements getEffectFullFunctionTypeAccess() {
 		return pEffectFullFunctionType;
 	}
@@ -2718,7 +2743,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrimitiveEffectFullFunction:
-	//	PrimitivePrint | ApplyFIO;
+	//	PrimitivePrint | PrimitiveRandom | ApplyFIO;
 	public PrimitiveEffectFullFunctionElements getPrimitiveEffectFullFunctionAccess() {
 		return pPrimitiveEffectFullFunction;
 	}
@@ -2735,6 +2760,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPrimitivePrintRule() {
 		return getPrimitivePrintAccess().getRule();
+	}
+	
+	//PrimitiveRandom:
+	//	{PrimitiveRandom} "randomInt";
+	public PrimitiveRandomElements getPrimitiveRandomAccess() {
+		return pPrimitiveRandom;
+	}
+	
+	public ParserRule getPrimitiveRandomRule() {
+		return getPrimitiveRandomAccess().getRule();
 	}
 	
 	//ApplyFIO:

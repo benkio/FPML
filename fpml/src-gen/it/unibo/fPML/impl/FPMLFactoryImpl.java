@@ -116,6 +116,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.APPLY_F: return createApplyF();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
+      case FPMLPackage.PRIMITIVE_RANDOM: return createPrimitiveRandom();
       case FPMLPackage.APPLY_FIO: return createApplyFIO();
       case FPMLPackage.VALUE: return createValue();
       case FPMLPackage.DATA_VALUE: return createDataValue();
@@ -684,6 +685,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     PrimitivePrintImpl primitivePrint = new PrimitivePrintImpl();
     return primitivePrint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PrimitiveRandom createPrimitiveRandom()
+  {
+    PrimitiveRandomImpl primitiveRandom = new PrimitiveRandomImpl();
+    return primitiveRandom;
   }
 
   /**

@@ -483,6 +483,15 @@ public interface FPMLFactory extends EFactory
   PrimitivePrint createPrimitivePrint();
 
   /**
+   * Returns a new object of class '<em>Primitive Random</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Primitive Random</em>'.
+   * @generated
+   */
+  PrimitiveRandom createPrimitiveRandom();
+
+  /**
    * Returns a new object of class '<em>Apply FIO</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -3,19 +3,25 @@
  */
 package it.unibo.validation;
 
+import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
+import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
+import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.PureReference;
 import it.unibo.fPML.Value;
+import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
 import it.unibo.validation.utilitiesFunctions.Checks;
+import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import org.eclipse.xtext.validation.Check;
 
 /**
@@ -29,10 +35,6 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   public final static String TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN = "The return type of the function chain and the outside function doesn\'t match";
   
-  public final static String TYPEMISMATCHFUNCTIONCOMPOSITIONARGS = "The argument type of the function is not the same as the first argument of the function chain";
-  
-  public final static String EFFECTFULLARGUMENTUNITTYPEID = "The Unit Type don\'t require and ID";
-  
   public final static String TYPEMISMATCHBETWEENVALUEANDDATA = "The value doesn\'t match the data declaration";
   
   public final static String APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type";
@@ -43,7 +45,6 @@ public class FPMLValidator extends AbstractFPMLValidator {
     boolean _matched = false;
     if (f instanceof PureFunction) {
       _matched=true;
-      Object _switchResult_1 = null;
       boolean _matched_1 = false;
       if (f instanceof Value) {
         _matched_1=true;
@@ -58,7 +59,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
       if (!_matched_1) {
         if (f instanceof PrimitivePureFunction) {
           _matched_1=true;
-          _switchResult_1 = this.typeCheck(((PrimitivePureFunction) f));
+          this.typeCheck(((PrimitivePureFunction) f));
         }
       }
       if (!_matched_1) {
@@ -67,7 +68,6 @@ public class FPMLValidator extends AbstractFPMLValidator {
           this.typeCheck(((PureFunctionDefinition) f));
         }
       }
-      _switchResult = _switchResult_1;
     }
     if (!_matched) {
       if (f instanceof EffectFullFunction) {
@@ -76,7 +76,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
         boolean _matched_1 = false;
         if (f instanceof EffectFullFunctionDefinition) {
           _matched_1=true;
-          _switchResult_1 = this.typeCheck(((EffectFullFunctionDefinition) f));
+          this.typeCheck(((EffectFullFunctionDefinition) f));
         }
         if (!_matched_1) {
           if (f instanceof PrimitiveEffectFullFunction) {
@@ -90,6 +90,20 @@ public class FPMLValidator extends AbstractFPMLValidator {
     return _switchResult;
   }
   
+  @Check
+  public void typeCheck(final MainFunc m) {
+    boolean _mainReturnType = Checks.mainReturnType(m);
+    boolean _not = (!_mainReturnType);
+    if (_not) {
+      this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE);
+    }
+    boolean _mainArgType = Checks.mainArgType(m);
+    boolean _not_1 = (!_mainArgType);
+    if (_not_1) {
+      this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.MAIN_FUNC__FUNCTION_BODY);
+    }
+  }
+  
   public void typeCheck(final Value v) {
     if (((v.getValue() instanceof DataValue) && 
       (!Checks.DataAndValue(((DataValue) v.getValue()).getValue(), ((DataValue) v.getValue()).getType().getContent())))) {
@@ -98,13 +112,27 @@ public class FPMLValidator extends AbstractFPMLValidator {
   }
   
   public void typeCheck(final PureLambda l) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method pureLambda(PureLambda) is undefined for the type Class<Checks>"
-      + "\n! cannot be resolved");
+    boolean _pureLambda = Checks.pureLambda(l);
+    boolean _not = (!_pureLambda);
+    if (_not) {
+      this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY);
+    }
   }
   
-  public Object typeCheck(final PrimitivePureFunction p) {
-    return null;
+  public void typeCheck(final PrimitivePureFunction p) {
+    boolean _matched = false;
+    if (p instanceof ApplyF) {
+      _matched=true;
+      PureFunctionType _functionType = ((ApplyF)p).getFunctionType();
+      ValueType _argType = _functionType.getArgType();
+      PureReference _value = ((ApplyF)p).getValue();
+      ValueType _pureReference = GetReturnType.pureReference(_value);
+      boolean _ValueTypeEquals = Checks.ValueTypeEquals(_argType, _pureReference);
+      boolean _not = (!_ValueTypeEquals);
+      if (_not) {
+        this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE);
+      }
+    }
   }
   
   public void typeCheck(final PureFunctionDefinition f) {
@@ -113,10 +141,24 @@ public class FPMLValidator extends AbstractFPMLValidator {
     if (_not) {
       this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE);
     }
+    boolean _functionArgType = Checks.functionArgType(f);
+    boolean _not_1 = (!_functionArgType);
+    if (_not_1) {
+      this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY);
+    }
   }
   
-  public Object typeCheck(final EffectFullFunctionDefinition f) {
-    return null;
+  public void typeCheck(final EffectFullFunctionDefinition f) {
+    boolean _functionReturnTypeEffectFull = Checks.functionReturnTypeEffectFull(f);
+    boolean _not = (!_functionReturnTypeEffectFull);
+    if (_not) {
+      this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE);
+    }
+    boolean _functionArgTypeEffectFull = Checks.functionArgTypeEffectFull(f);
+    boolean _not_1 = (!_functionArgTypeEffectFull);
+    if (_not_1) {
+      this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY);
+    }
   }
   
   public Object typeCheck(final PrimitiveEffectFullFunction p) {

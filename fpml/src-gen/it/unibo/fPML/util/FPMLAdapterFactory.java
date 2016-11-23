@@ -331,6 +331,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createPrimitivePrintAdapter();
       }
       @Override
+      public Adapter casePrimitiveRandom(PrimitiveRandom object)
+      {
+        return createPrimitiveRandomAdapter();
+      }
+      @Override
       public Adapter caseApplyFIO(ApplyFIO object)
       {
         return createApplyFIOAdapter();
@@ -1133,6 +1138,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrimitivePrintAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitiveRandom <em>Primitive Random</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PrimitiveRandom
+   * @generated
+   */
+  public Adapter createPrimitiveRandomAdapter()
   {
     return null;
   }

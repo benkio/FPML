@@ -41,6 +41,7 @@ import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitivePureFunction;
+import it.unibo.fPML.PrimitiveRandom;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureBlock;
@@ -432,6 +433,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass primitivePrintEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass primitiveRandomEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1619,6 +1627,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPrimitiveRandom()
+  {
+    return primitiveRandomEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getApplyFIO()
   {
     return applyFIOEClass;
@@ -1884,6 +1902,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     primitivePrintEClass = createEClass(PRIMITIVE_PRINT);
 
+    primitiveRandomEClass = createEClass(PRIMITIVE_RANDOM);
+
     applyFIOEClass = createEClass(APPLY_FIO);
     createEReference(applyFIOEClass, APPLY_FIO__FUNCTION_TYPE);
     createEReference(applyFIOEClass, APPLY_FIO__VALUE);
@@ -1967,6 +1987,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     applyFEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     primitiveEffectFullFunctionEClass.getESuperTypes().add(this.getEffectFullFunction());
     primitivePrintEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
+    primitiveRandomEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     applyFIOEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     valueEClass.getESuperTypes().add(this.getPureFunctionDefinition());
     dataValueEClass.getESuperTypes().add(this.getDataType());
@@ -2093,8 +2114,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEReference(getPureFunctionType_Value(), this.getPureFunctionDefinition(), null, "value", null, 0, 1, PureFunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(effectFullFunctionTypeEClass, EffectFullFunctionType.class, "EffectFullFunctionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEffectFullFunctionType_ArgType(), this.getType(), null, "argType", null, 0, 1, EffectFullFunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEffectFullFunctionType_ReturnType(), this.getType(), null, "returnType", null, 0, 1, EffectFullFunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullFunctionType_ArgType(), this.getIOType(), null, "argType", null, 0, 1, EffectFullFunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullFunctionType_ReturnType(), this.getIOType(), null, "returnType", null, 0, 1, EffectFullFunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2132,6 +2153,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(primitiveEffectFullFunctionEClass, PrimitiveEffectFullFunction.class, "PrimitiveEffectFullFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(primitivePrintEClass, PrimitivePrint.class, "PrimitivePrint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(primitiveRandomEClass, PrimitiveRandom.class, "PrimitiveRandom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(applyFIOEClass, ApplyFIO.class, "ApplyFIO", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getApplyFIO_FunctionType(), this.getEffectFullFunctionType(), null, "functionType", null, 0, 1, ApplyFIO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

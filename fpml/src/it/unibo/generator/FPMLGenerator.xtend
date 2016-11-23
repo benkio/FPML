@@ -44,8 +44,13 @@ class FPMLGenerator extends AbstractGenerator {
 		)
 		fsa.generateFile(
 			basePackage + "Pure/Primitives.java",
-			primitiveGenerator.compile()
+			primitiveGenerator.compilePure()
 		)
+		fsa.generateFile(
+			basePackage + "Effectfull/PrimitivesEffectFull.java",
+			primitiveGenerator.compileEffectFull()
+		)
+		
 		fsa.generateFile(basePackage + "Effectfull/EntryPoint.java", effectFullFunctionGenerator.compile(resource.getAllContents.toIterable.filter(MainFunc).head))
 	}
 }

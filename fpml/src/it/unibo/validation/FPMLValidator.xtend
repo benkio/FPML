@@ -23,9 +23,7 @@ class FPMLValidator extends AbstractFPMLValidator {
 
     public static val TYPEMISMATCHFUNCTIONCOMPOSITION = "Type mismatch between the input of one function and the return of another in the function chain";
     public static val TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN = "The return type of the function chain and the outside function doesn't match";
-    public static val TYPEMISMATCHFUNCTIONCOMPOSITIONARGS = "The argument type of the function is not the same as the first argument of the function chain";
-    public static val EFFECTFULLARGUMENTUNITTYPEID = "The Unit Type don't require and ID";
-    public static val TYPEMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
+     public static val TYPEMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
 	public static val APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type"
 	
    @Check
@@ -48,6 +46,14 @@ class FPMLValidator extends AbstractFPMLValidator {
 		}
    }
    
+   @Check
+   def typeCheck(MainFunc m){
+   		if (!Checks.mainReturnType(m))
+   			error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE)
+   		if (!Checks.mainArgType(m))
+   			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.MAIN_FUNC__FUNCTION_BODY)
+   }
+   
    def typeCheck(Value v){
    	if (v.value instanceof DataValue &&
    		!Checks.DataAndValue((v.value as DataValue).value, (v.value as DataValue).type.content)) {
@@ -59,12 +65,26 @@ class FPMLValidator extends AbstractFPMLValidator {
    			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY)
    		}
    }
-   def typeCheck(PrimitivePureFunction p){}
+   def typeCheck(PrimitivePureFunction p){
+   		switch p {
+   			ApplyF: {
+   				if (!Checks.ValueTypeEquals(p.functionType.argType, GetReturnType.pureReference(p.value)))
+   					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE)
+   			}
+   		}
+   }
    def typeCheck(PureFunctionDefinition f){
    		if (!Checks.functionReturnType(f))
    			error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE)
+   		if (!Checks.functionArgType(f))
+   			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY)
    }
 
-   def typeCheck(EffectFullFunctionDefinition f){}
+   def typeCheck(EffectFullFunctionDefinition f){
+		if (!Checks.functionReturnTypeEffectFull(f))
+			error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE)
+		if (!Checks.functionArgTypeEffectFull(f))
+			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY)
+   }
    def typeCheck(PrimitiveEffectFullFunction p){}
 }

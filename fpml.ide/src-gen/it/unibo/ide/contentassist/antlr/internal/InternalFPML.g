@@ -1424,6 +1424,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRulePrimitiveRandom
+entryRulePrimitiveRandom
+:
+{ before(grammarAccess.getPrimitiveRandomRule()); }
+	 rulePrimitiveRandom
+{ after(grammarAccess.getPrimitiveRandomRule()); } 
+	 EOF 
+;
+
+// Rule PrimitiveRandom
+rulePrimitiveRandom 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getPrimitiveRandomAccess().getGroup()); }
+		(rule__PrimitiveRandom__Group__0)
+		{ after(grammarAccess.getPrimitiveRandomAccess().getGroup()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleApplyFIO
 entryRuleApplyFIO
 :
@@ -1950,9 +1975,15 @@ rule__PrimitiveEffectFullFunction__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getPrimitiveEffectFullFunctionAccess().getApplyFIOParserRuleCall_1()); }
+		{ before(grammarAccess.getPrimitiveEffectFullFunctionAccess().getPrimitiveRandomParserRuleCall_1()); }
+		rulePrimitiveRandom
+		{ after(grammarAccess.getPrimitiveEffectFullFunctionAccess().getPrimitiveRandomParserRuleCall_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getPrimitiveEffectFullFunctionAccess().getApplyFIOParserRuleCall_2()); }
 		ruleApplyFIO
-		{ after(grammarAccess.getPrimitiveEffectFullFunctionAccess().getApplyFIOParserRuleCall_1()); }
+		{ after(grammarAccess.getPrimitiveEffectFullFunctionAccess().getApplyFIOParserRuleCall_2()); }
 	)
 ;
 finally {
@@ -6523,6 +6554,60 @@ finally {
 }
 
 
+rule__PrimitiveRandom__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__PrimitiveRandom__Group__0__Impl
+	rule__PrimitiveRandom__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PrimitiveRandom__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getPrimitiveRandomAccess().getPrimitiveRandomAction_0()); }
+	()
+	{ after(grammarAccess.getPrimitiveRandomAccess().getPrimitiveRandomAction_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PrimitiveRandom__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__PrimitiveRandom__Group__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__PrimitiveRandom__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getPrimitiveRandomAccess().getRandomIntKeyword_1()); }
+	'randomInt'
+	{ after(grammarAccess.getPrimitiveRandomAccess().getRandomIntKeyword_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 rule__ApplyFIO__Group__0
 	@init {
 		int stackSize = keepStackSize();
@@ -7464,9 +7549,9 @@ rule__EffectFullFunctionType__ArgTypeAssignment_3
 	}
 :
 	(
-		{ before(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeTypeParserRuleCall_3_0()); }
-		ruleType
-		{ after(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeTypeParserRuleCall_3_0()); }
+		{ before(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeIOTypeParserRuleCall_3_0()); }
+		ruleIOType
+		{ after(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeIOTypeParserRuleCall_3_0()); }
 	)
 ;
 finally {
@@ -7479,9 +7564,9 @@ rule__EffectFullFunctionType__ReturnTypeAssignment_5
 	}
 :
 	(
-		{ before(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeTypeParserRuleCall_5_0()); }
-		ruleType
-		{ after(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeTypeParserRuleCall_5_0()); }
+		{ before(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeIOTypeParserRuleCall_5_0()); }
+		ruleIOType
+		{ after(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeIOTypeParserRuleCall_5_0()); }
 	)
 ;
 finally {

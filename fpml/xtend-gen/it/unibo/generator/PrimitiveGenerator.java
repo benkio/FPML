@@ -5,7 +5,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class PrimitiveGenerator {
-  public CharSequence compile() {
+  public CharSequence compilePure() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _basePackageJava = FPMLGenerator.basePackageJava();
@@ -63,6 +63,82 @@ public class PrimitiveGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public static Integer intPow(Integer x) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return x * x;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public static String intToString(Integer x) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return String.valueOf(x);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compileEffectFull() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package ");
+    String _basePackageJava = FPMLGenerator.basePackageJava();
+    _builder.append(_basePackageJava, "");
+    _builder.append("Effectfull;");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import fj.F;");
+    _builder.newLine();
+    _builder.append("import fj.Unit;");
+    _builder.newLine();
+    _builder.append("import fj.data.IO;");
+    _builder.newLine();
+    _builder.append("import fj.data.IOFunctions;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public class PrimitivesEffectFull {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public static IO<Unit> primitivePrint(String s) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return IOFunctions.stdoutPrint(s);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("} ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public static IO<Integer> primitiveRandom() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return () -> (int) Math.random();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("//\tpublic static <B, A> IO<B> applyFIO(F<A,B> f){");
+    _builder.newLine();
+    _builder.append("//\t\treturn (A val) -> IOFunctions.unit(f.f(val));");
+    _builder.newLine();
+    _builder.append("//\t}");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();

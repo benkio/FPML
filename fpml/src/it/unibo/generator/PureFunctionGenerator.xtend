@@ -15,6 +15,11 @@ import it.unibo.fPML.Minus
 import it.unibo.fPML.Times
 import it.unibo.fPML.Mod
 import it.unibo.fPML.ApplyF
+import it.unibo.fPML.PureLambda
+import it.unibo.fPML.PrimitivePureFunction
+import it.unibo.fPML.PureFunction
+import it.unibo.fPML.PureReference
+import it.unibo.fPML.Argument
 
 class PureFunctionGenerator {
 	
@@ -24,6 +29,7 @@ class PureFunctionGenerator {
 		package «FPMLGenerator.basePackageJava»Pure;
 		
 		import «FPMLGenerator.basePackageJava»Pure.Data.*;
+		import fj.F;
 		
 		public class PureFunctionDefinitions {
 			«FOR f:pfb.features»
@@ -32,11 +38,16 @@ class PureFunctionGenerator {
 		}
 	'''
 
-	def compile(PureFunctionDefinition pf) '''
+	def compile(PureFunctionDefinition pf) {
+		if (!(pf instanceof Value) && !(pf instanceof PureLambda)) 
+		return '''
 
-		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
+		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)» ){
+			« if (pf.arg2 != null) "return (" + typeGenerator.compile(pf.arg2) +") -> {" »
 			«compile(pf.functionBody, pf.arg.name, false)»
+			« if (pf.arg2 != null) "};"»
 		}'''
+	}
 
 	def compile(FunctionBodyPure fbp, String arg, boolean outsideCalls){
 		if (fbp instanceof EmptyFunctionBody)
@@ -49,8 +60,10 @@ class PureFunctionGenerator {
 		var result = ""
 		val initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
 		switch initialElement {
-			PureFunctionDefinition: result = compileCall(initialElement, argName, outsideCalls)
 			Value: result = "Value." + (initialElement as Value).name + "()"
+			PureLambda: result = "(" + typeGenerator.compile(initialElement.arg) + ") -> " + initialElement.functionBody.compile(argName,outsideCalls)
+			PrimitivePureFunction: result = compilePrimitiveCall(initialElement, argName, outsideCalls)
+			PureFunctionDefinition: result = compileCall(initialElement, argName, outsideCalls)
 		}
 		for (f : cfbp.functionChain){
 			result = compileCall( Others.getFunctionDefinitionFromPureFactor(f), result, outsideCalls)
@@ -58,31 +71,36 @@ class PureFunctionGenerator {
 		return result
 	} 
 	
-	def String compileCall(PureFunctionDefinition pf, String args, boolean outsideCalls) {
-		if (pf.name == null ) return compilePrimitiveCall(pf, args, outsideCalls)
-		if (!outsideCalls)
-			return pf.name + "(" + args + ")"
-		else 
-			return "PureFunctionDefinitions." + pf.name + "(" + args + ")"
+	def String compileCall(PureFunction pf, String args, boolean outsideCalls) {
+		switch pf {
+			Value: return "Value." + (pf as Value).name + "()"
+			PureLambda: return "(" + typeGenerator.compile(pf.arg) + ") -> " + pf.functionBody.compile(args,outsideCalls)
+			PrimitivePureFunction: return compilePrimitiveCall(pf, args, outsideCalls)
+			PureFunctionDefinition: {
+				if (!outsideCalls)
+					return pf.name + "(" + args + ")"
+				else 
+					return "PureFunctionDefinitions." + pf.name + "(" + args + ")"	
+			}
+		}
 	}
 	
-	def compilePrimitiveCall(PureFunctionDefinition purePrimitive, String argName, boolean outsideCalls){
+	def compilePrimitiveCall(PrimitivePureFunction purePrimitive, String argName, boolean outsideCalls){
 		switch purePrimitive {
-			IntToString: {
-				val f = FPMLFactory.eINSTANCE.createPureFunctionDefinition()
-				f.name = "Integer.toString"
-				return compileCall(f, argName, outsideCalls)
-			}
-      		IntPow: {
-				val f = FPMLFactory.eINSTANCE.createPureFunctionDefinition()
-				f.name = "(int) Math.pow"
-				return compileCall(f, argName + ", 2", outsideCalls)
-			}
-			Plus: return "Primitives.plus(" + argName + ")"
+			IntToString: "Primitives.intToString(" + argName + ")"
+      		IntPow: "Primitives.intPow(" + argName + ")"
+			Plus: "Primitives.plus(" + argName + ")"
 			Minus: "Primitives.minus(" + argName + ")"
 			Times: "Primitives.times(" + argName + ")"
 			Mod: "Primitives.mod(" + argName + ")"
-			ApplyF: argName + ".f(Value." + (purePrimitive as ApplyF).valueRef.name + "())"
+			ApplyF: argName + ".f(" + compile((purePrimitive as ApplyF).value, argName, outsideCalls) + ")"
+		}
+	}
+	
+	def compile(PureReference r,  String argName, boolean outsideCalls) {
+		switch r {
+			PureFunctionDefinition: return compileCall(r ,argName, outsideCalls)
+			Argument: return r.name
 		}
 	}
 }

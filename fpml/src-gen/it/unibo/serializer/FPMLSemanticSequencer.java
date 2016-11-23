@@ -32,6 +32,7 @@ import it.unibo.fPML.Mod;
 import it.unibo.fPML.Model;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitivePrint;
+import it.unibo.fPML.PrimitiveRandom;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureBlock;
@@ -165,6 +166,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.PRIMITIVE_PRINT:
 				sequence_PrimitivePrint(context, (PrimitivePrint) semanticObject); 
+				return; 
+			case FPMLPackage.PRIMITIVE_RANDOM:
+				sequence_PrimitiveRandom(context, (PrimitiveRandom) semanticObject); 
 				return; 
 			case FPMLPackage.PROD_TYPE:
 				sequence_ProdType(context, (ProdType) semanticObject); 
@@ -515,7 +519,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullFunctionType returns EffectFullFunctionType
 	 *
 	 * Constraint:
-	 *     (argType=Type returnType=Type)
+	 *     (argType=IOType returnType=IOType)
 	 */
 	protected void sequence_EffectFullFunctionType(ISerializationContext context, EffectFullFunctionType semanticObject) {
 		if (errorAcceptor != null) {
@@ -525,8 +529,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeTypeParserRuleCall_3_0(), semanticObject.getArgType());
-		feeder.accept(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeTypeParserRuleCall_5_0(), semanticObject.getReturnType());
+		feeder.accept(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeIOTypeParserRuleCall_3_0(), semanticObject.getArgType());
+		feeder.accept(grammarAccess.getEffectFullFunctionTypeAccess().getReturnTypeIOTypeParserRuleCall_5_0(), semanticObject.getReturnType());
 		feeder.finish();
 	}
 	
@@ -749,6 +753,22 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {PrimitivePrint}
 	 */
 	protected void sequence_PrimitivePrint(ISerializationContext context, PrimitivePrint semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns PrimitiveRandom
+	 *     EffectFullFunction returns PrimitiveRandom
+	 *     EffectFullReference returns PrimitiveRandom
+	 *     PrimitiveEffectFullFunction returns PrimitiveRandom
+	 *     PrimitiveRandom returns PrimitiveRandom
+	 *
+	 * Constraint:
+	 *     {PrimitiveRandom}
+	 */
+	protected void sequence_PrimitiveRandom(ISerializationContext context, PrimitiveRandom semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -5,7 +5,7 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.Type;
+import it.unibo.fPML.IOType;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -39,7 +39,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * @generated
    * @ordered
    */
-  protected Type argType;
+  protected IOType argType;
 
   /**
    * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
@@ -49,7 +49,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * @generated
    * @ordered
    */
-  protected Type returnType;
+  protected IOType returnType;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type getArgType()
+  public IOType getArgType()
   {
     return argType;
   }
@@ -87,9 +87,9 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArgType(Type newArgType, NotificationChain msgs)
+  public NotificationChain basicSetArgType(IOType newArgType, NotificationChain msgs)
   {
-    Type oldArgType = argType;
+    IOType oldArgType = argType;
     argType = newArgType;
     if (eNotificationRequired())
     {
@@ -104,7 +104,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArgType(Type newArgType)
+  public void setArgType(IOType newArgType)
   {
     if (newArgType != argType)
     {
@@ -125,7 +125,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type getReturnType()
+  public IOType getReturnType()
   {
     return returnType;
   }
@@ -135,9 +135,9 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetReturnType(Type newReturnType, NotificationChain msgs)
+  public NotificationChain basicSetReturnType(IOType newReturnType, NotificationChain msgs)
   {
-    Type oldReturnType = returnType;
+    IOType oldReturnType = returnType;
     returnType = newReturnType;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setReturnType(Type newReturnType)
+  public void setReturnType(IOType newReturnType)
   {
     if (newReturnType != returnType)
     {
@@ -215,10 +215,10 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__ARG_TYPE:
-        setArgType((Type)newValue);
+        setArgType((IOType)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE:
-        setReturnType((Type)newValue);
+        setReturnType((IOType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,10 +235,10 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__ARG_TYPE:
-        setArgType((Type)null);
+        setArgType((IOType)null);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE:
-        setReturnType((Type)null);
+        setReturnType((IOType)null);
         return;
     }
     super.eUnset(featureID);

@@ -32,12 +32,12 @@ public interface EffectFullFunctionType extends Type
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arg Type</em>' containment reference.
-   * @see #setArgType(Type)
+   * @see #setArgType(IOType)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionType_ArgType()
    * @model containment="true"
    * @generated
    */
-  Type getArgType();
+  IOType getArgType();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionType#getArgType <em>Arg Type</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface EffectFullFunctionType extends Type
    * @see #getArgType()
    * @generated
    */
-  void setArgType(Type value);
+  void setArgType(IOType value);
 
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
@@ -58,12 +58,12 @@ public interface EffectFullFunctionType extends Type
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Return Type</em>' containment reference.
-   * @see #setReturnType(Type)
+   * @see #setReturnType(IOType)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionType_ReturnType()
    * @model containment="true"
    * @generated
    */
-  Type getReturnType();
+  IOType getReturnType();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionType#getReturnType <em>Return Type</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface EffectFullFunctionType extends Type
    * @see #getReturnType()
    * @generated
    */
-  void setReturnType(Type value);
+  void setReturnType(IOType value);
 
 } // EffectFullFunctionType
