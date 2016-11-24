@@ -31,41 +31,41 @@ class FPMLValidator extends AbstractFPMLValidator {
 		switch f {
 			PureFunction: {
 				switch f {
-					Value: typeCheck(f as Value)
-					PureLambda: typeCheck(f as PureLambda)
-					PrimitivePureFunction: typeCheck(f as PrimitivePureFunction)
-					PureFunctionDefinition: typeCheck(f as PureFunctionDefinition)
+					Value: typeCheckValue(f)
+					PureLambda: typeCheckLambda(f)
+					PrimitivePureFunction: typeCheckPurePrimitive(f)
+					PureFunctionDefinition: typeCheckPureFunction(f)
 				}
 			}
 			EffectFullFunction: {
 				switch f {
-					EffectFullFunctionDefinition: typeCheck(f as EffectFullFunctionDefinition)
-					PrimitiveEffectFullFunction: typeCheck(f as PrimitiveEffectFullFunction)
+					PrimitiveEffectFullFunction: typeCheckEffectFullPrimitive(f)
+					EffectFullFunctionDefinition: typeCheckEffectFullFunction(f)
 				}
 			}
 		}
    }
    
    @Check
-   def typeCheck(MainFunc m){
+   def typeCheckMain(MainFunc m){
    		if (!Checks.mainReturnType(m))
    			error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.MAIN_FUNC__RETURN_TYPE)
    		if (!Checks.mainArgType(m))
    			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.MAIN_FUNC__FUNCTION_BODY)
    }
    
-   def typeCheck(Value v){
+   def typeCheckValue(Value v){
    	if (v.value instanceof DataValue &&
    		!Checks.DataAndValue((v.value as DataValue).value, (v.value as DataValue).type.content)) {
    		error(TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.VALUE__VALUE)
 	}
    }
-   def typeCheck(PureLambda l){
+   def typeCheckLambda(PureLambda l){
    		if (!Checks.pureLambda(l)){
    			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY)
    		}
    }
-   def typeCheck(PrimitivePureFunction p){
+   def typeCheckPurePrimitive(PrimitivePureFunction p){
    		switch p {
    			ApplyF: {
    				if (!Checks.ValueTypeEquals(p.functionType.argType, GetReturnType.pureReference(p.value)))
@@ -73,18 +73,26 @@ class FPMLValidator extends AbstractFPMLValidator {
    			}
    		}
    }
-   def typeCheck(PureFunctionDefinition f){
+   def typeCheckPureFunction(PureFunctionDefinition f){
    		if (!Checks.functionReturnType(f))
    			error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE)
    		if (!Checks.functionArgType(f))
    			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY)
    }
 
-   def typeCheck(EffectFullFunctionDefinition f){
+   def typeCheckEffectFullFunction(EffectFullFunctionDefinition f){
 		if (!Checks.functionReturnTypeEffectFull(f))
 			error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE)
 		if (!Checks.functionArgTypeEffectFull(f))
 			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY)
    }
-   def typeCheck(PrimitiveEffectFullFunction p){}
+   def typeCheckEffectFullPrimitive(PrimitiveEffectFullFunction p){
+   		switch p {
+   			ApplyFIO: {
+   				if (!Checks.TypeEquals(p.functionType.argType.type, GetReturnType.effectFullReference(p.value)))
+   					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE)
+   			}
+   		}
+   	
+   }
 }

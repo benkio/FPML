@@ -426,12 +426,12 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cArgAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cArgArgumentParserRuleCall_4_0 = (RuleCall)cArgAssignment_4.eContents().get(0);
+		private final Assignment cArgsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cArgsArgumentParserRuleCall_4_0 = (RuleCall)cArgsAssignment_4.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cArg2Assignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cArg2ArgumentParserRuleCall_5_1_0 = (RuleCall)cArg2Assignment_5_1.eContents().get(0);
+		private final Assignment cArgsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cArgsArgumentParserRuleCall_5_1_0 = (RuleCall)cArgsAssignment_5_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cColonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Keyword cLeftCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
@@ -440,11 +440,12 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		//PureFunctionDefinition:
-		//	'def' returnType=ValueType name=ID '(' arg=Argument (',' arg2=Argument)? ')' ':' '{' functionBody=FunctionBodyPure
+		//	'def' returnType=ValueType name=ID '(' args+=Argument (',' args+=Argument)? ')' ':' '{' functionBody=FunctionBodyPure
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'def' returnType=ValueType name=ID '(' arg=Argument (',' arg2=Argument)? ')' ':' '{' functionBody=FunctionBodyPure '}'
+		//'def' returnType=ValueType name=ID '(' args+=Argument (',' args+=Argument)? ')' ':' '{' functionBody=FunctionBodyPure
+		//'}'
 		public Group getGroup() { return cGroup; }
 		
 		//'def'
@@ -465,23 +466,23 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 		
-		//arg=Argument
-		public Assignment getArgAssignment_4() { return cArgAssignment_4; }
+		//args+=Argument
+		public Assignment getArgsAssignment_4() { return cArgsAssignment_4; }
 		
 		//Argument
-		public RuleCall getArgArgumentParserRuleCall_4_0() { return cArgArgumentParserRuleCall_4_0; }
+		public RuleCall getArgsArgumentParserRuleCall_4_0() { return cArgsArgumentParserRuleCall_4_0; }
 		
-		//(',' arg2=Argument)?
+		//(',' args+=Argument)?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//','
 		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 		
-		//arg2=Argument
-		public Assignment getArg2Assignment_5_1() { return cArg2Assignment_5_1; }
+		//args+=Argument
+		public Assignment getArgsAssignment_5_1() { return cArgsAssignment_5_1; }
 		
 		//Argument
-		public RuleCall getArg2ArgumentParserRuleCall_5_1_0() { return cArg2ArgumentParserRuleCall_5_1_0; }
+		public RuleCall getArgsArgumentParserRuleCall_5_1_0() { return cArgsArgumentParserRuleCall_5_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
@@ -510,12 +511,12 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cArgAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cArgEffectFullArgumentParserRuleCall_4_0 = (RuleCall)cArgAssignment_4.eContents().get(0);
+		private final Assignment cArgsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cArgsEffectFullArgumentParserRuleCall_4_0 = (RuleCall)cArgsAssignment_4.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cArg2Assignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cArg2EffectFullArgumentParserRuleCall_5_1_0 = (RuleCall)cArg2Assignment_5_1.eContents().get(0);
+		private final Assignment cArgsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cArgsEffectFullArgumentParserRuleCall_5_1_0 = (RuleCall)cArgsAssignment_5_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cColonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Keyword cLeftCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
@@ -524,11 +525,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		//EffectFullFunctionDefinition:
-		//	'def' returnType=IOType name=ID '(' arg=EffectFullArgument (',' arg2=EffectFullArgument)? ')' ':' '{'
+		//	'def' returnType=IOType name=ID '(' args+=EffectFullArgument (',' args+=EffectFullArgument)? ')' ':' '{'
 		//	functionBody=FunctionBodyEffectFull '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'def' returnType=IOType name=ID '(' arg=EffectFullArgument (',' arg2=EffectFullArgument)? ')' ':' '{'
+		//'def' returnType=IOType name=ID '(' args+=EffectFullArgument (',' args+=EffectFullArgument)? ')' ':' '{'
 		//functionBody=FunctionBodyEffectFull '}'
 		public Group getGroup() { return cGroup; }
 		
@@ -550,23 +551,23 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 		
-		//arg=EffectFullArgument
-		public Assignment getArgAssignment_4() { return cArgAssignment_4; }
+		//args+=EffectFullArgument
+		public Assignment getArgsAssignment_4() { return cArgsAssignment_4; }
 		
 		//EffectFullArgument
-		public RuleCall getArgEffectFullArgumentParserRuleCall_4_0() { return cArgEffectFullArgumentParserRuleCall_4_0; }
+		public RuleCall getArgsEffectFullArgumentParserRuleCall_4_0() { return cArgsEffectFullArgumentParserRuleCall_4_0; }
 		
-		//(',' arg2=EffectFullArgument)?
+		//(',' args+=EffectFullArgument)?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//','
 		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 		
-		//arg2=EffectFullArgument
-		public Assignment getArg2Assignment_5_1() { return cArg2Assignment_5_1; }
+		//args+=EffectFullArgument
+		public Assignment getArgsAssignment_5_1() { return cArgsAssignment_5_1; }
 		
 		//EffectFullArgument
-		public RuleCall getArg2EffectFullArgumentParserRuleCall_5_1_0() { return cArg2EffectFullArgumentParserRuleCall_5_1_0; }
+		public RuleCall getArgsEffectFullArgumentParserRuleCall_5_1_0() { return cArgsEffectFullArgumentParserRuleCall_5_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
@@ -2278,7 +2279,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PureFunctionDefinition:
-	//	'def' returnType=ValueType name=ID '(' arg=Argument (',' arg2=Argument)? ')' ':' '{' functionBody=FunctionBodyPure
+	//	'def' returnType=ValueType name=ID '(' args+=Argument (',' args+=Argument)? ')' ':' '{' functionBody=FunctionBodyPure
 	//	'}';
 	public PureFunctionDefinitionElements getPureFunctionDefinitionAccess() {
 		return pPureFunctionDefinition;
@@ -2289,7 +2290,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//EffectFullFunctionDefinition:
-	//	'def' returnType=IOType name=ID '(' arg=EffectFullArgument (',' arg2=EffectFullArgument)? ')' ':' '{'
+	//	'def' returnType=IOType name=ID '(' args+=EffectFullArgument (',' args+=EffectFullArgument)? ')' ':' '{'
 	//	functionBody=FunctionBodyEffectFull '}';
 	public EffectFullFunctionDefinitionElements getEffectFullFunctionDefinitionAccess() {
 		return pEffectFullFunctionDefinition;

@@ -26,8 +26,8 @@ class GetReturnType {
 	def static ValueType pureFunctionDefinition(PureFunctionDefinition f){
 		switch f {
 			Value: expression(f.value)
-			PureLambda: functionBodyPure(f.functionBody, f.arg, f.arg2, f.returnType)
-			PureFunctionDefinition: functionBodyPure(f.functionBody, f.arg, f.arg2, f.returnType)
+			PureLambda: functionBodyPure(f.functionBody, f.arg, f.higherOrderArg, f.returnType)
+			PureFunctionDefinition: functionBodyPure(f.functionBody, f.arg, f.higherOrderArg, f.returnType)
 		}
 	}
 	
@@ -40,20 +40,20 @@ class GetReturnType {
 		}
 	}
 	
-	def static ValueType functionBodyPure(FunctionBodyPure pure, Argument arg1, Argument arg2, ValueType returnType) {
+	def static ValueType functionBodyPure(FunctionBodyPure pure, Argument arg1, AdditionalPureArgument arg2, ValueType returnType) {
 		switch pure {
 			EmptyFunctionBody: returnType
 			CompositionFunctionBodyPure: compositionFunctionBodyPure(pure, arg1, arg2)
 		}
 	}
 	
-	def static ValueType compositionFunctionBodyPure(CompositionFunctionBodyPure pure, Argument arg1, Argument arg2) {
+	def static ValueType compositionFunctionBodyPure(CompositionFunctionBodyPure pure, Argument arg1, AdditionalPureArgument arg2) {
 		var first = Others.getFirstFunctionDefinitionFromCompositionBodyPure(pure)
 		var chain = pure.functionChain.map[x | Others.getFunctionDefinitionFromPureFactor(x)]
 		pureFunctionChain(chain,first, arg1, arg2)
 	}
 	
-	def static ValueType pureFunctionChain(List<PureFunction> definitions, PureFunction first ,Argument argument, Argument argument2) {
+	def static ValueType pureFunctionChain(List<PureFunction> definitions, PureFunction first ,Argument argument, AdditionalPureArgument argument2) {
 		if (argument2 != null) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createPureFunctionType
 			functionType.argType = argument2.type
@@ -104,23 +104,23 @@ class GetReturnType {
 	}
 	
 	def static Type effectFullFunctionDefinition(EffectFullFunctionDefinition definition) {
-		functionBodyEffectFull(definition.functionBody, definition.arg, definition.arg2, definition.returnType)
+		functionBodyEffectFull(definition.functionBody, definition.arg, definition.higherOrderArg, definition.returnType)
 	}
 	
-	def static Type functionBodyEffectFull(FunctionBodyEffectFull full, EffectFullArgument argument, EffectFullArgument argument2, IOType type) {
+	def static Type functionBodyEffectFull(FunctionBodyEffectFull full, EffectFullArgument argument, AdditionalEffectFullArgument argument2, IOType type) {
 		switch full {
 			EmptyFunctionBody: type.type
 			CompositionFunctionBodyEffect: compositionFunctionBodyEffectFull(full, argument, argument2)
 		}
 	}
 	
-	def static Type compositionFunctionBodyEffectFull(CompositionFunctionBodyEffect effect, EffectFullArgument argument, EffectFullArgument argument2) {
+	def static Type compositionFunctionBodyEffectFull(CompositionFunctionBodyEffect effect, EffectFullArgument argument, AdditionalEffectFullArgument argument2) {
 		var first = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(effect)
 		var chain = effect.functionChain.map[x | Others.getFunctionDefinitionFromEffectFullFactor(x)]
 		effectFullFunctionChain(chain, first, argument, argument2)
 	}
 	
-	def static Type effectFullFunctionChain(List<EffectFullReference> references, EffectFullReference first, EffectFullArgument argument, EffectFullArgument argument2) {
+	def static Type effectFullFunctionChain(List<EffectFullReference> references, EffectFullReference first, EffectFullArgument argument, AdditionalEffectFullArgument argument2) {
 		if (argument2 != null) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType
 			val ioTypeArg = FPMLFactory.eINSTANCE.createIOType

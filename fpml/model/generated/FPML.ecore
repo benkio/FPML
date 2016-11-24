@@ -37,9 +37,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PureFunctionDefinition" eSuperTypes="#//PureFunction #//PureReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//ValueType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arg" eType="#//Argument"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arg2" eType="#//Argument"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Argument"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionBody" eType="#//FunctionBodyPure"
         containment="true"/>
@@ -62,9 +60,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//IOType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arg" eType="#//EffectFullArgument"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arg2" eType="#//EffectFullArgument"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//EffectFullArgument"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionBody" eType="#//FunctionBodyEffectFull"
         containment="true"/>
@@ -195,5 +191,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AdtValue"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PureLambda" eSuperTypes="#//PureFunctionDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PureLambda" eSuperTypes="#//PureFunctionDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arg" eType="#//Argument"
+        containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

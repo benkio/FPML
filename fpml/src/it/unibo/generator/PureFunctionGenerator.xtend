@@ -43,9 +43,9 @@ class PureFunctionGenerator {
 		return '''
 
 		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)» ){
-			« if (pf.arg2 != null) "return (" + typeGenerator.compile(pf.arg2) +") -> {" »
+			« if (pf.higherOrderArg != null) "return (" + typeGenerator.compile(pf.higherOrderArg.type) +") -> {" »
 			«compile(pf.functionBody, pf.arg.name, false)»
-			« if (pf.arg2 != null) "};"»
+			« if (pf.higherOrderArg != null) "};"»
 		}'''
 	}
 

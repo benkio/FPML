@@ -10117,31 +10117,31 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureFunctionDefinition__Group__4__Impl"
-    // InternalFPML.g:3193:1: rule__PureFunctionDefinition__Group__4__Impl : ( ( rule__PureFunctionDefinition__ArgAssignment_4 ) ) ;
+    // InternalFPML.g:3193:1: rule__PureFunctionDefinition__Group__4__Impl : ( ( rule__PureFunctionDefinition__ArgsAssignment_4 ) ) ;
     public final void rule__PureFunctionDefinition__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:3197:1: ( ( ( rule__PureFunctionDefinition__ArgAssignment_4 ) ) )
-            // InternalFPML.g:3198:1: ( ( rule__PureFunctionDefinition__ArgAssignment_4 ) )
+            // InternalFPML.g:3197:1: ( ( ( rule__PureFunctionDefinition__ArgsAssignment_4 ) ) )
+            // InternalFPML.g:3198:1: ( ( rule__PureFunctionDefinition__ArgsAssignment_4 ) )
             {
-            // InternalFPML.g:3198:1: ( ( rule__PureFunctionDefinition__ArgAssignment_4 ) )
-            // InternalFPML.g:3199:2: ( rule__PureFunctionDefinition__ArgAssignment_4 )
+            // InternalFPML.g:3198:1: ( ( rule__PureFunctionDefinition__ArgsAssignment_4 ) )
+            // InternalFPML.g:3199:2: ( rule__PureFunctionDefinition__ArgsAssignment_4 )
             {
-             before(grammarAccess.getPureFunctionDefinitionAccess().getArgAssignment_4()); 
-            // InternalFPML.g:3200:2: ( rule__PureFunctionDefinition__ArgAssignment_4 )
-            // InternalFPML.g:3200:3: rule__PureFunctionDefinition__ArgAssignment_4
+             before(grammarAccess.getPureFunctionDefinitionAccess().getArgsAssignment_4()); 
+            // InternalFPML.g:3200:2: ( rule__PureFunctionDefinition__ArgsAssignment_4 )
+            // InternalFPML.g:3200:3: rule__PureFunctionDefinition__ArgsAssignment_4
             {
             pushFollow(FOLLOW_2);
-            rule__PureFunctionDefinition__ArgAssignment_4();
+            rule__PureFunctionDefinition__ArgsAssignment_4();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getPureFunctionDefinitionAccess().getArgAssignment_4()); 
+             after(grammarAccess.getPureFunctionDefinitionAccess().getArgsAssignment_4()); 
 
             }
 
@@ -10748,31 +10748,31 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureFunctionDefinition__Group_5__1__Impl"
-    // InternalFPML.g:3408:1: rule__PureFunctionDefinition__Group_5__1__Impl : ( ( rule__PureFunctionDefinition__Arg2Assignment_5_1 ) ) ;
+    // InternalFPML.g:3408:1: rule__PureFunctionDefinition__Group_5__1__Impl : ( ( rule__PureFunctionDefinition__ArgsAssignment_5_1 ) ) ;
     public final void rule__PureFunctionDefinition__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:3412:1: ( ( ( rule__PureFunctionDefinition__Arg2Assignment_5_1 ) ) )
-            // InternalFPML.g:3413:1: ( ( rule__PureFunctionDefinition__Arg2Assignment_5_1 ) )
+            // InternalFPML.g:3412:1: ( ( ( rule__PureFunctionDefinition__ArgsAssignment_5_1 ) ) )
+            // InternalFPML.g:3413:1: ( ( rule__PureFunctionDefinition__ArgsAssignment_5_1 ) )
             {
-            // InternalFPML.g:3413:1: ( ( rule__PureFunctionDefinition__Arg2Assignment_5_1 ) )
-            // InternalFPML.g:3414:2: ( rule__PureFunctionDefinition__Arg2Assignment_5_1 )
+            // InternalFPML.g:3413:1: ( ( rule__PureFunctionDefinition__ArgsAssignment_5_1 ) )
+            // InternalFPML.g:3414:2: ( rule__PureFunctionDefinition__ArgsAssignment_5_1 )
             {
-             before(grammarAccess.getPureFunctionDefinitionAccess().getArg2Assignment_5_1()); 
-            // InternalFPML.g:3415:2: ( rule__PureFunctionDefinition__Arg2Assignment_5_1 )
-            // InternalFPML.g:3415:3: rule__PureFunctionDefinition__Arg2Assignment_5_1
+             before(grammarAccess.getPureFunctionDefinitionAccess().getArgsAssignment_5_1()); 
+            // InternalFPML.g:3415:2: ( rule__PureFunctionDefinition__ArgsAssignment_5_1 )
+            // InternalFPML.g:3415:3: rule__PureFunctionDefinition__ArgsAssignment_5_1
             {
             pushFollow(FOLLOW_2);
-            rule__PureFunctionDefinition__Arg2Assignment_5_1();
+            rule__PureFunctionDefinition__ArgsAssignment_5_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getPureFunctionDefinitionAccess().getArg2Assignment_5_1()); 
+             after(grammarAccess.getPureFunctionDefinitionAccess().getArgsAssignment_5_1()); 
 
             }
 
@@ -11153,31 +11153,31 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullFunctionDefinition__Group__4__Impl"
-    // InternalFPML.g:3544:1: rule__EffectFullFunctionDefinition__Group__4__Impl : ( ( rule__EffectFullFunctionDefinition__ArgAssignment_4 ) ) ;
+    // InternalFPML.g:3544:1: rule__EffectFullFunctionDefinition__Group__4__Impl : ( ( rule__EffectFullFunctionDefinition__ArgsAssignment_4 ) ) ;
     public final void rule__EffectFullFunctionDefinition__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:3548:1: ( ( ( rule__EffectFullFunctionDefinition__ArgAssignment_4 ) ) )
-            // InternalFPML.g:3549:1: ( ( rule__EffectFullFunctionDefinition__ArgAssignment_4 ) )
+            // InternalFPML.g:3548:1: ( ( ( rule__EffectFullFunctionDefinition__ArgsAssignment_4 ) ) )
+            // InternalFPML.g:3549:1: ( ( rule__EffectFullFunctionDefinition__ArgsAssignment_4 ) )
             {
-            // InternalFPML.g:3549:1: ( ( rule__EffectFullFunctionDefinition__ArgAssignment_4 ) )
-            // InternalFPML.g:3550:2: ( rule__EffectFullFunctionDefinition__ArgAssignment_4 )
+            // InternalFPML.g:3549:1: ( ( rule__EffectFullFunctionDefinition__ArgsAssignment_4 ) )
+            // InternalFPML.g:3550:2: ( rule__EffectFullFunctionDefinition__ArgsAssignment_4 )
             {
-             before(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgAssignment_4()); 
-            // InternalFPML.g:3551:2: ( rule__EffectFullFunctionDefinition__ArgAssignment_4 )
-            // InternalFPML.g:3551:3: rule__EffectFullFunctionDefinition__ArgAssignment_4
+             before(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsAssignment_4()); 
+            // InternalFPML.g:3551:2: ( rule__EffectFullFunctionDefinition__ArgsAssignment_4 )
+            // InternalFPML.g:3551:3: rule__EffectFullFunctionDefinition__ArgsAssignment_4
             {
             pushFollow(FOLLOW_2);
-            rule__EffectFullFunctionDefinition__ArgAssignment_4();
+            rule__EffectFullFunctionDefinition__ArgsAssignment_4();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgAssignment_4()); 
+             after(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsAssignment_4()); 
 
             }
 
@@ -11784,31 +11784,31 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullFunctionDefinition__Group_5__1__Impl"
-    // InternalFPML.g:3759:1: rule__EffectFullFunctionDefinition__Group_5__1__Impl : ( ( rule__EffectFullFunctionDefinition__Arg2Assignment_5_1 ) ) ;
+    // InternalFPML.g:3759:1: rule__EffectFullFunctionDefinition__Group_5__1__Impl : ( ( rule__EffectFullFunctionDefinition__ArgsAssignment_5_1 ) ) ;
     public final void rule__EffectFullFunctionDefinition__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:3763:1: ( ( ( rule__EffectFullFunctionDefinition__Arg2Assignment_5_1 ) ) )
-            // InternalFPML.g:3764:1: ( ( rule__EffectFullFunctionDefinition__Arg2Assignment_5_1 ) )
+            // InternalFPML.g:3763:1: ( ( ( rule__EffectFullFunctionDefinition__ArgsAssignment_5_1 ) ) )
+            // InternalFPML.g:3764:1: ( ( rule__EffectFullFunctionDefinition__ArgsAssignment_5_1 ) )
             {
-            // InternalFPML.g:3764:1: ( ( rule__EffectFullFunctionDefinition__Arg2Assignment_5_1 ) )
-            // InternalFPML.g:3765:2: ( rule__EffectFullFunctionDefinition__Arg2Assignment_5_1 )
+            // InternalFPML.g:3764:1: ( ( rule__EffectFullFunctionDefinition__ArgsAssignment_5_1 ) )
+            // InternalFPML.g:3765:2: ( rule__EffectFullFunctionDefinition__ArgsAssignment_5_1 )
             {
-             before(grammarAccess.getEffectFullFunctionDefinitionAccess().getArg2Assignment_5_1()); 
-            // InternalFPML.g:3766:2: ( rule__EffectFullFunctionDefinition__Arg2Assignment_5_1 )
-            // InternalFPML.g:3766:3: rule__EffectFullFunctionDefinition__Arg2Assignment_5_1
+             before(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsAssignment_5_1()); 
+            // InternalFPML.g:3766:2: ( rule__EffectFullFunctionDefinition__ArgsAssignment_5_1 )
+            // InternalFPML.g:3766:3: rule__EffectFullFunctionDefinition__ArgsAssignment_5_1
             {
             pushFollow(FOLLOW_2);
-            rule__EffectFullFunctionDefinition__Arg2Assignment_5_1();
+            rule__EffectFullFunctionDefinition__ArgsAssignment_5_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getEffectFullFunctionDefinitionAccess().getArg2Assignment_5_1()); 
+             after(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsAssignment_5_1()); 
 
             }
 
@@ -21151,9 +21151,9 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PureFunctionDefinition__NameAssignment_2"
 
 
-    // $ANTLR start "rule__PureFunctionDefinition__ArgAssignment_4"
-    // InternalFPML.g:7019:1: rule__PureFunctionDefinition__ArgAssignment_4 : ( ruleArgument ) ;
-    public final void rule__PureFunctionDefinition__ArgAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__PureFunctionDefinition__ArgsAssignment_4"
+    // InternalFPML.g:7019:1: rule__PureFunctionDefinition__ArgsAssignment_4 : ( ruleArgument ) ;
+    public final void rule__PureFunctionDefinition__ArgsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -21164,13 +21164,13 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:7024:2: ( ruleArgument )
             // InternalFPML.g:7025:3: ruleArgument
             {
-             before(grammarAccess.getPureFunctionDefinitionAccess().getArgArgumentParserRuleCall_4_0()); 
+             before(grammarAccess.getPureFunctionDefinitionAccess().getArgsArgumentParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
             ruleArgument();
 
             state._fsp--;
 
-             after(grammarAccess.getPureFunctionDefinitionAccess().getArgArgumentParserRuleCall_4_0()); 
+             after(grammarAccess.getPureFunctionDefinitionAccess().getArgsArgumentParserRuleCall_4_0()); 
 
             }
 
@@ -21189,12 +21189,12 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PureFunctionDefinition__ArgAssignment_4"
+    // $ANTLR end "rule__PureFunctionDefinition__ArgsAssignment_4"
 
 
-    // $ANTLR start "rule__PureFunctionDefinition__Arg2Assignment_5_1"
-    // InternalFPML.g:7034:1: rule__PureFunctionDefinition__Arg2Assignment_5_1 : ( ruleArgument ) ;
-    public final void rule__PureFunctionDefinition__Arg2Assignment_5_1() throws RecognitionException {
+    // $ANTLR start "rule__PureFunctionDefinition__ArgsAssignment_5_1"
+    // InternalFPML.g:7034:1: rule__PureFunctionDefinition__ArgsAssignment_5_1 : ( ruleArgument ) ;
+    public final void rule__PureFunctionDefinition__ArgsAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -21205,13 +21205,13 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:7039:2: ( ruleArgument )
             // InternalFPML.g:7040:3: ruleArgument
             {
-             before(grammarAccess.getPureFunctionDefinitionAccess().getArg2ArgumentParserRuleCall_5_1_0()); 
+             before(grammarAccess.getPureFunctionDefinitionAccess().getArgsArgumentParserRuleCall_5_1_0()); 
             pushFollow(FOLLOW_2);
             ruleArgument();
 
             state._fsp--;
 
-             after(grammarAccess.getPureFunctionDefinitionAccess().getArg2ArgumentParserRuleCall_5_1_0()); 
+             after(grammarAccess.getPureFunctionDefinitionAccess().getArgsArgumentParserRuleCall_5_1_0()); 
 
             }
 
@@ -21230,7 +21230,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PureFunctionDefinition__Arg2Assignment_5_1"
+    // $ANTLR end "rule__PureFunctionDefinition__ArgsAssignment_5_1"
 
 
     // $ANTLR start "rule__PureFunctionDefinition__FunctionBodyAssignment_9"
@@ -21352,9 +21352,9 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EffectFullFunctionDefinition__NameAssignment_2"
 
 
-    // $ANTLR start "rule__EffectFullFunctionDefinition__ArgAssignment_4"
-    // InternalFPML.g:7094:1: rule__EffectFullFunctionDefinition__ArgAssignment_4 : ( ruleEffectFullArgument ) ;
-    public final void rule__EffectFullFunctionDefinition__ArgAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__EffectFullFunctionDefinition__ArgsAssignment_4"
+    // InternalFPML.g:7094:1: rule__EffectFullFunctionDefinition__ArgsAssignment_4 : ( ruleEffectFullArgument ) ;
+    public final void rule__EffectFullFunctionDefinition__ArgsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -21365,13 +21365,13 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:7099:2: ( ruleEffectFullArgument )
             // InternalFPML.g:7100:3: ruleEffectFullArgument
             {
-             before(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgEffectFullArgumentParserRuleCall_4_0()); 
+             before(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsEffectFullArgumentParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
             ruleEffectFullArgument();
 
             state._fsp--;
 
-             after(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgEffectFullArgumentParserRuleCall_4_0()); 
+             after(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsEffectFullArgumentParserRuleCall_4_0()); 
 
             }
 
@@ -21390,12 +21390,12 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__EffectFullFunctionDefinition__ArgAssignment_4"
+    // $ANTLR end "rule__EffectFullFunctionDefinition__ArgsAssignment_4"
 
 
-    // $ANTLR start "rule__EffectFullFunctionDefinition__Arg2Assignment_5_1"
-    // InternalFPML.g:7109:1: rule__EffectFullFunctionDefinition__Arg2Assignment_5_1 : ( ruleEffectFullArgument ) ;
-    public final void rule__EffectFullFunctionDefinition__Arg2Assignment_5_1() throws RecognitionException {
+    // $ANTLR start "rule__EffectFullFunctionDefinition__ArgsAssignment_5_1"
+    // InternalFPML.g:7109:1: rule__EffectFullFunctionDefinition__ArgsAssignment_5_1 : ( ruleEffectFullArgument ) ;
+    public final void rule__EffectFullFunctionDefinition__ArgsAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -21406,13 +21406,13 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:7114:2: ( ruleEffectFullArgument )
             // InternalFPML.g:7115:3: ruleEffectFullArgument
             {
-             before(grammarAccess.getEffectFullFunctionDefinitionAccess().getArg2EffectFullArgumentParserRuleCall_5_1_0()); 
+             before(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsEffectFullArgumentParserRuleCall_5_1_0()); 
             pushFollow(FOLLOW_2);
             ruleEffectFullArgument();
 
             state._fsp--;
 
-             after(grammarAccess.getEffectFullFunctionDefinitionAccess().getArg2EffectFullArgumentParserRuleCall_5_1_0()); 
+             after(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsEffectFullArgumentParserRuleCall_5_1_0()); 
 
             }
 
@@ -21431,7 +21431,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__EffectFullFunctionDefinition__Arg2Assignment_5_1"
+    // $ANTLR end "rule__EffectFullFunctionDefinition__ArgsAssignment_5_1"
 
 
     // $ANTLR start "rule__EffectFullFunctionDefinition__FunctionBodyAssignment_9"

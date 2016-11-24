@@ -164,7 +164,7 @@ class Checks {
 	}
 	
 	def static functionReturnTypeEffectFull(EffectFullFunctionDefinition definition) {
-		return TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), FPMLFactory.eINSTANCE.createUnitType) || GetReturnType.effectFullFunctionDefinition(definition) == null 
+		return TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), definition.returnType.type) || GetReturnType.effectFullFunctionDefinition(definition) == null 
 	}
 	
 	def static functionArgTypeEffectFull(it.unibo.fPML.EffectFullFunctionDefinition definition) {

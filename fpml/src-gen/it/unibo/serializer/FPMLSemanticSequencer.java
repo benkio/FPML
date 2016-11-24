@@ -506,7 +506,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullReference returns EffectFullFunctionDefinition
 	 *
 	 * Constraint:
-	 *     (returnType=IOType name=ID arg=EffectFullArgument arg2=EffectFullArgument? functionBody=FunctionBodyEffectFull)
+	 *     (returnType=IOType name=ID args+=EffectFullArgument args+=EffectFullArgument? functionBody=FunctionBodyEffectFull)
 	 */
 	protected void sequence_EffectFullFunctionDefinition(ISerializationContext context, EffectFullFunctionDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -846,7 +846,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     PureReference returns PureFunctionDefinition
 	 *
 	 * Constraint:
-	 *     (returnType=ValueType name=ID arg=Argument arg2=Argument? functionBody=FunctionBodyPure)
+	 *     (returnType=ValueType name=ID args+=Argument args+=Argument? functionBody=FunctionBodyPure)
 	 */
 	protected void sequence_PureFunctionDefinition(ISerializationContext context, PureFunctionDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -886,8 +886,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_PureLambda(ISerializationContext context, PureLambda semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_LAMBDA__ARG) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_LAMBDA__ARG));
 			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY));
 		}

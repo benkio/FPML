@@ -3,6 +3,7 @@
  */
 package it.unibo.fPML;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,8 +16,7 @@ package it.unibo.fPML;
  * <ul>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getName <em>Name</em>}</li>
- *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg <em>Arg</em>}</li>
- *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg2 <em>Arg2</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getArgs <em>Args</em>}</li>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionDefinition#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
@@ -79,56 +79,20 @@ public interface EffectFullFunctionDefinition extends EffectFullFunction
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Arg</b></em>' containment reference.
+   * Returns the value of the '<em><b>Args</b></em>' containment reference list.
+   * The list contents are of type {@link it.unibo.fPML.EffectFullArgument}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Arg</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Args</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Arg</em>' containment reference.
-   * @see #setArg(EffectFullArgument)
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition_Arg()
+   * @return the value of the '<em>Args</em>' containment reference list.
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition_Args()
    * @model containment="true"
    * @generated
    */
-  EffectFullArgument getArg();
-
-  /**
-   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg <em>Arg</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Arg</em>' containment reference.
-   * @see #getArg()
-   * @generated
-   */
-  void setArg(EffectFullArgument value);
-
-  /**
-   * Returns the value of the '<em><b>Arg2</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Arg2</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Arg2</em>' containment reference.
-   * @see #setArg2(EffectFullArgument)
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition_Arg2()
-   * @model containment="true"
-   * @generated
-   */
-  EffectFullArgument getArg2();
-
-  /**
-   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg2 <em>Arg2</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Arg2</em>' containment reference.
-   * @see #getArg2()
-   * @generated
-   */
-  void setArg2(EffectFullArgument value);
+  EList<EffectFullArgument> getArgs();
 
   /**
    * Returns the value of the '<em><b>Function Body</b></em>' containment reference.

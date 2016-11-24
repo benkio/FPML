@@ -1,6 +1,5 @@
 package it.unibo.generator;
 
-import com.google.common.base.Objects;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyPure;
@@ -20,7 +19,6 @@ import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureReference;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Value;
-import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
 import it.unibo.validation.utilitiesFunctions.Others;
@@ -64,54 +62,16 @@ public class PureFunctionGenerator {
   }
   
   public String compile(final PureFunctionDefinition pf) {
-    if (((!(pf instanceof Value)) && (!(pf instanceof PureLambda)))) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.newLine();
-      _builder.append("public static ");
-      ValueType _returnType = pf.getReturnType();
-      Object _compile = this.typeGenerator.compile(_returnType);
-      _builder.append(_compile, "");
-      _builder.append(" ");
-      String _name = pf.getName();
-      _builder.append(_name, "");
-      _builder.append(" (");
-      Argument _arg = pf.getArg();
-      CharSequence _compile_1 = this.typeGenerator.compile(_arg);
-      _builder.append(_compile_1, "");
-      _builder.append(" ){");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      String _xifexpression = null;
-      Argument _arg2 = pf.getArg2();
-      boolean _notEquals = (!Objects.equal(_arg2, null));
-      if (_notEquals) {
-        Argument _arg2_1 = pf.getArg2();
-        CharSequence _compile_2 = this.typeGenerator.compile(_arg2_1);
-        String _plus = ("return (" + _compile_2);
-        _xifexpression = (_plus + ") -> {");
-      }
-      _builder.append(_xifexpression, "\t");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      FunctionBodyPure _functionBody = pf.getFunctionBody();
-      Argument _arg_1 = pf.getArg();
-      String _name_1 = _arg_1.getName();
-      String _compile_3 = this.compile(_functionBody, _name_1, false);
-      _builder.append(_compile_3, "\t");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      String _xifexpression_1 = null;
-      Argument _arg2_2 = pf.getArg2();
-      boolean _notEquals_1 = (!Objects.equal(_arg2_2, null));
-      if (_notEquals_1) {
-        _xifexpression_1 = "};";
-      }
-      _builder.append(_xifexpression_1, "\t");
-      _builder.newLineIfNotEmpty();
-      _builder.append("}");
-      return _builder.toString();
-    }
-    return null;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
+      + "\nThe method or field higherOrderArg is undefined for the type PureFunctionDefinition"
+      + "\nThe method or field higherOrderArg is undefined for the type PureFunctionDefinition"
+      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
+      + "\nThe method or field higherOrderArg is undefined for the type PureFunctionDefinition"
+      + "\n!= cannot be resolved"
+      + "\ntype cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n!= cannot be resolved");
   }
   
   public String compile(final FunctionBodyPure fbp, final String arg, final boolean outsideCalls) {

@@ -1,6 +1,5 @@
 package it.unibo.generator;
 
-import com.google.common.base.Objects;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
@@ -8,7 +7,6 @@ import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBlock;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullReference;
-import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
@@ -74,79 +72,10 @@ public class EffectFullFunctionGenerator {
   }
   
   public String compile(final EffectFullFunctionDefinition pf) {
-    String _name = pf.getName();
-    boolean _notEquals = (!Objects.equal(_name, "main"));
-    if (_notEquals) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("public static ");
-      IOType _returnType = pf.getReturnType();
-      String _compile = this.typeGenerator.compile(_returnType);
-      _builder.append(_compile, "");
-      _builder.append(" ");
-      String _name_1 = pf.getName();
-      _builder.append(_name_1, "");
-      _builder.append(" (");
-      EffectFullArgument _arg = pf.getArg();
-      CharSequence _compile_1 = this.typeGenerator.compile(_arg);
-      _builder.append(_compile_1, "");
-      _builder.append("){");
-      _builder.newLineIfNotEmpty();
-      {
-        FunctionBodyEffectFull _functionBody = pf.getFunctionBody();
-        if ((_functionBody instanceof EmptyFunctionBody)) {
-          _builder.append("\t");
-          _builder.append("throw new UnsupportedOperationException(\"TODO\");");
-          _builder.newLine();
-        } else {
-          FunctionBodyEffectFull _functionBody_1 = pf.getFunctionBody();
-          if ((_functionBody_1 instanceof CompositionFunctionBodyEffect)) {
-            _builder.append("\t");
-            _builder.append("return IOW.lift(IOFunctions.unit(");
-            EffectFullArgument _arg_1 = pf.getArg();
-            String _name_2 = _arg_1.getName();
-            _builder.append(_name_2, "\t");
-            _builder.append("))");
-            FunctionBodyEffectFull _functionBody_2 = pf.getFunctionBody();
-            CharSequence _compile_2 = this.compile(((CompositionFunctionBodyEffect) _functionBody_2));
-            _builder.append(_compile_2, "\t");
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-      _builder.append("}");
-      return _builder.toString();
-    } else {
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("public static void ");
-      String _name_3 = pf.getName();
-      _builder_1.append(_name_3, "");
-      _builder_1.append("(String[] args){");
-      _builder_1.newLineIfNotEmpty();
-      {
-        FunctionBodyEffectFull _functionBody_3 = pf.getFunctionBody();
-        if ((_functionBody_3 instanceof EmptyFunctionBody)) {
-          _builder_1.append("\t");
-          _builder_1.append("throw new UnsupportedOperationException(\"TODO\");");
-          _builder_1.newLine();
-        } else {
-          FunctionBodyEffectFull _functionBody_4 = pf.getFunctionBody();
-          if ((_functionBody_4 instanceof CompositionFunctionBodyEffect)) {
-            _builder_1.append("\t");
-            _builder_1.append("IOW.lift(IOFunctions.ioUnit)");
-            FunctionBodyEffectFull _functionBody_5 = pf.getFunctionBody();
-            CharSequence _compile_3 = this.compile(((CompositionFunctionBodyEffect) _functionBody_5));
-            _builder_1.append(_compile_3, "\t");
-            _builder_1.newLineIfNotEmpty();
-          }
-        }
-      }
-      _builder_1.append("\t");
-      _builder_1.append(".safe().run().on((IOException e) -> { e.printStackTrace(); return Unit.unit(); });");
-      _builder_1.newLine();
-      _builder_1.append("}");
-      return _builder_1.toString();
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field arg is undefined for the type EffectFullFunctionDefinition"
+      + "\nThe method or field arg is undefined for the type EffectFullFunctionDefinition"
+      + "\nname cannot be resolved");
   }
   
   public CharSequence compile(final CompositionFunctionBodyEffect cfbe) {

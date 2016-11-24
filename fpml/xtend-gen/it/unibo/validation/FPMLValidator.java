@@ -4,11 +4,15 @@
 package it.unibo.validation;
 
 import it.unibo.fPML.ApplyF;
+import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
+import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
+import it.unibo.fPML.IOType;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitivePureFunction;
@@ -17,6 +21,7 @@ import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureReference;
+import it.unibo.fPML.Type;
 import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
@@ -40,58 +45,54 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public final static String APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type";
   
   @Check
-  public Object typeCheck(final Function f) {
-    Object _switchResult = null;
+  public void typeCheck(final Function f) {
     boolean _matched = false;
     if (f instanceof PureFunction) {
       _matched=true;
       boolean _matched_1 = false;
       if (f instanceof Value) {
         _matched_1=true;
-        this.typeCheck(((Value) f));
+        this.typeCheckValue(((Value)f));
       }
       if (!_matched_1) {
         if (f instanceof PureLambda) {
           _matched_1=true;
-          this.typeCheck(((PureLambda) f));
+          this.typeCheckLambda(((PureLambda)f));
         }
       }
       if (!_matched_1) {
         if (f instanceof PrimitivePureFunction) {
           _matched_1=true;
-          this.typeCheck(((PrimitivePureFunction) f));
+          this.typeCheckPurePrimitive(((PrimitivePureFunction)f));
         }
       }
       if (!_matched_1) {
         if (f instanceof PureFunctionDefinition) {
           _matched_1=true;
-          this.typeCheck(((PureFunctionDefinition) f));
+          this.typeCheckPureFunction(((PureFunctionDefinition)f));
         }
       }
     }
     if (!_matched) {
       if (f instanceof EffectFullFunction) {
         _matched=true;
-        Object _switchResult_1 = null;
         boolean _matched_1 = false;
-        if (f instanceof EffectFullFunctionDefinition) {
+        if (f instanceof PrimitiveEffectFullFunction) {
           _matched_1=true;
-          this.typeCheck(((EffectFullFunctionDefinition) f));
+          this.typeCheckEffectFullPrimitive(((PrimitiveEffectFullFunction)f));
         }
         if (!_matched_1) {
-          if (f instanceof PrimitiveEffectFullFunction) {
+          if (f instanceof EffectFullFunctionDefinition) {
             _matched_1=true;
-            _switchResult_1 = this.typeCheck(((PrimitiveEffectFullFunction) f));
+            this.typeCheckEffectFullFunction(((EffectFullFunctionDefinition)f));
           }
         }
-        _switchResult = _switchResult_1;
       }
     }
-    return _switchResult;
   }
   
   @Check
-  public void typeCheck(final MainFunc m) {
+  public void typeCheckMain(final MainFunc m) {
     boolean _mainReturnType = Checks.mainReturnType(m);
     boolean _not = (!_mainReturnType);
     if (_not) {
@@ -104,14 +105,14 @@ public class FPMLValidator extends AbstractFPMLValidator {
     }
   }
   
-  public void typeCheck(final Value v) {
+  public void typeCheckValue(final Value v) {
     if (((v.getValue() instanceof DataValue) && 
       (!Checks.DataAndValue(((DataValue) v.getValue()).getValue(), ((DataValue) v.getValue()).getType().getContent())))) {
       this.error(FPMLValidator.TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.VALUE__VALUE);
     }
   }
   
-  public void typeCheck(final PureLambda l) {
+  public void typeCheckLambda(final PureLambda l) {
     boolean _pureLambda = Checks.pureLambda(l);
     boolean _not = (!_pureLambda);
     if (_not) {
@@ -119,7 +120,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
     }
   }
   
-  public void typeCheck(final PrimitivePureFunction p) {
+  public void typeCheckPurePrimitive(final PrimitivePureFunction p) {
     boolean _matched = false;
     if (p instanceof ApplyF) {
       _matched=true;
@@ -135,7 +136,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
     }
   }
   
-  public void typeCheck(final PureFunctionDefinition f) {
+  public void typeCheckPureFunction(final PureFunctionDefinition f) {
     boolean _functionReturnType = Checks.functionReturnType(f);
     boolean _not = (!_functionReturnType);
     if (_not) {
@@ -148,7 +149,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
     }
   }
   
-  public void typeCheck(final EffectFullFunctionDefinition f) {
+  public void typeCheckEffectFullFunction(final EffectFullFunctionDefinition f) {
     boolean _functionReturnTypeEffectFull = Checks.functionReturnTypeEffectFull(f);
     boolean _not = (!_functionReturnTypeEffectFull);
     if (_not) {
@@ -161,7 +162,20 @@ public class FPMLValidator extends AbstractFPMLValidator {
     }
   }
   
-  public Object typeCheck(final PrimitiveEffectFullFunction p) {
-    return null;
+  public void typeCheckEffectFullPrimitive(final PrimitiveEffectFullFunction p) {
+    boolean _matched = false;
+    if (p instanceof ApplyFIO) {
+      _matched=true;
+      EffectFullFunctionType _functionType = ((ApplyFIO)p).getFunctionType();
+      IOType _argType = _functionType.getArgType();
+      Type _type = _argType.getType();
+      EffectFullReference _value = ((ApplyFIO)p).getValue();
+      Type _effectFullReference = GetReturnType.effectFullReference(_value);
+      boolean _TypeEquals = Checks.TypeEquals(_type, _effectFullReference);
+      boolean _not = (!_TypeEquals);
+      if (_not) {
+        this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE);
+      }
+    }
   }
 }

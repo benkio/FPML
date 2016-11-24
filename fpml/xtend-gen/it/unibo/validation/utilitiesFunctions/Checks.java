@@ -3,14 +3,11 @@ package it.unibo.validation.utilitiesFunctions;
 import com.google.common.base.Objects;
 import it.unibo.fPML.AdtType;
 import it.unibo.fPML.AdtValue;
-import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataType;
-import it.unibo.fPML.DataValue;
-import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullReference;
@@ -21,19 +18,14 @@ import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
-import it.unibo.fPML.ProdType;
-import it.unibo.fPML.ProdValue;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.StringType;
-import it.unibo.fPML.SumType;
-import it.unibo.fPML.SumValue;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
-import it.unibo.fPML.ValueRef;
 import it.unibo.fPML.ValueType;
 import it.unibo.validation.utilitiesFunctions.GetArgType;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
@@ -48,68 +40,11 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 @SuppressWarnings("all")
 public class Checks {
   public static boolean DataAndValue(final AdtValue value, final AdtType type) {
-    boolean _switchResult = false;
-    boolean _matched = false;
-    if (type instanceof IntegerType) {
-      _matched=true;
-      return ((value instanceof IntegerType) || ((value instanceof ValueRef) && 
-        Checks.checkValueType(((ValueRef) value).getValue(), type)));
-    }
-    if (!_matched) {
-      if (type instanceof StringType) {
-        _matched=true;
-        return ((value instanceof StringType) || ((value instanceof ValueRef) && 
-          Checks.checkValueType(((ValueRef) value).getValue(), type)));
-      }
-    }
-    if (!_matched) {
-      if (type instanceof DataType) {
-        _matched=true;
-        return ((value instanceof DataValue) && 
-          Checks.DataAndValue(((DataValue) value).getValue(), ((DataType) type).getType().getContent()));
-      }
-    }
-    if (!_matched) {
-      if (type instanceof PureFunctionType) {
-        _matched=true;
-        if ((value instanceof PureFunctionType)) {
-          return (((((PureFunctionType) value).getValue().getFunctionBody() instanceof CompositionFunctionBodyPure) && 
-            Checks.ValueTypeEquals(((PureFunctionType) value).getValue().getArg().getType(), ((PureFunctionType)type).getArgType())) && 
-            Checks.ValueTypeEquals(GetReturnType.pureFunctionDefinition(((PureFunctionType) value).getValue()), ((PureFunctionType)type).getReturnType()));
-        } else {
-          if (((value instanceof ValueRef) && (((ValueRef) value).getValue() instanceof PureFunctionDefinition))) {
-            return (Checks.ValueTypeEquals(((PureFunctionDefinition) ((ValueRef) value).getValue()).getArg().getType(), ((PureFunctionType)type).getArgType()) && 
-              Checks.ValueTypeEquals(((PureFunctionDefinition) ((ValueRef) value).getValue()).getReturnType(), ((PureFunctionType)type).getReturnType()));
-          }
-        }
-      }
-    }
-    if (!_matched) {
-      boolean _switchResult_1 = false;
-      boolean _matched_1 = false;
-      if (value instanceof SumValue) {
-        _matched_1=true;
-        return ((type.getAdtElement2() instanceof SumType) && (Boolean.valueOf(Checks.DataAndValue(((SumValue)value).getSumAdtElement1(), type.getAdtElement1())).booleanValue() || Boolean.valueOf(Checks.DataAndValue(((SumValue)value).getSumAdtElement2(), ((SumType) type.getAdtElement2()).getAdtElement())).booleanValue()));
-      }
-      if (!_matched_1) {
-        if (value instanceof ProdValue) {
-          _matched_1=true;
-          return ((type.getAdtElement2() instanceof ProdType) && (Boolean.valueOf(Checks.DataAndValue(((ProdValue)value).getProdAdtElement1(), type.getAdtElement1())).booleanValue() && Boolean.valueOf(Checks.DataAndValue(((ProdValue)value).getProdAdtElement2(), ((ProdType) type.getAdtElement2()).getAdtElement())).booleanValue()));
-        }
-      }
-      if (!_matched_1) {
-        if (value instanceof ValueRef) {
-          _matched_1=true;
-          Value _value = ((ValueRef)value).getValue();
-          return Checks.checkValueType(_value, type);
-        }
-      }
-      if (!_matched_1) {
-        _switchResult_1 = false;
-      }
-      _switchResult = _switchResult_1;
-    }
-    return _switchResult;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
+      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
+      + "\ntype cannot be resolved"
+      + "\ntype cannot be resolved");
   }
   
   public static boolean checkValueType(final Value v, final AdtType adtt) {
@@ -197,10 +132,9 @@ public class Checks {
   }
   
   public static boolean functionArgType(final PureFunctionDefinition f) {
-    FunctionBodyPure _functionBody = f.getFunctionBody();
-    Argument _arg = f.getArg();
-    ValueType _type = _arg.getType();
-    return Checks.functionBody(_functionBody, _type);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
+      + "\ntype cannot be resolved");
   }
   
   public static boolean pureLambda(final PureLambda lambda) {
@@ -315,13 +249,12 @@ public class Checks {
   }
   
   public static boolean functionReturnTypeEffectFull(final EffectFullFunctionDefinition definition) {
-    return (Checks.TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), FPMLFactory.eINSTANCE.createUnitType()) || Objects.equal(GetReturnType.effectFullFunctionDefinition(definition), null));
+    return (Checks.TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), definition.getReturnType().getType()) || Objects.equal(GetReturnType.effectFullFunctionDefinition(definition), null));
   }
   
   public static boolean functionArgTypeEffectFull(final EffectFullFunctionDefinition definition) {
-    FunctionBodyEffectFull _functionBody = definition.getFunctionBody();
-    EffectFullArgument _arg = definition.getArg();
-    Type _type = _arg.getType();
-    return Checks.functionBodyEffectFull(_functionBody, _type);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field arg is undefined for the type EffectFullFunctionDefinition"
+      + "\ntype cannot be resolved");
   }
 }
