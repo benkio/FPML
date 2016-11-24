@@ -141,6 +141,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createMainFuncAdapter();
       }
       @Override
+      public Adapter caseAdditionalPureArgument(AdditionalPureArgument object)
+      {
+        return createAdditionalPureArgumentAdapter();
+      }
+      @Override
+      public Adapter caseAdditionalEffectFullArgument(AdditionalEffectFullArgument object)
+      {
+        return createAdditionalEffectFullArgumentAdapter();
+      }
+      @Override
       public Adapter caseFunction(Function object)
       {
         return createFunctionAdapter();
@@ -568,6 +578,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMainFuncAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.AdditionalPureArgument <em>Additional Pure Argument</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.AdditionalPureArgument
+   * @generated
+   */
+  public Adapter createAdditionalPureArgumentAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.AdditionalEffectFullArgument <em>Additional Effect Full Argument</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.AdditionalEffectFullArgument
+   * @generated
+   */
+  public Adapter createAdditionalEffectFullArgumentAdapter()
   {
     return null;
   }

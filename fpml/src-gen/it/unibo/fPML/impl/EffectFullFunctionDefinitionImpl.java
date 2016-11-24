@@ -3,26 +3,20 @@
  */
 package it.unibo.fPML.impl;
 
+import it.unibo.fPML.AdditionalEffectFullArgument;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +28,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getName <em>Name</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getArgs <em>Args</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getHigherOrderArg <em>Higher Order Arg</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.EffectFullFunctionDefinitionImpl#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
@@ -73,14 +68,24 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
+   * The cached value of the '{@link #getArg() <em>Arg</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArgs()
+   * @see #getArg()
    * @generated
    * @ordered
    */
-  protected EList<EffectFullArgument> args;
+  protected EffectFullArgument arg;
+
+  /**
+   * The cached value of the '{@link #getHigherOrderArg() <em>Higher Order Arg</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getHigherOrderArg()
+   * @generated
+   * @ordered
+   */
+  protected AdditionalEffectFullArgument higherOrderArg;
 
   /**
    * The cached value of the '{@link #getFunctionBody() <em>Function Body</em>}' containment reference.
@@ -189,13 +194,95 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EffectFullArgument> getArgs()
+  public EffectFullArgument getArg()
   {
-    if (args == null)
+    return arg;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetArg(EffectFullArgument newArg, NotificationChain msgs)
+  {
+    EffectFullArgument oldArg = arg;
+    arg = newArg;
+    if (eNotificationRequired())
     {
-      args = new EObjectContainmentEList<EffectFullArgument>(EffectFullArgument.class, this, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARGS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG, oldArg, newArg);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return args;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setArg(EffectFullArgument newArg)
+  {
+    if (newArg != arg)
+    {
+      NotificationChain msgs = null;
+      if (arg != null)
+        msgs = ((InternalEObject)arg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG, null, msgs);
+      if (newArg != null)
+        msgs = ((InternalEObject)newArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG, null, msgs);
+      msgs = basicSetArg(newArg, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG, newArg, newArg));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdditionalEffectFullArgument getHigherOrderArg()
+  {
+    return higherOrderArg;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetHigherOrderArg(AdditionalEffectFullArgument newHigherOrderArg, NotificationChain msgs)
+  {
+    AdditionalEffectFullArgument oldHigherOrderArg = higherOrderArg;
+    higherOrderArg = newHigherOrderArg;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG, oldHigherOrderArg, newHigherOrderArg);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setHigherOrderArg(AdditionalEffectFullArgument newHigherOrderArg)
+  {
+    if (newHigherOrderArg != higherOrderArg)
+    {
+      NotificationChain msgs = null;
+      if (higherOrderArg != null)
+        msgs = ((InternalEObject)higherOrderArg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG, null, msgs);
+      if (newHigherOrderArg != null)
+        msgs = ((InternalEObject)newHigherOrderArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG, null, msgs);
+      msgs = basicSetHigherOrderArg(newHigherOrderArg, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG, newHigherOrderArg, newHigherOrderArg));
   }
 
   /**
@@ -258,8 +345,10 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
     {
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE:
         return basicSetReturnType(null, msgs);
-      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARGS:
-        return ((InternalEList<?>)getArgs()).basicRemove(otherEnd, msgs);
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
+        return basicSetArg(null, msgs);
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        return basicSetHigherOrderArg(null, msgs);
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return basicSetFunctionBody(null, msgs);
     }
@@ -280,8 +369,10 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
         return getReturnType();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__NAME:
         return getName();
-      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARGS:
-        return getArgs();
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
+        return getArg();
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        return getHigherOrderArg();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return getFunctionBody();
     }
@@ -293,7 +384,6 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -305,9 +395,11 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__NAME:
         setName((String)newValue);
         return;
-      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARGS:
-        getArgs().clear();
-        getArgs().addAll((Collection<? extends EffectFullArgument>)newValue);
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
+        setArg((EffectFullArgument)newValue);
+        return;
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        setHigherOrderArg((AdditionalEffectFullArgument)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyEffectFull)newValue);
@@ -332,8 +424,11 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARGS:
-        getArgs().clear();
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
+        setArg((EffectFullArgument)null);
+        return;
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        setHigherOrderArg((AdditionalEffectFullArgument)null);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyEffectFull)null);
@@ -356,8 +451,10 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
         return returnType != null;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARGS:
-        return args != null && !args.isEmpty();
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
+        return arg != null;
+      case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        return higherOrderArg != null;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY:
         return functionBody != null;
     }

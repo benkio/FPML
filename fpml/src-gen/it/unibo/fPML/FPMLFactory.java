@@ -141,6 +141,24 @@ public interface FPMLFactory extends EFactory
   MainFunc createMainFunc();
 
   /**
+   * Returns a new object of class '<em>Additional Pure Argument</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Additional Pure Argument</em>'.
+   * @generated
+   */
+  AdditionalPureArgument createAdditionalPureArgument();
+
+  /**
+   * Returns a new object of class '<em>Additional Effect Full Argument</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Additional Effect Full Argument</em>'.
+   * @generated
+   */
+  AdditionalEffectFullArgument createAdditionalEffectFullArgument();
+
+  /**
    * Returns a new object of class '<em>Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

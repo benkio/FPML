@@ -63,13 +63,16 @@ ProdType:
     '*' adtElement=AdtType;
     
 PureFunctionDefinition:
-	'def' returnType=ValueType name=ID '(' arg=Argument (',' arg2=Argument)? ')' ':' '{' functionBody=FunctionBodyPure '}';
+	'def' returnType=ValueType name=ID '(' arg=Argument (',' higherOrderArg=AdditionalPureArgument)? ')' ':' '{' functionBody=FunctionBodyPure '}';
 
 EffectFullFunctionDefinition:
-	'def' returnType=IOType name=ID '(' arg=EffectFullArgument (',' arg2=EffectFullArgument)? ')' ':' '{'  functionBody=FunctionBodyEffectFull '}';
+	'def' returnType=IOType name=ID '(' arg=EffectFullArgument (',' higherOrderArg=AdditionalEffectFullArgument)? ')' ':' '{'  functionBody=FunctionBodyEffectFull '}';
 
 MainFunc:
 	'IO' returnType=UnitType 'main' ':' '{' functionBody=FunctionBodyEffectFull '}';
+
+AdditionalPureArgument: arg2=Argument;
+AdditionalEffectFullArgument: arg2=EffectFullArgument;
 
 Function: EffectFullFunction | PureFunction;
 
@@ -145,7 +148,7 @@ PureFunctionType:
 	{PureFunctionType} 'F' '<' argType=ValueType ',' returnType=ValueType '>';
 
 EffectFullFunctionType:
-	{EffectFullFunctionType} 'FIO' '<' argType=IOType ',' returnType=IOType '>';
+	{EffectFullFunctionType} 'FIO' '<' argType=Type ',' returnType=IOType '>';
 
 ////////////////////////////////////////////////////////////////////
 // Values

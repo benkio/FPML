@@ -9,12 +9,6 @@ package it.unibo.fPML;
  * A representation of the model object '<em><b>Pure Lambda</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link it.unibo.fPML.PureLambda#getArg <em>Arg</em>}</li>
- * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getPureLambda()
  * @model
@@ -22,30 +16,4 @@ package it.unibo.fPML;
  */
 public interface PureLambda extends PureFunctionDefinition
 {
-  /**
-   * Returns the value of the '<em><b>Arg</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Arg</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Arg</em>' containment reference.
-   * @see #setArg(Argument)
-   * @see it.unibo.fPML.FPMLPackage#getPureLambda_Arg()
-   * @model containment="true"
-   * @generated
-   */
-  Argument getArg();
-
-  /**
-   * Sets the value of the '{@link it.unibo.fPML.PureLambda#getArg <em>Arg</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Arg</em>' containment reference.
-   * @see #getArg()
-   * @generated
-   */
-  void setArg(Argument value);
-
 } // PureLambda

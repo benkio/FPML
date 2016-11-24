@@ -56,7 +56,7 @@ class GetReturnType {
 	def static ValueType pureFunctionChain(List<PureFunction> definitions, PureFunction first ,Argument argument, AdditionalPureArgument argument2) {
 		if (argument2 != null) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createPureFunctionType
-			functionType.argType = argument2.type
+			functionType.argType = argument2.arg2.type
 			functionType.returnType = pureFunctionChain(definitions, first, argument, null)
 			return functionType
 		} else { //Normal single argument function
@@ -123,11 +123,9 @@ class GetReturnType {
 	def static Type effectFullFunctionChain(List<EffectFullReference> references, EffectFullReference first, EffectFullArgument argument, AdditionalEffectFullArgument argument2) {
 		if (argument2 != null) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType
-			val ioTypeArg = FPMLFactory.eINSTANCE.createIOType
 			val ioTypeReturn = FPMLFactory.eINSTANCE.createIOType
-			ioTypeArg.type = argument2.type
 			ioTypeReturn.type = effectFullFunctionChain(references, first, argument, null)
-			functionType.argType = ioTypeArg
+			functionType.argType = argument2.arg2.type
 			functionType.returnType = ioTypeReturn
 			return functionType
 		} else { //Normal single argument function

@@ -43,7 +43,7 @@ class PureFunctionGenerator {
 		return '''
 
 		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)» ){
-			« if (pf.higherOrderArg != null) "return (" + typeGenerator.compile(pf.higherOrderArg.type) +") -> {" »
+			« if (pf.higherOrderArg != null) "return (" + typeGenerator.compile(pf.higherOrderArg.arg2) +") -> {" »
 			«compile(pf.functionBody, pf.arg.name, false)»
 			« if (pf.higherOrderArg != null) "};"»
 		}'''
@@ -74,7 +74,7 @@ class PureFunctionGenerator {
 	def String compileCall(PureFunction pf, String args, boolean outsideCalls) {
 		switch pf {
 			Value: return "Value." + (pf as Value).name + "()"
-			PureLambda: return "(" + typeGenerator.compile(pf.arg) + ") -> " + pf.functionBody.compile(args,outsideCalls)
+			PureLambda: return "(" + typeGenerator.compile(pf.higherOrderArg.arg2) + ") -> " + pf.functionBody.compile(args,outsideCalls)
 			PrimitivePureFunction: return compilePrimitiveCall(pf, args, outsideCalls)
 			PureFunctionDefinition: {
 				if (!outsideCalls)

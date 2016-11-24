@@ -793,17 +793,17 @@ rulePureFunctionDefinition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPureFunctionDefinitionAccess().getArgsArgumentParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getPureFunctionDefinitionAccess().getArgArgumentParserRuleCall_4_0());
 				}
-				lv_args_4_0=ruleArgument
+				lv_arg_4_0=ruleArgument
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPureFunctionDefinitionRule());
 					}
-					add(
+					set(
 						$current,
-						"args",
-						lv_args_4_0,
+						"arg",
+						lv_arg_4_0,
 						"it.unibo.FPML.Argument");
 					afterParserOrEnumRuleCall();
 				}
@@ -817,18 +817,18 @@ rulePureFunctionDefinition returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPureFunctionDefinitionAccess().getArgsArgumentParserRuleCall_5_1_0());
+						newCompositeNode(grammarAccess.getPureFunctionDefinitionAccess().getHigherOrderArgAdditionalPureArgumentParserRuleCall_5_1_0());
 					}
-					lv_args_6_0=ruleArgument
+					lv_higherOrderArg_6_0=ruleAdditionalPureArgument
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPureFunctionDefinitionRule());
 						}
-						add(
+						set(
 							$current,
-							"args",
-							lv_args_6_0,
-							"it.unibo.FPML.Argument");
+							"higherOrderArg",
+							lv_higherOrderArg_6_0,
+							"it.unibo.FPML.AdditionalPureArgument");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -936,17 +936,17 @@ ruleEffectFullFunctionDefinition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsEffectFullArgumentParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgEffectFullArgumentParserRuleCall_4_0());
 				}
-				lv_args_4_0=ruleEffectFullArgument
+				lv_arg_4_0=ruleEffectFullArgument
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getEffectFullFunctionDefinitionRule());
 					}
-					add(
+					set(
 						$current,
-						"args",
-						lv_args_4_0,
+						"arg",
+						lv_arg_4_0,
 						"it.unibo.FPML.EffectFullArgument");
 					afterParserOrEnumRuleCall();
 				}
@@ -960,18 +960,18 @@ ruleEffectFullFunctionDefinition returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getEffectFullFunctionDefinitionAccess().getArgsEffectFullArgumentParserRuleCall_5_1_0());
+						newCompositeNode(grammarAccess.getEffectFullFunctionDefinitionAccess().getHigherOrderArgAdditionalEffectFullArgumentParserRuleCall_5_1_0());
 					}
-					lv_args_6_0=ruleEffectFullArgument
+					lv_higherOrderArg_6_0=ruleAdditionalEffectFullArgument
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getEffectFullFunctionDefinitionRule());
 						}
-						add(
+						set(
 							$current,
-							"args",
-							lv_args_6_0,
-							"it.unibo.FPML.EffectFullArgument");
+							"higherOrderArg",
+							lv_higherOrderArg_6_0,
+							"it.unibo.FPML.AdditionalEffectFullArgument");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1089,6 +1089,78 @@ ruleMainFunc returns [EObject current=null]
 		{
 			newLeafNode(otherlv_6, grammarAccess.getMainFuncAccess().getRightCurlyBracketKeyword_6());
 		}
+	)
+;
+
+// Entry rule entryRuleAdditionalPureArgument
+entryRuleAdditionalPureArgument returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAdditionalPureArgumentRule()); }
+	iv_ruleAdditionalPureArgument=ruleAdditionalPureArgument
+	{ $current=$iv_ruleAdditionalPureArgument.current; }
+	EOF;
+
+// Rule AdditionalPureArgument
+ruleAdditionalPureArgument returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getAdditionalPureArgumentAccess().getArg2ArgumentParserRuleCall_0());
+			}
+			lv_arg2_0_0=ruleArgument
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getAdditionalPureArgumentRule());
+				}
+				set(
+					$current,
+					"arg2",
+					lv_arg2_0_0,
+					"it.unibo.FPML.Argument");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleAdditionalEffectFullArgument
+entryRuleAdditionalEffectFullArgument returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAdditionalEffectFullArgumentRule()); }
+	iv_ruleAdditionalEffectFullArgument=ruleAdditionalEffectFullArgument
+	{ $current=$iv_ruleAdditionalEffectFullArgument.current; }
+	EOF;
+
+// Rule AdditionalEffectFullArgument
+ruleAdditionalEffectFullArgument returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getAdditionalEffectFullArgumentAccess().getArg2EffectFullArgumentParserRuleCall_0());
+			}
+			lv_arg2_0_0=ruleEffectFullArgument
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getAdditionalEffectFullArgumentRule());
+				}
+				set(
+					$current,
+					"arg2",
+					lv_arg2_0_0,
+					"it.unibo.FPML.EffectFullArgument");
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 
@@ -2184,9 +2256,9 @@ ruleEffectFullFunctionType returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeIOTypeParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getEffectFullFunctionTypeAccess().getArgTypeTypeParserRuleCall_3_0());
 				}
-				lv_argType_3_0=ruleIOType
+				lv_argType_3_0=ruleType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getEffectFullFunctionTypeRule());
@@ -2195,7 +2267,7 @@ ruleEffectFullFunctionType returns [EObject current=null]
 						$current,
 						"argType",
 						lv_argType_3_0,
-						"it.unibo.FPML.IOType");
+						"it.unibo.FPML.Type");
 					afterParserOrEnumRuleCall();
 				}
 			)

@@ -3,6 +3,7 @@
  */
 package it.unibo.fPML.impl;
 
+import it.unibo.fPML.AdditionalPureArgument;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyPure;
@@ -10,20 +11,13 @@ import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureReference;
 import it.unibo.fPML.ValueType;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +29,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getArgs <em>Args</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getArg <em>Arg</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getHigherOrderArg <em>Higher Order Arg</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.PureFunctionDefinitionImpl#getFunctionBody <em>Function Body</em>}</li>
  * </ul>
  *
@@ -74,14 +69,24 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
   protected ValueType returnType;
 
   /**
-   * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
+   * The cached value of the '{@link #getArg() <em>Arg</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArgs()
+   * @see #getArg()
    * @generated
    * @ordered
    */
-  protected EList<Argument> args;
+  protected Argument arg;
+
+  /**
+   * The cached value of the '{@link #getHigherOrderArg() <em>Higher Order Arg</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getHigherOrderArg()
+   * @generated
+   * @ordered
+   */
+  protected AdditionalPureArgument higherOrderArg;
 
   /**
    * The cached value of the '{@link #getFunctionBody() <em>Function Body</em>}' containment reference.
@@ -190,13 +195,95 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Argument> getArgs()
+  public Argument getArg()
   {
-    if (args == null)
+    return arg;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetArg(Argument newArg, NotificationChain msgs)
+  {
+    Argument oldArg = arg;
+    arg = newArg;
+    if (eNotificationRequired())
     {
-      args = new EObjectContainmentEList<Argument>(Argument.class, this, FPMLPackage.PURE_FUNCTION_DEFINITION__ARGS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__ARG, oldArg, newArg);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return args;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setArg(Argument newArg)
+  {
+    if (newArg != arg)
+    {
+      NotificationChain msgs = null;
+      if (arg != null)
+        msgs = ((InternalEObject)arg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__ARG, null, msgs);
+      if (newArg != null)
+        msgs = ((InternalEObject)newArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__ARG, null, msgs);
+      msgs = basicSetArg(newArg, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__ARG, newArg, newArg));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdditionalPureArgument getHigherOrderArg()
+  {
+    return higherOrderArg;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetHigherOrderArg(AdditionalPureArgument newHigherOrderArg, NotificationChain msgs)
+  {
+    AdditionalPureArgument oldHigherOrderArg = higherOrderArg;
+    higherOrderArg = newHigherOrderArg;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG, oldHigherOrderArg, newHigherOrderArg);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setHigherOrderArg(AdditionalPureArgument newHigherOrderArg)
+  {
+    if (newHigherOrderArg != higherOrderArg)
+    {
+      NotificationChain msgs = null;
+      if (higherOrderArg != null)
+        msgs = ((InternalEObject)higherOrderArg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG, null, msgs);
+      if (newHigherOrderArg != null)
+        msgs = ((InternalEObject)newHigherOrderArg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG, null, msgs);
+      msgs = basicSetHigherOrderArg(newHigherOrderArg, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG, newHigherOrderArg, newHigherOrderArg));
   }
 
   /**
@@ -259,8 +346,10 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
     {
       case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         return basicSetReturnType(null, msgs);
-      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARGS:
-        return ((InternalEList<?>)getArgs()).basicRemove(otherEnd, msgs);
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
+        return basicSetArg(null, msgs);
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        return basicSetHigherOrderArg(null, msgs);
       case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         return basicSetFunctionBody(null, msgs);
     }
@@ -281,8 +370,10 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
         return getName();
       case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         return getReturnType();
-      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARGS:
-        return getArgs();
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
+        return getArg();
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        return getHigherOrderArg();
       case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         return getFunctionBody();
     }
@@ -294,7 +385,6 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -306,9 +396,11 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
       case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((ValueType)newValue);
         return;
-      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARGS:
-        getArgs().clear();
-        getArgs().addAll((Collection<? extends Argument>)newValue);
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
+        setArg((Argument)newValue);
+        return;
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        setHigherOrderArg((AdditionalPureArgument)newValue);
         return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyPure)newValue);
@@ -333,8 +425,11 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
       case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         setReturnType((ValueType)null);
         return;
-      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARGS:
-        getArgs().clear();
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
+        setArg((Argument)null);
+        return;
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        setHigherOrderArg((AdditionalPureArgument)null);
         return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         setFunctionBody((FunctionBodyPure)null);
@@ -357,8 +452,10 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case FPMLPackage.PURE_FUNCTION_DEFINITION__RETURN_TYPE:
         return returnType != null;
-      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARGS:
-        return args != null && !args.isEmpty();
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
+        return arg != null;
+      case FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
+        return higherOrderArg != null;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__FUNCTION_BODY:
         return functionBody != null;
     }

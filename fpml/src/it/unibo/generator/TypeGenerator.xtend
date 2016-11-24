@@ -14,6 +14,7 @@ import it.unibo.fPML.SumType
 import it.unibo.fPML.ProdType
 import it.unibo.fPML.Expression
 import it.unibo.fPML.PureFunctionType
+import it.unibo.fPML.EffectFullFunctionType
 
 class TypeGenerator {
 	
@@ -33,11 +34,12 @@ class TypeGenerator {
 		switch t {
 			UnitType: return '''Unit'''
 			ValueType: return compile(t)
+			EffectFullFunctionType: return '''F<«t.argType.compile», IO<«t.returnType.type.compile»>>'''
 		}
 	}
 	
 	def compile(IOType iot) {
-		return '''IOW<«compile(iot.type)»>'''
+		return '''«compile(iot.type)»'''
 	}
 	
 	def adtTypeCompile(AdtType adtType) {

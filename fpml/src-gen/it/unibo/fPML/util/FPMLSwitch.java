@@ -171,6 +171,20 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.ADDITIONAL_PURE_ARGUMENT:
+      {
+        AdditionalPureArgument additionalPureArgument = (AdditionalPureArgument)theEObject;
+        T result = caseAdditionalPureArgument(additionalPureArgument);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.ADDITIONAL_EFFECT_FULL_ARGUMENT:
+      {
+        AdditionalEffectFullArgument additionalEffectFullArgument = (AdditionalEffectFullArgument)theEObject;
+        T result = caseAdditionalEffectFullArgument(additionalEffectFullArgument);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.FUNCTION:
       {
         Function function = (Function)theEObject;
@@ -780,6 +794,38 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseMainFunc(MainFunc object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Additional Pure Argument</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Additional Pure Argument</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAdditionalPureArgument(AdditionalPureArgument object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Additional Effect Full Argument</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Additional Effect Full Argument</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAdditionalEffectFullArgument(AdditionalEffectFullArgument object)
   {
     return null;
   }

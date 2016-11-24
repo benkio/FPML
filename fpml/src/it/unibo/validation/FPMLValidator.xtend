@@ -89,7 +89,7 @@ class FPMLValidator extends AbstractFPMLValidator {
    def typeCheckEffectFullPrimitive(PrimitiveEffectFullFunction p){
    		switch p {
    			ApplyFIO: {
-   				if (!Checks.TypeEquals(p.functionType.argType.type, GetReturnType.effectFullReference(p.value)))
+   				if (!Checks.TypeEquals(p.functionType.argType, GetReturnType.effectFullReference(p.value)))
    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE)
    			}
    		}

@@ -5,6 +5,7 @@ import it.unibo.fPML.Argument;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
@@ -95,16 +96,31 @@ public class TypeGenerator {
         return this.compile(((ValueType)t));
       }
     }
+    if (!_matched) {
+      if (t instanceof EffectFullFunctionType) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("F<");
+        Type _argType = ((EffectFullFunctionType)t).getArgType();
+        Object _compile = this.compile(_argType);
+        _builder.append(_compile, "");
+        _builder.append(", IO<");
+        IOType _returnType = ((EffectFullFunctionType)t).getReturnType();
+        Type _type = _returnType.getType();
+        Object _compile_1 = this.compile(_type);
+        _builder.append(_compile_1, "");
+        _builder.append(">>");
+        return _builder.toString();
+      }
+    }
     return null;
   }
   
   public String compile(final IOType iot) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("IOW<");
     Type _type = iot.getType();
     Object _compile = this.compile(_type);
     _builder.append(_compile, "");
-    _builder.append(">");
     return _builder.toString();
   }
   

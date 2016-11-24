@@ -62,7 +62,7 @@ class GetArgType {
 		switch function {
 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType 
 			PrimitiveRandom: return FPMLFactory.eINSTANCE.createUnitType
-			ApplyFIO: return function.functionType.argType.type
+			ApplyFIO: return function.functionType.argType
 		}
 	}
 	

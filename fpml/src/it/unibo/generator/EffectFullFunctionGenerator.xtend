@@ -7,12 +7,14 @@ import it.unibo.validation.utilitiesFunctions.Others
 class EffectFullFunctionGenerator {
 	
 	val typeGenerator = new TypeGenerator
+	val pureFunctionGenerator = new PureFunctionGenerator
 	
 	def compile(EffectFullBlock efb) '''
 	    package «FPMLGenerator.basePackageJava»Effectfull;
 	    		
 	    import «FPMLGenerator.basePackageJava»Pure.Data.*;
 	    import fj.data.*;
+	    import fj.F;
 	    import «FPMLGenerator.basePackageJava»Pure.*;
 	    
 	    public class EffectFullFunctionDefinitions {
@@ -28,7 +30,11 @@ class EffectFullFunctionGenerator {
 				«IF pf.functionBody instanceof EmptyFunctionBody»
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
-				return IOW.lift(IOFunctions.unit(«pf.arg.name»))«(pf.functionBody as CompositionFunctionBodyEffect).compile»;
+					«IF pf.higherOrderArg == null»
+					return «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»;
+					«ELSE»
+					return ( «typeGenerator.compile(pf.higherOrderArg.arg2)» ) -> «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»;
+					«ENDIF»
 				«ENDIF»
 			}'''
 		}else {
@@ -37,24 +43,60 @@ class EffectFullFunctionGenerator {
 				«IF pf.functionBody instanceof EmptyFunctionBody»
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
-				IOW.lift(IOFunctions.ioUnit)«(pf.functionBody as CompositionFunctionBodyEffect).compile»
+				IOW.lift(IOFunctions.ioUnit)«(pf.functionBody as CompositionFunctionBodyEffect).compileIOWalkthrough»
 				«ENDIF»
 				.safe().run().on((IOException e) -> { e.printStackTrace(); return Unit.unit(); });
 			}'''
 		}
 	}
 
-	def compile(CompositionFunctionBodyEffect cfbe) '''
-		«val firstElementCompiled = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe).compile»
-		«val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | acc + x.compile + "\n\t"]»
+	//////////////////////////////////////////////////////////////////////////////////
+	// IO Functions
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	def compileIO(CompositionFunctionBodyEffect cfbe, EffectFullArgument arg) '''
+		«val firstElementCompiled = compileIO(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), arg.name)»
+		«val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | compileIO(Others.getFunctionDefinitionFromEffectFullFactor(x), acc) + "\n\t"]»
 		«cfbe.functionChain.fold(firstElementCompiled + "\n\t", f) »'''
 	
-	def compile(CompositionFunctionBodyEffectFullFactor f) {
+	
+	def compileIO(EffectFullReference e, String valueName){
+		switch e {
+			IntToString: '''IOFunctions.map(«valueName» ,Primitives::intToString)'''
+      		IntPow: '''IOFunctions.map(«valueName»,Primitives::intPow) '''
+			Plus: '''IOFunctions.map(«valueName», Primitives::plus)'''
+			Minus: '''IOFunctions.map(«valueName», Primitives::minus)'''
+			Times: '''IOFunctions.map(«valueName», Primitives::times)'''
+			Mod: '''IOFunctions.map(«valueName», Primitives::mod)'''
+			PrimitivePrint: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitivePrint)'''
+			PrimitiveRandom: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitiveRandom)'''
+	//		ApplyFIO: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::ApplyFIO(«e.value.compileIO»))'''
+			ApplyF: '''«valueName».f(«pureFunctionGenerator.compile(e.value,"", true)»)'''
+			Value: return '''IOFunctions.unit(Value.«(e as Value).name»())'''
+			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
+      		EffectFullArgument: return '''IOFunctions.unit(«(e as EffectFullArgument).name»)'''
+			EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
+		}
+	}
+
+
+
+
+	////////////////////////////////////////////////////////////////////////////////
+	// IOWalkthrough
+	///////////////////////////////////////////////////////////////////////////////
+
+	def compileIOWalkthrough(CompositionFunctionBodyEffect cfbe) '''
+		«val firstElementCompiled = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe).compileIOWalkthorugh»
+		«val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | acc + x.compileIOWalkThough + "\n\t"]»
+		«cfbe.functionChain.fold(firstElementCompiled + "\n\t", f) »'''
+	
+	def compileIOWalkThough(CompositionFunctionBodyEffectFullFactor f) {
 		val e = Others.getFunctionDefinitionFromEffectFullFactor(f)
-		return e.compile	
+		return e.compileIOWalkthorugh	
 	}	
 	
-	def compile(EffectFullReference e){
+	def compileIOWalkthorugh(EffectFullReference e){
 		switch e {
 			IntToString: '''.map(Primitives::intToString)'''
       		IntPow: '''.map(Primitives::intPow) '''
@@ -64,7 +106,8 @@ class EffectFullFunctionGenerator {
 			Mod: ".map(Primitives::mod)"
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
 			PrimitiveRandom: '''.bind(PrimitivesEffectFull::primitiveRandom)'''
-			ApplyFIO: '''.bind(PrimitivesEffectFull::ApplyFIO(«e.value.compile»))'''
+			ApplyFIO: '''.bind(PrimitivesEffectFull::ApplyFIO(«e.value.compileIOWalkthorugh»))'''
+			ApplyF: '''.map((«typeGenerator.compile(e.functionType)» f) -> f.f(«pureFunctionGenerator.compile(e.value, "", true)»))'''
 			Value: return '''.append(IOFunctions.unit(Value.«(e as Value).name»()))'''
 			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: return '''.append(IOFunctions.unit(«(e as EffectFullArgument).name»))'''
@@ -79,6 +122,7 @@ class EffectFullFunctionGenerator {
 		import fj.data.*;
 		import java.io.IOException;
 		import fj.Unit;
+		import fj.F;
 		import «FPMLGenerator.basePackageJava»Pure.*;
 		
 		public class EntryPoint {

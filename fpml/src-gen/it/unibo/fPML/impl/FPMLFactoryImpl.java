@@ -78,6 +78,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.PROD_TYPE: return createProdType();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION: return createEffectFullFunctionDefinition();
       case FPMLPackage.MAIN_FUNC: return createMainFunc();
+      case FPMLPackage.ADDITIONAL_PURE_ARGUMENT: return createAdditionalPureArgument();
+      case FPMLPackage.ADDITIONAL_EFFECT_FULL_ARGUMENT: return createAdditionalEffectFullArgument();
       case FPMLPackage.FUNCTION: return createFunction();
       case FPMLPackage.PURE_FUNCTION: return createPureFunction();
       case FPMLPackage.EFFECT_FULL_FUNCTION: return createEffectFullFunction();
@@ -267,6 +269,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     MainFuncImpl mainFunc = new MainFuncImpl();
     return mainFunc;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdditionalPureArgument createAdditionalPureArgument()
+  {
+    AdditionalPureArgumentImpl additionalPureArgument = new AdditionalPureArgumentImpl();
+    return additionalPureArgument;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdditionalEffectFullArgument createAdditionalEffectFullArgument()
+  {
+    AdditionalEffectFullArgumentImpl additionalEffectFullArgument = new AdditionalEffectFullArgumentImpl();
+    return additionalEffectFullArgument;
   }
 
   /**

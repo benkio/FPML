@@ -9,7 +9,6 @@ import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.FPMLFactory;
-import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.Minus;
@@ -24,6 +23,7 @@ import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
+import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 
 @SuppressWarnings("all")
@@ -90,9 +90,19 @@ public class GetArgType {
   }
   
   public static ValueType pureFunctionDefinition(final PureFunctionDefinition f) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
-      + "\ntype cannot be resolved");
+    boolean _matched = false;
+    if (f instanceof Value) {
+      _matched=true;
+      return null;
+    }
+    if (!_matched) {
+      if (f instanceof PureLambda) {
+        _matched=true;
+        return GetArgType.pureLambda(((PureLambda)f));
+      }
+    }
+    Argument _arg = f.getArg();
+    return _arg.getType();
   }
   
   public static ValueType pureLambda(final PureLambda l) {
@@ -153,16 +163,14 @@ public class GetArgType {
       if (function instanceof ApplyFIO) {
         _matched=true;
         EffectFullFunctionType _functionType = ((ApplyFIO)function).getFunctionType();
-        IOType _argType = _functionType.getArgType();
-        return _argType.getType();
+        return _functionType.getArgType();
       }
     }
     return null;
   }
   
   public static Type effectFullFunctionDefinition(final EffectFullFunctionDefinition definition) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field arg is undefined for the type EffectFullFunctionDefinition"
-      + "\ntype cannot be resolved");
+    EffectFullArgument _arg = definition.getArg();
+    return _arg.getType();
   }
 }

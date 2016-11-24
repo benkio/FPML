@@ -3,10 +3,14 @@ package it.unibo.generator;
 import com.google.common.base.Objects;
 import it.unibo.fPML.AdtType;
 import it.unibo.fPML.AdtValue;
+import it.unibo.fPML.Argument;
+import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
+import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
+import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.ProdType;
 import it.unibo.fPML.ProdValue;
@@ -18,9 +22,11 @@ import it.unibo.fPML.SumValue;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueRef;
+import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.PureFunctionGenerator;
 import it.unibo.generator.TypeGenerator;
+import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
@@ -256,16 +262,90 @@ public class ValueGenerator {
   }
   
   public CharSequence compile(final PureFunctionType pft) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
-      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
-      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
-      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
-      + "\nThe method or field arg is undefined for the type PureFunctionDefinition"
-      + "\ntype cannot be resolved"
-      + "\ntype cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nname cannot be resolved");
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      PureFunctionDefinition _value = pft.getValue();
+      FunctionBodyPure _functionBody = _value.getFunctionBody();
+      if ((_functionBody instanceof CompositionFunctionBodyPure)) {
+        _builder.append("new F<");
+        PureFunctionDefinition _value_1 = pft.getValue();
+        Argument _arg = _value_1.getArg();
+        ValueType _type = _arg.getType();
+        Object _compile = this.typeGenerator.compile(_type);
+        _builder.append(_compile, "");
+        _builder.append(",");
+        PureFunctionDefinition _value_2 = pft.getValue();
+        ValueType _pureFunctionDefinition = GetReturnType.pureFunctionDefinition(_value_2);
+        Object _compile_1 = this.typeGenerator.compile(_pureFunctionDefinition);
+        _builder.append(_compile_1, "");
+        _builder.append(">() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t");
+        _builder.append("@Override");
+        _builder.newLine();
+        _builder.append("\t\t\t");
+        _builder.append("public ");
+        PureFunctionDefinition _value_3 = pft.getValue();
+        ValueType _pureFunctionDefinition_1 = GetReturnType.pureFunctionDefinition(_value_3);
+        Object _compile_2 = this.typeGenerator.compile(_pureFunctionDefinition_1);
+        _builder.append(_compile_2, "\t\t\t");
+        _builder.append(" f(");
+        PureFunctionDefinition _value_4 = pft.getValue();
+        Argument _arg_1 = _value_4.getArg();
+        ValueType _type_1 = _arg_1.getType();
+        Object _compile_3 = this.typeGenerator.compile(_type_1);
+        _builder.append(_compile_3, "\t\t\t");
+        _builder.append(" ");
+        PureFunctionDefinition _value_5 = pft.getValue();
+        Argument _arg_2 = _value_5.getArg();
+        String _name = _arg_2.getName();
+        _builder.append(_name, "\t\t\t");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t\t");
+        PureFunctionDefinition _value_6 = pft.getValue();
+        FunctionBodyPure _functionBody_1 = _value_6.getFunctionBody();
+        PureFunctionDefinition _value_7 = pft.getValue();
+        Argument _arg_3 = _value_7.getArg();
+        String _name_1 = _arg_3.getName();
+        String _compile_4 = this.pureFunctionGenerator.compile(_functionBody_1, _name_1, true);
+        _builder.append(_compile_4, "\t\t\t\t");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      } else {
+        PureFunctionDefinition _value_8 = pft.getValue();
+        FunctionBodyPure _functionBody_2 = _value_8.getFunctionBody();
+        if ((_functionBody_2 instanceof EmptyFunctionBody)) {
+          _builder.append("new F<() {");
+          _builder.newLine();
+          _builder.append("\t\t\t\t");
+          _builder.append("@Override");
+          _builder.newLine();
+          _builder.append("\t\t\t\t");
+          _builder.append("public Object f(Object ");
+          PureFunctionDefinition _value_9 = pft.getValue();
+          Argument _arg_4 = _value_9.getArg();
+          String _name_2 = _arg_4.getName();
+          _builder.append(_name_2, "\t\t\t\t");
+          _builder.append(") {");
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t\t\t\t");
+          _builder.append("throw new UnsupportedOperationException(\"TODO\");");
+          _builder.newLine();
+          _builder.append("\t\t\t\t");
+          _builder.append("}");
+          _builder.newLine();
+          _builder.append("\t\t");
+          _builder.append("}");
+          _builder.newLine();
+        }
+      }
+    }
+    return _builder;
   }
 }

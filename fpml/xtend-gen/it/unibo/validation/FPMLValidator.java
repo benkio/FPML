@@ -12,7 +12,6 @@ import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
-import it.unibo.fPML.IOType;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitivePureFunction;
@@ -167,11 +166,10 @@ public class FPMLValidator extends AbstractFPMLValidator {
     if (p instanceof ApplyFIO) {
       _matched=true;
       EffectFullFunctionType _functionType = ((ApplyFIO)p).getFunctionType();
-      IOType _argType = _functionType.getArgType();
-      Type _type = _argType.getType();
+      Type _argType = _functionType.getArgType();
       EffectFullReference _value = ((ApplyFIO)p).getValue();
       Type _effectFullReference = GetReturnType.effectFullReference(_value);
-      boolean _TypeEquals = Checks.TypeEquals(_type, _effectFullReference);
+      boolean _TypeEquals = Checks.TypeEquals(_argType, _effectFullReference);
       boolean _not = (!_TypeEquals);
       if (_not) {
         this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE);

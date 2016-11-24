@@ -6,6 +6,7 @@ package it.unibo.fPML.impl;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.IOType;
+import it.unibo.fPML.Type;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -39,7 +40,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * @generated
    * @ordered
    */
-  protected IOType argType;
+  protected Type argType;
 
   /**
    * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
@@ -77,7 +78,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public IOType getArgType()
+  public Type getArgType()
   {
     return argType;
   }
@@ -87,9 +88,9 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArgType(IOType newArgType, NotificationChain msgs)
+  public NotificationChain basicSetArgType(Type newArgType, NotificationChain msgs)
   {
-    IOType oldArgType = argType;
+    Type oldArgType = argType;
     argType = newArgType;
     if (eNotificationRequired())
     {
@@ -104,7 +105,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArgType(IOType newArgType)
+  public void setArgType(Type newArgType)
   {
     if (newArgType != argType)
     {
@@ -215,7 +216,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__ARG_TYPE:
-        setArgType((IOType)newValue);
+        setArgType((Type)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE:
         setReturnType((IOType)newValue);
@@ -235,7 +236,7 @@ public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFu
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__ARG_TYPE:
-        setArgType((IOType)null);
+        setArgType((Type)null);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE:
         setReturnType((IOType)null);

@@ -78,7 +78,7 @@ class Checks {
 		if (t1 instanceof UnitType || (t instanceof UnitType && t1 == null)) return true
 		switch t {
 			EffectFullFunctionType: return 	t1 instanceof EffectFullFunctionType &&
-											TypeEquals(t.argType.type, (t1 as EffectFullFunctionType).argType.type) &&
+											TypeEquals(t.argType, (t1 as EffectFullFunctionType).argType) &&
 											TypeEquals(t.returnType.type, (t1 as EffectFullFunctionType).returnType.type)
 			UnitType: return false
 			default: return ValueTypeEquals((t as ValueType), (t1 as ValueType))

@@ -32,12 +32,12 @@ public interface EffectFullFunctionType extends Type
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arg Type</em>' containment reference.
-   * @see #setArgType(IOType)
+   * @see #setArgType(Type)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionType_ArgType()
    * @model containment="true"
    * @generated
    */
-  IOType getArgType();
+  Type getArgType();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionType#getArgType <em>Arg Type</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface EffectFullFunctionType extends Type
    * @see #getArgType()
    * @generated
    */
-  void setArgType(IOType value);
+  void setArgType(Type value);
 
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
