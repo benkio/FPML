@@ -17,7 +17,7 @@ Model:
 
 PureBlock:
 	'Pure' '{'
-		elements+=DataBlock
+		elements+=PureDataBlock
 		elements+=PureFunctionBlock
 	'}';
 
@@ -26,15 +26,15 @@ PureFunctionBlock:
 		(features+=PureFunctionDefinition)*
 	'}';
 
-DataBlock:
+PureDataBlock:
 	'Data' '{'
-		(elements+=Data)*
-		value=ValueBlock
+		(elements+=PureData)*
+		value=PureValueBlock
 	'}';
 
-ValueBlock:
+PureValueBlock:
 	'Value' '{' 
-		(elements+=Value)*
+		(elements+=PureValue)*
 	'}'
 ;
 
@@ -44,24 +44,56 @@ EffectFullBlock:
 		main=MainFunc
     '}';
 
+EffectFullDataBlock:
+		'Data' '{'
+		(elements+=EffectFullData)*
+		value=EffectFullValueBlock
+	'}';
+
+EffectFullValueBlock:
+	'Value' '{' 
+		(elements+=EffectFullValue)*
+	'}'
+;
+
+EffectFullFunctionBlock:
+	'Functions' '{'
+    	(features+=EffectFullFunctionDefinition)*
+		main=MainFunc
+    '}';
+
 /////////////////////////////////////////////////////////////////
 // Outer Block Elements
 /////////////////////////////////////////////////////////////////
 
-Data:
-    name=ID ':' content=AdtType;
+PureData:
+    name=ID ':' content=PureAdtType;
 
-Value returns PureFunctionDefinition: {Value} name=ID ':' value=Expression;
+PureValue returns PureFunctionDefinition: {PureValue} name=ID ':' value=Expression;
 
-AdtType:
+PureAdtType:
       ValueType
-    | '[' adtElement1=AdtType adtElement2=(SumType | ProdType) ']';
+    | '[' pureAdtElement1=PureAdtType pureAdtElement2=(PureSumType | PureProdType) ']';
 
-SumType:
-    '+' adtElement=AdtType;
-ProdType:
-    '*' adtElement=AdtType;
-    
+PureSumType:
+    '+' adtElement=PureAdtType;
+PureProdType:
+    '*' adtElement=PureAdtType;
+
+EffectFullData: name=ID ':' content=EffectFullAdtType; 
+
+EffectFullValue returns EffectFullFunctionDefinition: {EffectFullValue} name=ID ':' value=EffectFullExpression; 
+
+EffectFullAdtType:
+     Type
+    | '[' effectFullAdtElement1=EffectFullAdtType effectFullAdtElement2=(EffectFullSumType | EffectFullProdType) ']';
+
+EffectFullSumType:
+    '+' adtElement=EffectFullAdtType;
+EffectFullProdType:
+    '*' adtElement=EffectFullAdtType;
+
+   
 PureFunctionDefinition:
 	'def' returnType=ValueType name=ID '(' arg=Argument (',' higherOrderArg=AdditionalPureArgument)? ')' ':' '{' functionBody=FunctionBodyPure '}';
 
@@ -86,7 +118,7 @@ EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
 
 EffectFullReference: Function | EffectFullArgument;
 
-PureReference: Value | Argument;
+PureReference: PureValue | Argument;
 
 EffectFullArgument:
 	type=Type name=ID;
@@ -142,7 +174,7 @@ UnitType:
 	{UnitType} type="Unit";
 
 DataType:
-    {DataType} 'ref' type=[Data];
+    {DataType} 'ref' type=[PureData];
     
 PureFunctionType:
 	{PureFunctionType} 'F' '<' argType=ValueType ',' returnType=ValueType '>';
@@ -154,6 +186,17 @@ EffectFullFunctionType:
 // Values
 ////////////////////////////////////////////////////////////////////
 
+EffectFullExpression:
+	Expression | UnitValue | EffectFullFunctionValue;
+	
+UnitValue returns UnitType: {UnitType} '()';
+
+EffectFullFunctionValue returns EffectFullFunctionType: value=EffectFullLambda;
+
+EffectFullLambda: 
+	{EffectFullLambda} '(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull
+	| {EffectFullLambda} functionBody=FunctionBodyEffectFull;
+
 Expression:
     IntValue | StringValue | DataValue | FunctionValue;
 
@@ -163,9 +206,9 @@ StringValue returns StringType: {StringType} value=STRING;
 
 FunctionValue returns PureFunctionType: value=PureLambda;
 
-DataValue returns DataType: {DataValue} type=[Data]'(' value=AdtValue ')';
+DataValue returns DataType: {DataValue} type=[PureData]'(' value=AdtValue ')';
 
-ValueRef: {ValueRef} value=[Value];
+ValueRef: {ValueRef} value=[PureValue];
 
 PureLambda returns PureFunctionDefinition: 
 	{PureLambda} '(' arg=Argument ')' ':' functionBody=FunctionBodyPure
