@@ -116,7 +116,7 @@ EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
 // Function Body Elements
 ///////////////////////////////////////////////////////////////////
 
-EffectFullReference: EffectFullValue | EffectFullArgument | PrimitiveEffectFullValue;
+EffectFullReference: EffectFullValue | EffectFullArgument | PrimitiveEffectFullValue | Function;
 
 PureReference: PureValue | Argument;
 
