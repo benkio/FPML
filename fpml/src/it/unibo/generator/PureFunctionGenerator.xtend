@@ -99,7 +99,7 @@ class PureFunctionGenerator {
 	
 	def compile(PureReference r,  String argName, boolean outsideCalls) {
 		switch r {
-			PureFunctionDefinition: return compileCall(r ,argName, outsideCalls)
+			Value: return compileCall(r ,argName, outsideCalls)
 			Argument: return r.name
 		}
 	}

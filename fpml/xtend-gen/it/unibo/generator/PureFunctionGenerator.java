@@ -276,7 +276,7 @@ public class PureFunctionGenerator {
   
   public String compile(final PureReference r, final String argName, final boolean outsideCalls) {
     boolean _matched = false;
-    if (r instanceof PureFunctionDefinition) {
+    if (r instanceof Value) {
       _matched=true;
       return this.compileCall(((PureFunction)r), argName, outsideCalls);
     }

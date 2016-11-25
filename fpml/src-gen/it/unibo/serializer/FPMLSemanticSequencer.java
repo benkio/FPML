@@ -887,7 +887,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Function returns PureFunctionDefinition
 	 *     PureFunction returns PureFunctionDefinition
 	 *     EffectFullReference returns PureFunctionDefinition
-	 *     PureReference returns PureFunctionDefinition
 	 *
 	 * Constraint:
 	 *     (returnType=ValueType name=ID arg=Argument higherOrderArg=AdditionalPureArgument? functionBody=FunctionBodyPure)
@@ -1083,6 +1082,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Value returns Value
+	 *     PureReference returns Value
 	 *
 	 * Constraint:
 	 *     (name=ID value=Expression)

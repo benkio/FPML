@@ -746,18 +746,18 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class PureReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PureReference");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPureFunctionDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cArgumentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//PureReference:
-		//	PureFunctionDefinition | Argument;
+		//	Value | Argument;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PureFunctionDefinition | Argument
+		//Value | Argument
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//PureFunctionDefinition
-		public RuleCall getPureFunctionDefinitionParserRuleCall_0() { return cPureFunctionDefinitionParserRuleCall_0; }
+		//Value
+		public RuleCall getValueParserRuleCall_0() { return cValueParserRuleCall_0; }
 		
 		//Argument
 		public RuleCall getArgumentParserRuleCall_1() { return cArgumentParserRuleCall_1; }
@@ -2408,7 +2408,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PureReference:
-	//	PureFunctionDefinition | Argument;
+	//	Value | Argument;
 	public PureReferenceElements getPureReferenceAccess() {
 		return pPureReference;
 	}

@@ -256,9 +256,10 @@ public class GetReturnType {
   
   public static ValueType pureReference(final PureReference reference) {
     boolean _matched = false;
-    if (reference instanceof PureFunctionDefinition) {
+    if (reference instanceof Value) {
       _matched=true;
-      return GetReturnType.pureFunctionDefinition(((PureFunctionDefinition)reference));
+      Expression _value = ((Value)reference).getValue();
+      return GetReturnType.expression(_value);
     }
     if (!_matched) {
       if (reference instanceof Argument) {

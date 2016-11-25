@@ -90,7 +90,7 @@ class GetReturnType {
 	
 	def static ValueType pureReference(PureReference reference) {
 		switch reference {
-			PureFunctionDefinition: return pureFunctionDefinition(reference)
+			Value: return expression(reference.value)
 			Argument: return reference.type
 		}
 	}

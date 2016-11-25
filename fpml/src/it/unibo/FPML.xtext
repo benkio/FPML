@@ -86,7 +86,7 @@ EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
 
 EffectFullReference: Function | EffectFullArgument;
 
-PureReference: PureFunctionDefinition | Argument;
+PureReference: Value | Argument;
 
 EffectFullArgument:
 	type=Type name=ID;
