@@ -85,7 +85,7 @@ EffectFullData: name=ID ':' content=EffectFullAdtType;
 EffectFullValue returns EffectFullFunctionDefinition: {EffectFullValue} name=ID ':' value=EffectFullExpression; 
 
 EffectFullAdtType:
-     Type
+     IOType
     | '[' effectFullAdtElement1=EffectFullAdtType effectFullAdtElement2=(EffectFullSumType | EffectFullProdType) ']';
 
 EffectFullSumType:
@@ -194,7 +194,7 @@ UnitValue returns UnitType: {UnitType} '()';
 EffectFullFunctionValue returns EffectFullFunctionType: value=EffectFullLambda;
 
 EffectFullLambda: 
-	{EffectFullLambda} '(' arg=EffectFullArgument ')' ':' functionBody=FunctionBodyEffectFull
+	{EffectFullLambda} '[' arg=EffectFullArgument ']' ':' functionBody=FunctionBodyEffectFull
 	| {EffectFullLambda} functionBody=FunctionBodyEffectFull;
 
 Expression:
@@ -206,7 +206,7 @@ StringValue returns StringType: {StringType} value=STRING;
 
 FunctionValue returns PureFunctionType: value=PureLambda;
 
-DataValue returns DataType: {DataValue} type=[PureData]'(' value=AdtValue ')';
+DataValue returns DataType: {DataValue} type=[PureData]'(' value=PureAdtValue ')';
 
 ValueRef: {ValueRef} value=[PureValue];
 
@@ -214,21 +214,36 @@ PureLambda returns PureFunctionDefinition:
 	{PureLambda} '(' arg=Argument ')' ':' functionBody=FunctionBodyPure
 ;
 
-AdtValue:
+PureAdtValue:
 	  IntValue
 	| StringValue
 	| ValueRef
 	| DataValue
-	| SumValue
+	| PureSumValue
 	| FunctionValue
-	| ProdValue;
+	| PureProdValue;
 
-ProdValue: 
-	'(' prodAdtElement1=AdtValue ',' prodAdtElement2=AdtValue ')';
+PureProdValue: 
+	'(' prodAdtElement1=PureAdtValue ',' prodAdtElement2=PureAdtValue ')';
 
-SumValue:
-	'Left' '(' sumAdtElement1=AdtValue ')'
-	| 'Right' '(' sumAdtElement2=AdtValue ')';
+PureSumValue:
+	'Left' '(' sumAdtElement1=PureAdtValue ')'
+	| 'Right' '(' sumAdtElement2=PureAdtValue ')';
+
+EffectFullAdtValue:
+	 'IO' PureAdtValue 
+	 | UnitValue
+	 | EffectFullFunctionValue
+	 | EffectFullProdValue
+	 | EffectFullSumValue ;
+
+EffectFullProdValue: 
+	'(' prodAdtElement1=EffectFullAdtValue ',' prodAdtElement2=EffectFullAdtValue ')';
+
+EffectFullSumValue:
+	'Left' '(' sumAdtElement1=EffectFullAdtValue ')'
+	| 'Right' '(' sumAdtElement2=EffectFullAdtValue ')';
+    
     
 /////////////////////////////////////////////////////////////////////
 // Primitives
