@@ -116,7 +116,7 @@ EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
 // Function Body Elements
 ///////////////////////////////////////////////////////////////////
 
-EffectFullReference: Function | EffectFullArgument;
+EffectFullReference: EffectFullValue | EffectFullArgument | PrimitiveEffectFullValue;
 
 PureReference: PureValue | Argument;
 
@@ -162,7 +162,7 @@ ValueType:
 	IntegerType | StringType | DataType | PureFunctionType;
 
 Type:
-	ValueType | UnitType | EffectFullFunctionType;
+	ValueType | UnitType | EffectFullFunctionType | EffectFullDataType;
 
 IntegerType:
 	{IntegerType} type="int";
@@ -175,6 +175,9 @@ UnitType:
 
 DataType:
     {DataType} 'ref' type=[PureData];
+  
+EffectFullDataType:
+    {EffectFullDataType} 'refIO' type=[EffectFullData];  
     
 PureFunctionType:
 	{PureFunctionType} 'F' '<' argType=ValueType ',' returnType=ValueType '>';
@@ -187,7 +190,7 @@ EffectFullFunctionType:
 ////////////////////////////////////////////////////////////////////
 
 EffectFullExpression:
-	Expression | UnitValue | EffectFullFunctionValue;
+	'IO' '(' Expression ')' | UnitValue | EffectFullFunctionValue | EffectFullDataValue;
 	
 UnitValue returns UnitType: {UnitType} '()';
 
@@ -207,6 +210,8 @@ StringValue returns StringType: {StringType} value=STRING;
 FunctionValue returns PureFunctionType: value=PureLambda;
 
 DataValue returns DataType: {DataValue} type=[PureData]'(' value=PureAdtValue ')';
+
+EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[EffectFullData]'(' value=EffectFullAdtValue ')';
 
 ValueRef: {ValueRef} value=[PureValue];
 
@@ -261,10 +266,14 @@ Mod: {Mod} 'mod';
 ApplyF:{ApplyF} 'applyF' functionType=PureFunctionType value=[PureReference];
 
 PrimitiveEffectFullFunction:
-	PrimitivePrint | PrimitiveRandom | ApplyFIO;
+	PrimitivePrint | ApplyFIO;
 
 PrimitivePrint:
     {PrimitivePrint} "print";
+
+PrimitiveEffectFullValue:
+	PrimitiveRandom
+;
 
 PrimitiveRandom:
 	{PrimitiveRandom} "randomInt";
