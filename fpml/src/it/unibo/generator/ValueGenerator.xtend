@@ -8,7 +8,7 @@ class ValueGenerator {
 	val typeGenerator = new TypeGenerator
 	val pureFunctionGenerator = new PureFunctionGenerator
 	
-	def compile(Iterable<Value> values)	'''
+	def compile(Iterable<PureValue> values)	'''
 	    package «FPMLGenerator.basePackageJava»Pure.Data;
 	    
 	    import «FPMLGenerator.basePackageJava»Pure.Data.*;
@@ -26,7 +26,7 @@ class ValueGenerator {
 	    	«ENDFOR»
 	    }'''
 	
-	def compile(Value v) '''
+	def compile(PureValue v) '''
 	
 	public static «typeGenerator.compileType(v.value)» «v.name»() {
 		return «v.value.compile»;
@@ -43,17 +43,17 @@ class ValueGenerator {
 		}	
 	}
 	
-	def compileAdtValue(AdtValue v, AdtType d) {
+	def compileAdtValue(PureAdtValue v, PureAdtType d) {
 		switch v {
 			IntegerType: return v.value
 			StringType: return '''"«v.value»"'''
 			DataType: return '''new «typeGenerator.compileType(v)»(«compileAdtValue((v as DataValue).value, (v as DataValue).type.content)»)'''
-			SumValue: {
-				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, (d.adtElement2 as SumType).adtElement)»)'''
-				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as AdtType).adtElement1))»)'''
+			PureSumValue: {
+				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, (d.pureAdtElement2 as PureSumType).adtElement)»)'''
+				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as PureAdtType).pureAdtElement1))»)'''
 			}
-			ProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,d.adtElement1)»,«compileAdtValue(v.prodAdtElement2, (d.adtElement2 as ProdType).adtElement)»)'''			
-			ValueRef: if ( v.value instanceof Value ) return '''Value.«(v.value as Value).name»()''' else return '''PureFunctionDefinitions::«(v.value as PureFunctionDefinition).name»'''
+			PureProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,d.pureAdtElement1)»,«compileAdtValue(v.prodAdtElement2, (d.pureAdtElement2 as PureProdType).adtElement)»)'''			
+			PureValueRef: if ( v.value instanceof PureValue ) return '''Value.«(v.value as PureValue).name»()''' else return '''PureFunctionDefinitions::«(v.value as PureFunctionDefinition).name»'''
 			PureFunctionType: return v.compile
 		}
 	}

@@ -24,7 +24,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullFunctionDefinition extends EffectFullFunction
+public interface EffectFullFunctionDefinition extends EffectFullFunction, EffectFullReference
 {
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.

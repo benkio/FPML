@@ -15,13 +15,14 @@ package it.unibo.fPML;
  * <ul>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionType#getArgType <em>Arg Type</em>}</li>
  *   <li>{@link it.unibo.fPML.EffectFullFunctionType#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullFunctionType#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionType()
  * @model
  * @generated
  */
-public interface EffectFullFunctionType extends Type
+public interface EffectFullFunctionType extends Type, EffectFullExpression, EffectFullAdtValue
 {
   /**
    * Returns the value of the '<em><b>Arg Type</b></em>' containment reference.
@@ -74,5 +75,31 @@ public interface EffectFullFunctionType extends Type
    * @generated
    */
   void setReturnType(IOType value);
+
+  /**
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(EffectFullFunctionDefinition)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionType_Value()
+   * @model containment="true"
+   * @generated
+   */
+  EffectFullFunctionDefinition getValue();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionType#getValue <em>Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value</em>' containment reference.
+   * @see #getValue()
+   * @generated
+   */
+  void setValue(EffectFullFunctionDefinition value);
 
 } // EffectFullFunctionType

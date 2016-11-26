@@ -1,6 +1,7 @@
 package it.unibo.validation.utilitiesFunctions;
 
 import com.google.common.base.Objects;
+import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
@@ -9,8 +10,9 @@ import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
-import it.unibo.fPML.Function;
 import it.unibo.fPML.IntegerType;
+import it.unibo.fPML.PrimitiveEffectFullValue;
+import it.unibo.fPML.PrimitiveFunction;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionType;
@@ -31,7 +33,7 @@ public class Others {
   }
   
   public static EffectFullReference getFunctionDefinitionFromEffectFullFactor(final CompositionFunctionBodyEffectFullFactor cfbef) {
-    Function _primitiveElement = cfbef.getPrimitiveElement();
+    PrimitiveFunction _primitiveElement = cfbef.getPrimitiveElement();
     boolean _equals = Objects.equal(_primitiveElement, null);
     if (_equals) {
       return cfbef.getReferenceElement();
@@ -51,12 +53,22 @@ public class Others {
   }
   
   public static EffectFullReference getFirstFunctionDefinitionFromCompositionBodyEffectFull(final CompositionFunctionBodyEffect cfbe) {
-    Function _primitiveElement = cfbe.getPrimitiveElement();
+    PrimitiveFunction _primitiveElement = cfbe.getPrimitiveElement();
     boolean _equals = Objects.equal(_primitiveElement, null);
     if (_equals) {
       return cfbe.getReferenceElement();
     } else {
       return cfbe.getPrimitiveElement();
+    }
+  }
+  
+  public static EffectFullReference getValueFromApplyFIOFactor(final ApplyFIOFactor afiof) {
+    PrimitiveEffectFullValue _valuePrimitive = afiof.getValuePrimitive();
+    boolean _equals = Objects.equal(_valuePrimitive, null);
+    if (_equals) {
+      return afiof.getValueReference();
+    } else {
+      return afiof.getValuePrimitive();
     }
   }
   

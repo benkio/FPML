@@ -5,25 +5,38 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.AdditionalEffectFullArgument;
 import it.unibo.fPML.AdditionalPureArgument;
-import it.unibo.fPML.AdtType;
-import it.unibo.fPML.AdtValue;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
+import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
-import it.unibo.fPML.Data;
-import it.unibo.fPML.DataBlock;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
+import it.unibo.fPML.EffectFullAdtType;
+import it.unibo.fPML.EffectFullAdtValue;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBlock;
+import it.unibo.fPML.EffectFullData;
+import it.unibo.fPML.EffectFullDataBlock;
+import it.unibo.fPML.EffectFullDataType;
+import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EffectFullFunctionBlock;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullLambda;
+import it.unibo.fPML.EffectFullProdType;
+import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullSumType;
+import it.unibo.fPML.EffectFullSumValue;
+import it.unibo.fPML.EffectFullValue;
+import it.unibo.fPML.EffectFullValueBlock;
+import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
@@ -41,27 +54,33 @@ import it.unibo.fPML.Mod;
 import it.unibo.fPML.Model;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
+import it.unibo.fPML.PrimitiveEffectFullValue;
+import it.unibo.fPML.PrimitiveFunction;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PrimitiveRandom;
-import it.unibo.fPML.ProdType;
-import it.unibo.fPML.ProdValue;
+import it.unibo.fPML.PureAdtType;
+import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.PureBlock;
+import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureDataBlock;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.PureProdType;
+import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureReference;
+import it.unibo.fPML.PureSumType;
+import it.unibo.fPML.PureSumValue;
+import it.unibo.fPML.PureValue;
+import it.unibo.fPML.PureValueBlock;
+import it.unibo.fPML.PureValueRef;
 import it.unibo.fPML.StringType;
-import it.unibo.fPML.SumType;
-import it.unibo.fPML.SumValue;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
-import it.unibo.fPML.Value;
-import it.unibo.fPML.ValueBlock;
-import it.unibo.fPML.ValueRef;
 import it.unibo.fPML.ValueType;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -105,14 +124,14 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass dataBlockEClass = null;
+  private EClass pureDataBlockEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass valueBlockEClass = null;
+  private EClass pureValueBlockEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,7 +145,28 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass dataEClass = null;
+  private EClass effectFullDataBlockEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullValueBlockEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullFunctionBlockEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pureDataEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -140,21 +180,28 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass adtTypeEClass = null;
+  private EClass pureAdtTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass sumTypeEClass = null;
+  private EClass pureSumTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass prodTypeEClass = null;
+  private EClass pureProdTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullDataEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -162,6 +209,27 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass effectFullFunctionDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullAdtTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullSumTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullProdTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -218,6 +286,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass pureReferenceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass primitiveFunctionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -336,6 +411,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass effectFullDataTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass pureFunctionTypeEClass = null;
 
   /**
@@ -350,6 +432,20 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass effectFullExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullValueRefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass expressionEClass = null;
 
   /**
@@ -357,28 +453,49 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass valueRefEClass = null;
+  private EClass pureValueRefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass adtValueEClass = null;
+  private EClass pureAdtValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass prodValueEClass = null;
+  private EClass pureProdValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass sumValueEClass = null;
+  private EClass pureSumValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullAdtValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullProdValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullSumValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -455,6 +572,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass primitiveEffectFullValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass primitiveRandomEClass = null;
 
   /**
@@ -469,7 +593,28 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass valueEClass = null;
+  private EClass applyFIOFactorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pureValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullLambdaEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -477,6 +622,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass dataValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullDataValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -613,9 +765,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDataBlock()
+  public EClass getPureDataBlock()
   {
-    return dataBlockEClass;
+    return pureDataBlockEClass;
   }
 
   /**
@@ -623,9 +775,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDataBlock_Elements()
+  public EReference getPureDataBlock_Elements()
   {
-    return (EReference)dataBlockEClass.getEStructuralFeatures().get(0);
+    return (EReference)pureDataBlockEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -633,9 +785,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDataBlock_Value()
+  public EReference getPureDataBlock_Value()
   {
-    return (EReference)dataBlockEClass.getEStructuralFeatures().get(1);
+    return (EReference)pureDataBlockEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -643,9 +795,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getValueBlock()
+  public EClass getPureValueBlock()
   {
-    return valueBlockEClass;
+    return pureValueBlockEClass;
   }
 
   /**
@@ -653,9 +805,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getValueBlock_Elements()
+  public EReference getPureValueBlock_Elements()
   {
-    return (EReference)valueBlockEClass.getEStructuralFeatures().get(0);
+    return (EReference)pureValueBlockEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -673,7 +825,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getEffectFullBlock_Features()
+  public EReference getEffectFullBlock_Elements()
   {
     return (EReference)effectFullBlockEClass.getEStructuralFeatures().get(0);
   }
@@ -683,9 +835,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getEffectFullBlock_Main()
+  public EClass getEffectFullDataBlock()
   {
-    return (EReference)effectFullBlockEClass.getEStructuralFeatures().get(1);
+    return effectFullDataBlockEClass;
   }
 
   /**
@@ -693,9 +845,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getData()
+  public EReference getEffectFullDataBlock_Elements()
   {
-    return dataEClass;
+    return (EReference)effectFullDataBlockEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -703,9 +855,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getData_Name()
+  public EReference getEffectFullDataBlock_Value()
   {
-    return (EAttribute)dataEClass.getEStructuralFeatures().get(0);
+    return (EReference)effectFullDataBlockEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -713,9 +865,79 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getData_Content()
+  public EClass getEffectFullValueBlock()
   {
-    return (EReference)dataEClass.getEStructuralFeatures().get(1);
+    return effectFullValueBlockEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullValueBlock_Elements()
+  {
+    return (EReference)effectFullValueBlockEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullFunctionBlock()
+  {
+    return effectFullFunctionBlockEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullFunctionBlock_Features()
+  {
+    return (EReference)effectFullFunctionBlockEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullFunctionBlock_Main()
+  {
+    return (EReference)effectFullFunctionBlockEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPureData()
+  {
+    return pureDataEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPureData_Name()
+  {
+    return (EAttribute)pureDataEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPureData_Content()
+  {
+    return (EReference)pureDataEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -773,9 +995,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getAdtType()
+  public EClass getPureAdtType()
   {
-    return adtTypeEClass;
+    return pureAdtTypeEClass;
   }
 
   /**
@@ -783,9 +1005,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAdtType_AdtElement1()
+  public EReference getPureAdtType_PureAdtElement1()
   {
-    return (EReference)adtTypeEClass.getEStructuralFeatures().get(0);
+    return (EReference)pureAdtTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -793,9 +1015,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAdtType_AdtElement2()
+  public EReference getPureAdtType_PureAdtElement2()
   {
-    return (EReference)adtTypeEClass.getEStructuralFeatures().get(1);
+    return (EReference)pureAdtTypeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -803,9 +1025,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getSumType()
+  public EClass getPureSumType()
   {
-    return sumTypeEClass;
+    return pureSumTypeEClass;
   }
 
   /**
@@ -813,9 +1035,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSumType_AdtElement()
+  public EReference getPureSumType_AdtElement()
   {
-    return (EReference)sumTypeEClass.getEStructuralFeatures().get(0);
+    return (EReference)pureSumTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -823,9 +1045,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getProdType()
+  public EClass getPureProdType()
   {
-    return prodTypeEClass;
+    return pureProdTypeEClass;
   }
 
   /**
@@ -833,9 +1055,39 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getProdType_AdtElement()
+  public EReference getPureProdType_AdtElement()
   {
-    return (EReference)prodTypeEClass.getEStructuralFeatures().get(0);
+    return (EReference)pureProdTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullData()
+  {
+    return effectFullDataEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEffectFullData_Name()
+  {
+    return (EAttribute)effectFullDataEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullData_Content()
+  {
+    return (EReference)effectFullDataEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -896,6 +1148,76 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EReference getEffectFullFunctionDefinition_FunctionBody()
   {
     return (EReference)effectFullFunctionDefinitionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullAdtType()
+  {
+    return effectFullAdtTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullAdtType_EffectFullAdtElement1()
+  {
+    return (EReference)effectFullAdtTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullAdtType_EffectFullAdtElement2()
+  {
+    return (EReference)effectFullAdtTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullSumType()
+  {
+    return effectFullSumTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullSumType_AdtElement()
+  {
+    return (EReference)effectFullSumTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullProdType()
+  {
+    return effectFullProdTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullProdType_AdtElement()
+  {
+    return (EReference)effectFullProdTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1026,6 +1348,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EAttribute getPureReference_Name()
   {
     return (EAttribute)pureReferenceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPrimitiveFunction()
+  {
+    return primitiveFunctionEClass;
   }
 
   /**
@@ -1393,6 +1725,26 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getEffectFullDataType()
+  {
+    return effectFullDataTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullDataType_Type()
+  {
+    return (EReference)effectFullDataTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPureFunctionType()
   {
     return pureFunctionTypeEClass;
@@ -1463,6 +1815,46 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getEffectFullFunctionType_Value()
+  {
+    return (EReference)effectFullFunctionTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullExpression()
+  {
+    return effectFullExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullValueRef()
+  {
+    return effectFullValueRefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullValueRef_Value()
+  {
+    return (EReference)effectFullValueRefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getExpression()
   {
     return expressionEClass;
@@ -1473,9 +1865,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getValueRef()
+  public EClass getPureValueRef()
   {
-    return valueRefEClass;
+    return pureValueRefEClass;
   }
 
   /**
@@ -1483,9 +1875,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getValueRef_Value()
+  public EReference getPureValueRef_Value()
   {
-    return (EReference)valueRefEClass.getEStructuralFeatures().get(0);
+    return (EReference)pureValueRefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1493,9 +1885,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getAdtValue()
+  public EClass getPureAdtValue()
   {
-    return adtValueEClass;
+    return pureAdtValueEClass;
   }
 
   /**
@@ -1503,9 +1895,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getProdValue()
+  public EClass getPureProdValue()
   {
-    return prodValueEClass;
+    return pureProdValueEClass;
   }
 
   /**
@@ -1513,9 +1905,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getProdValue_ProdAdtElement1()
+  public EReference getPureProdValue_ProdAdtElement1()
   {
-    return (EReference)prodValueEClass.getEStructuralFeatures().get(0);
+    return (EReference)pureProdValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1523,9 +1915,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getProdValue_ProdAdtElement2()
+  public EReference getPureProdValue_ProdAdtElement2()
   {
-    return (EReference)prodValueEClass.getEStructuralFeatures().get(1);
+    return (EReference)pureProdValueEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1533,9 +1925,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getSumValue()
+  public EClass getPureSumValue()
   {
-    return sumValueEClass;
+    return pureSumValueEClass;
   }
 
   /**
@@ -1543,9 +1935,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSumValue_SumAdtElement1()
+  public EReference getPureSumValue_SumAdtElement1()
   {
-    return (EReference)sumValueEClass.getEStructuralFeatures().get(0);
+    return (EReference)pureSumValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1553,9 +1945,79 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSumValue_SumAdtElement2()
+  public EReference getPureSumValue_SumAdtElement2()
   {
-    return (EReference)sumValueEClass.getEStructuralFeatures().get(1);
+    return (EReference)pureSumValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullAdtValue()
+  {
+    return effectFullAdtValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullProdValue()
+  {
+    return effectFullProdValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullProdValue_ProdAdtElement1()
+  {
+    return (EReference)effectFullProdValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullProdValue_ProdAdtElement2()
+  {
+    return (EReference)effectFullProdValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullSumValue()
+  {
+    return effectFullSumValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullSumValue_SumAdtElement1()
+  {
+    return (EReference)effectFullSumValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullSumValue_SumAdtElement2()
+  {
+    return (EReference)effectFullSumValueEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1683,6 +2145,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPrimitiveEffectFullValue()
+  {
+    return primitiveEffectFullValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPrimitiveRandom()
   {
     return primitiveRandomEClass;
@@ -1723,9 +2195,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getValue()
+  public EClass getApplyFIOFactor()
   {
-    return valueEClass;
+    return applyFIOFactorEClass;
   }
 
   /**
@@ -1733,9 +2205,69 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getValue_Value()
+  public EReference getApplyFIOFactor_ValueReference()
   {
-    return (EReference)valueEClass.getEStructuralFeatures().get(0);
+    return (EReference)applyFIOFactorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getApplyFIOFactor_ValuePrimitive()
+  {
+    return (EReference)applyFIOFactorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPureValue()
+  {
+    return pureValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPureValue_Value()
+  {
+    return (EReference)pureValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullValue()
+  {
+    return effectFullValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullValue_Value()
+  {
+    return (EReference)effectFullValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullLambda()
+  {
+    return effectFullLambdaEClass;
   }
 
   /**
@@ -1756,6 +2288,26 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EReference getDataValue_Value()
   {
     return (EReference)dataValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullDataValue()
+  {
+    return effectFullDataValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffectFullDataValue_Value()
+  {
+    return (EReference)effectFullDataValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1807,20 +2359,30 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     pureFunctionBlockEClass = createEClass(PURE_FUNCTION_BLOCK);
     createEReference(pureFunctionBlockEClass, PURE_FUNCTION_BLOCK__FEATURES);
 
-    dataBlockEClass = createEClass(DATA_BLOCK);
-    createEReference(dataBlockEClass, DATA_BLOCK__ELEMENTS);
-    createEReference(dataBlockEClass, DATA_BLOCK__VALUE);
+    pureDataBlockEClass = createEClass(PURE_DATA_BLOCK);
+    createEReference(pureDataBlockEClass, PURE_DATA_BLOCK__ELEMENTS);
+    createEReference(pureDataBlockEClass, PURE_DATA_BLOCK__VALUE);
 
-    valueBlockEClass = createEClass(VALUE_BLOCK);
-    createEReference(valueBlockEClass, VALUE_BLOCK__ELEMENTS);
+    pureValueBlockEClass = createEClass(PURE_VALUE_BLOCK);
+    createEReference(pureValueBlockEClass, PURE_VALUE_BLOCK__ELEMENTS);
 
     effectFullBlockEClass = createEClass(EFFECT_FULL_BLOCK);
-    createEReference(effectFullBlockEClass, EFFECT_FULL_BLOCK__FEATURES);
-    createEReference(effectFullBlockEClass, EFFECT_FULL_BLOCK__MAIN);
+    createEReference(effectFullBlockEClass, EFFECT_FULL_BLOCK__ELEMENTS);
 
-    dataEClass = createEClass(DATA);
-    createEAttribute(dataEClass, DATA__NAME);
-    createEReference(dataEClass, DATA__CONTENT);
+    effectFullDataBlockEClass = createEClass(EFFECT_FULL_DATA_BLOCK);
+    createEReference(effectFullDataBlockEClass, EFFECT_FULL_DATA_BLOCK__ELEMENTS);
+    createEReference(effectFullDataBlockEClass, EFFECT_FULL_DATA_BLOCK__VALUE);
+
+    effectFullValueBlockEClass = createEClass(EFFECT_FULL_VALUE_BLOCK);
+    createEReference(effectFullValueBlockEClass, EFFECT_FULL_VALUE_BLOCK__ELEMENTS);
+
+    effectFullFunctionBlockEClass = createEClass(EFFECT_FULL_FUNCTION_BLOCK);
+    createEReference(effectFullFunctionBlockEClass, EFFECT_FULL_FUNCTION_BLOCK__FEATURES);
+    createEReference(effectFullFunctionBlockEClass, EFFECT_FULL_FUNCTION_BLOCK__MAIN);
+
+    pureDataEClass = createEClass(PURE_DATA);
+    createEAttribute(pureDataEClass, PURE_DATA__NAME);
+    createEReference(pureDataEClass, PURE_DATA__CONTENT);
 
     pureFunctionDefinitionEClass = createEClass(PURE_FUNCTION_DEFINITION);
     createEReference(pureFunctionDefinitionEClass, PURE_FUNCTION_DEFINITION__RETURN_TYPE);
@@ -1828,15 +2390,19 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     createEReference(pureFunctionDefinitionEClass, PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG);
     createEReference(pureFunctionDefinitionEClass, PURE_FUNCTION_DEFINITION__FUNCTION_BODY);
 
-    adtTypeEClass = createEClass(ADT_TYPE);
-    createEReference(adtTypeEClass, ADT_TYPE__ADT_ELEMENT1);
-    createEReference(adtTypeEClass, ADT_TYPE__ADT_ELEMENT2);
+    pureAdtTypeEClass = createEClass(PURE_ADT_TYPE);
+    createEReference(pureAdtTypeEClass, PURE_ADT_TYPE__PURE_ADT_ELEMENT1);
+    createEReference(pureAdtTypeEClass, PURE_ADT_TYPE__PURE_ADT_ELEMENT2);
 
-    sumTypeEClass = createEClass(SUM_TYPE);
-    createEReference(sumTypeEClass, SUM_TYPE__ADT_ELEMENT);
+    pureSumTypeEClass = createEClass(PURE_SUM_TYPE);
+    createEReference(pureSumTypeEClass, PURE_SUM_TYPE__ADT_ELEMENT);
 
-    prodTypeEClass = createEClass(PROD_TYPE);
-    createEReference(prodTypeEClass, PROD_TYPE__ADT_ELEMENT);
+    pureProdTypeEClass = createEClass(PURE_PROD_TYPE);
+    createEReference(pureProdTypeEClass, PURE_PROD_TYPE__ADT_ELEMENT);
+
+    effectFullDataEClass = createEClass(EFFECT_FULL_DATA);
+    createEAttribute(effectFullDataEClass, EFFECT_FULL_DATA__NAME);
+    createEReference(effectFullDataEClass, EFFECT_FULL_DATA__CONTENT);
 
     effectFullFunctionDefinitionEClass = createEClass(EFFECT_FULL_FUNCTION_DEFINITION);
     createEReference(effectFullFunctionDefinitionEClass, EFFECT_FULL_FUNCTION_DEFINITION__RETURN_TYPE);
@@ -1844,6 +2410,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     createEReference(effectFullFunctionDefinitionEClass, EFFECT_FULL_FUNCTION_DEFINITION__ARG);
     createEReference(effectFullFunctionDefinitionEClass, EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG);
     createEReference(effectFullFunctionDefinitionEClass, EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY);
+
+    effectFullAdtTypeEClass = createEClass(EFFECT_FULL_ADT_TYPE);
+    createEReference(effectFullAdtTypeEClass, EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1);
+    createEReference(effectFullAdtTypeEClass, EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2);
+
+    effectFullSumTypeEClass = createEClass(EFFECT_FULL_SUM_TYPE);
+    createEReference(effectFullSumTypeEClass, EFFECT_FULL_SUM_TYPE__ADT_ELEMENT);
+
+    effectFullProdTypeEClass = createEClass(EFFECT_FULL_PROD_TYPE);
+    createEReference(effectFullProdTypeEClass, EFFECT_FULL_PROD_TYPE__ADT_ELEMENT);
 
     mainFuncEClass = createEClass(MAIN_FUNC);
     createEReference(mainFuncEClass, MAIN_FUNC__RETURN_TYPE);
@@ -1865,6 +2441,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     pureReferenceEClass = createEClass(PURE_REFERENCE);
     createEAttribute(pureReferenceEClass, PURE_REFERENCE__NAME);
+
+    primitiveFunctionEClass = createEClass(PRIMITIVE_FUNCTION);
 
     effectFullArgumentEClass = createEClass(EFFECT_FULL_ARGUMENT);
     createEReference(effectFullArgumentEClass, EFFECT_FULL_ARGUMENT__TYPE);
@@ -1918,6 +2496,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     dataTypeEClass = createEClass(DATA_TYPE);
     createEReference(dataTypeEClass, DATA_TYPE__TYPE);
 
+    effectFullDataTypeEClass = createEClass(EFFECT_FULL_DATA_TYPE);
+    createEReference(effectFullDataTypeEClass, EFFECT_FULL_DATA_TYPE__TYPE);
+
     pureFunctionTypeEClass = createEClass(PURE_FUNCTION_TYPE);
     createEReference(pureFunctionTypeEClass, PURE_FUNCTION_TYPE__ARG_TYPE);
     createEReference(pureFunctionTypeEClass, PURE_FUNCTION_TYPE__RETURN_TYPE);
@@ -1926,21 +2507,37 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     effectFullFunctionTypeEClass = createEClass(EFFECT_FULL_FUNCTION_TYPE);
     createEReference(effectFullFunctionTypeEClass, EFFECT_FULL_FUNCTION_TYPE__ARG_TYPE);
     createEReference(effectFullFunctionTypeEClass, EFFECT_FULL_FUNCTION_TYPE__RETURN_TYPE);
+    createEReference(effectFullFunctionTypeEClass, EFFECT_FULL_FUNCTION_TYPE__VALUE);
+
+    effectFullExpressionEClass = createEClass(EFFECT_FULL_EXPRESSION);
+
+    effectFullValueRefEClass = createEClass(EFFECT_FULL_VALUE_REF);
+    createEReference(effectFullValueRefEClass, EFFECT_FULL_VALUE_REF__VALUE);
 
     expressionEClass = createEClass(EXPRESSION);
 
-    valueRefEClass = createEClass(VALUE_REF);
-    createEReference(valueRefEClass, VALUE_REF__VALUE);
+    pureValueRefEClass = createEClass(PURE_VALUE_REF);
+    createEReference(pureValueRefEClass, PURE_VALUE_REF__VALUE);
 
-    adtValueEClass = createEClass(ADT_VALUE);
+    pureAdtValueEClass = createEClass(PURE_ADT_VALUE);
 
-    prodValueEClass = createEClass(PROD_VALUE);
-    createEReference(prodValueEClass, PROD_VALUE__PROD_ADT_ELEMENT1);
-    createEReference(prodValueEClass, PROD_VALUE__PROD_ADT_ELEMENT2);
+    pureProdValueEClass = createEClass(PURE_PROD_VALUE);
+    createEReference(pureProdValueEClass, PURE_PROD_VALUE__PROD_ADT_ELEMENT1);
+    createEReference(pureProdValueEClass, PURE_PROD_VALUE__PROD_ADT_ELEMENT2);
 
-    sumValueEClass = createEClass(SUM_VALUE);
-    createEReference(sumValueEClass, SUM_VALUE__SUM_ADT_ELEMENT1);
-    createEReference(sumValueEClass, SUM_VALUE__SUM_ADT_ELEMENT2);
+    pureSumValueEClass = createEClass(PURE_SUM_VALUE);
+    createEReference(pureSumValueEClass, PURE_SUM_VALUE__SUM_ADT_ELEMENT1);
+    createEReference(pureSumValueEClass, PURE_SUM_VALUE__SUM_ADT_ELEMENT2);
+
+    effectFullAdtValueEClass = createEClass(EFFECT_FULL_ADT_VALUE);
+
+    effectFullProdValueEClass = createEClass(EFFECT_FULL_PROD_VALUE);
+    createEReference(effectFullProdValueEClass, EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT1);
+    createEReference(effectFullProdValueEClass, EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT2);
+
+    effectFullSumValueEClass = createEClass(EFFECT_FULL_SUM_VALUE);
+    createEReference(effectFullSumValueEClass, EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT1);
+    createEReference(effectFullSumValueEClass, EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT2);
 
     primitivePureFunctionEClass = createEClass(PRIMITIVE_PURE_FUNCTION);
 
@@ -1964,17 +2561,31 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     primitivePrintEClass = createEClass(PRIMITIVE_PRINT);
 
+    primitiveEffectFullValueEClass = createEClass(PRIMITIVE_EFFECT_FULL_VALUE);
+
     primitiveRandomEClass = createEClass(PRIMITIVE_RANDOM);
 
     applyFIOEClass = createEClass(APPLY_FIO);
     createEReference(applyFIOEClass, APPLY_FIO__FUNCTION_TYPE);
     createEReference(applyFIOEClass, APPLY_FIO__VALUE);
 
-    valueEClass = createEClass(VALUE);
-    createEReference(valueEClass, VALUE__VALUE);
+    applyFIOFactorEClass = createEClass(APPLY_FIO_FACTOR);
+    createEReference(applyFIOFactorEClass, APPLY_FIO_FACTOR__VALUE_REFERENCE);
+    createEReference(applyFIOFactorEClass, APPLY_FIO_FACTOR__VALUE_PRIMITIVE);
+
+    pureValueEClass = createEClass(PURE_VALUE);
+    createEReference(pureValueEClass, PURE_VALUE__VALUE);
+
+    effectFullValueEClass = createEClass(EFFECT_FULL_VALUE);
+    createEReference(effectFullValueEClass, EFFECT_FULL_VALUE__VALUE);
+
+    effectFullLambdaEClass = createEClass(EFFECT_FULL_LAMBDA);
 
     dataValueEClass = createEClass(DATA_VALUE);
     createEReference(dataValueEClass, DATA_VALUE__VALUE);
+
+    effectFullDataValueEClass = createEClass(EFFECT_FULL_DATA_VALUE);
+    createEReference(effectFullDataValueEClass, EFFECT_FULL_DATA_VALUE__VALUE);
 
     pureLambdaEClass = createEClass(PURE_LAMBDA);
   }
@@ -2009,37 +2620,52 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     // Add supertypes to classes
     pureFunctionDefinitionEClass.getESuperTypes().add(this.getPureFunction());
+    pureFunctionDefinitionEClass.getESuperTypes().add(this.getEffectFullReference());
     pureFunctionDefinitionEClass.getESuperTypes().add(this.getPureReference());
     effectFullFunctionDefinitionEClass.getESuperTypes().add(this.getEffectFullFunction());
-    functionEClass.getESuperTypes().add(this.getEffectFullReference());
+    effectFullFunctionDefinitionEClass.getESuperTypes().add(this.getEffectFullReference());
     pureFunctionEClass.getESuperTypes().add(this.getFunction());
     effectFullFunctionEClass.getESuperTypes().add(this.getFunction());
+    primitiveFunctionEClass.getESuperTypes().add(this.getEffectFullReference());
     effectFullArgumentEClass.getESuperTypes().add(this.getEffectFullReference());
     argumentEClass.getESuperTypes().add(this.getPureReference());
     emptyFunctionBodyEClass.getESuperTypes().add(this.getFunctionBodyPure());
     emptyFunctionBodyEClass.getESuperTypes().add(this.getFunctionBodyEffectFull());
     compositionFunctionBodyPureEClass.getESuperTypes().add(this.getFunctionBodyPure());
     compositionFunctionBodyEffectEClass.getESuperTypes().add(this.getFunctionBodyEffectFull());
-    valueTypeEClass.getESuperTypes().add(this.getAdtType());
+    ioTypeEClass.getESuperTypes().add(this.getEffectFullAdtType());
+    valueTypeEClass.getESuperTypes().add(this.getPureAdtType());
     valueTypeEClass.getESuperTypes().add(this.getType());
     integerTypeEClass.getESuperTypes().add(this.getValueType());
     integerTypeEClass.getESuperTypes().add(this.getExpression());
-    integerTypeEClass.getESuperTypes().add(this.getAdtValue());
+    integerTypeEClass.getESuperTypes().add(this.getPureAdtValue());
     stringTypeEClass.getESuperTypes().add(this.getValueType());
     stringTypeEClass.getESuperTypes().add(this.getExpression());
-    stringTypeEClass.getESuperTypes().add(this.getAdtValue());
+    stringTypeEClass.getESuperTypes().add(this.getPureAdtValue());
     unitTypeEClass.getESuperTypes().add(this.getType());
+    unitTypeEClass.getESuperTypes().add(this.getEffectFullExpression());
+    unitTypeEClass.getESuperTypes().add(this.getEffectFullAdtValue());
     dataTypeEClass.getESuperTypes().add(this.getValueType());
     dataTypeEClass.getESuperTypes().add(this.getExpression());
-    dataTypeEClass.getESuperTypes().add(this.getAdtValue());
+    dataTypeEClass.getESuperTypes().add(this.getPureAdtValue());
+    effectFullDataTypeEClass.getESuperTypes().add(this.getType());
+    effectFullDataTypeEClass.getESuperTypes().add(this.getEffectFullExpression());
     pureFunctionTypeEClass.getESuperTypes().add(this.getValueType());
     pureFunctionTypeEClass.getESuperTypes().add(this.getExpression());
-    pureFunctionTypeEClass.getESuperTypes().add(this.getAdtValue());
+    pureFunctionTypeEClass.getESuperTypes().add(this.getPureAdtValue());
     effectFullFunctionTypeEClass.getESuperTypes().add(this.getType());
-    valueRefEClass.getESuperTypes().add(this.getAdtValue());
-    prodValueEClass.getESuperTypes().add(this.getAdtValue());
-    sumValueEClass.getESuperTypes().add(this.getAdtValue());
+    effectFullFunctionTypeEClass.getESuperTypes().add(this.getEffectFullExpression());
+    effectFullFunctionTypeEClass.getESuperTypes().add(this.getEffectFullAdtValue());
+    effectFullValueRefEClass.getESuperTypes().add(this.getEffectFullAdtValue());
+    expressionEClass.getESuperTypes().add(this.getEffectFullExpression());
+    pureValueRefEClass.getESuperTypes().add(this.getPureAdtValue());
+    pureAdtValueEClass.getESuperTypes().add(this.getEffectFullAdtValue());
+    pureProdValueEClass.getESuperTypes().add(this.getPureAdtValue());
+    pureSumValueEClass.getESuperTypes().add(this.getPureAdtValue());
+    effectFullProdValueEClass.getESuperTypes().add(this.getEffectFullAdtValue());
+    effectFullSumValueEClass.getESuperTypes().add(this.getEffectFullAdtValue());
     primitivePureFunctionEClass.getESuperTypes().add(this.getPureFunction());
+    primitivePureFunctionEClass.getESuperTypes().add(this.getPrimitiveFunction());
     intToStringEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     intPowEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     plusEClass.getESuperTypes().add(this.getPrimitivePureFunction());
@@ -2048,11 +2674,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     modEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     applyFEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     primitiveEffectFullFunctionEClass.getESuperTypes().add(this.getEffectFullFunction());
+    primitiveEffectFullFunctionEClass.getESuperTypes().add(this.getPrimitiveFunction());
     primitivePrintEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
-    primitiveRandomEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
+    primitiveEffectFullValueEClass.getESuperTypes().add(this.getEffectFullReference());
+    primitiveRandomEClass.getESuperTypes().add(this.getPrimitiveEffectFullValue());
     applyFIOEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
-    valueEClass.getESuperTypes().add(this.getPureFunctionDefinition());
+    pureValueEClass.getESuperTypes().add(this.getPureFunctionDefinition());
+    effectFullValueEClass.getESuperTypes().add(this.getEffectFullFunctionDefinition());
+    effectFullLambdaEClass.getESuperTypes().add(this.getEffectFullFunctionDefinition());
     dataValueEClass.getESuperTypes().add(this.getDataType());
+    effectFullDataValueEClass.getESuperTypes().add(this.getEffectFullDataType());
     pureLambdaEClass.getESuperTypes().add(this.getPureFunctionDefinition());
 
     // Initialize classes and features; add operations and parameters
@@ -2065,20 +2696,30 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(pureFunctionBlockEClass, PureFunctionBlock.class, "PureFunctionBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPureFunctionBlock_Features(), this.getPureFunctionDefinition(), null, "features", null, 0, -1, PureFunctionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(dataBlockEClass, DataBlock.class, "DataBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDataBlock_Elements(), this.getData(), null, "elements", null, 0, -1, DataBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataBlock_Value(), this.getValueBlock(), null, "value", null, 0, 1, DataBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pureDataBlockEClass, PureDataBlock.class, "PureDataBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPureDataBlock_Elements(), this.getPureData(), null, "elements", null, 0, -1, PureDataBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPureDataBlock_Value(), this.getPureValueBlock(), null, "value", null, 0, 1, PureDataBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(valueBlockEClass, ValueBlock.class, "ValueBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getValueBlock_Elements(), this.getPureFunctionDefinition(), null, "elements", null, 0, -1, ValueBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pureValueBlockEClass, PureValueBlock.class, "PureValueBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPureValueBlock_Elements(), this.getPureFunctionDefinition(), null, "elements", null, 0, -1, PureValueBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(effectFullBlockEClass, EffectFullBlock.class, "EffectFullBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEffectFullBlock_Features(), this.getEffectFullFunctionDefinition(), null, "features", null, 0, -1, EffectFullBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEffectFullBlock_Main(), this.getMainFunc(), null, "main", null, 0, 1, EffectFullBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullBlock_Elements(), ecorePackage.getEObject(), null, "elements", null, 0, -1, EffectFullBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(dataEClass, Data.class, "Data", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getData_Name(), ecorePackage.getEString(), "name", null, 0, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getData_Content(), this.getAdtType(), null, "content", null, 0, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(effectFullDataBlockEClass, EffectFullDataBlock.class, "EffectFullDataBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullDataBlock_Elements(), this.getEffectFullData(), null, "elements", null, 0, -1, EffectFullDataBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullDataBlock_Value(), this.getEffectFullValueBlock(), null, "value", null, 0, 1, EffectFullDataBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullValueBlockEClass, EffectFullValueBlock.class, "EffectFullValueBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullValueBlock_Elements(), this.getEffectFullFunctionDefinition(), null, "elements", null, 0, -1, EffectFullValueBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullFunctionBlockEClass, EffectFullFunctionBlock.class, "EffectFullFunctionBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullFunctionBlock_Features(), this.getEffectFullFunctionDefinition(), null, "features", null, 0, -1, EffectFullFunctionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullFunctionBlock_Main(), this.getMainFunc(), null, "main", null, 0, 1, EffectFullFunctionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pureDataEClass, PureData.class, "PureData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPureData_Name(), ecorePackage.getEString(), "name", null, 0, 1, PureData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPureData_Content(), this.getPureAdtType(), null, "content", null, 0, 1, PureData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pureFunctionDefinitionEClass, PureFunctionDefinition.class, "PureFunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPureFunctionDefinition_ReturnType(), this.getValueType(), null, "returnType", null, 0, 1, PureFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2086,15 +2727,19 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEReference(getPureFunctionDefinition_HigherOrderArg(), this.getAdditionalPureArgument(), null, "higherOrderArg", null, 0, 1, PureFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPureFunctionDefinition_FunctionBody(), this.getFunctionBodyPure(), null, "functionBody", null, 0, 1, PureFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(adtTypeEClass, AdtType.class, "AdtType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAdtType_AdtElement1(), this.getAdtType(), null, "adtElement1", null, 0, 1, AdtType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAdtType_AdtElement2(), ecorePackage.getEObject(), null, "adtElement2", null, 0, 1, AdtType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pureAdtTypeEClass, PureAdtType.class, "PureAdtType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPureAdtType_PureAdtElement1(), this.getPureAdtType(), null, "pureAdtElement1", null, 0, 1, PureAdtType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPureAdtType_PureAdtElement2(), ecorePackage.getEObject(), null, "pureAdtElement2", null, 0, 1, PureAdtType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(sumTypeEClass, SumType.class, "SumType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSumType_AdtElement(), this.getAdtType(), null, "adtElement", null, 0, 1, SumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pureSumTypeEClass, PureSumType.class, "PureSumType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPureSumType_AdtElement(), this.getPureAdtType(), null, "adtElement", null, 0, 1, PureSumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(prodTypeEClass, ProdType.class, "ProdType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getProdType_AdtElement(), this.getAdtType(), null, "adtElement", null, 0, 1, ProdType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pureProdTypeEClass, PureProdType.class, "PureProdType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPureProdType_AdtElement(), this.getPureAdtType(), null, "adtElement", null, 0, 1, PureProdType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullDataEClass, EffectFullData.class, "EffectFullData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEffectFullData_Name(), ecorePackage.getEString(), "name", null, 0, 1, EffectFullData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullData_Content(), this.getEffectFullAdtType(), null, "content", null, 0, 1, EffectFullData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(effectFullFunctionDefinitionEClass, EffectFullFunctionDefinition.class, "EffectFullFunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEffectFullFunctionDefinition_ReturnType(), this.getIOType(), null, "returnType", null, 0, 1, EffectFullFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2102,6 +2747,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEReference(getEffectFullFunctionDefinition_Arg(), this.getEffectFullArgument(), null, "arg", null, 0, 1, EffectFullFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEffectFullFunctionDefinition_HigherOrderArg(), this.getAdditionalEffectFullArgument(), null, "higherOrderArg", null, 0, 1, EffectFullFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEffectFullFunctionDefinition_FunctionBody(), this.getFunctionBodyEffectFull(), null, "functionBody", null, 0, 1, EffectFullFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullAdtTypeEClass, EffectFullAdtType.class, "EffectFullAdtType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullAdtType_EffectFullAdtElement1(), this.getEffectFullAdtType(), null, "effectFullAdtElement1", null, 0, 1, EffectFullAdtType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullAdtType_EffectFullAdtElement2(), ecorePackage.getEObject(), null, "effectFullAdtElement2", null, 0, 1, EffectFullAdtType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullSumTypeEClass, EffectFullSumType.class, "EffectFullSumType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullSumType_AdtElement(), this.getEffectFullAdtType(), null, "adtElement", null, 0, 1, EffectFullSumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullProdTypeEClass, EffectFullProdType.class, "EffectFullProdType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullProdType_AdtElement(), this.getEffectFullAdtType(), null, "adtElement", null, 0, 1, EffectFullProdType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(mainFuncEClass, MainFunc.class, "MainFunc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMainFunc_ReturnType(), this.getUnitType(), null, "returnType", null, 0, 1, MainFunc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2123,6 +2778,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(pureReferenceEClass, PureReference.class, "PureReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPureReference_Name(), ecorePackage.getEString(), "name", null, 0, 1, PureReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(primitiveFunctionEClass, PrimitiveFunction.class, "PrimitiveFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(effectFullArgumentEClass, EffectFullArgument.class, "EffectFullArgument", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEffectFullArgument_Type(), this.getType(), null, "type", null, 0, 1, EffectFullArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2149,11 +2806,11 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(compositionFunctionBodyEffectEClass, CompositionFunctionBodyEffect.class, "CompositionFunctionBodyEffect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCompositionFunctionBodyEffect_ReferenceElement(), this.getEffectFullReference(), null, "referenceElement", null, 0, 1, CompositionFunctionBodyEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompositionFunctionBodyEffect_FunctionChain(), this.getCompositionFunctionBodyEffectFullFactor(), null, "functionChain", null, 0, -1, CompositionFunctionBodyEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCompositionFunctionBodyEffect_PrimitiveElement(), this.getFunction(), null, "primitiveElement", null, 0, 1, CompositionFunctionBodyEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompositionFunctionBodyEffect_PrimitiveElement(), this.getPrimitiveFunction(), null, "primitiveElement", null, 0, 1, CompositionFunctionBodyEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(compositionFunctionBodyEffectFullFactorEClass, CompositionFunctionBodyEffectFullFactor.class, "CompositionFunctionBodyEffectFullFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCompositionFunctionBodyEffectFullFactor_ReferenceElement(), this.getEffectFullReference(), null, "referenceElement", null, 0, 1, CompositionFunctionBodyEffectFullFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCompositionFunctionBodyEffectFullFactor_PrimitiveElement(), this.getFunction(), null, "PrimitiveElement", null, 0, 1, CompositionFunctionBodyEffectFullFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompositionFunctionBodyEffectFullFactor_PrimitiveElement(), this.getPrimitiveFunction(), null, "PrimitiveElement", null, 0, 1, CompositionFunctionBodyEffectFullFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ioTypeEClass, IOType.class, "IOType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIOType_Type(), this.getType(), null, "type", null, 0, 1, IOType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2174,7 +2831,10 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEAttribute(getUnitType_Type(), ecorePackage.getEString(), "type", null, 0, 1, UnitType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dataTypeEClass, DataType.class, "DataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDataType_Type(), this.getData(), null, "type", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataType_Type(), this.getPureData(), null, "type", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullDataTypeEClass, EffectFullDataType.class, "EffectFullDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullDataType_Type(), this.getEffectFullData(), null, "type", null, 0, 1, EffectFullDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pureFunctionTypeEClass, PureFunctionType.class, "PureFunctionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPureFunctionType_ArgType(), this.getValueType(), null, "argType", null, 0, 1, PureFunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2184,21 +2844,37 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(effectFullFunctionTypeEClass, EffectFullFunctionType.class, "EffectFullFunctionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEffectFullFunctionType_ArgType(), this.getType(), null, "argType", null, 0, 1, EffectFullFunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEffectFullFunctionType_ReturnType(), this.getIOType(), null, "returnType", null, 0, 1, EffectFullFunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullFunctionType_Value(), this.getEffectFullFunctionDefinition(), null, "value", null, 0, 1, EffectFullFunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullExpressionEClass, EffectFullExpression.class, "EffectFullExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(effectFullValueRefEClass, EffectFullValueRef.class, "EffectFullValueRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullValueRef_Value(), this.getEffectFullValue(), null, "value", null, 0, 1, EffectFullValueRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(valueRefEClass, ValueRef.class, "ValueRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getValueRef_Value(), this.getValue(), null, "value", null, 0, 1, ValueRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pureValueRefEClass, PureValueRef.class, "PureValueRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPureValueRef_Value(), this.getPureValue(), null, "value", null, 0, 1, PureValueRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(adtValueEClass, AdtValue.class, "AdtValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(pureAdtValueEClass, PureAdtValue.class, "PureAdtValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(prodValueEClass, ProdValue.class, "ProdValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getProdValue_ProdAdtElement1(), this.getAdtValue(), null, "prodAdtElement1", null, 0, 1, ProdValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getProdValue_ProdAdtElement2(), this.getAdtValue(), null, "prodAdtElement2", null, 0, 1, ProdValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pureProdValueEClass, PureProdValue.class, "PureProdValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPureProdValue_ProdAdtElement1(), this.getPureAdtValue(), null, "prodAdtElement1", null, 0, 1, PureProdValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPureProdValue_ProdAdtElement2(), this.getPureAdtValue(), null, "prodAdtElement2", null, 0, 1, PureProdValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(sumValueEClass, SumValue.class, "SumValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSumValue_SumAdtElement1(), this.getAdtValue(), null, "sumAdtElement1", null, 0, 1, SumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSumValue_SumAdtElement2(), this.getAdtValue(), null, "sumAdtElement2", null, 0, 1, SumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pureSumValueEClass, PureSumValue.class, "PureSumValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPureSumValue_SumAdtElement1(), this.getPureAdtValue(), null, "sumAdtElement1", null, 0, 1, PureSumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPureSumValue_SumAdtElement2(), this.getPureAdtValue(), null, "sumAdtElement2", null, 0, 1, PureSumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullAdtValueEClass, EffectFullAdtValue.class, "EffectFullAdtValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(effectFullProdValueEClass, EffectFullProdValue.class, "EffectFullProdValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullProdValue_ProdAdtElement1(), this.getEffectFullAdtValue(), null, "prodAdtElement1", null, 0, 1, EffectFullProdValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullProdValue_ProdAdtElement2(), this.getEffectFullAdtValue(), null, "prodAdtElement2", null, 0, 1, EffectFullProdValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullSumValueEClass, EffectFullSumValue.class, "EffectFullSumValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullSumValue_SumAdtElement1(), this.getEffectFullAdtValue(), null, "sumAdtElement1", null, 0, 1, EffectFullSumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEffectFullSumValue_SumAdtElement2(), this.getEffectFullAdtValue(), null, "sumAdtElement2", null, 0, 1, EffectFullSumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primitivePureFunctionEClass, PrimitivePureFunction.class, "PrimitivePureFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2222,17 +2898,31 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(primitivePrintEClass, PrimitivePrint.class, "PrimitivePrint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(primitiveEffectFullValueEClass, PrimitiveEffectFullValue.class, "PrimitiveEffectFullValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(primitiveRandomEClass, PrimitiveRandom.class, "PrimitiveRandom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(applyFIOEClass, ApplyFIO.class, "ApplyFIO", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getApplyFIO_FunctionType(), this.getEffectFullFunctionType(), null, "functionType", null, 0, 1, ApplyFIO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getApplyFIO_Value(), this.getEffectFullReference(), null, "value", null, 0, 1, ApplyFIO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getApplyFIO_Value(), this.getApplyFIOFactor(), null, "value", null, 0, 1, ApplyFIO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getValue_Value(), this.getExpression(), null, "value", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(applyFIOFactorEClass, ApplyFIOFactor.class, "ApplyFIOFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getApplyFIOFactor_ValueReference(), this.getEffectFullReference(), null, "valueReference", null, 0, 1, ApplyFIOFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getApplyFIOFactor_ValuePrimitive(), this.getPrimitiveEffectFullValue(), null, "valuePrimitive", null, 0, 1, ApplyFIOFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pureValueEClass, PureValue.class, "PureValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPureValue_Value(), this.getExpression(), null, "value", null, 0, 1, PureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullValueEClass, EffectFullValue.class, "EffectFullValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullValue_Value(), this.getEffectFullExpression(), null, "value", null, 0, 1, EffectFullValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullLambdaEClass, EffectFullLambda.class, "EffectFullLambda", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(dataValueEClass, DataValue.class, "DataValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDataValue_Value(), this.getAdtValue(), null, "value", null, 0, 1, DataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataValue_Value(), this.getPureAdtValue(), null, "value", null, 0, 1, DataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectFullDataValueEClass, EffectFullDataValue.class, "EffectFullDataValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffectFullDataValue_Value(), this.getEffectFullAdtValue(), null, "value", null, 0, 1, EffectFullDataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pureLambdaEClass, PureLambda.class, "PureLambda", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

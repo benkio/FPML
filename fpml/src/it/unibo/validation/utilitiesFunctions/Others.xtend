@@ -20,6 +20,11 @@ class Others {
 		else return cfbe.primitiveElement
 	}
 	
+	def static EffectFullReference getValueFromApplyFIOFactor(ApplyFIOFactor afiof) {
+		if (afiof.valuePrimitive == null) return afiof.valueReference
+		else return afiof.valuePrimitive
+	}
+	
 	def static PureFunctionType createIntIntFuntionType(){
 		val func = FPMLFactory.eINSTANCE.createPureFunctionType()
       	func.argType = FPMLFactory.eINSTANCE.createIntegerType()

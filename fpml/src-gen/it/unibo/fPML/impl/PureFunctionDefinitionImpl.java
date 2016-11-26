@@ -5,6 +5,7 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.AdditionalPureArgument;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.PureFunctionDefinition;
@@ -470,6 +471,13 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
   {
+    if (baseClass == EffectFullReference.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
     if (baseClass == PureReference.class)
     {
       switch (derivedFeatureID)
@@ -489,6 +497,13 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
   {
+    if (baseClass == EffectFullReference.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
     if (baseClass == PureReference.class)
     {
       switch (baseFeatureID)

@@ -91,14 +91,14 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createPureFunctionBlockAdapter();
       }
       @Override
-      public Adapter caseDataBlock(DataBlock object)
+      public Adapter casePureDataBlock(PureDataBlock object)
       {
-        return createDataBlockAdapter();
+        return createPureDataBlockAdapter();
       }
       @Override
-      public Adapter caseValueBlock(ValueBlock object)
+      public Adapter casePureValueBlock(PureValueBlock object)
       {
-        return createValueBlockAdapter();
+        return createPureValueBlockAdapter();
       }
       @Override
       public Adapter caseEffectFullBlock(EffectFullBlock object)
@@ -106,9 +106,24 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createEffectFullBlockAdapter();
       }
       @Override
-      public Adapter caseData(Data object)
+      public Adapter caseEffectFullDataBlock(EffectFullDataBlock object)
       {
-        return createDataAdapter();
+        return createEffectFullDataBlockAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullValueBlock(EffectFullValueBlock object)
+      {
+        return createEffectFullValueBlockAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullFunctionBlock(EffectFullFunctionBlock object)
+      {
+        return createEffectFullFunctionBlockAdapter();
+      }
+      @Override
+      public Adapter casePureData(PureData object)
+      {
+        return createPureDataAdapter();
       }
       @Override
       public Adapter casePureFunctionDefinition(PureFunctionDefinition object)
@@ -116,24 +131,44 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createPureFunctionDefinitionAdapter();
       }
       @Override
-      public Adapter caseAdtType(AdtType object)
+      public Adapter casePureAdtType(PureAdtType object)
       {
-        return createAdtTypeAdapter();
+        return createPureAdtTypeAdapter();
       }
       @Override
-      public Adapter caseSumType(SumType object)
+      public Adapter casePureSumType(PureSumType object)
       {
-        return createSumTypeAdapter();
+        return createPureSumTypeAdapter();
       }
       @Override
-      public Adapter caseProdType(ProdType object)
+      public Adapter casePureProdType(PureProdType object)
       {
-        return createProdTypeAdapter();
+        return createPureProdTypeAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullData(EffectFullData object)
+      {
+        return createEffectFullDataAdapter();
       }
       @Override
       public Adapter caseEffectFullFunctionDefinition(EffectFullFunctionDefinition object)
       {
         return createEffectFullFunctionDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullAdtType(EffectFullAdtType object)
+      {
+        return createEffectFullAdtTypeAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullSumType(EffectFullSumType object)
+      {
+        return createEffectFullSumTypeAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullProdType(EffectFullProdType object)
+      {
+        return createEffectFullProdTypeAdapter();
       }
       @Override
       public Adapter caseMainFunc(MainFunc object)
@@ -174,6 +209,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter casePureReference(PureReference object)
       {
         return createPureReferenceAdapter();
+      }
+      @Override
+      public Adapter casePrimitiveFunction(PrimitiveFunction object)
+      {
+        return createPrimitiveFunctionAdapter();
       }
       @Override
       public Adapter caseEffectFullArgument(EffectFullArgument object)
@@ -256,6 +296,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createDataTypeAdapter();
       }
       @Override
+      public Adapter caseEffectFullDataType(EffectFullDataType object)
+      {
+        return createEffectFullDataTypeAdapter();
+      }
+      @Override
       public Adapter casePureFunctionType(PureFunctionType object)
       {
         return createPureFunctionTypeAdapter();
@@ -266,29 +311,54 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createEffectFullFunctionTypeAdapter();
       }
       @Override
+      public Adapter caseEffectFullExpression(EffectFullExpression object)
+      {
+        return createEffectFullExpressionAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullValueRef(EffectFullValueRef object)
+      {
+        return createEffectFullValueRefAdapter();
+      }
+      @Override
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseValueRef(ValueRef object)
+      public Adapter casePureValueRef(PureValueRef object)
       {
-        return createValueRefAdapter();
+        return createPureValueRefAdapter();
       }
       @Override
-      public Adapter caseAdtValue(AdtValue object)
+      public Adapter casePureAdtValue(PureAdtValue object)
       {
-        return createAdtValueAdapter();
+        return createPureAdtValueAdapter();
       }
       @Override
-      public Adapter caseProdValue(ProdValue object)
+      public Adapter casePureProdValue(PureProdValue object)
       {
-        return createProdValueAdapter();
+        return createPureProdValueAdapter();
       }
       @Override
-      public Adapter caseSumValue(SumValue object)
+      public Adapter casePureSumValue(PureSumValue object)
       {
-        return createSumValueAdapter();
+        return createPureSumValueAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullAdtValue(EffectFullAdtValue object)
+      {
+        return createEffectFullAdtValueAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullProdValue(EffectFullProdValue object)
+      {
+        return createEffectFullProdValueAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullSumValue(EffectFullSumValue object)
+      {
+        return createEffectFullSumValueAdapter();
       }
       @Override
       public Adapter casePrimitivePureFunction(PrimitivePureFunction object)
@@ -341,6 +411,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createPrimitivePrintAdapter();
       }
       @Override
+      public Adapter casePrimitiveEffectFullValue(PrimitiveEffectFullValue object)
+      {
+        return createPrimitiveEffectFullValueAdapter();
+      }
+      @Override
       public Adapter casePrimitiveRandom(PrimitiveRandom object)
       {
         return createPrimitiveRandomAdapter();
@@ -351,14 +426,34 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createApplyFIOAdapter();
       }
       @Override
-      public Adapter caseValue(Value object)
+      public Adapter caseApplyFIOFactor(ApplyFIOFactor object)
       {
-        return createValueAdapter();
+        return createApplyFIOFactorAdapter();
+      }
+      @Override
+      public Adapter casePureValue(PureValue object)
+      {
+        return createPureValueAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullValue(EffectFullValue object)
+      {
+        return createEffectFullValueAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullLambda(EffectFullLambda object)
+      {
+        return createEffectFullLambdaAdapter();
       }
       @Override
       public Adapter caseDataValue(DataValue object)
       {
         return createDataValueAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullDataValue(EffectFullDataValue object)
+      {
+        return createEffectFullDataValueAdapter();
       }
       @Override
       public Adapter casePureLambda(PureLambda object)
@@ -433,31 +528,31 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.DataBlock <em>Data Block</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureDataBlock <em>Pure Data Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.DataBlock
+   * @see it.unibo.fPML.PureDataBlock
    * @generated
    */
-  public Adapter createDataBlockAdapter()
+  public Adapter createPureDataBlockAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ValueBlock <em>Value Block</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureValueBlock <em>Pure Value Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.ValueBlock
+   * @see it.unibo.fPML.PureValueBlock
    * @generated
    */
-  public Adapter createValueBlockAdapter()
+  public Adapter createPureValueBlockAdapter()
   {
     return null;
   }
@@ -478,16 +573,61 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Data <em>Data</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullDataBlock <em>Effect Full Data Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.Data
+   * @see it.unibo.fPML.EffectFullDataBlock
    * @generated
    */
-  public Adapter createDataAdapter()
+  public Adapter createEffectFullDataBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullValueBlock <em>Effect Full Value Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullValueBlock
+   * @generated
+   */
+  public Adapter createEffectFullValueBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullFunctionBlock <em>Effect Full Function Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullFunctionBlock
+   * @generated
+   */
+  public Adapter createEffectFullFunctionBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureData <em>Pure Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PureData
+   * @generated
+   */
+  public Adapter createPureDataAdapter()
   {
     return null;
   }
@@ -508,46 +648,61 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.AdtType <em>Adt Type</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureAdtType <em>Pure Adt Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.AdtType
+   * @see it.unibo.fPML.PureAdtType
    * @generated
    */
-  public Adapter createAdtTypeAdapter()
+  public Adapter createPureAdtTypeAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.SumType <em>Sum Type</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureSumType <em>Pure Sum Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.SumType
+   * @see it.unibo.fPML.PureSumType
    * @generated
    */
-  public Adapter createSumTypeAdapter()
+  public Adapter createPureSumTypeAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ProdType <em>Prod Type</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureProdType <em>Pure Prod Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.ProdType
+   * @see it.unibo.fPML.PureProdType
    * @generated
    */
-  public Adapter createProdTypeAdapter()
+  public Adapter createPureProdTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullData <em>Effect Full Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullData
+   * @generated
+   */
+  public Adapter createEffectFullDataAdapter()
   {
     return null;
   }
@@ -563,6 +718,51 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEffectFullFunctionDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullAdtType <em>Effect Full Adt Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullAdtType
+   * @generated
+   */
+  public Adapter createEffectFullAdtTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullSumType <em>Effect Full Sum Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullSumType
+   * @generated
+   */
+  public Adapter createEffectFullSumTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullProdType <em>Effect Full Prod Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullProdType
+   * @generated
+   */
+  public Adapter createEffectFullProdTypeAdapter()
   {
     return null;
   }
@@ -683,6 +883,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPureReferenceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitiveFunction <em>Primitive Function</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PrimitiveFunction
+   * @generated
+   */
+  public Adapter createPrimitiveFunctionAdapter()
   {
     return null;
   }
@@ -928,6 +1143,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullDataType <em>Effect Full Data Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullDataType
+   * @generated
+   */
+  public Adapter createEffectFullDataTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureFunctionType <em>Pure Function Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -958,6 +1188,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullExpression <em>Effect Full Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullExpression
+   * @generated
+   */
+  public Adapter createEffectFullExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullValueRef <em>Effect Full Value Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullValueRef
+   * @generated
+   */
+  public Adapter createEffectFullValueRefAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link it.unibo.fPML.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -973,61 +1233,106 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ValueRef <em>Value Ref</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureValueRef <em>Pure Value Ref</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.ValueRef
+   * @see it.unibo.fPML.PureValueRef
    * @generated
    */
-  public Adapter createValueRefAdapter()
+  public Adapter createPureValueRefAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.AdtValue <em>Adt Value</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureAdtValue <em>Pure Adt Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.AdtValue
+   * @see it.unibo.fPML.PureAdtValue
    * @generated
    */
-  public Adapter createAdtValueAdapter()
+  public Adapter createPureAdtValueAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ProdValue <em>Prod Value</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureProdValue <em>Pure Prod Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.ProdValue
+   * @see it.unibo.fPML.PureProdValue
    * @generated
    */
-  public Adapter createProdValueAdapter()
+  public Adapter createPureProdValueAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.SumValue <em>Sum Value</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureSumValue <em>Pure Sum Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.SumValue
+   * @see it.unibo.fPML.PureSumValue
    * @generated
    */
-  public Adapter createSumValueAdapter()
+  public Adapter createPureSumValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullAdtValue <em>Effect Full Adt Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullAdtValue
+   * @generated
+   */
+  public Adapter createEffectFullAdtValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullProdValue <em>Effect Full Prod Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullProdValue
+   * @generated
+   */
+  public Adapter createEffectFullProdValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullSumValue <em>Effect Full Sum Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullSumValue
+   * @generated
+   */
+  public Adapter createEffectFullSumValueAdapter()
   {
     return null;
   }
@@ -1183,6 +1488,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitiveEffectFullValue <em>Primitive Effect Full Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PrimitiveEffectFullValue
+   * @generated
+   */
+  public Adapter createPrimitiveEffectFullValueAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitiveRandom <em>Primitive Random</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1213,16 +1533,61 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Value <em>Value</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ApplyFIOFactor <em>Apply FIO Factor</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.Value
+   * @see it.unibo.fPML.ApplyFIOFactor
    * @generated
    */
-  public Adapter createValueAdapter()
+  public Adapter createApplyFIOFactorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureValue <em>Pure Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PureValue
+   * @generated
+   */
+  public Adapter createPureValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullValue <em>Effect Full Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullValue
+   * @generated
+   */
+  public Adapter createEffectFullValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullLambda <em>Effect Full Lambda</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullLambda
+   * @generated
+   */
+  public Adapter createEffectFullLambdaAdapter()
   {
     return null;
   }
@@ -1238,6 +1603,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDataValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullDataValue <em>Effect Full Data Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullDataValue
+   * @generated
+   */
+  public Adapter createEffectFullDataValueAdapter()
   {
     return null;
   }

@@ -4,21 +4,18 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.EffectFullBlock;
-import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.MainFunc;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -32,8 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.EffectFullBlockImpl#getFeatures <em>Features</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.EffectFullBlockImpl#getMain <em>Main</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullBlockImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,24 +37,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements EffectFullBlock
 {
   /**
-   * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
+   * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFeatures()
+   * @see #getElements()
    * @generated
    * @ordered
    */
-  protected EList<EffectFullFunctionDefinition> features;
-
-  /**
-   * The cached value of the '{@link #getMain() <em>Main</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMain()
-   * @generated
-   * @ordered
-   */
-  protected MainFunc main;
+  protected EList<EObject> elements;
 
   /**
    * <!-- begin-user-doc -->
@@ -86,61 +72,13 @@ public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EffectFullFunctionDefinition> getFeatures()
+  public EList<EObject> getElements()
   {
-    if (features == null)
+    if (elements == null)
     {
-      features = new EObjectContainmentEList<EffectFullFunctionDefinition>(EffectFullFunctionDefinition.class, this, FPMLPackage.EFFECT_FULL_BLOCK__FEATURES);
+      elements = new EObjectContainmentEList<EObject>(EObject.class, this, FPMLPackage.EFFECT_FULL_BLOCK__ELEMENTS);
     }
-    return features;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public MainFunc getMain()
-  {
-    return main;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetMain(MainFunc newMain, NotificationChain msgs)
-  {
-    MainFunc oldMain = main;
-    main = newMain;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_BLOCK__MAIN, oldMain, newMain);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMain(MainFunc newMain)
-  {
-    if (newMain != main)
-    {
-      NotificationChain msgs = null;
-      if (main != null)
-        msgs = ((InternalEObject)main).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_BLOCK__MAIN, null, msgs);
-      if (newMain != null)
-        msgs = ((InternalEObject)newMain).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_BLOCK__MAIN, null, msgs);
-      msgs = basicSetMain(newMain, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_BLOCK__MAIN, newMain, newMain));
+    return elements;
   }
 
   /**
@@ -153,10 +91,8 @@ public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_BLOCK__FEATURES:
-        return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
-      case FPMLPackage.EFFECT_FULL_BLOCK__MAIN:
-        return basicSetMain(null, msgs);
+      case FPMLPackage.EFFECT_FULL_BLOCK__ELEMENTS:
+        return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -171,10 +107,8 @@ public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_BLOCK__FEATURES:
-        return getFeatures();
-      case FPMLPackage.EFFECT_FULL_BLOCK__MAIN:
-        return getMain();
+      case FPMLPackage.EFFECT_FULL_BLOCK__ELEMENTS:
+        return getElements();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -190,12 +124,9 @@ public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_BLOCK__FEATURES:
-        getFeatures().clear();
-        getFeatures().addAll((Collection<? extends EffectFullFunctionDefinition>)newValue);
-        return;
-      case FPMLPackage.EFFECT_FULL_BLOCK__MAIN:
-        setMain((MainFunc)newValue);
+      case FPMLPackage.EFFECT_FULL_BLOCK__ELEMENTS:
+        getElements().clear();
+        getElements().addAll((Collection<? extends EObject>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -211,11 +142,8 @@ public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_BLOCK__FEATURES:
-        getFeatures().clear();
-        return;
-      case FPMLPackage.EFFECT_FULL_BLOCK__MAIN:
-        setMain((MainFunc)null);
+      case FPMLPackage.EFFECT_FULL_BLOCK__ELEMENTS:
+        getElements().clear();
         return;
     }
     super.eUnset(featureID);
@@ -231,10 +159,8 @@ public class EffectFullBlockImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_BLOCK__FEATURES:
-        return features != null && !features.isEmpty();
-      case FPMLPackage.EFFECT_FULL_BLOCK__MAIN:
-        return main != null;
+      case FPMLPackage.EFFECT_FULL_BLOCK__ELEMENTS:
+        return elements != null && !elements.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -3,7 +3,6 @@
  */
 package it.unibo.fPML;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface IOType extends EObject
+public interface IOType extends EffectFullAdtType
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

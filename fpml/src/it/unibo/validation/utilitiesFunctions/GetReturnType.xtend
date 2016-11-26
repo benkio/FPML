@@ -6,6 +6,7 @@ import it.unibo.fPML.EffectFullArgument
 import org.eclipse.xtext.EcoreUtil2
 import java.util.List
 import org.eclipse.emf.ecore.EObject
+import it.unibo.fPML.EffectFullExpression
 
 class GetReturnType {
 	
@@ -25,7 +26,7 @@ class GetReturnType {
 	
 	def static ValueType pureFunctionDefinition(PureFunctionDefinition f){
 		switch f {
-			Value: expression(f.value)
+			PureValue: expression(f.value)
 			PureLambda: functionBodyPure(f.functionBody, f.arg, f.higherOrderArg, f.returnType)
 			PureFunctionDefinition: functionBodyPure(f.functionBody, f.arg, f.higherOrderArg, f.returnType)
 		}
@@ -90,7 +91,7 @@ class GetReturnType {
 	
 	def static ValueType pureReference(PureReference reference) {
 		switch reference {
-			Value: return expression(reference.value)
+			PureValue: return expression(reference.value)
 			Argument: return reference.type
 		}
 	}
@@ -140,8 +141,33 @@ class GetReturnType {
 	
 	def static Type effectFullReference(EffectFullReference r) {
 		switch r {
-			Function: function(r)
+			PrimitiveEffectFullValue: primitiveEffectFullValue(r)
+			PrimitiveFunction: pritiveFunction(r)
+			EffectFullValue: effectFullExpression(r.value)
+			PureValue: expression(r.value)
 			EffectFullArgument: r.type
+		}
+	}
+	
+	def static primitiveEffectFullValue(PrimitiveEffectFullValue value) {
+		switch value {
+			PrimitiveRandom: return FPMLFactory.eINSTANCE.createIntegerType
+		}
+	}
+	
+	def static Type effectFullExpression(EffectFullExpression expression) {
+		switch expression {
+			Expression: expression(expression)
+			UnitType: expression
+			EffectFullFunctionType: expression 
+			EffectFullDataValue: expression
+		}
+	}
+	
+	def static Type pritiveFunction(Object function) {
+		switch function {
+			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)
+			PrimitivePureFunction: primitivePureFunction(function)
 		}
 	}
 	

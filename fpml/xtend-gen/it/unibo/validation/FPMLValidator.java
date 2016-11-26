@@ -5,11 +5,18 @@ package it.unibo.validation;
 
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
+import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.DataValue;
+import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullValue;
+import it.unibo.fPML.Expression;
+import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.MainFunc;
@@ -20,12 +27,13 @@ import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureReference;
+import it.unibo.fPML.PureValue;
 import it.unibo.fPML.Type;
-import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
 import it.unibo.validation.utilitiesFunctions.Checks;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
+import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.xtext.validation.Check;
 
 /**
@@ -49,9 +57,9 @@ public class FPMLValidator extends AbstractFPMLValidator {
     if (f instanceof PureFunction) {
       _matched=true;
       boolean _matched_1 = false;
-      if (f instanceof Value) {
+      if (f instanceof PureValue) {
         _matched_1=true;
-        this.typeCheckValue(((Value)f));
+        this.typeCheckPureValue(((PureValue)f));
       }
       if (!_matched_1) {
         if (f instanceof PureLambda) {
@@ -81,6 +89,18 @@ public class FPMLValidator extends AbstractFPMLValidator {
           this.typeCheckEffectFullPrimitive(((PrimitiveEffectFullFunction)f));
         }
         if (!_matched_1) {
+          if (f instanceof EffectFullLambda) {
+            _matched_1=true;
+            this.typeCheckEffectFullLambda(((EffectFullLambda)f));
+          }
+        }
+        if (!_matched_1) {
+          if (f instanceof EffectFullValue) {
+            _matched_1=true;
+            this.typeCheckEffectFullValue(((EffectFullValue)f));
+          }
+        }
+        if (!_matched_1) {
           if (f instanceof EffectFullFunctionDefinition) {
             _matched_1=true;
             this.typeCheckEffectFullFunction(((EffectFullFunctionDefinition)f));
@@ -104,10 +124,33 @@ public class FPMLValidator extends AbstractFPMLValidator {
     }
   }
   
-  public void typeCheckValue(final Value v) {
+  public void typeCheckEffectFullLambda(final EffectFullLambda lambda) {
+    boolean _effectFullLambda = Checks.effectFullLambda(lambda);
+    boolean _not = (!_effectFullLambda);
+    if (_not) {
+      this.error(FPMLValidator.TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY);
+    }
+  }
+  
+  public void typeCheckEffectFullValue(final EffectFullValue value) {
+    EffectFullExpression _value = value.getValue();
+    if ((_value instanceof Expression)) {
+      final PureValue pureValue = FPMLFactory.eINSTANCE.createPureValue();
+      EffectFullExpression _value_1 = value.getValue();
+      pureValue.setValue(((Expression) _value_1));
+      this.typeCheckPureValue(pureValue);
+    } else {
+      if (((value.getValue() instanceof EffectFullDataValue) && 
+        (!Checks.effectFullDataAndValue(((EffectFullDataValue) value.getValue()).getValue(), ((EffectFullDataValue) value.getValue()).getType().getContent())))) {
+        this.error(FPMLValidator.TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.EFFECT_FULL_DATA_VALUE__VALUE);
+      }
+    }
+  }
+  
+  public void typeCheckPureValue(final PureValue v) {
     if (((v.getValue() instanceof DataValue) && 
       (!Checks.DataAndValue(((DataValue) v.getValue()).getValue(), ((DataValue) v.getValue()).getType().getContent())))) {
-      this.error(FPMLValidator.TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.VALUE__VALUE);
+      this.error(FPMLValidator.TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.PURE_VALUE__VALUE);
     }
   }
   
@@ -167,8 +210,9 @@ public class FPMLValidator extends AbstractFPMLValidator {
       _matched=true;
       EffectFullFunctionType _functionType = ((ApplyFIO)p).getFunctionType();
       Type _argType = _functionType.getArgType();
-      EffectFullReference _value = ((ApplyFIO)p).getValue();
-      Type _effectFullReference = GetReturnType.effectFullReference(_value);
+      ApplyFIOFactor _value = ((ApplyFIO)p).getValue();
+      EffectFullReference _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
+      Type _effectFullReference = GetReturnType.effectFullReference(_valueFromApplyFIOFactor);
       boolean _TypeEquals = Checks.TypeEquals(_argType, _effectFullReference);
       boolean _not = (!_TypeEquals);
       if (_not) {

@@ -22,7 +22,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PureFunctionType extends ValueType, Expression, AdtValue
+public interface PureFunctionType extends ValueType, Expression, PureAdtValue
 {
   /**
    * Returns the value of the '<em><b>Arg Type</b></em>' containment reference.

@@ -1,18 +1,18 @@
 package it.unibo.generator;
 
-import it.unibo.fPML.AdtType;
 import it.unibo.fPML.Argument;
-import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
-import it.unibo.fPML.ProdType;
+import it.unibo.fPML.PureAdtType;
+import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureProdType;
+import it.unibo.fPML.PureSumType;
 import it.unibo.fPML.StringType;
-import it.unibo.fPML.SumType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
@@ -26,7 +26,7 @@ public class TypeGenerator {
     boolean _matched = false;
     if (vt instanceof DataType) {
       _matched=true;
-      Data _type = ((DataType)vt).getType();
+      PureData _type = ((DataType)vt).getType();
       return _type.getName();
     }
     if (!_matched) {
@@ -124,28 +124,28 @@ public class TypeGenerator {
     return _builder.toString();
   }
   
-  public Object adtTypeCompile(final AdtType adtType) {
+  public Object pureAdtTypeCompile(final PureAdtType adtType) {
     boolean _matched = false;
     if (adtType instanceof ValueType) {
       _matched=true;
       return this.compile(((ValueType) adtType));
     }
-    EObject _adtElement2 = adtType.getAdtElement2();
-    if ((_adtElement2 instanceof SumType)) {
+    EObject _pureAdtElement2 = adtType.getPureAdtElement2();
+    if ((_pureAdtElement2 instanceof PureSumType)) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Either<");
-      AdtType _adtElement1 = adtType.getAdtElement1();
-      Object _adtTypeCompile = this.adtTypeCompile(_adtElement1);
-      _builder.append(_adtTypeCompile, "");
+      PureAdtType _pureAdtElement1 = adtType.getPureAdtElement1();
+      Object _pureAdtTypeCompile = this.pureAdtTypeCompile(_pureAdtElement1);
+      _builder.append(_pureAdtTypeCompile, "");
       _builder.append(", ");
       Object _xifexpression = null;
-      EObject _adtElement2_1 = adtType.getAdtElement2();
-      if ((_adtElement2_1 instanceof SumType)) {
-        EObject _adtElement2_2 = adtType.getAdtElement2();
-        _xifexpression = this.compile(((SumType) _adtElement2_2));
+      EObject _pureAdtElement2_1 = adtType.getPureAdtElement2();
+      if ((_pureAdtElement2_1 instanceof PureSumType)) {
+        EObject _pureAdtElement2_2 = adtType.getPureAdtElement2();
+        _xifexpression = this.compile(((PureSumType) _pureAdtElement2_2));
       } else {
-        EObject _adtElement2_3 = adtType.getAdtElement2();
-        _xifexpression = this.compile(((ProdType) _adtElement2_3));
+        EObject _pureAdtElement2_3 = adtType.getPureAdtElement2();
+        _xifexpression = this.compile(((PureProdType) _pureAdtElement2_3));
       }
       _builder.append(_xifexpression, "");
       _builder.append(">");
@@ -153,18 +153,18 @@ public class TypeGenerator {
     } else {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("P2<");
-      AdtType _adtElement1_1 = adtType.getAdtElement1();
-      Object _adtTypeCompile_1 = this.adtTypeCompile(_adtElement1_1);
-      _builder_1.append(_adtTypeCompile_1, "");
+      PureAdtType _pureAdtElement1_1 = adtType.getPureAdtElement1();
+      Object _pureAdtTypeCompile_1 = this.pureAdtTypeCompile(_pureAdtElement1_1);
+      _builder_1.append(_pureAdtTypeCompile_1, "");
       _builder_1.append(", ");
       Object _xifexpression_1 = null;
-      EObject _adtElement2_4 = adtType.getAdtElement2();
-      if ((_adtElement2_4 instanceof SumType)) {
-        EObject _adtElement2_5 = adtType.getAdtElement2();
-        _xifexpression_1 = this.compile(((SumType) _adtElement2_5));
+      EObject _pureAdtElement2_4 = adtType.getPureAdtElement2();
+      if ((_pureAdtElement2_4 instanceof PureSumType)) {
+        EObject _pureAdtElement2_5 = adtType.getPureAdtElement2();
+        _xifexpression_1 = this.compile(((PureSumType) _pureAdtElement2_5));
       } else {
-        EObject _adtElement2_6 = adtType.getAdtElement2();
-        _xifexpression_1 = this.compile(((ProdType) _adtElement2_6));
+        EObject _pureAdtElement2_6 = adtType.getPureAdtElement2();
+        _xifexpression_1 = this.compile(((PureProdType) _pureAdtElement2_6));
       }
       _builder_1.append(_xifexpression_1, "");
       _builder_1.append(">");
@@ -172,14 +172,14 @@ public class TypeGenerator {
     }
   }
   
-  public Object compile(final SumType st) {
-    AdtType _adtElement = st.getAdtElement();
-    return this.adtTypeCompile(_adtElement);
+  public Object compile(final PureSumType st) {
+    PureAdtType _adtElement = st.getAdtElement();
+    return this.pureAdtTypeCompile(_adtElement);
   }
   
-  public Object compile(final ProdType pt) {
-    AdtType _adtElement = pt.getAdtElement();
-    return this.adtTypeCompile(_adtElement);
+  public Object compile(final PureProdType pt) {
+    PureAdtType _adtElement = pt.getAdtElement();
+    return this.pureAdtTypeCompile(_adtElement);
   }
   
   public String compileType(final Expression e) {
@@ -203,7 +203,7 @@ public class TypeGenerator {
     if (!_matched) {
       if (e instanceof DataType) {
         _matched=true;
-        Data _type = ((DataType)e).getType();
+        PureData _type = ((DataType)e).getType();
         return _type.getName();
       }
     }

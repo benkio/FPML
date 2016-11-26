@@ -94,17 +94,17 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.DATA_BLOCK:
+      case FPMLPackage.PURE_DATA_BLOCK:
       {
-        DataBlock dataBlock = (DataBlock)theEObject;
-        T result = caseDataBlock(dataBlock);
+        PureDataBlock pureDataBlock = (PureDataBlock)theEObject;
+        T result = casePureDataBlock(pureDataBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.VALUE_BLOCK:
+      case FPMLPackage.PURE_VALUE_BLOCK:
       {
-        ValueBlock valueBlock = (ValueBlock)theEObject;
-        T result = caseValueBlock(valueBlock);
+        PureValueBlock pureValueBlock = (PureValueBlock)theEObject;
+        T result = casePureValueBlock(pureValueBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -115,10 +115,31 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.DATA:
+      case FPMLPackage.EFFECT_FULL_DATA_BLOCK:
       {
-        Data data = (Data)theEObject;
-        T result = caseData(data);
+        EffectFullDataBlock effectFullDataBlock = (EffectFullDataBlock)theEObject;
+        T result = caseEffectFullDataBlock(effectFullDataBlock);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_VALUE_BLOCK:
+      {
+        EffectFullValueBlock effectFullValueBlock = (EffectFullValueBlock)theEObject;
+        T result = caseEffectFullValueBlock(effectFullValueBlock);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_FUNCTION_BLOCK:
+      {
+        EffectFullFunctionBlock effectFullFunctionBlock = (EffectFullFunctionBlock)theEObject;
+        T result = caseEffectFullFunctionBlock(effectFullFunctionBlock);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PURE_DATA:
+      {
+        PureData pureData = (PureData)theEObject;
+        T result = casePureData(pureData);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -127,30 +148,37 @@ public class FPMLSwitch<T> extends Switch<T>
         PureFunctionDefinition pureFunctionDefinition = (PureFunctionDefinition)theEObject;
         T result = casePureFunctionDefinition(pureFunctionDefinition);
         if (result == null) result = casePureFunction(pureFunctionDefinition);
+        if (result == null) result = caseEffectFullReference(pureFunctionDefinition);
         if (result == null) result = casePureReference(pureFunctionDefinition);
         if (result == null) result = caseFunction(pureFunctionDefinition);
-        if (result == null) result = caseEffectFullReference(pureFunctionDefinition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.ADT_TYPE:
+      case FPMLPackage.PURE_ADT_TYPE:
       {
-        AdtType adtType = (AdtType)theEObject;
-        T result = caseAdtType(adtType);
+        PureAdtType pureAdtType = (PureAdtType)theEObject;
+        T result = casePureAdtType(pureAdtType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.SUM_TYPE:
+      case FPMLPackage.PURE_SUM_TYPE:
       {
-        SumType sumType = (SumType)theEObject;
-        T result = caseSumType(sumType);
+        PureSumType pureSumType = (PureSumType)theEObject;
+        T result = casePureSumType(pureSumType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.PROD_TYPE:
+      case FPMLPackage.PURE_PROD_TYPE:
       {
-        ProdType prodType = (ProdType)theEObject;
-        T result = caseProdType(prodType);
+        PureProdType pureProdType = (PureProdType)theEObject;
+        T result = casePureProdType(pureProdType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_DATA:
+      {
+        EffectFullData effectFullData = (EffectFullData)theEObject;
+        T result = caseEffectFullData(effectFullData);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -159,8 +187,29 @@ public class FPMLSwitch<T> extends Switch<T>
         EffectFullFunctionDefinition effectFullFunctionDefinition = (EffectFullFunctionDefinition)theEObject;
         T result = caseEffectFullFunctionDefinition(effectFullFunctionDefinition);
         if (result == null) result = caseEffectFullFunction(effectFullFunctionDefinition);
-        if (result == null) result = caseFunction(effectFullFunctionDefinition);
         if (result == null) result = caseEffectFullReference(effectFullFunctionDefinition);
+        if (result == null) result = caseFunction(effectFullFunctionDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_ADT_TYPE:
+      {
+        EffectFullAdtType effectFullAdtType = (EffectFullAdtType)theEObject;
+        T result = caseEffectFullAdtType(effectFullAdtType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_SUM_TYPE:
+      {
+        EffectFullSumType effectFullSumType = (EffectFullSumType)theEObject;
+        T result = caseEffectFullSumType(effectFullSumType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_PROD_TYPE:
+      {
+        EffectFullProdType effectFullProdType = (EffectFullProdType)theEObject;
+        T result = caseEffectFullProdType(effectFullProdType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -189,7 +238,6 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         Function function = (Function)theEObject;
         T result = caseFunction(function);
-        if (result == null) result = caseEffectFullReference(function);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -198,7 +246,6 @@ public class FPMLSwitch<T> extends Switch<T>
         PureFunction pureFunction = (PureFunction)theEObject;
         T result = casePureFunction(pureFunction);
         if (result == null) result = caseFunction(pureFunction);
-        if (result == null) result = caseEffectFullReference(pureFunction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -207,7 +254,6 @@ public class FPMLSwitch<T> extends Switch<T>
         EffectFullFunction effectFullFunction = (EffectFullFunction)theEObject;
         T result = caseEffectFullFunction(effectFullFunction);
         if (result == null) result = caseFunction(effectFullFunction);
-        if (result == null) result = caseEffectFullReference(effectFullFunction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -222,6 +268,14 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         PureReference pureReference = (PureReference)theEObject;
         T result = casePureReference(pureReference);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PRIMITIVE_FUNCTION:
+      {
+        PrimitiveFunction primitiveFunction = (PrimitiveFunction)theEObject;
+        T result = casePrimitiveFunction(primitiveFunction);
+        if (result == null) result = caseEffectFullReference(primitiveFunction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -298,6 +352,7 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         IOType ioType = (IOType)theEObject;
         T result = caseIOType(ioType);
+        if (result == null) result = caseEffectFullAdtType(ioType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -305,7 +360,7 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         ValueType valueType = (ValueType)theEObject;
         T result = caseValueType(valueType);
-        if (result == null) result = caseAdtType(valueType);
+        if (result == null) result = casePureAdtType(valueType);
         if (result == null) result = caseType(valueType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -323,9 +378,11 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseIntegerType(integerType);
         if (result == null) result = caseValueType(integerType);
         if (result == null) result = caseExpression(integerType);
-        if (result == null) result = caseAdtValue(integerType);
-        if (result == null) result = caseAdtType(integerType);
+        if (result == null) result = casePureAdtValue(integerType);
+        if (result == null) result = casePureAdtType(integerType);
         if (result == null) result = caseType(integerType);
+        if (result == null) result = caseEffectFullExpression(integerType);
+        if (result == null) result = caseEffectFullAdtValue(integerType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -335,9 +392,11 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseStringType(stringType);
         if (result == null) result = caseValueType(stringType);
         if (result == null) result = caseExpression(stringType);
-        if (result == null) result = caseAdtValue(stringType);
-        if (result == null) result = caseAdtType(stringType);
+        if (result == null) result = casePureAdtValue(stringType);
+        if (result == null) result = casePureAdtType(stringType);
         if (result == null) result = caseType(stringType);
+        if (result == null) result = caseEffectFullExpression(stringType);
+        if (result == null) result = caseEffectFullAdtValue(stringType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -346,6 +405,8 @@ public class FPMLSwitch<T> extends Switch<T>
         UnitType unitType = (UnitType)theEObject;
         T result = caseUnitType(unitType);
         if (result == null) result = caseType(unitType);
+        if (result == null) result = caseEffectFullExpression(unitType);
+        if (result == null) result = caseEffectFullAdtValue(unitType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -355,9 +416,20 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseDataType(dataType);
         if (result == null) result = caseValueType(dataType);
         if (result == null) result = caseExpression(dataType);
-        if (result == null) result = caseAdtValue(dataType);
-        if (result == null) result = caseAdtType(dataType);
+        if (result == null) result = casePureAdtValue(dataType);
+        if (result == null) result = casePureAdtType(dataType);
         if (result == null) result = caseType(dataType);
+        if (result == null) result = caseEffectFullExpression(dataType);
+        if (result == null) result = caseEffectFullAdtValue(dataType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_DATA_TYPE:
+      {
+        EffectFullDataType effectFullDataType = (EffectFullDataType)theEObject;
+        T result = caseEffectFullDataType(effectFullDataType);
+        if (result == null) result = caseType(effectFullDataType);
+        if (result == null) result = caseEffectFullExpression(effectFullDataType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -367,9 +439,11 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = casePureFunctionType(pureFunctionType);
         if (result == null) result = caseValueType(pureFunctionType);
         if (result == null) result = caseExpression(pureFunctionType);
-        if (result == null) result = caseAdtValue(pureFunctionType);
-        if (result == null) result = caseAdtType(pureFunctionType);
+        if (result == null) result = casePureAdtValue(pureFunctionType);
+        if (result == null) result = casePureAdtType(pureFunctionType);
         if (result == null) result = caseType(pureFunctionType);
+        if (result == null) result = caseEffectFullExpression(pureFunctionType);
+        if (result == null) result = caseEffectFullAdtValue(pureFunctionType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -378,6 +452,23 @@ public class FPMLSwitch<T> extends Switch<T>
         EffectFullFunctionType effectFullFunctionType = (EffectFullFunctionType)theEObject;
         T result = caseEffectFullFunctionType(effectFullFunctionType);
         if (result == null) result = caseType(effectFullFunctionType);
+        if (result == null) result = caseEffectFullExpression(effectFullFunctionType);
+        if (result == null) result = caseEffectFullAdtValue(effectFullFunctionType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_EXPRESSION:
+      {
+        EffectFullExpression effectFullExpression = (EffectFullExpression)theEObject;
+        T result = caseEffectFullExpression(effectFullExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_VALUE_REF:
+      {
+        EffectFullValueRef effectFullValueRef = (EffectFullValueRef)theEObject;
+        T result = caseEffectFullValueRef(effectFullValueRef);
+        if (result == null) result = caseEffectFullAdtValue(effectFullValueRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -385,37 +476,65 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
+        if (result == null) result = caseEffectFullExpression(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.VALUE_REF:
+      case FPMLPackage.PURE_VALUE_REF:
       {
-        ValueRef valueRef = (ValueRef)theEObject;
-        T result = caseValueRef(valueRef);
-        if (result == null) result = caseAdtValue(valueRef);
+        PureValueRef pureValueRef = (PureValueRef)theEObject;
+        T result = casePureValueRef(pureValueRef);
+        if (result == null) result = casePureAdtValue(pureValueRef);
+        if (result == null) result = caseEffectFullAdtValue(pureValueRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.ADT_VALUE:
+      case FPMLPackage.PURE_ADT_VALUE:
       {
-        AdtValue adtValue = (AdtValue)theEObject;
-        T result = caseAdtValue(adtValue);
+        PureAdtValue pureAdtValue = (PureAdtValue)theEObject;
+        T result = casePureAdtValue(pureAdtValue);
+        if (result == null) result = caseEffectFullAdtValue(pureAdtValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.PROD_VALUE:
+      case FPMLPackage.PURE_PROD_VALUE:
       {
-        ProdValue prodValue = (ProdValue)theEObject;
-        T result = caseProdValue(prodValue);
-        if (result == null) result = caseAdtValue(prodValue);
+        PureProdValue pureProdValue = (PureProdValue)theEObject;
+        T result = casePureProdValue(pureProdValue);
+        if (result == null) result = casePureAdtValue(pureProdValue);
+        if (result == null) result = caseEffectFullAdtValue(pureProdValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.SUM_VALUE:
+      case FPMLPackage.PURE_SUM_VALUE:
       {
-        SumValue sumValue = (SumValue)theEObject;
-        T result = caseSumValue(sumValue);
-        if (result == null) result = caseAdtValue(sumValue);
+        PureSumValue pureSumValue = (PureSumValue)theEObject;
+        T result = casePureSumValue(pureSumValue);
+        if (result == null) result = casePureAdtValue(pureSumValue);
+        if (result == null) result = caseEffectFullAdtValue(pureSumValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_ADT_VALUE:
+      {
+        EffectFullAdtValue effectFullAdtValue = (EffectFullAdtValue)theEObject;
+        T result = caseEffectFullAdtValue(effectFullAdtValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_PROD_VALUE:
+      {
+        EffectFullProdValue effectFullProdValue = (EffectFullProdValue)theEObject;
+        T result = caseEffectFullProdValue(effectFullProdValue);
+        if (result == null) result = caseEffectFullAdtValue(effectFullProdValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_SUM_VALUE:
+      {
+        EffectFullSumValue effectFullSumValue = (EffectFullSumValue)theEObject;
+        T result = caseEffectFullSumValue(effectFullSumValue);
+        if (result == null) result = caseEffectFullAdtValue(effectFullSumValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -424,6 +543,7 @@ public class FPMLSwitch<T> extends Switch<T>
         PrimitivePureFunction primitivePureFunction = (PrimitivePureFunction)theEObject;
         T result = casePrimitivePureFunction(primitivePureFunction);
         if (result == null) result = casePureFunction(primitivePureFunction);
+        if (result == null) result = casePrimitiveFunction(primitivePureFunction);
         if (result == null) result = caseFunction(primitivePureFunction);
         if (result == null) result = caseEffectFullReference(primitivePureFunction);
         if (result == null) result = defaultCase(theEObject);
@@ -435,6 +555,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseIntToString(intToString);
         if (result == null) result = casePrimitivePureFunction(intToString);
         if (result == null) result = casePureFunction(intToString);
+        if (result == null) result = casePrimitiveFunction(intToString);
         if (result == null) result = caseFunction(intToString);
         if (result == null) result = caseEffectFullReference(intToString);
         if (result == null) result = defaultCase(theEObject);
@@ -446,6 +567,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseIntPow(intPow);
         if (result == null) result = casePrimitivePureFunction(intPow);
         if (result == null) result = casePureFunction(intPow);
+        if (result == null) result = casePrimitiveFunction(intPow);
         if (result == null) result = caseFunction(intPow);
         if (result == null) result = caseEffectFullReference(intPow);
         if (result == null) result = defaultCase(theEObject);
@@ -457,6 +579,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = casePlus(plus);
         if (result == null) result = casePrimitivePureFunction(plus);
         if (result == null) result = casePureFunction(plus);
+        if (result == null) result = casePrimitiveFunction(plus);
         if (result == null) result = caseFunction(plus);
         if (result == null) result = caseEffectFullReference(plus);
         if (result == null) result = defaultCase(theEObject);
@@ -468,6 +591,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseMinus(minus);
         if (result == null) result = casePrimitivePureFunction(minus);
         if (result == null) result = casePureFunction(minus);
+        if (result == null) result = casePrimitiveFunction(minus);
         if (result == null) result = caseFunction(minus);
         if (result == null) result = caseEffectFullReference(minus);
         if (result == null) result = defaultCase(theEObject);
@@ -479,6 +603,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseTimes(times);
         if (result == null) result = casePrimitivePureFunction(times);
         if (result == null) result = casePureFunction(times);
+        if (result == null) result = casePrimitiveFunction(times);
         if (result == null) result = caseFunction(times);
         if (result == null) result = caseEffectFullReference(times);
         if (result == null) result = defaultCase(theEObject);
@@ -490,6 +615,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseMod(mod);
         if (result == null) result = casePrimitivePureFunction(mod);
         if (result == null) result = casePureFunction(mod);
+        if (result == null) result = casePrimitiveFunction(mod);
         if (result == null) result = caseFunction(mod);
         if (result == null) result = caseEffectFullReference(mod);
         if (result == null) result = defaultCase(theEObject);
@@ -501,6 +627,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseApplyF(applyF);
         if (result == null) result = casePrimitivePureFunction(applyF);
         if (result == null) result = casePureFunction(applyF);
+        if (result == null) result = casePrimitiveFunction(applyF);
         if (result == null) result = caseFunction(applyF);
         if (result == null) result = caseEffectFullReference(applyF);
         if (result == null) result = defaultCase(theEObject);
@@ -511,6 +638,7 @@ public class FPMLSwitch<T> extends Switch<T>
         PrimitiveEffectFullFunction primitiveEffectFullFunction = (PrimitiveEffectFullFunction)theEObject;
         T result = casePrimitiveEffectFullFunction(primitiveEffectFullFunction);
         if (result == null) result = caseEffectFullFunction(primitiveEffectFullFunction);
+        if (result == null) result = casePrimitiveFunction(primitiveEffectFullFunction);
         if (result == null) result = caseFunction(primitiveEffectFullFunction);
         if (result == null) result = caseEffectFullReference(primitiveEffectFullFunction);
         if (result == null) result = defaultCase(theEObject);
@@ -522,8 +650,17 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = casePrimitivePrint(primitivePrint);
         if (result == null) result = casePrimitiveEffectFullFunction(primitivePrint);
         if (result == null) result = caseEffectFullFunction(primitivePrint);
+        if (result == null) result = casePrimitiveFunction(primitivePrint);
         if (result == null) result = caseFunction(primitivePrint);
         if (result == null) result = caseEffectFullReference(primitivePrint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PRIMITIVE_EFFECT_FULL_VALUE:
+      {
+        PrimitiveEffectFullValue primitiveEffectFullValue = (PrimitiveEffectFullValue)theEObject;
+        T result = casePrimitiveEffectFullValue(primitiveEffectFullValue);
+        if (result == null) result = caseEffectFullReference(primitiveEffectFullValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -531,9 +668,7 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         PrimitiveRandom primitiveRandom = (PrimitiveRandom)theEObject;
         T result = casePrimitiveRandom(primitiveRandom);
-        if (result == null) result = casePrimitiveEffectFullFunction(primitiveRandom);
-        if (result == null) result = caseEffectFullFunction(primitiveRandom);
-        if (result == null) result = caseFunction(primitiveRandom);
+        if (result == null) result = casePrimitiveEffectFullValue(primitiveRandom);
         if (result == null) result = caseEffectFullReference(primitiveRandom);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -544,20 +679,50 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseApplyFIO(applyFIO);
         if (result == null) result = casePrimitiveEffectFullFunction(applyFIO);
         if (result == null) result = caseEffectFullFunction(applyFIO);
+        if (result == null) result = casePrimitiveFunction(applyFIO);
         if (result == null) result = caseFunction(applyFIO);
         if (result == null) result = caseEffectFullReference(applyFIO);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.VALUE:
+      case FPMLPackage.APPLY_FIO_FACTOR:
       {
-        Value value = (Value)theEObject;
-        T result = caseValue(value);
-        if (result == null) result = casePureFunctionDefinition(value);
-        if (result == null) result = casePureFunction(value);
-        if (result == null) result = casePureReference(value);
-        if (result == null) result = caseFunction(value);
-        if (result == null) result = caseEffectFullReference(value);
+        ApplyFIOFactor applyFIOFactor = (ApplyFIOFactor)theEObject;
+        T result = caseApplyFIOFactor(applyFIOFactor);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PURE_VALUE:
+      {
+        PureValue pureValue = (PureValue)theEObject;
+        T result = casePureValue(pureValue);
+        if (result == null) result = casePureFunctionDefinition(pureValue);
+        if (result == null) result = casePureFunction(pureValue);
+        if (result == null) result = caseEffectFullReference(pureValue);
+        if (result == null) result = casePureReference(pureValue);
+        if (result == null) result = caseFunction(pureValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_VALUE:
+      {
+        EffectFullValue effectFullValue = (EffectFullValue)theEObject;
+        T result = caseEffectFullValue(effectFullValue);
+        if (result == null) result = caseEffectFullFunctionDefinition(effectFullValue);
+        if (result == null) result = caseEffectFullFunction(effectFullValue);
+        if (result == null) result = caseEffectFullReference(effectFullValue);
+        if (result == null) result = caseFunction(effectFullValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_LAMBDA:
+      {
+        EffectFullLambda effectFullLambda = (EffectFullLambda)theEObject;
+        T result = caseEffectFullLambda(effectFullLambda);
+        if (result == null) result = caseEffectFullFunctionDefinition(effectFullLambda);
+        if (result == null) result = caseEffectFullFunction(effectFullLambda);
+        if (result == null) result = caseEffectFullReference(effectFullLambda);
+        if (result == null) result = caseFunction(effectFullLambda);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -568,9 +733,21 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseDataType(dataValue);
         if (result == null) result = caseValueType(dataValue);
         if (result == null) result = caseExpression(dataValue);
-        if (result == null) result = caseAdtValue(dataValue);
-        if (result == null) result = caseAdtType(dataValue);
+        if (result == null) result = casePureAdtValue(dataValue);
+        if (result == null) result = casePureAdtType(dataValue);
         if (result == null) result = caseType(dataValue);
+        if (result == null) result = caseEffectFullExpression(dataValue);
+        if (result == null) result = caseEffectFullAdtValue(dataValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_DATA_VALUE:
+      {
+        EffectFullDataValue effectFullDataValue = (EffectFullDataValue)theEObject;
+        T result = caseEffectFullDataValue(effectFullDataValue);
+        if (result == null) result = caseEffectFullDataType(effectFullDataValue);
+        if (result == null) result = caseType(effectFullDataValue);
+        if (result == null) result = caseEffectFullExpression(effectFullDataValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -580,9 +757,9 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = casePureLambda(pureLambda);
         if (result == null) result = casePureFunctionDefinition(pureLambda);
         if (result == null) result = casePureFunction(pureLambda);
+        if (result == null) result = caseEffectFullReference(pureLambda);
         if (result == null) result = casePureReference(pureLambda);
         if (result == null) result = caseFunction(pureLambda);
-        if (result == null) result = caseEffectFullReference(pureLambda);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -639,33 +816,33 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Data Block</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Data Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Data Block</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Data Block</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDataBlock(DataBlock object)
+  public T casePureDataBlock(PureDataBlock object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Value Block</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Value Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value Block</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Value Block</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseValueBlock(ValueBlock object)
+  public T casePureValueBlock(PureValueBlock object)
   {
     return null;
   }
@@ -687,17 +864,65 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Data</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Data Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Data</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Data Block</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseData(Data object)
+  public T caseEffectFullDataBlock(EffectFullDataBlock object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Value Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Value Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullValueBlock(EffectFullValueBlock object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Function Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Function Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullFunctionBlock(EffectFullFunctionBlock object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pure Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pure Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePureData(PureData object)
   {
     return null;
   }
@@ -719,49 +944,65 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Adt Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Adt Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Adt Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Adt Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAdtType(AdtType object)
+  public T casePureAdtType(PureAdtType object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Sum Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Sum Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Sum Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Sum Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSumType(SumType object)
+  public T casePureSumType(PureSumType object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Prod Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Prod Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Prod Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Prod Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseProdType(ProdType object)
+  public T casePureProdType(PureProdType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullData(EffectFullData object)
   {
     return null;
   }
@@ -778,6 +1019,54 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEffectFullFunctionDefinition(EffectFullFunctionDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Adt Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Adt Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullAdtType(EffectFullAdtType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Sum Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Sum Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullSumType(EffectFullSumType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Prod Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Prod Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullProdType(EffectFullProdType object)
   {
     return null;
   }
@@ -906,6 +1195,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePureReference(PureReference object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Primitive Function</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Primitive Function</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrimitiveFunction(PrimitiveFunction object)
   {
     return null;
   }
@@ -1167,6 +1472,22 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Data Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Data Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullDataType(EffectFullDataType object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Pure Function Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1199,6 +1520,38 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullExpression(EffectFullExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Value Ref</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Value Ref</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullValueRef(EffectFullValueRef object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1215,65 +1568,113 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Value Ref</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Value Ref</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value Ref</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Value Ref</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseValueRef(ValueRef object)
+  public T casePureValueRef(PureValueRef object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Adt Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Adt Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Adt Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Adt Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAdtValue(AdtValue object)
+  public T casePureAdtValue(PureAdtValue object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Prod Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Prod Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Prod Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Prod Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseProdValue(ProdValue object)
+  public T casePureProdValue(PureProdValue object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Sum Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pure Sum Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Sum Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pure Sum Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSumValue(SumValue object)
+  public T casePureSumValue(PureSumValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Adt Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Adt Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullAdtValue(EffectFullAdtValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Prod Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Prod Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullProdValue(EffectFullProdValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Sum Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Sum Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullSumValue(EffectFullSumValue object)
   {
     return null;
   }
@@ -1439,6 +1840,22 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Primitive Effect Full Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Primitive Effect Full Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrimitiveEffectFullValue(PrimitiveEffectFullValue object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Primitive Random</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1471,17 +1888,65 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Apply FIO Factor</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Apply FIO Factor</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseValue(Value object)
+  public T caseApplyFIOFactor(ApplyFIOFactor object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pure Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pure Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePureValue(PureValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullValue(EffectFullValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Lambda</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Lambda</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullLambda(EffectFullLambda object)
   {
     return null;
   }
@@ -1498,6 +1963,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDataValue(DataValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Data Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Data Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullDataValue(EffectFullDataValue object)
   {
     return null;
   }

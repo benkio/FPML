@@ -19,8 +19,8 @@ import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureReference;
+import it.unibo.fPML.PureValue;
 import it.unibo.fPML.Times;
-import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
@@ -65,7 +65,7 @@ public class PureFunctionGenerator {
   }
   
   public String compile(final PureFunctionDefinition pf) {
-    if (((!(pf instanceof Value)) && (!(pf instanceof PureLambda)))) {
+    if (((!(pf instanceof PureValue)) && (!(pf instanceof PureLambda)))) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.newLine();
       _builder.append("public static ");
@@ -135,9 +135,9 @@ public class PureFunctionGenerator {
     String result = "";
     final PureFunction initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
     boolean _matched = false;
-    if (initialElement instanceof Value) {
+    if (initialElement instanceof PureValue) {
       _matched=true;
-      String _name = ((Value) initialElement).getName();
+      String _name = ((PureValue) initialElement).getName();
       String _plus = ("Value." + _name);
       String _plus_1 = (_plus + "()");
       result = _plus_1;
@@ -180,9 +180,9 @@ public class PureFunctionGenerator {
   
   public String compileCall(final PureFunction pf, final String args, final boolean outsideCalls) {
     boolean _matched = false;
-    if (pf instanceof Value) {
+    if (pf instanceof PureValue) {
       _matched=true;
-      String _name = ((Value) pf).getName();
+      String _name = ((PureValue) pf).getName();
       String _plus = ("Value." + _name);
       return (_plus + "()");
     }
@@ -276,7 +276,7 @@ public class PureFunctionGenerator {
   
   public String compile(final PureReference r, final String argName, final boolean outsideCalls) {
     boolean _matched = false;
-    if (r instanceof Value) {
+    if (r instanceof PureValue) {
       _matched=true;
       return this.compileCall(((PureFunction)r), argName, outsideCalls);
     }

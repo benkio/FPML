@@ -3,9 +3,9 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.PureData;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -37,7 +37,7 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
    * @generated
    * @ordered
    */
-  protected Data type;
+  protected PureData type;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,12 +65,12 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
    * <!-- end-user-doc -->
    * @generated
    */
-  public Data getType()
+  public PureData getType()
   {
     if (type != null && type.eIsProxy())
     {
       InternalEObject oldType = (InternalEObject)type;
-      type = (Data)eResolveProxy(oldType);
+      type = (PureData)eResolveProxy(oldType);
       if (type != oldType)
       {
         if (eNotificationRequired())
@@ -85,7 +85,7 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
    * <!-- end-user-doc -->
    * @generated
    */
-  public Data basicGetType()
+  public PureData basicGetType()
   {
     return type;
   }
@@ -95,9 +95,9 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Data newType)
+  public void setType(PureData newType)
   {
-    Data oldType = type;
+    PureData oldType = type;
     type = newType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.DATA_TYPE__TYPE, oldType, type));
@@ -131,7 +131,7 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
     switch (featureID)
     {
       case FPMLPackage.DATA_TYPE__TYPE:
-        setType((Data)newValue);
+        setType((PureData)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -148,7 +148,7 @@ public class DataTypeImpl extends ValueTypeImpl implements DataType
     switch (featureID)
     {
       case FPMLPackage.DATA_TYPE__TYPE:
-        setType((Data)null);
+        setType((PureData)null);
         return;
     }
     super.eUnset(featureID);

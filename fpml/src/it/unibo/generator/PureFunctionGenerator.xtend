@@ -4,7 +4,6 @@ import it.unibo.fPML.PureFunctionBlock
 import it.unibo.fPML.EmptyFunctionBody
 import it.unibo.fPML.CompositionFunctionBodyPure
 import it.unibo.fPML.PureFunctionDefinition
-import it.unibo.fPML.Value
 import it.unibo.fPML.IntToString
 import it.unibo.fPML.IntPow
 import it.unibo.fPML.FPMLFactory
@@ -20,6 +19,7 @@ import it.unibo.fPML.PrimitivePureFunction
 import it.unibo.fPML.PureFunction
 import it.unibo.fPML.PureReference
 import it.unibo.fPML.Argument
+import it.unibo.fPML.PureValue
 
 class PureFunctionGenerator {
 	
@@ -39,7 +39,7 @@ class PureFunctionGenerator {
 	'''
 
 	def compile(PureFunctionDefinition pf) {
-		if (!(pf instanceof Value) && !(pf instanceof PureLambda)) 
+		if (!(pf instanceof PureValue) && !(pf instanceof PureLambda)) 
 		return '''
 
 		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)» ){
@@ -60,7 +60,7 @@ class PureFunctionGenerator {
 		var result = ""
 		val initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
 		switch initialElement {
-			Value: result = "Value." + (initialElement as Value).name + "()"
+			PureValue: result = "Value." + (initialElement as PureValue).name + "()"
 			PureLambda: result = "(" + typeGenerator.compile(initialElement.arg) + ") -> " + initialElement.functionBody.compile(argName,outsideCalls)
 			PrimitivePureFunction: result = compilePrimitiveCall(initialElement, argName, outsideCalls)
 			PureFunctionDefinition: result = compileCall(initialElement, argName, outsideCalls)
@@ -73,7 +73,7 @@ class PureFunctionGenerator {
 	
 	def String compileCall(PureFunction pf, String args, boolean outsideCalls) {
 		switch pf {
-			Value: return "Value." + (pf as Value).name + "()"
+			PureValue: return "Value." + (pf as PureValue).name + "()"
 			PureLambda: return "(" + typeGenerator.compile(pf.higherOrderArg.arg2) + ") -> " + pf.functionBody.compile(args,outsideCalls)
 			PrimitivePureFunction: return compilePrimitiveCall(pf, args, outsideCalls)
 			PureFunctionDefinition: {
@@ -99,7 +99,7 @@ class PureFunctionGenerator {
 	
 	def compile(PureReference r,  String argName, boolean outsideCalls) {
 		switch r {
-			Value: return compileCall(r ,argName, outsideCalls)
+			PureValue: return compileCall(r ,argName, outsideCalls)
 			Argument: return r.name
 		}
 	}

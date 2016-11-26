@@ -23,7 +23,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PureFunctionDefinition extends PureFunction, PureReference
+public interface PureFunctionDefinition extends PureFunction, EffectFullReference, PureReference
 {
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.

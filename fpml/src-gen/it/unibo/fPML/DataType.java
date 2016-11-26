@@ -20,7 +20,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface DataType extends ValueType, Expression, AdtValue
+public interface DataType extends ValueType, Expression, PureAdtValue
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.
@@ -31,12 +31,12 @@ public interface DataType extends ValueType, Expression, AdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(Data)
+   * @see #setType(PureData)
    * @see it.unibo.fPML.FPMLPackage#getDataType_Type()
    * @model
    * @generated
    */
-  Data getType();
+  PureData getType();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.DataType#getType <em>Type</em>}' reference.
@@ -46,6 +46,6 @@ public interface DataType extends ValueType, Expression, AdtValue
    * @see #getType()
    * @generated
    */
-  void setType(Data value);
+  void setType(PureData value);
 
 } // DataType

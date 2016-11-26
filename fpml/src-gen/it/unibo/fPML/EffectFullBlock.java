@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.EffectFullBlock#getFeatures <em>Features</em>}</li>
- *   <li>{@link it.unibo.fPML.EffectFullBlock#getMain <em>Main</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullBlock#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getEffectFullBlock()
@@ -27,45 +26,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface EffectFullBlock extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Features</b></em>' containment reference list.
-   * The list contents are of type {@link it.unibo.fPML.EffectFullFunctionDefinition}.
+   * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Features</em>' containment reference list.
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullBlock_Features()
+   * @return the value of the '<em>Elements</em>' containment reference list.
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullBlock_Elements()
    * @model containment="true"
    * @generated
    */
-  EList<EffectFullFunctionDefinition> getFeatures();
-
-  /**
-   * Returns the value of the '<em><b>Main</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Main</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Main</em>' containment reference.
-   * @see #setMain(MainFunc)
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullBlock_Main()
-   * @model containment="true"
-   * @generated
-   */
-  MainFunc getMain();
-
-  /**
-   * Sets the value of the '{@link it.unibo.fPML.EffectFullBlock#getMain <em>Main</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Main</em>' containment reference.
-   * @see #getMain()
-   * @generated
-   */
-  void setMain(MainFunc value);
+  EList<EObject> getElements();
 
 } // EffectFullBlock

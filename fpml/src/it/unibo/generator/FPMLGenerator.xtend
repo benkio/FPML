@@ -8,11 +8,11 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import it.unibo.fPML.PureFunctionBlock
-import it.unibo.fPML.Data
-import it.unibo.fPML.EffectFullBlock
 import it.unibo.generator.PureFunctionGenerator
-import it.unibo.fPML.Value
 import it.unibo.fPML.MainFunc
+import it.unibo.fPML.PureData
+import it.unibo.fPML.PureValue
+import it.unibo.fPML.EffectFullFunctionBlock
 
 /**
  * Generates code from your model files on save.
@@ -31,8 +31,8 @@ class FPMLGenerator extends AbstractGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		fsa.generateFile(basePackage + "Pure/PureFunctionDefinitions.java", pureFunctionGenerator.compile(resource.getAllContents.filter(PureFunctionBlock).head));
-		fsa.generateFile(basePackage + "Effectfull/EffectFullFunctionDefinitions.java", effectFullFunctionGenerator.compile(resource.getAllContents.filter(EffectFullBlock).head));
-		for(e : resource.getAllContents.toIterable.filter(Data)){
+		fsa.generateFile(basePackage + "Effectfull/EffectFullFunctionDefinitions.java", effectFullFunctionGenerator.compile(resource.getAllContents.filter(EffectFullFunctionBlock).head));
+		for(e : resource.getAllContents.toIterable.filter(PureData)){
 			fsa.generateFile(
 					basePackage + "Pure/Data/" + e.getName() + ".java",
 					dataGenerator.compile(e)
@@ -40,7 +40,7 @@ class FPMLGenerator extends AbstractGenerator {
 		}
 		fsa.generateFile(
 			basePackage + "Pure/Data/Value.java",
-			valueGenerator.compile(resource.getAllContents.toIterable.filter(Value))
+			valueGenerator.compile(resource.getAllContents.toIterable.filter(PureValue))
 		)
 		fsa.generateFile(
 			basePackage + "Pure/Primitives.java",

@@ -9,7 +9,7 @@ class EffectFullFunctionGenerator {
 	val typeGenerator = new TypeGenerator
 	val pureFunctionGenerator = new PureFunctionGenerator
 	
-	def compile(EffectFullBlock efb) '''
+	def compile(EffectFullFunctionBlock effb) '''
 	    package «FPMLGenerator.basePackageJava»Effectfull;
 	    		
 	    import «FPMLGenerator.basePackageJava»Pure.Data.*;
@@ -18,7 +18,7 @@ class EffectFullFunctionGenerator {
 	    import «FPMLGenerator.basePackageJava»Pure.*;
 	    
 	    public class EffectFullFunctionDefinitions {
-	    	«FOR f:efb.features»
+	    	«FOR f:effb.features»
 	    		«f.compile»
 	    	«ENDFOR»
 	    }'''
@@ -72,7 +72,7 @@ class EffectFullFunctionGenerator {
 			PrimitiveRandom: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitiveRandom)'''
 	//		ApplyFIO: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::ApplyFIO(«e.value.compileIO»))'''
 			ApplyF: '''«valueName».f(«pureFunctionGenerator.compile(e.value,"", true)»)'''
-			Value: return '''IOFunctions.unit(Value.«(e as Value).name»())'''
+			PureValue: return '''IOFunctions.unit(Value.«(e as PureValue).name»())'''
 			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: return '''IOFunctions.unit(«(e as EffectFullArgument).name»)'''
 			EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
@@ -106,9 +106,9 @@ class EffectFullFunctionGenerator {
 			Mod: ".map(Primitives::mod)"
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
 			PrimitiveRandom: '''.bind(PrimitivesEffectFull::primitiveRandom)'''
-			ApplyFIO: '''.bind(PrimitivesEffectFull::ApplyFIO(«e.value.compileIOWalkthorugh»))'''
+			ApplyFIO: '''.bind(PrimitivesEffectFull::ApplyFIO(«Others.getValueFromApplyFIOFactor(e.value).compileIOWalkthorugh»))'''
 			ApplyF: '''.map((«typeGenerator.compile(e.functionType)» f) -> f.f(«pureFunctionGenerator.compile(e.value, "", true)»))'''
-			Value: return '''.append(IOFunctions.unit(Value.«(e as Value).name»()))'''
+			PureValue: return '''.append(IOFunctions.unit(Value.«(e as PureValue).name»()))'''
 			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: return '''.append(IOFunctions.unit(«(e as EffectFullArgument).name»))'''
 			EffectFullFunctionDefinition: return '''.bind(EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 

@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PrimitiveRandom extends PrimitiveEffectFullFunction
+public interface PrimitiveRandom extends PrimitiveEffectFullValue
 {
 } // PrimitiveRandom

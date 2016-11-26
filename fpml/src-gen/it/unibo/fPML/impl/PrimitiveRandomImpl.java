@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PrimitiveRandomImpl extends PrimitiveEffectFullFunctionImpl implements PrimitiveRandom
+public class PrimitiveRandomImpl extends PrimitiveEffectFullValueImpl implements PrimitiveRandom
 {
   /**
    * <!-- begin-user-doc -->

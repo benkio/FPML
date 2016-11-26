@@ -1,27 +1,27 @@
 package it.unibo.generator;
 
 import com.google.common.base.Objects;
-import it.unibo.fPML.AdtType;
-import it.unibo.fPML.AdtValue;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyPure;
-import it.unibo.fPML.Data;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntegerType;
-import it.unibo.fPML.ProdType;
-import it.unibo.fPML.ProdValue;
+import it.unibo.fPML.PureAdtType;
+import it.unibo.fPML.PureAdtValue;
+import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureProdType;
+import it.unibo.fPML.PureProdValue;
+import it.unibo.fPML.PureSumType;
+import it.unibo.fPML.PureSumValue;
+import it.unibo.fPML.PureValue;
+import it.unibo.fPML.PureValueRef;
 import it.unibo.fPML.StringType;
-import it.unibo.fPML.SumType;
-import it.unibo.fPML.SumValue;
 import it.unibo.fPML.UnitType;
-import it.unibo.fPML.Value;
-import it.unibo.fPML.ValueRef;
 import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.PureFunctionGenerator;
@@ -36,7 +36,7 @@ public class ValueGenerator {
   
   private final PureFunctionGenerator pureFunctionGenerator = new PureFunctionGenerator();
   
-  public CharSequence compile(final Iterable<Value> values) {
+  public CharSequence compile(final Iterable<PureValue> values) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _basePackageJava = FPMLGenerator.basePackageJava();
@@ -67,7 +67,7 @@ public class ValueGenerator {
     _builder.append("public class Value {");
     _builder.newLine();
     {
-      for(final Value v : values) {
+      for(final PureValue v : values) {
         _builder.append("\t");
         CharSequence _compile = this.compile(v);
         _builder.append(_compile, "\t");
@@ -78,7 +78,7 @@ public class ValueGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final Value v) {
+  public CharSequence compile(final PureValue v) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     _builder.append("public static ");
@@ -133,9 +133,9 @@ public class ValueGenerator {
         String _compileType = this.typeGenerator.compileType(e);
         _builder.append(_compileType, "");
         _builder.append("(");
-        AdtValue _value = ((DataValue) e).getValue();
-        Data _type = ((DataValue) e).getType();
-        AdtType _content = _type.getContent();
+        PureAdtValue _value = ((DataValue) e).getValue();
+        PureData _type = ((DataValue) e).getType();
+        PureAdtType _content = _type.getContent();
         Object _compileAdtValue = this.compileAdtValue(_value, _content);
         _builder.append(_compileAdtValue, "");
         _builder.append(")");
@@ -151,7 +151,7 @@ public class ValueGenerator {
     return null;
   }
   
-  public Object compileAdtValue(final AdtValue v, final AdtType d) {
+  public Object compileAdtValue(final PureAdtValue v, final PureAdtType d) {
     boolean _matched = false;
     if (v instanceof IntegerType) {
       _matched=true;
@@ -176,9 +176,9 @@ public class ValueGenerator {
         String _compileType = this.typeGenerator.compileType(((Expression)v));
         _builder.append(_compileType, "");
         _builder.append("(");
-        AdtValue _value = ((DataValue) v).getValue();
-        Data _type = ((DataValue) v).getType();
-        AdtType _content = _type.getContent();
+        PureAdtValue _value = ((DataValue) v).getValue();
+        PureData _type = ((DataValue) v).getType();
+        PureAdtType _content = _type.getContent();
         Object _compileAdtValue = this.compileAdtValue(_value, _content);
         _builder.append(_compileAdtValue, "");
         _builder.append(")");
@@ -186,16 +186,16 @@ public class ValueGenerator {
       }
     }
     if (!_matched) {
-      if (v instanceof SumValue) {
+      if (v instanceof PureSumValue) {
         _matched=true;
-        AdtValue _sumAdtElement1 = ((SumValue)v).getSumAdtElement1();
+        PureAdtValue _sumAdtElement1 = ((PureSumValue)v).getSumAdtElement1();
         boolean _equals = Objects.equal(_sumAdtElement1, null);
         if (_equals) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("Either.right(");
-          AdtValue _sumAdtElement2 = ((SumValue)v).getSumAdtElement2();
-          EObject _adtElement2 = d.getAdtElement2();
-          AdtType _adtElement = ((SumType) _adtElement2).getAdtElement();
+          PureAdtValue _sumAdtElement2 = ((PureSumValue)v).getSumAdtElement2();
+          EObject _pureAdtElement2 = d.getPureAdtElement2();
+          PureAdtType _adtElement = ((PureSumType) _pureAdtElement2).getAdtElement();
           Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _adtElement);
           _builder.append(_compileAdtValue, "");
           _builder.append(")");
@@ -203,27 +203,27 @@ public class ValueGenerator {
         }
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("Either.left(");
-        AdtValue _sumAdtElement1_1 = ((SumValue)v).getSumAdtElement1();
-        AdtType _adtElement1 = ((AdtType) d).getAdtElement1();
-        Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _adtElement1);
+        PureAdtValue _sumAdtElement1_1 = ((PureSumValue)v).getSumAdtElement1();
+        PureAdtType _pureAdtElement1 = ((PureAdtType) d).getPureAdtElement1();
+        Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _pureAdtElement1);
         _builder_1.append(_compileAdtValue_1, "");
         _builder_1.append(")");
         return _builder_1.toString();
       }
     }
     if (!_matched) {
-      if (v instanceof ProdValue) {
+      if (v instanceof PureProdValue) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("P.p(");
-        AdtValue _prodAdtElement1 = ((ProdValue)v).getProdAdtElement1();
-        AdtType _adtElement1 = d.getAdtElement1();
-        Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _adtElement1);
+        PureAdtValue _prodAdtElement1 = ((PureProdValue)v).getProdAdtElement1();
+        PureAdtType _pureAdtElement1 = d.getPureAdtElement1();
+        Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _pureAdtElement1);
         _builder.append(_compileAdtValue, "");
         _builder.append(",");
-        AdtValue _prodAdtElement2 = ((ProdValue)v).getProdAdtElement2();
-        EObject _adtElement2 = d.getAdtElement2();
-        AdtType _adtElement = ((ProdType) _adtElement2).getAdtElement();
+        PureAdtValue _prodAdtElement2 = ((PureProdValue)v).getProdAdtElement2();
+        EObject _pureAdtElement2 = d.getPureAdtElement2();
+        PureAdtType _adtElement = ((PureProdType) _pureAdtElement2).getAdtElement();
         Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _adtElement);
         _builder.append(_compileAdtValue_1, "");
         _builder.append(")");
@@ -231,21 +231,21 @@ public class ValueGenerator {
       }
     }
     if (!_matched) {
-      if (v instanceof ValueRef) {
+      if (v instanceof PureValueRef) {
         _matched=true;
-        Value _value = ((ValueRef)v).getValue();
-        if ((_value instanceof Value)) {
+        PureValue _value = ((PureValueRef)v).getValue();
+        if ((_value instanceof PureValue)) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("Value.");
-          Value _value_1 = ((ValueRef)v).getValue();
-          String _name = ((Value) _value_1).getName();
+          PureValue _value_1 = ((PureValueRef)v).getValue();
+          String _name = ((PureValue) _value_1).getName();
           _builder.append(_name, "");
           _builder.append("()");
           return _builder.toString();
         } else {
           StringConcatenation _builder_1 = new StringConcatenation();
           _builder_1.append("PureFunctionDefinitions::");
-          Value _value_2 = ((ValueRef)v).getValue();
+          PureValue _value_2 = ((PureValueRef)v).getValue();
           String _name_1 = ((PureFunctionDefinition) _value_2).getName();
           _builder_1.append(_name_1, "");
           return _builder_1.toString();

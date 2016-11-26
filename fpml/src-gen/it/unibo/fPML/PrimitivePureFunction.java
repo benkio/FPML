@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PrimitivePureFunction extends PureFunction
+public interface PrimitivePureFunction extends PureFunction, PrimitiveFunction
 {
 } // PrimitivePureFunction

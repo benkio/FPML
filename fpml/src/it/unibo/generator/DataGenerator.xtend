@@ -1,14 +1,14 @@
 package it.unibo.generator
 
-import it.unibo.fPML.Data
 import it.unibo.generator.FPMLGenerator
-import it.unibo.fPML.AdtType
+import it.unibo.fPML.PureData
+import it.unibo.fPML.PureAdtType
 
 class DataGenerator {
 	
 	val typeGenerator = new TypeGenerator
 	
-	def compile(Data d) {
+	def compile(PureData d) {
 	return '''
 	    package «FPMLGenerator.basePackageJava»Pure.Data;
 	    
@@ -18,9 +18,9 @@ class DataGenerator {
 	    import fj.Unit;
 	    
 	    public class «d.name» {
-	    	public final «typeGenerator.adtTypeCompile((d.content as AdtType))» value;
+	    	public final «typeGenerator.pureAdtTypeCompile((d.content as PureAdtType))» value;
 	    	
-	    	public «d.name»(«typeGenerator.adtTypeCompile((d.content as AdtType))» value){
+	    	public «d.name»(«typeGenerator.pureAdtTypeCompile((d.content as PureAdtType))» value){
 	    		this.value = value;
 	    	}
 	    }'''

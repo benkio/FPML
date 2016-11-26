@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ValueTypeImpl extends AdtTypeImpl implements ValueType
+public class ValueTypeImpl extends PureAdtTypeImpl implements ValueType
 {
   /**
    * <!-- begin-user-doc -->

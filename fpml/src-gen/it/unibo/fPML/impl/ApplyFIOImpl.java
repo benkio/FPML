@@ -4,8 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.ApplyFIO;
+import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.EffectFullFunctionType;
-import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.FPMLPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -43,14 +43,14 @@ public class ApplyFIOImpl extends PrimitiveEffectFullFunctionImpl implements App
   protected EffectFullFunctionType functionType;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected EffectFullReference value;
+  protected ApplyFIOFactor value;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,27 +126,7 @@ public class ApplyFIOImpl extends PrimitiveEffectFullFunctionImpl implements App
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullReference getValue()
-  {
-    if (value != null && value.eIsProxy())
-    {
-      InternalEObject oldValue = (InternalEObject)value;
-      value = (EffectFullReference)eResolveProxy(oldValue);
-      if (value != oldValue)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FPMLPackage.APPLY_FIO__VALUE, oldValue, value));
-      }
-    }
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EffectFullReference basicGetValue()
+  public ApplyFIOFactor getValue()
   {
     return value;
   }
@@ -156,12 +136,37 @@ public class ApplyFIOImpl extends PrimitiveEffectFullFunctionImpl implements App
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(EffectFullReference newValue)
+  public NotificationChain basicSetValue(ApplyFIOFactor newValue, NotificationChain msgs)
   {
-    EffectFullReference oldValue = value;
+    ApplyFIOFactor oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FIO__VALUE, oldValue, value));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FIO__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(ApplyFIOFactor newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FIO__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FIO__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FIO__VALUE, newValue, newValue));
   }
 
   /**
@@ -176,6 +181,8 @@ public class ApplyFIOImpl extends PrimitiveEffectFullFunctionImpl implements App
     {
       case FPMLPackage.APPLY_FIO__FUNCTION_TYPE:
         return basicSetFunctionType(null, msgs);
+      case FPMLPackage.APPLY_FIO__VALUE:
+        return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -193,8 +200,7 @@ public class ApplyFIOImpl extends PrimitiveEffectFullFunctionImpl implements App
       case FPMLPackage.APPLY_FIO__FUNCTION_TYPE:
         return getFunctionType();
       case FPMLPackage.APPLY_FIO__VALUE:
-        if (resolve) return getValue();
-        return basicGetValue();
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -213,7 +219,7 @@ public class ApplyFIOImpl extends PrimitiveEffectFullFunctionImpl implements App
         setFunctionType((EffectFullFunctionType)newValue);
         return;
       case FPMLPackage.APPLY_FIO__VALUE:
-        setValue((EffectFullReference)newValue);
+        setValue((ApplyFIOFactor)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -233,7 +239,7 @@ public class ApplyFIOImpl extends PrimitiveEffectFullFunctionImpl implements App
         setFunctionType((EffectFullFunctionType)null);
         return;
       case FPMLPackage.APPLY_FIO__VALUE:
-        setValue((EffectFullReference)null);
+        setValue((ApplyFIOFactor)null);
         return;
     }
     super.eUnset(featureID);

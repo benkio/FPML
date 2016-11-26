@@ -9,6 +9,7 @@ import it.unibo.fPML.EffectFullReference
 import it.unibo.fPML.EffectFullFunction
 import it.unibo.fPML.EffectFullFunctionDefinition
 import it.unibo.fPML.PrimitiveEffectFullFunction
+import it.unibo.fPML.EffectFullValue
 
 class GetArgType {
 		
@@ -33,7 +34,7 @@ class GetArgType {
 	
 	def static ValueType pureFunctionDefinition(PureFunctionDefinition f) {
 		switch f {
-			Value: return null
+			PureValue: return null
 			PureLambda: return pureLambda(f)
 			default: return f.arg.type
 		}
@@ -67,6 +68,24 @@ class GetArgType {
 	}
 	
 	def static Type effectFullFunctionDefinition(EffectFullFunctionDefinition definition) {
-		definition.arg.type
+		switch definition{
+			EffectFullValue: effectFullExpression(definition.value)
+			EffectFullLambda: effectFullLambda(definition)
+			EffectFullFunctionDefinition: definition.arg.type
+		}
+		}
+	
+	def static effectFullLambda(EffectFullLambda lambda) {
+		if (lambda.arg == null) return FPMLFactory.eINSTANCE.createUnitType
+		else return lambda.arg.type
+	}
+	
+	def static Type effectFullExpression(EffectFullExpression eExp) {
+		switch eExp {
+			EffectFullDataType: eExp
+			EffectFullFunctionType: eExp
+			Expression: GetReturnType.expression(eExp)
+			UnitType: eExp
+		}
 	}
 }

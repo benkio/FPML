@@ -7,7 +7,7 @@ import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.Function;
+import it.unibo.fPML.PrimitiveFunction;
 
 import java.util.Collection;
 
@@ -69,7 +69,7 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * @generated
    * @ordered
    */
-  protected Function primitiveElement;
+  protected PrimitiveFunction primitiveElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -154,7 +154,7 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public Function getPrimitiveElement()
+  public PrimitiveFunction getPrimitiveElement()
   {
     return primitiveElement;
   }
@@ -164,9 +164,9 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPrimitiveElement(Function newPrimitiveElement, NotificationChain msgs)
+  public NotificationChain basicSetPrimitiveElement(PrimitiveFunction newPrimitiveElement, NotificationChain msgs)
   {
-    Function oldPrimitiveElement = primitiveElement;
+    PrimitiveFunction oldPrimitiveElement = primitiveElement;
     primitiveElement = newPrimitiveElement;
     if (eNotificationRequired())
     {
@@ -181,7 +181,7 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPrimitiveElement(Function newPrimitiveElement)
+  public void setPrimitiveElement(PrimitiveFunction newPrimitiveElement)
   {
     if (newPrimitiveElement != primitiveElement)
     {
@@ -255,7 +255,7 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
         getFunctionChain().addAll((Collection<? extends CompositionFunctionBodyEffectFullFactor>)newValue);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((Function)newValue);
+        setPrimitiveElement((PrimitiveFunction)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -278,7 +278,7 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
         getFunctionChain().clear();
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((Function)null);
+        setPrimitiveElement((PrimitiveFunction)null);
         return;
     }
     super.eUnset(featureID);

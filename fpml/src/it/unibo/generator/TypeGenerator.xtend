@@ -9,12 +9,12 @@ import it.unibo.fPML.DataType
 import it.unibo.fPML.EffectFullArgument
 import it.unibo.fPML.Type
 import it.unibo.fPML.IOType
-import it.unibo.fPML.AdtType
-import it.unibo.fPML.SumType
-import it.unibo.fPML.ProdType
 import it.unibo.fPML.Expression
 import it.unibo.fPML.PureFunctionType
 import it.unibo.fPML.EffectFullFunctionType
+import it.unibo.fPML.PureAdtType
+import it.unibo.fPML.PureSumType
+import it.unibo.fPML.PureProdType
 
 class TypeGenerator {
 	
@@ -42,23 +42,23 @@ class TypeGenerator {
 		return '''«compile(iot.type)»'''
 	}
 	
-	def adtTypeCompile(AdtType adtType) {
+	def pureAdtTypeCompile(PureAdtType adtType) {
 		switch adtType {
 			ValueType: return (adtType as ValueType).compile 
 			default: {
-				if (adtType.adtElement2 instanceof SumType)
-					return '''Either<«adtType.adtElement1.adtTypeCompile», «if (adtType.adtElement2 instanceof SumType) (adtType.adtElement2 as SumType).compile else (adtType.adtElement2 as ProdType).compile»>'''
+				if (adtType.pureAdtElement2 instanceof PureSumType)
+					return '''Either<«adtType.pureAdtElement1.pureAdtTypeCompile», «if (adtType.pureAdtElement2 instanceof PureSumType) (adtType.pureAdtElement2 as PureSumType).compile else (adtType.pureAdtElement2 as PureProdType).compile»>'''
 				else
-					return '''P2<«adtType.adtElement1.adtTypeCompile», «if (adtType.adtElement2 instanceof SumType) (adtType.adtElement2 as SumType).compile else (adtType.adtElement2 as ProdType).compile»>'''
+					return '''P2<«adtType.pureAdtElement1.pureAdtTypeCompile», «if (adtType.pureAdtElement2 instanceof PureSumType) (adtType.pureAdtElement2 as PureSumType).compile else (adtType.pureAdtElement2 as PureProdType).compile»>'''
 			}
 		}
 	}
 	
-	def compile(SumType st){
-		return adtTypeCompile(st.adtElement)
+	def compile(PureSumType st){
+		return pureAdtTypeCompile(st.adtElement)
 	}
-	def compile(ProdType pt){
-		return adtTypeCompile(pt.adtElement)
+	def compile(PureProdType pt){
+		return pureAdtTypeCompile(pt.adtElement)
 	}
 	
 	def compileType(Expression e) {

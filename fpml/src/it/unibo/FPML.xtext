@@ -40,8 +40,8 @@ PureValueBlock:
 
 EffectFullBlock:
     'Effects' '{'
-    	(features+=EffectFullFunctionDefinition)*
-		main=MainFunc
+    	elements+=EffectFullDataBlock
+		elements+=EffectFullFunctionBlock
     '}';
 
 EffectFullDataBlock:
@@ -85,7 +85,7 @@ EffectFullData: name=ID ':' content=EffectFullAdtType;
 EffectFullValue returns EffectFullFunctionDefinition: {EffectFullValue} name=ID ':' value=EffectFullExpression; 
 
 EffectFullAdtType:
-     IOType
+    IOType
     | '[' effectFullAdtElement1=EffectFullAdtType effectFullAdtElement2=(EffectFullSumType | EffectFullProdType) ']';
 
 EffectFullSumType:
@@ -106,19 +106,31 @@ MainFunc:
 AdditionalPureArgument: arg2=Argument;
 AdditionalEffectFullArgument: arg2=EffectFullArgument;
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+// Aggregate Types
+///////////////////////////////////////////////////////////////////////////////////////////////
+
 Function: EffectFullFunction | PureFunction;
 
 PureFunction: PureFunctionDefinition | PrimitivePureFunction;
 
 EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
 
+/*
+ *  Tricky aggregate: is used in reference [] but has addictional components in order to 
+ * 	facilitate the validation, those components suck as PrimitiveEffectFullValue or PrimitiveFunction
+ * 	cannot be referenced because of no ids, but where the effectfullReference is used them are also allowed(not as reference).
+ */
+EffectFullReference: EffectFullValue | EffectFullArgument | PureValue | PrimitiveEffectFullValue | PrimitiveFunction;
+
+PureReference: PureValue | Argument;
+
+PrimitiveFunction: PrimitiveEffectFullFunction | PrimitivePureFunction;
+
 ///////////////////////////////////////////////////////////////////
 // Function Body Elements
 ///////////////////////////////////////////////////////////////////
 
-EffectFullReference: EffectFullValue | EffectFullArgument | PrimitiveEffectFullValue | Function;
-
-PureReference: PureValue | Argument;
 
 EffectFullArgument:
 	type=Type name=ID;
@@ -145,11 +157,11 @@ CompositionFunctionBodyPureFactor:
 
 CompositionFunctionBodyEffect:
       referenceElement=[EffectFullReference] (functionChain+=CompositionFunctionBodyEffectFullFactor)+
-    | primitiveElement=(PrimitiveEffectFullFunction | PrimitivePureFunction) (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
+    | primitiveElement=(PrimitiveFunction) (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
     
 CompositionFunctionBodyEffectFullFactor:
 	  ( '>>=' (referenceElement=[EffectFullReference]))
-	| ( '>>=' (PrimitiveElement=(PrimitiveEffectFullFunction | PrimitivePureFunction)));
+	| ( '>>=' (PrimitiveElement=(PrimitiveFunction)));
 
 //////////////////////////////////////////////////////////////////////
 // Types
@@ -196,7 +208,9 @@ UnitValue returns UnitType: {UnitType} '()';
 
 EffectFullFunctionValue returns EffectFullFunctionType: value=EffectFullLambda;
 
-EffectFullLambda: 
+EffectFullValueRef: {EffectFullValueRef} value=[EffectFullValue];
+
+EffectFullLambda returns EffectFullFunctionDefinition: 
 	{EffectFullLambda} '[' arg=EffectFullArgument ']' ':' functionBody=FunctionBodyEffectFull
 	| {EffectFullLambda} functionBody=FunctionBodyEffectFull;
 
@@ -213,7 +227,7 @@ DataValue returns DataType: {DataValue} type=[PureData]'(' value=PureAdtValue ')
 
 EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[EffectFullData]'(' value=EffectFullAdtValue ')';
 
-ValueRef: {ValueRef} value=[PureValue];
+PureValueRef: {PureValueRef} value=[PureValue];
 
 PureLambda returns PureFunctionDefinition: 
 	{PureLambda} '(' arg=Argument ')' ':' functionBody=FunctionBodyPure
@@ -222,7 +236,7 @@ PureLambda returns PureFunctionDefinition:
 PureAdtValue:
 	  IntValue
 	| StringValue
-	| ValueRef
+	| PureValueRef
 	| DataValue
 	| PureSumValue
 	| FunctionValue
@@ -240,6 +254,7 @@ EffectFullAdtValue:
 	 | UnitValue
 	 | EffectFullFunctionValue
 	 | EffectFullProdValue
+	 | EffectFullValueRef
 	 | EffectFullSumValue ;
 
 EffectFullProdValue: 
@@ -278,5 +293,8 @@ PrimitiveEffectFullValue:
 PrimitiveRandom:
 	{PrimitiveRandom} "randomInt";
 
-ApplyFIO: {ApplyFIO} 'applyFIO' functionType=EffectFullFunctionType value=[EffectFullReference];
+ApplyFIO: {ApplyFIO} 'applyFIO' functionType=EffectFullFunctionType value=ApplyFIOFactor;
+ApplyFIOFactor: 
+	  valueReference=[EffectFullReference]
+	| valuePrimitive=PrimitiveEffectFullValue;
     

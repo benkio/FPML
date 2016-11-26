@@ -12,10 +12,13 @@ import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
@@ -31,6 +34,8 @@ import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
+import it.unibo.fPML.PrimitiveEffectFullValue;
+import it.unibo.fPML.PrimitiveFunction;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PrimitiveRandom;
@@ -39,11 +44,11 @@ import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureReference;
+import it.unibo.fPML.PureValue;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
-import it.unibo.fPML.Value;
 import it.unibo.fPML.ValueType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
@@ -89,9 +94,9 @@ public class GetReturnType {
   public static ValueType pureFunctionDefinition(final PureFunctionDefinition f) {
     ValueType _switchResult = null;
     boolean _matched = false;
-    if (f instanceof Value) {
+    if (f instanceof PureValue) {
       _matched=true;
-      Expression _value = ((Value)f).getValue();
+      Expression _value = ((PureValue)f).getValue();
       _switchResult = GetReturnType.expression(_value);
     }
     if (!_matched) {
@@ -256,9 +261,9 @@ public class GetReturnType {
   
   public static ValueType pureReference(final PureReference reference) {
     boolean _matched = false;
-    if (reference instanceof Value) {
+    if (reference instanceof PureValue) {
       _matched=true;
-      Expression _value = ((Value)reference).getValue();
+      Expression _value = ((PureValue)reference).getValue();
       return GetReturnType.expression(_value);
     }
     if (!_matched) {
@@ -354,14 +359,87 @@ public class GetReturnType {
   public static Type effectFullReference(final EffectFullReference r) {
     Type _switchResult = null;
     boolean _matched = false;
-    if (r instanceof Function) {
+    if (r instanceof PrimitiveEffectFullValue) {
       _matched=true;
-      _switchResult = GetReturnType.function(((Function)r));
+      _switchResult = GetReturnType.primitiveEffectFullValue(((PrimitiveEffectFullValue)r));
+    }
+    if (!_matched) {
+      if (r instanceof PrimitiveFunction) {
+        _matched=true;
+        _switchResult = GetReturnType.pritiveFunction(r);
+      }
+    }
+    if (!_matched) {
+      if (r instanceof EffectFullValue) {
+        _matched=true;
+        EffectFullExpression _value = ((EffectFullValue)r).getValue();
+        _switchResult = GetReturnType.effectFullExpression(_value);
+      }
+    }
+    if (!_matched) {
+      if (r instanceof PureValue) {
+        _matched=true;
+        Expression _value = ((PureValue)r).getValue();
+        _switchResult = GetReturnType.expression(_value);
+      }
     }
     if (!_matched) {
       if (r instanceof EffectFullArgument) {
         _matched=true;
         _switchResult = ((EffectFullArgument)r).getType();
+      }
+    }
+    return _switchResult;
+  }
+  
+  public static IntegerType primitiveEffectFullValue(final PrimitiveEffectFullValue value) {
+    boolean _matched = false;
+    if (value instanceof PrimitiveRandom) {
+      _matched=true;
+      return FPMLFactory.eINSTANCE.createIntegerType();
+    }
+    return null;
+  }
+  
+  public static Type effectFullExpression(final EffectFullExpression expression) {
+    Type _switchResult = null;
+    boolean _matched = false;
+    if (expression instanceof Expression) {
+      _matched=true;
+      _switchResult = GetReturnType.expression(((Expression)expression));
+    }
+    if (!_matched) {
+      if (expression instanceof UnitType) {
+        _matched=true;
+        _switchResult = ((Type)expression);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof EffectFullFunctionType) {
+        _matched=true;
+        _switchResult = ((Type)expression);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof EffectFullDataValue) {
+        _matched=true;
+        _switchResult = ((Type)expression);
+      }
+    }
+    return _switchResult;
+  }
+  
+  public static Type pritiveFunction(final Object function) {
+    Type _switchResult = null;
+    boolean _matched = false;
+    if (function instanceof PrimitiveEffectFullFunction) {
+      _matched=true;
+      _switchResult = GetReturnType.primitiveEffectFullFunction(((PrimitiveEffectFullFunction)function));
+    }
+    if (!_matched) {
+      if (function instanceof PrimitivePureFunction) {
+        _matched=true;
+        _switchResult = GetReturnType.primitivePureFunction(((PrimitivePureFunction)function));
       }
     }
     return _switchResult;

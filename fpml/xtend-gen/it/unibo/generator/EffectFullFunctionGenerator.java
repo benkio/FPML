@@ -4,10 +4,11 @@ import com.google.common.base.Objects;
 import it.unibo.fPML.AdditionalEffectFullArgument;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
+import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.EffectFullArgument;
-import it.unibo.fPML.EffectFullBlock;
+import it.unibo.fPML.EffectFullFunctionBlock;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EmptyFunctionBody;
@@ -25,9 +26,9 @@ import it.unibo.fPML.PrimitiveRandom;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureReference;
+import it.unibo.fPML.PureValue;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.UnitType;
-import it.unibo.fPML.Value;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.PureFunctionGenerator;
 import it.unibo.generator.TypeGenerator;
@@ -43,7 +44,7 @@ public class EffectFullFunctionGenerator {
   
   private final PureFunctionGenerator pureFunctionGenerator = new PureFunctionGenerator();
   
-  public CharSequence compile(final EffectFullBlock efb) {
+  public CharSequence compile(final EffectFullFunctionBlock effb) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _basePackageJava = FPMLGenerator.basePackageJava();
@@ -70,7 +71,7 @@ public class EffectFullFunctionGenerator {
     _builder.append("public class EffectFullFunctionDefinitions {");
     _builder.newLine();
     {
-      EList<EffectFullFunctionDefinition> _features = efb.getFeatures();
+      EList<EffectFullFunctionDefinition> _features = effb.getFeatures();
       for(final EffectFullFunctionDefinition f : _features) {
         _builder.append("\t");
         String _compile = this.compile(f);
@@ -290,11 +291,11 @@ public class EffectFullFunctionGenerator {
       }
     }
     if (!_matched) {
-      if (e instanceof Value) {
+      if (e instanceof PureValue) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IOFunctions.unit(Value.");
-        String _name = ((Value) e).getName();
+        String _name = ((PureValue) e).getName();
         _builder.append(_name, "");
         _builder.append("())");
         return _builder.toString();
@@ -426,8 +427,9 @@ public class EffectFullFunctionGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(".bind(PrimitivesEffectFull::ApplyFIO(");
-        EffectFullReference _value = ((ApplyFIO)e).getValue();
-        Object _compileIOWalkthorugh = this.compileIOWalkthorugh(_value);
+        ApplyFIOFactor _value = ((ApplyFIO)e).getValue();
+        EffectFullReference _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
+        Object _compileIOWalkthorugh = this.compileIOWalkthorugh(_valueFromApplyFIOFactor);
         _builder.append(_compileIOWalkthorugh, "");
         _builder.append("))");
         _switchResult = _builder;
@@ -450,11 +452,11 @@ public class EffectFullFunctionGenerator {
       }
     }
     if (!_matched) {
-      if (e instanceof Value) {
+      if (e instanceof PureValue) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(".append(IOFunctions.unit(Value.");
-        String _name = ((Value) e).getName();
+        String _name = ((PureValue) e).getName();
         _builder.append(_name, "");
         _builder.append("()))");
         return _builder.toString();

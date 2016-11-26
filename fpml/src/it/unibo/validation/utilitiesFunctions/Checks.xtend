@@ -13,18 +13,21 @@ import it.unibo.fPML.CompositionFunctionBodyEffect
 import it.unibo.fPML.EffectFullReference
 import it.unibo.fPML.Type
 import it.unibo.fPML.EffectFullFunctionDefinition
+import org.eclipse.emf.ecore.EObject
+import it.unibo.fPML.EffectFullAdtValue
+import it.unibo.fPML.EffectFullAdtType
 
 class Checks {
 	
-	def static boolean DataAndValue(AdtValue value, AdtType type) {
+	def static boolean DataAndValue(PureAdtValue value, PureAdtType type) {
 		switch type {
 			IntegerType: return value instanceof IntegerType || 
-						       (value instanceof ValueRef &&
-						       	checkValueType((value as ValueRef).value, type)
+						       (value instanceof PureValueRef &&
+						       	checkValueType((value as PureValueRef).value, type)
 						       )
 			StringType: return value instanceof StringType ||
-							  (value instanceof ValueRef &&
-						       	checkValueType((value as ValueRef).value, type)
+							  (value instanceof PureValueRef &&
+						       	checkValueType((value as PureValueRef).value, type)
 						       )
 			DataType: return value instanceof DataValue && 
 							 DataAndValue((value as DataValue).value, (type as DataType).type.content)
@@ -33,27 +36,27 @@ class Checks {
 					return (value as PureFunctionType).value.getFunctionBody instanceof CompositionFunctionBodyPure &&
 					 ValueTypeEquals((value as PureFunctionType).value.arg.type, type.argType) && 
 					 ValueTypeEquals(GetReturnType.pureFunctionDefinition((value as PureFunctionType).value), type.returnType)
-				else if ( value instanceof ValueRef && (value as ValueRef).value instanceof PureFunctionDefinition) {
-					return  ValueTypeEquals(((value as ValueRef).value as PureFunctionDefinition).arg.type, type.argType) &&
-							ValueTypeEquals(((value as ValueRef).value as PureFunctionDefinition).returnType, type.returnType)
+				else if ( value instanceof PureValueRef && (value as PureValueRef).value instanceof PureFunctionDefinition) {
+					return  ValueTypeEquals(((value as PureValueRef).value as PureFunctionDefinition).arg.type, type.argType) &&
+							ValueTypeEquals(((value as PureValueRef).value as PureFunctionDefinition).returnType, type.returnType)
 				} 
 			}
 			default: {
 				switch value{
-					SumValue: return (type.adtElement2 instanceof SumType) && 
-									 (  (DataAndValue(value.sumAdtElement1, type.adtElement1)).booleanValue 
-									 || (DataAndValue(value.sumAdtElement2, (type.adtElement2 as SumType).adtElement)).booleanValue)
-					ProdValue: return (type.adtElement2 instanceof ProdType) && 
-									(   (DataAndValue(value.prodAdtElement1, type.adtElement1)).booleanValue 
-									&& (DataAndValue(value.prodAdtElement2, (type.adtElement2 as ProdType).adtElement)).booleanValue)
-          			ValueRef: return checkValueType(value.value, type)
+					PureSumValue: return (type.pureAdtElement2 instanceof PureSumType) && 
+									 (  (DataAndValue(value.sumAdtElement1, type.pureAdtElement1)).booleanValue 
+									 || (DataAndValue(value.sumAdtElement2, (type.pureAdtElement2 as PureSumType).adtElement)).booleanValue)
+					PureProdValue: return (type.pureAdtElement2 instanceof PureProdType) && 
+									(   (DataAndValue(value.prodAdtElement1, type.pureAdtElement1)).booleanValue 
+									&& (DataAndValue(value.prodAdtElement2, (type.pureAdtElement2 as PureProdType).adtElement)).booleanValue)
+          			PureValueRef: return checkValueType(value.value, type)
 					default: false
 				}
 			}
 		}
 	}
 	
-	def static boolean checkValueType(Value v, AdtType adtt) {
+	def static boolean checkValueType(PureValue v, PureAdtType adtt) {
 		val valueType = Others.getTypeFromExpression(v.value)
 		switch adtt {
 			IntegerType: return valueType instanceof IntegerType
@@ -170,6 +173,53 @@ class Checks {
 	def static functionArgTypeEffectFull(it.unibo.fPML.EffectFullFunctionDefinition definition) {
 		return functionBodyEffectFull(definition.functionBody, definition.arg.type)
 		
+	}
+	
+	def static boolean effectFullLambda(EffectFullLambda lambda) {
+		val arg = GetArgType.effectFullLambda(lambda)
+		
+		return functionBodyEffectFull(lambda.functionBody, arg)
+	}
+	
+	def static boolean effectFullDataAndValue(EffectFullAdtValue value, EffectFullAdtType type) {
+		switch type {
+			IOType: {
+				switch type.type {
+					ValueType: 	(value instanceof Expression && 
+								ValueTypeEquals(type.type as ValueType, GetReturnType.expression(value as Expression))) ||
+								(value instanceof PureValueRef &&
+						       	TypeEquals(GetReturnType.expression((value as PureValueRef).value.value), type.type)) ||
+						       	((value instanceof EffectFullValueRef &&
+						       	TypeEquals(GetReturnType.effectFullExpression((value as EffectFullValueRef).value.value), type.type)))
+					UnitType: 	value instanceof UnitType ||
+								(value instanceof EffectFullValueRef &&
+						       	TypeEquals(GetReturnType.effectFullExpression((value as EffectFullValueRef).value.value), type.type)) 
+					EffectFullFunctionType: {
+						if (value instanceof EffectFullFunctionType) 
+							return (value as EffectFullFunctionType).value.getFunctionBody instanceof CompositionFunctionBodyEffect &&
+							 TypeEquals((value as EffectFullFunctionType).value.arg.type, (type.type as EffectFullFunctionType).argType) && 
+							 TypeEquals(GetReturnType.effectFullFunctionDefinition((value as EffectFullFunctionType).value), (type.type as EffectFullFunctionType).returnType.type)
+						else if (value instanceof EffectFullValueRef && (value as EffectFullValueRef).value instanceof EffectFullFunctionDefinition) {
+							return  TypeEquals(((value as EffectFullValueRef).value as EffectFullFunctionDefinition).arg.type, (type.type as EffectFullFunctionType).argType) &&
+									TypeEquals(((value as EffectFullValueRef).value as EffectFullFunctionDefinition).returnType.type, (type.type as EffectFullFunctionType).returnType.type)
+						} 
+					}
+					EffectFullDataType: return value instanceof EffectFullDataValue && 
+							 			effectFullDataAndValue((value as EffectFullDataValue).value, (type as EffectFullDataType).type.content)
+				}
+			}
+			default: {
+				switch value{
+					EffectFullSumValue: return (type.effectFullAdtElement2 instanceof EffectFullSumType) && 
+									 (  (effectFullDataAndValue(value.sumAdtElement1, type.effectFullAdtElement1)).booleanValue 
+									 || (effectFullDataAndValue(value.sumAdtElement2, (type.effectFullAdtElement2 as EffectFullSumType).adtElement)).booleanValue)
+					EffectFullProdValue: return (type.effectFullAdtElement2 instanceof PureProdType) && 
+									(   (effectFullDataAndValue(value.prodAdtElement1, type.effectFullAdtElement1)).booleanValue 
+									&& (effectFullDataAndValue(value.prodAdtElement2, (type.effectFullAdtElement2 as EffectFullProdType).adtElement)).booleanValue)
+					default: false	
+				}	
+			}
+		}
 	}
 	
 }

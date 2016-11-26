@@ -68,15 +68,22 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.MODEL: return createModel();
       case FPMLPackage.PURE_BLOCK: return createPureBlock();
       case FPMLPackage.PURE_FUNCTION_BLOCK: return createPureFunctionBlock();
-      case FPMLPackage.DATA_BLOCK: return createDataBlock();
-      case FPMLPackage.VALUE_BLOCK: return createValueBlock();
+      case FPMLPackage.PURE_DATA_BLOCK: return createPureDataBlock();
+      case FPMLPackage.PURE_VALUE_BLOCK: return createPureValueBlock();
       case FPMLPackage.EFFECT_FULL_BLOCK: return createEffectFullBlock();
-      case FPMLPackage.DATA: return createData();
+      case FPMLPackage.EFFECT_FULL_DATA_BLOCK: return createEffectFullDataBlock();
+      case FPMLPackage.EFFECT_FULL_VALUE_BLOCK: return createEffectFullValueBlock();
+      case FPMLPackage.EFFECT_FULL_FUNCTION_BLOCK: return createEffectFullFunctionBlock();
+      case FPMLPackage.PURE_DATA: return createPureData();
       case FPMLPackage.PURE_FUNCTION_DEFINITION: return createPureFunctionDefinition();
-      case FPMLPackage.ADT_TYPE: return createAdtType();
-      case FPMLPackage.SUM_TYPE: return createSumType();
-      case FPMLPackage.PROD_TYPE: return createProdType();
+      case FPMLPackage.PURE_ADT_TYPE: return createPureAdtType();
+      case FPMLPackage.PURE_SUM_TYPE: return createPureSumType();
+      case FPMLPackage.PURE_PROD_TYPE: return createPureProdType();
+      case FPMLPackage.EFFECT_FULL_DATA: return createEffectFullData();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION: return createEffectFullFunctionDefinition();
+      case FPMLPackage.EFFECT_FULL_ADT_TYPE: return createEffectFullAdtType();
+      case FPMLPackage.EFFECT_FULL_SUM_TYPE: return createEffectFullSumType();
+      case FPMLPackage.EFFECT_FULL_PROD_TYPE: return createEffectFullProdType();
       case FPMLPackage.MAIN_FUNC: return createMainFunc();
       case FPMLPackage.ADDITIONAL_PURE_ARGUMENT: return createAdditionalPureArgument();
       case FPMLPackage.ADDITIONAL_EFFECT_FULL_ARGUMENT: return createAdditionalEffectFullArgument();
@@ -85,6 +92,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_FUNCTION: return createEffectFullFunction();
       case FPMLPackage.EFFECT_FULL_REFERENCE: return createEffectFullReference();
       case FPMLPackage.PURE_REFERENCE: return createPureReference();
+      case FPMLPackage.PRIMITIVE_FUNCTION: return createPrimitiveFunction();
       case FPMLPackage.EFFECT_FULL_ARGUMENT: return createEffectFullArgument();
       case FPMLPackage.ARGUMENT: return createArgument();
       case FPMLPackage.FUNCTION_BODY_PURE: return createFunctionBodyPure();
@@ -101,13 +109,19 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.STRING_TYPE: return createStringType();
       case FPMLPackage.UNIT_TYPE: return createUnitType();
       case FPMLPackage.DATA_TYPE: return createDataType();
+      case FPMLPackage.EFFECT_FULL_DATA_TYPE: return createEffectFullDataType();
       case FPMLPackage.PURE_FUNCTION_TYPE: return createPureFunctionType();
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE: return createEffectFullFunctionType();
+      case FPMLPackage.EFFECT_FULL_EXPRESSION: return createEffectFullExpression();
+      case FPMLPackage.EFFECT_FULL_VALUE_REF: return createEffectFullValueRef();
       case FPMLPackage.EXPRESSION: return createExpression();
-      case FPMLPackage.VALUE_REF: return createValueRef();
-      case FPMLPackage.ADT_VALUE: return createAdtValue();
-      case FPMLPackage.PROD_VALUE: return createProdValue();
-      case FPMLPackage.SUM_VALUE: return createSumValue();
+      case FPMLPackage.PURE_VALUE_REF: return createPureValueRef();
+      case FPMLPackage.PURE_ADT_VALUE: return createPureAdtValue();
+      case FPMLPackage.PURE_PROD_VALUE: return createPureProdValue();
+      case FPMLPackage.PURE_SUM_VALUE: return createPureSumValue();
+      case FPMLPackage.EFFECT_FULL_ADT_VALUE: return createEffectFullAdtValue();
+      case FPMLPackage.EFFECT_FULL_PROD_VALUE: return createEffectFullProdValue();
+      case FPMLPackage.EFFECT_FULL_SUM_VALUE: return createEffectFullSumValue();
       case FPMLPackage.PRIMITIVE_PURE_FUNCTION: return createPrimitivePureFunction();
       case FPMLPackage.INT_TO_STRING: return createIntToString();
       case FPMLPackage.INT_POW: return createIntPow();
@@ -118,10 +132,15 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.APPLY_F: return createApplyF();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
+      case FPMLPackage.PRIMITIVE_EFFECT_FULL_VALUE: return createPrimitiveEffectFullValue();
       case FPMLPackage.PRIMITIVE_RANDOM: return createPrimitiveRandom();
       case FPMLPackage.APPLY_FIO: return createApplyFIO();
-      case FPMLPackage.VALUE: return createValue();
+      case FPMLPackage.APPLY_FIO_FACTOR: return createApplyFIOFactor();
+      case FPMLPackage.PURE_VALUE: return createPureValue();
+      case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
+      case FPMLPackage.EFFECT_FULL_LAMBDA: return createEffectFullLambda();
       case FPMLPackage.DATA_VALUE: return createDataValue();
+      case FPMLPackage.EFFECT_FULL_DATA_VALUE: return createEffectFullDataValue();
       case FPMLPackage.PURE_LAMBDA: return createPureLambda();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -166,10 +185,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DataBlock createDataBlock()
+  public PureDataBlock createPureDataBlock()
   {
-    DataBlockImpl dataBlock = new DataBlockImpl();
-    return dataBlock;
+    PureDataBlockImpl pureDataBlock = new PureDataBlockImpl();
+    return pureDataBlock;
   }
 
   /**
@@ -177,10 +196,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ValueBlock createValueBlock()
+  public PureValueBlock createPureValueBlock()
   {
-    ValueBlockImpl valueBlock = new ValueBlockImpl();
-    return valueBlock;
+    PureValueBlockImpl pureValueBlock = new PureValueBlockImpl();
+    return pureValueBlock;
   }
 
   /**
@@ -199,10 +218,43 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Data createData()
+  public EffectFullDataBlock createEffectFullDataBlock()
   {
-    DataImpl data = new DataImpl();
-    return data;
+    EffectFullDataBlockImpl effectFullDataBlock = new EffectFullDataBlockImpl();
+    return effectFullDataBlock;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullValueBlock createEffectFullValueBlock()
+  {
+    EffectFullValueBlockImpl effectFullValueBlock = new EffectFullValueBlockImpl();
+    return effectFullValueBlock;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullFunctionBlock createEffectFullFunctionBlock()
+  {
+    EffectFullFunctionBlockImpl effectFullFunctionBlock = new EffectFullFunctionBlockImpl();
+    return effectFullFunctionBlock;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureData createPureData()
+  {
+    PureDataImpl pureData = new PureDataImpl();
+    return pureData;
   }
 
   /**
@@ -221,10 +273,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public AdtType createAdtType()
+  public PureAdtType createPureAdtType()
   {
-    AdtTypeImpl adtType = new AdtTypeImpl();
-    return adtType;
+    PureAdtTypeImpl pureAdtType = new PureAdtTypeImpl();
+    return pureAdtType;
   }
 
   /**
@@ -232,10 +284,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public SumType createSumType()
+  public PureSumType createPureSumType()
   {
-    SumTypeImpl sumType = new SumTypeImpl();
-    return sumType;
+    PureSumTypeImpl pureSumType = new PureSumTypeImpl();
+    return pureSumType;
   }
 
   /**
@@ -243,10 +295,21 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ProdType createProdType()
+  public PureProdType createPureProdType()
   {
-    ProdTypeImpl prodType = new ProdTypeImpl();
-    return prodType;
+    PureProdTypeImpl pureProdType = new PureProdTypeImpl();
+    return pureProdType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullData createEffectFullData()
+  {
+    EffectFullDataImpl effectFullData = new EffectFullDataImpl();
+    return effectFullData;
   }
 
   /**
@@ -258,6 +321,39 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     EffectFullFunctionDefinitionImpl effectFullFunctionDefinition = new EffectFullFunctionDefinitionImpl();
     return effectFullFunctionDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullAdtType createEffectFullAdtType()
+  {
+    EffectFullAdtTypeImpl effectFullAdtType = new EffectFullAdtTypeImpl();
+    return effectFullAdtType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullSumType createEffectFullSumType()
+  {
+    EffectFullSumTypeImpl effectFullSumType = new EffectFullSumTypeImpl();
+    return effectFullSumType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullProdType createEffectFullProdType()
+  {
+    EffectFullProdTypeImpl effectFullProdType = new EffectFullProdTypeImpl();
+    return effectFullProdType;
   }
 
   /**
@@ -346,6 +442,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     PureReferenceImpl pureReference = new PureReferenceImpl();
     return pureReference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PrimitiveFunction createPrimitiveFunction()
+  {
+    PrimitiveFunctionImpl primitiveFunction = new PrimitiveFunctionImpl();
+    return primitiveFunction;
   }
 
   /**
@@ -529,6 +636,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public EffectFullDataType createEffectFullDataType()
+  {
+    EffectFullDataTypeImpl effectFullDataType = new EffectFullDataTypeImpl();
+    return effectFullDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PureFunctionType createPureFunctionType()
   {
     PureFunctionTypeImpl pureFunctionType = new PureFunctionTypeImpl();
@@ -551,6 +669,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public EffectFullExpression createEffectFullExpression()
+  {
+    EffectFullExpressionImpl effectFullExpression = new EffectFullExpressionImpl();
+    return effectFullExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullValueRef createEffectFullValueRef()
+  {
+    EffectFullValueRefImpl effectFullValueRef = new EffectFullValueRefImpl();
+    return effectFullValueRef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Expression createExpression()
   {
     ExpressionImpl expression = new ExpressionImpl();
@@ -562,10 +702,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ValueRef createValueRef()
+  public PureValueRef createPureValueRef()
   {
-    ValueRefImpl valueRef = new ValueRefImpl();
-    return valueRef;
+    PureValueRefImpl pureValueRef = new PureValueRefImpl();
+    return pureValueRef;
   }
 
   /**
@@ -573,10 +713,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public AdtValue createAdtValue()
+  public PureAdtValue createPureAdtValue()
   {
-    AdtValueImpl adtValue = new AdtValueImpl();
-    return adtValue;
+    PureAdtValueImpl pureAdtValue = new PureAdtValueImpl();
+    return pureAdtValue;
   }
 
   /**
@@ -584,10 +724,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ProdValue createProdValue()
+  public PureProdValue createPureProdValue()
   {
-    ProdValueImpl prodValue = new ProdValueImpl();
-    return prodValue;
+    PureProdValueImpl pureProdValue = new PureProdValueImpl();
+    return pureProdValue;
   }
 
   /**
@@ -595,10 +735,43 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public SumValue createSumValue()
+  public PureSumValue createPureSumValue()
   {
-    SumValueImpl sumValue = new SumValueImpl();
-    return sumValue;
+    PureSumValueImpl pureSumValue = new PureSumValueImpl();
+    return pureSumValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullAdtValue createEffectFullAdtValue()
+  {
+    EffectFullAdtValueImpl effectFullAdtValue = new EffectFullAdtValueImpl();
+    return effectFullAdtValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullProdValue createEffectFullProdValue()
+  {
+    EffectFullProdValueImpl effectFullProdValue = new EffectFullProdValueImpl();
+    return effectFullProdValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullSumValue createEffectFullSumValue()
+  {
+    EffectFullSumValueImpl effectFullSumValue = new EffectFullSumValueImpl();
+    return effectFullSumValue;
   }
 
   /**
@@ -716,6 +889,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PrimitiveEffectFullValue createPrimitiveEffectFullValue()
+  {
+    PrimitiveEffectFullValueImpl primitiveEffectFullValue = new PrimitiveEffectFullValueImpl();
+    return primitiveEffectFullValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PrimitiveRandom createPrimitiveRandom()
   {
     PrimitiveRandomImpl primitiveRandom = new PrimitiveRandomImpl();
@@ -738,10 +922,43 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value createValue()
+  public ApplyFIOFactor createApplyFIOFactor()
   {
-    ValueImpl value = new ValueImpl();
-    return value;
+    ApplyFIOFactorImpl applyFIOFactor = new ApplyFIOFactorImpl();
+    return applyFIOFactor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureValue createPureValue()
+  {
+    PureValueImpl pureValue = new PureValueImpl();
+    return pureValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullValue createEffectFullValue()
+  {
+    EffectFullValueImpl effectFullValue = new EffectFullValueImpl();
+    return effectFullValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullLambda createEffectFullLambda()
+  {
+    EffectFullLambdaImpl effectFullLambda = new EffectFullLambdaImpl();
+    return effectFullLambda;
   }
 
   /**
@@ -753,6 +970,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     DataValueImpl dataValue = new DataValueImpl();
     return dataValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullDataValue createEffectFullDataValue()
+  {
+    EffectFullDataValueImpl effectFullDataValue = new EffectFullDataValueImpl();
+    return effectFullDataValue;
   }
 
   /**

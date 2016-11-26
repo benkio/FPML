@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.EcoreUtil2
 import it.unibo.services.FPMLGrammarAccess.PrimitivePureFunctionElements
 import it.unibo.services.FPMLGrammarAccess.PrimitiveEffectFullFunctionElements
+import it.unibo.fPML.EffectFullValue
 
 /**
  * This class contains custom validation rules. 
@@ -31,7 +32,7 @@ class FPMLValidator extends AbstractFPMLValidator {
 		switch f {
 			PureFunction: {
 				switch f {
-					Value: typeCheckValue(f)
+					PureValue: typeCheckPureValue(f)
 					PureLambda: typeCheckLambda(f)
 					PrimitivePureFunction: typeCheckPurePrimitive(f)
 					PureFunctionDefinition: typeCheckPureFunction(f)
@@ -40,12 +41,14 @@ class FPMLValidator extends AbstractFPMLValidator {
 			EffectFullFunction: {
 				switch f {
 					PrimitiveEffectFullFunction: typeCheckEffectFullPrimitive(f)
+					EffectFullLambda: typeCheckEffectFullLambda(f)
+					EffectFullValue: typeCheckEffectFullValue(f)
 					EffectFullFunctionDefinition: typeCheckEffectFullFunction(f)
 				}
 			}
 		}
    }
-   
+	
    @Check
    def typeCheckMain(MainFunc m){
    		if (!Checks.mainReturnType(m))
@@ -54,10 +57,28 @@ class FPMLValidator extends AbstractFPMLValidator {
    			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.MAIN_FUNC__FUNCTION_BODY)
    }
    
-   def typeCheckValue(Value v){
+   	def typeCheckEffectFullLambda(EffectFullLambda lambda) {
+		if (!Checks.effectFullLambda(lambda)){
+   			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY)
+   		}
+   	}
+	
+	def typeCheckEffectFullValue(EffectFullValue value) {
+		if (value.value instanceof Expression){
+			val pureValue = FPMLFactory.eINSTANCE.createPureValue
+			pureValue.value = value.value as Expression
+			typeCheckPureValue(pureValue)
+		}
+		else if (value.value instanceof EffectFullDataValue &&
+   		!Checks.effectFullDataAndValue((value.value as EffectFullDataValue).value, (value.value as EffectFullDataValue).type.content)) {
+   			error(TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.EFFECT_FULL_DATA_VALUE__VALUE)
+		}
+	}
+   
+   def typeCheckPureValue(PureValue v){
    	if (v.value instanceof DataValue &&
    		!Checks.DataAndValue((v.value as DataValue).value, (v.value as DataValue).type.content)) {
-   		error(TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.VALUE__VALUE)
+   		error(TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.PURE_VALUE__VALUE)
 	}
    }
    def typeCheckLambda(PureLambda l){
@@ -89,7 +110,7 @@ class FPMLValidator extends AbstractFPMLValidator {
    def typeCheckEffectFullPrimitive(PrimitiveEffectFullFunction p){
    		switch p {
    			ApplyFIO: {
-   				if (!Checks.TypeEquals(p.functionType.argType, GetReturnType.effectFullReference(p.value)))
+   				if (!Checks.TypeEquals(p.functionType.argType, GetReturnType.effectFullReference(Others.getValueFromApplyFIOFactor(p.value))))
    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE)
    			}
    		}
