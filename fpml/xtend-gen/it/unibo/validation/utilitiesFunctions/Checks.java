@@ -352,8 +352,8 @@ public class Checks {
       boolean _matched_1 = false;
       if (_type instanceof ValueType) {
         _matched_1=true;
-        _switchResult_1 = ((((value instanceof Expression) && 
-          Checks.ValueTypeEquals(((ValueType) ((IOType)type).getType()), GetReturnType.expression(((Expression) value)))) || ((value instanceof PureValueRef) && 
+        _switchResult_1 = ((((value instanceof ValueType) && 
+          Checks.ValueTypeEquals(((ValueType) ((IOType)type).getType()), ((ValueType) value))) || ((value instanceof PureValueRef) && 
           Checks.TypeEquals(GetReturnType.expression(((PureValueRef) value).getValue().getValue()), ((IOType)type).getType()))) || ((value instanceof EffectFullValueRef) && 
           Checks.TypeEquals(GetReturnType.effectFullExpression(((EffectFullValueRef) value).getValue().getValue()), ((IOType)type).getType())));
       }

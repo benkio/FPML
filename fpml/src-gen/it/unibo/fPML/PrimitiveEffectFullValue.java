@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PrimitiveEffectFullValue extends EffectFullReference
+public interface PrimitiveEffectFullValue extends EffectFullReference, PrimitiveFunction
 {
 } // PrimitiveEffectFullValue

@@ -1762,6 +1762,15 @@ rulePrimitiveFunction returns [EObject current=null]
 			$current = $this_PrimitivePureFunction_1.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveFunctionAccess().getPrimitiveEffectFullValueParserRuleCall_2());
+		}
+		this_PrimitiveEffectFullValue_2=rulePrimitiveEffectFullValue
+		{
+			$current = $this_PrimitiveEffectFullValue_2.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -4389,14 +4398,34 @@ rulePrimitiveEffectFullValue returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	{
-		newCompositeNode(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveRandomParserRuleCall());
-	}
-	this_PrimitiveRandom_0=rulePrimitiveRandom
-	{
-		$current = $this_PrimitiveRandom_0.current;
-		afterParserOrEnumRuleCall();
-	}
+	(
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveRandomParserRuleCall_0());
+		}
+		this_PrimitiveRandom_0=rulePrimitiveRandom
+		{
+			$current = $this_PrimitiveRandom_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveReturnParserRuleCall_1());
+		}
+		this_PrimitiveReturn_1=rulePrimitiveReturn
+		{
+			$current = $this_PrimitiveReturn_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveTimeParserRuleCall_2());
+		}
+		this_PrimitiveTime_2=rulePrimitiveTime
+		{
+			$current = $this_PrimitiveTime_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
 ;
 
 // Entry rule entryRulePrimitiveRandom
@@ -4425,6 +4454,85 @@ rulePrimitiveRandom returns [EObject current=null]
 		otherlv_1='randomInt'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getPrimitiveRandomAccess().getRandomIntKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRulePrimitiveReturn
+entryRulePrimitiveReturn returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPrimitiveReturnRule()); }
+	iv_rulePrimitiveReturn=rulePrimitiveReturn
+	{ $current=$iv_rulePrimitiveReturn.current; }
+	EOF;
+
+// Rule PrimitiveReturn
+rulePrimitiveReturn returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getPrimitiveReturnAccess().getPrimitiveReturnAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='return'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getPrimitiveReturnAccess().getReturnKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPrimitiveReturnAccess().getTypeTypeParserRuleCall_2_0());
+				}
+				lv_type_2_0=ruleType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPrimitiveReturnRule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_2_0,
+						"it.unibo.FPML.Type");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRulePrimitiveTime
+entryRulePrimitiveTime returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPrimitiveTimeRule()); }
+	iv_rulePrimitiveTime=rulePrimitiveTime
+	{ $current=$iv_rulePrimitiveTime.current; }
+	EOF;
+
+// Rule PrimitiveTime
+rulePrimitiveTime returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getPrimitiveTimeAccess().getPrimitiveTimeAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='currentTime'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getPrimitiveTimeAccess().getCurrentTimeKeyword_1());
 		}
 	)
 ;

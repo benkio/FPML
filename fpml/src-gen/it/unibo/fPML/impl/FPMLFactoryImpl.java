@@ -134,6 +134,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_VALUE: return createPrimitiveEffectFullValue();
       case FPMLPackage.PRIMITIVE_RANDOM: return createPrimitiveRandom();
+      case FPMLPackage.PRIMITIVE_RETURN: return createPrimitiveReturn();
+      case FPMLPackage.PRIMITIVE_TIME: return createPrimitiveTime();
       case FPMLPackage.APPLY_FIO: return createApplyFIO();
       case FPMLPackage.APPLY_FIO_FACTOR: return createApplyFIOFactor();
       case FPMLPackage.PURE_VALUE: return createPureValue();
@@ -904,6 +906,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     PrimitiveRandomImpl primitiveRandom = new PrimitiveRandomImpl();
     return primitiveRandom;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PrimitiveReturn createPrimitiveReturn()
+  {
+    PrimitiveReturnImpl primitiveReturn = new PrimitiveReturnImpl();
+    return primitiveReturn;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PrimitiveTime createPrimitiveTime()
+  {
+    PrimitiveTimeImpl primitiveTime = new PrimitiveTimeImpl();
+    return primitiveTime;
   }
 
   /**

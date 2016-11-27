@@ -141,10 +141,11 @@ class GetReturnType {
 	
 	def static Type effectFullReference(EffectFullReference r) {
 		switch r {
-			PrimitiveEffectFullValue: primitiveEffectFullValue(r)
-			PrimitiveFunction: pritiveFunction(r)
 			EffectFullValue: effectFullExpression(r.value)
 			PureValue: expression(r.value)
+			PrimitiveEffectFullValue: primitiveEffectFullValue(r)
+			PrimitiveEffectFullFunction: primitiveEffectFullFunction(r)
+			PrimitivePureFunction: primitivePureFunction(r)
 			EffectFullArgument: r.type
 		}
 	}
@@ -152,6 +153,8 @@ class GetReturnType {
 	def static primitiveEffectFullValue(PrimitiveEffectFullValue value) {
 		switch value {
 			PrimitiveRandom: return FPMLFactory.eINSTANCE.createIntegerType
+     		PrimitiveReturn: return value.type
+     		PrimitiveTime: return FPMLFactory.eINSTANCE.createStringType
 		}
 	}
 	
@@ -174,7 +177,6 @@ class GetReturnType {
 	def static primitiveEffectFullFunction(PrimitiveEffectFullFunction function) {
 		switch function {
 			PrimitivePrint: FPMLFactory.eINSTANCE.createUnitType
-			PrimitiveRandom: FPMLFactory.eINSTANCE.createIntegerType
 			ApplyFIO: function.functionType.returnType.type
 		}
 	}

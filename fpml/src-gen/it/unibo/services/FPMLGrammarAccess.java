@@ -1064,12 +1064,13 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPrimitiveEffectFullFunctionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cPrimitivePureFunctionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPrimitiveEffectFullValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//PrimitiveFunction:
-		//	PrimitiveEffectFullFunction | PrimitivePureFunction;
+		//	PrimitiveEffectFullFunction | PrimitivePureFunction | PrimitiveEffectFullValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PrimitiveEffectFullFunction | PrimitivePureFunction
+		//PrimitiveEffectFullFunction | PrimitivePureFunction | PrimitiveEffectFullValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//PrimitiveEffectFullFunction
@@ -1077,6 +1078,9 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PrimitivePureFunction
 		public RuleCall getPrimitivePureFunctionParserRuleCall_1() { return cPrimitivePureFunctionParserRuleCall_1; }
+		
+		//PrimitiveEffectFullValue
+		public RuleCall getPrimitiveEffectFullValueParserRuleCall_2() { return cPrimitiveEffectFullValueParserRuleCall_2; }
 	}
 	public class EffectFullArgumentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EffectFullArgument");
@@ -2647,14 +2651,26 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class PrimitiveEffectFullValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveEffectFullValue");
-		private final RuleCall cPrimitiveRandomParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPrimitiveRandomParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPrimitiveReturnParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPrimitiveTimeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//PrimitiveEffectFullValue:
-		//	PrimitiveRandom;
+		//	PrimitiveRandom | PrimitiveReturn | PrimitiveTime;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//PrimitiveRandom | PrimitiveReturn | PrimitiveTime
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//PrimitiveRandom
-		public RuleCall getPrimitiveRandomParserRuleCall() { return cPrimitiveRandomParserRuleCall; }
+		public RuleCall getPrimitiveRandomParserRuleCall_0() { return cPrimitiveRandomParserRuleCall_0; }
+		
+		//PrimitiveReturn
+		public RuleCall getPrimitiveReturnParserRuleCall_1() { return cPrimitiveReturnParserRuleCall_1; }
+		
+		//PrimitiveTime
+		public RuleCall getPrimitiveTimeParserRuleCall_2() { return cPrimitiveTimeParserRuleCall_2; }
 	}
 	public class PrimitiveRandomElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveRandom");
@@ -2674,6 +2690,52 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//"randomInt"
 		public Keyword getRandomIntKeyword_1() { return cRandomIntKeyword_1; }
+	}
+	public class PrimitiveReturnElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveReturn");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPrimitiveReturnAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cReturnKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		
+		//PrimitiveReturn:
+		//	{PrimitiveReturn} "return" type=Type;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{PrimitiveReturn} "return" type=Type
+		public Group getGroup() { return cGroup; }
+		
+		//{PrimitiveReturn}
+		public Action getPrimitiveReturnAction_0() { return cPrimitiveReturnAction_0; }
+		
+		//"return"
+		public Keyword getReturnKeyword_1() { return cReturnKeyword_1; }
+		
+		//type=Type
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_2_0() { return cTypeTypeParserRuleCall_2_0; }
+	}
+	public class PrimitiveTimeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveTime");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPrimitiveTimeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cCurrentTimeKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//PrimitiveTime:
+		//	{PrimitiveTime} "currentTime";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{PrimitiveTime} "currentTime"
+		public Group getGroup() { return cGroup; }
+		
+		//{PrimitiveTime}
+		public Action getPrimitiveTimeAction_0() { return cPrimitiveTimeAction_0; }
+		
+		//"currentTime"
+		public Keyword getCurrentTimeKeyword_1() { return cCurrentTimeKeyword_1; }
 	}
 	public class ApplyFIOElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.ApplyFIO");
@@ -2823,6 +2885,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final PrimitivePrintElements pPrimitivePrint;
 	private final PrimitiveEffectFullValueElements pPrimitiveEffectFullValue;
 	private final PrimitiveRandomElements pPrimitiveRandom;
+	private final PrimitiveReturnElements pPrimitiveReturn;
+	private final PrimitiveTimeElements pPrimitiveTime;
 	private final ApplyFIOElements pApplyFIO;
 	private final ApplyFIOFactorElements pApplyFIOFactor;
 	
@@ -2915,6 +2979,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPrimitivePrint = new PrimitivePrintElements();
 		this.pPrimitiveEffectFullValue = new PrimitiveEffectFullValueElements();
 		this.pPrimitiveRandom = new PrimitiveRandomElements();
+		this.pPrimitiveReturn = new PrimitiveReturnElements();
+		this.pPrimitiveTime = new PrimitiveTimeElements();
 		this.pApplyFIO = new ApplyFIOElements();
 		this.pApplyFIOFactor = new ApplyFIOFactorElements();
 	}
@@ -3279,7 +3345,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrimitiveFunction:
-	//	PrimitiveEffectFullFunction | PrimitivePureFunction;
+	//	PrimitiveEffectFullFunction | PrimitivePureFunction | PrimitiveEffectFullValue;
 	public PrimitiveFunctionElements getPrimitiveFunctionAccess() {
 		return pPrimitiveFunction;
 	}
@@ -3797,7 +3863,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrimitiveEffectFullValue:
-	//	PrimitiveRandom;
+	//	PrimitiveRandom | PrimitiveReturn | PrimitiveTime;
 	public PrimitiveEffectFullValueElements getPrimitiveEffectFullValueAccess() {
 		return pPrimitiveEffectFullValue;
 	}
@@ -3814,6 +3880,26 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPrimitiveRandomRule() {
 		return getPrimitiveRandomAccess().getRule();
+	}
+	
+	//PrimitiveReturn:
+	//	{PrimitiveReturn} "return" type=Type;
+	public PrimitiveReturnElements getPrimitiveReturnAccess() {
+		return pPrimitiveReturn;
+	}
+	
+	public ParserRule getPrimitiveReturnRule() {
+		return getPrimitiveReturnAccess().getRule();
+	}
+	
+	//PrimitiveTime:
+	//	{PrimitiveTime} "currentTime";
+	public PrimitiveTimeElements getPrimitiveTimeAccess() {
+		return pPrimitiveTime;
+	}
+	
+	public ParserRule getPrimitiveTimeRule() {
+		return getPrimitiveTimeAccess().getRule();
 	}
 	
 	//ApplyFIO:

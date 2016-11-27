@@ -196,6 +196,10 @@
     <genClasses ecoreClass="FPML.ecore#//PrimitivePrint"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveEffectFullValue"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveRandom"/>
+    <genClasses ecoreClass="FPML.ecore#//PrimitiveReturn">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PrimitiveReturn/type"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//PrimitiveTime"/>
     <genClasses ecoreClass="FPML.ecore#//ApplyFIO">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFIO/functionType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFIO/value"/>

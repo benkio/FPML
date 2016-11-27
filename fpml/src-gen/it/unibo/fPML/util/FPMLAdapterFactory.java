@@ -421,6 +421,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createPrimitiveRandomAdapter();
       }
       @Override
+      public Adapter casePrimitiveReturn(PrimitiveReturn object)
+      {
+        return createPrimitiveReturnAdapter();
+      }
+      @Override
+      public Adapter casePrimitiveTime(PrimitiveTime object)
+      {
+        return createPrimitiveTimeAdapter();
+      }
+      @Override
       public Adapter caseApplyFIO(ApplyFIO object)
       {
         return createApplyFIOAdapter();
@@ -1513,6 +1523,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrimitiveRandomAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitiveReturn <em>Primitive Return</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PrimitiveReturn
+   * @generated
+   */
+  public Adapter createPrimitiveReturnAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitiveTime <em>Primitive Time</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PrimitiveTime
+   * @generated
+   */
+  public Adapter createPrimitiveTimeAdapter()
   {
     return null;
   }

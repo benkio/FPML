@@ -245,8 +245,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveEffectFullFunction" eSuperTypes="#//EffectFullFunction #//PrimitiveFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//PrimitiveEffectFullFunction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveEffectFullValue" eSuperTypes="#//EffectFullReference"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveEffectFullValue" eSuperTypes="#//EffectFullReference #//PrimitiveFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveRandom" eSuperTypes="#//PrimitiveEffectFullValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveReturn" eSuperTypes="#//PrimitiveEffectFullValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTime" eSuperTypes="#//PrimitiveEffectFullValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="ApplyFIO" eSuperTypes="#//PrimitiveEffectFullFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionType" eType="#//EffectFullFunctionType"
         containment="true"/>

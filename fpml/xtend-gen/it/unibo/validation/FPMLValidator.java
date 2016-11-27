@@ -142,7 +142,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
     } else {
       if (((value.getValue() instanceof EffectFullDataValue) && 
         (!Checks.effectFullDataAndValue(((EffectFullDataValue) value.getValue()).getValue(), ((EffectFullDataValue) value.getValue()).getType().getContent())))) {
-        this.error(FPMLValidator.TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.EFFECT_FULL_DATA_VALUE__VALUE);
+        this.error(FPMLValidator.TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.EFFECT_FULL_VALUE__VALUE);
       }
     }
   }

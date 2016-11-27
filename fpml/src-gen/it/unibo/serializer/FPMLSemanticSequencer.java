@@ -47,6 +47,8 @@ import it.unibo.fPML.Model;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitiveRandom;
+import it.unibo.fPML.PrimitiveReturn;
+import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureAdtType;
 import it.unibo.fPML.PureBlock;
 import it.unibo.fPML.PureData;
@@ -240,6 +242,12 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.PRIMITIVE_RANDOM:
 				sequence_PrimitiveRandom(context, (PrimitiveRandom) semanticObject); 
+				return; 
+			case FPMLPackage.PRIMITIVE_RETURN:
+				sequence_PrimitiveReturn(context, (PrimitiveReturn) semanticObject); 
+				return; 
+			case FPMLPackage.PRIMITIVE_TIME:
+				sequence_PrimitiveTime(context, (PrimitiveTime) semanticObject); 
 				return; 
 			case FPMLPackage.PURE_ADT_TYPE:
 				sequence_PureAdtType(context, (PureAdtType) semanticObject); 
@@ -1122,6 +1130,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     EffectFullReference returns PrimitiveRandom
+	 *     PrimitiveFunction returns PrimitiveRandom
 	 *     PrimitiveEffectFullValue returns PrimitiveRandom
 	 *     PrimitiveRandom returns PrimitiveRandom
 	 *
@@ -1129,6 +1138,42 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {PrimitiveRandom}
 	 */
 	protected void sequence_PrimitiveRandom(ISerializationContext context, PrimitiveRandom semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EffectFullReference returns PrimitiveReturn
+	 *     PrimitiveFunction returns PrimitiveReturn
+	 *     PrimitiveEffectFullValue returns PrimitiveReturn
+	 *     PrimitiveReturn returns PrimitiveReturn
+	 *
+	 * Constraint:
+	 *     type=Type
+	 */
+	protected void sequence_PrimitiveReturn(ISerializationContext context, PrimitiveReturn semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PRIMITIVE_RETURN__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PRIMITIVE_RETURN__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimitiveReturnAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EffectFullReference returns PrimitiveTime
+	 *     PrimitiveFunction returns PrimitiveTime
+	 *     PrimitiveEffectFullValue returns PrimitiveTime
+	 *     PrimitiveTime returns PrimitiveTime
+	 *
+	 * Constraint:
+	 *     {PrimitiveTime}
+	 */
+	protected void sequence_PrimitiveTime(ISerializationContext context, PrimitiveTime semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

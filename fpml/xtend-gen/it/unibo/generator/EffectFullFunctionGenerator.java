@@ -23,6 +23,8 @@ import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitiveRandom;
+import it.unibo.fPML.PrimitiveReturn;
+import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureReference;
@@ -278,6 +280,22 @@ public class EffectFullFunctionGenerator {
       }
     }
     if (!_matched) {
+      if (e instanceof PrimitiveTime) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.unit(System.currentTimeMillis())");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PrimitiveReturn) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(IOFunctions::unit)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
       if (e instanceof ApplyF) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
@@ -419,6 +437,22 @@ public class EffectFullFunctionGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(".bind(PrimitivesEffectFull::primitiveRandom)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PrimitiveTime) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".bind(System::currentTimeMillis)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PrimitiveReturn) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".bind(IOFunctions::unit)");
         _switchResult = _builder;
       }
     }

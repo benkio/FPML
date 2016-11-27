@@ -21,9 +21,12 @@ import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
+import it.unibo.fPML.PrimitiveEffectFullValue;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PrimitiveRandom;
+import it.unibo.fPML.PrimitiveReturn;
+import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
@@ -119,15 +122,34 @@ public class GetArgType {
   }
   
   public static Type effectFullReference(final EffectFullReference reference) {
+    Type _switchResult = null;
     boolean _matched = false;
-    if (reference instanceof EffectFullFunction) {
+    if (reference instanceof EffectFullValue) {
       _matched=true;
-      return GetArgType.effectFullFunction(((EffectFullFunction)reference));
+      return FPMLFactory.eINSTANCE.createUnitType();
     }
     if (!_matched) {
-      if (reference instanceof PureFunction) {
+      if (reference instanceof PureValue) {
         _matched=true;
-        return GetArgType.pureFunction(((PureFunction)reference));
+        return FPMLFactory.eINSTANCE.createUnitType();
+      }
+    }
+    if (!_matched) {
+      if (reference instanceof PrimitiveEffectFullValue) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createUnitType();
+      }
+    }
+    if (!_matched) {
+      if (reference instanceof PrimitiveEffectFullFunction) {
+        _matched=true;
+        _switchResult = GetArgType.primitiveEffectFullFunction(((PrimitiveEffectFullFunction)reference));
+      }
+    }
+    if (!_matched) {
+      if (reference instanceof PrimitivePureFunction) {
+        _matched=true;
+        _switchResult = GetArgType.primitivePureFunction(((PrimitivePureFunction)reference));
       }
     }
     if (!_matched) {
@@ -136,7 +158,7 @@ public class GetArgType {
         return FPMLFactory.eINSTANCE.createUnitType();
       }
     }
-    return null;
+    return _switchResult;
   }
   
   public static Type effectFullFunction(final EffectFullFunction function) {
@@ -162,12 +184,6 @@ public class GetArgType {
       return FPMLFactory.eINSTANCE.createStringType();
     }
     if (!_matched) {
-      if (function instanceof PrimitiveRandom) {
-        _matched=true;
-        return FPMLFactory.eINSTANCE.createUnitType();
-      }
-    }
-    if (!_matched) {
       if (function instanceof ApplyFIO) {
         _matched=true;
         EffectFullFunctionType _functionType = ((ApplyFIO)function).getFunctionType();
@@ -175,6 +191,28 @@ public class GetArgType {
       }
     }
     return null;
+  }
+  
+  public static Type primitiveEffectFullValue(final PrimitiveEffectFullValue pefv) {
+    Type _switchResult = null;
+    boolean _matched = false;
+    if (pefv instanceof PrimitiveRandom) {
+      _matched=true;
+      return FPMLFactory.eINSTANCE.createUnitType();
+    }
+    if (!_matched) {
+      if (pefv instanceof PrimitiveTime) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createUnitType();
+      }
+    }
+    if (!_matched) {
+      if (pefv instanceof PrimitiveReturn) {
+        _matched=true;
+        _switchResult = ((PrimitiveReturn)pefv).getType();
+      }
+    }
+    return _switchResult;
   }
   
   public static Type effectFullFunctionDefinition(final EffectFullFunctionDefinition definition) {

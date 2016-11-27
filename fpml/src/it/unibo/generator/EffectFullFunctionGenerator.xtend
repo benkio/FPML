@@ -70,6 +70,8 @@ class EffectFullFunctionGenerator {
 			Mod: '''IOFunctions.map(«valueName», Primitives::mod)'''
 			PrimitivePrint: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitivePrint)'''
 			PrimitiveRandom: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitiveRandom)'''
+      PrimitiveTime: '''IOFunctions.unit(System.currentTimeMillis())'''
+      PrimitiveReturn: '''IOFunctions.bind(IOFunctions::unit)'''
 	//		ApplyFIO: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::ApplyFIO(«e.value.compileIO»))'''
 			ApplyF: '''«valueName».f(«pureFunctionGenerator.compile(e.value,"", true)»)'''
 			PureValue: return '''IOFunctions.unit(Value.«(e as PureValue).name»())'''
@@ -106,6 +108,8 @@ class EffectFullFunctionGenerator {
 			Mod: ".map(Primitives::mod)"
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
 			PrimitiveRandom: '''.bind(PrimitivesEffectFull::primitiveRandom)'''
+      PrimitiveTime: '''.bind(System::currentTimeMillis)'''
+      PrimitiveReturn: '''.bind(IOFunctions::unit)'''
 			ApplyFIO: '''.bind(PrimitivesEffectFull::ApplyFIO(«Others.getValueFromApplyFIOFactor(e.value).compileIOWalkthorugh»))'''
 			ApplyF: '''.map((«typeGenerator.compile(e.functionType)» f) -> f.f(«pureFunctionGenerator.compile(e.value, "", true)»))'''
 			PureValue: return '''.append(IOFunctions.unit(Value.«(e as PureValue).name»()))'''

@@ -2188,6 +2188,53 @@ public interface FPMLPackage extends EPackage
   int PRIMITIVE_RANDOM_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_VALUE_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.PrimitiveReturnImpl <em>Primitive Return</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.PrimitiveReturnImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveReturn()
+   * @generated
+   */
+  int PRIMITIVE_RETURN = 69;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_RETURN__TYPE = PRIMITIVE_EFFECT_FULL_VALUE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Primitive Return</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_RETURN_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_VALUE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.PrimitiveTimeImpl <em>Primitive Time</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.PrimitiveTimeImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveTime()
+   * @generated
+   */
+  int PRIMITIVE_TIME = 70;
+
+  /**
+   * The number of structural features of the '<em>Primitive Time</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_TIME_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_VALUE_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.ApplyFIOImpl <em>Apply FIO</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2195,7 +2242,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIO()
    * @generated
    */
-  int APPLY_FIO = 69;
+  int APPLY_FIO = 71;
 
   /**
    * The feature id for the '<em><b>Function Type</b></em>' containment reference.
@@ -2232,7 +2279,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIOFactor()
    * @generated
    */
-  int APPLY_FIO_FACTOR = 70;
+  int APPLY_FIO_FACTOR = 72;
 
   /**
    * The feature id for the '<em><b>Value Reference</b></em>' reference.
@@ -2269,7 +2316,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureValue()
    * @generated
    */
-  int PURE_VALUE = 71;
+  int PURE_VALUE = 73;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2342,7 +2389,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullValue()
    * @generated
    */
-  int EFFECT_FULL_VALUE = 72;
+  int EFFECT_FULL_VALUE = 74;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2415,7 +2462,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullLambda()
    * @generated
    */
-  int EFFECT_FULL_LAMBDA = 73;
+  int EFFECT_FULL_LAMBDA = 75;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2479,7 +2526,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 74;
+  int DATA_VALUE = 76;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -2534,7 +2581,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullDataValue()
    * @generated
    */
-  int EFFECT_FULL_DATA_VALUE = 75;
+  int EFFECT_FULL_DATA_VALUE = 77;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2571,7 +2618,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureLambda()
    * @generated
    */
-  int PURE_LAMBDA = 76;
+  int PURE_LAMBDA = 78;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4166,6 +4213,37 @@ public interface FPMLPackage extends EPackage
   EClass getPrimitiveRandom();
 
   /**
+   * Returns the meta object for class '{@link it.unibo.fPML.PrimitiveReturn <em>Primitive Return</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Primitive Return</em>'.
+   * @see it.unibo.fPML.PrimitiveReturn
+   * @generated
+   */
+  EClass getPrimitiveReturn();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.PrimitiveReturn#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see it.unibo.fPML.PrimitiveReturn#getType()
+   * @see #getPrimitiveReturn()
+   * @generated
+   */
+  EReference getPrimitiveReturn_Type();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.PrimitiveTime <em>Primitive Time</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Primitive Time</em>'.
+   * @see it.unibo.fPML.PrimitiveTime
+   * @generated
+   */
+  EClass getPrimitiveTime();
+
+  /**
    * Returns the meta object for class '{@link it.unibo.fPML.ApplyFIO <em>Apply FIO</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5661,6 +5739,34 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EClass PRIMITIVE_RANDOM = eINSTANCE.getPrimitiveRandom();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitiveReturnImpl <em>Primitive Return</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.PrimitiveReturnImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveReturn()
+     * @generated
+     */
+    EClass PRIMITIVE_RETURN = eINSTANCE.getPrimitiveReturn();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PRIMITIVE_RETURN__TYPE = eINSTANCE.getPrimitiveReturn_Type();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitiveTimeImpl <em>Primitive Time</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.PrimitiveTimeImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveTime()
+     * @generated
+     */
+    EClass PRIMITIVE_TIME = eINSTANCE.getPrimitiveTime();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.ApplyFIOImpl <em>Apply FIO</em>}' class.

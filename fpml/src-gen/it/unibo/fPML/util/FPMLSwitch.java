@@ -660,6 +660,7 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         PrimitiveEffectFullValue primitiveEffectFullValue = (PrimitiveEffectFullValue)theEObject;
         T result = casePrimitiveEffectFullValue(primitiveEffectFullValue);
+        if (result == null) result = casePrimitiveFunction(primitiveEffectFullValue);
         if (result == null) result = caseEffectFullReference(primitiveEffectFullValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -669,7 +670,28 @@ public class FPMLSwitch<T> extends Switch<T>
         PrimitiveRandom primitiveRandom = (PrimitiveRandom)theEObject;
         T result = casePrimitiveRandom(primitiveRandom);
         if (result == null) result = casePrimitiveEffectFullValue(primitiveRandom);
+        if (result == null) result = casePrimitiveFunction(primitiveRandom);
         if (result == null) result = caseEffectFullReference(primitiveRandom);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PRIMITIVE_RETURN:
+      {
+        PrimitiveReturn primitiveReturn = (PrimitiveReturn)theEObject;
+        T result = casePrimitiveReturn(primitiveReturn);
+        if (result == null) result = casePrimitiveEffectFullValue(primitiveReturn);
+        if (result == null) result = casePrimitiveFunction(primitiveReturn);
+        if (result == null) result = caseEffectFullReference(primitiveReturn);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PRIMITIVE_TIME:
+      {
+        PrimitiveTime primitiveTime = (PrimitiveTime)theEObject;
+        T result = casePrimitiveTime(primitiveTime);
+        if (result == null) result = casePrimitiveEffectFullValue(primitiveTime);
+        if (result == null) result = casePrimitiveFunction(primitiveTime);
+        if (result == null) result = caseEffectFullReference(primitiveTime);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1867,6 +1889,38 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrimitiveRandom(PrimitiveRandom object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Primitive Return</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Primitive Return</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrimitiveReturn(PrimitiveReturn object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Primitive Time</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Primitive Time</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrimitiveTime(PrimitiveTime object)
   {
     return null;
   }

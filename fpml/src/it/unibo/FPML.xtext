@@ -125,7 +125,7 @@ EffectFullReference: EffectFullValue | EffectFullArgument | PureValue | Primitiv
 
 PureReference: PureValue | Argument;
 
-PrimitiveFunction: PrimitiveEffectFullFunction | PrimitivePureFunction;
+PrimitiveFunction: PrimitiveEffectFullFunction | PrimitivePureFunction | PrimitiveEffectFullValue;
 
 ///////////////////////////////////////////////////////////////////
 // Function Body Elements
@@ -157,11 +157,11 @@ CompositionFunctionBodyPureFactor:
 
 CompositionFunctionBodyEffect:
       referenceElement=[EffectFullReference] (functionChain+=CompositionFunctionBodyEffectFullFactor)+
-    | primitiveElement=(PrimitiveFunction) (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
+    | primitiveElement=PrimitiveFunction (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
     
 CompositionFunctionBodyEffectFullFactor:
 	  ( '>>=' (referenceElement=[EffectFullReference]))
-	| ( '>>=' (PrimitiveElement=(PrimitiveFunction)));
+	| ( '>>=' (PrimitiveElement=PrimitiveFunction));
 
 //////////////////////////////////////////////////////////////////////
 // Types
@@ -250,7 +250,7 @@ PureSumValue:
 	| 'Right' '(' sumAdtElement2=PureAdtValue ')';
 
 EffectFullAdtValue:
-	 'IO' PureAdtValue 
+	 'IO' '(' PureAdtValue ')'
 	 | UnitValue
 	 | EffectFullFunctionValue
 	 | EffectFullProdValue
@@ -287,11 +287,16 @@ PrimitivePrint:
     {PrimitivePrint} "print";
 
 PrimitiveEffectFullValue:
-	PrimitiveRandom
+	PrimitiveRandom | PrimitiveReturn | PrimitiveTime
 ;
 
 PrimitiveRandom:
 	{PrimitiveRandom} "randomInt";
+
+PrimitiveReturn:
+	{PrimitiveReturn} "return" type=Type;
+
+PrimitiveTime: {PrimitiveTime} "currentTime";
 
 ApplyFIO: {ApplyFIO} 'applyFIO' functionType=EffectFullFunctionType value=ApplyFIOFactor;
 ApplyFIOFactor: 

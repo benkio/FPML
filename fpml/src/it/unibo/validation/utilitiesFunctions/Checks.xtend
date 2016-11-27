@@ -185,8 +185,8 @@ class Checks {
 		switch type {
 			IOType: {
 				switch type.type {
-					ValueType: 	(value instanceof Expression && 
-								ValueTypeEquals(type.type as ValueType, GetReturnType.expression(value as Expression))) ||
+					ValueType: 	(value instanceof ValueType && 
+								ValueTypeEquals(type.type as ValueType, value as ValueType)) ||
 								(value instanceof PureValueRef &&
 						       	TypeEquals(GetReturnType.expression((value as PureValueRef).value.value), type.type)) ||
 						       	((value instanceof EffectFullValueRef &&
