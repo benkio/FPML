@@ -31,9 +31,9 @@ class EffectFullFunctionGenerator {
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
 					«IF pf.higherOrderArg == null»
-					return «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»;
+					return «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»
 					«ELSE»
-					return ( «typeGenerator.compile(pf.higherOrderArg.arg2)» ) -> «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»;
+					return ( «typeGenerator.compile(pf.higherOrderArg.arg2)» ) -> «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»
 					«ENDIF»
 				«ENDIF»
 			}'''
@@ -54,10 +54,15 @@ class EffectFullFunctionGenerator {
 	// IO Functions
 	//////////////////////////////////////////////////////////////////////////////////
 	
-	def compileIO(CompositionFunctionBodyEffect cfbe, EffectFullArgument arg) '''
-		«val firstElementCompiled = compileIO(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), arg.name)»
-		«val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | compileIO(Others.getFunctionDefinitionFromEffectFullFactor(x), acc) + "\n\t"]»
-		«cfbe.functionChain.fold(firstElementCompiled + "\n\t", f) »'''
+	def compileIO(CompositionFunctionBodyEffect cfbe, EffectFullArgument arg) {
+		var String argName = ""
+		if (arg != null){
+			argName = arg.name
+		}
+		val firstElementCompiled = compileIO(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), argName)
+		val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | compileIO(Others.getFunctionDefinitionFromEffectFullFactor(x), acc) + "\n\t"]
+		return cfbe.functionChain.fold(firstElementCompiled + "\n\t", f) + ";"
+		}
 	
 	
 	def compileIO(EffectFullReference e, String valueName){
@@ -69,9 +74,9 @@ class EffectFullFunctionGenerator {
 			Times: '''IOFunctions.map(«valueName», Primitives::times)'''
 			Mod: '''IOFunctions.map(«valueName», Primitives::mod)'''
 			PrimitivePrint: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitivePrint)'''
-			PrimitiveRandom: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitiveRandom)'''
-      PrimitiveTime: '''IOFunctions.unit(System.currentTimeMillis())'''
-      PrimitiveReturn: '''IOFunctions.bind(IOFunctions::unit)'''
+			PrimitiveRandom: '''PrimitivesEffectFull.primitiveRandom()'''
+      		PrimitiveTime: '''PrimitivesEffectFull.primitiveTime()'''
+      		PrimitiveReturn: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitiveReturn)'''
 	//		ApplyFIO: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::ApplyFIO(«e.value.compileIO»))'''
 			ApplyF: '''«valueName».f(«pureFunctionGenerator.compile(e.value,"", true)»)'''
 			PureValue: return '''IOFunctions.unit(Value.«(e as PureValue).name»())'''
@@ -108,8 +113,8 @@ class EffectFullFunctionGenerator {
 			Mod: ".map(Primitives::mod)"
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
 			PrimitiveRandom: '''.bind(PrimitivesEffectFull::primitiveRandom)'''
-      PrimitiveTime: '''.bind(System::currentTimeMillis)'''
-      PrimitiveReturn: '''.bind(IOFunctions::unit)'''
+      PrimitiveTime: '''.bind(PrimitivesEffectFull::primitiveTime)'''
+      PrimitiveReturn: '''.bind(PrimitivesEffectFull::primitiveReturn)'''
 			ApplyFIO: '''.bind(PrimitivesEffectFull::ApplyFIO(«Others.getValueFromApplyFIOFactor(e.value).compileIOWalkthorugh»))'''
 			ApplyF: '''.map((«typeGenerator.compile(e.functionType)» f) -> f.f(«pureFunctionGenerator.compile(e.value, "", true)»))'''
 			PureValue: return '''.append(IOFunctions.unit(Value.«(e as PureValue).name»()))'''

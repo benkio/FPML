@@ -52,6 +52,14 @@ class PrimitiveGenerator {
 				public static IO<Integer> primitiveRandom() {
 					return () -> (int) Math.random();
 				}
+							
+				public static IO<Integer> primitiveTime() {
+					return IOFunctions.unit((int) System.currentTimeMillis());
+				}
+				
+				public static <A> IO<A> primitiveReturn(A x) {
+					return IOFunctions.unit(x);
+				}
 				
 			//	public static <B, A> IO<B> applyFIO(F<A,B> f){
 			//		return (A val) -> IOFunctions.unit(f.f(val));

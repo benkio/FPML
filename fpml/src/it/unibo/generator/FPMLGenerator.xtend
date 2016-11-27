@@ -13,6 +13,8 @@ import it.unibo.fPML.MainFunc
 import it.unibo.fPML.PureData
 import it.unibo.fPML.PureValue
 import it.unibo.fPML.EffectFullFunctionBlock
+import it.unibo.fPML.EffectFullData
+import it.unibo.fPML.EffectFullValue
 
 /**
  * Generates code from your model files on save.
@@ -28,6 +30,8 @@ class FPMLGenerator extends AbstractGenerator {
 	val dataGenerator = new DataGenerator
 	val valueGenerator = new ValueGenerator
 	val primitiveGenerator = new PrimitiveGenerator
+	val effectFullDataGenerator = new EffectFullDataGenerator
+	val effectFullValueGenerator = new EffectFullValueGenerator
 	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		fsa.generateFile(basePackage + "Pure/PureFunctionDefinitions.java", pureFunctionGenerator.compile(resource.getAllContents.filter(PureFunctionBlock).head));
@@ -42,6 +46,18 @@ class FPMLGenerator extends AbstractGenerator {
 			basePackage + "Pure/Data/Value.java",
 			valueGenerator.compile(resource.getAllContents.toIterable.filter(PureValue))
 		)
+		
+		for(e : resource.getAllContents.toIterable.filter(EffectFullData)){
+			fsa.generateFile(
+					basePackage + "Effectfull/Data/" + e.name + ".java",
+					effectFullDataGenerator.compile(e)
+			);
+		}
+		fsa.generateFile(
+			basePackage + "Effectfull/Data/Value.java",
+			effectFullValueGenerator.compile(resource.getAllContents.toIterable.filter(EffectFullValue))
+		)
+		
 		fsa.generateFile(
 			basePackage + "Pure/Primitives.java",
 			primitiveGenerator.compilePure()
