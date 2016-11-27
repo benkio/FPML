@@ -147,6 +147,7 @@ class GetReturnType {
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(r)
 			PrimitivePureFunction: primitivePureFunction(r)
 			EffectFullArgument: r.type
+			Function: function(r)
 		}
 	}
 	
@@ -178,6 +179,7 @@ class GetReturnType {
 		switch function {
 			PrimitivePrint: FPMLFactory.eINSTANCE.createUnitType
 			ApplyFIO: function.functionType.returnType.type
+      PrimitiveReturn: function.type
 		}
 	}
 	

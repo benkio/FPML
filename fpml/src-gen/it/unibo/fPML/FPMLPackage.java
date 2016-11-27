@@ -374,6 +374,25 @@ public interface FPMLPackage extends EPackage
   int PURE_DATA_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.EffectFullReferenceImpl <em>Effect Full Reference</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.EffectFullReferenceImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullReference()
+   * @generated
+   */
+  int EFFECT_FULL_REFERENCE = 25;
+
+  /**
+   * The number of structural features of the '<em>Effect Full Reference</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT_FULL_REFERENCE_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.FunctionImpl <em>Function</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -390,7 +409,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_FEATURE_COUNT = 0;
+  int FUNCTION_FEATURE_COUNT = EFFECT_FULL_REFERENCE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PureFunctionImpl <em>Pure Function</em>}' class.
@@ -873,25 +892,6 @@ public interface FPMLPackage extends EPackage
    * @ordered
    */
   int ADDITIONAL_EFFECT_FULL_ARGUMENT_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link it.unibo.fPML.impl.EffectFullReferenceImpl <em>Effect Full Reference</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see it.unibo.fPML.impl.EffectFullReferenceImpl
-   * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullReference()
-   * @generated
-   */
-  int EFFECT_FULL_REFERENCE = 25;
-
-  /**
-   * The number of structural features of the '<em>Effect Full Reference</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EFFECT_FULL_REFERENCE_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PureReferenceImpl <em>Pure Reference</em>}' class.
@@ -2204,7 +2204,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PRIMITIVE_RETURN__TYPE = PRIMITIVE_EFFECT_FULL_VALUE_FEATURE_COUNT + 0;
+  int PRIMITIVE_RETURN__TYPE = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Primitive Return</em>' class.
@@ -2213,7 +2213,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PRIMITIVE_RETURN_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_VALUE_FEATURE_COUNT + 1;
+  int PRIMITIVE_RETURN_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PrimitiveTimeImpl <em>Primitive Time</em>}' class.

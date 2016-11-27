@@ -12,7 +12,14 @@ import it.unibo.fPML.PrimitiveEffectFullFunction
 import it.unibo.fPML.EffectFullValue
 
 class GetArgType {
-		
+	
+	def static Type function(Function f) {
+		switch f {
+			EffectFullFunction: effectFullFunction(f)
+			PureFunction: pureFunction(f)
+		}
+	}
+	
 	def static ValueType pureFunction(PureFunction f) {
 		switch f {
 			PureFunctionDefinition: pureFunctionDefinition(f) 
@@ -52,6 +59,7 @@ class GetArgType {
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(reference)
 			PrimitivePureFunction: primitivePureFunction(reference)
 			EffectFullArgument:	return FPMLFactory.eINSTANCE.createUnitType
+			Function: function(reference)
 		}
 	}
 	
@@ -66,6 +74,7 @@ class GetArgType {
 		switch function {
 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType 
 			ApplyFIO: return function.functionType.argType
+      PrimitiveReturn: return function.type
 		}
 	}
 	

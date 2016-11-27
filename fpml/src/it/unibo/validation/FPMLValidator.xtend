@@ -58,7 +58,7 @@ class FPMLValidator extends AbstractFPMLValidator {
    }
    
    	def typeCheckEffectFullLambda(EffectFullLambda lambda) {
-		if (!Checks.effectFullLambda(lambda)){
+ 		if (!Checks.effectFullLambda(lambda)){
    			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY)
    		}
    	}

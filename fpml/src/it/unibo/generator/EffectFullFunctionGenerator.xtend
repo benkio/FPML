@@ -57,8 +57,8 @@ class EffectFullFunctionGenerator {
 	def compileIO(CompositionFunctionBodyEffect cfbe, EffectFullArgument arg) {
 		var String argName = ""
 		if (arg != null){
-			argName = arg.name
-		}
+			argName = "IOFunctions.unit(" + arg.name + ")"
+ 		}
 		val firstElementCompiled = compileIO(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), argName)
 		val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | compileIO(Others.getFunctionDefinitionFromEffectFullFactor(x), acc) + "\n\t"]
 		return cfbe.functionChain.fold(firstElementCompiled + "\n\t", f) + ";"
@@ -76,7 +76,7 @@ class EffectFullFunctionGenerator {
 			PrimitivePrint: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitivePrint)'''
 			PrimitiveRandom: '''PrimitivesEffectFull.primitiveRandom()'''
       		PrimitiveTime: '''PrimitivesEffectFull.primitiveTime()'''
-      		PrimitiveReturn: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitiveReturn)'''
+      		PrimitiveReturn: '''«valueName»'''
 	//		ApplyFIO: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::ApplyFIO(«e.value.compileIO»))'''
 			ApplyF: '''«valueName».f(«pureFunctionGenerator.compile(e.value,"", true)»)'''
 			PureValue: return '''IOFunctions.unit(Value.«(e as PureValue).name»())'''
@@ -114,7 +114,7 @@ class EffectFullFunctionGenerator {
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
 			PrimitiveRandom: '''.bind(PrimitivesEffectFull::primitiveRandom)'''
       PrimitiveTime: '''.bind(PrimitivesEffectFull::primitiveTime)'''
-      PrimitiveReturn: '''.bind(PrimitivesEffectFull::primitiveReturn)'''
+      PrimitiveReturn: ''''''
 			ApplyFIO: '''.bind(PrimitivesEffectFull::ApplyFIO(«Others.getValueFromApplyFIOFactor(e.value).compileIOWalkthorugh»))'''
 			ApplyF: '''.map((«typeGenerator.compile(e.functionType)» f) -> f.f(«pureFunctionGenerator.compile(e.value, "", true)»))'''
 			PureValue: return '''.append(IOFunctions.unit(Value.«(e as PureValue).name»()))'''

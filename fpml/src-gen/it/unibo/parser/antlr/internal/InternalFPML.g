@@ -1657,6 +1657,42 @@ ruleAdditionalEffectFullArgument returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleFunction
+entryRuleFunction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFunctionRule()); }
+	iv_ruleFunction=ruleFunction
+	{ $current=$iv_ruleFunction.current; }
+	EOF;
+
+// Rule Function
+ruleFunction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getFunctionAccess().getEffectFullFunctionParserRuleCall_0());
+		}
+		this_EffectFullFunction_0=ruleEffectFullFunction
+		{
+			$current = $this_EffectFullFunction_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFunctionAccess().getPureFunctionParserRuleCall_1());
+		}
+		this_PureFunction_1=rulePureFunction
+		{
+			$current = $this_PureFunction_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
 // Entry rule entryRulePureFunction
 entryRulePureFunction returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getPureFunctionRule()); }
@@ -3782,58 +3818,66 @@ ruleEffectFullAdtValue returns [EObject current=null]
 			{
 				newLeafNode(otherlv_0, grammarAccess.getEffectFullAdtValueAccess().getIOKeyword_0_0());
 			}
+			otherlv_1='('
 			{
-				newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getPureAdtValueParserRuleCall_0_1());
+				newLeafNode(otherlv_1, grammarAccess.getEffectFullAdtValueAccess().getLeftParenthesisKeyword_0_1());
 			}
-			this_PureAdtValue_1=rulePureAdtValue
 			{
-				$current = $this_PureAdtValue_1.current;
+				newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getPureAdtValueParserRuleCall_0_2());
+			}
+			this_PureAdtValue_2=rulePureAdtValue
+			{
+				$current = $this_PureAdtValue_2.current;
 				afterParserOrEnumRuleCall();
+			}
+			otherlv_3=')'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getEffectFullAdtValueAccess().getRightParenthesisKeyword_0_3());
 			}
 		)
 		    |
 		{
 			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getUnitValueParserRuleCall_1());
 		}
-		this_UnitValue_2=ruleUnitValue
+		this_UnitValue_4=ruleUnitValue
 		{
-			$current = $this_UnitValue_2.current;
+			$current = $this_UnitValue_4.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
 			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullFunctionValueParserRuleCall_2());
 		}
-		this_EffectFullFunctionValue_3=ruleEffectFullFunctionValue
+		this_EffectFullFunctionValue_5=ruleEffectFullFunctionValue
 		{
-			$current = $this_EffectFullFunctionValue_3.current;
+			$current = $this_EffectFullFunctionValue_5.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
 			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullProdValueParserRuleCall_3());
 		}
-		this_EffectFullProdValue_4=ruleEffectFullProdValue
+		this_EffectFullProdValue_6=ruleEffectFullProdValue
 		{
-			$current = $this_EffectFullProdValue_4.current;
+			$current = $this_EffectFullProdValue_6.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
 			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullValueRefParserRuleCall_4());
 		}
-		this_EffectFullValueRef_5=ruleEffectFullValueRef
+		this_EffectFullValueRef_7=ruleEffectFullValueRef
 		{
-			$current = $this_EffectFullValueRef_5.current;
+			$current = $this_EffectFullValueRef_7.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
 			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_5());
 		}
-		this_EffectFullSumValue_6=ruleEffectFullSumValue
+		this_EffectFullSumValue_8=ruleEffectFullSumValue
 		{
-			$current = $this_EffectFullSumValue_6.current;
+			$current = $this_EffectFullSumValue_8.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -4350,6 +4394,15 @@ rulePrimitiveEffectFullFunction returns [EObject current=null]
 			$current = $this_ApplyFIO_1.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getPrimitiveReturnParserRuleCall_2());
+		}
+		this_PrimitiveReturn_2=rulePrimitiveReturn
+		{
+			$current = $this_PrimitiveReturn_2.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -4409,20 +4462,11 @@ rulePrimitiveEffectFullValue returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveReturnParserRuleCall_1());
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveTimeParserRuleCall_1());
 		}
-		this_PrimitiveReturn_1=rulePrimitiveReturn
+		this_PrimitiveTime_1=rulePrimitiveTime
 		{
-			$current = $this_PrimitiveReturn_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveTimeParserRuleCall_2());
-		}
-		this_PrimitiveTime_2=rulePrimitiveTime
-		{
-			$current = $this_PrimitiveTime_2.current;
+			$current = $this_PrimitiveTime_1.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

@@ -15,6 +15,7 @@ import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
+import it.unibo.fPML.Function;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.Minus;
@@ -39,6 +40,22 @@ import it.unibo.validation.utilitiesFunctions.GetReturnType;
 
 @SuppressWarnings("all")
 public class GetArgType {
+  public static Type function(final Function f) {
+    Type _switchResult = null;
+    boolean _matched = false;
+    if (f instanceof EffectFullFunction) {
+      _matched=true;
+      _switchResult = GetArgType.effectFullFunction(((EffectFullFunction)f));
+    }
+    if (!_matched) {
+      if (f instanceof PureFunction) {
+        _matched=true;
+        _switchResult = GetArgType.pureFunction(((PureFunction)f));
+      }
+    }
+    return _switchResult;
+  }
+  
   public static ValueType pureFunction(final PureFunction f) {
     ValueType _switchResult = null;
     boolean _matched = false;
@@ -158,6 +175,12 @@ public class GetArgType {
         return FPMLFactory.eINSTANCE.createUnitType();
       }
     }
+    if (!_matched) {
+      if (reference instanceof Function) {
+        _matched=true;
+        _switchResult = GetArgType.function(((Function)reference));
+      }
+    }
     return _switchResult;
   }
   
@@ -188,6 +211,12 @@ public class GetArgType {
         _matched=true;
         EffectFullFunctionType _functionType = ((ApplyFIO)function).getFunctionType();
         return _functionType.getArgType();
+      }
+    }
+    if (!_matched) {
+      if (function instanceof PrimitiveReturn) {
+        _matched=true;
+        return ((PrimitiveReturn)function).getType();
       }
     }
     return null;

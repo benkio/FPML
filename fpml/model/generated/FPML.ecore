@@ -116,7 +116,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="arg2" eType="#//EffectFullArgument"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Function"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//EffectFullReference"/>
   <eClassifiers xsi:type="ecore:EClass" name="PureFunction" eSuperTypes="#//Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullFunction" eSuperTypes="#//Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullReference"/>
@@ -247,7 +247,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//PrimitiveEffectFullFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveEffectFullValue" eSuperTypes="#//EffectFullReference #//PrimitiveFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveRandom" eSuperTypes="#//PrimitiveEffectFullValue"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveReturn" eSuperTypes="#//PrimitiveEffectFullValue">
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveReturn" eSuperTypes="#//PrimitiveEffectFullFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTime" eSuperTypes="#//PrimitiveEffectFullValue"/>

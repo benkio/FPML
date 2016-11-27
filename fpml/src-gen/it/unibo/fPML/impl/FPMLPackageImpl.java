@@ -2675,6 +2675,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     pureFunctionDefinitionEClass.getESuperTypes().add(this.getPureReference());
     effectFullFunctionDefinitionEClass.getESuperTypes().add(this.getEffectFullFunction());
     effectFullFunctionDefinitionEClass.getESuperTypes().add(this.getEffectFullReference());
+    functionEClass.getESuperTypes().add(this.getEffectFullReference());
     pureFunctionEClass.getESuperTypes().add(this.getFunction());
     effectFullFunctionEClass.getESuperTypes().add(this.getFunction());
     primitiveFunctionEClass.getESuperTypes().add(this.getEffectFullReference());
@@ -2730,7 +2731,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     primitiveEffectFullValueEClass.getESuperTypes().add(this.getEffectFullReference());
     primitiveEffectFullValueEClass.getESuperTypes().add(this.getPrimitiveFunction());
     primitiveRandomEClass.getESuperTypes().add(this.getPrimitiveEffectFullValue());
-    primitiveReturnEClass.getESuperTypes().add(this.getPrimitiveEffectFullValue());
+    primitiveReturnEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     primitiveTimeEClass.getESuperTypes().add(this.getPrimitiveEffectFullValue());
     applyFIOEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     pureValueEClass.getESuperTypes().add(this.getPureFunctionDefinition());

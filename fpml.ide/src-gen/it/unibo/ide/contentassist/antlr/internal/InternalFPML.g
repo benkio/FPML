@@ -649,6 +649,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleFunction
+entryRuleFunction
+:
+{ before(grammarAccess.getFunctionRule()); }
+	 ruleFunction
+{ after(grammarAccess.getFunctionRule()); } 
+	 EOF 
+;
+
+// Rule Function
+ruleFunction 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getFunctionAccess().getAlternatives()); }
+		(rule__Function__Alternatives)
+		{ after(grammarAccess.getFunctionAccess().getAlternatives()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRulePureFunction
 entryRulePureFunction
 :
@@ -2158,6 +2183,27 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__Function__Alternatives
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getFunctionAccess().getEffectFullFunctionParserRuleCall_0()); }
+		ruleEffectFullFunction
+		{ after(grammarAccess.getFunctionAccess().getEffectFullFunctionParserRuleCall_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getFunctionAccess().getPureFunctionParserRuleCall_1()); }
+		rulePureFunction
+		{ after(grammarAccess.getFunctionAccess().getPureFunctionParserRuleCall_1()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__PureFunction__Alternatives
 	@init {
 		int stackSize = keepStackSize();
@@ -2711,6 +2757,12 @@ rule__PrimitiveEffectFullFunction__Alternatives
 		ruleApplyFIO
 		{ after(grammarAccess.getPrimitiveEffectFullFunctionAccess().getApplyFIOParserRuleCall_1()); }
 	)
+	|
+	(
+		{ before(grammarAccess.getPrimitiveEffectFullFunctionAccess().getPrimitiveReturnParserRuleCall_2()); }
+		rulePrimitiveReturn
+		{ after(grammarAccess.getPrimitiveEffectFullFunctionAccess().getPrimitiveReturnParserRuleCall_2()); }
+	)
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -2728,15 +2780,9 @@ rule__PrimitiveEffectFullValue__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveReturnParserRuleCall_1()); }
-		rulePrimitiveReturn
-		{ after(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveReturnParserRuleCall_1()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveTimeParserRuleCall_2()); }
+		{ before(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveTimeParserRuleCall_1()); }
 		rulePrimitiveTime
-		{ after(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveTimeParserRuleCall_2()); }
+		{ after(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveTimeParserRuleCall_1()); }
 	)
 ;
 finally {
@@ -8306,6 +8352,7 @@ rule__EffectFullAdtValue__Group_0__1
 	}
 :
 	rule__EffectFullAdtValue__Group_0__1__Impl
+	rule__EffectFullAdtValue__Group_0__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -8317,9 +8364,62 @@ rule__EffectFullAdtValue__Group_0__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getEffectFullAdtValueAccess().getPureAdtValueParserRuleCall_0_1()); }
+	{ before(grammarAccess.getEffectFullAdtValueAccess().getLeftParenthesisKeyword_0_1()); }
+	'('
+	{ after(grammarAccess.getEffectFullAdtValueAccess().getLeftParenthesisKeyword_0_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__EffectFullAdtValue__Group_0__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__EffectFullAdtValue__Group_0__2__Impl
+	rule__EffectFullAdtValue__Group_0__3
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__EffectFullAdtValue__Group_0__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getEffectFullAdtValueAccess().getPureAdtValueParserRuleCall_0_2()); }
 	rulePureAdtValue
-	{ after(grammarAccess.getEffectFullAdtValueAccess().getPureAdtValueParserRuleCall_0_1()); }
+	{ after(grammarAccess.getEffectFullAdtValueAccess().getPureAdtValueParserRuleCall_0_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__EffectFullAdtValue__Group_0__3
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__EffectFullAdtValue__Group_0__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__EffectFullAdtValue__Group_0__3__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getEffectFullAdtValueAccess().getRightParenthesisKeyword_0_3()); }
+	')'
+	{ after(grammarAccess.getEffectFullAdtValueAccess().getRightParenthesisKeyword_0_3()); }
 )
 ;
 finally {

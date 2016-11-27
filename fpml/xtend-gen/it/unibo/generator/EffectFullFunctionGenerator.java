@@ -181,7 +181,9 @@ public class EffectFullFunctionGenerator {
     boolean _notEquals = (!Objects.equal(arg, null));
     if (_notEquals) {
       String _name = arg.getName();
-      argName = _name;
+      String _plus = ("IOFunctions.unit(" + _name);
+      String _plus_1 = (_plus + ")");
+      argName = _plus_1;
     }
     EffectFullReference _firstFunctionDefinitionFromCompositionBodyEffectFull = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe);
     final CharSequence firstElementCompiled = this.compileIO(_firstFunctionDefinitionFromCompositionBodyEffectFull, argName);
@@ -192,8 +194,8 @@ public class EffectFullFunctionGenerator {
     };
     final Function2<String, CompositionFunctionBodyEffectFullFactor, String> f = _function;
     EList<CompositionFunctionBodyEffectFullFactor> _functionChain = cfbe.getFunctionChain();
-    String _plus = (firstElementCompiled + "\n\t");
-    String _fold = IterableExtensions.<CompositionFunctionBodyEffectFullFactor, String>fold(_functionChain, _plus, f);
+    String _plus_2 = (firstElementCompiled + "\n\t");
+    String _fold = IterableExtensions.<CompositionFunctionBodyEffectFullFactor, String>fold(_functionChain, _plus_2, f);
     return (_fold + ";");
   }
   
@@ -288,9 +290,7 @@ public class EffectFullFunctionGenerator {
       if (e instanceof PrimitiveReturn) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.bind(");
         _builder.append(valueName, "");
-        _builder.append(", PrimitivesEffectFull::primitiveReturn)");
         _switchResult = _builder;
       }
     }
@@ -451,7 +451,6 @@ public class EffectFullFunctionGenerator {
       if (e instanceof PrimitiveReturn) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::primitiveReturn)");
         _switchResult = _builder;
       }
     }

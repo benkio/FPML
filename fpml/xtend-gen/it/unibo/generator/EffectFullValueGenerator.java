@@ -2,8 +2,6 @@ package it.unibo.generator;
 
 import com.google.common.base.Objects;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
-import it.unibo.fPML.DataType;
-import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullAdtType;
 import it.unibo.fPML.EffectFullAdtValue;
 import it.unibo.fPML.EffectFullArgument;
@@ -21,14 +19,15 @@ import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FunctionBodyEffectFull;
-import it.unibo.fPML.IntegerType;
+import it.unibo.fPML.IOType;
+import it.unibo.fPML.PureAdtType;
 import it.unibo.fPML.PureAdtValue;
-import it.unibo.fPML.StringType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.generator.EffectFullFunctionGenerator;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
+import it.unibo.generator.ValueGenerator;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -38,6 +37,8 @@ public class EffectFullValueGenerator {
   private final TypeGenerator typeGenerator = new TypeGenerator();
   
   private final EffectFullFunctionGenerator EffectFullFunctionGenerator = new EffectFullFunctionGenerator();
+  
+  private final ValueGenerator valueGenerator = new ValueGenerator();
   
   public CharSequence compile(final Iterable<EffectFullValue> values) {
     StringConcatenation _builder = new StringConcatenation();
@@ -52,6 +53,8 @@ public class EffectFullValueGenerator {
     _builder.append(_basePackageJava_1, "");
     _builder.append("Effectfull.Data.*;");
     _builder.newLineIfNotEmpty();
+    _builder.append("import it.unibo.Pure.PureFunctionDefinitions;");
+    _builder.newLine();
     _builder.append("import fj.data.*;");
     _builder.newLine();
     _builder.append("import fj.P;");
@@ -98,7 +101,7 @@ public class EffectFullValueGenerator {
     _builder.append("\t");
     _builder.append("return ");
     EffectFullExpression _value_1 = v.getValue();
-    Object _compile = this.compile(_value_1);
+    CharSequence _compile = this.compile(_value_1);
     _builder.append(_compile, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
@@ -107,45 +110,19 @@ public class EffectFullValueGenerator {
     return _builder;
   }
   
-  public Object compile(final EffectFullExpression e) {
+  public CharSequence compile(final EffectFullExpression e) {
     CharSequence _switchResult = null;
     boolean _matched = false;
-    if (e instanceof IntegerType) {
+    if (e instanceof Expression) {
       _matched=true;
-      return Integer.valueOf(((IntegerType)e).getValue());
+      Object _compile = this.valueGenerator.compile(((Expression)e));
+      String _plus = ("IOFunctions.Unit(" + _compile);
+      return (_plus + ")");
     }
     if (!_matched) {
       if (e instanceof UnitType) {
         _matched=true;
         return "IOFunctions.ioUnit";
-      }
-    }
-    if (!_matched) {
-      if (e instanceof StringType) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("\"");
-        String _value = ((StringType)e).getValue();
-        _builder.append(_value, "");
-        _builder.append("\"");
-        return _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof DataType) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("new ");
-        String _compileType = this.typeGenerator.compileType(((Expression)e));
-        _builder.append(_compileType, "");
-        _builder.append("(");
-        EffectFullAdtValue _value = ((EffectFullDataValue) e).getValue();
-        EffectFullData _type = ((EffectFullDataValue) e).getType();
-        EffectFullAdtType _content = _type.getContent();
-        Object _compileAdtValue = this.compileAdtValue(_value, _content);
-        _builder.append(_compileAdtValue, "");
-        _builder.append(")");
-        return _builder.toString();
       }
     }
     if (!_matched) {
@@ -162,52 +139,31 @@ public class EffectFullValueGenerator {
         EffectFullData _type = ((EffectFullDataValue)e).getType();
         String _name = _type.getName();
         _builder.append(_name, "");
-        _builder.append("(IOFunctions.unit(");
+        _builder.append("(");
         EffectFullAdtValue _value = ((EffectFullDataValue)e).getValue();
         EffectFullData _type_1 = ((EffectFullDataValue)e).getType();
         EffectFullAdtType _content = _type_1.getContent();
-        Object _compileAdtValue = this.compileAdtValue(_value, _content);
+        CharSequence _compileAdtValue = this.compileAdtValue(_value, _content);
         _builder.append(_compileAdtValue, "");
-        _builder.append("))");
+        _builder.append(")");
         _switchResult = _builder;
       }
     }
     return _switchResult;
   }
   
-  public Object compileAdtValue(final EffectFullAdtValue v, final EffectFullAdtType d) {
+  public CharSequence compileAdtValue(final EffectFullAdtValue v, final EffectFullAdtType d) {
+    CharSequence _switchResult = null;
     boolean _matched = false;
-    if (v instanceof IntegerType) {
+    if (v instanceof PureAdtValue) {
       _matched=true;
-      return Integer.valueOf(((IntegerType)v).getValue());
-    }
-    if (!_matched) {
-      if (v instanceof StringType) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("\"");
-        String _value = ((StringType)v).getValue();
-        _builder.append(_value, "");
-        _builder.append("\"");
-        return _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (v instanceof DataType) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("new ");
-        String _compileType = this.typeGenerator.compileType(((Expression)v));
-        _builder.append(_compileType, "");
-        _builder.append("(");
-        PureAdtValue _value = ((DataValue) v).getValue();
-        EffectFullData _type = ((EffectFullDataValue) v).getType();
-        EffectFullAdtType _content = _type.getContent();
-        Object _compileAdtValue = this.compileAdtValue(_value, _content);
-        _builder.append(_compileAdtValue, "");
-        _builder.append(")");
-        return _builder.toString();
-      }
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("IOFunctions.unit(");
+      Type _type = ((IOType) d).getType();
+      Object _compileAdtValue = this.valueGenerator.compileAdtValue(((PureAdtValue)v), ((PureAdtType) _type));
+      _builder.append(_compileAdtValue, "");
+      _builder.append(")");
+      _switchResult = _builder;
     }
     if (!_matched) {
       if (v instanceof EffectFullSumValue) {
@@ -279,10 +235,21 @@ public class EffectFullValueGenerator {
     if (!_matched) {
       if (v instanceof EffectFullFunctionType) {
         _matched=true;
-        return this.compile(((EffectFullFunctionType)v));
+        if ((d instanceof EffectFullFunctionType)) {
+          return this.compile(((EffectFullFunctionType)v));
+        } else {
+          if ((d instanceof IOType)) {
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append("IOFunctions.unit(");
+            CharSequence _compile = this.compile(((EffectFullFunctionType)v));
+            _builder.append(_compile, "");
+            _builder.append(")");
+            return _builder.toString();
+          }
+        }
       }
     }
-    return null;
+    return _switchResult;
   }
   
   public CharSequence compile(final EffectFullFunctionType pft) {
@@ -351,6 +318,7 @@ public class EffectFullValueGenerator {
           _builder.append(") {");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t\t\t");
+          _builder.append("return ");
           EffectFullFunctionDefinition _value_7 = pft.getValue();
           FunctionBodyEffectFull _functionBody_1 = _value_7.getFunctionBody();
           EffectFullFunctionDefinition _value_8 = pft.getValue();

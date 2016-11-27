@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PrimitiveReturnImpl extends PrimitiveEffectFullValueImpl implements PrimitiveReturn
+public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl implements PrimitiveReturn
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.

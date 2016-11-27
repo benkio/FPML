@@ -20,7 +20,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PrimitiveReturn extends PrimitiveEffectFullValue
+public interface PrimitiveReturn extends PrimitiveEffectFullFunction
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

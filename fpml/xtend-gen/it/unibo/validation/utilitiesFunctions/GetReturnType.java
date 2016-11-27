@@ -396,6 +396,12 @@ public class GetReturnType {
         _switchResult = ((EffectFullArgument)r).getType();
       }
     }
+    if (!_matched) {
+      if (r instanceof Function) {
+        _matched=true;
+        _switchResult = GetReturnType.function(((Function)r));
+      }
+    }
     return _switchResult;
   }
   
@@ -477,6 +483,12 @@ public class GetReturnType {
         EffectFullFunctionType _functionType = ((ApplyFIO)function).getFunctionType();
         IOType _returnType = _functionType.getReturnType();
         _switchResult = _returnType.getType();
+      }
+    }
+    if (!_matched) {
+      if (function instanceof PrimitiveReturn) {
+        _matched=true;
+        _switchResult = ((PrimitiveReturn)function).getType();
       }
     }
     return _switchResult;

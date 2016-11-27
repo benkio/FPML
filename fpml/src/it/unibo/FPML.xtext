@@ -121,7 +121,7 @@ EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
  * 	facilitate the validation, those components suck as PrimitiveEffectFullValue or PrimitiveFunction
  * 	cannot be referenced because of no ids, but where the effectfullReference is used them are also allowed(not as reference).
  */
-EffectFullReference: EffectFullValue | EffectFullArgument | PureValue | PrimitiveEffectFullValue | PrimitiveFunction;
+EffectFullReference: EffectFullValue | EffectFullArgument | PureValue | PrimitiveEffectFullValue | PrimitiveFunction | Function;
 
 PureReference: PureValue | Argument;
 
@@ -281,13 +281,13 @@ Mod: {Mod} 'mod';
 ApplyF:{ApplyF} 'applyF' functionType=PureFunctionType value=[PureReference];
 
 PrimitiveEffectFullFunction:
-	PrimitivePrint | ApplyFIO;
+	PrimitivePrint | ApplyFIO | PrimitiveReturn;
 
 PrimitivePrint:
     {PrimitivePrint} "print";
 
 PrimitiveEffectFullValue:
-	PrimitiveRandom | PrimitiveReturn | PrimitiveTime
+	PrimitiveRandom  | PrimitiveTime
 ;
 
 PrimitiveRandom:
