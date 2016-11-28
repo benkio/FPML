@@ -118,7 +118,7 @@ public class PrimitiveGenerator {
     _builder.append("public static IO<Unit> primitivePrint(String s) {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("return IOFunctions.stdoutPrint(s);");
+    _builder.append("return IOFunctions.stdoutPrintln(s);");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("} ");

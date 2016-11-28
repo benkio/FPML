@@ -47,7 +47,7 @@ class PrimitiveGenerator {
 			public class PrimitivesEffectFull {
 				
 				public static IO<Unit> primitivePrint(String s) {
-					return IOFunctions.stdoutPrint(s);
+					return IOFunctions.stdoutPrintln(s);
 				} 
 				
 				public static IO<Integer> primitiveRandom() {

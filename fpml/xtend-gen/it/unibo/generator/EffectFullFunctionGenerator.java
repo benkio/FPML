@@ -40,6 +40,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 @SuppressWarnings("all")
 public class EffectFullFunctionGenerator {
@@ -189,16 +190,21 @@ public class EffectFullFunctionGenerator {
       argName = _plus_1;
     }
     EffectFullReference _firstFunctionDefinitionFromCompositionBodyEffectFull = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe);
-    final CharSequence firstElementCompiled = this.compileIO(_firstFunctionDefinitionFromCompositionBodyEffectFull, argName);
-    final Function2<String, CompositionFunctionBodyEffectFullFactor, String> _function = (String acc, CompositionFunctionBodyEffectFullFactor x) -> {
-      EffectFullReference _functionDefinitionFromEffectFullFactor = Others.getFunctionDefinitionFromEffectFullFactor(x);
-      CharSequence _compileIO = this.compileIO(_functionDefinitionFromEffectFullFactor, acc);
-      return (_compileIO + "\n\t");
-    };
-    final Function2<String, CompositionFunctionBodyEffectFullFactor, String> f = _function;
+    CharSequence _compileIO = this.compileIO(_firstFunctionDefinitionFromCompositionBodyEffectFull, argName);
+    String result = _compileIO.toString();
     EList<CompositionFunctionBodyEffectFullFactor> _functionChain = cfbe.getFunctionChain();
-    String _plus_2 = (firstElementCompiled + "\n\t");
-    return IterableExtensions.<CompositionFunctionBodyEffectFullFactor, String>fold(_functionChain, _plus_2, f);
+    for (final CompositionFunctionBodyEffectFullFactor cfbef : _functionChain) {
+      {
+        String _result = result;
+        result = (_result + "\n\t");
+        EffectFullReference _functionDefinitionFromEffectFullFactor = Others.getFunctionDefinitionFromEffectFullFactor(cfbef);
+        String _string = result.toString();
+        CharSequence _compileIO_1 = this.compileIO(_functionDefinitionFromEffectFullFactor, _string);
+        String _string_1 = _compileIO_1.toString();
+        result = _string_1;
+      }
+    }
+    return result;
   }
   
   public CharSequence compileIO(final EffectFullReference e, final String valueName) {
@@ -275,17 +281,13 @@ public class EffectFullFunctionGenerator {
     if (!_matched) {
       if (e instanceof PrimitiveRandom) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("PrimitivesEffectFull.primitiveRandom()");
-        _switchResult = _builder;
+        _switchResult = this.valueEmbellishment(valueName, "PrimitivesEffectFull.primitiveRandom()");
       }
     }
     if (!_matched) {
       if (e instanceof PrimitiveTime) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("PrimitivesEffectFull.primitiveTime()");
-        _switchResult = _builder;
+        _switchResult = this.valueEmbellishment(valueName, "PrimitivesEffectFull.primitiveTime()");
       }
     }
     if (!_matched) {
@@ -313,12 +315,7 @@ public class EffectFullFunctionGenerator {
     if (!_matched) {
       if (e instanceof PureValue) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.unit(Value.");
-        String _name = ((PureValue) e).getName();
-        _builder.append(_name, "");
-        _builder.append("())");
-        return _builder.toString();
+        _switchResult = this.valueEmbellishment(valueName, "IOFunctions.unit(Value.«(e as PureValue).name»())");
       }
     }
     if (!_matched) {
@@ -342,7 +339,7 @@ public class EffectFullFunctionGenerator {
         String _name = ((EffectFullArgument) e).getName();
         _builder.append(_name, "");
         _builder.append(")");
-        return _builder.toString();
+        _switchResult = this.valueEmbellishment(valueName, _builder.toString());
       }
     }
     if (!_matched) {
@@ -359,6 +356,21 @@ public class EffectFullFunctionGenerator {
       }
     }
     return _switchResult;
+  }
+  
+  public String valueEmbellishment(final String inputChain, final String valueCompiled) {
+    boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(inputChain);
+    if (_isNullOrEmpty) {
+      return valueCompiled;
+    } else {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("IOFunctions.as(");
+      _builder.append(inputChain, "");
+      _builder.append(",IOFunctions.runSafe(");
+      _builder.append(valueCompiled, "");
+      _builder.append("))");
+      return _builder.toString();
+    }
   }
   
   public CharSequence compileIOWalkthrough(final CompositionFunctionBodyEffect cfbe) {

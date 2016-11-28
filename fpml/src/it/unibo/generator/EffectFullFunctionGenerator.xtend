@@ -59,10 +59,13 @@ class EffectFullFunctionGenerator {
 		if (arg != null){
 			argName = "IOFunctions.unit(" + arg.name + ")"
  		}
-		val firstElementCompiled = compileIO(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), argName)
-		val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | compileIO(Others.getFunctionDefinitionFromEffectFullFactor(x), acc) + "\n\t"]
-		return cfbe.functionChain.fold(firstElementCompiled + "\n\t", f)
+		var String result = compileIO(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), argName).toString
+		for (CompositionFunctionBodyEffectFullFactor cfbef: cfbe.functionChain){
+			result += "\n\t"
+			result = compileIO(Others.getFunctionDefinitionFromEffectFullFactor(cfbef), result.toString).toString
 		}
+		return result;
+	}
 	
 	
 	def compileIO(EffectFullReference e, String valueName){
@@ -74,19 +77,24 @@ class EffectFullFunctionGenerator {
 			Times: '''IOFunctions.map(«valueName», Primitives::times)'''
 			Mod: '''IOFunctions.map(«valueName», Primitives::mod)'''
 			PrimitivePrint: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitivePrint)'''
-			PrimitiveRandom: '''PrimitivesEffectFull.primitiveRandom()'''
-      		PrimitiveTime: '''PrimitivesEffectFull.primitiveTime()'''
+			PrimitiveRandom: valueEmbellishment(valueName,"PrimitivesEffectFull.primitiveRandom()")
+      		PrimitiveTime: valueEmbellishment(valueName,"PrimitivesEffectFull.primitiveTime()")
       		PrimitiveReturn: '''«valueName»'''
 	//		ApplyFIO: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::ApplyFIO(«e.value.compileIO»))'''
 			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«valueName»).f(«pureFunctionGenerator.compile(e.value,"", true)»))'''
-			PureValue: return '''IOFunctions.unit(Value.«(e as PureValue).name»())'''
+			PureValue: valueEmbellishment(valueName,"IOFunctions.unit(Value.«(e as PureValue).name»())")
 			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
-      		EffectFullArgument: return '''IOFunctions.unit(«(e as EffectFullArgument).name»)'''
-			EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
+      		EffectFullArgument: valueEmbellishment(valueName,'''IOFunctions.unit(«(e as EffectFullArgument).name»)''')
+      		EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
 		}
 	}
 
-
+	def valueEmbellishment(String inputChain, String valueCompiled){
+		if (inputChain.isNullOrEmpty) {
+			return valueCompiled;
+		}else
+			return '''IOFunctions.as(«inputChain»,IOFunctions.runSafe(«valueCompiled»))'''
+	}
 
 
 	////////////////////////////////////////////////////////////////////////////////
