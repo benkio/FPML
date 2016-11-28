@@ -107,6 +107,8 @@ public class PrimitiveGenerator {
     _builder.newLine();
     _builder.append("import fj.data.IOFunctions;");
     _builder.newLine();
+    _builder.append("import java.util.Random;");
+    _builder.newLine();
     _builder.newLine();
     _builder.append("public class PrimitivesEffectFull {");
     _builder.newLine();
@@ -127,7 +129,7 @@ public class PrimitiveGenerator {
     _builder.append("public static IO<Integer> primitiveRandom() {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("return () -> (int) Math.random();");
+    _builder.append("return () -> new Random().nextInt();");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");

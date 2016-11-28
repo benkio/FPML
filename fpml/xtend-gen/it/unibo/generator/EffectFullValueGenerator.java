@@ -325,6 +325,7 @@ public class EffectFullValueGenerator {
           EffectFullArgument _arg_4 = _value_8.getArg();
           String _compileIO = this.EffectFullFunctionGenerator.compileIO(((CompositionFunctionBodyEffect) _functionBody_1), _arg_4);
           _builder.append(_compileIO, "\t\t\t\t");
+          _builder.append(";");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t\t");
           _builder.append("}");
@@ -358,6 +359,7 @@ public class EffectFullValueGenerator {
             FunctionBodyEffectFull _functionBody_2 = _value_11.getFunctionBody();
             String _compileIO_1 = this.EffectFullFunctionGenerator.compileIO(((CompositionFunctionBodyEffect) _functionBody_2), null);
             _builder.append(_compileIO_1, "\t\t\t\t");
+            _builder.append(";");
             _builder.newLineIfNotEmpty();
             _builder.append("\t\t\t");
             _builder.append("}");

@@ -37,7 +37,12 @@ class GetReturnType {
 			IntegerType: return FPMLFactory.eINSTANCE.createIntegerType
 			StringType: return FPMLFactory.eINSTANCE.createStringType 
 			DataValue: return expression
-			PureFunctionType: return expression
+			PureFunctionType: {
+				if (expression.value instanceof PureLambda){
+					functionBodyPure(expression.value.functionBody, expression.value.arg, null, expression.value.returnType)
+				}else
+					expression
+				} 
 		}
 	}
 	
@@ -163,7 +168,14 @@ class GetReturnType {
 		switch expression {
 			Expression: expression(expression)
 			UnitType: expression
-			EffectFullFunctionType: expression 
+			EffectFullFunctionType:{
+				if (expression.value instanceof EffectFullLambda){
+					var EffectFullArgument arg = null
+					if (expression.value.arg != null) arg = expression.value.arg
+					functionBodyEffectFull(expression.value.functionBody, arg, null, expression.value.returnType)
+				}else
+					expression
+				} 
 			EffectFullDataValue: expression
 		}
 	}

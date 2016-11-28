@@ -11,6 +11,7 @@ import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionBlock;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
@@ -90,11 +91,11 @@ public class EffectFullFunctionGenerator {
     boolean _notEquals = (!Objects.equal(_name, "main"));
     if (_notEquals) {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("public static ");
+      _builder.append("public static IO<");
       IOType _returnType = pf.getReturnType();
       String _compile = this.typeGenerator.compile(_returnType);
       _builder.append(_compile, "");
-      _builder.append(" ");
+      _builder.append("> ");
       String _name_1 = pf.getName();
       _builder.append(_name_1, "");
       _builder.append(" (");
@@ -122,10 +123,11 @@ public class EffectFullFunctionGenerator {
                 EffectFullArgument _arg_1 = pf.getArg();
                 String _compileIO = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_2), _arg_1);
                 _builder.append(_compileIO, "\t");
+                _builder.append(";");
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\t");
-                _builder.append("return ( ");
+                _builder.append("return IOFunctions.unit(( ");
                 AdditionalEffectFullArgument _higherOrderArg_1 = pf.getHigherOrderArg();
                 EffectFullArgument _arg2 = _higherOrderArg_1.getArg2();
                 CharSequence _compile_2 = this.typeGenerator.compile(_arg2);
@@ -135,6 +137,7 @@ public class EffectFullFunctionGenerator {
                 EffectFullArgument _arg_2 = pf.getArg();
                 String _compileIO_1 = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_3), _arg_2);
                 _builder.append(_compileIO_1, "\t");
+                _builder.append(");");
                 _builder.newLineIfNotEmpty();
               }
             }
@@ -195,8 +198,7 @@ public class EffectFullFunctionGenerator {
     final Function2<String, CompositionFunctionBodyEffectFullFactor, String> f = _function;
     EList<CompositionFunctionBodyEffectFullFactor> _functionChain = cfbe.getFunctionChain();
     String _plus_2 = (firstElementCompiled + "\n\t");
-    String _fold = IterableExtensions.<CompositionFunctionBodyEffectFullFactor, String>fold(_functionChain, _plus_2, f);
-    return (_fold + ";");
+    return IterableExtensions.<CompositionFunctionBodyEffectFullFactor, String>fold(_functionChain, _plus_2, f);
   }
   
   public CharSequence compileIO(final EffectFullReference e, final String valueName) {
@@ -298,12 +300,13 @@ public class EffectFullFunctionGenerator {
       if (e instanceof ApplyF) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.unit(IOFunctions.runSafe(");
         _builder.append(valueName, "");
-        _builder.append(".f(");
+        _builder.append(").f(");
         PureReference _value = ((ApplyF)e).getValue();
         String _compile = this.pureFunctionGenerator.compile(_value, "", true);
         _builder.append(_compile, "");
-        _builder.append(")");
+        _builder.append("))");
         _switchResult = _builder;
       }
     }
@@ -513,6 +516,17 @@ public class EffectFullFunctionGenerator {
         String _name = ((EffectFullArgument) e).getName();
         _builder.append(_name, "");
         _builder.append("))");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".append(it.unibo.Effectfull.Data.Value.");
+        String _name = ((EffectFullValue)e).getName();
+        _builder.append(_name, "");
+        _builder.append("())");
         return _builder.toString();
       }
     }

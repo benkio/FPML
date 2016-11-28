@@ -17,6 +17,7 @@ import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EmptyFunctionBody;
@@ -124,6 +125,7 @@ public class GetReturnType {
   }
   
   public static ValueType expression(final Expression expression) {
+    ValueType _switchResult = null;
     boolean _matched = false;
     if (expression instanceof IntegerType) {
       _matched=true;
@@ -144,10 +146,23 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof PureFunctionType) {
         _matched=true;
-        return ((ValueType)expression);
+        ValueType _xifexpression = null;
+        PureFunctionDefinition _value = ((PureFunctionType)expression).getValue();
+        if ((_value instanceof PureLambda)) {
+          PureFunctionDefinition _value_1 = ((PureFunctionType)expression).getValue();
+          FunctionBodyPure _functionBody = _value_1.getFunctionBody();
+          PureFunctionDefinition _value_2 = ((PureFunctionType)expression).getValue();
+          Argument _arg = _value_2.getArg();
+          PureFunctionDefinition _value_3 = ((PureFunctionType)expression).getValue();
+          ValueType _returnType = _value_3.getReturnType();
+          _xifexpression = GetReturnType.functionBodyPure(_functionBody, _arg, null, _returnType);
+        } else {
+          _xifexpression = ((ValueType)expression);
+        }
+        _switchResult = _xifexpression;
       }
     }
-    return null;
+    return _switchResult;
   }
   
   public static ValueType functionBodyPure(final FunctionBodyPure pure, final Argument arg1, final AdditionalPureArgument arg2, final ValueType returnType) {
@@ -442,7 +457,31 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof EffectFullFunctionType) {
         _matched=true;
-        _switchResult = ((Type)expression);
+        Type _xifexpression = null;
+        EffectFullFunctionDefinition _value = ((EffectFullFunctionType)expression).getValue();
+        if ((_value instanceof EffectFullLambda)) {
+          Type _xblockexpression = null;
+          {
+            EffectFullArgument arg = null;
+            EffectFullFunctionDefinition _value_1 = ((EffectFullFunctionType)expression).getValue();
+            EffectFullArgument _arg = _value_1.getArg();
+            boolean _notEquals = (!Objects.equal(_arg, null));
+            if (_notEquals) {
+              EffectFullFunctionDefinition _value_2 = ((EffectFullFunctionType)expression).getValue();
+              EffectFullArgument _arg_1 = _value_2.getArg();
+              arg = _arg_1;
+            }
+            EffectFullFunctionDefinition _value_3 = ((EffectFullFunctionType)expression).getValue();
+            FunctionBodyEffectFull _functionBody = _value_3.getFunctionBody();
+            EffectFullFunctionDefinition _value_4 = ((EffectFullFunctionType)expression).getValue();
+            IOType _returnType = _value_4.getReturnType();
+            _xblockexpression = GetReturnType.functionBodyEffectFull(_functionBody, arg, null, _returnType);
+          }
+          _xifexpression = _xblockexpression;
+        } else {
+          _xifexpression = ((Type)expression);
+        }
+        _switchResult = _xifexpression;
       }
     }
     if (!_matched) {

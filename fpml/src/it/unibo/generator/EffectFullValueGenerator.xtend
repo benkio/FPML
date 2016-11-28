@@ -75,14 +75,14 @@ class EffectFullValueGenerator {
 	new F<«typeGenerator.compile(pft.value.arg.type)»,IO<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>>() {
 				@Override
 				public IO<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»> f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
-					return «EffectFullFunctionGenerator.compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), pft.value.arg)»
+					return «EffectFullFunctionGenerator.compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), pft.value.arg)»;
 				}
 		}
 	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg == null)»
 		new F0<IO<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>>() {
 					@Override
 					public IO<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»> f() {
-						return «EffectFullFunctionGenerator.compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), null)»
+						return «EffectFullFunctionGenerator.compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), null)»;
 					}
 			}.f()
 	«ENDIF»

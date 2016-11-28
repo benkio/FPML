@@ -26,14 +26,14 @@ class EffectFullFunctionGenerator {
 	def compile(EffectFullFunctionDefinition pf) {
 		if (pf.name != "main") {
 			return '''
-			public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
+			public static IO<«typeGenerator.compile(pf.returnType)»> «pf.name» («typeGenerator.compile(pf.arg)»){
 				«IF pf.functionBody instanceof EmptyFunctionBody»
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
 					«IF pf.higherOrderArg == null»
-					return «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»
+					return «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»;
 					«ELSE»
-					return ( «typeGenerator.compile(pf.higherOrderArg.arg2)» ) -> «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»
+					return IOFunctions.unit(( «typeGenerator.compile(pf.higherOrderArg.arg2)» ) -> «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»);
 					«ENDIF»
 				«ENDIF»
 			}'''
@@ -61,7 +61,7 @@ class EffectFullFunctionGenerator {
  		}
 		val firstElementCompiled = compileIO(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), argName)
 		val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | compileIO(Others.getFunctionDefinitionFromEffectFullFactor(x), acc) + "\n\t"]
-		return cfbe.functionChain.fold(firstElementCompiled + "\n\t", f) + ";"
+		return cfbe.functionChain.fold(firstElementCompiled + "\n\t", f)
 		}
 	
 	
@@ -78,7 +78,7 @@ class EffectFullFunctionGenerator {
       		PrimitiveTime: '''PrimitivesEffectFull.primitiveTime()'''
       		PrimitiveReturn: '''«valueName»'''
 	//		ApplyFIO: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::ApplyFIO(«e.value.compileIO»))'''
-			ApplyF: '''«valueName».f(«pureFunctionGenerator.compile(e.value,"", true)»)'''
+			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«valueName»).f(«pureFunctionGenerator.compile(e.value,"", true)»))'''
 			PureValue: return '''IOFunctions.unit(Value.«(e as PureValue).name»())'''
 			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: return '''IOFunctions.unit(«(e as EffectFullArgument).name»)'''
@@ -120,6 +120,7 @@ class EffectFullFunctionGenerator {
 			PureValue: return '''.append(IOFunctions.unit(Value.«(e as PureValue).name»()))'''
 			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: return '''.append(IOFunctions.unit(«(e as EffectFullArgument).name»))'''
+      		EffectFullValue: return '''.append(it.unibo.Effectfull.Data.Value.«e.name»())'''
 			EffectFullFunctionDefinition: return '''.bind(EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
 		}
 	}

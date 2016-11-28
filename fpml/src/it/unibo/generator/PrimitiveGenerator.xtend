@@ -42,6 +42,7 @@ class PrimitiveGenerator {
 			import fj.Unit;
 			import fj.data.IO;
 			import fj.data.IOFunctions;
+			import java.util.Random;
 			
 			public class PrimitivesEffectFull {
 				
@@ -50,7 +51,7 @@ class PrimitiveGenerator {
 				} 
 				
 				public static IO<Integer> primitiveRandom() {
-					return () -> (int) Math.random();
+					return () -> new Random().nextInt();
 				}
 							
 				public static IO<Integer> primitiveTime() {
