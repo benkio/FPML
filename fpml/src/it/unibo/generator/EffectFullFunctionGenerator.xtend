@@ -15,6 +15,8 @@ class EffectFullFunctionGenerator {
 	    import «FPMLGenerator.basePackageJava»Pure.Data.*;
 	    import fj.data.*;
 	    import fj.F;
+	    import fj.Unit;
+	    import «FPMLGenerator.basePackageJava»Effectfull.Data.*;
 	    import «FPMLGenerator.basePackageJava»Pure.*;
 	    
 	    public class EffectFullFunctionDefinitions {
@@ -80,9 +82,10 @@ class EffectFullFunctionGenerator {
 			PrimitiveRandom: valueEmbellishment(valueName,"PrimitivesEffectFull.primitiveRandom()")
       		PrimitiveTime: valueEmbellishment(valueName,"PrimitivesEffectFull.primitiveTime()")
       		PrimitiveReturn: '''«valueName»'''
-	//		ApplyFIO: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::ApplyFIO(«e.value.compileIO»))'''
+			ApplyFIO: '''IOFunctions.bind(«valueName», («typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIO(Others.getValueFromApplyFIOFactor(e.value), null)»)))'''
 			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«valueName»).f(«pureFunctionGenerator.compile(e.value,"", true)»))'''
-			PureValue: valueEmbellishment(valueName,'''IOFunctions.unit(Value.«(e as PureValue).name»())''')
+			PureValue: valueEmbellishment(valueName,'''IOFunctions.unit(PureValue.«(e as PureValue).name»())''')
+			EffectFullValue: valueEmbellishment(valueName,'''EffectFullValue.«(e as EffectFullValue).name»()''')
 			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: valueEmbellishment(valueName,'''IOFunctions.unit(«(e as EffectFullArgument).name»)''')
       		EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
@@ -125,10 +128,10 @@ class EffectFullFunctionGenerator {
       		PrimitiveReturn: ''''''
 			ApplyFIO: '''.bind((«typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIO(Others.getValueFromApplyFIOFactor(e.value), null)»)))'''
 			ApplyF: '''.map((«typeGenerator.compile(e.functionType)» f) -> f.f(«pureFunctionGenerator.compile(e.value, "", true)»))'''
-			PureValue: return '''.append(IOFunctions.unit(Value.«(e as PureValue).name»()))'''
+			PureValue: return '''.append(IOFunctions.unit(PureValue.«(e as PureValue).name»()))'''
 			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: return '''.append(IOFunctions.unit(«(e as EffectFullArgument).name»))'''
-      		EffectFullValue: return '''.append(it.unibo.Effectfull.Data.Value.«e.name»())'''
+      		EffectFullValue: return '''.append(EffectFullValue.«e.name»())'''
 			EffectFullFunctionDefinition: return '''.bind(EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
 		}
 	}
@@ -141,6 +144,7 @@ class EffectFullFunctionGenerator {
 		import java.io.IOException;
 		import fj.Unit;
 		import fj.F;
+		import «FPMLGenerator.basePackageJava»Effectfull.Data.*;
 		import «FPMLGenerator.basePackageJava»Pure.*;
 		
 		public class EntryPoint {

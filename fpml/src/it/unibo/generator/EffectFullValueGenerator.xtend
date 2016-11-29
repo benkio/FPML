@@ -23,7 +23,7 @@ class EffectFullValueGenerator {
 	    import fj.F;
 	    import fj.F0;
 	    
-	    public class Value {
+	    public class EffectFullValue {
 	    	«FOR v:values»
 	    		«v.compile»
 	    	«ENDFOR»
@@ -53,7 +53,7 @@ class EffectFullValueGenerator {
 				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as EffectFullAdtType).effectFullAdtElement1))»)'''
 			}
 			EffectFullProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,d.effectFullAdtElement1)»,«compileAdtValue(v.prodAdtElement2, (d.effectFullAdtElement2 as EffectFullProdType).adtElement)»)'''			
-			EffectFullValueRef: if ( v.value instanceof EffectFullValue ) return '''Value.«(v.value as EffectFullValue).name»()''' else return '''EffectFullFunctionDefinitions::«(v.value as EffectFullFunctionDefinition).name»'''
+			EffectFullValueRef: if ( v.value instanceof EffectFullValue ) return '''EffectFullValue.«(v.value as EffectFullValue).name»()''' else return '''EffectFullFunctionDefinitions::«(v.value as EffectFullFunctionDefinition).name»'''
 			EffectFullFunctionType: {
 				if (d instanceof EffectFullFunctionType)
 					return v.compile

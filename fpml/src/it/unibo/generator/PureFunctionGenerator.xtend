@@ -60,7 +60,7 @@ class PureFunctionGenerator {
 		var result = ""
 		val initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
 		switch initialElement {
-			PureValue: result = "Value." + (initialElement as PureValue).name + "()"
+			PureValue: result = "PureValue." + (initialElement as PureValue).name + "()"
 			PureLambda: result = "(" + typeGenerator.compile(initialElement.arg) + ") -> " + initialElement.functionBody.compile(argName,outsideCalls)
 			PrimitivePureFunction: result = compilePrimitiveCall(initialElement, argName, outsideCalls)
 			PureFunctionDefinition: result = compileCall(initialElement, argName, outsideCalls)
@@ -73,7 +73,7 @@ class PureFunctionGenerator {
 	
 	def String compileCall(PureFunction pf, String args, boolean outsideCalls) {
 		switch pf {
-			PureValue: return "Value." + (pf as PureValue).name + "()"
+			PureValue: return "PureValue." + (pf as PureValue).name + "()"
 			PureLambda: return "(" + typeGenerator.compile(pf.higherOrderArg.arg2) + ") -> " + pf.functionBody.compile(args,outsideCalls)
 			PrimitivePureFunction: return compilePrimitiveCall(pf, args, outsideCalls)
 			PureFunctionDefinition: {

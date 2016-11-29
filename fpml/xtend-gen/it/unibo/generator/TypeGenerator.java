@@ -256,7 +256,7 @@ public class TypeGenerator {
       if (e instanceof UnitType) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("Unit");
+        _builder.append("IO<Unit>");
         _switchResult = _builder;
       }
     }

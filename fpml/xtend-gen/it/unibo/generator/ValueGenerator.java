@@ -64,7 +64,7 @@ public class ValueGenerator {
     _builder.append("import fj.F;");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("public class Value {");
+    _builder.append("public class PureValue {");
     _builder.newLine();
     {
       for(final PureValue v : values) {
@@ -236,7 +236,7 @@ public class ValueGenerator {
         PureValue _value = ((PureValueRef)v).getValue();
         if ((_value instanceof PureValue)) {
           StringConcatenation _builder = new StringConcatenation();
-          _builder.append("Value.");
+          _builder.append("PureValue.");
           PureValue _value_1 = ((PureValueRef)v).getValue();
           String _name = ((PureValue) _value_1).getName();
           _builder.append(_name, "");

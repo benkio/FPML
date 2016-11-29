@@ -67,9 +67,16 @@ public class EffectFullFunctionGenerator {
     _builder.newLine();
     _builder.append("import fj.F;");
     _builder.newLine();
+    _builder.append("import fj.Unit;");
+    _builder.newLine();
     _builder.append("import ");
     String _basePackageJava_2 = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava_2, "");
+    _builder.append("Effectfull.Data.*;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import ");
+    String _basePackageJava_3 = FPMLGenerator.basePackageJava();
+    _builder.append(_basePackageJava_3, "");
     _builder.append("Pure.*;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -300,6 +307,25 @@ public class EffectFullFunctionGenerator {
       }
     }
     if (!_matched) {
+      if (e instanceof ApplyFIO) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", (");
+        EffectFullFunctionType _functionType = ((ApplyFIO)e).getFunctionType();
+        Object _compile = this.typeGenerator.compile(_functionType);
+        _builder.append(_compile, "");
+        _builder.append(" f) -> f.f(IOFunctions.runSafe(");
+        ApplyFIOFactor _value = ((ApplyFIO)e).getValue();
+        EffectFullReference _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
+        Object _compileIO = this.compileIO(_valueFromApplyFIOFactor, null);
+        _builder.append(_compileIO, "");
+        _builder.append(")))");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
       if (e instanceof ApplyF) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
@@ -317,10 +343,21 @@ public class EffectFullFunctionGenerator {
       if (e instanceof PureValue) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.unit(Value.");
+        _builder.append("IOFunctions.unit(PureValue.");
         String _name = ((PureValue) e).getName();
         _builder.append(_name, "");
         _builder.append("())");
+        _switchResult = this.valueEmbellishment(valueName, _builder.toString());
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("EffectFullValue.");
+        String _name = ((EffectFullValue) e).getName();
+        _builder.append(_name, "");
+        _builder.append("()");
         _switchResult = this.valueEmbellishment(valueName, _builder.toString());
       }
     }
@@ -512,7 +549,7 @@ public class EffectFullFunctionGenerator {
       if (e instanceof PureValue) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(IOFunctions.unit(Value.");
+        _builder.append(".append(IOFunctions.unit(PureValue.");
         String _name = ((PureValue) e).getName();
         _builder.append(_name, "");
         _builder.append("()))");
@@ -545,7 +582,7 @@ public class EffectFullFunctionGenerator {
       if (e instanceof EffectFullValue) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(it.unibo.Effectfull.Data.Value.");
+        _builder.append(".append(EffectFullValue.");
         String _name = ((EffectFullValue)e).getName();
         _builder.append(_name, "");
         _builder.append("())");
@@ -590,6 +627,11 @@ public class EffectFullFunctionGenerator {
     _builder.append("import ");
     String _basePackageJava_2 = FPMLGenerator.basePackageJava();
     _builder.append(_basePackageJava_2, "");
+    _builder.append("Effectfull.Data.*;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import ");
+    String _basePackageJava_3 = FPMLGenerator.basePackageJava();
+    _builder.append(_basePackageJava_3, "");
     _builder.append("Pure.*;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();

@@ -138,7 +138,7 @@ public class PureFunctionGenerator {
     if (initialElement instanceof PureValue) {
       _matched=true;
       String _name = ((PureValue) initialElement).getName();
-      String _plus = ("Value." + _name);
+      String _plus = ("PureValue." + _name);
       String _plus_1 = (_plus + "()");
       result = _plus_1;
     }
@@ -183,7 +183,7 @@ public class PureFunctionGenerator {
     if (pf instanceof PureValue) {
       _matched=true;
       String _name = ((PureValue) pf).getName();
-      String _plus = ("Value." + _name);
+      String _plus = ("PureValue." + _name);
       return (_plus + "()");
     }
     if (!_matched) {

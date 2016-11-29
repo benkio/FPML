@@ -83,7 +83,7 @@ public class FPMLGenerator extends AbstractGenerator {
     Iterable<PureValue> _filter_3 = Iterables.<PureValue>filter(_iterable_1, PureValue.class);
     CharSequence _compile_3 = this.valueGenerator.compile(_filter_3);
     fsa.generateFile(
-      (this.basePackage + "Pure/Data/Value.java"), _compile_3);
+      (this.basePackage + "Pure/Data/PureValue.java"), _compile_3);
     TreeIterator<EObject> _allContents_4 = resource.getAllContents();
     Iterable<EObject> _iterable_2 = IteratorExtensions.<EObject>toIterable(_allContents_4);
     Iterable<EffectFullData> _filter_4 = Iterables.<EffectFullData>filter(_iterable_2, EffectFullData.class);
@@ -99,7 +99,7 @@ public class FPMLGenerator extends AbstractGenerator {
     Iterable<EffectFullValue> _filter_5 = Iterables.<EffectFullValue>filter(_iterable_3, EffectFullValue.class);
     CharSequence _compile_5 = this.effectFullValueGenerator.compile(_filter_5);
     fsa.generateFile(
-      (this.basePackage + "Effectfull/Data/Value.java"), _compile_5);
+      (this.basePackage + "Effectfull/Data/EffectFullValue.java"), _compile_5);
     CharSequence _compilePure = this.primitiveGenerator.compilePure();
     fsa.generateFile(
       (this.basePackage + "Pure/Primitives.java"), _compilePure);

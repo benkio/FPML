@@ -88,7 +88,7 @@ class TypeGenerator {
 	def compileType(EffectFullExpression e) {
 		switch e {
 			Expression: '''IO<«compileType(e)»>'''
-			UnitType: '''Unit'''
+			UnitType: '''IO<Unit>'''
 			EffectFullFunctionType: if (e.argType != null && e.returnType != null) 
 										return '''F<«e.argType.compile», IO<«e.returnType.type.compile»>>'''
 									else if(e.returnType != null)

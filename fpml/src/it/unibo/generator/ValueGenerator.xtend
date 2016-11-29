@@ -20,7 +20,7 @@ class ValueGenerator {
 	    import it.unibo.Pure.PureFunctionDefinitions;
 	    import fj.F;
 	    
-	    public class Value {
+	    public class PureValue {
 	    	«FOR v:values»
 	    		«v.compile»
 	    	«ENDFOR»
@@ -53,7 +53,7 @@ class ValueGenerator {
 				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as PureAdtType).pureAdtElement1))»)'''
 			}
 			PureProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,d.pureAdtElement1)»,«compileAdtValue(v.prodAdtElement2, (d.pureAdtElement2 as PureProdType).adtElement)»)'''			
-			PureValueRef: if ( v.value instanceof PureValue ) return '''Value.«(v.value as PureValue).name»()''' else return '''PureFunctionDefinitions::«(v.value as PureFunctionDefinition).name»'''
+			PureValueRef: if ( v.value instanceof PureValue ) return '''PureValue.«(v.value as PureValue).name»()''' else return '''PureFunctionDefinitions::«(v.value as PureFunctionDefinition).name»'''
 			PureFunctionType: return v.compile
 		}
 	}

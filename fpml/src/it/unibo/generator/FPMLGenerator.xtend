@@ -43,7 +43,7 @@ class FPMLGenerator extends AbstractGenerator {
 			);
 		}
 		fsa.generateFile(
-			basePackage + "Pure/Data/Value.java",
+			basePackage + "Pure/Data/PureValue.java",
 			valueGenerator.compile(resource.getAllContents.toIterable.filter(PureValue))
 		)
 		
@@ -54,7 +54,7 @@ class FPMLGenerator extends AbstractGenerator {
 			);
 		}
 		fsa.generateFile(
-			basePackage + "Effectfull/Data/Value.java",
+			basePackage + "Effectfull/Data/EffectFullValue.java",
 			effectFullValueGenerator.compile(resource.getAllContents.toIterable.filter(EffectFullValue))
 		)
 		

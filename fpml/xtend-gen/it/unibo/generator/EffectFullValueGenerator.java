@@ -72,7 +72,7 @@ public class EffectFullValueGenerator {
     _builder.append("import fj.F0;");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("public class Value {");
+    _builder.append("public class EffectFullValue {");
     _builder.newLine();
     {
       for(final EffectFullValue v : values) {
@@ -216,7 +216,7 @@ public class EffectFullValueGenerator {
         EffectFullValue _value = ((EffectFullValueRef)v).getValue();
         if ((_value instanceof EffectFullValue)) {
           StringConcatenation _builder = new StringConcatenation();
-          _builder.append("Value.");
+          _builder.append("EffectFullValue.");
           EffectFullValue _value_1 = ((EffectFullValueRef)v).getValue();
           String _name = ((EffectFullValue) _value_1).getName();
           _builder.append(_name, "");
