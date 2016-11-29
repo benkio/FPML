@@ -7,6 +7,7 @@ import org.eclipse.xtext.EcoreUtil2
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import it.unibo.fPML.EffectFullExpression
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class GetReturnType {
 	
@@ -62,8 +63,8 @@ class GetReturnType {
 	def static ValueType pureFunctionChain(List<PureFunction> definitions, PureFunction first ,Argument argument, AdditionalPureArgument argument2) {
 		if (argument2 != null) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createPureFunctionType
-			functionType.argType = argument2.arg2.type
-			functionType.returnType = pureFunctionChain(definitions, first, argument, null)
+			functionType.argType = EcoreUtil.copy(argument2.arg2.type)
+			functionType.returnType = EcoreUtil.copy(pureFunctionChain(definitions, first, argument, null))
 			return functionType
 		} else { //Normal single argument function
 			val firstFunctionReturnType = pureFunction(first)
@@ -79,19 +80,12 @@ class GetReturnType {
 		switch f {
 			IntToString: return FPMLFactory.eINSTANCE.createStringType
 			IntPow: return FPMLFactory.eINSTANCE.createIntegerType
-			Plus: return IntIntFunc
-			Minus: return IntIntFunc
-			Times: return IntIntFunc
-			Mod: return IntIntFunc
+			Plus: return Others.createIntIntFuntionType
+			Minus: return Others.createIntIntFuntionType
+			Times: return Others.createIntIntFuntionType
+			Mod: return Others.createIntIntFuntionType
 			ApplyF: return f.functionType.returnType
 		}
-	}
-	
-	def static PureFunctionType IntIntFunc() {
-		val func = FPMLFactory.eINSTANCE.createPureFunctionType
-		func.argType = FPMLFactory.eINSTANCE.createIntegerType
-		func.returnType = FPMLFactory.eINSTANCE.createIntegerType
-		return func
 	}
 	
 	def static ValueType pureReference(PureReference reference) {
@@ -130,8 +124,8 @@ class GetReturnType {
 		if (argument2 != null) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType
 			val ioTypeReturn = FPMLFactory.eINSTANCE.createIOType
-			ioTypeReturn.type = effectFullFunctionChain(references, first, argument, null)
-			functionType.argType = argument2.arg2.type
+			ioTypeReturn.type = EcoreUtil.copy(effectFullFunctionChain(references, first, argument, null))
+			functionType.argType = EcoreUtil.copy(argument2.arg2.type)
 			functionType.returnType = ioTypeReturn
 			return functionType
 		} else { //Normal single argument function
@@ -191,7 +185,7 @@ class GetReturnType {
 		switch function {
 			PrimitivePrint: FPMLFactory.eINSTANCE.createUnitType
 			ApplyFIO: function.functionType.returnType.type
-      PrimitiveReturn: function.type
+      		PrimitiveReturn: function.type
 		}
 	}
 	
@@ -200,5 +194,4 @@ class GetReturnType {
 		ioType.type = FPMLFactory.eINSTANCE.createUnitType
 		functionBodyEffectFull(m.functionBody, null, null, ioType)
 	}
-	
 }

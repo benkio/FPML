@@ -55,6 +55,7 @@ import it.unibo.fPML.ValueType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -201,9 +202,11 @@ public class GetReturnType {
       final PureFunctionType functionType = FPMLFactory.eINSTANCE.createPureFunctionType();
       Argument _arg2 = argument2.getArg2();
       ValueType _type = _arg2.getType();
-      functionType.setArgType(_type);
+      ValueType _copy = EcoreUtil.<ValueType>copy(_type);
+      functionType.setArgType(_copy);
       ValueType _pureFunctionChain = GetReturnType.pureFunctionChain(definitions, first, argument, null);
-      functionType.setReturnType(_pureFunctionChain);
+      ValueType _copy_1 = EcoreUtil.<ValueType>copy(_pureFunctionChain);
+      functionType.setReturnType(_copy_1);
       return functionType;
     } else {
       final ValueType firstFunctionReturnType = GetReturnType.pureFunction(first);
@@ -235,25 +238,25 @@ public class GetReturnType {
     if (!_matched) {
       if (f instanceof Plus) {
         _matched=true;
-        return GetReturnType.IntIntFunc();
+        return Others.createIntIntFuntionType();
       }
     }
     if (!_matched) {
       if (f instanceof Minus) {
         _matched=true;
-        return GetReturnType.IntIntFunc();
+        return Others.createIntIntFuntionType();
       }
     }
     if (!_matched) {
       if (f instanceof Times) {
         _matched=true;
-        return GetReturnType.IntIntFunc();
+        return Others.createIntIntFuntionType();
       }
     }
     if (!_matched) {
       if (f instanceof Mod) {
         _matched=true;
-        return GetReturnType.IntIntFunc();
+        return Others.createIntIntFuntionType();
       }
     }
     if (!_matched) {
@@ -264,15 +267,6 @@ public class GetReturnType {
       }
     }
     return null;
-  }
-  
-  public static PureFunctionType IntIntFunc() {
-    final PureFunctionType func = FPMLFactory.eINSTANCE.createPureFunctionType();
-    IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
-    func.setArgType(_createIntegerType);
-    IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
-    func.setReturnType(_createIntegerType_1);
-    return func;
   }
   
   public static ValueType pureReference(final PureReference reference) {
@@ -351,10 +345,12 @@ public class GetReturnType {
       final EffectFullFunctionType functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
       final IOType ioTypeReturn = FPMLFactory.eINSTANCE.createIOType();
       Type _effectFullFunctionChain = GetReturnType.effectFullFunctionChain(references, first, argument, null);
-      ioTypeReturn.setType(_effectFullFunctionChain);
+      Type _copy = EcoreUtil.<Type>copy(_effectFullFunctionChain);
+      ioTypeReturn.setType(_copy);
       EffectFullArgument _arg2 = argument2.getArg2();
       Type _type = _arg2.getType();
-      functionType.setArgType(_type);
+      Type _copy_1 = EcoreUtil.<Type>copy(_type);
+      functionType.setArgType(_copy_1);
       functionType.setReturnType(ioTypeReturn);
       return functionType;
     } else {

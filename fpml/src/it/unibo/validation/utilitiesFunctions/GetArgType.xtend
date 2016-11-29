@@ -74,7 +74,7 @@ class GetArgType {
 		switch function {
 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType 
 			ApplyFIO: return function.functionType.argType
-      PrimitiveReturn: return function.type
+     		PrimitiveReturn: return function.type
 		}
 	}
 	
