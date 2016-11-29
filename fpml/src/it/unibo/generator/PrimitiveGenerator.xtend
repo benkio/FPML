@@ -61,10 +61,6 @@ class PrimitiveGenerator {
 				public static <A> IO<A> primitiveReturn(A x) {
 					return IOFunctions.unit(x);
 				}
-				
-			//	public static <B, A> IO<B> applyFIO(F<A,B> f){
-			//		return (A val) -> IOFunctions.unit(f.f(val));
-			//	}
 			}
 	'''
 }

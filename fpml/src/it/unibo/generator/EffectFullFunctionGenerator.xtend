@@ -82,7 +82,7 @@ class EffectFullFunctionGenerator {
       		PrimitiveReturn: '''«valueName»'''
 	//		ApplyFIO: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::ApplyFIO(«e.value.compileIO»))'''
 			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«valueName»).f(«pureFunctionGenerator.compile(e.value,"", true)»))'''
-			PureValue: valueEmbellishment(valueName,"IOFunctions.unit(Value.«(e as PureValue).name»())")
+			PureValue: valueEmbellishment(valueName,'''IOFunctions.unit(Value.«(e as PureValue).name»())''')
 			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: valueEmbellishment(valueName,'''IOFunctions.unit(«(e as EffectFullArgument).name»)''')
       		EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
@@ -121,9 +121,9 @@ class EffectFullFunctionGenerator {
 			Mod: ".map(Primitives::mod)"
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
 			PrimitiveRandom: '''.bind(PrimitivesEffectFull::primitiveRandom)'''
-      PrimitiveTime: '''.bind(PrimitivesEffectFull::primitiveTime)'''
-      PrimitiveReturn: ''''''
-			ApplyFIO: '''.bind(PrimitivesEffectFull::ApplyFIO(«Others.getValueFromApplyFIOFactor(e.value).compileIOWalkthorugh»))'''
+      		PrimitiveTime: '''.bind(PrimitivesEffectFull::primitiveTime)'''
+      		PrimitiveReturn: ''''''
+			ApplyFIO: '''.bind((«typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIO(Others.getValueFromApplyFIOFactor(e.value), null)»)))'''
 			ApplyF: '''.map((«typeGenerator.compile(e.functionType)» f) -> f.f(«pureFunctionGenerator.compile(e.value, "", true)»))'''
 			PureValue: return '''.append(IOFunctions.unit(Value.«(e as PureValue).name»()))'''
 			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''

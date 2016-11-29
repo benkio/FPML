@@ -216,7 +216,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
       boolean _TypeEquals = Checks.TypeEquals(_argType, _effectFullReference);
       boolean _not = (!_TypeEquals);
       if (_not) {
-        this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE);
+        this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE);
       }
     }
   }

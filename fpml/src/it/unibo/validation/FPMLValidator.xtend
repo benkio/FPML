@@ -111,7 +111,7 @@ class FPMLValidator extends AbstractFPMLValidator {
    		switch p {
    			ApplyFIO: {
    				if (!Checks.TypeEquals(p.functionType.argType, GetReturnType.effectFullReference(Others.getValueFromApplyFIOFactor(p.value))))
-   					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE)
+   					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE)
    			}
    		}
    	

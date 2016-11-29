@@ -209,8 +209,7 @@ public class GetArgType {
     if (!_matched) {
       if (function instanceof ApplyFIO) {
         _matched=true;
-        EffectFullFunctionType _functionType = ((ApplyFIO)function).getFunctionType();
-        return _functionType.getArgType();
+        return ((ApplyFIO)function).getFunctionType();
       }
     }
     if (!_matched) {

@@ -10,6 +10,7 @@ import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullFunctionBlock;
 import it.unibo.fPML.EffectFullFunctionDefinition;
+import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EmptyFunctionBody;
@@ -315,7 +316,12 @@ public class EffectFullFunctionGenerator {
     if (!_matched) {
       if (e instanceof PureValue) {
         _matched=true;
-        _switchResult = this.valueEmbellishment(valueName, "IOFunctions.unit(Value.«(e as PureValue).name»())");
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.unit(Value.");
+        String _name = ((PureValue) e).getName();
+        _builder.append(_name, "");
+        _builder.append("())");
+        _switchResult = this.valueEmbellishment(valueName, _builder.toString());
       }
     }
     if (!_matched) {
@@ -473,12 +479,16 @@ public class EffectFullFunctionGenerator {
       if (e instanceof ApplyFIO) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::ApplyFIO(");
+        _builder.append(".bind((");
+        EffectFullFunctionType _functionType = ((ApplyFIO)e).getFunctionType();
+        Object _compile = this.typeGenerator.compile(_functionType);
+        _builder.append(_compile, "");
+        _builder.append(" f) -> f.f(IOFunctions.runSafe(");
         ApplyFIOFactor _value = ((ApplyFIO)e).getValue();
         EffectFullReference _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
-        Object _compileIOWalkthorugh = this.compileIOWalkthorugh(_valueFromApplyFIOFactor);
-        _builder.append(_compileIOWalkthorugh, "");
-        _builder.append("))");
+        CharSequence _compileIO = this.compileIO(_valueFromApplyFIOFactor, null);
+        _builder.append(_compileIO, "");
+        _builder.append(")))");
         _switchResult = _builder;
       }
     }

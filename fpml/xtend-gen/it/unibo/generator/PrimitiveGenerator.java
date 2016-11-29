@@ -156,14 +156,6 @@ public class PrimitiveGenerator {
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("//\tpublic static <B, A> IO<B> applyFIO(F<A,B> f){");
-    _builder.newLine();
-    _builder.append("//\t\treturn (A val) -> IOFunctions.unit(f.f(val));");
-    _builder.newLine();
-    _builder.append("//\t}");
-    _builder.newLine();
     _builder.append("}");
     _builder.newLine();
     return _builder;

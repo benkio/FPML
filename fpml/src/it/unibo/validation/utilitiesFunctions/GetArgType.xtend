@@ -73,7 +73,7 @@ class GetArgType {
 	def static Type primitiveEffectFullFunction(PrimitiveEffectFullFunction function) {
 		switch function {
 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType 
-			ApplyFIO: return function.functionType.argType
+			ApplyFIO: return function.functionType
      		PrimitiveReturn: return function.type
 		}
 	}
