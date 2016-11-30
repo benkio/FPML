@@ -109,6 +109,10 @@ public class PrimitiveGenerator {
     _builder.newLine();
     _builder.append("import java.util.Random;");
     _builder.newLine();
+    _builder.append("import java.text.SimpleDateFormat;");
+    _builder.newLine();
+    _builder.append("import java.util.Date;");
+    _builder.newLine();
     _builder.newLine();
     _builder.append("public class PrimitivesEffectFull {");
     _builder.newLine();
@@ -137,10 +141,10 @@ public class PrimitiveGenerator {
     _builder.append("\t\t\t\t");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("public static IO<Integer> primitiveTime() {");
+    _builder.append("public static IO<String> primitiveTime() {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("return IOFunctions.unit((int) System.currentTimeMillis());");
+    _builder.append("return IOFunctions.unit(new SimpleDateFormat(\"yyyy/MM/dd HH:mm:ss\").format(new Date()));");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");

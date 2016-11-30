@@ -123,8 +123,8 @@ class EffectFullFunctionGenerator {
 			Times: ".map(Primitives::times)"
 			Mod: ".map(Primitives::mod)"
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
-			PrimitiveRandom: '''.bind(PrimitivesEffectFull::primitiveRandom)'''
-      		PrimitiveTime: '''.bind(PrimitivesEffectFull::primitiveTime)'''
+			PrimitiveRandom: '''.append(PrimitivesEffectFull.primitiveRandom())'''
+      		PrimitiveTime: '''.append(PrimitivesEffectFull.primitiveTime())'''
       		PrimitiveReturn: ''''''
 			ApplyFIO: '''.bind((«typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIO(Others.getValueFromApplyFIOFactor(e.value), null)»)))'''
 			ApplyF: '''.map((«typeGenerator.compile(e.functionType)» f) -> f.f(«pureFunctionGenerator.compile(e.value, "", true)»))'''

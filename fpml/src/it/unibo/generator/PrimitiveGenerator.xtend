@@ -43,6 +43,8 @@ class PrimitiveGenerator {
 			import fj.data.IO;
 			import fj.data.IOFunctions;
 			import java.util.Random;
+			import java.text.SimpleDateFormat;
+			import java.util.Date;
 			
 			public class PrimitivesEffectFull {
 				
@@ -54,8 +56,8 @@ class PrimitiveGenerator {
 					return () -> new Random().nextInt();
 				}
 							
-				public static IO<Integer> primitiveTime() {
-					return IOFunctions.unit((int) System.currentTimeMillis());
+				public static IO<String> primitiveTime() {
+					return IOFunctions.unit(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
 				}
 				
 				public static <A> IO<A> primitiveReturn(A x) {

@@ -493,7 +493,7 @@ public class EffectFullFunctionGenerator {
       if (e instanceof PrimitiveRandom) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::primitiveRandom)");
+        _builder.append(".append(PrimitivesEffectFull.primitiveRandom())");
         _switchResult = _builder;
       }
     }
@@ -501,7 +501,7 @@ public class EffectFullFunctionGenerator {
       if (e instanceof PrimitiveTime) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::primitiveTime)");
+        _builder.append(".append(PrimitivesEffectFull.primitiveTime())");
         _switchResult = _builder;
       }
     }
