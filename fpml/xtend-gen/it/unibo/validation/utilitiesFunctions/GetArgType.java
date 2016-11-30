@@ -5,15 +5,12 @@ import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.EffectFullArgument;
-import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
-import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullValue;
-import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.IntPow;
@@ -34,7 +31,6 @@ import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
-import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
 
@@ -249,7 +245,7 @@ public class GetArgType {
     if (definition instanceof EffectFullValue) {
       _matched=true;
       EffectFullExpression _value = ((EffectFullValue)definition).getValue();
-      _switchResult = GetArgType.effectFullExpression(_value);
+      _switchResult = GetReturnType.effectFullExpression(_value);
     }
     if (!_matched) {
       if (definition instanceof EffectFullLambda) {
@@ -276,33 +272,5 @@ public class GetArgType {
       EffectFullArgument _arg_1 = lambda.getArg();
       return _arg_1.getType();
     }
-  }
-  
-  public static Type effectFullExpression(final EffectFullExpression eExp) {
-    Type _switchResult = null;
-    boolean _matched = false;
-    if (eExp instanceof EffectFullDataType) {
-      _matched=true;
-      _switchResult = ((Type)eExp);
-    }
-    if (!_matched) {
-      if (eExp instanceof EffectFullFunctionType) {
-        _matched=true;
-        _switchResult = ((Type)eExp);
-      }
-    }
-    if (!_matched) {
-      if (eExp instanceof Expression) {
-        _matched=true;
-        _switchResult = GetReturnType.expression(((Expression)eExp));
-      }
-    }
-    if (!_matched) {
-      if (eExp instanceof UnitType) {
-        _matched=true;
-        _switchResult = ((Type)eExp);
-      }
-    }
-    return _switchResult;
   }
 }

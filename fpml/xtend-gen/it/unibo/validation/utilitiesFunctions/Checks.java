@@ -15,7 +15,6 @@ import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EmptyFunctionBody;
-import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
@@ -124,48 +123,8 @@ public class Checks {
   }
   
   public static boolean checkValueType(final PureValue v, final ValueType adtt) {
-    boolean _xblockexpression = false;
-    {
-      Expression _value = v.getValue();
-      final Type valueType = Others.getTypeFromExpression(_value);
-      boolean _switchResult = false;
-      boolean _matched = false;
-      if (adtt instanceof IntegerType) {
-        _matched=true;
-        return (valueType instanceof IntegerType);
-      }
-      if (!_matched) {
-        if (adtt instanceof StringType) {
-          _matched=true;
-          return (valueType instanceof StringType);
-        }
-      }
-      if (!_matched) {
-        if (adtt instanceof DataType) {
-          _matched=true;
-          return ((valueType instanceof DataType) && ((DataType)adtt).getType().getName().equals(((DataType) valueType).getType().getName()));
-        }
-      }
-      if (!_matched) {
-        if (adtt instanceof PureFunctionType) {
-          _matched=true;
-          _switchResult = (((valueType instanceof PureFunctionType) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getArgType(), ((PureFunctionType) valueType).getArgType())) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getReturnType(), ((PureFunctionType) valueType).getReturnType()));
-        }
-      }
-      if (!_matched) {
-        if (adtt instanceof PureAlgebraicType) {
-          _matched=true;
-          _switchResult = (((valueType instanceof PureAlgebraicType) && 
-            Checks.ValueTypeEquals(((PureAlgebraicType) valueType).getPureAdtElement1(), ((PureAlgebraicType)adtt).getPureAdtElement1())) && 
-            Checks.ValueTypeEquals(Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) valueType)), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) adtt))));
-        }
-      }
-      if (!_matched) {
-        _switchResult = false;
-      }
-      _xblockexpression = _switchResult;
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method getTypeFromExpression(Expression) is undefined for the type Class<Others>");
   }
   
   public static boolean ValueTypeEquals(final ValueType v, final ValueType v2) {

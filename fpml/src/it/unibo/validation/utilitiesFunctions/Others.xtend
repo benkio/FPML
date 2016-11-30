@@ -46,14 +46,4 @@ class Others {
       	func.returnType = FPMLFactory.eINSTANCE.createIntegerType()
       	return func
 	}
-	
-	def static Type getTypeFromExpression(Expression e){
-    	switch e {
-    		IntegerType: return (e as IntegerType)
-    		StringType: return (e as StringType)
-    		UnitType: return (e as UnitType)
-    		DataType: return (e as DataType)
-        	PureFunctionType: return (e as PureFunctionType) 
-    	}
-    }
 }

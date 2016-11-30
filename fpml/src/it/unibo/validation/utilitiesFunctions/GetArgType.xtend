@@ -88,7 +88,7 @@ class GetArgType {
 	
 	def static Type effectFullFunctionDefinition(EffectFullFunctionDefinition definition) {
 		switch definition{
-			EffectFullValue: effectFullExpression(definition.value)
+			EffectFullValue: GetReturnType.effectFullExpression(definition.value)
 			EffectFullLambda: effectFullLambda(definition)
 			EffectFullFunctionDefinition: definition.arg.type
 		}
@@ -97,14 +97,5 @@ class GetArgType {
 	def static effectFullLambda(EffectFullLambda lambda) {
 		if (lambda.arg == null) return FPMLFactory.eINSTANCE.createUnitType
 		else return lambda.arg.type
-	}
-	
-	def static Type effectFullExpression(EffectFullExpression eExp) {
-		switch eExp {
-			EffectFullDataType: eExp
-			EffectFullFunctionType: eExp
-			Expression: GetReturnType.expression(eExp)
-			UnitType: eExp
-		}
 	}
 }

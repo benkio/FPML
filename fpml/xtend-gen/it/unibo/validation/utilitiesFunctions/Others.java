@@ -6,12 +6,10 @@ import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
-import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullSumTypeFactor;
-import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
@@ -23,9 +21,6 @@ import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureSumTypeFactor;
-import it.unibo.fPML.StringType;
-import it.unibo.fPML.Type;
-import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import org.eclipse.emf.ecore.EObject;
 
@@ -126,38 +121,5 @@ public class Others {
     IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
     func.setReturnType(_createIntegerType_1);
     return func;
-  }
-  
-  public static Type getTypeFromExpression(final Expression e) {
-    boolean _matched = false;
-    if (e instanceof IntegerType) {
-      _matched=true;
-      return ((IntegerType) e);
-    }
-    if (!_matched) {
-      if (e instanceof StringType) {
-        _matched=true;
-        return ((StringType) e);
-      }
-    }
-    if (!_matched) {
-      if (e instanceof UnitType) {
-        _matched=true;
-        return ((UnitType) e);
-      }
-    }
-    if (!_matched) {
-      if (e instanceof DataType) {
-        _matched=true;
-        return ((DataType) e);
-      }
-    }
-    if (!_matched) {
-      if (e instanceof PureFunctionType) {
-        _matched=true;
-        return ((PureFunctionType) e);
-      }
-    }
-    return null;
   }
 }

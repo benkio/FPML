@@ -160,7 +160,11 @@ class GetReturnType {
 	
 	def static Type effectFullExpression(EffectFullExpression expression) {
 		switch expression {
-			Expression: expression(expression)
+			Expression: {
+				val returnType = FPMLFactory.eINSTANCE.createIOType
+				returnType.type = EcoreUtil2.copy(expression(expression))
+				return returnType
+			}
 			UnitType: expression
 			EffectFullFunctionType:{
 				if (expression.value instanceof EffectFullLambda){
@@ -171,6 +175,11 @@ class GetReturnType {
 					expression
 				} 
 			EffectFullDataValue: expression
+			EffectFullExpression: {
+				val returnType = FPMLFactory.eINSTANCE.createIOType
+				returnType.type = EcoreUtil2.copy(effectFullExpression(expression))
+				return returnType
+			}
 		}
 	}
 	

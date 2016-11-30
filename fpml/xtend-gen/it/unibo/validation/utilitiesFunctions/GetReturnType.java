@@ -56,6 +56,7 @@ import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -442,7 +443,11 @@ public class GetReturnType {
     boolean _matched = false;
     if (expression instanceof Expression) {
       _matched=true;
-      _switchResult = GetReturnType.expression(((Expression)expression));
+      final IOType returnType = FPMLFactory.eINSTANCE.createIOType();
+      ValueType _expression = GetReturnType.expression(((Expression)expression));
+      ValueType _copy = EcoreUtil2.<ValueType>copy(_expression);
+      returnType.setType(_copy);
+      return returnType;
     }
     if (!_matched) {
       if (expression instanceof UnitType) {
@@ -484,6 +489,16 @@ public class GetReturnType {
       if (expression instanceof EffectFullDataValue) {
         _matched=true;
         _switchResult = ((Type)expression);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof EffectFullExpression) {
+        _matched=true;
+        final IOType returnType = FPMLFactory.eINSTANCE.createIOType();
+        Type _effectFullExpression = GetReturnType.effectFullExpression(expression);
+        Type _copy = EcoreUtil2.<Type>copy(_effectFullExpression);
+        returnType.setType(_copy);
+        return returnType;
       }
     }
     return _switchResult;
