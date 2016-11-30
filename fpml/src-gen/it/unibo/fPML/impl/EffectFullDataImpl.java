@@ -3,8 +3,8 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullAdtType;
 import it.unibo.fPML.EffectFullData;
+import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.FPMLPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -60,7 +60,7 @@ public class EffectFullDataImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected EffectFullAdtType content;
+  protected EffectFullType content;
 
   /**
    * <!-- begin-user-doc -->
@@ -111,7 +111,7 @@ public class EffectFullDataImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullAdtType getContent()
+  public EffectFullType getContent()
   {
     return content;
   }
@@ -121,9 +121,9 @@ public class EffectFullDataImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetContent(EffectFullAdtType newContent, NotificationChain msgs)
+  public NotificationChain basicSetContent(EffectFullType newContent, NotificationChain msgs)
   {
-    EffectFullAdtType oldContent = content;
+    EffectFullType oldContent = content;
     content = newContent;
     if (eNotificationRequired())
     {
@@ -138,7 +138,7 @@ public class EffectFullDataImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setContent(EffectFullAdtType newContent)
+  public void setContent(EffectFullType newContent)
   {
     if (newContent != content)
     {
@@ -202,7 +202,7 @@ public class EffectFullDataImpl extends MinimalEObjectImpl.Container implements 
         setName((String)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_DATA__CONTENT:
-        setContent((EffectFullAdtType)newValue);
+        setContent((EffectFullType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -222,7 +222,7 @@ public class EffectFullDataImpl extends MinimalEObjectImpl.Container implements 
         setName(NAME_EDEFAULT);
         return;
       case FPMLPackage.EFFECT_FULL_DATA__CONTENT:
-        setContent((EffectFullAdtType)null);
+        setContent((EffectFullType)null);
         return;
     }
     super.eUnset(featureID);

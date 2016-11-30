@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EffectFullFunctionTypeImpl extends TypeImpl implements EffectFullFunctionType
+public class EffectFullFunctionTypeImpl extends EffectFullTypeImpl implements EffectFullFunctionType
 {
   /**
    * The cached value of the '{@link #getArgType() <em>Arg Type</em>}' containment reference.

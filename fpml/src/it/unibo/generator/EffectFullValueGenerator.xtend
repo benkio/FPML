@@ -2,6 +2,7 @@ package it.unibo.generator
 
 import it.unibo.fPML.*
 import it.unibo.validation.utilitiesFunctions.GetReturnType
+import it.unibo.validation.utilitiesFunctions.Others
 
 class EffectFullValueGenerator {
 	
@@ -41,18 +42,18 @@ class EffectFullValueGenerator {
 			Expression: return "IOFunctions.Unit(" + valueGenerator.compile(e) + ")"
 			UnitType: return "IOFunctions.ioUnit"
 			EffectFullFunctionType: return e.compile 
-			EffectFullDataValue: '''new «e.type.name»(«compileAdtValue(e.value,e.type.content)»)'''
+			EffectFullDataValue: '''new «e.type.name»(«typeGenerator.compile(e.value,e.type.content)»)'''
 		}	
 	}
 	
-	def compileAdtValue(EffectFullAdtValue v, EffectFullAdtType d) {
+	def compileAdtValue(EffectFullAdtValue v, IOType d) {
 		switch v {
-			PureAdtValue: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v, ((d as IOType).type as PureAdtType))»)'''
+			PureAdtValue: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v, d.type)»)'''
 			EffectFullSumValue: {
-				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, (d.effectFullAdtElement2 as EffectFullSumType).adtElement)»)'''
-				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as EffectFullAdtType).effectFullAdtElement1))»)'''
+				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d.type as EffectFullAlgebraicType))»)'''
+				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d.type as EffectFullAlgebraicType).effectFullAdtElement1))»)'''
 			}
-			EffectFullProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,d.effectFullAdtElement1)»,«compileAdtValue(v.prodAdtElement2, (d.effectFullAdtElement2 as EffectFullProdType).adtElement)»)'''			
+			EffectFullProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,(d.type as EffectFullAlgebraicType).effectFullAdtElement1)»,«compileAdtValue(v.prodAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d.type as EffectFullAlgebraicType))»)'''
 			EffectFullValueRef: if ( v.value instanceof EffectFullValue ) return '''EffectFullValue.«(v.value as EffectFullValue).name»()''' else return '''EffectFullFunctionDefinitions::«(v.value as EffectFullFunctionDefinition).name»'''
 			EffectFullFunctionType: {
 				if (d instanceof EffectFullFunctionType)

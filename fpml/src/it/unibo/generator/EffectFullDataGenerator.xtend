@@ -1,7 +1,7 @@
 package it.unibo.generator
 
 import it.unibo.fPML.EffectFullData
-import it.unibo.fPML.EffectFullAdtType
+import it.unibo.fPML.Type
 
 class EffectFullDataGenerator {
 	
@@ -16,9 +16,9 @@ class EffectFullDataGenerator {
 	    import fj.Unit;
 	    
 	    public class «d.name» {
-	    	public final «typeGenerator.effectFullAdtTypeCompile((d.content as EffectFullAdtType))» value;
+	    	public final «typeGenerator.compile(d.content as Type)» value;
 	    	
-	    	public «d.name»(«typeGenerator.effectFullAdtTypeCompile((d.content as EffectFullAdtType))» value){
+	    	public «d.name»(«typeGenerator.compile(d.content as Type)» value){
 	    		this.value = value;
 	    	}
 	    }'''

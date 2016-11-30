@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Pure Sum Type</b></em>'.
+ * A representation of the model object '<em><b>Pure Sum Type Factor</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.PureSumType#getAdtElement <em>Adt Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.PureSumTypeFactor#getAdtElement <em>Adt Element</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getPureSumType()
+ * @see it.unibo.fPML.FPMLPackage#getPureSumTypeFactor()
  * @model
  * @generated
  */
-public interface PureSumType extends EObject
+public interface PureSumTypeFactor extends EObject
 {
   /**
    * Returns the value of the '<em><b>Adt Element</b></em>' containment reference.
@@ -32,21 +32,21 @@ public interface PureSumType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Adt Element</em>' containment reference.
-   * @see #setAdtElement(PureAdtType)
-   * @see it.unibo.fPML.FPMLPackage#getPureSumType_AdtElement()
+   * @see #setAdtElement(ValueType)
+   * @see it.unibo.fPML.FPMLPackage#getPureSumTypeFactor_AdtElement()
    * @model containment="true"
    * @generated
    */
-  PureAdtType getAdtElement();
+  ValueType getAdtElement();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.PureSumType#getAdtElement <em>Adt Element</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.PureSumTypeFactor#getAdtElement <em>Adt Element</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Adt Element</em>' containment reference.
    * @see #getAdtElement()
    * @generated
    */
-  void setAdtElement(PureAdtType value);
+  void setAdtElement(ValueType value);
 
-} // PureSumType
+} // PureSumTypeFactor

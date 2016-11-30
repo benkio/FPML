@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Pure Prod Type</b></em>'.
+ * A representation of the model object '<em><b>Effect Full Sum Type Factor</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.PureProdType#getAdtElement <em>Adt Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullSumTypeFactor#getAdtElement <em>Adt Element</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getPureProdType()
+ * @see it.unibo.fPML.FPMLPackage#getEffectFullSumTypeFactor()
  * @model
  * @generated
  */
-public interface PureProdType extends EObject
+public interface EffectFullSumTypeFactor extends EObject
 {
   /**
    * Returns the value of the '<em><b>Adt Element</b></em>' containment reference.
@@ -32,21 +32,21 @@ public interface PureProdType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Adt Element</em>' containment reference.
-   * @see #setAdtElement(PureAdtType)
-   * @see it.unibo.fPML.FPMLPackage#getPureProdType_AdtElement()
+   * @see #setAdtElement(IOType)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullSumTypeFactor_AdtElement()
    * @model containment="true"
    * @generated
    */
-  PureAdtType getAdtElement();
+  IOType getAdtElement();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.PureProdType#getAdtElement <em>Adt Element</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullSumTypeFactor#getAdtElement <em>Adt Element</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Adt Element</em>' containment reference.
    * @see #getAdtElement()
    * @generated
    */
-  void setAdtElement(PureAdtType value);
+  void setAdtElement(IOType value);
 
-} // PureProdType
+} // EffectFullSumTypeFactor

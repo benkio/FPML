@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class UnitTypeImpl extends TypeImpl implements UnitType
+public class UnitTypeImpl extends EffectFullTypeImpl implements UnitType
 {
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.

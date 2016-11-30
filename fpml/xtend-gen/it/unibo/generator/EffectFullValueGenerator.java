@@ -2,34 +2,27 @@ package it.unibo.generator;
 
 import com.google.common.base.Objects;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
-import it.unibo.fPML.EffectFullAdtType;
 import it.unibo.fPML.EffectFullAdtValue;
+import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
-import it.unibo.fPML.EffectFullData;
-import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
-import it.unibo.fPML.EffectFullProdType;
 import it.unibo.fPML.EffectFullProdValue;
-import it.unibo.fPML.EffectFullSumType;
 import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
-import it.unibo.fPML.Expression;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
-import it.unibo.fPML.PureAdtType;
 import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.Type;
-import it.unibo.fPML.UnitType;
 import it.unibo.generator.EffectFullFunctionGenerator;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
 import it.unibo.generator.ValueGenerator;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
-import org.eclipse.emf.ecore.EObject;
+import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
@@ -111,56 +104,20 @@ public class EffectFullValueGenerator {
   }
   
   public CharSequence compile(final EffectFullExpression e) {
-    CharSequence _switchResult = null;
-    boolean _matched = false;
-    if (e instanceof Expression) {
-      _matched=true;
-      Object _compile = this.valueGenerator.compile(((Expression)e));
-      String _plus = ("IOFunctions.Unit(" + _compile);
-      return (_plus + ")");
-    }
-    if (!_matched) {
-      if (e instanceof UnitType) {
-        _matched=true;
-        return "IOFunctions.ioUnit";
-      }
-    }
-    if (!_matched) {
-      if (e instanceof EffectFullFunctionType) {
-        _matched=true;
-        return this.compile(((EffectFullFunctionType)e));
-      }
-    }
-    if (!_matched) {
-      if (e instanceof EffectFullDataValue) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("new ");
-        EffectFullData _type = ((EffectFullDataValue)e).getType();
-        String _name = _type.getName();
-        _builder.append(_name, "");
-        _builder.append("(");
-        EffectFullAdtValue _value = ((EffectFullDataValue)e).getValue();
-        EffectFullData _type_1 = ((EffectFullDataValue)e).getType();
-        EffectFullAdtType _content = _type_1.getContent();
-        CharSequence _compileAdtValue = this.compileAdtValue(_value, _content);
-        _builder.append(_compileAdtValue, "");
-        _builder.append(")");
-        _switchResult = _builder;
-      }
-    }
-    return _switchResult;
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The method compile(ValueType) is not applicable for the arguments (EffectFullAdtValue,EffectFullType)"
+      + "\nType mismatch: cannot convert from EffectFullAdtValue to ValueType");
   }
   
-  public CharSequence compileAdtValue(final EffectFullAdtValue v, final EffectFullAdtType d) {
+  public Object compileAdtValue(final EffectFullAdtValue v, final IOType d) {
     CharSequence _switchResult = null;
     boolean _matched = false;
     if (v instanceof PureAdtValue) {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("IOFunctions.unit(");
-      Type _type = ((IOType) d).getType();
-      Object _compileAdtValue = this.valueGenerator.compileAdtValue(((PureAdtValue)v), ((PureAdtType) _type));
+      Type _type = d.getType();
+      Object _compileAdtValue = this.valueGenerator.compileAdtValue(((PureAdtValue)v), _type);
       _builder.append(_compileAdtValue, "");
       _builder.append(")");
       _switchResult = _builder;
@@ -174,9 +131,9 @@ public class EffectFullValueGenerator {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("Either.right(");
           EffectFullAdtValue _sumAdtElement2 = ((EffectFullSumValue)v).getSumAdtElement2();
-          EObject _effectFullAdtElement2 = d.getEffectFullAdtElement2();
-          EffectFullAdtType _adtElement = ((EffectFullSumType) _effectFullAdtElement2).getAdtElement();
-          Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _adtElement);
+          Type _type = d.getType();
+          IOType _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) _type));
+          Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType);
           _builder.append(_compileAdtValue, "");
           _builder.append(")");
           return _builder.toString();
@@ -184,7 +141,8 @@ public class EffectFullValueGenerator {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("Either.left(");
         EffectFullAdtValue _sumAdtElement1_1 = ((EffectFullSumValue)v).getSumAdtElement1();
-        EffectFullAdtType _effectFullAdtElement1 = ((EffectFullAdtType) d).getEffectFullAdtElement1();
+        Type _type_1 = d.getType();
+        IOType _effectFullAdtElement1 = ((EffectFullAlgebraicType) _type_1).getEffectFullAdtElement1();
         Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _effectFullAdtElement1);
         _builder_1.append(_compileAdtValue_1, "");
         _builder_1.append(")");
@@ -197,14 +155,15 @@ public class EffectFullValueGenerator {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("P.p(");
         EffectFullAdtValue _prodAdtElement1 = ((EffectFullProdValue)v).getProdAdtElement1();
-        EffectFullAdtType _effectFullAdtElement1 = d.getEffectFullAdtElement1();
+        Type _type = d.getType();
+        IOType _effectFullAdtElement1 = ((EffectFullAlgebraicType) _type).getEffectFullAdtElement1();
         Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _effectFullAdtElement1);
         _builder.append(_compileAdtValue, "");
         _builder.append(",");
         EffectFullAdtValue _prodAdtElement2 = ((EffectFullProdValue)v).getProdAdtElement2();
-        EObject _effectFullAdtElement2 = d.getEffectFullAdtElement2();
-        EffectFullAdtType _adtElement = ((EffectFullProdType) _effectFullAdtElement2).getAdtElement();
-        Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _adtElement);
+        Type _type_1 = d.getType();
+        IOType _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) _type_1));
+        Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType);
         _builder.append(_compileAdtValue_1, "");
         _builder.append(")");
         return _builder.toString();

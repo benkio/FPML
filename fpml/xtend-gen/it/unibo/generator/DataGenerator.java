@@ -1,7 +1,7 @@
 package it.unibo.generator;
 
-import it.unibo.fPML.PureAdtType;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -34,9 +34,9 @@ public class DataGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("public final ");
-    PureAdtType _content = d.getContent();
-    Object _pureAdtTypeCompile = this.typeGenerator.pureAdtTypeCompile(((PureAdtType) _content));
-    _builder.append(_pureAdtTypeCompile, "\t");
+    ValueType _content = d.getContent();
+    Object _compile = this.typeGenerator.compile(_content);
+    _builder.append(_compile, "\t");
     _builder.append(" value;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -46,9 +46,9 @@ public class DataGenerator {
     String _name_1 = d.getName();
     _builder.append(_name_1, "\t");
     _builder.append("(");
-    PureAdtType _content_1 = d.getContent();
-    Object _pureAdtTypeCompile_1 = this.typeGenerator.pureAdtTypeCompile(((PureAdtType) _content_1));
-    _builder.append(_pureAdtTypeCompile_1, "\t");
+    ValueType _content_1 = d.getContent();
+    Object _compile_1 = this.typeGenerator.compile(_content_1);
+    _builder.append(_compile_1, "\t");
     _builder.append(" value){");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");

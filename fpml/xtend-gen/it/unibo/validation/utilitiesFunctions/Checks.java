@@ -8,37 +8,28 @@ import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
-import it.unibo.fPML.EffectFullAdtType;
 import it.unibo.fPML.EffectFullAdtValue;
 import it.unibo.fPML.EffectFullArgument;
-import it.unibo.fPML.EffectFullDataType;
-import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullLambda;
-import it.unibo.fPML.EffectFullProdType;
-import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullReference;
-import it.unibo.fPML.EffectFullSumType;
-import it.unibo.fPML.EffectFullSumValue;
-import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
-import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
-import it.unibo.fPML.PureAdtType;
 import it.unibo.fPML.PureAdtValue;
+import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
-import it.unibo.fPML.PureProdType;
+import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureProdValue;
-import it.unibo.fPML.PureSumType;
+import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueRef;
@@ -58,7 +49,7 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class Checks {
-  public static boolean DataAndValue(final PureAdtValue value, final PureAdtType type) {
+  public static boolean DataAndValue(final PureAdtValue value, final ValueType type) {
     boolean _switchResult = false;
     boolean _matched = false;
     if (type instanceof IntegerType) {
@@ -96,24 +87,33 @@ public class Checks {
       }
     }
     if (!_matched) {
+      if (type instanceof PureAlgebraicType) {
+        _matched=true;
+        boolean _switchResult_1 = false;
+        boolean _matched_1 = false;
+        if (value instanceof PureSumValue) {
+          _matched_1=true;
+          return (((type instanceof PureAlgebraicType) && (((PureAlgebraicType) type).getPureAdtElement2() instanceof PureSumTypeFactor)) && (Boolean.valueOf(Checks.DataAndValue(((PureSumValue)value).getSumAdtElement1(), ((PureAlgebraicType) type).getPureAdtElement1())).booleanValue() || Boolean.valueOf(Checks.DataAndValue(((PureSumValue)value).getSumAdtElement2(), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) type)))).booleanValue()));
+        }
+        if (!_matched_1) {
+          if (value instanceof PureProdValue) {
+            _matched_1=true;
+            return (((type instanceof PureAlgebraicType) && (((PureAlgebraicType) type).getPureAdtElement2() instanceof PureProdTypeFactor)) && (Boolean.valueOf(Checks.DataAndValue(((PureProdValue)value).getProdAdtElement1(), ((PureAlgebraicType) type).getPureAdtElement1())).booleanValue() && Boolean.valueOf(Checks.DataAndValue(((PureProdValue)value).getProdAdtElement2(), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) type)))).booleanValue()));
+          }
+        }
+        if (!_matched_1) {
+          _switchResult_1 = false;
+        }
+        _switchResult = _switchResult_1;
+      }
+    }
+    if (!_matched) {
       boolean _switchResult_1 = false;
       boolean _matched_1 = false;
-      if (value instanceof PureSumValue) {
+      if (value instanceof PureValueRef) {
         _matched_1=true;
-        return ((type.getPureAdtElement2() instanceof PureSumType) && (Boolean.valueOf(Checks.DataAndValue(((PureSumValue)value).getSumAdtElement1(), type.getPureAdtElement1())).booleanValue() || Boolean.valueOf(Checks.DataAndValue(((PureSumValue)value).getSumAdtElement2(), ((PureSumType) type.getPureAdtElement2()).getAdtElement())).booleanValue()));
-      }
-      if (!_matched_1) {
-        if (value instanceof PureProdValue) {
-          _matched_1=true;
-          return ((type.getPureAdtElement2() instanceof PureProdType) && (Boolean.valueOf(Checks.DataAndValue(((PureProdValue)value).getProdAdtElement1(), type.getPureAdtElement1())).booleanValue() && Boolean.valueOf(Checks.DataAndValue(((PureProdValue)value).getProdAdtElement2(), ((PureProdType) type.getPureAdtElement2()).getAdtElement())).booleanValue()));
-        }
-      }
-      if (!_matched_1) {
-        if (value instanceof PureValueRef) {
-          _matched_1=true;
-          PureValue _value = ((PureValueRef)value).getValue();
-          return Checks.checkValueType(_value, type);
-        }
+        PureValue _value = ((PureValueRef)value).getValue();
+        return Checks.checkValueType(_value, type);
       }
       if (!_matched_1) {
         _switchResult_1 = false;
@@ -123,7 +123,7 @@ public class Checks {
     return _switchResult;
   }
   
-  public static boolean checkValueType(final PureValue v, final PureAdtType adtt) {
+  public static boolean checkValueType(final PureValue v, final ValueType adtt) {
     boolean _xblockexpression = false;
     {
       Expression _value = v.getValue();
@@ -150,6 +150,14 @@ public class Checks {
         if (adtt instanceof PureFunctionType) {
           _matched=true;
           _switchResult = (((valueType instanceof PureFunctionType) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getArgType(), ((PureFunctionType) valueType).getArgType())) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getReturnType(), ((PureFunctionType) valueType).getReturnType()));
+        }
+      }
+      if (!_matched) {
+        if (adtt instanceof PureAlgebraicType) {
+          _matched=true;
+          _switchResult = (((valueType instanceof PureAlgebraicType) && 
+            Checks.ValueTypeEquals(((PureAlgebraicType) valueType).getPureAdtElement1(), ((PureAlgebraicType)adtt).getPureAdtElement1())) && 
+            Checks.ValueTypeEquals(Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) valueType)), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) adtt))));
         }
       }
       if (!_matched) {
@@ -342,70 +350,22 @@ public class Checks {
     return Checks.functionBodyEffectFull(_functionBody, arg);
   }
   
-  public static boolean effectFullDataAndValue(final EffectFullAdtValue value, final EffectFullAdtType type) {
-    boolean _switchResult = false;
-    boolean _matched = false;
-    if (type instanceof IOType) {
-      _matched=true;
-      boolean _switchResult_1 = false;
-      Type _type = ((IOType)type).getType();
-      boolean _matched_1 = false;
-      if (_type instanceof ValueType) {
-        _matched_1=true;
-        _switchResult_1 = ((((value instanceof ValueType) && 
-          Checks.ValueTypeEquals(((ValueType) ((IOType)type).getType()), ((ValueType) value))) || ((value instanceof PureValueRef) && 
-          Checks.TypeEquals(GetReturnType.expression(((PureValueRef) value).getValue().getValue()), ((IOType)type).getType()))) || ((value instanceof EffectFullValueRef) && 
-          Checks.TypeEquals(GetReturnType.effectFullExpression(((EffectFullValueRef) value).getValue().getValue()), ((IOType)type).getType())));
-      }
-      if (!_matched_1) {
-        if (_type instanceof UnitType) {
-          _matched_1=true;
-          _switchResult_1 = ((value instanceof UnitType) || ((value instanceof EffectFullValueRef) && 
-            Checks.TypeEquals(GetReturnType.effectFullExpression(((EffectFullValueRef) value).getValue().getValue()), ((IOType)type).getType())));
-        }
-      }
-      if (!_matched_1) {
-        if (_type instanceof EffectFullFunctionType) {
-          _matched_1=true;
-          if ((value instanceof EffectFullFunctionType)) {
-            return (((((EffectFullFunctionType) value).getValue().getFunctionBody() instanceof CompositionFunctionBodyEffect) && 
-              Checks.TypeEquals(((EffectFullFunctionType) value).getValue().getArg().getType(), ((EffectFullFunctionType) ((IOType)type).getType()).getArgType())) && 
-              Checks.TypeEquals(GetReturnType.effectFullFunctionDefinition(((EffectFullFunctionType) value).getValue()), ((EffectFullFunctionType) ((IOType)type).getType()).getReturnType().getType()));
-          } else {
-            if (((value instanceof EffectFullValueRef) && (((EffectFullValueRef) value).getValue() instanceof EffectFullFunctionDefinition))) {
-              return (Checks.TypeEquals(((EffectFullFunctionDefinition) ((EffectFullValueRef) value).getValue()).getArg().getType(), ((EffectFullFunctionType) ((IOType)type).getType()).getArgType()) && 
-                Checks.TypeEquals(((EffectFullFunctionDefinition) ((EffectFullValueRef) value).getValue()).getReturnType().getType(), ((EffectFullFunctionType) ((IOType)type).getType()).getReturnType().getType()));
-            }
-          }
-        }
-      }
-      if (!_matched_1) {
-        if (_type instanceof EffectFullDataType) {
-          _matched_1=true;
-          return ((value instanceof EffectFullDataValue) && 
-            Checks.effectFullDataAndValue(((EffectFullDataValue) value).getValue(), ((EffectFullDataType) type).getType().getContent()));
-        }
-      }
-      _switchResult = _switchResult_1;
-    }
-    if (!_matched) {
-      boolean _switchResult_1 = false;
-      boolean _matched_1 = false;
-      if (value instanceof EffectFullSumValue) {
-        _matched_1=true;
-        return ((type.getEffectFullAdtElement2() instanceof EffectFullSumType) && (Boolean.valueOf(Checks.effectFullDataAndValue(((EffectFullSumValue)value).getSumAdtElement1(), type.getEffectFullAdtElement1())).booleanValue() || Boolean.valueOf(Checks.effectFullDataAndValue(((EffectFullSumValue)value).getSumAdtElement2(), ((EffectFullSumType) type.getEffectFullAdtElement2()).getAdtElement())).booleanValue()));
-      }
-      if (!_matched_1) {
-        if (value instanceof EffectFullProdValue) {
-          _matched_1=true;
-          return ((type.getEffectFullAdtElement2() instanceof PureProdType) && (Boolean.valueOf(Checks.effectFullDataAndValue(((EffectFullProdValue)value).getProdAdtElement1(), type.getEffectFullAdtElement1())).booleanValue() && Boolean.valueOf(Checks.effectFullDataAndValue(((EffectFullProdValue)value).getProdAdtElement2(), ((EffectFullProdType) type.getEffectFullAdtElement2()).getAdtElement())).booleanValue()));
-        }
-      }
-      if (!_matched_1) {
-        _switchResult_1 = false;
-      }
-      _switchResult = _switchResult_1;
-    }
-    return _switchResult;
+  public static boolean effectFullDataAndValue(final EffectFullAdtValue value, final Type type) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nno viable alternative at input \'default\'"
+      + "\nThe method or field type is undefined for the type ValueType"
+      + "\nThe method or field type is undefined for the type ValueType"
+      + "\nThe method or field type is undefined for the type ValueType"
+      + "\nThe method or field type is undefined for the type EffectFullFunctionType"
+      + "\nThe method or field type is undefined for the type EffectFullFunctionType"
+      + "\nThe method or field type is undefined for the type EffectFullFunctionType"
+      + "\nThe method or field type is undefined for the type EffectFullFunctionType"
+      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
+      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
+      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
+      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
+      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
+      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
+      + "\nType mismatch: cannot convert from String to Type");
   }
 }

@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class IOTypeImpl extends EffectFullAdtTypeImpl implements IOType
+public class IOTypeImpl extends EffectFullTypeImpl implements IOType
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.

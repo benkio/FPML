@@ -70,7 +70,7 @@ class FPMLValidator extends AbstractFPMLValidator {
 			typeCheckPureValue(pureValue)
 		}
 		else if (value.value instanceof EffectFullDataValue &&
-   		!Checks.effectFullDataAndValue((value.value as EffectFullDataValue).value, (value.value as EffectFullDataValue).type.content)) {
+   		!Checks.effectFullDataAndValue((value.value as EffectFullDataValue).value, (value.value as EffectFullDataValue).type.content) {
    			error(TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.EFFECT_FULL_VALUE__VALUE)
 		}
 	}

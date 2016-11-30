@@ -20,7 +20,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface IOType extends EffectFullAdtType
+public interface IOType extends EffectFullType
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

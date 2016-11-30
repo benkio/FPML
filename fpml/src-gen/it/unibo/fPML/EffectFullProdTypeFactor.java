@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Effect Full Prod Type</b></em>'.
+ * A representation of the model object '<em><b>Effect Full Prod Type Factor</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.EffectFullProdType#getAdtElement <em>Adt Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullProdTypeFactor#getAdtElement <em>Adt Element</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getEffectFullProdType()
+ * @see it.unibo.fPML.FPMLPackage#getEffectFullProdTypeFactor()
  * @model
  * @generated
  */
-public interface EffectFullProdType extends EObject
+public interface EffectFullProdTypeFactor extends EObject
 {
   /**
    * Returns the value of the '<em><b>Adt Element</b></em>' containment reference.
@@ -32,21 +32,21 @@ public interface EffectFullProdType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Adt Element</em>' containment reference.
-   * @see #setAdtElement(EffectFullAdtType)
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullProdType_AdtElement()
+   * @see #setAdtElement(IOType)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullProdTypeFactor_AdtElement()
    * @model containment="true"
    * @generated
    */
-  EffectFullAdtType getAdtElement();
+  IOType getAdtElement();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.EffectFullProdType#getAdtElement <em>Adt Element</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullProdTypeFactor#getAdtElement <em>Adt Element</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Adt Element</em>' containment reference.
    * @see #getAdtElement()
    * @generated
    */
-  void setAdtElement(EffectFullAdtType value);
+  void setAdtElement(IOType value);
 
-} // EffectFullProdType
+} // EffectFullProdTypeFactor

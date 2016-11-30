@@ -2,6 +2,7 @@ package it.unibo.generator
 
 import it.unibo.fPML.*
 import it.unibo.validation.utilitiesFunctions.GetReturnType
+import it.unibo.validation.utilitiesFunctions.Others
 
 class ValueGenerator {
 	
@@ -43,16 +44,16 @@ class ValueGenerator {
 		}	
 	}
 	
-	def compileAdtValue(PureAdtValue v, PureAdtType d) {
+	def compileAdtValue(PureAdtValue v, Type d) {
 		switch v {
 			IntegerType: return v.value
 			StringType: return '''"«v.value»"'''
 			DataType: return '''new «typeGenerator.compileType(v)»(«compileAdtValue((v as DataValue).value, (v as DataValue).type.content)»)'''
 			PureSumValue: {
-				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, (d.pureAdtElement2 as PureSumType).adtElement)»)'''
-				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as PureAdtType).pureAdtElement1))»)'''
+				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromPureAlgebraicType(d as PureAlgebraicType))»)'''
+				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as PureAlgebraicType).pureAdtElement1))»)'''
 			}
-			PureProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,d.pureAdtElement1)»,«compileAdtValue(v.prodAdtElement2, (d.pureAdtElement2 as PureProdType).adtElement)»)'''			
+			PureProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,(d as PureAlgebraicType).pureAdtElement1)»,«compileAdtValue(v.prodAdtElement2, Others.getElement2ValueTypeFromPureAlgebraicType(d as PureAlgebraicType))»)'''
 			PureValueRef: if ( v.value instanceof PureValue ) return '''PureValue.«(v.value as PureValue).name»()''' else return '''PureFunctionDefinitions::«(v.value as PureFunctionDefinition).name»'''
 			PureFunctionType: return v.compile
 		}

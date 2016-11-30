@@ -20,7 +20,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface DataType extends ValueType, Expression, PureAdtValue
+public interface DataType extends ValueType, Expression
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.

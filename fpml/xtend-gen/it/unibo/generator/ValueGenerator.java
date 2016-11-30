@@ -9,25 +9,24 @@ import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntegerType;
-import it.unibo.fPML.PureAdtType;
 import it.unibo.fPML.PureAdtValue;
+import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
-import it.unibo.fPML.PureProdType;
 import it.unibo.fPML.PureProdValue;
-import it.unibo.fPML.PureSumType;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueRef;
 import it.unibo.fPML.StringType;
+import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.PureFunctionGenerator;
 import it.unibo.generator.TypeGenerator;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
-import org.eclipse.emf.ecore.EObject;
+import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
@@ -135,7 +134,7 @@ public class ValueGenerator {
         _builder.append("(");
         PureAdtValue _value = ((DataValue) e).getValue();
         PureData _type = ((DataValue) e).getType();
-        PureAdtType _content = _type.getContent();
+        ValueType _content = _type.getContent();
         Object _compileAdtValue = this.compileAdtValue(_value, _content);
         _builder.append(_compileAdtValue, "");
         _builder.append(")");
@@ -151,7 +150,7 @@ public class ValueGenerator {
     return null;
   }
   
-  public Object compileAdtValue(final PureAdtValue v, final PureAdtType d) {
+  public Object compileAdtValue(final PureAdtValue v, final Type d) {
     boolean _matched = false;
     if (v instanceof IntegerType) {
       _matched=true;
@@ -178,7 +177,7 @@ public class ValueGenerator {
         _builder.append("(");
         PureAdtValue _value = ((DataValue) v).getValue();
         PureData _type = ((DataValue) v).getType();
-        PureAdtType _content = _type.getContent();
+        ValueType _content = _type.getContent();
         Object _compileAdtValue = this.compileAdtValue(_value, _content);
         _builder.append(_compileAdtValue, "");
         _builder.append(")");
@@ -194,9 +193,8 @@ public class ValueGenerator {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("Either.right(");
           PureAdtValue _sumAdtElement2 = ((PureSumValue)v).getSumAdtElement2();
-          EObject _pureAdtElement2 = d.getPureAdtElement2();
-          PureAdtType _adtElement = ((PureSumType) _pureAdtElement2).getAdtElement();
-          Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _adtElement);
+          ValueType _element2ValueTypeFromPureAlgebraicType = Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) d));
+          Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _element2ValueTypeFromPureAlgebraicType);
           _builder.append(_compileAdtValue, "");
           _builder.append(")");
           return _builder.toString();
@@ -204,7 +202,7 @@ public class ValueGenerator {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("Either.left(");
         PureAdtValue _sumAdtElement1_1 = ((PureSumValue)v).getSumAdtElement1();
-        PureAdtType _pureAdtElement1 = ((PureAdtType) d).getPureAdtElement1();
+        ValueType _pureAdtElement1 = ((PureAlgebraicType) d).getPureAdtElement1();
         Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _pureAdtElement1);
         _builder_1.append(_compileAdtValue_1, "");
         _builder_1.append(")");
@@ -217,14 +215,13 @@ public class ValueGenerator {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("P.p(");
         PureAdtValue _prodAdtElement1 = ((PureProdValue)v).getProdAdtElement1();
-        PureAdtType _pureAdtElement1 = d.getPureAdtElement1();
+        ValueType _pureAdtElement1 = ((PureAlgebraicType) d).getPureAdtElement1();
         Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _pureAdtElement1);
         _builder.append(_compileAdtValue, "");
         _builder.append(",");
         PureAdtValue _prodAdtElement2 = ((PureProdValue)v).getProdAdtElement2();
-        EObject _pureAdtElement2 = d.getPureAdtElement2();
-        PureAdtType _adtElement = ((PureProdType) _pureAdtElement2).getAdtElement();
-        Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _adtElement);
+        ValueType _element2ValueTypeFromPureAlgebraicType = Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) d));
+        Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _element2ValueTypeFromPureAlgebraicType);
         _builder.append(_compileAdtValue_1, "");
         _builder.append(")");
         return _builder.toString();

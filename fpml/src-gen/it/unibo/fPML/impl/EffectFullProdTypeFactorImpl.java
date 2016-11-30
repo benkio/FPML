@@ -3,9 +3,9 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullAdtType;
-import it.unibo.fPML.EffectFullProdType;
+import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.IOType;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,18 +18,18 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Effect Full Prod Type</b></em>'.
+ * An implementation of the model object '<em><b>Effect Full Prod Type Factor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.EffectFullProdTypeImpl#getAdtElement <em>Adt Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullProdTypeFactorImpl#getAdtElement <em>Adt Element</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container implements EffectFullProdType
+public class EffectFullProdTypeFactorImpl extends MinimalEObjectImpl.Container implements EffectFullProdTypeFactor
 {
   /**
    * The cached value of the '{@link #getAdtElement() <em>Adt Element</em>}' containment reference.
@@ -39,14 +39,14 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    * @ordered
    */
-  protected EffectFullAdtType adtElement;
+  protected IOType adtElement;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EffectFullProdTypeImpl()
+  protected EffectFullProdTypeFactorImpl()
   {
     super();
   }
@@ -59,7 +59,7 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.EFFECT_FULL_PROD_TYPE;
+    return FPMLPackage.Literals.EFFECT_FULL_PROD_TYPE_FACTOR;
   }
 
   /**
@@ -67,7 +67,7 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullAdtType getAdtElement()
+  public IOType getAdtElement()
   {
     return adtElement;
   }
@@ -77,13 +77,13 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAdtElement(EffectFullAdtType newAdtElement, NotificationChain msgs)
+  public NotificationChain basicSetAdtElement(IOType newAdtElement, NotificationChain msgs)
   {
-    EffectFullAdtType oldAdtElement = adtElement;
+    IOType oldAdtElement = adtElement;
     adtElement = newAdtElement;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_PROD_TYPE__ADT_ELEMENT, oldAdtElement, newAdtElement);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT, oldAdtElement, newAdtElement);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAdtElement(EffectFullAdtType newAdtElement)
+  public void setAdtElement(IOType newAdtElement)
   {
     if (newAdtElement != adtElement)
     {
       NotificationChain msgs = null;
       if (adtElement != null)
-        msgs = ((InternalEObject)adtElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_PROD_TYPE__ADT_ELEMENT, null, msgs);
+        msgs = ((InternalEObject)adtElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT, null, msgs);
       if (newAdtElement != null)
-        msgs = ((InternalEObject)newAdtElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_PROD_TYPE__ADT_ELEMENT, null, msgs);
+        msgs = ((InternalEObject)newAdtElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT, null, msgs);
       msgs = basicSetAdtElement(newAdtElement, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_PROD_TYPE__ADT_ELEMENT, newAdtElement, newAdtElement));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT, newAdtElement, newAdtElement));
   }
 
   /**
@@ -120,7 +120,7 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_PROD_TYPE__ADT_ELEMENT:
+      case FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT:
         return basicSetAdtElement(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -136,7 +136,7 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_PROD_TYPE__ADT_ELEMENT:
+      case FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT:
         return getAdtElement();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -152,8 +152,8 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_PROD_TYPE__ADT_ELEMENT:
-        setAdtElement((EffectFullAdtType)newValue);
+      case FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT:
+        setAdtElement((IOType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_PROD_TYPE__ADT_ELEMENT:
-        setAdtElement((EffectFullAdtType)null);
+      case FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT:
+        setAdtElement((IOType)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,10 +186,10 @@ public class EffectFullProdTypeImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_PROD_TYPE__ADT_ELEMENT:
+      case FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT:
         return adtElement != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //EffectFullProdTypeImpl
+} //EffectFullProdTypeFactorImpl

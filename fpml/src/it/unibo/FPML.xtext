@@ -67,32 +67,13 @@ EffectFullFunctionBlock:
 /////////////////////////////////////////////////////////////////
 
 PureData:
-    name=ID ':' content=PureAdtType;
+    name=ID ':' content=ValueType;
 
 PureValue returns PureFunctionDefinition: {PureValue} name=ID ':' value=Expression;
 
-PureAdtType:
-      ValueType
-    | '[' pureAdtElement1=PureAdtType pureAdtElement2=(PureSumType | PureProdType) ']';
-
-PureSumType:
-    '+' adtElement=PureAdtType;
-PureProdType:
-    '*' adtElement=PureAdtType;
-
-EffectFullData: name=ID ':' content=EffectFullAdtType; 
+EffectFullData: name=ID ':' content=EffectFullType;
 
 EffectFullValue returns EffectFullFunctionDefinition: {EffectFullValue} name=ID ':' value=EffectFullExpression; 
-
-EffectFullAdtType:
-    IOType
-    | '[' effectFullAdtElement1=EffectFullAdtType effectFullAdtElement2=(EffectFullSumType | EffectFullProdType) ']';
-
-EffectFullSumType:
-    '+' adtElement=EffectFullAdtType;
-EffectFullProdType:
-    '*' adtElement=EffectFullAdtType;
-
    
 PureFunctionDefinition:
 	'def' returnType=ValueType name=ID '(' arg=Argument (',' higherOrderArg=AdditionalPureArgument)? ')' ':' '{' functionBody=FunctionBodyPure '}';
@@ -171,10 +152,13 @@ IOType:
 	'IO' type=Type ;
 
 ValueType:
-	IntegerType | StringType | DataType | PureFunctionType;
+	IntegerType | StringType | DataType | PureFunctionType | PureAlgebraicType;
 
 Type:
-	ValueType | UnitType | EffectFullFunctionType | EffectFullDataType;
+	ValueType | EffectFullType;
+
+EffectFullType:
+	UnitType | EffectFullFunctionType | EffectFullDataType | EffectFullAlgebraicType | IOType;
 
 IntegerType:
 	{IntegerType} type="int";
@@ -197,12 +181,30 @@ PureFunctionType:
 EffectFullFunctionType:
 	{EffectFullFunctionType} 'FIO' '<' argType=Type ',' returnType=IOType '>';
 
+PureAlgebraicType: '[' pureAdtElement1=ValueType pureAdtElement2=(PureSumTypeFactor | PureProdTypeFactor) ']';
+
+PureSumTypeFactor:
+    '+' adtElement=ValueType;
+PureProdTypeFactor:
+    '*' adtElement=ValueType;
+
+EffectFullAlgebraicType: '[' effectFullAdtElement1=IOType effectFullAdtElement2=(EffectFullSumTypeFactor | EffectFullProdTypeFactor) ']';
+
+EffectFullSumTypeFactor:
+    '+' adtElement=IOType;
+EffectFullProdTypeFactor:
+    '*' adtElement=IOType;
+
 ////////////////////////////////////////////////////////////////////
 // Values
 ////////////////////////////////////////////////////////////////////
 
 EffectFullExpression:
-	'IO' '(' Expression ')' | UnitValue | EffectFullFunctionValue | EffectFullDataValue;
+	'IO' '[' EffectFullExpression ']' 
+	| 'IO' '(' Expression ')' 
+	| UnitValue 
+	| EffectFullFunctionValue 
+	| EffectFullDataValue;
 	
 UnitValue returns UnitType: {UnitType} '()';
 
@@ -215,7 +217,10 @@ EffectFullLambda returns EffectFullFunctionDefinition:
 	| {EffectFullLambda} functionBody=FunctionBodyEffectFull;
 
 Expression:
-    IntValue | StringValue | DataValue | FunctionValue;
+    IntValue 
+    | StringValue 
+    | DataValue 
+    | FunctionValue;
 
 IntValue returns IntegerType: {IntegerType} value=INT;
 
@@ -234,12 +239,9 @@ PureLambda returns PureFunctionDefinition:
 ;
 
 PureAdtValue:
-	  IntValue
-	| StringValue
+	Expression
 	| PureValueRef
-	| DataValue
 	| PureSumValue
-	| FunctionValue
 	| PureProdValue;
 
 PureProdValue: 
@@ -251,6 +253,7 @@ PureSumValue:
 
 EffectFullAdtValue:
 	 'IO' '(' PureAdtValue ')'
+	 | 'IO' '[' EffectFullAdtValue ']'
 	 | UnitValue
 	 | EffectFullFunctionValue
 	 | EffectFullProdValue

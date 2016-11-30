@@ -76,14 +76,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_FUNCTION_BLOCK: return createEffectFullFunctionBlock();
       case FPMLPackage.PURE_DATA: return createPureData();
       case FPMLPackage.PURE_FUNCTION_DEFINITION: return createPureFunctionDefinition();
-      case FPMLPackage.PURE_ADT_TYPE: return createPureAdtType();
-      case FPMLPackage.PURE_SUM_TYPE: return createPureSumType();
-      case FPMLPackage.PURE_PROD_TYPE: return createPureProdType();
       case FPMLPackage.EFFECT_FULL_DATA: return createEffectFullData();
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION: return createEffectFullFunctionDefinition();
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE: return createEffectFullAdtType();
-      case FPMLPackage.EFFECT_FULL_SUM_TYPE: return createEffectFullSumType();
-      case FPMLPackage.EFFECT_FULL_PROD_TYPE: return createEffectFullProdType();
       case FPMLPackage.MAIN_FUNC: return createMainFunc();
       case FPMLPackage.ADDITIONAL_PURE_ARGUMENT: return createAdditionalPureArgument();
       case FPMLPackage.ADDITIONAL_EFFECT_FULL_ARGUMENT: return createAdditionalEffectFullArgument();
@@ -105,6 +99,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.IO_TYPE: return createIOType();
       case FPMLPackage.VALUE_TYPE: return createValueType();
       case FPMLPackage.TYPE: return createType();
+      case FPMLPackage.EFFECT_FULL_TYPE: return createEffectFullType();
       case FPMLPackage.INTEGER_TYPE: return createIntegerType();
       case FPMLPackage.STRING_TYPE: return createStringType();
       case FPMLPackage.UNIT_TYPE: return createUnitType();
@@ -112,6 +107,12 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_DATA_TYPE: return createEffectFullDataType();
       case FPMLPackage.PURE_FUNCTION_TYPE: return createPureFunctionType();
       case FPMLPackage.EFFECT_FULL_FUNCTION_TYPE: return createEffectFullFunctionType();
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE: return createPureAlgebraicType();
+      case FPMLPackage.PURE_SUM_TYPE_FACTOR: return createPureSumTypeFactor();
+      case FPMLPackage.PURE_PROD_TYPE_FACTOR: return createPureProdTypeFactor();
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE: return createEffectFullAlgebraicType();
+      case FPMLPackage.EFFECT_FULL_SUM_TYPE_FACTOR: return createEffectFullSumTypeFactor();
+      case FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR: return createEffectFullProdTypeFactor();
       case FPMLPackage.EFFECT_FULL_EXPRESSION: return createEffectFullExpression();
       case FPMLPackage.EFFECT_FULL_VALUE_REF: return createEffectFullValueRef();
       case FPMLPackage.EXPRESSION: return createExpression();
@@ -275,39 +276,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureAdtType createPureAdtType()
-  {
-    PureAdtTypeImpl pureAdtType = new PureAdtTypeImpl();
-    return pureAdtType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PureSumType createPureSumType()
-  {
-    PureSumTypeImpl pureSumType = new PureSumTypeImpl();
-    return pureSumType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PureProdType createPureProdType()
-  {
-    PureProdTypeImpl pureProdType = new PureProdTypeImpl();
-    return pureProdType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EffectFullData createEffectFullData()
   {
     EffectFullDataImpl effectFullData = new EffectFullDataImpl();
@@ -323,39 +291,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     EffectFullFunctionDefinitionImpl effectFullFunctionDefinition = new EffectFullFunctionDefinitionImpl();
     return effectFullFunctionDefinition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EffectFullAdtType createEffectFullAdtType()
-  {
-    EffectFullAdtTypeImpl effectFullAdtType = new EffectFullAdtTypeImpl();
-    return effectFullAdtType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EffectFullSumType createEffectFullSumType()
-  {
-    EffectFullSumTypeImpl effectFullSumType = new EffectFullSumTypeImpl();
-    return effectFullSumType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EffectFullProdType createEffectFullProdType()
-  {
-    EffectFullProdTypeImpl effectFullProdType = new EffectFullProdTypeImpl();
-    return effectFullProdType;
   }
 
   /**
@@ -594,6 +529,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public EffectFullType createEffectFullType()
+  {
+    EffectFullTypeImpl effectFullType = new EffectFullTypeImpl();
+    return effectFullType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public IntegerType createIntegerType()
   {
     IntegerTypeImpl integerType = new IntegerTypeImpl();
@@ -664,6 +610,72 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     EffectFullFunctionTypeImpl effectFullFunctionType = new EffectFullFunctionTypeImpl();
     return effectFullFunctionType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureAlgebraicType createPureAlgebraicType()
+  {
+    PureAlgebraicTypeImpl pureAlgebraicType = new PureAlgebraicTypeImpl();
+    return pureAlgebraicType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureSumTypeFactor createPureSumTypeFactor()
+  {
+    PureSumTypeFactorImpl pureSumTypeFactor = new PureSumTypeFactorImpl();
+    return pureSumTypeFactor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureProdTypeFactor createPureProdTypeFactor()
+  {
+    PureProdTypeFactorImpl pureProdTypeFactor = new PureProdTypeFactorImpl();
+    return pureProdTypeFactor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullAlgebraicType createEffectFullAlgebraicType()
+  {
+    EffectFullAlgebraicTypeImpl effectFullAlgebraicType = new EffectFullAlgebraicTypeImpl();
+    return effectFullAlgebraicType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullSumTypeFactor createEffectFullSumTypeFactor()
+  {
+    EffectFullSumTypeFactorImpl effectFullSumTypeFactor = new EffectFullSumTypeFactorImpl();
+    return effectFullSumTypeFactor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullProdTypeFactor createEffectFullProdTypeFactor()
+  {
+    EffectFullProdTypeFactorImpl effectFullProdTypeFactor = new EffectFullProdTypeFactorImpl();
+    return effectFullProdTypeFactor;
   }
 
   /**

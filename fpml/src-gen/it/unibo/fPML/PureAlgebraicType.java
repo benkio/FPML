@@ -7,22 +7,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Pure Adt Type</b></em>'.
+ * A representation of the model object '<em><b>Pure Algebraic Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.PureAdtType#getPureAdtElement1 <em>Pure Adt Element1</em>}</li>
- *   <li>{@link it.unibo.fPML.PureAdtType#getPureAdtElement2 <em>Pure Adt Element2</em>}</li>
+ *   <li>{@link it.unibo.fPML.PureAlgebraicType#getPureAdtElement1 <em>Pure Adt Element1</em>}</li>
+ *   <li>{@link it.unibo.fPML.PureAlgebraicType#getPureAdtElement2 <em>Pure Adt Element2</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getPureAdtType()
+ * @see it.unibo.fPML.FPMLPackage#getPureAlgebraicType()
  * @model
  * @generated
  */
-public interface PureAdtType extends EObject
+public interface PureAlgebraicType extends ValueType
 {
   /**
    * Returns the value of the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -33,22 +33,22 @@ public interface PureAdtType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Pure Adt Element1</em>' containment reference.
-   * @see #setPureAdtElement1(PureAdtType)
-   * @see it.unibo.fPML.FPMLPackage#getPureAdtType_PureAdtElement1()
+   * @see #setPureAdtElement1(ValueType)
+   * @see it.unibo.fPML.FPMLPackage#getPureAlgebraicType_PureAdtElement1()
    * @model containment="true"
    * @generated
    */
-  PureAdtType getPureAdtElement1();
+  ValueType getPureAdtElement1();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.PureAdtType#getPureAdtElement1 <em>Pure Adt Element1</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.PureAlgebraicType#getPureAdtElement1 <em>Pure Adt Element1</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Pure Adt Element1</em>' containment reference.
    * @see #getPureAdtElement1()
    * @generated
    */
-  void setPureAdtElement1(PureAdtType value);
+  void setPureAdtElement1(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Pure Adt Element2</b></em>' containment reference.
@@ -60,14 +60,14 @@ public interface PureAdtType extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Pure Adt Element2</em>' containment reference.
    * @see #setPureAdtElement2(EObject)
-   * @see it.unibo.fPML.FPMLPackage#getPureAdtType_PureAdtElement2()
+   * @see it.unibo.fPML.FPMLPackage#getPureAlgebraicType_PureAdtElement2()
    * @model containment="true"
    * @generated
    */
   EObject getPureAdtElement2();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.PureAdtType#getPureAdtElement2 <em>Pure Adt Element2</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.PureAlgebraicType#getPureAdtElement2 <em>Pure Adt Element2</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Pure Adt Element2</em>' containment reference.
@@ -76,4 +76,4 @@ public interface PureAdtType extends EObject
    */
   void setPureAdtElement2(EObject value);
 
-} // PureAdtType
+} // PureAlgebraicType

@@ -1,7 +1,8 @@
 package it.unibo.generator;
 
-import it.unibo.fPML.EffectFullAdtType;
 import it.unibo.fPML.EffectFullData;
+import it.unibo.fPML.EffectFullType;
+import it.unibo.fPML.Type;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -34,9 +35,9 @@ public class EffectFullDataGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("public final ");
-    EffectFullAdtType _content = d.getContent();
-    CharSequence _effectFullAdtTypeCompile = this.typeGenerator.effectFullAdtTypeCompile(((EffectFullAdtType) _content));
-    _builder.append(_effectFullAdtTypeCompile, "\t");
+    EffectFullType _content = d.getContent();
+    Object _compile = this.typeGenerator.compile(((Type) _content));
+    _builder.append(_compile, "\t");
     _builder.append(" value;");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -46,9 +47,9 @@ public class EffectFullDataGenerator {
     String _name_1 = d.getName();
     _builder.append(_name_1, "\t");
     _builder.append("(");
-    EffectFullAdtType _content_1 = d.getContent();
-    CharSequence _effectFullAdtTypeCompile_1 = this.typeGenerator.effectFullAdtTypeCompile(((EffectFullAdtType) _content_1));
-    _builder.append(_effectFullAdtTypeCompile_1, "\t");
+    EffectFullType _content_1 = d.getContent();
+    Object _compile_1 = this.typeGenerator.compile(((Type) _content_1));
+    _builder.append(_compile_1, "\t");
     _builder.append(" value){");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");

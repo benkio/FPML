@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EffectFullDataTypeImpl extends TypeImpl implements EffectFullDataType
+public class EffectFullDataTypeImpl extends EffectFullTypeImpl implements EffectFullDataType
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.

@@ -59,12 +59,12 @@ public interface EffectFullData extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Content</em>' containment reference.
-   * @see #setContent(EffectFullAdtType)
+   * @see #setContent(EffectFullType)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullData_Content()
    * @model containment="true"
    * @generated
    */
-  EffectFullAdtType getContent();
+  EffectFullType getContent();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullData#getContent <em>Content</em>}' containment reference.
@@ -74,6 +74,6 @@ public interface EffectFullData extends EObject
    * @see #getContent()
    * @generated
    */
-  void setContent(EffectFullAdtType value);
+  void setContent(EffectFullType value);
 
 } // EffectFullData

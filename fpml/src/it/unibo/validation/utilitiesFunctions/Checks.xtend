@@ -13,13 +13,11 @@ import it.unibo.fPML.CompositionFunctionBodyEffect
 import it.unibo.fPML.EffectFullReference
 import it.unibo.fPML.Type
 import it.unibo.fPML.EffectFullFunctionDefinition
-import org.eclipse.emf.ecore.EObject
 import it.unibo.fPML.EffectFullAdtValue
-import it.unibo.fPML.EffectFullAdtType
 
 class Checks {
 	
-	def static boolean DataAndValue(PureAdtValue value, PureAdtType type) {
+	def static boolean DataAndValue(PureAdtValue value, ValueType type) {
 		switch type {
 			IntegerType: return value instanceof IntegerType || 
 						       (value instanceof PureValueRef &&
@@ -41,14 +39,21 @@ class Checks {
 							ValueTypeEquals(((value as PureValueRef).value as PureFunctionDefinition).returnType, type.returnType)
 				} 
 			}
-			default: {
+			PureAlgebraicType: {
 				switch value{
-					PureSumValue: return (type.pureAdtElement2 instanceof PureSumType) && 
-									 (  (DataAndValue(value.sumAdtElement1, type.pureAdtElement1)).booleanValue 
-									 || (DataAndValue(value.sumAdtElement2, (type.pureAdtElement2 as PureSumType).adtElement)).booleanValue)
-					PureProdValue: return (type.pureAdtElement2 instanceof PureProdType) && 
-									(   (DataAndValue(value.prodAdtElement1, type.pureAdtElement1)).booleanValue 
-									&& (DataAndValue(value.prodAdtElement2, (type.pureAdtElement2 as PureProdType).adtElement)).booleanValue)
+					PureSumValue: return (type instanceof PureAlgebraicType) && 
+									 ((type as PureAlgebraicType).pureAdtElement2 instanceof PureSumTypeFactor) && 
+									 (  (DataAndValue(value.sumAdtElement1, (type as PureAlgebraicType).pureAdtElement1)).booleanValue 
+									 || (DataAndValue(value.sumAdtElement2, Others.getElement2ValueTypeFromPureAlgebraicType((type as PureAlgebraicType))).booleanValue))
+					PureProdValue: return (type instanceof PureAlgebraicType) && 
+									((type as PureAlgebraicType).pureAdtElement2 instanceof PureProdTypeFactor) && 
+									(   (DataAndValue(value.prodAdtElement1, (type as PureAlgebraicType).pureAdtElement1)).booleanValue 
+									&& (DataAndValue(value.prodAdtElement2, Others.getElement2ValueTypeFromPureAlgebraicType((type as PureAlgebraicType))).booleanValue))
+					default: false			
+					}
+				}
+          	default: {
+          		switch value {
           			PureValueRef: return checkValueType(value.value, type)
 					default: false
 				}
@@ -56,13 +61,16 @@ class Checks {
 		}
 	}
 	
-	def static boolean checkValueType(PureValue v, PureAdtType adtt) {
+	def static boolean checkValueType(PureValue v, ValueType adtt) {
 		val valueType = Others.getTypeFromExpression(v.value)
 		switch adtt {
 			IntegerType: return valueType instanceof IntegerType
 			StringType: return valueType instanceof StringType
 			DataType: return valueType instanceof DataType && adtt.type.name.equals((valueType as DataType).type.name) 
 			PureFunctionType: valueType instanceof PureFunctionType && ValueTypeEquals(adtt.argType, (valueType as PureFunctionType).argType) && ValueTypeEquals(adtt.returnType, (valueType as PureFunctionType).returnType)
+			PureAlgebraicType: (valueType instanceof PureAlgebraicType &&
+								ValueTypeEquals((valueType as PureAlgebraicType).pureAdtElement1, adtt.pureAdtElement1) &&
+								ValueTypeEquals(Others.getElement2ValueTypeFromPureAlgebraicType((valueType as PureAlgebraicType)), Others.getElement2ValueTypeFromPureAlgebraicType((adtt as PureAlgebraicType))))
 			default: false
 		}
 	}
@@ -181,45 +189,42 @@ class Checks {
 		return functionBodyEffectFull(lambda.functionBody, arg)
 	}
 	
-	def static boolean effectFullDataAndValue(EffectFullAdtValue value, EffectFullAdtType type) {
+	def static boolean effectFullDataAndValue(EffectFullAdtValue value, Type type) {
 		switch type {
-			IOType: {
-				switch type.type {
-					ValueType: 	(value instanceof ValueType && 
-								ValueTypeEquals(type.type as ValueType, value as ValueType)) ||
-								(value instanceof PureValueRef &&
-						       	TypeEquals(GetReturnType.expression((value as PureValueRef).value.value), type.type)) ||
-						       	((value instanceof EffectFullValueRef &&
-						       	TypeEquals(GetReturnType.effectFullExpression((value as EffectFullValueRef).value.value), type.type)))
-					UnitType: 	value instanceof UnitType ||
-								(value instanceof EffectFullValueRef &&
-						       	TypeEquals(GetReturnType.effectFullExpression((value as EffectFullValueRef).value.value), type.type)) 
-					EffectFullFunctionType: {
-						if (value instanceof EffectFullFunctionType) 
-							return (value as EffectFullFunctionType).value.getFunctionBody instanceof CompositionFunctionBodyEffect &&
-							 TypeEquals((value as EffectFullFunctionType).value.arg.type, (type.type as EffectFullFunctionType).argType) && 
-							 TypeEquals(GetReturnType.effectFullFunctionDefinition((value as EffectFullFunctionType).value), (type.type as EffectFullFunctionType).returnType.type)
-						else if (value instanceof EffectFullValueRef && (value as EffectFullValueRef).value instanceof EffectFullFunctionDefinition) {
-							return  TypeEquals(((value as EffectFullValueRef).value as EffectFullFunctionDefinition).arg.type, (type.type as EffectFullFunctionType).argType) &&
-									TypeEquals(((value as EffectFullValueRef).value as EffectFullFunctionDefinition).returnType.type, (type.type as EffectFullFunctionType).returnType.type)
-						} 
-					}
-					EffectFullDataType: return value instanceof EffectFullDataValue && 
-							 			effectFullDataAndValue((value as EffectFullDataValue).value, (type as EffectFullDataType).type.content)
-				}
+			ValueType: 	(value instanceof ValueType && 
+						ValueTypeEquals(type.type as ValueType, value as ValueType)) ||
+						(value instanceof PureValueRef &&
+				       	TypeEquals(GetReturnType.expression((value as PureValueRef).value.value), type.type)) ||
+				       	((value instanceof EffectFullValueRef &&
+				       	TypeEquals(GetReturnType.effectFullExpression((value as EffectFullValueRef).value.value), type.type)))
+			UnitType: 	value instanceof UnitType ||
+						(value instanceof EffectFullValueRef &&
+				       	TypeEquals(GetReturnType.effectFullExpression((value as EffectFullValueRef).value.value), type.type)) 
+			EffectFullFunctionType: {
+				if (value instanceof EffectFullFunctionType) 
+					return (value as EffectFullFunctionType).value.getFunctionBody instanceof CompositionFunctionBodyEffect &&
+					 TypeEquals((value as EffectFullFunctionType).value.arg.type, (type.type as EffectFullFunctionType).argType) && 
+					 TypeEquals(GetReturnType.effectFullFunctionDefinition((value as EffectFullFunctionType).value), (type.type as EffectFullFunctionType).returnType.type)
+				else if (value instanceof EffectFullValueRef && (value as EffectFullValueRef).value instanceof EffectFullFunctionDefinition) {
+					return  TypeEquals(((value as EffectFullValueRef).value as EffectFullFunctionDefinition).arg.type, (type.type as EffectFullFunctionType).argType) &&
+							TypeEquals(((value as EffectFullValueRef).value as EffectFullFunctionDefinition).returnType.type, (type.type as EffectFullFunctionType).returnType.type)
+				} 
 			}
-			default: {
+			EffectFullDataType: return value instanceof EffectFullDataValue && 
+					 			effectFullDataAndValue((value as EffectFullDataValue).value, (type as EffectFullDataType).type.content)
+			EffectFullAlgebraicType:{
 				switch value{
-					EffectFullSumValue: return (type.effectFullAdtElement2 instanceof EffectFullSumType) && 
-									 (  (effectFullDataAndValue(value.sumAdtElement1, type.effectFullAdtElement1)).booleanValue 
-									 || (effectFullDataAndValue(value.sumAdtElement2, (type.effectFullAdtElement2 as EffectFullSumType).adtElement)).booleanValue)
-					EffectFullProdValue: return (type.effectFullAdtElement2 instanceof PureProdType) && 
-									(   (effectFullDataAndValue(value.prodAdtElement1, type.effectFullAdtElement1)).booleanValue 
-									&& (effectFullDataAndValue(value.prodAdtElement2, (type.effectFullAdtElement2 as EffectFullProdType).adtElement)).booleanValue)
+					EffectFullSumValue: return (Others.getElement2ValueTypeFromEffectFullAlgebraicType(type.type as EffectFullAlgebraicType) instanceof EffectFullSumTypeFactor) && 
+									 (  (effectFullDataAndValue(value.sumAdtElement1, (type.type as EffectFullAlgebraicType).effectFullAdtElement1)).booleanValue 
+									 || (effectFullDataAndValue(value.sumAdtElement2, (Others.getElement2ValueTypeFromEffectFullAlgebraicType(type.type as EffectFullAlgebraicType))).booleanValue))
+					EffectFullProdValue: return (Others.getElement2ValueTypeFromEffectFullAlgebraicType(type.type as EffectFullAlgebraicType) instanceof PureProdTypeFactor) && 
+									(   (effectFullDataAndValue(value.prodAdtElement1, (type.type as EffectFullAlgebraicType).effectFullAdtElement1)).booleanValue 
+									&& (effectFullDataAndValue(value.prodAdtElement2, (Others.getElement2ValueTypeFromEffectFullAlgebraicType(type.type as EffectFullAlgebraicType))).booleanValue))
 					default: false	
 				}	
 			}
+			IOType: 
+			default: false
 		}
 	}
-	
 }

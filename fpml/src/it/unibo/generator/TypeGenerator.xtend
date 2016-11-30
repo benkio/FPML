@@ -12,16 +12,16 @@ import it.unibo.fPML.IOType
 import it.unibo.fPML.Expression
 import it.unibo.fPML.PureFunctionType
 import it.unibo.fPML.EffectFullFunctionType
-import it.unibo.fPML.PureAdtType
-import it.unibo.fPML.PureSumType
-import it.unibo.fPML.PureProdType
-import it.unibo.fPML.EffectFullAdtType
-import it.unibo.fPML.EffectFullSumType
-import it.unibo.fPML.EffectFullProdType
 import it.unibo.fPML.EffectFullExpression
 import it.unibo.fPML.EffectFullDataType
 import it.unibo.fPML.CompositionFunctionBodyEffect
 import it.unibo.validation.utilitiesFunctions.GetReturnType
+import it.unibo.fPML.PureAlgebraicType
+import it.unibo.fPML.PureSumTypeFactor
+import it.unibo.fPML.PureProdTypeFactor
+import it.unibo.validation.utilitiesFunctions.Others
+import it.unibo.fPML.EffectFullAlgebraicType
+import it.unibo.fPML.EffectFullSumTypeFactor
 
 class TypeGenerator {
 	
@@ -31,6 +31,12 @@ class TypeGenerator {
 			IntegerType: return 'Integer'
 			StringType: return vt.type
 			PureFunctionType: return '''F<«vt.argType.compile»,«vt.returnType.compile»>'''
+			PureAlgebraicType: {
+				if ((vt as PureAlgebraicType).pureAdtElement2 instanceof PureSumTypeFactor)
+					return '''Either<«vt.pureAdtElement1.compile», «Others.getElement2ValueTypeFromPureAlgebraicType(vt).compile»>'''
+				else
+					return '''P2<«vt.pureAdtElement1.compile», «Others.getElement2ValueTypeFromPureAlgebraicType(vt).compile»>'''
+			}
 		}»'''
 
 	def compile(Argument arg) '''«arg.type.compile» «arg.name»'''
@@ -43,37 +49,17 @@ class TypeGenerator {
 			ValueType: return compile(t)
 			EffectFullFunctionType: return '''F<«t.argType.compile», IO<«t.returnType.type.compile»>>'''
 			EffectFullDataType: '''«t.type.name»'''
+			EffectFullAlgebraicType: {
+				if (t.effectFullAdtElement2 instanceof EffectFullSumTypeFactor)
+					return '''Either<«t.effectFullAdtElement1.compile», «Others.getElement2ValueTypeFromEffectFullAlgebraicType(t)»>'''
+				else
+					return '''P2<«t.effectFullAdtElement1.compile», «Others.getElement2ValueTypeFromEffectFullAlgebraicType(t)»>'''
+			}
 		}
 	}
 	
 	def compile(IOType iot) {
 		return '''«compile(iot.type)»'''
-	}
-	
-	def pureAdtTypeCompile(PureAdtType adtType) {
-		switch adtType {
-			ValueType: return (adtType as ValueType).compile 
-			default: {
-				if (adtType.pureAdtElement2 instanceof PureSumType)
-					return '''Either<«adtType.pureAdtElement1.pureAdtTypeCompile», «if (adtType.pureAdtElement2 instanceof PureSumType) (adtType.pureAdtElement2 as PureSumType).compile else (adtType.pureAdtElement2 as PureProdType).compile»>'''
-				else
-					return '''P2<«adtType.pureAdtElement1.pureAdtTypeCompile», «if (adtType.pureAdtElement2 instanceof PureSumType) (adtType.pureAdtElement2 as PureSumType).compile else (adtType.pureAdtElement2 as PureProdType).compile»>'''
-			}
-		}
-	}
-	
-	def compile(PureSumType st){
-		return pureAdtTypeCompile(st.adtElement)
-	}
-	def compile(PureProdType pt){
-		return pureAdtTypeCompile(pt.adtElement)
-	}
-	
-	def compile(EffectFullSumType st){
-		return effectFullAdtTypeCompile(st.adtElement)
-	}
-	def compile(EffectFullProdType pt){
-		return effectFullAdtTypeCompile(pt.adtElement)
 	}
 	
 	def compileType(Expression e) {
@@ -98,17 +84,4 @@ class TypeGenerator {
 			EffectFullDataType: e.type.name
 		}
 	}
-	
-	def effectFullAdtTypeCompile(EffectFullAdtType type) {
-		switch type {
-			IOType: '''IO<«type.type.compile»>'''
-			default: {
-				if (type.effectFullAdtElement2 instanceof EffectFullSumType)
-					return '''Either<«type.effectFullAdtElement1.effectFullAdtTypeCompile», «if (type.effectFullAdtElement2 instanceof EffectFullSumType) (type.effectFullAdtElement2 as EffectFullSumType).compile else (type.effectFullAdtElement2 as EffectFullProdType).compile»>'''
-				else
-					return '''P2<«type.effectFullAdtElement1.effectFullAdtTypeCompile», «if (type.effectFullAdtElement2 instanceof EffectFullSumType) (type.effectFullAdtElement2 as EffectFullSumType).compile else (type.effectFullAdtElement2 as EffectFullProdType).compile»>'''
-			}
-		}
-	}
-	
 }

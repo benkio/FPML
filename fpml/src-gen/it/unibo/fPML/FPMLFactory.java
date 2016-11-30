@@ -123,33 +123,6 @@ public interface FPMLFactory extends EFactory
   PureFunctionDefinition createPureFunctionDefinition();
 
   /**
-   * Returns a new object of class '<em>Pure Adt Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Adt Type</em>'.
-   * @generated
-   */
-  PureAdtType createPureAdtType();
-
-  /**
-   * Returns a new object of class '<em>Pure Sum Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Sum Type</em>'.
-   * @generated
-   */
-  PureSumType createPureSumType();
-
-  /**
-   * Returns a new object of class '<em>Pure Prod Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Prod Type</em>'.
-   * @generated
-   */
-  PureProdType createPureProdType();
-
-  /**
    * Returns a new object of class '<em>Effect Full Data</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -166,33 +139,6 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   EffectFullFunctionDefinition createEffectFullFunctionDefinition();
-
-  /**
-   * Returns a new object of class '<em>Effect Full Adt Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect Full Adt Type</em>'.
-   * @generated
-   */
-  EffectFullAdtType createEffectFullAdtType();
-
-  /**
-   * Returns a new object of class '<em>Effect Full Sum Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect Full Sum Type</em>'.
-   * @generated
-   */
-  EffectFullSumType createEffectFullSumType();
-
-  /**
-   * Returns a new object of class '<em>Effect Full Prod Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect Full Prod Type</em>'.
-   * @generated
-   */
-  EffectFullProdType createEffectFullProdType();
 
   /**
    * Returns a new object of class '<em>Main Func</em>'.
@@ -384,6 +330,15 @@ public interface FPMLFactory extends EFactory
   Type createType();
 
   /**
+   * Returns a new object of class '<em>Effect Full Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Type</em>'.
+   * @generated
+   */
+  EffectFullType createEffectFullType();
+
+  /**
    * Returns a new object of class '<em>Integer Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -445,6 +400,60 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   EffectFullFunctionType createEffectFullFunctionType();
+
+  /**
+   * Returns a new object of class '<em>Pure Algebraic Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Algebraic Type</em>'.
+   * @generated
+   */
+  PureAlgebraicType createPureAlgebraicType();
+
+  /**
+   * Returns a new object of class '<em>Pure Sum Type Factor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Sum Type Factor</em>'.
+   * @generated
+   */
+  PureSumTypeFactor createPureSumTypeFactor();
+
+  /**
+   * Returns a new object of class '<em>Pure Prod Type Factor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Prod Type Factor</em>'.
+   * @generated
+   */
+  PureProdTypeFactor createPureProdTypeFactor();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Algebraic Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Algebraic Type</em>'.
+   * @generated
+   */
+  EffectFullAlgebraicType createEffectFullAlgebraicType();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Sum Type Factor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Sum Type Factor</em>'.
+   * @generated
+   */
+  EffectFullSumTypeFactor createEffectFullSumTypeFactor();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Prod Type Factor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Prod Type Factor</em>'.
+   * @generated
+   */
+  EffectFullProdTypeFactor createEffectFullProdTypeFactor();
 
   /**
    * Returns a new object of class '<em>Effect Full Expression</em>'.

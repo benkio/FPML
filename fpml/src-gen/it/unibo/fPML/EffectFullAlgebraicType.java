@@ -7,22 +7,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Effect Full Adt Type</b></em>'.
+ * A representation of the model object '<em><b>Effect Full Algebraic Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.EffectFullAdtType#getEffectFullAdtElement1 <em>Effect Full Adt Element1</em>}</li>
- *   <li>{@link it.unibo.fPML.EffectFullAdtType#getEffectFullAdtElement2 <em>Effect Full Adt Element2</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullAlgebraicType#getEffectFullAdtElement1 <em>Effect Full Adt Element1</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullAlgebraicType#getEffectFullAdtElement2 <em>Effect Full Adt Element2</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getEffectFullAdtType()
+ * @see it.unibo.fPML.FPMLPackage#getEffectFullAlgebraicType()
  * @model
  * @generated
  */
-public interface EffectFullAdtType extends EObject
+public interface EffectFullAlgebraicType extends EffectFullType
 {
   /**
    * Returns the value of the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -33,22 +33,22 @@ public interface EffectFullAdtType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Effect Full Adt Element1</em>' containment reference.
-   * @see #setEffectFullAdtElement1(EffectFullAdtType)
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullAdtType_EffectFullAdtElement1()
+   * @see #setEffectFullAdtElement1(IOType)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullAlgebraicType_EffectFullAdtElement1()
    * @model containment="true"
    * @generated
    */
-  EffectFullAdtType getEffectFullAdtElement1();
+  IOType getEffectFullAdtElement1();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.EffectFullAdtType#getEffectFullAdtElement1 <em>Effect Full Adt Element1</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullAlgebraicType#getEffectFullAdtElement1 <em>Effect Full Adt Element1</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Effect Full Adt Element1</em>' containment reference.
    * @see #getEffectFullAdtElement1()
    * @generated
    */
-  void setEffectFullAdtElement1(EffectFullAdtType value);
+  void setEffectFullAdtElement1(IOType value);
 
   /**
    * Returns the value of the '<em><b>Effect Full Adt Element2</b></em>' containment reference.
@@ -60,14 +60,14 @@ public interface EffectFullAdtType extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Effect Full Adt Element2</em>' containment reference.
    * @see #setEffectFullAdtElement2(EObject)
-   * @see it.unibo.fPML.FPMLPackage#getEffectFullAdtType_EffectFullAdtElement2()
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullAlgebraicType_EffectFullAdtElement2()
    * @model containment="true"
    * @generated
    */
   EObject getEffectFullAdtElement2();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.EffectFullAdtType#getEffectFullAdtElement2 <em>Effect Full Adt Element2</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullAlgebraicType#getEffectFullAdtElement2 <em>Effect Full Adt Element2</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Effect Full Adt Element2</em>' containment reference.
@@ -76,4 +76,4 @@ public interface EffectFullAdtType extends EObject
    */
   void setEffectFullAdtElement2(EObject value);
 
-} // EffectFullAdtType
+} // EffectFullAlgebraicType

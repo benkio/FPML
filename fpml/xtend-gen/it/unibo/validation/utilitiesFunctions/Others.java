@@ -7,18 +7,27 @@ import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataType;
+import it.unibo.fPML.EffectFullAlgebraicType;
+import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullSumTypeFactor;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
+import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.PrimitiveEffectFullValue;
 import it.unibo.fPML.PrimitiveFunction;
 import it.unibo.fPML.PrimitivePureFunction;
+import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureProdTypeFactor;
+import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
+import it.unibo.fPML.ValueType;
+import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("all")
 public class Others {
@@ -70,6 +79,44 @@ public class Others {
     } else {
       return afiof.getValuePrimitive();
     }
+  }
+  
+  public static ValueType getElement2ValueTypeFromPureAlgebraicType(final PureAlgebraicType pat) {
+    ValueType _switchResult = null;
+    EObject _pureAdtElement2 = pat.getPureAdtElement2();
+    boolean _matched = false;
+    if (_pureAdtElement2 instanceof PureSumTypeFactor) {
+      _matched=true;
+      EObject _pureAdtElement2_1 = pat.getPureAdtElement2();
+      _switchResult = ((PureSumTypeFactor) _pureAdtElement2_1).getAdtElement();
+    }
+    if (!_matched) {
+      if (_pureAdtElement2 instanceof PureProdTypeFactor) {
+        _matched=true;
+        EObject _pureAdtElement2_1 = pat.getPureAdtElement2();
+        _switchResult = ((PureProdTypeFactor) _pureAdtElement2_1).getAdtElement();
+      }
+    }
+    return _switchResult;
+  }
+  
+  public static IOType getElement2ValueTypeFromEffectFullAlgebraicType(final EffectFullAlgebraicType eat) {
+    IOType _switchResult = null;
+    EObject _effectFullAdtElement2 = eat.getEffectFullAdtElement2();
+    boolean _matched = false;
+    if (_effectFullAdtElement2 instanceof PureSumTypeFactor) {
+      _matched=true;
+      EObject _effectFullAdtElement2_1 = eat.getEffectFullAdtElement2();
+      _switchResult = ((EffectFullSumTypeFactor) _effectFullAdtElement2_1).getAdtElement();
+    }
+    if (!_matched) {
+      if (_effectFullAdtElement2 instanceof PureProdTypeFactor) {
+        _matched=true;
+        EObject _effectFullAdtElement2_1 = eat.getEffectFullAdtElement2();
+        _switchResult = ((EffectFullProdTypeFactor) _effectFullAdtElement2_1).getAdtElement();
+      }
+    }
+    return _switchResult;
   }
   
   public static PureFunctionType createIntIntFuntionType() {

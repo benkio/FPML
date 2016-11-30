@@ -3,8 +3,9 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullAdtType;
+import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.IOType;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,23 +15,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Effect Full Adt Type</b></em>'.
+ * An implementation of the model object '<em><b>Effect Full Algebraic Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.EffectFullAdtTypeImpl#getEffectFullAdtElement1 <em>Effect Full Adt Element1</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.EffectFullAdtTypeImpl#getEffectFullAdtElement2 <em>Effect Full Adt Element2</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullAlgebraicTypeImpl#getEffectFullAdtElement1 <em>Effect Full Adt Element1</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullAlgebraicTypeImpl#getEffectFullAdtElement2 <em>Effect Full Adt Element2</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implements EffectFullAdtType
+public class EffectFullAlgebraicTypeImpl extends EffectFullTypeImpl implements EffectFullAlgebraicType
 {
   /**
    * The cached value of the '{@link #getEffectFullAdtElement1() <em>Effect Full Adt Element1</em>}' containment reference.
@@ -40,7 +40,7 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    * @ordered
    */
-  protected EffectFullAdtType effectFullAdtElement1;
+  protected IOType effectFullAdtElement1;
 
   /**
    * The cached value of the '{@link #getEffectFullAdtElement2() <em>Effect Full Adt Element2</em>}' containment reference.
@@ -57,7 +57,7 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EffectFullAdtTypeImpl()
+  protected EffectFullAlgebraicTypeImpl()
   {
     super();
   }
@@ -70,7 +70,7 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.EFFECT_FULL_ADT_TYPE;
+    return FPMLPackage.Literals.EFFECT_FULL_ALGEBRAIC_TYPE;
   }
 
   /**
@@ -78,7 +78,7 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullAdtType getEffectFullAdtElement1()
+  public IOType getEffectFullAdtElement1()
   {
     return effectFullAdtElement1;
   }
@@ -88,13 +88,13 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetEffectFullAdtElement1(EffectFullAdtType newEffectFullAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetEffectFullAdtElement1(IOType newEffectFullAdtElement1, NotificationChain msgs)
   {
-    EffectFullAdtType oldEffectFullAdtElement1 = effectFullAdtElement1;
+    IOType oldEffectFullAdtElement1 = effectFullAdtElement1;
     effectFullAdtElement1 = newEffectFullAdtElement1;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1, oldEffectFullAdtElement1, newEffectFullAdtElement1);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1, oldEffectFullAdtElement1, newEffectFullAdtElement1);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -105,20 +105,20 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEffectFullAdtElement1(EffectFullAdtType newEffectFullAdtElement1)
+  public void setEffectFullAdtElement1(IOType newEffectFullAdtElement1)
   {
     if (newEffectFullAdtElement1 != effectFullAdtElement1)
     {
       NotificationChain msgs = null;
       if (effectFullAdtElement1 != null)
-        msgs = ((InternalEObject)effectFullAdtElement1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1, null, msgs);
+        msgs = ((InternalEObject)effectFullAdtElement1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1, null, msgs);
       if (newEffectFullAdtElement1 != null)
-        msgs = ((InternalEObject)newEffectFullAdtElement1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1, null, msgs);
+        msgs = ((InternalEObject)newEffectFullAdtElement1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1, null, msgs);
       msgs = basicSetEffectFullAdtElement1(newEffectFullAdtElement1, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1, newEffectFullAdtElement1, newEffectFullAdtElement1));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1, newEffectFullAdtElement1, newEffectFullAdtElement1));
   }
 
   /**
@@ -142,7 +142,7 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
     effectFullAdtElement2 = newEffectFullAdtElement2;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2, oldEffectFullAdtElement2, newEffectFullAdtElement2);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2, oldEffectFullAdtElement2, newEffectFullAdtElement2);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -159,14 +159,14 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
     {
       NotificationChain msgs = null;
       if (effectFullAdtElement2 != null)
-        msgs = ((InternalEObject)effectFullAdtElement2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2, null, msgs);
+        msgs = ((InternalEObject)effectFullAdtElement2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2, null, msgs);
       if (newEffectFullAdtElement2 != null)
-        msgs = ((InternalEObject)newEffectFullAdtElement2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2, null, msgs);
+        msgs = ((InternalEObject)newEffectFullAdtElement2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2, null, msgs);
       msgs = basicSetEffectFullAdtElement2(newEffectFullAdtElement2, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2, newEffectFullAdtElement2, newEffectFullAdtElement2));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2, newEffectFullAdtElement2, newEffectFullAdtElement2));
   }
 
   /**
@@ -179,9 +179,9 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1:
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1:
         return basicSetEffectFullAdtElement1(null, msgs);
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2:
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2:
         return basicSetEffectFullAdtElement2(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -197,9 +197,9 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1:
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1:
         return getEffectFullAdtElement1();
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2:
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2:
         return getEffectFullAdtElement2();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -215,10 +215,10 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1:
-        setEffectFullAdtElement1((EffectFullAdtType)newValue);
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1:
+        setEffectFullAdtElement1((IOType)newValue);
         return;
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2:
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2:
         setEffectFullAdtElement2((EObject)newValue);
         return;
     }
@@ -235,10 +235,10 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1:
-        setEffectFullAdtElement1((EffectFullAdtType)null);
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1:
+        setEffectFullAdtElement1((IOType)null);
         return;
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2:
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2:
         setEffectFullAdtElement2((EObject)null);
         return;
     }
@@ -255,12 +255,12 @@ public class EffectFullAdtTypeImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT1:
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1:
         return effectFullAdtElement1 != null;
-      case FPMLPackage.EFFECT_FULL_ADT_TYPE__EFFECT_FULL_ADT_ELEMENT2:
+      case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2:
         return effectFullAdtElement2 != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //EffectFullAdtTypeImpl
+} //EffectFullAlgebraicTypeImpl

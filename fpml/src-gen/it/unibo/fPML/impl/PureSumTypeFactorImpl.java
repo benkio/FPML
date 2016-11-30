@@ -4,8 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PureAdtType;
-import it.unibo.fPML.PureSumType;
+import it.unibo.fPML.PureSumTypeFactor;
+import it.unibo.fPML.ValueType;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,18 +18,18 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Pure Sum Type</b></em>'.
+ * An implementation of the model object '<em><b>Pure Sum Type Factor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.PureSumTypeImpl#getAdtElement <em>Adt Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureSumTypeFactorImpl#getAdtElement <em>Adt Element</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements PureSumType
+public class PureSumTypeFactorImpl extends MinimalEObjectImpl.Container implements PureSumTypeFactor
 {
   /**
    * The cached value of the '{@link #getAdtElement() <em>Adt Element</em>}' containment reference.
@@ -39,14 +39,14 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
    * @generated
    * @ordered
    */
-  protected PureAdtType adtElement;
+  protected ValueType adtElement;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PureSumTypeImpl()
+  protected PureSumTypeFactorImpl()
   {
     super();
   }
@@ -59,7 +59,7 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PURE_SUM_TYPE;
+    return FPMLPackage.Literals.PURE_SUM_TYPE_FACTOR;
   }
 
   /**
@@ -67,7 +67,7 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureAdtType getAdtElement()
+  public ValueType getAdtElement()
   {
     return adtElement;
   }
@@ -77,13 +77,13 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAdtElement(PureAdtType newAdtElement, NotificationChain msgs)
+  public NotificationChain basicSetAdtElement(ValueType newAdtElement, NotificationChain msgs)
   {
-    PureAdtType oldAdtElement = adtElement;
+    ValueType oldAdtElement = adtElement;
     adtElement = newAdtElement;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_SUM_TYPE__ADT_ELEMENT, oldAdtElement, newAdtElement);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_SUM_TYPE_FACTOR__ADT_ELEMENT, oldAdtElement, newAdtElement);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAdtElement(PureAdtType newAdtElement)
+  public void setAdtElement(ValueType newAdtElement)
   {
     if (newAdtElement != adtElement)
     {
       NotificationChain msgs = null;
       if (adtElement != null)
-        msgs = ((InternalEObject)adtElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_SUM_TYPE__ADT_ELEMENT, null, msgs);
+        msgs = ((InternalEObject)adtElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_SUM_TYPE_FACTOR__ADT_ELEMENT, null, msgs);
       if (newAdtElement != null)
-        msgs = ((InternalEObject)newAdtElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_SUM_TYPE__ADT_ELEMENT, null, msgs);
+        msgs = ((InternalEObject)newAdtElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_SUM_TYPE_FACTOR__ADT_ELEMENT, null, msgs);
       msgs = basicSetAdtElement(newAdtElement, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_SUM_TYPE__ADT_ELEMENT, newAdtElement, newAdtElement));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_SUM_TYPE_FACTOR__ADT_ELEMENT, newAdtElement, newAdtElement));
   }
 
   /**
@@ -120,7 +120,7 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_SUM_TYPE__ADT_ELEMENT:
+      case FPMLPackage.PURE_SUM_TYPE_FACTOR__ADT_ELEMENT:
         return basicSetAdtElement(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -136,7 +136,7 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_SUM_TYPE__ADT_ELEMENT:
+      case FPMLPackage.PURE_SUM_TYPE_FACTOR__ADT_ELEMENT:
         return getAdtElement();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -152,8 +152,8 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_SUM_TYPE__ADT_ELEMENT:
-        setAdtElement((PureAdtType)newValue);
+      case FPMLPackage.PURE_SUM_TYPE_FACTOR__ADT_ELEMENT:
+        setAdtElement((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_SUM_TYPE__ADT_ELEMENT:
-        setAdtElement((PureAdtType)null);
+      case FPMLPackage.PURE_SUM_TYPE_FACTOR__ADT_ELEMENT:
+        setAdtElement((ValueType)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,10 +186,10 @@ public class PureSumTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_SUM_TYPE__ADT_ELEMENT:
+      case FPMLPackage.PURE_SUM_TYPE_FACTOR__ADT_ELEMENT:
         return adtElement != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //PureSumTypeImpl
+} //PureSumTypeFactorImpl

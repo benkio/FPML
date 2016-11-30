@@ -2,7 +2,6 @@ package it.unibo.generator
 
 import it.unibo.generator.FPMLGenerator
 import it.unibo.fPML.PureData
-import it.unibo.fPML.PureAdtType
 
 class DataGenerator {
 	
@@ -18,9 +17,9 @@ class DataGenerator {
 	    import fj.Unit;
 	    
 	    public class «d.name» {
-	    	public final «typeGenerator.pureAdtTypeCompile((d.content as PureAdtType))» value;
+	    	public final «typeGenerator.compile(d.content)» value;
 	    	
-	    	public «d.name»(«typeGenerator.pureAdtTypeCompile((d.content as PureAdtType))» value){
+	    	public «d.name»(«typeGenerator.compile(d.content)» value){
 	    		this.value = value;
 	    	}
 	    }'''

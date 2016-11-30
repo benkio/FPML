@@ -3,26 +3,26 @@
  */
 package it.unibo.fPML.impl;
 
+import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.ValueType;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Value Type</b></em>'.
+ * An implementation of the model object '<em><b>Effect Full Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ValueTypeImpl extends TypeImpl implements ValueType
+public class EffectFullTypeImpl extends TypeImpl implements EffectFullType
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ValueTypeImpl()
+  protected EffectFullTypeImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class ValueTypeImpl extends TypeImpl implements ValueType
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.VALUE_TYPE;
+    return FPMLPackage.Literals.EFFECT_FULL_TYPE;
   }
 
-} //ValueTypeImpl
+} //EffectFullTypeImpl

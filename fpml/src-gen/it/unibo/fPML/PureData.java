@@ -59,12 +59,12 @@ public interface PureData extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Content</em>' containment reference.
-   * @see #setContent(PureAdtType)
+   * @see #setContent(ValueType)
    * @see it.unibo.fPML.FPMLPackage#getPureData_Content()
    * @model containment="true"
    * @generated
    */
-  PureAdtType getContent();
+  ValueType getContent();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureData#getContent <em>Content</em>}' containment reference.
@@ -74,6 +74,6 @@ public interface PureData extends EObject
    * @see #getContent()
    * @generated
    */
-  void setContent(PureAdtType value);
+  void setContent(ValueType value);
 
 } // PureData

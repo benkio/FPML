@@ -4,8 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PureAdtType;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.ValueType;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -60,7 +60,7 @@ public class PureDataImpl extends MinimalEObjectImpl.Container implements PureDa
    * @generated
    * @ordered
    */
-  protected PureAdtType content;
+  protected ValueType content;
 
   /**
    * <!-- begin-user-doc -->
@@ -111,7 +111,7 @@ public class PureDataImpl extends MinimalEObjectImpl.Container implements PureDa
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureAdtType getContent()
+  public ValueType getContent()
   {
     return content;
   }
@@ -121,9 +121,9 @@ public class PureDataImpl extends MinimalEObjectImpl.Container implements PureDa
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetContent(PureAdtType newContent, NotificationChain msgs)
+  public NotificationChain basicSetContent(ValueType newContent, NotificationChain msgs)
   {
-    PureAdtType oldContent = content;
+    ValueType oldContent = content;
     content = newContent;
     if (eNotificationRequired())
     {
@@ -138,7 +138,7 @@ public class PureDataImpl extends MinimalEObjectImpl.Container implements PureDa
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setContent(PureAdtType newContent)
+  public void setContent(ValueType newContent)
   {
     if (newContent != content)
     {
@@ -202,7 +202,7 @@ public class PureDataImpl extends MinimalEObjectImpl.Container implements PureDa
         setName((String)newValue);
         return;
       case FPMLPackage.PURE_DATA__CONTENT:
-        setContent((PureAdtType)newValue);
+        setContent((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -222,7 +222,7 @@ public class PureDataImpl extends MinimalEObjectImpl.Container implements PureDa
         setName(NAME_EDEFAULT);
         return;
       case FPMLPackage.PURE_DATA__CONTENT:
-        setContent((PureAdtType)null);
+        setContent((ValueType)null);
         return;
     }
     super.eUnset(featureID);

@@ -4,7 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PureAdtType;
+import it.unibo.fPML.PureAlgebraicType;
+import it.unibo.fPML.ValueType;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,23 +15,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Pure Adt Type</b></em>'.
+ * An implementation of the model object '<em><b>Pure Algebraic Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.PureAdtTypeImpl#getPureAdtElement1 <em>Pure Adt Element1</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.PureAdtTypeImpl#getPureAdtElement2 <em>Pure Adt Element2</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureAlgebraicTypeImpl#getPureAdtElement1 <em>Pure Adt Element1</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureAlgebraicTypeImpl#getPureAdtElement2 <em>Pure Adt Element2</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements PureAdtType
+public class PureAlgebraicTypeImpl extends ValueTypeImpl implements PureAlgebraicType
 {
   /**
    * The cached value of the '{@link #getPureAdtElement1() <em>Pure Adt Element1</em>}' containment reference.
@@ -40,7 +40,7 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
    * @generated
    * @ordered
    */
-  protected PureAdtType pureAdtElement1;
+  protected ValueType pureAdtElement1;
 
   /**
    * The cached value of the '{@link #getPureAdtElement2() <em>Pure Adt Element2</em>}' containment reference.
@@ -57,7 +57,7 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PureAdtTypeImpl()
+  protected PureAlgebraicTypeImpl()
   {
     super();
   }
@@ -70,7 +70,7 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PURE_ADT_TYPE;
+    return FPMLPackage.Literals.PURE_ALGEBRAIC_TYPE;
   }
 
   /**
@@ -78,7 +78,7 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureAdtType getPureAdtElement1()
+  public ValueType getPureAdtElement1()
   {
     return pureAdtElement1;
   }
@@ -88,13 +88,13 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPureAdtElement1(PureAdtType newPureAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetPureAdtElement1(ValueType newPureAdtElement1, NotificationChain msgs)
   {
-    PureAdtType oldPureAdtElement1 = pureAdtElement1;
+    ValueType oldPureAdtElement1 = pureAdtElement1;
     pureAdtElement1 = newPureAdtElement1;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT1, oldPureAdtElement1, newPureAdtElement1);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT1, oldPureAdtElement1, newPureAdtElement1);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -105,20 +105,20 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPureAdtElement1(PureAdtType newPureAdtElement1)
+  public void setPureAdtElement1(ValueType newPureAdtElement1)
   {
     if (newPureAdtElement1 != pureAdtElement1)
     {
       NotificationChain msgs = null;
       if (pureAdtElement1 != null)
-        msgs = ((InternalEObject)pureAdtElement1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT1, null, msgs);
+        msgs = ((InternalEObject)pureAdtElement1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT1, null, msgs);
       if (newPureAdtElement1 != null)
-        msgs = ((InternalEObject)newPureAdtElement1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT1, null, msgs);
+        msgs = ((InternalEObject)newPureAdtElement1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT1, null, msgs);
       msgs = basicSetPureAdtElement1(newPureAdtElement1, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT1, newPureAdtElement1, newPureAdtElement1));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT1, newPureAdtElement1, newPureAdtElement1));
   }
 
   /**
@@ -142,7 +142,7 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
     pureAdtElement2 = newPureAdtElement2;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT2, oldPureAdtElement2, newPureAdtElement2);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT2, oldPureAdtElement2, newPureAdtElement2);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -159,14 +159,14 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
     {
       NotificationChain msgs = null;
       if (pureAdtElement2 != null)
-        msgs = ((InternalEObject)pureAdtElement2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT2, null, msgs);
+        msgs = ((InternalEObject)pureAdtElement2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT2, null, msgs);
       if (newPureAdtElement2 != null)
-        msgs = ((InternalEObject)newPureAdtElement2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT2, null, msgs);
+        msgs = ((InternalEObject)newPureAdtElement2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT2, null, msgs);
       msgs = basicSetPureAdtElement2(newPureAdtElement2, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT2, newPureAdtElement2, newPureAdtElement2));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT2, newPureAdtElement2, newPureAdtElement2));
   }
 
   /**
@@ -179,9 +179,9 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT1:
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT1:
         return basicSetPureAdtElement1(null, msgs);
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT2:
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT2:
         return basicSetPureAdtElement2(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -197,9 +197,9 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT1:
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT1:
         return getPureAdtElement1();
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT2:
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT2:
         return getPureAdtElement2();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -215,10 +215,10 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT1:
-        setPureAdtElement1((PureAdtType)newValue);
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT1:
+        setPureAdtElement1((ValueType)newValue);
         return;
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT2:
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT2:
         setPureAdtElement2((EObject)newValue);
         return;
     }
@@ -235,10 +235,10 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT1:
-        setPureAdtElement1((PureAdtType)null);
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT1:
+        setPureAdtElement1((ValueType)null);
         return;
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT2:
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT2:
         setPureAdtElement2((EObject)null);
         return;
     }
@@ -255,12 +255,12 @@ public class PureAdtTypeImpl extends MinimalEObjectImpl.Container implements Pur
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT1:
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT1:
         return pureAdtElement1 != null;
-      case FPMLPackage.PURE_ADT_TYPE__PURE_ADT_ELEMENT2:
+      case FPMLPackage.PURE_ALGEBRAIC_TYPE__PURE_ADT_ELEMENT2:
         return pureAdtElement2 != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //PureAdtTypeImpl
+} //PureAlgebraicTypeImpl
