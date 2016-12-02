@@ -14,7 +14,9 @@ import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EmptyFunctionBody;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
@@ -92,12 +94,18 @@ public class Checks {
         boolean _matched_1 = false;
         if (value instanceof PureSumValue) {
           _matched_1=true;
-          return (((type instanceof PureAlgebraicType) && (((PureAlgebraicType) type).getPureAdtElement2() instanceof PureSumTypeFactor)) && (Boolean.valueOf(Checks.DataAndValue(((PureSumValue)value).getSumAdtElement1(), ((PureAlgebraicType) type).getPureAdtElement1())).booleanValue() || Boolean.valueOf(Checks.DataAndValue(((PureSumValue)value).getSumAdtElement2(), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) type)))).booleanValue()));
+          return ((((PureAlgebraicType) type).getPureAdtElement2() instanceof PureSumTypeFactor) && (Boolean.valueOf(Checks.DataAndValue(((PureSumValue)value).getSumAdtElement1(), ((PureAlgebraicType) type).getPureAdtElement1())).booleanValue() || Boolean.valueOf(Checks.DataAndValue(((PureSumValue)value).getSumAdtElement2(), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) type)))).booleanValue()));
         }
         if (!_matched_1) {
           if (value instanceof PureProdValue) {
             _matched_1=true;
-            return (((type instanceof PureAlgebraicType) && (((PureAlgebraicType) type).getPureAdtElement2() instanceof PureProdTypeFactor)) && (Boolean.valueOf(Checks.DataAndValue(((PureProdValue)value).getProdAdtElement1(), ((PureAlgebraicType) type).getPureAdtElement1())).booleanValue() && Boolean.valueOf(Checks.DataAndValue(((PureProdValue)value).getProdAdtElement2(), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) type)))).booleanValue()));
+            return ((((PureAlgebraicType) type).getPureAdtElement2() instanceof PureProdTypeFactor) && (Boolean.valueOf(Checks.DataAndValue(((PureProdValue)value).getProdAdtElement1(), ((PureAlgebraicType) type).getPureAdtElement1())).booleanValue() && Boolean.valueOf(Checks.DataAndValue(((PureProdValue)value).getProdAdtElement2(), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) type)))).booleanValue()));
+          }
+        }
+        if (!_matched_1) {
+          if (value instanceof PureValueRef) {
+            _matched_1=true;
+            return ((((PureValueRef)value).getValue().getValue() instanceof DataValue) && Checks.ValueTypeEquals(((DataValue) ((PureValueRef)value).getValue().getValue()).getType().getContent(), type));
           }
         }
         if (!_matched_1) {
@@ -107,24 +115,46 @@ public class Checks {
       }
     }
     if (!_matched) {
-      boolean _switchResult_1 = false;
-      boolean _matched_1 = false;
-      if (value instanceof PureValueRef) {
-        _matched_1=true;
-        PureValue _value = ((PureValueRef)value).getValue();
-        return Checks.checkValueType(_value, type);
-      }
-      if (!_matched_1) {
-        _switchResult_1 = false;
-      }
-      _switchResult = _switchResult_1;
+      _switchResult = false;
     }
     return _switchResult;
   }
   
   public static boolean checkValueType(final PureValue v, final ValueType adtt) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getTypeFromExpression(Expression) is undefined for the type Class<Others>");
+    boolean _xblockexpression = false;
+    {
+      Expression _value = v.getValue();
+      final ValueType valueType = GetReturnType.expression(_value);
+      boolean _switchResult = false;
+      boolean _matched = false;
+      if (adtt instanceof IntegerType) {
+        _matched=true;
+        return (valueType instanceof IntegerType);
+      }
+      if (!_matched) {
+        if (adtt instanceof StringType) {
+          _matched=true;
+          return (valueType instanceof StringType);
+        }
+      }
+      if (!_matched) {
+        if (adtt instanceof DataType) {
+          _matched=true;
+          return ((valueType instanceof DataType) && ((DataType)adtt).getType().getName().equals(((DataType) valueType).getType().getName()));
+        }
+      }
+      if (!_matched) {
+        if (adtt instanceof PureFunctionType) {
+          _matched=true;
+          _switchResult = (((valueType instanceof PureFunctionType) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getArgType(), ((PureFunctionType) valueType).getArgType())) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getReturnType(), ((PureFunctionType) valueType).getReturnType()));
+        }
+      }
+      if (!_matched) {
+        _switchResult = false;
+      }
+      _xblockexpression = _switchResult;
+    }
+    return _xblockexpression;
   }
   
   public static boolean ValueTypeEquals(final ValueType v, final ValueType v2) {
@@ -270,26 +300,17 @@ public class Checks {
   }
   
   public static boolean functionChainEffectFull(final List<EffectFullReference> references, final EffectFullReference first, final Type type) {
-    Type startType = type;
-    final Type argFuncFirst = GetArgType.effectFullReference(first);
-    boolean _TypeEquals = Checks.TypeEquals(startType, argFuncFirst);
-    boolean _not = (!_TypeEquals);
-    if (_not) {
-      return false;
-    }
-    Type _effectFullReference = GetReturnType.effectFullReference(first);
-    startType = _effectFullReference;
-    for (final EffectFullReference r : references) {
-      {
-        final Type argFunc = GetArgType.effectFullReference(r);
-        if ((((!Objects.equal(startType, null)) && (!Objects.equal(argFunc, null))) && (!Checks.TypeEquals(startType, argFunc)))) {
-          return false;
-        }
-        Type _effectFullReference_1 = GetReturnType.effectFullReference(r);
-        startType = _effectFullReference_1;
-      }
-    }
-    return true;
+    throw new Error("Unresolved compilation problems:"
+      + "\nno viable alternative at input \'...\'"
+      + "\nThe method or field check is undefined"
+      + "\nThe method or field the is undefined"
+      + "\nThe method or field problem is undefined"
+      + "\nThe method or field of is undefined"
+      + "\nThe method or field the is undefined"
+      + "\nThe method or field IO is undefined"
+      + "\nThe method or field TYPE is undefined"
+      + "\nThe method or field AND is undefined"
+      + "\nThe method or field PURE is undefined");
   }
   
   public static boolean functionReturnTypeEffectFull(final EffectFullFunctionDefinition definition) {
@@ -309,22 +330,9 @@ public class Checks {
     return Checks.functionBodyEffectFull(_functionBody, arg);
   }
   
-  public static boolean effectFullDataAndValue(final EffectFullAdtValue value, final Type type) {
+  public static boolean effectFullDataAndValue(final EffectFullAdtValue value, final EffectFullType type) {
     throw new Error("Unresolved compilation problems:"
-      + "\nno viable alternative at input \'default\'"
-      + "\nThe method or field type is undefined for the type ValueType"
-      + "\nThe method or field type is undefined for the type ValueType"
-      + "\nThe method or field type is undefined for the type ValueType"
-      + "\nThe method or field type is undefined for the type EffectFullFunctionType"
-      + "\nThe method or field type is undefined for the type EffectFullFunctionType"
-      + "\nThe method or field type is undefined for the type EffectFullFunctionType"
-      + "\nThe method or field type is undefined for the type EffectFullFunctionType"
-      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
-      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
-      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
-      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
-      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
-      + "\nThe method or field type is undefined for the type EffectFullAlgebraicType"
-      + "\nType mismatch: cannot convert from String to Type");
+      + "\nType mismatch: cannot convert from Class<EffectFullAlgebraicType> to boolean"
+      + "\nType mismatch: cannot convert from Class<IOType> to boolean");
   }
 }

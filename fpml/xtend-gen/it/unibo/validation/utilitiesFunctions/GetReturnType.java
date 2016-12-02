@@ -56,7 +56,6 @@ import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -344,15 +343,13 @@ public class GetReturnType {
     boolean _notEquals = (!Objects.equal(argument2, null));
     if (_notEquals) {
       final EffectFullFunctionType functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
-      final IOType ioTypeReturn = FPMLFactory.eINSTANCE.createIOType();
-      Type _effectFullFunctionChain = GetReturnType.effectFullFunctionChain(references, first, argument, null);
-      Type _copy = EcoreUtil.<Type>copy(_effectFullFunctionChain);
-      ioTypeReturn.setType(_copy);
       EffectFullArgument _arg2 = argument2.getArg2();
       Type _type = _arg2.getType();
-      Type _copy_1 = EcoreUtil.<Type>copy(_type);
-      functionType.setArgType(_copy_1);
-      functionType.setReturnType(ioTypeReturn);
+      Type _copy = EcoreUtil.<Type>copy(_type);
+      functionType.setArgType(_copy);
+      Type _effectFullFunctionChain = GetReturnType.effectFullFunctionChain(references, first, argument, null);
+      IOType _IOWrap = Others.IOWrap(_effectFullFunctionChain);
+      functionType.setReturnType(_IOWrap);
       return functionType;
     } else {
       final Type firstFunctionReturnType = GetReturnType.effectFullReference(first);
@@ -417,22 +414,25 @@ public class GetReturnType {
     return _switchResult;
   }
   
-  public static Type primitiveEffectFullValue(final PrimitiveEffectFullValue value) {
+  public static IOType primitiveEffectFullValue(final PrimitiveEffectFullValue value) {
     boolean _matched = false;
     if (value instanceof PrimitiveRandom) {
       _matched=true;
-      return FPMLFactory.eINSTANCE.createIntegerType();
+      IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+      return Others.IOWrap(_createIntegerType);
     }
     if (!_matched) {
       if (value instanceof PrimitiveReturn) {
         _matched=true;
-        return ((PrimitiveReturn)value).getType();
+        Type _type = ((PrimitiveReturn)value).getType();
+        return Others.IOWrap(_type);
       }
     }
     if (!_matched) {
       if (value instanceof PrimitiveTime) {
         _matched=true;
-        return FPMLFactory.eINSTANCE.createStringType();
+        StringType _createStringType = FPMLFactory.eINSTANCE.createStringType();
+        return Others.IOWrap(_createStringType);
       }
     }
     return null;
@@ -443,11 +443,8 @@ public class GetReturnType {
     boolean _matched = false;
     if (expression instanceof Expression) {
       _matched=true;
-      final IOType returnType = FPMLFactory.eINSTANCE.createIOType();
       ValueType _expression = GetReturnType.expression(((Expression)expression));
-      ValueType _copy = EcoreUtil2.<ValueType>copy(_expression);
-      returnType.setType(_copy);
-      return returnType;
+      return Others.IOWrap(_expression);
     }
     if (!_matched) {
       if (expression instanceof UnitType) {
@@ -494,11 +491,8 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof EffectFullExpression) {
         _matched=true;
-        final IOType returnType = FPMLFactory.eINSTANCE.createIOType();
         Type _effectFullExpression = GetReturnType.effectFullExpression(expression);
-        Type _copy = EcoreUtil2.<Type>copy(_effectFullExpression);
-        returnType.setType(_copy);
-        return returnType;
+        return Others.IOWrap(_effectFullExpression);
       }
     }
     return _switchResult;
@@ -520,25 +514,26 @@ public class GetReturnType {
     return _switchResult;
   }
   
-  public static Type primitiveEffectFullFunction(final PrimitiveEffectFullFunction function) {
-    Type _switchResult = null;
+  public static IOType primitiveEffectFullFunction(final PrimitiveEffectFullFunction function) {
+    IOType _switchResult = null;
     boolean _matched = false;
     if (function instanceof PrimitivePrint) {
       _matched=true;
-      _switchResult = FPMLFactory.eINSTANCE.createUnitType();
+      UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+      _switchResult = Others.IOWrap(_createUnitType);
     }
     if (!_matched) {
       if (function instanceof ApplyFIO) {
         _matched=true;
         EffectFullFunctionType _functionType = ((ApplyFIO)function).getFunctionType();
-        IOType _returnType = _functionType.getReturnType();
-        _switchResult = _returnType.getType();
+        _switchResult = _functionType.getReturnType();
       }
     }
     if (!_matched) {
       if (function instanceof PrimitiveReturn) {
         _matched=true;
-        _switchResult = ((PrimitiveReturn)function).getType();
+        Type _type = ((PrimitiveReturn)function).getType();
+        _switchResult = Others.IOWrap(_type);
       }
     }
     return _switchResult;
@@ -547,9 +542,8 @@ public class GetReturnType {
   public static Type mainFunc(final MainFunc m) {
     Type _xblockexpression = null;
     {
-      final IOType ioType = FPMLFactory.eINSTANCE.createIOType();
       UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
-      ioType.setType(_createUnitType);
+      final IOType ioType = Others.IOWrap(_createUnitType);
       FunctionBodyEffectFull _functionBody = m.getFunctionBody();
       _xblockexpression = GetReturnType.functionBodyEffectFull(_functionBody, null, null, ioType);
     }

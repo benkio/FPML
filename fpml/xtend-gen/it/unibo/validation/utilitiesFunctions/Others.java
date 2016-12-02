@@ -21,8 +21,10 @@ import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureSumTypeFactor;
+import it.unibo.fPML.Type;
 import it.unibo.fPML.ValueType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
 
 @SuppressWarnings("all")
 public class Others {
@@ -121,5 +123,12 @@ public class Others {
     IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
     func.setReturnType(_createIntegerType_1);
     return func;
+  }
+  
+  public static IOType IOWrap(final Type t) {
+    final IOType returnT = FPMLFactory.eINSTANCE.createIOType();
+    Type _copy = EcoreUtil2.<Type>copy(t);
+    returnT.setType(_copy);
+    return returnT;
   }
 }

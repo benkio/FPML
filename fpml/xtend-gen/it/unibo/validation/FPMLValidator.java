@@ -7,12 +7,16 @@ import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.DataValue;
+import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullValue;
+import it.unibo.fPML.Expression;
+import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.MainFunc;
@@ -129,8 +133,18 @@ public class FPMLValidator extends AbstractFPMLValidator {
   }
   
   public void typeCheckEffectFullValue(final EffectFullValue value) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nmissing \')\' at \'{\'");
+    EffectFullExpression _value = value.getValue();
+    if ((_value instanceof Expression)) {
+      final PureValue pureValue = FPMLFactory.eINSTANCE.createPureValue();
+      EffectFullExpression _value_1 = value.getValue();
+      pureValue.setValue(((Expression) _value_1));
+      this.typeCheckPureValue(pureValue);
+    } else {
+      if (((value.getValue() instanceof EffectFullDataValue) && 
+        (!Checks.effectFullDataAndValue(((EffectFullDataValue) value.getValue()).getValue(), ((EffectFullDataValue) value.getValue()).getType().getContent())))) {
+        this.error(FPMLValidator.TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.EFFECT_FULL_VALUE__VALUE);
+      }
+    }
   }
   
   public void typeCheckPureValue(final PureValue v) {

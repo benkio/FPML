@@ -3850,14 +3850,25 @@ ruleEffectFullAdtValue returns [EObject current=null]
 			{
 				newLeafNode(otherlv_1, grammarAccess.getEffectFullAdtValueAccess().getLeftParenthesisKeyword_0_1());
 			}
-			{
-				newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getPureAdtValueParserRuleCall_0_2());
-			}
-			this_PureAdtValue_2=rulePureAdtValue
-			{
-				$current = $this_PureAdtValue_2.current;
-				afterParserOrEnumRuleCall();
-			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getInnerValuePureAdtValueParserRuleCall_0_2_0());
+					}
+					lv_innerValue_2_0=rulePureAdtValue
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getEffectFullAdtValueRule());
+						}
+						set(
+							$current,
+							"innerValue",
+							lv_innerValue_2_0,
+							"it.unibo.FPML.PureAdtValue");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
 			otherlv_3=')'
 			{
 				newLeafNode(otherlv_3, grammarAccess.getEffectFullAdtValueAccess().getRightParenthesisKeyword_0_3());
@@ -3873,14 +3884,25 @@ ruleEffectFullAdtValue returns [EObject current=null]
 			{
 				newLeafNode(otherlv_5, grammarAccess.getEffectFullAdtValueAccess().getLeftSquareBracketKeyword_1_1());
 			}
-			{
-				newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullAdtValueParserRuleCall_1_2());
-			}
-			this_EffectFullAdtValue_6=ruleEffectFullAdtValue
-			{
-				$current = $this_EffectFullAdtValue_6.current;
-				afterParserOrEnumRuleCall();
-			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getInnerValueEffectFullAdtValueParserRuleCall_1_2_0());
+					}
+					lv_innerValue_6_0=ruleEffectFullAdtValue
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getEffectFullAdtValueRule());
+						}
+						set(
+							$current,
+							"innerValue",
+							lv_innerValue_6_0,
+							"it.unibo.FPML.EffectFullAdtValue");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
 			otherlv_7=']'
 			{
 				newLeafNode(otherlv_7, grammarAccess.getEffectFullAdtValueAccess().getRightSquareBracketKeyword_1_3());

@@ -2300,12 +2300,14 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Keyword cIOKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final RuleCall cPureAdtValueParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
+		private final Assignment cInnerValueAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cInnerValuePureAdtValueParserRuleCall_0_2_0 = (RuleCall)cInnerValueAssignment_0_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Keyword cIOKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final RuleCall cEffectFullAdtValueParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
+		private final Assignment cInnerValueAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cInnerValueEffectFullAdtValueParserRuleCall_1_2_0 = (RuleCall)cInnerValueAssignment_1_2.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		private final RuleCall cUnitValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cEffectFullFunctionValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
@@ -2314,8 +2316,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEffectFullSumValueParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//EffectFullAdtValue:
-		//	'IO' '(' PureAdtValue ')'
-		//	| 'IO' '[' EffectFullAdtValue ']'
+		//	'IO' '(' innerValue=PureAdtValue ')'
+		//	| 'IO' '[' innerValue=EffectFullAdtValue ']'
 		//	| UnitValue
 		//	| EffectFullFunctionValue
 		//	| EffectFullProdValue
@@ -2323,11 +2325,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| EffectFullSumValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'IO' '(' PureAdtValue ')' | 'IO' '[' EffectFullAdtValue ']' | UnitValue | EffectFullFunctionValue | EffectFullProdValue
-		//| EffectFullValueRef | EffectFullSumValue
+		//'IO' '(' innerValue=PureAdtValue ')' | 'IO' '[' innerValue=EffectFullAdtValue ']' | UnitValue | EffectFullFunctionValue
+		//| EffectFullProdValue | EffectFullValueRef | EffectFullSumValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'IO' '(' PureAdtValue ')'
+		//'IO' '(' innerValue=PureAdtValue ')'
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//'IO'
@@ -2336,13 +2338,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_0_1() { return cLeftParenthesisKeyword_0_1; }
 		
+		//innerValue=PureAdtValue
+		public Assignment getInnerValueAssignment_0_2() { return cInnerValueAssignment_0_2; }
+		
 		//PureAdtValue
-		public RuleCall getPureAdtValueParserRuleCall_0_2() { return cPureAdtValueParserRuleCall_0_2; }
+		public RuleCall getInnerValuePureAdtValueParserRuleCall_0_2_0() { return cInnerValuePureAdtValueParserRuleCall_0_2_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
 		
-		//'IO' '[' EffectFullAdtValue ']'
+		//'IO' '[' innerValue=EffectFullAdtValue ']'
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//'IO'
@@ -2351,8 +2356,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_1_1() { return cLeftSquareBracketKeyword_1_1; }
 		
+		//innerValue=EffectFullAdtValue
+		public Assignment getInnerValueAssignment_1_2() { return cInnerValueAssignment_1_2; }
+		
 		//EffectFullAdtValue
-		public RuleCall getEffectFullAdtValueParserRuleCall_1_2() { return cEffectFullAdtValueParserRuleCall_1_2; }
+		public RuleCall getInnerValueEffectFullAdtValueParserRuleCall_1_2_0() { return cInnerValueEffectFullAdtValueParserRuleCall_1_2_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_1_3() { return cRightSquareBracketKeyword_1_3; }
@@ -3793,8 +3801,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//EffectFullAdtValue:
-	//	'IO' '(' PureAdtValue ')'
-	//	| 'IO' '[' EffectFullAdtValue ']'
+	//	'IO' '(' innerValue=PureAdtValue ')'
+	//	| 'IO' '[' innerValue=EffectFullAdtValue ']'
 	//	| UnitValue
 	//	| EffectFullFunctionValue
 	//	| EffectFullProdValue

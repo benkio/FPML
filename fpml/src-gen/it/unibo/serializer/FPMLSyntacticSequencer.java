@@ -21,13 +21,11 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class FPMLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected FPMLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_EffectFullAdtValue___IOKeyword_1_0_LeftSquareBracketKeyword_1_1__a;
 	protected AbstractElementAlias match_EffectFullExpression___IOKeyword_0_0_LeftSquareBracketKeyword_0_1__a;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (FPMLGrammarAccess) access;
-		match_EffectFullAdtValue___IOKeyword_1_0_LeftSquareBracketKeyword_1_1__a = new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getEffectFullAdtValueAccess().getIOKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getEffectFullAdtValueAccess().getLeftSquareBracketKeyword_1_1()));
 		match_EffectFullExpression___IOKeyword_0_0_LeftSquareBracketKeyword_0_1__a = new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getEffectFullExpressionAccess().getIOKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getEffectFullExpressionAccess().getLeftSquareBracketKeyword_0_1()));
 	}
 	
@@ -43,38 +41,12 @@ public class FPMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_EffectFullAdtValue___IOKeyword_1_0_LeftSquareBracketKeyword_1_1__a.equals(syntax))
-				emit_EffectFullAdtValue___IOKeyword_1_0_LeftSquareBracketKeyword_1_1__a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_EffectFullExpression___IOKeyword_0_0_LeftSquareBracketKeyword_0_1__a.equals(syntax))
+			if (match_EffectFullExpression___IOKeyword_0_0_LeftSquareBracketKeyword_0_1__a.equals(syntax))
 				emit_EffectFullExpression___IOKeyword_0_0_LeftSquareBracketKeyword_0_1__a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
-	/**
-	 * Ambiguous syntax:
-	 *     ('IO' '[')*
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '(' prodAdtElement1=EffectFullAdtValue
-	 *     (rule start) (ambiguity) '()' (rule start)
-	 *     (rule start) (ambiguity) 'IO' '(' '(' prodAdtElement1=PureAdtValue
-	 *     (rule start) (ambiguity) 'IO' '(' 'Left' '(' sumAdtElement1=PureAdtValue
-	 *     (rule start) (ambiguity) 'IO' '(' 'Right' '(' sumAdtElement2=PureAdtValue
-	 *     (rule start) (ambiguity) 'IO' '(' type=[PureData|ID]
-	 *     (rule start) (ambiguity) 'IO' '(' value=INT
-	 *     (rule start) (ambiguity) 'IO' '(' value=PureLambda
-	 *     (rule start) (ambiguity) 'IO' '(' value=STRING
-	 *     (rule start) (ambiguity) 'IO' '(' value=[PureValue|ID]
-	 *     (rule start) (ambiguity) 'Left' '(' sumAdtElement1=EffectFullAdtValue
-	 *     (rule start) (ambiguity) 'Right' '(' sumAdtElement2=EffectFullAdtValue
-	 *     (rule start) (ambiguity) value=EffectFullLambda
-	 *     (rule start) (ambiguity) value=[EffectFullValue|ID]
-	 */
-	protected void emit_EffectFullAdtValue___IOKeyword_1_0_LeftSquareBracketKeyword_1_1__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
 	/**
 	 * Ambiguous syntax:
 	 *     ('IO' '[')*

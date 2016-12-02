@@ -123,10 +123,8 @@ class GetReturnType {
 	def static Type effectFullFunctionChain(List<EffectFullReference> references, EffectFullReference first, EffectFullArgument argument, AdditionalEffectFullArgument argument2) {
 		if (argument2 != null) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType
-			val ioTypeReturn = FPMLFactory.eINSTANCE.createIOType
-			ioTypeReturn.type = EcoreUtil.copy(effectFullFunctionChain(references, first, argument, null))
 			functionType.argType = EcoreUtil.copy(argument2.arg2.type)
-			functionType.returnType = ioTypeReturn
+			functionType.returnType = Others.IOWrap(effectFullFunctionChain(references, first, argument, null))
 			return functionType
 		} else { //Normal single argument function
 			val firstFunctionReturnType = effectFullReference(first)
@@ -152,18 +150,16 @@ class GetReturnType {
 	
 	def static primitiveEffectFullValue(PrimitiveEffectFullValue value) {
 		switch value {
-			PrimitiveRandom: return FPMLFactory.eINSTANCE.createIntegerType
-     		PrimitiveReturn: return value.type
-     		PrimitiveTime: return FPMLFactory.eINSTANCE.createStringType
+			PrimitiveRandom: return Others.IOWrap(FPMLFactory.eINSTANCE.createIntegerType)
+     		PrimitiveReturn: return Others.IOWrap(value.type)
+     		PrimitiveTime: return Others.IOWrap(FPMLFactory.eINSTANCE.createStringType)
 		}
 	}
 	
 	def static Type effectFullExpression(EffectFullExpression expression) {
 		switch expression {
 			Expression: {
-				val returnType = FPMLFactory.eINSTANCE.createIOType
-				returnType.type = EcoreUtil2.copy(expression(expression))
-				return returnType
+				return Others.IOWrap(expression(expression))
 			}
 			UnitType: expression
 			EffectFullFunctionType:{
@@ -176,9 +172,7 @@ class GetReturnType {
 				} 
 			EffectFullDataValue: expression
 			EffectFullExpression: {
-				val returnType = FPMLFactory.eINSTANCE.createIOType
-				returnType.type = EcoreUtil2.copy(effectFullExpression(expression))
-				return returnType
+				return Others.IOWrap(effectFullExpression(expression))
 			}
 		}
 	}
@@ -192,15 +186,14 @@ class GetReturnType {
 	
 	def static primitiveEffectFullFunction(PrimitiveEffectFullFunction function) {
 		switch function {
-			PrimitivePrint: FPMLFactory.eINSTANCE.createUnitType
-			ApplyFIO: function.functionType.returnType.type
-      		PrimitiveReturn: function.type
+			PrimitivePrint: Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
+			ApplyFIO: function.functionType.returnType
+      		PrimitiveReturn: Others.IOWrap(function.type)
 		}
 	}
 	
 	def static Type mainFunc(MainFunc m) {
-		val ioType = FPMLFactory.eINSTANCE.createIOType
-		ioType.type = FPMLFactory.eINSTANCE.createUnitType
+		val ioType = Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
 		functionBodyEffectFull(m.functionBody, null, null, ioType)
 	}
 }

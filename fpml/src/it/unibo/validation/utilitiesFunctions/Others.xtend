@@ -2,6 +2,7 @@ package it.unibo.validation.utilitiesFunctions
 
 import it.unibo.fPML.*
 import it.unibo.fPML.EffectFullAlgebraicType
+import org.eclipse.xtext.EcoreUtil2
 
 class Others {
 	def static PureFunction getFunctionDefinitionFromPureFactor(CompositionFunctionBodyPureFactor cfbpf) {
@@ -45,5 +46,11 @@ class Others {
       	func.argType = FPMLFactory.eINSTANCE.createIntegerType()
       	func.returnType = FPMLFactory.eINSTANCE.createIntegerType()
       	return func
+	}
+	
+	def static IOType IOWrap(Type t){
+		val returnT = FPMLFactory.eINSTANCE.createIOType
+		returnT.type = EcoreUtil2.copy(t)
+		return returnT	
 	}
 }

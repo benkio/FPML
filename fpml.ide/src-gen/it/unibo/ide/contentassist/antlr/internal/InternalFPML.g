@@ -8509,9 +8509,9 @@ rule__EffectFullAdtValue__Group_0__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getEffectFullAdtValueAccess().getPureAdtValueParserRuleCall_0_2()); }
-	rulePureAdtValue
-	{ after(grammarAccess.getEffectFullAdtValueAccess().getPureAdtValueParserRuleCall_0_2()); }
+	{ before(grammarAccess.getEffectFullAdtValueAccess().getInnerValueAssignment_0_2()); }
+	(rule__EffectFullAdtValue__InnerValueAssignment_0_2)
+	{ after(grammarAccess.getEffectFullAdtValueAccess().getInnerValueAssignment_0_2()); }
 )
 ;
 finally {
@@ -8617,9 +8617,9 @@ rule__EffectFullAdtValue__Group_1__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullAdtValueParserRuleCall_1_2()); }
-	ruleEffectFullAdtValue
-	{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullAdtValueParserRuleCall_1_2()); }
+	{ before(grammarAccess.getEffectFullAdtValueAccess().getInnerValueAssignment_1_2()); }
+	(rule__EffectFullAdtValue__InnerValueAssignment_1_2)
+	{ after(grammarAccess.getEffectFullAdtValueAccess().getInnerValueAssignment_1_2()); }
 )
 ;
 finally {
@@ -11183,6 +11183,36 @@ rule__PureSumValue__SumAdtElement2Assignment_1_2
 		{ before(grammarAccess.getPureSumValueAccess().getSumAdtElement2PureAdtValueParserRuleCall_1_2_0()); }
 		rulePureAdtValue
 		{ after(grammarAccess.getPureSumValueAccess().getSumAdtElement2PureAdtValueParserRuleCall_1_2_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__EffectFullAdtValue__InnerValueAssignment_0_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getEffectFullAdtValueAccess().getInnerValuePureAdtValueParserRuleCall_0_2_0()); }
+		rulePureAdtValue
+		{ after(grammarAccess.getEffectFullAdtValueAccess().getInnerValuePureAdtValueParserRuleCall_0_2_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__EffectFullAdtValue__InnerValueAssignment_1_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getEffectFullAdtValueAccess().getInnerValueEffectFullAdtValueParserRuleCall_1_2_0()); }
+		ruleEffectFullAdtValue
+		{ after(grammarAccess.getEffectFullAdtValueAccess().getInnerValueEffectFullAdtValueParserRuleCall_1_2_0()); }
 	)
 ;
 finally {

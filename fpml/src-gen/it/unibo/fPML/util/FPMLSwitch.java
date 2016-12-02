@@ -350,7 +350,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseType(integerType);
         if (result == null) result = caseEffectFullExpression(integerType);
         if (result == null) result = casePureAdtValue(integerType);
-        if (result == null) result = caseEffectFullAdtValue(integerType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -363,7 +362,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseType(stringType);
         if (result == null) result = caseEffectFullExpression(stringType);
         if (result == null) result = casePureAdtValue(stringType);
-        if (result == null) result = caseEffectFullAdtValue(stringType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -387,7 +385,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseType(dataType);
         if (result == null) result = caseEffectFullExpression(dataType);
         if (result == null) result = casePureAdtValue(dataType);
-        if (result == null) result = caseEffectFullAdtValue(dataType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -410,7 +407,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseType(pureFunctionType);
         if (result == null) result = caseEffectFullExpression(pureFunctionType);
         if (result == null) result = casePureAdtValue(pureFunctionType);
-        if (result == null) result = caseEffectFullAdtValue(pureFunctionType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -492,7 +488,6 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseExpression(expression);
         if (result == null) result = caseEffectFullExpression(expression);
         if (result == null) result = casePureAdtValue(expression);
-        if (result == null) result = caseEffectFullAdtValue(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -501,7 +496,6 @@ public class FPMLSwitch<T> extends Switch<T>
         PureValueRef pureValueRef = (PureValueRef)theEObject;
         T result = casePureValueRef(pureValueRef);
         if (result == null) result = casePureAdtValue(pureValueRef);
-        if (result == null) result = caseEffectFullAdtValue(pureValueRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -509,7 +503,6 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         PureAdtValue pureAdtValue = (PureAdtValue)theEObject;
         T result = casePureAdtValue(pureAdtValue);
-        if (result == null) result = caseEffectFullAdtValue(pureAdtValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -518,7 +511,6 @@ public class FPMLSwitch<T> extends Switch<T>
         PureProdValue pureProdValue = (PureProdValue)theEObject;
         T result = casePureProdValue(pureProdValue);
         if (result == null) result = casePureAdtValue(pureProdValue);
-        if (result == null) result = caseEffectFullAdtValue(pureProdValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -527,7 +519,6 @@ public class FPMLSwitch<T> extends Switch<T>
         PureSumValue pureSumValue = (PureSumValue)theEObject;
         T result = casePureSumValue(pureSumValue);
         if (result == null) result = casePureAdtValue(pureSumValue);
-        if (result == null) result = caseEffectFullAdtValue(pureSumValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -776,7 +767,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseType(dataValue);
         if (result == null) result = caseEffectFullExpression(dataValue);
         if (result == null) result = casePureAdtValue(dataValue);
-        if (result == null) result = caseEffectFullAdtValue(dataValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

@@ -206,7 +206,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PureValueRef" eSuperTypes="#//PureAdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//PureValue"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PureAdtValue" eSuperTypes="#//EffectFullAdtValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PureAdtValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="PureProdValue" eSuperTypes="#//PureAdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prodAdtElement1" eType="#//PureAdtValue"
         containment="true"/>
@@ -219,7 +219,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sumAdtElement2" eType="#//PureAdtValue"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EffectFullAdtValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EffectFullAdtValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="innerValue" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullProdValue" eSuperTypes="#//EffectFullAdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prodAdtElement1" eType="#//EffectFullAdtValue"
         containment="true"/>

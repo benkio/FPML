@@ -16,6 +16,7 @@ import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
+import it.unibo.fPML.EffectFullAdtValue;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBlock;
@@ -129,6 +130,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.DATA_VALUE:
 				sequence_DataValue(context, (DataValue) semanticObject); 
 				return; 
+			case FPMLPackage.EFFECT_FULL_ADT_VALUE:
+				sequence_EffectFullAdtValue(context, (EffectFullAdtValue) semanticObject); 
+				return; 
 			case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE:
 				sequence_EffectFullAlgebraicType(context, (EffectFullAlgebraicType) semanticObject); 
 				return; 
@@ -210,8 +214,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if (rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getIntValueRule()
-						|| rule == grammarAccess.getPureAdtValueRule()
-						|| rule == grammarAccess.getEffectFullAdtValueRule()) {
+						|| rule == grammarAccess.getPureAdtValueRule()) {
 					sequence_IntValue(context, (IntegerType) semanticObject); 
 					return; 
 				}
@@ -271,8 +274,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if (rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getFunctionValueRule()
-						|| rule == grammarAccess.getPureAdtValueRule()
-						|| rule == grammarAccess.getEffectFullAdtValueRule()) {
+						|| rule == grammarAccess.getPureAdtValueRule()) {
 					sequence_FunctionValue(context, (PureFunctionType) semanticObject); 
 					return; 
 				}
@@ -317,8 +319,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				else if (rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getStringValueRule()
-						|| rule == grammarAccess.getPureAdtValueRule()
-						|| rule == grammarAccess.getEffectFullAdtValueRule()) {
+						|| rule == grammarAccess.getPureAdtValueRule()) {
 					sequence_StringValue(context, (StringType) semanticObject); 
 					return; 
 				}
@@ -549,7 +550,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Expression returns DataValue
 	 *     DataValue returns DataValue
 	 *     PureAdtValue returns DataValue
-	 *     EffectFullAdtValue returns DataValue
 	 *
 	 * Constraint:
 	 *     (type=[PureData|ID] value=PureAdtValue)
@@ -565,6 +565,18 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		feeder.accept(grammarAccess.getDataValueAccess().getTypePureDataIDTerminalRuleCall_1_0_1(), semanticObject.getType());
 		feeder.accept(grammarAccess.getDataValueAccess().getValuePureAdtValueParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EffectFullAdtValue returns EffectFullAdtValue
+	 *
+	 * Constraint:
+	 *     (innerValue=PureAdtValue | innerValue=EffectFullAdtValue)
+	 */
+	protected void sequence_EffectFullAdtValue(ISerializationContext context, EffectFullAdtValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -917,7 +929,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Expression returns PureFunctionType
 	 *     FunctionValue returns PureFunctionType
 	 *     PureAdtValue returns PureFunctionType
-	 *     EffectFullAdtValue returns PureFunctionType
 	 *
 	 * Constraint:
 	 *     value=PureLambda
@@ -993,7 +1004,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Expression returns IntegerType
 	 *     IntValue returns IntegerType
 	 *     PureAdtValue returns IntegerType
-	 *     EffectFullAdtValue returns IntegerType
 	 *
 	 * Constraint:
 	 *     value=INT
@@ -1335,7 +1345,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     PureAdtValue returns PureProdValue
 	 *     PureProdValue returns PureProdValue
-	 *     EffectFullAdtValue returns PureProdValue
 	 *
 	 * Constraint:
 	 *     (prodAdtElement1=PureAdtValue prodAdtElement2=PureAdtValue)
@@ -1376,7 +1385,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     PureAdtValue returns PureSumValue
 	 *     PureSumValue returns PureSumValue
-	 *     EffectFullAdtValue returns PureSumValue
 	 *
 	 * Constraint:
 	 *     (sumAdtElement1=PureAdtValue | sumAdtElement2=PureAdtValue)
@@ -1402,7 +1410,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     PureValueRef returns PureValueRef
 	 *     PureAdtValue returns PureValueRef
-	 *     EffectFullAdtValue returns PureValueRef
 	 *
 	 * Constraint:
 	 *     value=[PureValue|ID]
@@ -1467,7 +1474,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Expression returns StringType
 	 *     StringValue returns StringType
 	 *     PureAdtValue returns StringType
-	 *     EffectFullAdtValue returns StringType
 	 *
 	 * Constraint:
 	 *     value=STRING

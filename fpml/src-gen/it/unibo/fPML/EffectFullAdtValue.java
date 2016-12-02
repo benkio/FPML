@@ -10,6 +10,12 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Effect Full Adt Value</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link it.unibo.fPML.EffectFullAdtValue#getInnerValue <em>Inner Value</em>}</li>
+ * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getEffectFullAdtValue()
  * @model
@@ -17,4 +23,30 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface EffectFullAdtValue extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Inner Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Inner Value</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Inner Value</em>' containment reference.
+   * @see #setInnerValue(EObject)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullAdtValue_InnerValue()
+   * @model containment="true"
+   * @generated
+   */
+  EObject getInnerValue();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullAdtValue#getInnerValue <em>Inner Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Inner Value</em>' containment reference.
+   * @see #getInnerValue()
+   * @generated
+   */
+  void setInnerValue(EObject value);
+
 } // EffectFullAdtValue

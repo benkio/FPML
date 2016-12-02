@@ -252,8 +252,8 @@ PureSumValue:
 	| 'Right' '(' sumAdtElement2=PureAdtValue ')';
 
 EffectFullAdtValue:
-	 'IO' '(' PureAdtValue ')'
-	 | 'IO' '[' EffectFullAdtValue ']'
+	 'IO' '(' innerValue=PureAdtValue ')'
+	 | 'IO' '[' innerValue=EffectFullAdtValue ']'
 	 | UnitValue
 	 | EffectFullFunctionValue
 	 | EffectFullProdValue

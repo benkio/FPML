@@ -8,6 +8,8 @@ import it.unibo.fPML.PureAdtValue;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Pure Adt Value</b></em>'.
@@ -15,7 +17,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PureAdtValueImpl extends EffectFullAdtValueImpl implements PureAdtValue
+public class PureAdtValueImpl extends MinimalEObjectImpl.Container implements PureAdtValue
 {
   /**
    * <!-- begin-user-doc -->
