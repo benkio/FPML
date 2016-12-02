@@ -151,7 +151,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//ValueType #//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PureData"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EffectFullDataType" eSuperTypes="#//EffectFullType #//EffectFullExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="EffectFullDataType" eSuperTypes="#//EffectFullType #//EffectFullExpression #//EffectFullAdtValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//EffectFullData"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PureFunctionType" eSuperTypes="#//ValueType #//Expression">

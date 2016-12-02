@@ -3946,11 +3946,20 @@ ruleEffectFullAdtValue returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_6());
+			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullDataValueParserRuleCall_6());
 		}
-		this_EffectFullSumValue_12=ruleEffectFullSumValue
+		this_EffectFullDataValue_12=ruleEffectFullDataValue
 		{
-			$current = $this_EffectFullSumValue_12.current;
+			$current = $this_EffectFullDataValue_12.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_7());
+		}
+		this_EffectFullSumValue_13=ruleEffectFullSumValue
+		{
+			$current = $this_EffectFullSumValue_13.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

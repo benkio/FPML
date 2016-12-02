@@ -394,6 +394,7 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseEffectFullDataType(effectFullDataType);
         if (result == null) result = caseEffectFullType(effectFullDataType);
         if (result == null) result = caseEffectFullExpression(effectFullDataType);
+        if (result == null) result = caseEffectFullAdtValue(effectFullDataType);
         if (result == null) result = caseType(effectFullDataType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -777,6 +778,7 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullDataType(effectFullDataValue);
         if (result == null) result = caseEffectFullType(effectFullDataValue);
         if (result == null) result = caseEffectFullExpression(effectFullDataValue);
+        if (result == null) result = caseEffectFullAdtValue(effectFullDataValue);
         if (result == null) result = caseType(effectFullDataValue);
         if (result == null) result = defaultCase(theEObject);
         return result;

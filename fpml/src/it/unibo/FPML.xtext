@@ -258,6 +258,7 @@ EffectFullAdtValue:
 	 | EffectFullFunctionValue
 	 | EffectFullProdValue
 	 | EffectFullValueRef
+	 | EffectFullDataValue
 	 | EffectFullSumValue ;
 
 EffectFullProdValue: 

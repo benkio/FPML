@@ -9,17 +9,27 @@ import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullAdtValue;
+import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullDataType;
+import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullLambda;
+import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullSumTypeFactor;
+import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.EffectFullType;
+import it.unibo.fPML.EffectFullValue;
+import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
+import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PureAdtValue;
@@ -44,6 +54,7 @@ import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -300,17 +311,26 @@ public class Checks {
   }
   
   public static boolean functionChainEffectFull(final List<EffectFullReference> references, final EffectFullReference first, final Type type) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nno viable alternative at input \'...\'"
-      + "\nThe method or field check is undefined"
-      + "\nThe method or field the is undefined"
-      + "\nThe method or field problem is undefined"
-      + "\nThe method or field of is undefined"
-      + "\nThe method or field the is undefined"
-      + "\nThe method or field IO is undefined"
-      + "\nThe method or field TYPE is undefined"
-      + "\nThe method or field AND is undefined"
-      + "\nThe method or field PURE is undefined");
+    Type startType = type;
+    final Type argFuncFirst = GetArgType.effectFullReference(first);
+    boolean _TypeEquals = Checks.TypeEquals(startType, argFuncFirst);
+    boolean _not = (!_TypeEquals);
+    if (_not) {
+      return false;
+    }
+    Type _effectFullReference = GetReturnType.effectFullReference(first);
+    startType = _effectFullReference;
+    for (final EffectFullReference r : references) {
+      {
+        final Type argFunc = GetArgType.effectFullReference(r);
+        if (((((!Objects.equal(startType, null)) && (!Objects.equal(argFunc, null))) && (startType instanceof IOType)) && (!Checks.TypeEquals(((IOType) startType).getType(), argFunc)))) {
+          return false;
+        }
+        Type _effectFullReference_1 = GetReturnType.effectFullReference(r);
+        startType = _effectFullReference_1;
+      }
+    }
+    return true;
   }
   
   public static boolean functionReturnTypeEffectFull(final EffectFullFunctionDefinition definition) {
@@ -331,8 +351,87 @@ public class Checks {
   }
   
   public static boolean effectFullDataAndValue(final EffectFullAdtValue value, final EffectFullType type) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Class<EffectFullAlgebraicType> to boolean"
-      + "\nType mismatch: cannot convert from Class<IOType> to boolean");
+    boolean _switchResult = false;
+    boolean _matched = false;
+    if (type instanceof UnitType) {
+      _matched=true;
+      _switchResult = ((value instanceof UnitType) || ((value instanceof EffectFullValueRef) && 
+        Checks.TypeEquals(GetReturnType.effectFullExpression(((EffectFullValueRef) value).getValue().getValue()), type)));
+    }
+    if (!_matched) {
+      if (type instanceof EffectFullFunctionType) {
+        _matched=true;
+        if ((value instanceof EffectFullFunctionType)) {
+          return (((((EffectFullFunctionType) value).getValue().getFunctionBody() instanceof CompositionFunctionBodyEffect) && 
+            Checks.TypeEquals(((EffectFullFunctionType) value).getValue().getArg().getType(), ((EffectFullFunctionType)type).getArgType())) && 
+            Checks.TypeEquals(GetReturnType.effectFullFunctionDefinition(((EffectFullFunctionType) value).getValue()), ((EffectFullFunctionType)type).getReturnType()));
+        } else {
+          if ((((value instanceof EffectFullValueRef) && 
+            (((EffectFullValueRef) value).getValue() instanceof EffectFullFunctionType)) && 
+            (((EffectFullFunctionType) ((EffectFullValueRef) value).getValue()).getValue() instanceof EffectFullLambda))) {
+            EffectFullValue _value = ((EffectFullValueRef) value).getValue();
+            final EffectFullFunctionType lambda = ((EffectFullFunctionType) _value);
+            return (Checks.TypeEquals(GetArgType.effectFullLambda(((EffectFullLambda) lambda.getValue())), ((EffectFullFunctionType)type).getArgType()) && 
+              Checks.TypeEquals(GetReturnType.effectFullExpression(lambda), ((EffectFullFunctionType)type).getReturnType()));
+          }
+        }
+      }
+    }
+    if (!_matched) {
+      if (type instanceof EffectFullDataType) {
+        _matched=true;
+        return (((value instanceof EffectFullDataValue) && 
+          Checks.effectFullDataAndValue(((EffectFullDataValue) value).getValue(), ((EffectFullDataType)type).getType().getContent())) || ((value instanceof EffectFullValueRef) && 
+          Checks.TypeEquals(GetReturnType.effectFullExpression(((EffectFullValueRef) value).getValue().getValue()), type)));
+      }
+    }
+    if (!_matched) {
+      if (type instanceof EffectFullAlgebraicType) {
+        _matched=true;
+        boolean _matched_1 = false;
+        if (value instanceof EffectFullSumValue) {
+          _matched_1=true;
+          return ((Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)type)) instanceof EffectFullSumTypeFactor) && (Boolean.valueOf(Checks.effectFullDataAndValue(((EffectFullSumValue)value).getSumAdtElement1(), ((EffectFullAlgebraicType)type).getEffectFullAdtElement1())).booleanValue() || Boolean.valueOf(Checks.effectFullDataAndValue(((EffectFullSumValue)value).getSumAdtElement2(), Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)type)))).booleanValue()));
+        }
+        if (!_matched_1) {
+          if (value instanceof EffectFullProdValue) {
+            _matched_1=true;
+            return ((Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)type)) instanceof PureProdTypeFactor) && (Boolean.valueOf(Checks.effectFullDataAndValue(((EffectFullProdValue)value).getProdAdtElement1(), ((EffectFullAlgebraicType)type).getEffectFullAdtElement1())).booleanValue() && Boolean.valueOf(Checks.effectFullDataAndValue(((EffectFullProdValue)value).getProdAdtElement2(), Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)type)))).booleanValue()));
+          }
+        }
+        if (!_matched_1) {
+          if (value instanceof EffectFullValueRef) {
+            _matched_1=true;
+            EffectFullValue _value = ((EffectFullValueRef)value).getValue();
+            EffectFullExpression _value_1 = _value.getValue();
+            Type _effectFullExpression = GetReturnType.effectFullExpression(_value_1);
+            return Checks.TypeEquals(_effectFullExpression, type);
+          }
+        }
+        return false;
+      }
+    }
+    if (!_matched) {
+      if (type instanceof IOType) {
+        _matched=true;
+        EObject _innerValue = value.getInnerValue();
+        boolean _matched_1 = false;
+        if (_innerValue instanceof PureAdtValue) {
+          _matched_1=true;
+          return ((((IOType) type).getType() instanceof ValueType) && Checks.DataAndValue(((PureAdtValue) value.getInnerValue()), ((ValueType) ((IOType) type).getType())));
+        }
+        if (!_matched_1) {
+          if (_innerValue instanceof EffectFullAdtValue) {
+            _matched_1=true;
+            return ((((IOType) type).getType() instanceof EffectFullType) && Checks.effectFullDataAndValue(((EffectFullAdtValue) value.getInnerValue()), ((EffectFullType) ((IOType) type).getType())));
+          }
+        }
+        return false;
+      }
+    }
+    if (!_matched) {
+      _switchResult = false;
+    }
+    return _switchResult;
   }
 }

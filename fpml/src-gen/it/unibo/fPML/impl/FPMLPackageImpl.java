@@ -2730,6 +2730,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     dataTypeEClass.getESuperTypes().add(this.getExpression());
     effectFullDataTypeEClass.getESuperTypes().add(this.getEffectFullType());
     effectFullDataTypeEClass.getESuperTypes().add(this.getEffectFullExpression());
+    effectFullDataTypeEClass.getESuperTypes().add(this.getEffectFullAdtValue());
     pureFunctionTypeEClass.getESuperTypes().add(this.getValueType());
     pureFunctionTypeEClass.getESuperTypes().add(this.getExpression());
     effectFullFunctionTypeEClass.getESuperTypes().add(this.getEffectFullType());

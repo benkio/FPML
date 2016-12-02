@@ -5,24 +5,30 @@ import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.EffectFullAdtValue;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullData;
+import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullSumValue;
+import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.Type;
+import it.unibo.fPML.UnitType;
 import it.unibo.generator.EffectFullFunctionGenerator;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
 import it.unibo.generator.ValueGenerator;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
@@ -104,19 +110,63 @@ public class EffectFullValueGenerator {
   }
   
   public CharSequence compile(final EffectFullExpression e) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nInvalid number of arguments. The method compile(ValueType) is not applicable for the arguments (EffectFullAdtValue,EffectFullType)"
-      + "\nType mismatch: cannot convert from EffectFullAdtValue to ValueType");
+    CharSequence _switchResult = null;
+    boolean _matched = false;
+    if (e instanceof Expression) {
+      _matched=true;
+      Object _compile = this.valueGenerator.compile(((Expression)e));
+      String _plus = ("IOFunctions.unit(" + _compile);
+      return (_plus + ")");
+    }
+    if (!_matched) {
+      if (e instanceof UnitType) {
+        _matched=true;
+        return "IOFunctions.ioUnit";
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullFunctionType) {
+        _matched=true;
+        return this.compile(((EffectFullFunctionType)e));
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullDataValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("new ");
+        EffectFullData _type = ((EffectFullDataValue)e).getType();
+        String _name = _type.getName();
+        _builder.append(_name, "");
+        _builder.append("(");
+        EffectFullAdtValue _value = ((EffectFullDataValue)e).getValue();
+        EffectFullData _type_1 = ((EffectFullDataValue)e).getType();
+        EffectFullType _content = _type_1.getContent();
+        Object _compileAdtValue = this.compileAdtValue(_value, _content);
+        _builder.append(_compileAdtValue, "");
+        _builder.append(")");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullExpression) {
+        _matched=true;
+        Object _compile = this.compile(e);
+        String _plus = ("IOFunctions.unit(" + _compile);
+        return (_plus + ")");
+      }
+    }
+    return _switchResult;
   }
   
-  public Object compileAdtValue(final EffectFullAdtValue v, final IOType d) {
+  public Object compileAdtValue(final EffectFullAdtValue v, final EffectFullType d) {
     CharSequence _switchResult = null;
     boolean _matched = false;
     if (v instanceof PureAdtValue) {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("IOFunctions.unit(");
-      Type _type = d.getType();
+      Type _type = ((IOType) d).getType();
       Object _compileAdtValue = this.valueGenerator.compileAdtValue(((PureAdtValue)v), _type);
       _builder.append(_compileAdtValue, "");
       _builder.append(")");
@@ -131,8 +181,7 @@ public class EffectFullValueGenerator {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("Either.right(");
           EffectFullAdtValue _sumAdtElement2 = ((EffectFullSumValue)v).getSumAdtElement2();
-          Type _type = d.getType();
-          IOType _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) _type));
+          IOType _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) d));
           Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType);
           _builder.append(_compileAdtValue, "");
           _builder.append(")");
@@ -141,8 +190,7 @@ public class EffectFullValueGenerator {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("Either.left(");
         EffectFullAdtValue _sumAdtElement1_1 = ((EffectFullSumValue)v).getSumAdtElement1();
-        Type _type_1 = d.getType();
-        IOType _effectFullAdtElement1 = ((EffectFullAlgebraicType) _type_1).getEffectFullAdtElement1();
+        IOType _effectFullAdtElement1 = ((EffectFullAlgebraicType) d).getEffectFullAdtElement1();
         Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _effectFullAdtElement1);
         _builder_1.append(_compileAdtValue_1, "");
         _builder_1.append(")");
@@ -155,14 +203,12 @@ public class EffectFullValueGenerator {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("P.p(");
         EffectFullAdtValue _prodAdtElement1 = ((EffectFullProdValue)v).getProdAdtElement1();
-        Type _type = d.getType();
-        IOType _effectFullAdtElement1 = ((EffectFullAlgebraicType) _type).getEffectFullAdtElement1();
+        IOType _effectFullAdtElement1 = ((EffectFullAlgebraicType) d).getEffectFullAdtElement1();
         Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _effectFullAdtElement1);
         _builder.append(_compileAdtValue, "");
         _builder.append(",");
         EffectFullAdtValue _prodAdtElement2 = ((EffectFullProdValue)v).getProdAdtElement2();
-        Type _type_1 = d.getType();
-        IOType _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) _type_1));
+        IOType _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) d));
         Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType);
         _builder.append(_compileAdtValue_1, "");
         _builder.append(")");
@@ -207,6 +253,50 @@ public class EffectFullValueGenerator {
           }
         }
       }
+    }
+    if (!_matched) {
+      if (v instanceof UnitType) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.ioUnit()");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (v instanceof EffectFullDataValue) {
+        _matched=true;
+        return this.compile(((EffectFullExpression) v));
+      }
+    }
+    if (!_matched) {
+      CharSequence _switchResult_1 = null;
+      EObject _innerValue = v.getInnerValue();
+      boolean _matched_1 = false;
+      if (_innerValue instanceof PureAdtValue) {
+        _matched_1=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.unit(");
+        EObject _innerValue_1 = v.getInnerValue();
+        Type _type = ((IOType) d).getType();
+        Object _compileAdtValue = this.valueGenerator.compileAdtValue(((PureAdtValue) _innerValue_1), _type);
+        _builder.append(_compileAdtValue, "");
+        _builder.append(")");
+        _switchResult_1 = _builder;
+      }
+      if (!_matched_1) {
+        if (_innerValue instanceof EffectFullAdtValue) {
+          _matched_1=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("IOFunctions.unit(");
+          EObject _innerValue_1 = v.getInnerValue();
+          Type _type = ((IOType) d).getType();
+          Object _compileAdtValue = this.compileAdtValue(((EffectFullAdtValue) _innerValue_1), ((EffectFullType) _type));
+          _builder.append(_compileAdtValue, "");
+          _builder.append(")");
+          _switchResult_1 = _builder;
+        }
+      }
+      _switchResult = _switchResult_1;
     }
     return _switchResult;
   }

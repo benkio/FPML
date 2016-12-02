@@ -39,27 +39,36 @@ class EffectFullValueGenerator {
 	
 	def compile(EffectFullExpression e) {
 		switch e {
-			Expression: return "IOFunctions.Unit(" + valueGenerator.compile(e) + ")"
+			Expression: return "IOFunctions.unit(" + valueGenerator.compile(e) + ")"
 			UnitType: return "IOFunctions.ioUnit"
 			EffectFullFunctionType: return e.compile 
-			EffectFullDataValue: '''new «e.type.name»(«typeGenerator.compile(e.value,e.type.content)»)'''
+			EffectFullDataValue: '''new «e.type.name»(«compileAdtValue(e.value,e.type.content)»)'''
+			EffectFullExpression: return "IOFunctions.unit(" + e.compile + ")"
 		}	
 	}
 	
-	def compileAdtValue(EffectFullAdtValue v, IOType d) {
+	def compileAdtValue(EffectFullAdtValue v, EffectFullType d) {
 		switch v {
-			PureAdtValue: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v, d.type)»)'''
+			PureAdtValue: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v, (d as IOType).type)»)'''
 			EffectFullSumValue: {
-				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d.type as EffectFullAlgebraicType))»)'''
-				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d.type as EffectFullAlgebraicType).effectFullAdtElement1))»)'''
+				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d as EffectFullAlgebraicType))»)'''
+				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as EffectFullAlgebraicType).effectFullAdtElement1))»)'''
 			}
-			EffectFullProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,(d.type as EffectFullAlgebraicType).effectFullAdtElement1)»,«compileAdtValue(v.prodAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d.type as EffectFullAlgebraicType))»)'''
+			EffectFullProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,(d as EffectFullAlgebraicType).effectFullAdtElement1)»,«compileAdtValue(v.prodAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d as EffectFullAlgebraicType))»)'''
 			EffectFullValueRef: if ( v.value instanceof EffectFullValue ) return '''EffectFullValue.«(v.value as EffectFullValue).name»()''' else return '''EffectFullFunctionDefinitions::«(v.value as EffectFullFunctionDefinition).name»'''
 			EffectFullFunctionType: {
 				if (d instanceof EffectFullFunctionType)
 					return v.compile
 				else if (d instanceof IOType)
 					return '''IOFunctions.unit(«v.compile»)'''
+			}
+			UnitType: return '''IOFunctions.ioUnit()'''
+			EffectFullDataValue: return compile(v as EffectFullExpression)
+			default: {
+				switch v.innerValue {
+					PureAdtValue: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v.innerValue as PureAdtValue, (d as IOType).type)»)'''
+					EffectFullAdtValue: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullAdtValue, (d as IOType).type as EffectFullType)»)'''		
+				} 
 			}
 		}
 	}

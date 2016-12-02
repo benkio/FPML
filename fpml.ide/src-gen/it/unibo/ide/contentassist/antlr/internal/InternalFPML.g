@@ -2670,9 +2670,15 @@ rule__EffectFullAdtValue__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_6()); }
+		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullDataValueParserRuleCall_6()); }
+		ruleEffectFullDataValue
+		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullDataValueParserRuleCall_6()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_7()); }
 		ruleEffectFullSumValue
-		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_6()); }
+		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_7()); }
 	)
 ;
 finally {

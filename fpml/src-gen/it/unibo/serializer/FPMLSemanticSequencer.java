@@ -664,6 +664,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     EffectFullExpression returns EffectFullDataValue
 	 *     EffectFullDataValue returns EffectFullDataValue
+	 *     EffectFullAdtValue returns EffectFullDataValue
 	 *
 	 * Constraint:
 	 *     (type=[EffectFullData|ID] value=EffectFullAdtValue)

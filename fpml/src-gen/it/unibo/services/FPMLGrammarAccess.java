@@ -2313,7 +2313,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEffectFullFunctionValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cEffectFullProdValueParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cEffectFullValueRefParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cEffectFullSumValueParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cEffectFullDataValueParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cEffectFullSumValueParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		
 		//EffectFullAdtValue:
 		//	'IO' '(' innerValue=PureAdtValue ')'
@@ -2322,11 +2323,12 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| EffectFullFunctionValue
 		//	| EffectFullProdValue
 		//	| EffectFullValueRef
+		//	| EffectFullDataValue
 		//	| EffectFullSumValue;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'IO' '(' innerValue=PureAdtValue ')' | 'IO' '[' innerValue=EffectFullAdtValue ']' | UnitValue | EffectFullFunctionValue
-		//| EffectFullProdValue | EffectFullValueRef | EffectFullSumValue
+		//| EffectFullProdValue | EffectFullValueRef | EffectFullDataValue | EffectFullSumValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'IO' '(' innerValue=PureAdtValue ')'
@@ -2377,8 +2379,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//EffectFullValueRef
 		public RuleCall getEffectFullValueRefParserRuleCall_5() { return cEffectFullValueRefParserRuleCall_5; }
 		
+		//EffectFullDataValue
+		public RuleCall getEffectFullDataValueParserRuleCall_6() { return cEffectFullDataValueParserRuleCall_6; }
+		
 		//EffectFullSumValue
-		public RuleCall getEffectFullSumValueParserRuleCall_6() { return cEffectFullSumValueParserRuleCall_6; }
+		public RuleCall getEffectFullSumValueParserRuleCall_7() { return cEffectFullSumValueParserRuleCall_7; }
 	}
 	public class EffectFullProdValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EffectFullProdValue");
@@ -3807,6 +3812,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//	| EffectFullFunctionValue
 	//	| EffectFullProdValue
 	//	| EffectFullValueRef
+	//	| EffectFullDataValue
 	//	| EffectFullSumValue;
 	public EffectFullAdtValueElements getEffectFullAdtValueAccess() {
 		return pEffectFullAdtValue;
