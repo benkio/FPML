@@ -101,13 +101,13 @@ public class Others {
     IOType _switchResult = null;
     EObject _effectFullAdtElement2 = eat.getEffectFullAdtElement2();
     boolean _matched = false;
-    if (_effectFullAdtElement2 instanceof PureSumTypeFactor) {
+    if (_effectFullAdtElement2 instanceof EffectFullSumTypeFactor) {
       _matched=true;
       EObject _effectFullAdtElement2_1 = eat.getEffectFullAdtElement2();
       _switchResult = ((EffectFullSumTypeFactor) _effectFullAdtElement2_1).getAdtElement();
     }
     if (!_matched) {
-      if (_effectFullAdtElement2 instanceof PureProdTypeFactor) {
+      if (_effectFullAdtElement2 instanceof EffectFullProdTypeFactor) {
         _matched=true;
         EObject _effectFullAdtElement2_1 = eat.getEffectFullAdtElement2();
         _switchResult = ((EffectFullProdTypeFactor) _effectFullAdtElement2_1).getAdtElement();

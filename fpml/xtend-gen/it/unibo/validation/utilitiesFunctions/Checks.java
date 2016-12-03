@@ -48,6 +48,7 @@ import it.unibo.fPML.StringType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
+import it.unibo.fPML.VoidType;
 import it.unibo.validation.utilitiesFunctions.GetArgType;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
@@ -169,6 +170,9 @@ public class Checks {
   }
   
   public static boolean ValueTypeEquals(final ValueType v, final ValueType v2) {
+    if ((v2 instanceof VoidType)) {
+      return false;
+    }
     boolean _matched = false;
     if (v instanceof PureFunctionType) {
       _matched=true;
@@ -182,6 +186,20 @@ public class Checks {
         return ((v2 instanceof DataType) && ((DataType)v).getType().getName().equals(((DataType) v2).getType().getName()));
       }
     }
+    if (!_matched) {
+      if (v instanceof PureAlgebraicType) {
+        _matched=true;
+        return (((v2 instanceof PureAlgebraicType) && 
+          Checks.ValueTypeEquals(((PureAlgebraicType)v).getPureAdtElement1(), ((PureAlgebraicType) v2).getPureAdtElement1())) && 
+          Checks.ValueTypeEquals(Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType)v)), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) v2))));
+      }
+    }
+    if (!_matched) {
+      if (v instanceof VoidType) {
+        _matched=true;
+        return false;
+      }
+    }
     EClass _eClass = v.eClass();
     EClass _eClass_1 = v2.eClass();
     return Objects.equal(_eClass, _eClass_1);
@@ -190,6 +208,9 @@ public class Checks {
   public static boolean TypeEquals(final Type t, final Type t1) {
     if (((t1 instanceof UnitType) || ((t instanceof UnitType) && Objects.equal(t1, null)))) {
       return true;
+    }
+    if (((t instanceof VoidType) || (t1 instanceof VoidType))) {
+      return false;
     }
     boolean _matched = false;
     if (t instanceof EffectFullFunctionType) {
@@ -204,7 +225,27 @@ public class Checks {
         return false;
       }
     }
-    return Checks.ValueTypeEquals(((ValueType) t), ((ValueType) t1));
+    if (!_matched) {
+      if (t instanceof IOType) {
+        _matched=true;
+        return ((t1 instanceof IOType) && Checks.TypeEquals(((IOType)t).getType(), ((IOType) t1).getType()));
+      }
+    }
+    if (!_matched) {
+      if (t instanceof EffectFullDataType) {
+        _matched=true;
+        return ((t1 instanceof EffectFullDataType) && ((EffectFullDataType)t).getType().getName().equals(((EffectFullDataType) t1).getType().getName()));
+      }
+    }
+    if (!_matched) {
+      if (t instanceof EffectFullAlgebraicType) {
+        _matched=true;
+        return (((t1 instanceof EffectFullAlgebraicType) && 
+          Checks.TypeEquals(((EffectFullAlgebraicType)t).getEffectFullAdtElement1(), ((EffectFullAlgebraicType) t1).getEffectFullAdtElement1())) && 
+          Checks.TypeEquals(Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)t)), Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) t1))));
+      }
+    }
+    return ((t1 instanceof ValueType) && Checks.ValueTypeEquals(((ValueType) t), ((ValueType) t1)));
   }
   
   public static boolean functionReturnType(final PureFunctionDefinition f) {
@@ -334,7 +375,7 @@ public class Checks {
   }
   
   public static boolean functionReturnTypeEffectFull(final EffectFullFunctionDefinition definition) {
-    return (Checks.TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), definition.getReturnType().getType()) || Objects.equal(GetReturnType.effectFullFunctionDefinition(definition), null));
+    return (Checks.TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), definition.getReturnType()) || Objects.equal(GetReturnType.effectFullFunctionDefinition(definition), null));
   }
   
   public static boolean functionArgTypeEffectFull(final EffectFullFunctionDefinition definition) {

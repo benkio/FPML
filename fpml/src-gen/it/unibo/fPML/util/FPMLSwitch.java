@@ -341,6 +341,15 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.VOID_TYPE:
+      {
+        VoidType voidType = (VoidType)theEObject;
+        T result = caseVoidType(voidType);
+        if (result == null) result = caseEffectFullType(voidType);
+        if (result == null) result = caseType(voidType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.INTEGER_TYPE:
       {
         IntegerType integerType = (IntegerType)theEObject;
@@ -744,6 +753,14 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullFunction(effectFullValue);
         if (result == null) result = caseFunction(effectFullValue);
         if (result == null) result = caseEffectFullReference(effectFullValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION:
+      {
+        RecursiveEffectFullExpression recursiveEffectFullExpression = (RecursiveEffectFullExpression)theEObject;
+        T result = caseRecursiveEffectFullExpression(recursiveEffectFullExpression);
+        if (result == null) result = caseEffectFullExpression(recursiveEffectFullExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1355,6 +1372,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEffectFullType(EffectFullType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Void Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Void Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVoidType(VoidType object)
   {
     return null;
   }
@@ -2011,6 +2044,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEffectFullValue(EffectFullValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Recursive Effect Full Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Recursive Effect Full Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRecursiveEffectFullExpression(RecursiveEffectFullExpression object)
   {
     return null;
   }

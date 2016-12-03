@@ -100,11 +100,11 @@ public class EffectFullFunctionGenerator {
     boolean _notEquals = (!Objects.equal(_name, "main"));
     if (_notEquals) {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("public static IO<");
+      _builder.append("public static ");
       IOType _returnType = pf.getReturnType();
-      String _compile = this.typeGenerator.compile(_returnType);
+      Object _compile = this.typeGenerator.compile(_returnType);
       _builder.append(_compile, "");
-      _builder.append("> ");
+      _builder.append(" ");
       String _name_1 = pf.getName();
       _builder.append(_name_1, "");
       _builder.append(" (");
@@ -409,9 +409,9 @@ public class EffectFullFunctionGenerator {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("IOFunctions.as(");
       _builder.append(inputChain, "");
-      _builder.append(",IOFunctions.runSafe(");
+      _builder.append(",");
       _builder.append(valueCompiled, "");
-      _builder.append("))");
+      _builder.append(")");
       return _builder.toString();
     }
   }

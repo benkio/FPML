@@ -40,10 +40,10 @@ class EffectFullValueGenerator {
 	def compile(EffectFullExpression e) {
 		switch e {
 			Expression: return "IOFunctions.unit(" + valueGenerator.compile(e) + ")"
-			UnitType: return "IOFunctions.ioUnit"
+			UnitType: return "Unit.unit()"
 			EffectFullFunctionType: return e.compile 
 			EffectFullDataValue: '''new «e.type.name»(«compileAdtValue(e.value,e.type.content)»)'''
-			EffectFullExpression: return "IOFunctions.unit(" + e.compile + ")"
+			RecursiveEffectFullExpression: return "IOFunctions.unit(" + e.exp.compile + ")"
 		}	
 	}
 	
@@ -82,16 +82,16 @@ class EffectFullValueGenerator {
 						}
 				}
 	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg != null)»
-	new F<«typeGenerator.compile(pft.value.arg.type)»,IO<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>>() {
+	new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>() {
 				@Override
-				public IO<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»> f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
+				public «typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
 					return «EffectFullFunctionGenerator.compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), pft.value.arg)»;
 				}
 		}
 	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg == null)»
-		new F0<IO<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>>() {
+		new F0<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>() {
 					@Override
-					public IO<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»> f() {
+					public «typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))» f() {
 						return «EffectFullFunctionGenerator.compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), null)»;
 					}
 			}.f()

@@ -251,6 +251,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createEffectFullTypeAdapter();
       }
       @Override
+      public Adapter caseVoidType(VoidType object)
+      {
+        return createVoidTypeAdapter();
+      }
+      @Override
       public Adapter caseIntegerType(IntegerType object)
       {
         return createIntegerTypeAdapter();
@@ -454,6 +459,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseEffectFullValue(EffectFullValue object)
       {
         return createEffectFullValueAdapter();
+      }
+      @Override
+      public Adapter caseRecursiveEffectFullExpression(RecursiveEffectFullExpression object)
+      {
+        return createRecursiveEffectFullExpressionAdapter();
       }
       @Override
       public Adapter caseEffectFullLambda(EffectFullLambda object)
@@ -1018,6 +1028,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEffectFullTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.VoidType <em>Void Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.VoidType
+   * @generated
+   */
+  public Adapter createVoidTypeAdapter()
   {
     return null;
   }
@@ -1633,6 +1658,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEffectFullValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.RecursiveEffectFullExpression <em>Recursive Effect Full Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.RecursiveEffectFullExpression
+   * @generated
+   */
+  public Adapter createRecursiveEffectFullExpressionAdapter()
   {
     return null;
   }

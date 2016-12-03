@@ -47,15 +47,18 @@ import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureValue;
+import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
+import it.unibo.fPML.VoidType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -342,15 +345,21 @@ public class GetReturnType {
   public static Type effectFullFunctionChain(final List<EffectFullReference> references, final EffectFullReference first, final EffectFullArgument argument, final AdditionalEffectFullArgument argument2) {
     boolean _notEquals = (!Objects.equal(argument2, null));
     if (_notEquals) {
+      Type _effectFullFunctionChain = GetReturnType.effectFullFunctionChain(references, first, argument, null);
+      final Type returnFunctionType = EcoreUtil2.<Type>copy(_effectFullFunctionChain);
       final EffectFullFunctionType functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
       EffectFullArgument _arg2 = argument2.getArg2();
       Type _type = _arg2.getType();
       Type _copy = EcoreUtil.<Type>copy(_type);
       functionType.setArgType(_copy);
-      Type _effectFullFunctionChain = GetReturnType.effectFullFunctionChain(references, first, argument, null);
-      IOType _IOWrap = Others.IOWrap(_effectFullFunctionChain);
-      functionType.setReturnType(_IOWrap);
-      return functionType;
+      if ((returnFunctionType instanceof IOType)) {
+        functionType.setReturnType(((IOType)returnFunctionType));
+      } else {
+        VoidType _createVoidType = FPMLFactory.eINSTANCE.createVoidType();
+        IOType _IOWrap = Others.IOWrap(_createVoidType);
+        functionType.setReturnType(_IOWrap);
+      }
+      return Others.IOWrap(functionType);
     } else {
       final Type firstFunctionReturnType = GetReturnType.effectFullReference(first);
       int _size = references.size();
@@ -489,9 +498,10 @@ public class GetReturnType {
       }
     }
     if (!_matched) {
-      if (expression instanceof EffectFullExpression) {
+      if (expression instanceof RecursiveEffectFullExpression) {
         _matched=true;
-        Type _effectFullExpression = GetReturnType.effectFullExpression(expression);
+        EffectFullExpression _exp = ((RecursiveEffectFullExpression)expression).getExp();
+        Type _effectFullExpression = GetReturnType.effectFullExpression(_exp);
         return Others.IOWrap(_effectFullExpression);
       }
     }

@@ -109,6 +109,7 @@
     <genClasses ecoreClass="FPML.ecore#//ValueType"/>
     <genClasses ecoreClass="FPML.ecore#//Type"/>
     <genClasses ecoreClass="FPML.ecore#//EffectFullType"/>
+    <genClasses ecoreClass="FPML.ecore#//VoidType"/>
     <genClasses ecoreClass="FPML.ecore#//IntegerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//IntegerType/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//IntegerType/value"/>
@@ -216,6 +217,9 @@
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//EffectFullValue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//RecursiveEffectFullExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//RecursiveEffectFullExpression/exp"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//EffectFullLambda"/>
     <genClasses ecoreClass="FPML.ecore#//DataValue">

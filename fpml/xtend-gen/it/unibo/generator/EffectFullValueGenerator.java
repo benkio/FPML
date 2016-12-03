@@ -20,6 +20,7 @@ import it.unibo.fPML.Expression;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.PureAdtValue;
+import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.generator.EffectFullFunctionGenerator;
@@ -90,7 +91,7 @@ public class EffectFullValueGenerator {
     _builder.newLine();
     _builder.append("public static ");
     EffectFullExpression _value = v.getValue();
-    CharSequence _compileType = this.typeGenerator.compileType(_value);
+    Object _compileType = this.typeGenerator.compileType(_value);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = v.getName();
@@ -121,7 +122,7 @@ public class EffectFullValueGenerator {
     if (!_matched) {
       if (e instanceof UnitType) {
         _matched=true;
-        return "IOFunctions.ioUnit";
+        return "Unit.unit()";
       }
     }
     if (!_matched) {
@@ -149,9 +150,10 @@ public class EffectFullValueGenerator {
       }
     }
     if (!_matched) {
-      if (e instanceof EffectFullExpression) {
+      if (e instanceof RecursiveEffectFullExpression) {
         _matched=true;
-        Object _compile = this.compile(e);
+        EffectFullExpression _exp = ((RecursiveEffectFullExpression)e).getExp();
+        Object _compile = this.compile(_exp);
         String _plus = ("IOFunctions.unit(" + _compile);
         return (_plus + ")");
       }
@@ -337,23 +339,23 @@ public class EffectFullValueGenerator {
           Type _type = _arg_1.getType();
           Object _compile = this.typeGenerator.compile(_type);
           _builder.append(_compile, "");
-          _builder.append(",IO<");
+          _builder.append(",");
           EffectFullFunctionDefinition _value_3 = pft.getValue();
           Type _effectFullFunctionDefinition = GetReturnType.effectFullFunctionDefinition(_value_3);
           Object _compile_1 = this.typeGenerator.compile(_effectFullFunctionDefinition);
           _builder.append(_compile_1, "");
-          _builder.append(">>() {");
+          _builder.append(">() {");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t\t");
           _builder.append("@Override");
           _builder.newLine();
           _builder.append("\t\t\t");
-          _builder.append("public IO<");
+          _builder.append("public ");
           EffectFullFunctionDefinition _value_4 = pft.getValue();
           Type _effectFullFunctionDefinition_1 = GetReturnType.effectFullFunctionDefinition(_value_4);
           Object _compile_2 = this.typeGenerator.compile(_effectFullFunctionDefinition_1);
           _builder.append(_compile_2, "\t\t\t");
-          _builder.append("> f(");
+          _builder.append(" f(");
           EffectFullFunctionDefinition _value_5 = pft.getValue();
           EffectFullArgument _arg_2 = _value_5.getArg();
           Type _type_1 = _arg_2.getType();
@@ -384,23 +386,23 @@ public class EffectFullValueGenerator {
           _builder.newLine();
         } else {
           if (((pft.getValue().getFunctionBody() instanceof CompositionFunctionBodyEffect) && Objects.equal(pft.getValue().getArg(), null))) {
-            _builder.append("new F0<IO<");
+            _builder.append("new F0<");
             EffectFullFunctionDefinition _value_9 = pft.getValue();
             Type _effectFullFunctionDefinition_2 = GetReturnType.effectFullFunctionDefinition(_value_9);
             Object _compile_4 = this.typeGenerator.compile(_effectFullFunctionDefinition_2);
             _builder.append(_compile_4, "");
-            _builder.append(">>() {");
+            _builder.append(">() {");
             _builder.newLineIfNotEmpty();
             _builder.append("\t\t\t");
             _builder.append("@Override");
             _builder.newLine();
             _builder.append("\t\t\t");
-            _builder.append("public IO<");
+            _builder.append("public ");
             EffectFullFunctionDefinition _value_10 = pft.getValue();
             Type _effectFullFunctionDefinition_3 = GetReturnType.effectFullFunctionDefinition(_value_10);
             Object _compile_5 = this.typeGenerator.compile(_effectFullFunctionDefinition_3);
             _builder.append(_compile_5, "\t\t\t");
-            _builder.append("> f() {");
+            _builder.append(" f() {");
             _builder.newLineIfNotEmpty();
             _builder.append("\t\t\t\t");
             _builder.append("return ");

@@ -36,8 +36,8 @@ class Others {
 	
 	def static IOType getElement2ValueTypeFromEffectFullAlgebraicType(EffectFullAlgebraicType eat) {
 		switch eat.effectFullAdtElement2 {
-			PureSumTypeFactor: (eat.effectFullAdtElement2 as EffectFullSumTypeFactor).adtElement
-			PureProdTypeFactor: (eat.effectFullAdtElement2 as EffectFullProdTypeFactor).adtElement 
+			EffectFullSumTypeFactor: (eat.effectFullAdtElement2 as EffectFullSumTypeFactor).adtElement
+			EffectFullProdTypeFactor: (eat.effectFullAdtElement2 as EffectFullProdTypeFactor).adtElement 
 		}
 	}
 	

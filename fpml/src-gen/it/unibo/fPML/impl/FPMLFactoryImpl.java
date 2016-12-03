@@ -100,6 +100,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.VALUE_TYPE: return createValueType();
       case FPMLPackage.TYPE: return createType();
       case FPMLPackage.EFFECT_FULL_TYPE: return createEffectFullType();
+      case FPMLPackage.VOID_TYPE: return createVoidType();
       case FPMLPackage.INTEGER_TYPE: return createIntegerType();
       case FPMLPackage.STRING_TYPE: return createStringType();
       case FPMLPackage.UNIT_TYPE: return createUnitType();
@@ -141,6 +142,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.APPLY_FIO_FACTOR: return createApplyFIOFactor();
       case FPMLPackage.PURE_VALUE: return createPureValue();
       case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
+      case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION: return createRecursiveEffectFullExpression();
       case FPMLPackage.EFFECT_FULL_LAMBDA: return createEffectFullLambda();
       case FPMLPackage.DATA_VALUE: return createDataValue();
       case FPMLPackage.EFFECT_FULL_DATA_VALUE: return createEffectFullDataValue();
@@ -533,6 +535,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     EffectFullTypeImpl effectFullType = new EffectFullTypeImpl();
     return effectFullType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public VoidType createVoidType()
+  {
+    VoidTypeImpl voidType = new VoidTypeImpl();
+    return voidType;
   }
 
   /**
@@ -984,6 +997,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     EffectFullValueImpl effectFullValue = new EffectFullValueImpl();
     return effectFullValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RecursiveEffectFullExpression createRecursiveEffectFullExpression()
+  {
+    RecursiveEffectFullExpressionImpl recursiveEffectFullExpression = new RecursiveEffectFullExpressionImpl();
+    return recursiveEffectFullExpression;
   }
 
   /**

@@ -158,7 +158,9 @@ Type:
 	ValueType | EffectFullType;
 
 EffectFullType:
-	UnitType | EffectFullFunctionType | EffectFullDataType | EffectFullAlgebraicType | IOType;
+	UnitType | EffectFullFunctionType | EffectFullDataType | EffectFullAlgebraicType | IOType | VoidType;
+
+VoidType: {VoidType};
 
 IntegerType:
 	{IntegerType} type="int";
@@ -200,7 +202,7 @@ EffectFullProdTypeFactor:
 ////////////////////////////////////////////////////////////////////
 
 EffectFullExpression:
-	'IO' '[' EffectFullExpression ']' 
+	{RecursiveEffectFullExpression} 'IO' '[' exp=EffectFullExpression ']' 
 	| 'IO' '(' Expression ')' 
 	| UnitValue 
 	| EffectFullFunctionValue 

@@ -339,6 +339,15 @@ public interface FPMLFactory extends EFactory
   EffectFullType createEffectFullType();
 
   /**
+   * Returns a new object of class '<em>Void Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Void Type</em>'.
+   * @generated
+   */
+  VoidType createVoidType();
+
+  /**
    * Returns a new object of class '<em>Integer Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -706,6 +715,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   EffectFullValue createEffectFullValue();
+
+  /**
+   * Returns a new object of class '<em>Recursive Effect Full Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Recursive Effect Full Expression</em>'.
+   * @generated
+   */
+  RecursiveEffectFullExpression createRecursiveEffectFullExpression();
 
   /**
    * Returns a new object of class '<em>Effect Full Lambda</em>'.

@@ -15,6 +15,7 @@ import it.unibo.fPML.Type
 import it.unibo.fPML.EffectFullFunctionDefinition
 import it.unibo.fPML.EffectFullAdtValue
 import org.eclipse.xtend.lib.annotations.EqualsHashCodeProcessor.Util
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class Checks {
 	
@@ -68,23 +69,34 @@ class Checks {
 	}
 	
 	def static boolean ValueTypeEquals(ValueType v, ValueType v2) {
+		if (v2 instanceof VoidType) return false
 		switch v {
 			PureFunctionType: return 	v2 instanceof PureFunctionType && 
 										ValueTypeEquals(v.argType,(v2 as PureFunctionType).argType) && 
 										ValueTypeEquals(v.returnType,(v2 as PureFunctionType).returnType)
 			DataType: return v2 instanceof DataType && v.type.name.equals((v2 as DataType).type.name)
+			PureAlgebraicType: return v2 instanceof PureAlgebraicType &&
+											ValueTypeEquals(v.pureAdtElement1, (v2 as PureAlgebraicType).pureAdtElement1) &&
+											ValueTypeEquals(Others.getElement2ValueTypeFromPureAlgebraicType(v), Others.getElement2ValueTypeFromPureAlgebraicType(v2 as PureAlgebraicType))
+			VoidType: return false
 			default: return v.eClass == v2.eClass
 		}
 	}
 	
 	def static boolean TypeEquals(Type t, Type t1) {
 		if (t1 instanceof UnitType || (t instanceof UnitType && t1 == null)) return true
+		if (t instanceof VoidType || t1 instanceof VoidType) return false
 		switch t {
 			EffectFullFunctionType: return 	t1 instanceof EffectFullFunctionType &&
 											TypeEquals(t.argType, (t1 as EffectFullFunctionType).argType) &&
 											TypeEquals(t.returnType.type, (t1 as EffectFullFunctionType).returnType.type)
 			UnitType: return false
-			default: return ValueTypeEquals((t as ValueType), (t1 as ValueType))
+			IOType: return t1 instanceof IOType && TypeEquals(t.type, (t1 as IOType).type)
+			EffectFullDataType: return t1 instanceof EffectFullDataType && t.type.name.equals((t1 as EffectFullDataType).type.name)
+			EffectFullAlgebraicType: return t1 instanceof EffectFullAlgebraicType &&
+											TypeEquals(t.effectFullAdtElement1, (t1 as EffectFullAlgebraicType).effectFullAdtElement1) &&
+											TypeEquals(Others.getElement2ValueTypeFromEffectFullAlgebraicType(t), Others.getElement2ValueTypeFromEffectFullAlgebraicType(t1 as EffectFullAlgebraicType))
+			default: return t1 instanceof ValueType && ValueTypeEquals((t as ValueType), (t1 as ValueType))
 		}
 	}
 	
@@ -167,7 +179,7 @@ class Checks {
 	}
 	
 	def static functionReturnTypeEffectFull(EffectFullFunctionDefinition definition) {
-		return TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), definition.returnType.type) || GetReturnType.effectFullFunctionDefinition(definition) == null 
+		return TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), definition.returnType) || GetReturnType.effectFullFunctionDefinition(definition) == null 
 	}
 	
 	def static functionArgTypeEffectFull(it.unibo.fPML.EffectFullFunctionDefinition definition) {

@@ -80,11 +80,13 @@ import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueBlock;
 import it.unibo.fPML.PureValueRef;
+import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
+import it.unibo.fPML.VoidType;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -345,6 +347,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass effectFullTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass voidTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -632,6 +641,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass effectFullValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass recursiveEffectFullExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1519,6 +1535,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getVoidType()
+  {
+    return voidTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getIntegerType()
   {
     return integerTypeEClass;
@@ -2339,6 +2365,26 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getRecursiveEffectFullExpression()
+  {
+    return recursiveEffectFullExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecursiveEffectFullExpression_Exp()
+  {
+    return (EReference)recursiveEffectFullExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getEffectFullLambda()
   {
     return effectFullLambdaEClass;
@@ -2538,6 +2584,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     effectFullTypeEClass = createEClass(EFFECT_FULL_TYPE);
 
+    voidTypeEClass = createEClass(VOID_TYPE);
+
     integerTypeEClass = createEClass(INTEGER_TYPE);
     createEAttribute(integerTypeEClass, INTEGER_TYPE__TYPE);
     createEAttribute(integerTypeEClass, INTEGER_TYPE__VALUE);
@@ -2661,6 +2709,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     effectFullValueEClass = createEClass(EFFECT_FULL_VALUE);
     createEReference(effectFullValueEClass, EFFECT_FULL_VALUE__VALUE);
 
+    recursiveEffectFullExpressionEClass = createEClass(RECURSIVE_EFFECT_FULL_EXPRESSION);
+    createEReference(recursiveEffectFullExpressionEClass, RECURSIVE_EFFECT_FULL_EXPRESSION__EXP);
+
     effectFullLambdaEClass = createEClass(EFFECT_FULL_LAMBDA);
 
     dataValueEClass = createEClass(DATA_VALUE);
@@ -2719,6 +2770,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     ioTypeEClass.getESuperTypes().add(this.getEffectFullType());
     valueTypeEClass.getESuperTypes().add(this.getType());
     effectFullTypeEClass.getESuperTypes().add(this.getType());
+    voidTypeEClass.getESuperTypes().add(this.getEffectFullType());
     integerTypeEClass.getESuperTypes().add(this.getValueType());
     integerTypeEClass.getESuperTypes().add(this.getExpression());
     stringTypeEClass.getESuperTypes().add(this.getValueType());
@@ -2766,6 +2818,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     applyFIOEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     pureValueEClass.getESuperTypes().add(this.getPureFunctionDefinition());
     effectFullValueEClass.getESuperTypes().add(this.getEffectFullFunctionDefinition());
+    recursiveEffectFullExpressionEClass.getESuperTypes().add(this.getEffectFullExpression());
     effectFullLambdaEClass.getESuperTypes().add(this.getEffectFullFunctionDefinition());
     dataValueEClass.getESuperTypes().add(this.getDataType());
     effectFullDataValueEClass.getESuperTypes().add(this.getEffectFullDataType());
@@ -2885,6 +2938,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(effectFullTypeEClass, EffectFullType.class, "EffectFullType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(integerTypeEClass, IntegerType.class, "IntegerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntegerType_Type(), ecorePackage.getEString(), "type", null, 0, 1, IntegerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3008,6 +3063,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(effectFullValueEClass, EffectFullValue.class, "EffectFullValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEffectFullValue_Value(), this.getEffectFullExpression(), null, "value", null, 0, 1, EffectFullValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(recursiveEffectFullExpressionEClass, RecursiveEffectFullExpression.class, "RecursiveEffectFullExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRecursiveEffectFullExpression_Exp(), this.getEffectFullExpression(), null, "exp", null, 0, 1, RecursiveEffectFullExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(effectFullLambdaEClass, EffectFullLambda.class, "EffectFullLambda", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -16,8 +16,10 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureSumTypeFactor;
+import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -171,36 +173,42 @@ public class TypeGenerator {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("Either<");
           IOType _effectFullAdtElement1 = ((EffectFullAlgebraicType)t).getEffectFullAdtElement1();
-          String _compile = this.compile(_effectFullAdtElement1);
+          Object _compile = this.compile(_effectFullAdtElement1);
           _builder.append(_compile, "");
           _builder.append(", ");
           IOType _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)t));
-          _builder.append(_element2ValueTypeFromEffectFullAlgebraicType, "");
+          Object _compile_1 = this.compile(_element2ValueTypeFromEffectFullAlgebraicType);
+          _builder.append(_compile_1, "");
           _builder.append(">");
           return _builder.toString();
         } else {
           StringConcatenation _builder_1 = new StringConcatenation();
           _builder_1.append("P2<");
           IOType _effectFullAdtElement1_1 = ((EffectFullAlgebraicType)t).getEffectFullAdtElement1();
-          String _compile_1 = this.compile(_effectFullAdtElement1_1);
-          _builder_1.append(_compile_1, "");
+          Object _compile_2 = this.compile(_effectFullAdtElement1_1);
+          _builder_1.append(_compile_2, "");
           _builder_1.append(", ");
           IOType _element2ValueTypeFromEffectFullAlgebraicType_1 = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)t));
-          _builder_1.append(_element2ValueTypeFromEffectFullAlgebraicType_1, "");
+          Object _compile_3 = this.compile(_element2ValueTypeFromEffectFullAlgebraicType_1);
+          _builder_1.append(_compile_3, "");
           _builder_1.append(">");
           return _builder_1.toString();
         }
       }
     }
+    if (!_matched) {
+      if (t instanceof IOType) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IO<");
+        Type _type = ((IOType)t).getType();
+        Object _compile = this.compile(_type);
+        _builder.append(_compile, "");
+        _builder.append(">");
+        return _builder.toString();
+      }
+    }
     return _switchResult;
-  }
-  
-  public String compile(final IOType iot) {
-    StringConcatenation _builder = new StringConcatenation();
-    Type _type = iot.getType();
-    Object _compile = this.compile(_type);
-    _builder.append(_compile, "");
-    return _builder.toString();
   }
   
   public String compileType(final Expression e) {
@@ -208,12 +216,6 @@ public class TypeGenerator {
     if (e instanceof IntegerType) {
       _matched=true;
       return "int";
-    }
-    if (!_matched) {
-      if (e instanceof UnitType) {
-        _matched=true;
-        return "IO<Unit>";
-      }
     }
     if (!_matched) {
       if (e instanceof StringType) {
@@ -228,10 +230,29 @@ public class TypeGenerator {
         return _type.getName();
       }
     }
+    if (!_matched) {
+      if (e instanceof PureFunctionType) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("F<");
+        PureFunctionDefinition _value = ((PureFunctionType)e).getValue();
+        Argument _arg = _value.getArg();
+        ValueType _type = _arg.getType();
+        Object _compile = this.compile(_type);
+        _builder.append(_compile, "");
+        _builder.append(", ");
+        PureFunctionDefinition _value_1 = ((PureFunctionType)e).getValue();
+        Type _function = GetReturnType.function(_value_1);
+        Object _compile_1 = this.compile(_function);
+        _builder.append(_compile_1, "");
+        _builder.append(">");
+        return _builder.toString();
+      }
+    }
     return null;
   }
   
-  public CharSequence compileType(final EffectFullExpression e) {
+  public Object compileType(final EffectFullExpression e) {
     CharSequence _switchResult = null;
     boolean _matched = false;
     if (e instanceof Expression) {
@@ -247,7 +268,7 @@ public class TypeGenerator {
       if (e instanceof UnitType) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IO<Unit>");
+        _builder.append("Unit");
         _switchResult = _builder;
       }
     }
@@ -272,21 +293,17 @@ public class TypeGenerator {
           boolean _notEquals = (!Objects.equal(_returnType_1, null));
           if (_notEquals) {
             StringConcatenation _builder_1 = new StringConcatenation();
-            _builder_1.append("IO<");
             IOType _returnType_2 = ((EffectFullFunctionType)e).getReturnType();
             Type _type_1 = _returnType_2.getType();
             Object _compile_2 = this.compile(_type_1);
             _builder_1.append(_compile_2, "");
-            _builder_1.append(">");
             return _builder_1.toString();
           } else {
             StringConcatenation _builder_2 = new StringConcatenation();
-            _builder_2.append("IO<");
             EffectFullFunctionDefinition _value = ((EffectFullFunctionType)e).getValue();
             Type _function = GetReturnType.function(_value);
             Object _compile_3 = this.compile(_function);
             _builder_2.append(_compile_3, "");
-            _builder_2.append(">");
             return _builder_2.toString();
           }
         }
@@ -297,6 +314,18 @@ public class TypeGenerator {
         _matched=true;
         EffectFullData _type = ((EffectFullDataType)e).getType();
         _switchResult = _type.getName();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof RecursiveEffectFullExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IO<");
+        EffectFullExpression _exp = ((RecursiveEffectFullExpression)e).getExp();
+        Object _compileType = this.compileType(_exp);
+        _builder.append(_compileType, "");
+        _builder.append(">");
+        _switchResult = _builder;
       }
     }
     return _switchResult;

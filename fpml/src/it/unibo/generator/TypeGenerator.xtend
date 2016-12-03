@@ -22,6 +22,7 @@ import it.unibo.fPML.PureProdTypeFactor
 import it.unibo.validation.utilitiesFunctions.Others
 import it.unibo.fPML.EffectFullAlgebraicType
 import it.unibo.fPML.EffectFullSumTypeFactor
+import it.unibo.fPML.RecursiveEffectFullExpression
 
 class TypeGenerator {
 	
@@ -51,37 +52,35 @@ class TypeGenerator {
 			EffectFullDataType: '''«t.type.name»'''
 			EffectFullAlgebraicType: {
 				if (t.effectFullAdtElement2 instanceof EffectFullSumTypeFactor)
-					return '''Either<«t.effectFullAdtElement1.compile», «Others.getElement2ValueTypeFromEffectFullAlgebraicType(t)»>'''
+					return '''Either<«t.effectFullAdtElement1.compile», «Others.getElement2ValueTypeFromEffectFullAlgebraicType(t).compile»>'''
 				else
-					return '''P2<«t.effectFullAdtElement1.compile», «Others.getElement2ValueTypeFromEffectFullAlgebraicType(t)»>'''
+					return '''P2<«t.effectFullAdtElement1.compile», «Others.getElement2ValueTypeFromEffectFullAlgebraicType(t).compile»>'''
 			}
+			IOType: return '''IO<«t.type.compile»>'''
 		}
-	}
-	
-	def compile(IOType iot) {
-		return '''«compile(iot.type)»'''
 	}
 	
 	def compileType(Expression e) {
 		switch e {
 			IntegerType: return "int"
-			UnitType: return "IO<Unit>"
 			StringType: return "String"
 			DataType: return e.type.name
+			PureFunctionType: return '''F<«e.value.arg.type.compile», «GetReturnType.function(e.value).compile »>'''
 		}
 	}
 	
 	def compileType(EffectFullExpression e) {
 		switch e {
 			Expression: '''IO<«compileType(e)»>'''
-			UnitType: '''IO<Unit>'''
+			UnitType: '''Unit'''
 			EffectFullFunctionType: if (e.argType != null && e.returnType != null) 
 										return '''F<«e.argType.compile», IO<«e.returnType.type.compile»>>'''
 									else if(e.returnType != null)
-										return '''IO<«e.returnType.type.compile»>'''
+										return '''«e.returnType.type.compile»'''
 									else 
-										return '''IO<«GetReturnType.function(e.value).compile»>'''
+										return '''«GetReturnType.function(e.value).compile»'''
 			EffectFullDataType: e.type.name
+		    RecursiveEffectFullExpression: '''IO<«e.exp.compileType»>'''
 		}
 	}
 }

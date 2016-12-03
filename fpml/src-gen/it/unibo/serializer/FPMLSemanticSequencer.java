@@ -65,9 +65,11 @@ import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueBlock;
 import it.unibo.fPML.PureValueRef;
+import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.UnitType;
+import it.unibo.fPML.VoidType;
 import it.unibo.services.FPMLGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -309,6 +311,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.PURE_VALUE_REF:
 				sequence_PureValueRef(context, (PureValueRef) semanticObject); 
 				return; 
+			case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION:
+				sequence_EffectFullExpression(context, (RecursiveEffectFullExpression) semanticObject); 
+				return; 
 			case FPMLPackage.STRING_TYPE:
 				if (rule == grammarAccess.getValueTypeRule()
 						|| rule == grammarAccess.getTypeRule()
@@ -341,6 +346,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case FPMLPackage.VOID_TYPE:
+				sequence_VoidType(context, (VoidType) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -700,6 +708,24 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEffectFullDataAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getEffectFullDataAccess().getContentEffectFullTypeParserRuleCall_2_0(), semanticObject.getContent());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EffectFullExpression returns RecursiveEffectFullExpression
+	 *
+	 * Constraint:
+	 *     exp=EffectFullExpression
+	 */
+	protected void sequence_EffectFullExpression(ISerializationContext context, RecursiveEffectFullExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RECURSIVE_EFFECT_FULL_EXPRESSION__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RECURSIVE_EFFECT_FULL_EXPRESSION__EXP));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEffectFullExpressionAccess().getExpEffectFullExpressionParserRuleCall_0_3_0(), semanticObject.getExp());
 		feeder.finish();
 	}
 	
@@ -1537,6 +1563,20 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {UnitType}
 	 */
 	protected void sequence_UnitValue(ISerializationContext context, UnitType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Type returns VoidType
+	 *     EffectFullType returns VoidType
+	 *     VoidType returns VoidType
+	 *
+	 * Constraint:
+	 *     {VoidType}
+	 */
+	protected void sequence_VoidType(ISerializationContext context, VoidType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

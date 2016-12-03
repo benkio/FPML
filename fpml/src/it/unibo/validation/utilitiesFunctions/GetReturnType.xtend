@@ -122,14 +122,18 @@ class GetReturnType {
 	
 	def static Type effectFullFunctionChain(List<EffectFullReference> references, EffectFullReference first, EffectFullArgument argument, AdditionalEffectFullArgument argument2) {
 		if (argument2 != null) { //HigherOrder
+			val returnFunctionType = EcoreUtil2.copy(effectFullFunctionChain(references, first, argument, null))
 			val functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType
 			functionType.argType = EcoreUtil.copy(argument2.arg2.type)
-			functionType.returnType = Others.IOWrap(effectFullFunctionChain(references, first, argument, null))
-			return functionType
+			if (returnFunctionType instanceof IOType)
+				functionType.returnType = returnFunctionType
+			else 
+				functionType.returnType = Others.IOWrap(FPMLFactory.eINSTANCE.createVoidType)
+			return Others.IOWrap(functionType)
 		} else { //Normal single argument function
 			val firstFunctionReturnType = effectFullReference(first)
 			if (references.size == 0)
-				return firstFunctionReturnType
+					return firstFunctionReturnType
 			else {
 				return effectFullFunctionChain(references.tail.toList, references.head ,argument, null)
 			}
@@ -171,8 +175,8 @@ class GetReturnType {
 					expression
 				} 
 			EffectFullDataValue: expression
-			EffectFullExpression: {
-				return Others.IOWrap(effectFullExpression(expression))
+			RecursiveEffectFullExpression: {
+				return Others.IOWrap(effectFullExpression(expression.exp))
 			}
 		}
 	}

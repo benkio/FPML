@@ -28,7 +28,7 @@ class EffectFullFunctionGenerator {
 	def compile(EffectFullFunctionDefinition pf) {
 		if (pf.name != "main") {
 			return '''
-			public static IO<«typeGenerator.compile(pf.returnType)»> «pf.name» («typeGenerator.compile(pf.arg)»){
+			public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
 				«IF pf.functionBody instanceof EmptyFunctionBody»
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
@@ -96,7 +96,7 @@ class EffectFullFunctionGenerator {
 		if (inputChain.isNullOrEmpty) {
 			return valueCompiled;
 		}else
-			return '''IOFunctions.as(«inputChain»,IOFunctions.runSafe(«valueCompiled»))'''
+			return '''IOFunctions.as(«inputChain»,«valueCompiled»)'''
 	}
 
 
