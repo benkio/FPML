@@ -55,6 +55,8 @@ public class EffectFullValueGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("import it.unibo.Pure.PureFunctionDefinitions;");
     _builder.newLine();
+    _builder.append("import it.unibo.Pure.Data.PureValue;");
+    _builder.newLine();
     _builder.append("import fj.data.*;");
     _builder.newLine();
     _builder.append("import fj.P;");

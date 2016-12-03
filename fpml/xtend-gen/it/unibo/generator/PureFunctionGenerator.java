@@ -47,6 +47,8 @@ public class PureFunctionGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("import fj.F;");
     _builder.newLine();
+    _builder.append("import fj.data.*;");
+    _builder.newLine();
     _builder.newLine();
     _builder.append("public class PureFunctionDefinitions {");
     _builder.newLine();

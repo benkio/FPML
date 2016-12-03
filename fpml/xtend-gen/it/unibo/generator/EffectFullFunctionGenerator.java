@@ -32,10 +32,12 @@ import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.Times;
+import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.PureFunctionGenerator;
 import it.unibo.generator.TypeGenerator;
+import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -136,7 +138,7 @@ public class EffectFullFunctionGenerator {
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\t");
-                _builder.append("return IOFunctions.unit(( ");
+                _builder.append("return () -> { return ( ");
                 AdditionalEffectFullArgument _higherOrderArg_1 = pf.getHigherOrderArg();
                 EffectFullArgument _arg2 = _higherOrderArg_1.getArg2();
                 CharSequence _compile_2 = this.typeGenerator.compile(_arg2);
@@ -146,7 +148,7 @@ public class EffectFullFunctionGenerator {
                 EffectFullArgument _arg_2 = pf.getArg();
                 String _compileIO_1 = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_3), _arg_2);
                 _builder.append(_compileIO_1, "\t");
-                _builder.append(");");
+                _builder.append("; };");
                 _builder.newLineIfNotEmpty();
               }
             }
@@ -358,7 +360,8 @@ public class EffectFullFunctionGenerator {
         String _name = ((EffectFullValue) e).getName();
         _builder.append(_name, "");
         _builder.append("()");
-        _switchResult = this.valueEmbellishment(valueName, _builder.toString());
+        Type _effectFullReference = GetReturnType.effectFullReference(e);
+        _switchResult = this.compileIOEffectFullReference(_builder.toString(), valueName, _effectFullReference);
       }
     }
     if (!_matched) {
@@ -377,12 +380,9 @@ public class EffectFullFunctionGenerator {
     if (!_matched) {
       if (e instanceof EffectFullArgument) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.unit(");
         String _name = ((EffectFullArgument) e).getName();
-        _builder.append(_name, "");
-        _builder.append(")");
-        _switchResult = this.valueEmbellishment(valueName, _builder.toString());
+        Type _type = ((EffectFullArgument)e).getType();
+        _switchResult = this.compileIOEffectFullReference(_name, valueName, _type);
       }
     }
     if (!_matched) {
@@ -399,6 +399,20 @@ public class EffectFullFunctionGenerator {
       }
     }
     return _switchResult;
+  }
+  
+  public String compileIOEffectFullReference(final String effectFullReferenceCompiled, final String valueName, final Type effectFullReferenceType) {
+    if ((effectFullReferenceType instanceof IOType)) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("IOFunctions.runSafe(");
+      _builder.append(effectFullReferenceCompiled, "");
+      _builder.append(")");
+      return this.valueEmbellishment(valueName, _builder.toString());
+    } else {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append(effectFullReferenceCompiled, "");
+      return this.valueEmbellishment(valueName, _builder_1.toString());
+    }
   }
   
   public String valueEmbellishment(final String inputChain, final String valueCompiled) {

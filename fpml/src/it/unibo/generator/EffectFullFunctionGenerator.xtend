@@ -3,6 +3,7 @@ package it.unibo.generator
 import it.unibo.fPML.*
 import org.eclipse.xtext.xbase.lib.Functions.Function2
 import it.unibo.validation.utilitiesFunctions.Others
+import it.unibo.validation.utilitiesFunctions.GetReturnType
 
 class EffectFullFunctionGenerator {
 	
@@ -35,7 +36,7 @@ class EffectFullFunctionGenerator {
 					«IF pf.higherOrderArg == null»
 					return «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»;
 					«ELSE»
-					return IOFunctions.unit(( «typeGenerator.compile(pf.higherOrderArg.arg2)» ) -> «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»);
+					return () -> { return ( «typeGenerator.compile(pf.higherOrderArg.arg2)» ) -> «compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»; };
 					«ENDIF»
 				«ENDIF»
 			}'''
@@ -85,11 +86,18 @@ class EffectFullFunctionGenerator {
 			ApplyFIO: '''IOFunctions.bind(«valueName», («typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIO(Others.getValueFromApplyFIOFactor(e.value), null)»)))'''
 			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«valueName»).f(«pureFunctionGenerator.compile(e.value,"", true)»))'''
 			PureValue: valueEmbellishment(valueName,'''IOFunctions.unit(PureValue.«(e as PureValue).name»())''')
-			EffectFullValue: valueEmbellishment(valueName,'''EffectFullValue.«(e as EffectFullValue).name»()''')
+			EffectFullValue: compileIOEffectFullReference('''EffectFullValue.«(e as EffectFullValue).name»()''', valueName, GetReturnType.effectFullReference(e))
 			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
-      		EffectFullArgument: valueEmbellishment(valueName,'''IOFunctions.unit(«(e as EffectFullArgument).name»)''')
+      		EffectFullArgument: compileIOEffectFullReference((e as EffectFullArgument).name, valueName, e.type)
       		EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
 		}
+	}
+
+	def compileIOEffectFullReference(String effectFullReferenceCompiled, String valueName, Type effectFullReferenceType){
+		if (effectFullReferenceType instanceof IOType)
+			return valueEmbellishment(valueName,'''IOFunctions.runSafe(«effectFullReferenceCompiled»)''')
+		else
+			return valueEmbellishment(valueName,'''«effectFullReferenceCompiled»''')
 	}
 
 	def valueEmbellishment(String inputChain, String valueCompiled){
@@ -98,7 +106,6 @@ class EffectFullFunctionGenerator {
 		}else
 			return '''IOFunctions.as(«inputChain»,«valueCompiled»)'''
 	}
-
 
 	////////////////////////////////////////////////////////////////////////////////
 	// IOWalkthrough

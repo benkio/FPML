@@ -30,6 +30,7 @@ class PureFunctionGenerator {
 		
 		import «FPMLGenerator.basePackageJava»Pure.Data.*;
 		import fj.F;
+		import fj.data.*;
 		
 		public class PureFunctionDefinitions {
 			«FOR f:pfb.features»

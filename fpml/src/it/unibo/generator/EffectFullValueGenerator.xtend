@@ -15,6 +15,7 @@ class EffectFullValueGenerator {
 	    
 	    import «FPMLGenerator.basePackageJava»Effectfull.Data.*;
 	    import it.unibo.Pure.PureFunctionDefinitions;
+	    import it.unibo.Pure.Data.PureValue;
 	    import fj.data.*;
 	    import fj.P;
 	    import fj.P2;

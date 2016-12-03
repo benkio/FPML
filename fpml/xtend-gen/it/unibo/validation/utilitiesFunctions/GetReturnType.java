@@ -317,7 +317,7 @@ public class GetReturnType {
     boolean _matched = false;
     if (full instanceof EmptyFunctionBody) {
       _matched=true;
-      _switchResult = type.getType();
+      _switchResult = type;
     }
     if (!_matched) {
       if (full instanceof CompositionFunctionBodyEffect) {

@@ -109,7 +109,7 @@ class GetReturnType {
 	
 	def static Type functionBodyEffectFull(FunctionBodyEffectFull full, EffectFullArgument argument, AdditionalEffectFullArgument argument2, IOType type) {
 		switch full {
-			EmptyFunctionBody: type.type
+			EmptyFunctionBody: type
 			CompositionFunctionBodyEffect: compositionFunctionBodyEffectFull(full, argument, argument2)
 		}
 	}
