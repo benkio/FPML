@@ -61,6 +61,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullAdtValueAccess().getAlternatives(), "rule__EffectFullAdtValue__Alternatives");
 					put(grammarAccess.getEffectFullSumValueAccess().getAlternatives(), "rule__EffectFullSumValue__Alternatives");
 					put(grammarAccess.getPrimitivePureFunctionAccess().getAlternatives(), "rule__PrimitivePureFunction__Alternatives");
+					put(grammarAccess.getApplyFFactorAccess().getAlternatives(), "rule__ApplyFFactor__Alternatives");
 					put(grammarAccess.getPrimitiveEffectFullFunctionAccess().getAlternatives(), "rule__PrimitiveEffectFullFunction__Alternatives");
 					put(grammarAccess.getPrimitiveEffectFullValueAccess().getAlternatives(), "rule__PrimitiveEffectFullValue__Alternatives");
 					put(grammarAccess.getApplyFIOFactorAccess().getAlternatives(), "rule__ApplyFIOFactor__Alternatives");
@@ -135,11 +136,13 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTimesAccess().getGroup(), "rule__Times__Group__0");
 					put(grammarAccess.getModAccess().getGroup(), "rule__Mod__Group__0");
 					put(grammarAccess.getApplyFAccess().getGroup(), "rule__ApplyF__Group__0");
+					put(grammarAccess.getApplyFFactorAccess().getGroup_1(), "rule__ApplyFFactor__Group_1__0");
 					put(grammarAccess.getPrimitivePrintAccess().getGroup(), "rule__PrimitivePrint__Group__0");
 					put(grammarAccess.getPrimitiveRandomAccess().getGroup(), "rule__PrimitiveRandom__Group__0");
 					put(grammarAccess.getPrimitiveReturnAccess().getGroup(), "rule__PrimitiveReturn__Group__0");
 					put(grammarAccess.getPrimitiveTimeAccess().getGroup(), "rule__PrimitiveTime__Group__0");
 					put(grammarAccess.getApplyFIOAccess().getGroup(), "rule__ApplyFIO__Group__0");
+					put(grammarAccess.getApplyFIOFactorAccess().getGroup_2(), "rule__ApplyFIOFactor__Group_2__0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_0(), "rule__Model__ElementsAssignment_0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_1(), "rule__Model__ElementsAssignment_1");
 					put(grammarAccess.getPureBlockAccess().getElementsAssignment_2(), "rule__PureBlock__ElementsAssignment_2");
@@ -215,8 +218,8 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullFunctionValueAccess().getValueAssignment(), "rule__EffectFullFunctionValue__ValueAssignment");
 					put(grammarAccess.getEffectFullValueRefAccess().getValueAssignment_1(), "rule__EffectFullValueRef__ValueAssignment_1");
 					put(grammarAccess.getEffectFullLambdaAccess().getArgAssignment_0_2(), "rule__EffectFullLambda__ArgAssignment_0_2");
-					put(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyAssignment_0_5(), "rule__EffectFullLambda__FunctionBodyAssignment_0_5");
-					put(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyAssignment_1_1(), "rule__EffectFullLambda__FunctionBodyAssignment_1_1");
+					put(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyAssignment_0_6(), "rule__EffectFullLambda__FunctionBodyAssignment_0_6");
+					put(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyAssignment_1_5(), "rule__EffectFullLambda__FunctionBodyAssignment_1_5");
 					put(grammarAccess.getIntValueAccess().getValueAssignment_1(), "rule__IntValue__ValueAssignment_1");
 					put(grammarAccess.getStringValueAccess().getValueAssignment_1(), "rule__StringValue__ValueAssignment_1");
 					put(grammarAccess.getFunctionValueAccess().getValueAssignment(), "rule__FunctionValue__ValueAssignment");
@@ -226,8 +229,8 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullDataValueAccess().getValueAssignment_3(), "rule__EffectFullDataValue__ValueAssignment_3");
 					put(grammarAccess.getPureValueRefAccess().getValueAssignment_1(), "rule__PureValueRef__ValueAssignment_1");
 					put(grammarAccess.getPureLambdaAccess().getArgAssignment_0_2(), "rule__PureLambda__ArgAssignment_0_2");
-					put(grammarAccess.getPureLambdaAccess().getFunctionBodyAssignment_0_5(), "rule__PureLambda__FunctionBodyAssignment_0_5");
-					put(grammarAccess.getPureLambdaAccess().getFunctionBodyAssignment_1_1(), "rule__PureLambda__FunctionBodyAssignment_1_1");
+					put(grammarAccess.getPureLambdaAccess().getFunctionBodyAssignment_0_6(), "rule__PureLambda__FunctionBodyAssignment_0_6");
+					put(grammarAccess.getPureLambdaAccess().getFunctionBodyAssignment_1_5(), "rule__PureLambda__FunctionBodyAssignment_1_5");
 					put(grammarAccess.getPureProdValueAccess().getProdAdtElement1Assignment_1(), "rule__PureProdValue__ProdAdtElement1Assignment_1");
 					put(grammarAccess.getPureProdValueAccess().getProdAdtElement2Assignment_3(), "rule__PureProdValue__ProdAdtElement2Assignment_3");
 					put(grammarAccess.getPureSumValueAccess().getSumAdtElement1Assignment_0_2(), "rule__PureSumValue__SumAdtElement1Assignment_0_2");
@@ -240,11 +243,14 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullSumValueAccess().getSumAdtElement2Assignment_1_2(), "rule__EffectFullSumValue__SumAdtElement2Assignment_1_2");
 					put(grammarAccess.getApplyFAccess().getFunctionTypeAssignment_2(), "rule__ApplyF__FunctionTypeAssignment_2");
 					put(grammarAccess.getApplyFAccess().getValueAssignment_3(), "rule__ApplyF__ValueAssignment_3");
+					put(grammarAccess.getApplyFFactorAccess().getValueReferenceAssignment_0(), "rule__ApplyFFactor__ValueReferenceAssignment_0");
+					put(grammarAccess.getApplyFFactorAccess().getValueLambdaAssignment_1_1(), "rule__ApplyFFactor__ValueLambdaAssignment_1_1");
 					put(grammarAccess.getPrimitiveReturnAccess().getTypeAssignment_2(), "rule__PrimitiveReturn__TypeAssignment_2");
 					put(grammarAccess.getApplyFIOAccess().getFunctionTypeAssignment_2(), "rule__ApplyFIO__FunctionTypeAssignment_2");
 					put(grammarAccess.getApplyFIOAccess().getValueAssignment_3(), "rule__ApplyFIO__ValueAssignment_3");
 					put(grammarAccess.getApplyFIOFactorAccess().getValueReferenceAssignment_0(), "rule__ApplyFIOFactor__ValueReferenceAssignment_0");
 					put(grammarAccess.getApplyFIOFactorAccess().getValuePrimitiveAssignment_1(), "rule__ApplyFIOFactor__ValuePrimitiveAssignment_1");
+					put(grammarAccess.getApplyFIOFactorAccess().getValueLambdaAssignment_2_1(), "rule__ApplyFIOFactor__ValueLambdaAssignment_2_1");
 				}
 			};
 		}

@@ -194,7 +194,11 @@
     <genClasses ecoreClass="FPML.ecore#//Mod"/>
     <genClasses ecoreClass="FPML.ecore#//ApplyF">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyF/functionType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyF/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyF/value"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//ApplyFFactor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFFactor/valueReference"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFFactor/valueLambda"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveEffectFullFunction"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitivePrint"/>
@@ -211,6 +215,7 @@
     <genClasses ecoreClass="FPML.ecore#//ApplyFIOFactor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFIOFactor/valueReference"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFIOFactor/valuePrimitive"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFIOFactor/valueLambda"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PureValue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureValue/value"/>

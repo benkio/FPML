@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link it.unibo.fPML.ApplyFIOFactor#getValueReference <em>Value Reference</em>}</li>
  *   <li>{@link it.unibo.fPML.ApplyFIOFactor#getValuePrimitive <em>Value Primitive</em>}</li>
+ *   <li>{@link it.unibo.fPML.ApplyFIOFactor#getValueLambda <em>Value Lambda</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getApplyFIOFactor()
@@ -75,5 +76,31 @@ public interface ApplyFIOFactor extends EObject
    * @generated
    */
   void setValuePrimitive(PrimitiveEffectFullValue value);
+
+  /**
+   * Returns the value of the '<em><b>Value Lambda</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Value Lambda</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Value Lambda</em>' containment reference.
+   * @see #setValueLambda(EffectFullFunctionDefinition)
+   * @see it.unibo.fPML.FPMLPackage#getApplyFIOFactor_ValueLambda()
+   * @model containment="true"
+   * @generated
+   */
+  EffectFullFunctionDefinition getValueLambda();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.ApplyFIOFactor#getValueLambda <em>Value Lambda</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value Lambda</em>' containment reference.
+   * @see #getValueLambda()
+   * @generated
+   */
+  void setValueLambda(EffectFullFunctionDefinition value);
 
 } // ApplyFIOFactor

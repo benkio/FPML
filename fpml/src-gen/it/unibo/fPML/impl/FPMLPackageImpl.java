@@ -6,6 +6,7 @@ package it.unibo.fPML.impl;
 import it.unibo.fPML.AdditionalEffectFullArgument;
 import it.unibo.fPML.AdditionalPureArgument;
 import it.unibo.fPML.ApplyF;
+import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
@@ -571,6 +572,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass applyFEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass applyFFactorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2195,6 +2203,36 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getApplyFFactor()
+  {
+    return applyFFactorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getApplyFFactor_ValueReference()
+  {
+    return (EReference)applyFFactorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getApplyFFactor_ValueLambda()
+  {
+    return (EReference)applyFFactorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPrimitiveEffectFullFunction()
   {
     return primitiveEffectFullFunctionEClass;
@@ -2318,6 +2356,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EReference getApplyFIOFactor_ValuePrimitive()
   {
     return (EReference)applyFIOFactorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getApplyFIOFactor_ValueLambda()
+  {
+    return (EReference)applyFIOFactorEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2682,6 +2730,10 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     createEReference(applyFEClass, APPLY_F__FUNCTION_TYPE);
     createEReference(applyFEClass, APPLY_F__VALUE);
 
+    applyFFactorEClass = createEClass(APPLY_FFACTOR);
+    createEReference(applyFFactorEClass, APPLY_FFACTOR__VALUE_REFERENCE);
+    createEReference(applyFFactorEClass, APPLY_FFACTOR__VALUE_LAMBDA);
+
     primitiveEffectFullFunctionEClass = createEClass(PRIMITIVE_EFFECT_FULL_FUNCTION);
 
     primitivePrintEClass = createEClass(PRIMITIVE_PRINT);
@@ -2702,6 +2754,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     applyFIOFactorEClass = createEClass(APPLY_FIO_FACTOR);
     createEReference(applyFIOFactorEClass, APPLY_FIO_FACTOR__VALUE_REFERENCE);
     createEReference(applyFIOFactorEClass, APPLY_FIO_FACTOR__VALUE_PRIMITIVE);
+    createEReference(applyFIOFactorEClass, APPLY_FIO_FACTOR__VALUE_LAMBDA);
 
     pureValueEClass = createEClass(PURE_VALUE);
     createEReference(pureValueEClass, PURE_VALUE__VALUE);
@@ -3035,7 +3088,11 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(applyFEClass, ApplyF.class, "ApplyF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getApplyF_FunctionType(), this.getPureFunctionType(), null, "functionType", null, 0, 1, ApplyF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getApplyF_Value(), this.getPureReference(), null, "value", null, 0, 1, ApplyF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getApplyF_Value(), this.getApplyFFactor(), null, "value", null, 0, 1, ApplyF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(applyFFactorEClass, ApplyFFactor.class, "ApplyFFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getApplyFFactor_ValueReference(), this.getPureReference(), null, "valueReference", null, 0, 1, ApplyFFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getApplyFFactor_ValueLambda(), this.getPureFunctionDefinition(), null, "valueLambda", null, 0, 1, ApplyFFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primitiveEffectFullFunctionEClass, PrimitiveEffectFullFunction.class, "PrimitiveEffectFullFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3057,6 +3114,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(applyFIOFactorEClass, ApplyFIOFactor.class, "ApplyFIOFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getApplyFIOFactor_ValueReference(), this.getEffectFullReference(), null, "valueReference", null, 0, 1, ApplyFIOFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getApplyFIOFactor_ValuePrimitive(), this.getPrimitiveEffectFullValue(), null, "valuePrimitive", null, 0, 1, ApplyFIOFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getApplyFIOFactor_ValueLambda(), this.getEffectFullFunctionDefinition(), null, "valueLambda", null, 0, 1, ApplyFIOFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pureValueEClass, PureValue.class, "PureValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPureValue_Value(), this.getExpression(), null, "value", null, 0, 1, PureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

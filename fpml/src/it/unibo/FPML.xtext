@@ -215,8 +215,8 @@ EffectFullFunctionValue returns EffectFullFunctionType: value=EffectFullLambda;
 EffectFullValueRef: {EffectFullValueRef} value=[EffectFullValue];
 
 EffectFullLambda returns EffectFullFunctionDefinition: 
-	{EffectFullLambda} '[' arg=EffectFullArgument ']' ':' functionBody=CompositionFunctionBodyEffect
-	| {EffectFullLambda} functionBody=CompositionFunctionBodyEffect;
+	{EffectFullLambda} '[' arg=EffectFullArgument ']' ':' '{' functionBody=CompositionFunctionBodyEffect '}'
+	| {EffectFullLambda} '[' ']' ':' '{' functionBody=CompositionFunctionBodyEffect '}' ;
 
 Expression:
     IntValue 
@@ -237,8 +237,8 @@ EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[Effe
 PureValueRef: {PureValueRef} value=[PureValue];
 
 PureLambda returns PureFunctionDefinition: 
-	{PureLambda} '(' arg=Argument ')' ':' functionBody=CompositionFunctionBodyPure
-	| {PureLambda} functionBody=CompositionFunctionBodyPure
+	{PureLambda} '(' arg=Argument ')' ':' '{' functionBody=CompositionFunctionBodyPure '}'
+	| {PureLambda} '(' ')' ':' '{' functionBody=CompositionFunctionBodyPure '}'
 ;
 
 PureAdtValue:
@@ -285,7 +285,11 @@ Plus: {Plus} '+';
 Minus: {Minus} '-';
 Times: {Times} '*';
 Mod: {Mod} 'mod';
-ApplyF:{ApplyF} 'applyF' functionType=PureFunctionType value=[PureReference];
+ApplyF: {ApplyF} 'applyF' functionType=PureFunctionType value=ApplyFFactor;
+ApplyFFactor:
+	valueReference=[PureReference]
+	| '(' valueLambda=PureLambda ')'
+;
 
 PrimitiveEffectFullFunction:
 	PrimitivePrint | ApplyFIO | PrimitiveReturn;
@@ -308,5 +312,6 @@ PrimitiveTime: {PrimitiveTime} "currentTime";
 ApplyFIO: {ApplyFIO} 'applyFIO' functionType=EffectFullFunctionType value=ApplyFIOFactor;
 ApplyFIOFactor: 
 	  valueReference=[EffectFullReference]
-	| valuePrimitive=PrimitiveEffectFullValue;
+	| valuePrimitive=PrimitiveEffectFullValue
+	| '(' valueLambda=EffectFullLambda ')';
     

@@ -20,6 +20,8 @@ import it.unibo.fPML.PureFunction
 import it.unibo.fPML.PureReference
 import it.unibo.fPML.Argument
 import it.unibo.fPML.PureValue
+import it.unibo.fPML.PureFunctionType
+import it.unibo.fPML.ApplyFFactor
 
 class PureFunctionGenerator {
 	
@@ -54,10 +56,10 @@ class PureFunctionGenerator {
 		if (fbp instanceof EmptyFunctionBody)
 			return '''throw new UnsupportedOperationException("TODO");'''
 		else if (fbp instanceof CompositionFunctionBodyPure)
-			return 'return ' + compile((fbp as CompositionFunctionBodyPure), arg, outsideCalls) + ';'
+			return 'return ' + compileCompositionFunctionBodyPure((fbp as CompositionFunctionBodyPure), arg, outsideCalls) + ';'
 	}
 
-	def compile(CompositionFunctionBodyPure cfbp, String argName, boolean outsideCalls) {
+	def String compileCompositionFunctionBodyPure(CompositionFunctionBodyPure cfbp, String argName, boolean outsideCalls) {
 		var result = ""
 		val initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
 		switch initialElement {
@@ -94,14 +96,21 @@ class PureFunctionGenerator {
 			Minus: "Primitives.minus(" + argName + ")"
 			Times: "Primitives.times(" + argName + ")"
 			Mod: "Primitives.mod(" + argName + ")"
-			ApplyF: argName + ".f(" + compile((purePrimitive as ApplyF).value, argName, outsideCalls) + ")"
+			ApplyF: argName + ".f(" + compileApplyFFactor(purePrimitive.value, argName, outsideCalls) + ")"		
 		}
 	}
 	
-	def compile(PureReference r,  String argName, boolean outsideCalls) {
-		switch r {
-			PureValue: return compileCall(r ,argName, outsideCalls)
-			Argument: return r.name
+	def String compileApplyFFactor(ApplyFFactor r,  String argName, boolean outsideCalls) {
+		switch r.valueReference {
+			PureValue: return compileCall(r.valueReference as PureValue ,argName, outsideCalls)
+			Argument: return r.valueReference.name
+			default: {
+				if (r.valueLambda.arg != null) {
+					return '''( «typeGenerator.compile(r.valueLambda.arg.type)» «r.valueLambda.arg.name» ) -> «r.valueLambda.functionBody.compile(argName, outsideCalls)»'''
+				} else {
+					return (r.valueLambda.functionBody as CompositionFunctionBodyPure).compileCompositionFunctionBodyPure(argName, outsideCalls)
+				}
+			}
 		}
 	}
 }

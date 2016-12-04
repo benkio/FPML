@@ -23,8 +23,15 @@ class Others {
 	}
 	
 	def static EffectFullReference getValueFromApplyFIOFactor(ApplyFIOFactor afiof) {
-		if (afiof.valuePrimitive == null) return afiof.valueReference
-		else return afiof.valuePrimitive
+		if (afiof.valuePrimitive != null) return afiof.valuePrimitive
+		else if (afiof.valueReference != null) return afiof.valueReference
+		else return afiof.valueLambda 
+	}
+	
+	def static getValueFromApplyFFactor(ApplyFFactor afiof) {
+		if (afiof.valueLambda != null) return afiof.valueLambda
+		else return afiof.valueReference
+
 	}
 	
 	def static ValueType getElement2ValueTypeFromPureAlgebraicType(PureAlgebraicType pat){

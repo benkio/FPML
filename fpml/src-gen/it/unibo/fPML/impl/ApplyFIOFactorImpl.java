@@ -4,6 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.ApplyFIOFactor;
+import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.PrimitiveEffectFullValue;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.ApplyFIOFactorImpl#getValueReference <em>Value Reference</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.ApplyFIOFactorImpl#getValuePrimitive <em>Value Primitive</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.ApplyFIOFactorImpl#getValueLambda <em>Value Lambda</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,6 +54,16 @@ public class ApplyFIOFactorImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected PrimitiveEffectFullValue valuePrimitive;
+
+  /**
+   * The cached value of the '{@link #getValueLambda() <em>Value Lambda</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValueLambda()
+   * @generated
+   * @ordered
+   */
+  protected EffectFullFunctionDefinition valueLambda;
 
   /**
    * <!-- begin-user-doc -->
@@ -170,6 +182,54 @@ public class ApplyFIOFactorImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  public EffectFullFunctionDefinition getValueLambda()
+  {
+    return valueLambda;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetValueLambda(EffectFullFunctionDefinition newValueLambda, NotificationChain msgs)
+  {
+    EffectFullFunctionDefinition oldValueLambda = valueLambda;
+    valueLambda = newValueLambda;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FIO_FACTOR__VALUE_LAMBDA, oldValueLambda, newValueLambda);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValueLambda(EffectFullFunctionDefinition newValueLambda)
+  {
+    if (newValueLambda != valueLambda)
+    {
+      NotificationChain msgs = null;
+      if (valueLambda != null)
+        msgs = ((InternalEObject)valueLambda).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FIO_FACTOR__VALUE_LAMBDA, null, msgs);
+      if (newValueLambda != null)
+        msgs = ((InternalEObject)newValueLambda).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FIO_FACTOR__VALUE_LAMBDA, null, msgs);
+      msgs = basicSetValueLambda(newValueLambda, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FIO_FACTOR__VALUE_LAMBDA, newValueLambda, newValueLambda));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -177,6 +237,8 @@ public class ApplyFIOFactorImpl extends MinimalEObjectImpl.Container implements 
     {
       case FPMLPackage.APPLY_FIO_FACTOR__VALUE_PRIMITIVE:
         return basicSetValuePrimitive(null, msgs);
+      case FPMLPackage.APPLY_FIO_FACTOR__VALUE_LAMBDA:
+        return basicSetValueLambda(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -196,6 +258,8 @@ public class ApplyFIOFactorImpl extends MinimalEObjectImpl.Container implements 
         return basicGetValueReference();
       case FPMLPackage.APPLY_FIO_FACTOR__VALUE_PRIMITIVE:
         return getValuePrimitive();
+      case FPMLPackage.APPLY_FIO_FACTOR__VALUE_LAMBDA:
+        return getValueLambda();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -215,6 +279,9 @@ public class ApplyFIOFactorImpl extends MinimalEObjectImpl.Container implements 
         return;
       case FPMLPackage.APPLY_FIO_FACTOR__VALUE_PRIMITIVE:
         setValuePrimitive((PrimitiveEffectFullValue)newValue);
+        return;
+      case FPMLPackage.APPLY_FIO_FACTOR__VALUE_LAMBDA:
+        setValueLambda((EffectFullFunctionDefinition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -236,6 +303,9 @@ public class ApplyFIOFactorImpl extends MinimalEObjectImpl.Container implements 
       case FPMLPackage.APPLY_FIO_FACTOR__VALUE_PRIMITIVE:
         setValuePrimitive((PrimitiveEffectFullValue)null);
         return;
+      case FPMLPackage.APPLY_FIO_FACTOR__VALUE_LAMBDA:
+        setValueLambda((EffectFullFunctionDefinition)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -254,6 +324,8 @@ public class ApplyFIOFactorImpl extends MinimalEObjectImpl.Container implements 
         return valueReference != null;
       case FPMLPackage.APPLY_FIO_FACTOR__VALUE_PRIMITIVE:
         return valuePrimitive != null;
+      case FPMLPackage.APPLY_FIO_FACTOR__VALUE_LAMBDA:
+        return valueLambda != null;
     }
     return super.eIsSet(featureID);
   }

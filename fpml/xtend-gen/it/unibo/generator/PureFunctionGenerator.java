@@ -3,6 +3,7 @@ package it.unibo.generator;
 import com.google.common.base.Objects;
 import it.unibo.fPML.AdditionalPureArgument;
 import it.unibo.fPML.ApplyF;
+import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
@@ -125,15 +126,15 @@ public class PureFunctionGenerator {
       return _builder.toString();
     } else {
       if ((fbp instanceof CompositionFunctionBodyPure)) {
-        String _compile = this.compile(((CompositionFunctionBodyPure) fbp), arg, outsideCalls);
-        String _plus = ("return " + _compile);
+        String _compileCompositionFunctionBodyPure = this.compileCompositionFunctionBodyPure(((CompositionFunctionBodyPure) fbp), arg, outsideCalls);
+        String _plus = ("return " + _compileCompositionFunctionBodyPure);
         return (_plus + ";");
       }
     }
     return null;
   }
   
-  public String compile(final CompositionFunctionBodyPure cfbp, final String argName, final boolean outsideCalls) {
+  public String compileCompositionFunctionBodyPure(final CompositionFunctionBodyPure cfbp, final String argName, final boolean outsideCalls) {
     String result = "";
     final PureFunction initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp);
     boolean _matched = false;
@@ -152,7 +153,7 @@ public class PureFunctionGenerator {
         String _plus = ("(" + _compile);
         String _plus_1 = (_plus + ") -> ");
         FunctionBodyPure _functionBody = ((PureLambda)initialElement).getFunctionBody();
-        Object _compile_1 = this.compile(_functionBody, argName, outsideCalls);
+        String _compile_1 = this.compile(_functionBody, argName, outsideCalls);
         String _plus_2 = (_plus_1 + _compile_1);
         result = _plus_2;
       }
@@ -267,27 +268,56 @@ public class PureFunctionGenerator {
     if (!_matched) {
       if (purePrimitive instanceof ApplyF) {
         _matched=true;
-        PureReference _value = ((ApplyF) purePrimitive).getValue();
-        String _compile = this.compile(_value, argName, outsideCalls);
-        String _plus = ((argName + ".f(") + _compile);
+        ApplyFFactor _value = ((ApplyF)purePrimitive).getValue();
+        String _compileApplyFFactor = this.compileApplyFFactor(_value, argName, outsideCalls);
+        String _plus = ((argName + ".f(") + _compileApplyFFactor);
         _switchResult = (_plus + ")");
       }
     }
     return _switchResult;
   }
   
-  public String compile(final PureReference r, final String argName, final boolean outsideCalls) {
+  public String compileApplyFFactor(final ApplyFFactor r, final String argName, final boolean outsideCalls) {
+    PureReference _valueReference = r.getValueReference();
     boolean _matched = false;
-    if (r instanceof PureValue) {
+    if (_valueReference instanceof PureValue) {
       _matched=true;
-      return this.compileCall(((PureFunction)r), argName, outsideCalls);
+      PureReference _valueReference_1 = r.getValueReference();
+      return this.compileCall(((PureValue) _valueReference_1), argName, outsideCalls);
     }
     if (!_matched) {
-      if (r instanceof Argument) {
+      if (_valueReference instanceof Argument) {
         _matched=true;
-        return ((Argument)r).getName();
+        PureReference _valueReference_1 = r.getValueReference();
+        return _valueReference_1.getName();
       }
     }
-    return null;
+    PureFunctionDefinition _valueLambda = r.getValueLambda();
+    Argument _arg = _valueLambda.getArg();
+    boolean _notEquals = (!Objects.equal(_arg, null));
+    if (_notEquals) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("( ");
+      PureFunctionDefinition _valueLambda_1 = r.getValueLambda();
+      Argument _arg_1 = _valueLambda_1.getArg();
+      ValueType _type = _arg_1.getType();
+      Object _compile = this.typeGenerator.compile(_type);
+      _builder.append(_compile, "");
+      _builder.append(" ");
+      PureFunctionDefinition _valueLambda_2 = r.getValueLambda();
+      Argument _arg_2 = _valueLambda_2.getArg();
+      String _name = _arg_2.getName();
+      _builder.append(_name, "");
+      _builder.append(" ) -> ");
+      PureFunctionDefinition _valueLambda_3 = r.getValueLambda();
+      FunctionBodyPure _functionBody = _valueLambda_3.getFunctionBody();
+      String _compile_1 = this.compile(_functionBody, argName, outsideCalls);
+      _builder.append(_compile_1, "");
+      return _builder.toString();
+    } else {
+      PureFunctionDefinition _valueLambda_4 = r.getValueLambda();
+      FunctionBodyPure _functionBody_1 = _valueLambda_4.getFunctionBody();
+      return this.compileCompositionFunctionBodyPure(((CompositionFunctionBodyPure) _functionBody_1), argName, outsideCalls);
+    }
   }
 }

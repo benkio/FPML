@@ -1,6 +1,10 @@
 package it.unibo.validation.utilitiesFunctions;
 
 import com.google.common.base.Objects;
+import it.unibo.fPML.ApplyF;
+import it.unibo.fPML.ApplyFFactor;
+import it.unibo.fPML.ApplyFIO;
+import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
@@ -40,6 +44,7 @@ import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureProdValue;
+import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
@@ -474,5 +479,35 @@ public class Checks {
       _switchResult = false;
     }
     return _switchResult;
+  }
+  
+  public static boolean applyF(final ApplyF af) {
+    ApplyFFactor _value = af.getValue();
+    PureFunctionDefinition _valueLambda = _value.getValueLambda();
+    boolean _equals = Objects.equal(_valueLambda, null);
+    if (_equals) {
+      PureFunctionType _functionType = af.getFunctionType();
+      ValueType _argType = _functionType.getArgType();
+      ApplyFFactor _value_1 = af.getValue();
+      PureReference _valueReference = _value_1.getValueReference();
+      ValueType _pureReference = GetReturnType.pureReference(_valueReference);
+      return Checks.ValueTypeEquals(_argType, _pureReference);
+    } else {
+      PureFunctionType _functionType_1 = af.getFunctionType();
+      ValueType _argType_1 = _functionType_1.getArgType();
+      ApplyFFactor _value_2 = af.getValue();
+      PureFunctionDefinition _valueLambda_1 = _value_2.getValueLambda();
+      ValueType _pureFunctionDefinition = GetReturnType.pureFunctionDefinition(_valueLambda_1);
+      return Checks.ValueTypeEquals(_argType_1, _pureFunctionDefinition);
+    }
+  }
+  
+  public static boolean applyFIO(final ApplyFIO afio) {
+    EffectFullFunctionType _functionType = afio.getFunctionType();
+    Type _argType = _functionType.getArgType();
+    ApplyFIOFactor _value = afio.getValue();
+    EffectFullReference _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
+    Type _effectFullReference = GetReturnType.effectFullReference(_valueFromApplyFIOFactor);
+    return Checks.TypeEquals(_argType, _effectFullReference);
   }
 }

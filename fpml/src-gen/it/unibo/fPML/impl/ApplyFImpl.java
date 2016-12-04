@@ -4,9 +4,9 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.ApplyF;
+import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.PureFunctionType;
-import it.unibo.fPML.PureReference;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -43,14 +43,14 @@ public class ApplyFImpl extends PrimitivePureFunctionImpl implements ApplyF
   protected PureFunctionType functionType;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected PureReference value;
+  protected ApplyFFactor value;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,27 +126,7 @@ public class ApplyFImpl extends PrimitivePureFunctionImpl implements ApplyF
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureReference getValue()
-  {
-    if (value != null && value.eIsProxy())
-    {
-      InternalEObject oldValue = (InternalEObject)value;
-      value = (PureReference)eResolveProxy(oldValue);
-      if (value != oldValue)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FPMLPackage.APPLY_F__VALUE, oldValue, value));
-      }
-    }
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PureReference basicGetValue()
+  public ApplyFFactor getValue()
   {
     return value;
   }
@@ -156,12 +136,37 @@ public class ApplyFImpl extends PrimitivePureFunctionImpl implements ApplyF
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(PureReference newValue)
+  public NotificationChain basicSetValue(ApplyFFactor newValue, NotificationChain msgs)
   {
-    PureReference oldValue = value;
+    ApplyFFactor oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_F__VALUE, oldValue, value));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_F__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(ApplyFFactor newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_F__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_F__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_F__VALUE, newValue, newValue));
   }
 
   /**
@@ -176,6 +181,8 @@ public class ApplyFImpl extends PrimitivePureFunctionImpl implements ApplyF
     {
       case FPMLPackage.APPLY_F__FUNCTION_TYPE:
         return basicSetFunctionType(null, msgs);
+      case FPMLPackage.APPLY_F__VALUE:
+        return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -193,8 +200,7 @@ public class ApplyFImpl extends PrimitivePureFunctionImpl implements ApplyF
       case FPMLPackage.APPLY_F__FUNCTION_TYPE:
         return getFunctionType();
       case FPMLPackage.APPLY_F__VALUE:
-        if (resolve) return getValue();
-        return basicGetValue();
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -213,7 +219,7 @@ public class ApplyFImpl extends PrimitivePureFunctionImpl implements ApplyF
         setFunctionType((PureFunctionType)newValue);
         return;
       case FPMLPackage.APPLY_F__VALUE:
-        setValue((PureReference)newValue);
+        setValue((ApplyFFactor)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -233,7 +239,7 @@ public class ApplyFImpl extends PrimitivePureFunctionImpl implements ApplyF
         setFunctionType((PureFunctionType)null);
         return;
       case FPMLPackage.APPLY_F__VALUE:
-        setValue((PureReference)null);
+        setValue((ApplyFFactor)null);
         return;
     }
     super.eUnset(featureID);

@@ -246,7 +246,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="ApplyF" eSuperTypes="#//PrimitivePureFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionType" eType="#//PureFunctionType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//PureReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ApplyFFactor"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ApplyFFactor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueReference" eType="#//PureReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueLambda" eType="#//PureFunctionDefinition"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveEffectFullFunction" eSuperTypes="#//EffectFullFunction #//PrimitiveFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//PrimitiveEffectFullFunction"/>
@@ -265,6 +271,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ApplyFIOFactor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueReference" eType="#//EffectFullReference"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valuePrimitive" eType="#//PrimitiveEffectFullValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueLambda" eType="#//EffectFullFunctionDefinition"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PureValue" eSuperTypes="#//PureFunctionDefinition">

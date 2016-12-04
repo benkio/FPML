@@ -411,6 +411,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createApplyFAdapter();
       }
       @Override
+      public Adapter caseApplyFFactor(ApplyFFactor object)
+      {
+        return createApplyFFactorAdapter();
+      }
+      @Override
       public Adapter casePrimitiveEffectFullFunction(PrimitiveEffectFullFunction object)
       {
         return createPrimitiveEffectFullFunctionAdapter();
@@ -1508,6 +1513,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createApplyFAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.ApplyFFactor <em>Apply FFactor</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.ApplyFFactor
+   * @generated
+   */
+  public Adapter createApplyFFactorAdapter()
   {
     return null;
   }

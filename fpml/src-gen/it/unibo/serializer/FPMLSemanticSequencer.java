@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import it.unibo.fPML.AdditionalEffectFullArgument;
 import it.unibo.fPML.AdditionalPureArgument;
 import it.unibo.fPML.ApplyF;
+import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
@@ -104,6 +105,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.APPLY_F:
 				sequence_ApplyF(context, (ApplyF) semanticObject); 
+				return; 
+			case FPMLPackage.APPLY_FFACTOR:
+				sequence_ApplyFFactor(context, (ApplyFFactor) semanticObject); 
 				return; 
 			case FPMLPackage.APPLY_FIO:
 				sequence_ApplyFIO(context, (ApplyFIO) semanticObject); 
@@ -392,10 +396,22 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     ApplyFFactor returns ApplyFFactor
+	 *
+	 * Constraint:
+	 *     (valueReference=[PureReference|ID] | valueLambda=PureLambda)
+	 */
+	protected void sequence_ApplyFFactor(ISerializationContext context, ApplyFFactor semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ApplyFIOFactor returns ApplyFIOFactor
 	 *
 	 * Constraint:
-	 *     (valueReference=[EffectFullReference|ID] | valuePrimitive=PrimitiveEffectFullValue)
+	 *     (valueReference=[EffectFullReference|ID] | valuePrimitive=PrimitiveEffectFullValue | valueLambda=EffectFullLambda)
 	 */
 	protected void sequence_ApplyFIOFactor(ISerializationContext context, ApplyFIOFactor semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -438,7 +454,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ApplyF returns ApplyF
 	 *
 	 * Constraint:
-	 *     (functionType=PureFunctionType value=[PureReference|ID])
+	 *     (functionType=PureFunctionType value=ApplyFFactor)
 	 */
 	protected void sequence_ApplyF(ISerializationContext context, ApplyF semanticObject) {
 		if (errorAcceptor != null) {
@@ -449,7 +465,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getApplyFAccess().getFunctionTypePureFunctionTypeParserRuleCall_2_0(), semanticObject.getFunctionType());
-		feeder.accept(grammarAccess.getApplyFAccess().getValuePureReferenceIDTerminalRuleCall_3_0_1(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getApplyFAccess().getValueApplyFFactorParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

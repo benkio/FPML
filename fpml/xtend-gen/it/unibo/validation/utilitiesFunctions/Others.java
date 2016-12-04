@@ -1,6 +1,7 @@
 package it.unibo.validation.utilitiesFunctions;
 
 import com.google.common.base.Objects;
+import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
@@ -18,8 +19,10 @@ import it.unibo.fPML.PrimitiveFunction;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureFunction;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureProdTypeFactor;
+import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.ValueType;
@@ -70,11 +73,27 @@ public class Others {
   
   public static EffectFullReference getValueFromApplyFIOFactor(final ApplyFIOFactor afiof) {
     PrimitiveEffectFullValue _valuePrimitive = afiof.getValuePrimitive();
-    boolean _equals = Objects.equal(_valuePrimitive, null);
-    if (_equals) {
-      return afiof.getValueReference();
-    } else {
+    boolean _notEquals = (!Objects.equal(_valuePrimitive, null));
+    if (_notEquals) {
       return afiof.getValuePrimitive();
+    } else {
+      EffectFullReference _valueReference = afiof.getValueReference();
+      boolean _notEquals_1 = (!Objects.equal(_valueReference, null));
+      if (_notEquals_1) {
+        return afiof.getValueReference();
+      } else {
+        return afiof.getValueLambda();
+      }
+    }
+  }
+  
+  public static PureReference getValueFromApplyFFactor(final ApplyFFactor afiof) {
+    PureFunctionDefinition _valueLambda = afiof.getValueLambda();
+    boolean _notEquals = (!Objects.equal(_valueLambda, null));
+    if (_notEquals) {
+      return afiof.getValueLambda();
+    } else {
+      return afiof.getValueReference();
     }
   }
   

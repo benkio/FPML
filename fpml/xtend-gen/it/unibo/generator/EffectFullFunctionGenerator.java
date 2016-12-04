@@ -3,6 +3,7 @@ package it.unibo.generator;
 import com.google.common.base.Objects;
 import it.unibo.fPML.AdditionalEffectFullArgument;
 import it.unibo.fPML.ApplyF;
+import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
@@ -29,7 +30,6 @@ import it.unibo.fPML.PrimitiveReturn;
 import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
-import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
@@ -332,9 +332,9 @@ public class EffectFullFunctionGenerator {
         _builder.append("IOFunctions.unit(IOFunctions.runSafe(");
         _builder.append(valueName, "");
         _builder.append(").f(");
-        PureReference _value = ((ApplyF)e).getValue();
-        String _compile = this.pureFunctionGenerator.compile(_value, "", true);
-        _builder.append(_compile, "");
+        ApplyFFactor _value = ((ApplyF)e).getValue();
+        String _compileApplyFFactor = this.pureFunctionGenerator.compileApplyFFactor(_value, "", true);
+        _builder.append(_compileApplyFFactor, "");
         _builder.append("))");
         _switchResult = _builder;
       }
@@ -550,9 +550,9 @@ public class EffectFullFunctionGenerator {
         Object _compile = this.typeGenerator.compile(_functionType);
         _builder.append(_compile, "");
         _builder.append(" f) -> f.f(");
-        PureReference _value = ((ApplyF)e).getValue();
-        String _compile_1 = this.pureFunctionGenerator.compile(_value, "", true);
-        _builder.append(_compile_1, "");
+        ApplyFFactor _value = ((ApplyF)e).getValue();
+        String _compileApplyFFactor = this.pureFunctionGenerator.compileApplyFFactor(_value, "", true);
+        _builder.append(_compileApplyFFactor, "");
         _builder.append("))");
         _switchResult = _builder;
       }

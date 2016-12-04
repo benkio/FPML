@@ -3190,12 +3190,16 @@ ruleEffectFullLambda returns [EObject current=null]
 			{
 				newLeafNode(otherlv_4, grammarAccess.getEffectFullLambdaAccess().getColonKeyword_0_4());
 			}
+			otherlv_5='{'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getEffectFullLambdaAccess().getLeftCurlyBracketKeyword_0_5());
+			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyCompositionFunctionBodyEffectParserRuleCall_0_5_0());
+						newCompositeNode(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyCompositionFunctionBodyEffectParserRuleCall_0_6_0());
 					}
-					lv_functionBody_5_0=ruleCompositionFunctionBodyEffect
+					lv_functionBody_6_0=ruleCompositionFunctionBodyEffect
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getEffectFullLambdaRule());
@@ -3203,12 +3207,16 @@ ruleEffectFullLambda returns [EObject current=null]
 						set(
 							$current,
 							"functionBody",
-							lv_functionBody_5_0,
+							lv_functionBody_6_0,
 							"it.unibo.FPML.CompositionFunctionBodyEffect");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
+			otherlv_7='}'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getEffectFullLambdaAccess().getRightCurlyBracketKeyword_0_7());
+			}
 		)
 		    |
 		(
@@ -3219,12 +3227,28 @@ ruleEffectFullLambda returns [EObject current=null]
 						$current);
 				}
 			)
+			otherlv_9='['
+			{
+				newLeafNode(otherlv_9, grammarAccess.getEffectFullLambdaAccess().getLeftSquareBracketKeyword_1_1());
+			}
+			otherlv_10=']'
+			{
+				newLeafNode(otherlv_10, grammarAccess.getEffectFullLambdaAccess().getRightSquareBracketKeyword_1_2());
+			}
+			otherlv_11=':'
+			{
+				newLeafNode(otherlv_11, grammarAccess.getEffectFullLambdaAccess().getColonKeyword_1_3());
+			}
+			otherlv_12='{'
+			{
+				newLeafNode(otherlv_12, grammarAccess.getEffectFullLambdaAccess().getLeftCurlyBracketKeyword_1_4());
+			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyCompositionFunctionBodyEffectParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyCompositionFunctionBodyEffectParserRuleCall_1_5_0());
 					}
-					lv_functionBody_7_0=ruleCompositionFunctionBodyEffect
+					lv_functionBody_13_0=ruleCompositionFunctionBodyEffect
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getEffectFullLambdaRule());
@@ -3232,12 +3256,16 @@ ruleEffectFullLambda returns [EObject current=null]
 						set(
 							$current,
 							"functionBody",
-							lv_functionBody_7_0,
+							lv_functionBody_13_0,
 							"it.unibo.FPML.CompositionFunctionBodyEffect");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
+			otherlv_14='}'
+			{
+				newLeafNode(otherlv_14, grammarAccess.getEffectFullLambdaAccess().getRightCurlyBracketKeyword_1_6());
+			}
 		)
 	)
 ;
@@ -3646,12 +3674,16 @@ rulePureLambda returns [EObject current=null]
 			{
 				newLeafNode(otherlv_4, grammarAccess.getPureLambdaAccess().getColonKeyword_0_4());
 			}
+			otherlv_5='{'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getPureLambdaAccess().getLeftCurlyBracketKeyword_0_5());
+			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPureLambdaAccess().getFunctionBodyCompositionFunctionBodyPureParserRuleCall_0_5_0());
+						newCompositeNode(grammarAccess.getPureLambdaAccess().getFunctionBodyCompositionFunctionBodyPureParserRuleCall_0_6_0());
 					}
-					lv_functionBody_5_0=ruleCompositionFunctionBodyPure
+					lv_functionBody_6_0=ruleCompositionFunctionBodyPure
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPureLambdaRule());
@@ -3659,12 +3691,16 @@ rulePureLambda returns [EObject current=null]
 						set(
 							$current,
 							"functionBody",
-							lv_functionBody_5_0,
+							lv_functionBody_6_0,
 							"it.unibo.FPML.CompositionFunctionBodyPure");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
+			otherlv_7='}'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getPureLambdaAccess().getRightCurlyBracketKeyword_0_7());
+			}
 		)
 		    |
 		(
@@ -3675,12 +3711,28 @@ rulePureLambda returns [EObject current=null]
 						$current);
 				}
 			)
+			otherlv_9='('
+			{
+				newLeafNode(otherlv_9, grammarAccess.getPureLambdaAccess().getLeftParenthesisKeyword_1_1());
+			}
+			otherlv_10=')'
+			{
+				newLeafNode(otherlv_10, grammarAccess.getPureLambdaAccess().getRightParenthesisKeyword_1_2());
+			}
+			otherlv_11=':'
+			{
+				newLeafNode(otherlv_11, grammarAccess.getPureLambdaAccess().getColonKeyword_1_3());
+			}
+			otherlv_12='{'
+			{
+				newLeafNode(otherlv_12, grammarAccess.getPureLambdaAccess().getLeftCurlyBracketKeyword_1_4());
+			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPureLambdaAccess().getFunctionBodyCompositionFunctionBodyPureParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getPureLambdaAccess().getFunctionBodyCompositionFunctionBodyPureParserRuleCall_1_5_0());
 					}
-					lv_functionBody_7_0=ruleCompositionFunctionBodyPure
+					lv_functionBody_13_0=ruleCompositionFunctionBodyPure
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPureLambdaRule());
@@ -3688,12 +3740,16 @@ rulePureLambda returns [EObject current=null]
 						set(
 							$current,
 							"functionBody",
-							lv_functionBody_7_0,
+							lv_functionBody_13_0,
 							"it.unibo.FPML.CompositionFunctionBodyPure");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
+			otherlv_14='}'
+			{
+				newLeafNode(otherlv_14, grammarAccess.getPureLambdaAccess().getRightCurlyBracketKeyword_1_6());
+			}
 		)
 	)
 ;
@@ -4512,15 +4568,83 @@ ruleApplyF returns [EObject current=null]
 		(
 			(
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getApplyFRule());
-					}
+					newCompositeNode(grammarAccess.getApplyFAccess().getValueApplyFFactorParserRuleCall_3_0());
 				}
-				otherlv_3=RULE_ID
+				lv_value_3_0=ruleApplyFFactor
 				{
-					newLeafNode(otherlv_3, grammarAccess.getApplyFAccess().getValuePureReferenceCrossReference_3_0());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getApplyFRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_3_0,
+						"it.unibo.FPML.ApplyFFactor");
+					afterParserOrEnumRuleCall();
 				}
 			)
+		)
+	)
+;
+
+// Entry rule entryRuleApplyFFactor
+entryRuleApplyFFactor returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getApplyFFactorRule()); }
+	iv_ruleApplyFFactor=ruleApplyFFactor
+	{ $current=$iv_ruleApplyFFactor.current; }
+	EOF;
+
+// Rule ApplyFFactor
+ruleApplyFFactor returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getApplyFFactorRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getApplyFFactorAccess().getValueReferencePureReferenceCrossReference_0_0());
+				}
+			)
+		)
+		    |
+		(
+			otherlv_1='('
+			{
+				newLeafNode(otherlv_1, grammarAccess.getApplyFFactorAccess().getLeftParenthesisKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getApplyFFactorAccess().getValueLambdaPureLambdaParserRuleCall_1_1_0());
+					}
+					lv_valueLambda_2_0=rulePureLambda
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getApplyFFactorRule());
+						}
+						set(
+							$current,
+							"valueLambda",
+							lv_valueLambda_2_0,
+							"it.unibo.FPML.PureLambda");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_3=')'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getApplyFFactorAccess().getRightParenthesisKeyword_1_2());
+			}
 		)
 	)
 ;
@@ -4861,6 +4985,36 @@ ruleApplyFIOFactor returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
+		)
+		    |
+		(
+			otherlv_2='('
+			{
+				newLeafNode(otherlv_2, grammarAccess.getApplyFIOFactorAccess().getLeftParenthesisKeyword_2_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getApplyFIOFactorAccess().getValueLambdaEffectFullLambdaParserRuleCall_2_1_0());
+					}
+					lv_valueLambda_3_0=ruleEffectFullLambda
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getApplyFIOFactorRule());
+						}
+						set(
+							$current,
+							"valueLambda",
+							lv_valueLambda_3_0,
+							"it.unibo.FPML.EffectFullLambda");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_4=')'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getApplyFIOFactorAccess().getRightParenthesisKeyword_2_2());
+			}
 		)
 	)
 ;

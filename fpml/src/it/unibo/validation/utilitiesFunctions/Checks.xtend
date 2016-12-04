@@ -241,4 +241,15 @@ class Checks {
 			default: false
 		}
 	}
+	
+	def static boolean applyF(ApplyF af){
+		if (af.value.valueLambda == null) {
+			return Checks.ValueTypeEquals(af.functionType.argType, GetReturnType.pureReference(af.value.valueReference))
+		} else
+			return Checks.ValueTypeEquals(af.functionType.argType, GetReturnType.pureFunctionDefinition(af.value.valueLambda))
+	}
+	
+	def static boolean applyFIO(ApplyFIO afio){
+			return Checks.TypeEquals(afio.functionType.argType, GetReturnType.effectFullReference(Others.getValueFromApplyFIOFactor(afio.value)))
+	}
 }

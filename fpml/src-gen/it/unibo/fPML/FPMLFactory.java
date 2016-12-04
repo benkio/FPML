@@ -627,6 +627,15 @@ public interface FPMLFactory extends EFactory
   ApplyF createApplyF();
 
   /**
+   * Returns a new object of class '<em>Apply FFactor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Apply FFactor</em>'.
+   * @generated
+   */
+  ApplyFFactor createApplyFFactor();
+
+  /**
    * Returns a new object of class '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

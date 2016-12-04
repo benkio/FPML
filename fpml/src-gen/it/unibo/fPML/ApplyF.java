@@ -50,29 +50,29 @@ public interface ApplyF extends PrimitivePureFunction
   void setFunctionType(PureFunctionType value);
 
   /**
-   * Returns the value of the '<em><b>Value</b></em>' reference.
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value</em>' reference isn't clear,
+   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' reference.
-   * @see #setValue(PureReference)
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(ApplyFFactor)
    * @see it.unibo.fPML.FPMLPackage#getApplyF_Value()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  PureReference getValue();
+  ApplyFFactor getValue();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.ApplyF#getValue <em>Value</em>}' reference.
+   * Sets the value of the '{@link it.unibo.fPML.ApplyF#getValue <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' reference.
+   * @param value the new value of the '<em>Value</em>' containment reference.
    * @see #getValue()
    * @generated
    */
-  void setValue(PureReference value);
+  void setValue(ApplyFFactor value);
 
 } // ApplyF

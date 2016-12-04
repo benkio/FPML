@@ -132,6 +132,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.TIMES: return createTimes();
       case FPMLPackage.MOD: return createMod();
       case FPMLPackage.APPLY_F: return createApplyF();
+      case FPMLPackage.APPLY_FFACTOR: return createApplyFFactor();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_VALUE: return createPrimitiveEffectFullValue();
@@ -887,6 +888,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     ApplyFImpl applyF = new ApplyFImpl();
     return applyF;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ApplyFFactor createApplyFFactor()
+  {
+    ApplyFFactorImpl applyFFactor = new ApplyFFactorImpl();
+    return applyFFactor;
   }
 
   /**

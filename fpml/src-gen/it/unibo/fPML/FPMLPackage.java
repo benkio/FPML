@@ -2087,7 +2087,7 @@ public interface FPMLPackage extends EPackage
   int APPLY_F__FUNCTION_TYPE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' reference.
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2105,6 +2105,43 @@ public interface FPMLPackage extends EPackage
   int APPLY_F_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.ApplyFFactorImpl <em>Apply FFactor</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.ApplyFFactorImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFFactor()
+   * @generated
+   */
+  int APPLY_FFACTOR = 67;
+
+  /**
+   * The feature id for the '<em><b>Value Reference</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FFACTOR__VALUE_REFERENCE = 0;
+
+  /**
+   * The feature id for the '<em><b>Value Lambda</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FFACTOR__VALUE_LAMBDA = 1;
+
+  /**
+   * The number of structural features of the '<em>Apply FFactor</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FFACTOR_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullFunctionImpl <em>Primitive Effect Full Function</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2112,7 +2149,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullFunction()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_FUNCTION = 67;
+  int PRIMITIVE_EFFECT_FULL_FUNCTION = 68;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Function</em>' class.
@@ -2131,7 +2168,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePrint()
    * @generated
    */
-  int PRIMITIVE_PRINT = 68;
+  int PRIMITIVE_PRINT = 69;
 
   /**
    * The number of structural features of the '<em>Primitive Print</em>' class.
@@ -2150,7 +2187,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullValue()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_VALUE = 69;
+  int PRIMITIVE_EFFECT_FULL_VALUE = 70;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Value</em>' class.
@@ -2169,7 +2206,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveRandom()
    * @generated
    */
-  int PRIMITIVE_RANDOM = 70;
+  int PRIMITIVE_RANDOM = 71;
 
   /**
    * The number of structural features of the '<em>Primitive Random</em>' class.
@@ -2188,7 +2225,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveReturn()
    * @generated
    */
-  int PRIMITIVE_RETURN = 71;
+  int PRIMITIVE_RETURN = 72;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2216,7 +2253,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveTime()
    * @generated
    */
-  int PRIMITIVE_TIME = 72;
+  int PRIMITIVE_TIME = 73;
 
   /**
    * The number of structural features of the '<em>Primitive Time</em>' class.
@@ -2235,7 +2272,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIO()
    * @generated
    */
-  int APPLY_FIO = 73;
+  int APPLY_FIO = 74;
 
   /**
    * The feature id for the '<em><b>Function Type</b></em>' containment reference.
@@ -2272,7 +2309,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIOFactor()
    * @generated
    */
-  int APPLY_FIO_FACTOR = 74;
+  int APPLY_FIO_FACTOR = 75;
 
   /**
    * The feature id for the '<em><b>Value Reference</b></em>' reference.
@@ -2293,13 +2330,22 @@ public interface FPMLPackage extends EPackage
   int APPLY_FIO_FACTOR__VALUE_PRIMITIVE = 1;
 
   /**
+   * The feature id for the '<em><b>Value Lambda</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPLY_FIO_FACTOR__VALUE_LAMBDA = 2;
+
+  /**
    * The number of structural features of the '<em>Apply FIO Factor</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int APPLY_FIO_FACTOR_FEATURE_COUNT = 2;
+  int APPLY_FIO_FACTOR_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PureValueImpl <em>Pure Value</em>}' class.
@@ -2309,7 +2355,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureValue()
    * @generated
    */
-  int PURE_VALUE = 75;
+  int PURE_VALUE = 76;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2382,7 +2428,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullValue()
    * @generated
    */
-  int EFFECT_FULL_VALUE = 76;
+  int EFFECT_FULL_VALUE = 77;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2455,7 +2501,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getRecursiveEffectFullExpression()
    * @generated
    */
-  int RECURSIVE_EFFECT_FULL_EXPRESSION = 77;
+  int RECURSIVE_EFFECT_FULL_EXPRESSION = 78;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -2483,7 +2529,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullLambda()
    * @generated
    */
-  int EFFECT_FULL_LAMBDA = 78;
+  int EFFECT_FULL_LAMBDA = 79;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2547,7 +2593,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 79;
+  int DATA_VALUE = 80;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2584,7 +2630,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullDataValue()
    * @generated
    */
-  int EFFECT_FULL_DATA_VALUE = 80;
+  int EFFECT_FULL_DATA_VALUE = 81;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -2630,7 +2676,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureLambda()
    * @generated
    */
-  int PURE_LAMBDA = 81;
+  int PURE_LAMBDA = 82;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4205,15 +4251,47 @@ public interface FPMLPackage extends EPackage
   EReference getApplyF_FunctionType();
 
   /**
-   * Returns the meta object for the reference '{@link it.unibo.fPML.ApplyF#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.ApplyF#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Value</em>'.
+   * @return the meta object for the containment reference '<em>Value</em>'.
    * @see it.unibo.fPML.ApplyF#getValue()
    * @see #getApplyF()
    * @generated
    */
   EReference getApplyF_Value();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.ApplyFFactor <em>Apply FFactor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Apply FFactor</em>'.
+   * @see it.unibo.fPML.ApplyFFactor
+   * @generated
+   */
+  EClass getApplyFFactor();
+
+  /**
+   * Returns the meta object for the reference '{@link it.unibo.fPML.ApplyFFactor#getValueReference <em>Value Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Value Reference</em>'.
+   * @see it.unibo.fPML.ApplyFFactor#getValueReference()
+   * @see #getApplyFFactor()
+   * @generated
+   */
+  EReference getApplyFFactor_ValueReference();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.ApplyFFactor#getValueLambda <em>Value Lambda</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value Lambda</em>'.
+   * @see it.unibo.fPML.ApplyFFactor#getValueLambda()
+   * @see #getApplyFFactor()
+   * @generated
+   */
+  EReference getApplyFFactor_ValueLambda();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.PrimitiveEffectFullFunction <em>Primitive Effect Full Function</em>}'.
@@ -4349,6 +4427,17 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EReference getApplyFIOFactor_ValuePrimitive();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.ApplyFIOFactor#getValueLambda <em>Value Lambda</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value Lambda</em>'.
+   * @see it.unibo.fPML.ApplyFIOFactor#getValueLambda()
+   * @see #getApplyFIOFactor()
+   * @generated
+   */
+  EReference getApplyFIOFactor_ValueLambda();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.PureValue <em>Pure Value</em>}'.
@@ -5785,12 +5874,38 @@ public interface FPMLPackage extends EPackage
     EReference APPLY_F__FUNCTION_TYPE = eINSTANCE.getApplyF_FunctionType();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference APPLY_F__VALUE = eINSTANCE.getApplyF_Value();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.ApplyFFactorImpl <em>Apply FFactor</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.ApplyFFactorImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFFactor()
+     * @generated
+     */
+    EClass APPLY_FFACTOR = eINSTANCE.getApplyFFactor();
+
+    /**
+     * The meta object literal for the '<em><b>Value Reference</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference APPLY_FFACTOR__VALUE_REFERENCE = eINSTANCE.getApplyFFactor_ValueReference();
+
+    /**
+     * The meta object literal for the '<em><b>Value Lambda</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference APPLY_FFACTOR__VALUE_LAMBDA = eINSTANCE.getApplyFFactor_ValueLambda();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullFunctionImpl <em>Primitive Effect Full Function</em>}' class.
@@ -5911,6 +6026,14 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EReference APPLY_FIO_FACTOR__VALUE_PRIMITIVE = eINSTANCE.getApplyFIOFactor_ValuePrimitive();
+
+    /**
+     * The meta object literal for the '<em><b>Value Lambda</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference APPLY_FIO_FACTOR__VALUE_LAMBDA = eINSTANCE.getApplyFIOFactor_ValueLambda();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PureValueImpl <em>Pure Value</em>}' class.

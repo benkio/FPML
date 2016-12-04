@@ -650,6 +650,13 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.APPLY_FFACTOR:
+      {
+        ApplyFFactor applyFFactor = (ApplyFFactor)theEObject;
+        T result = caseApplyFFactor(applyFFactor);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION:
       {
         PrimitiveEffectFullFunction primitiveEffectFullFunction = (PrimitiveEffectFullFunction)theEObject;
@@ -1884,6 +1891,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseApplyF(ApplyF object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Apply FFactor</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Apply FFactor</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseApplyFFactor(ApplyFFactor object)
   {
     return null;
   }

@@ -89,7 +89,7 @@ class FPMLValidator extends AbstractFPMLValidator {
    def typeCheckPurePrimitive(PrimitivePureFunction p){
    		switch p {
    			ApplyF: {
-   				if (!Checks.ValueTypeEquals(p.functionType.argType, GetReturnType.pureReference(p.value)))
+   				if (!Checks.applyF(p))
    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE)
    			}
    		}
@@ -110,7 +110,7 @@ class FPMLValidator extends AbstractFPMLValidator {
    def typeCheckEffectFullPrimitive(PrimitiveEffectFullFunction p){
    		switch p {
    			ApplyFIO: {
-   				if (!Checks.TypeEquals(p.functionType.argType, GetReturnType.effectFullReference(Others.getValueFromApplyFIOFactor(p.value))))
+   				if (!Checks.applyFIO(p))
    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE)
    			}
    		}
