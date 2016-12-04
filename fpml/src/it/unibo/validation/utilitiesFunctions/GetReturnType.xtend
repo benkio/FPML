@@ -85,6 +85,8 @@ class GetReturnType {
 			Times: return Others.createIntIntFuntionType
 			Mod: return Others.createIntIntFuntionType
 			ApplyF: return f.functionType.returnType
+      		LeftPair: return f.type.pureAdtElement1
+      		RightPair: return Others.getElement2ValueTypeFromPureAlgebraicType(f.type)
 		}
 	}
 	
@@ -192,7 +194,9 @@ class GetReturnType {
 		switch function {
 			PrimitivePrint: Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
 			ApplyFIO: function.functionType.returnType
-      		PrimitiveReturn: Others.IOWrap(function.type)
+			  PrimitiveReturn: Others.IOWrap(function.type)
+			  LeftPairIO: function.type.effectFullAdtElement1
+			  RightPairIO: Others.getElement2ValueTypeFromEffectFullAlgebraicType(function.type)
 		}
 	}
 	

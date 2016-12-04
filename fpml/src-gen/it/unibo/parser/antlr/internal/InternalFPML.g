@@ -4336,6 +4336,24 @@ rulePrimitivePureFunction returns [EObject current=null]
 			$current = $this_ApplyF_6.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getLeftPairParserRuleCall_7());
+		}
+		this_LeftPair_7=ruleLeftPair
+		{
+			$current = $this_LeftPair_7.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getRightPairParserRuleCall_8());
+		}
+		this_RightPair_8=ruleRightPair
+		{
+			$current = $this_RightPair_8.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -4362,7 +4380,7 @@ ruleIntToString returns [EObject current=null]
 					$current);
 			}
 		)
-		otherlv_1='IntToString'
+		otherlv_1='intToString'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getIntToStringAccess().getIntToStringKeyword_1());
 		}
@@ -4392,7 +4410,7 @@ ruleIntPow returns [EObject current=null]
 					$current);
 			}
 		)
-		otherlv_1='IntPow'
+		otherlv_1='intPow'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getIntPowAccess().getIntPowKeyword_1());
 		}
@@ -4516,6 +4534,104 @@ ruleMod returns [EObject current=null]
 		{
 			newLeafNode(otherlv_1, grammarAccess.getModAccess().getModKeyword_1());
 		}
+	)
+;
+
+// Entry rule entryRuleLeftPair
+entryRuleLeftPair returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLeftPairRule()); }
+	iv_ruleLeftPair=ruleLeftPair
+	{ $current=$iv_ruleLeftPair.current; }
+	EOF;
+
+// Rule LeftPair
+ruleLeftPair returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getLeftPairAccess().getLeftPairAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='leftPair'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getLeftPairAccess().getLeftPairKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLeftPairAccess().getTypePureAlgebraicTypeParserRuleCall_2_0());
+				}
+				lv_type_2_0=rulePureAlgebraicType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLeftPairRule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_2_0,
+						"it.unibo.FPML.PureAlgebraicType");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleRightPair
+entryRuleRightPair returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRightPairRule()); }
+	iv_ruleRightPair=ruleRightPair
+	{ $current=$iv_ruleRightPair.current; }
+	EOF;
+
+// Rule RightPair
+ruleRightPair returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getRightPairAccess().getRightPairAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='rightPair'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRightPairAccess().getRightPairKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRightPairAccess().getTypePureAlgebraicTypeParserRuleCall_2_0());
+				}
+				lv_type_2_0=rulePureAlgebraicType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRightPairRule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_2_0,
+						"it.unibo.FPML.PureAlgebraicType");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -4691,6 +4807,24 @@ rulePrimitiveEffectFullFunction returns [EObject current=null]
 			$current = $this_PrimitiveReturn_2.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getLeftPairIOParserRuleCall_3());
+		}
+		this_LeftPairIO_3=ruleLeftPairIO
+		{
+			$current = $this_LeftPairIO_3.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getRightPairIOParserRuleCall_4());
+		}
+		this_RightPairIO_4=ruleRightPairIO
+		{
+			$current = $this_RightPairIO_4.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -4721,6 +4855,104 @@ rulePrimitivePrint returns [EObject current=null]
 		{
 			newLeafNode(otherlv_1, grammarAccess.getPrimitivePrintAccess().getPrintKeyword_1());
 		}
+	)
+;
+
+// Entry rule entryRuleLeftPairIO
+entryRuleLeftPairIO returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLeftPairIORule()); }
+	iv_ruleLeftPairIO=ruleLeftPairIO
+	{ $current=$iv_ruleLeftPairIO.current; }
+	EOF;
+
+// Rule LeftPairIO
+ruleLeftPairIO returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getLeftPairIOAccess().getLeftPairIOAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='leftPair'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getLeftPairIOAccess().getLeftPairKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLeftPairIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0());
+				}
+				lv_type_2_0=ruleEffectFullAlgebraicType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLeftPairIORule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_2_0,
+						"it.unibo.FPML.EffectFullAlgebraicType");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleRightPairIO
+entryRuleRightPairIO returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRightPairIORule()); }
+	iv_ruleRightPairIO=ruleRightPairIO
+	{ $current=$iv_ruleRightPairIO.current; }
+	EOF;
+
+// Rule RightPairIO
+ruleRightPairIO returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getRightPairIOAccess().getRightPairIOAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='rightPair'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRightPairIOAccess().getRightPairKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRightPairIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0());
+				}
+				lv_type_2_0=ruleEffectFullAlgebraicType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRightPairIORule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_2_0,
+						"it.unibo.FPML.EffectFullAlgebraicType");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 

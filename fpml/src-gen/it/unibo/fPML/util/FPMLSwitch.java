@@ -638,6 +638,30 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.LEFT_PAIR:
+      {
+        LeftPair leftPair = (LeftPair)theEObject;
+        T result = caseLeftPair(leftPair);
+        if (result == null) result = casePrimitivePureFunction(leftPair);
+        if (result == null) result = casePureFunction(leftPair);
+        if (result == null) result = casePrimitiveFunction(leftPair);
+        if (result == null) result = caseFunction(leftPair);
+        if (result == null) result = caseEffectFullReference(leftPair);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.RIGHT_PAIR:
+      {
+        RightPair rightPair = (RightPair)theEObject;
+        T result = caseRightPair(rightPair);
+        if (result == null) result = casePrimitivePureFunction(rightPair);
+        if (result == null) result = casePureFunction(rightPair);
+        if (result == null) result = casePrimitiveFunction(rightPair);
+        if (result == null) result = caseFunction(rightPair);
+        if (result == null) result = caseEffectFullReference(rightPair);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.APPLY_F:
       {
         ApplyF applyF = (ApplyF)theEObject;
@@ -677,6 +701,30 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = casePrimitiveFunction(primitivePrint);
         if (result == null) result = caseFunction(primitivePrint);
         if (result == null) result = caseEffectFullReference(primitivePrint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.LEFT_PAIR_IO:
+      {
+        LeftPairIO leftPairIO = (LeftPairIO)theEObject;
+        T result = caseLeftPairIO(leftPairIO);
+        if (result == null) result = casePrimitiveEffectFullFunction(leftPairIO);
+        if (result == null) result = caseEffectFullFunction(leftPairIO);
+        if (result == null) result = casePrimitiveFunction(leftPairIO);
+        if (result == null) result = caseFunction(leftPairIO);
+        if (result == null) result = caseEffectFullReference(leftPairIO);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.RIGHT_PAIR_IO:
+      {
+        RightPairIO rightPairIO = (RightPairIO)theEObject;
+        T result = caseRightPairIO(rightPairIO);
+        if (result == null) result = casePrimitiveEffectFullFunction(rightPairIO);
+        if (result == null) result = caseEffectFullFunction(rightPairIO);
+        if (result == null) result = casePrimitiveFunction(rightPairIO);
+        if (result == null) result = caseFunction(rightPairIO);
+        if (result == null) result = caseEffectFullReference(rightPairIO);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1880,6 +1928,38 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Left Pair</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Left Pair</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLeftPair(LeftPair object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Right Pair</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Right Pair</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRightPair(RightPair object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Apply F</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1939,6 +2019,38 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrimitivePrint(PrimitivePrint object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Left Pair IO</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Left Pair IO</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLeftPairIO(LeftPairIO object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Right Pair IO</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Right Pair IO</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRightPairIO(RightPairIO object)
   {
     return null;
   }

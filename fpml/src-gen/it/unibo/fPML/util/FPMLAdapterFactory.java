@@ -406,6 +406,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createModAdapter();
       }
       @Override
+      public Adapter caseLeftPair(LeftPair object)
+      {
+        return createLeftPairAdapter();
+      }
+      @Override
+      public Adapter caseRightPair(RightPair object)
+      {
+        return createRightPairAdapter();
+      }
+      @Override
       public Adapter caseApplyF(ApplyF object)
       {
         return createApplyFAdapter();
@@ -424,6 +434,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter casePrimitivePrint(PrimitivePrint object)
       {
         return createPrimitivePrintAdapter();
+      }
+      @Override
+      public Adapter caseLeftPairIO(LeftPairIO object)
+      {
+        return createLeftPairIOAdapter();
+      }
+      @Override
+      public Adapter caseRightPairIO(RightPairIO object)
+      {
+        return createRightPairIOAdapter();
       }
       @Override
       public Adapter casePrimitiveEffectFullValue(PrimitiveEffectFullValue object)
@@ -1503,6 +1523,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LeftPair <em>Left Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.LeftPair
+   * @generated
+   */
+  public Adapter createLeftPairAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.RightPair <em>Right Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.RightPair
+   * @generated
+   */
+  public Adapter createRightPairAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link it.unibo.fPML.ApplyF <em>Apply F</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1558,6 +1608,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrimitivePrintAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LeftPairIO <em>Left Pair IO</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.LeftPairIO
+   * @generated
+   */
+  public Adapter createLeftPairIOAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.RightPairIO <em>Right Pair IO</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.RightPairIO
+   * @generated
+   */
+  public Adapter createRightPairIOAdapter()
   {
     return null;
   }

@@ -50,6 +50,8 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
+import it.unibo.fPML.LeftPair;
+import it.unibo.fPML.LeftPairIO;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
@@ -82,6 +84,8 @@ import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueBlock;
 import it.unibo.fPML.PureValueRef;
 import it.unibo.fPML.RecursiveEffectFullExpression;
+import it.unibo.fPML.RightPair;
+import it.unibo.fPML.RightPairIO;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
@@ -571,6 +575,20 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass leftPairEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass rightPairEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass applyFEClass = null;
 
   /**
@@ -593,6 +611,20 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass primitivePrintEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass leftPairIOEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass rightPairIOEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2173,6 +2205,46 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getLeftPair()
+  {
+    return leftPairEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLeftPair_Type()
+  {
+    return (EReference)leftPairEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRightPair()
+  {
+    return rightPairEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRightPair_Type()
+  {
+    return (EReference)rightPairEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getApplyF()
   {
     return applyFEClass;
@@ -2246,6 +2318,46 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EClass getPrimitivePrint()
   {
     return primitivePrintEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLeftPairIO()
+  {
+    return leftPairIOEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLeftPairIO_Type()
+  {
+    return (EReference)leftPairIOEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRightPairIO()
+  {
+    return rightPairIOEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRightPairIO_Type()
+  {
+    return (EReference)rightPairIOEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2726,6 +2838,12 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     modEClass = createEClass(MOD);
 
+    leftPairEClass = createEClass(LEFT_PAIR);
+    createEReference(leftPairEClass, LEFT_PAIR__TYPE);
+
+    rightPairEClass = createEClass(RIGHT_PAIR);
+    createEReference(rightPairEClass, RIGHT_PAIR__TYPE);
+
     applyFEClass = createEClass(APPLY_F);
     createEReference(applyFEClass, APPLY_F__FUNCTION_TYPE);
     createEReference(applyFEClass, APPLY_F__VALUE);
@@ -2737,6 +2855,12 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     primitiveEffectFullFunctionEClass = createEClass(PRIMITIVE_EFFECT_FULL_FUNCTION);
 
     primitivePrintEClass = createEClass(PRIMITIVE_PRINT);
+
+    leftPairIOEClass = createEClass(LEFT_PAIR_IO);
+    createEReference(leftPairIOEClass, LEFT_PAIR_IO__TYPE);
+
+    rightPairIOEClass = createEClass(RIGHT_PAIR_IO);
+    createEReference(rightPairIOEClass, RIGHT_PAIR_IO__TYPE);
 
     primitiveEffectFullValueEClass = createEClass(PRIMITIVE_EFFECT_FULL_VALUE);
 
@@ -2859,10 +2983,14 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     minusEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     timesEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     modEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    leftPairEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    rightPairEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     applyFEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     primitiveEffectFullFunctionEClass.getESuperTypes().add(this.getEffectFullFunction());
     primitiveEffectFullFunctionEClass.getESuperTypes().add(this.getPrimitiveFunction());
     primitivePrintEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
+    leftPairIOEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
+    rightPairIOEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     primitiveEffectFullValueEClass.getESuperTypes().add(this.getEffectFullReference());
     primitiveEffectFullValueEClass.getESuperTypes().add(this.getPrimitiveFunction());
     primitiveRandomEClass.getESuperTypes().add(this.getPrimitiveEffectFullValue());
@@ -3086,6 +3214,12 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(modEClass, Mod.class, "Mod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(leftPairEClass, LeftPair.class, "LeftPair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLeftPair_Type(), this.getPureAlgebraicType(), null, "type", null, 0, 1, LeftPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(rightPairEClass, RightPair.class, "RightPair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRightPair_Type(), this.getPureAlgebraicType(), null, "type", null, 0, 1, RightPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(applyFEClass, ApplyF.class, "ApplyF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getApplyF_FunctionType(), this.getPureFunctionType(), null, "functionType", null, 0, 1, ApplyF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getApplyF_Value(), this.getApplyFFactor(), null, "value", null, 0, 1, ApplyF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3097,6 +3231,12 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(primitiveEffectFullFunctionEClass, PrimitiveEffectFullFunction.class, "PrimitiveEffectFullFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(primitivePrintEClass, PrimitivePrint.class, "PrimitivePrint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(leftPairIOEClass, LeftPairIO.class, "LeftPairIO", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLeftPairIO_Type(), this.getEffectFullAlgebraicType(), null, "type", null, 0, 1, LeftPairIO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(rightPairIOEClass, RightPairIO.class, "RightPairIO", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRightPairIO_Type(), this.getEffectFullAlgebraicType(), null, "type", null, 0, 1, RightPairIO.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primitiveEffectFullValueEClass, PrimitiveEffectFullValue.class, "PrimitiveEffectFullValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

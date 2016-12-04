@@ -192,6 +192,12 @@
     <genClasses ecoreClass="FPML.ecore#//Minus"/>
     <genClasses ecoreClass="FPML.ecore#//Times"/>
     <genClasses ecoreClass="FPML.ecore#//Mod"/>
+    <genClasses ecoreClass="FPML.ecore#//LeftPair">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//LeftPair/type"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//RightPair">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//RightPair/type"/>
+    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//ApplyF">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyF/functionType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyF/value"/>
@@ -202,6 +208,12 @@
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveEffectFullFunction"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitivePrint"/>
+    <genClasses ecoreClass="FPML.ecore#//LeftPairIO">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//LeftPairIO/type"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//RightPairIO">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//RightPairIO/type"/>
+    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveEffectFullValue"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveRandom"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveReturn">

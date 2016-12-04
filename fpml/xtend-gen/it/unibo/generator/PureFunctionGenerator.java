@@ -11,6 +11,7 @@ import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
+import it.unibo.fPML.LeftPair;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
@@ -21,6 +22,7 @@ import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureValue;
+import it.unibo.fPML.RightPair;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.ValueType;
 import it.unibo.generator.FPMLGenerator;
@@ -263,6 +265,18 @@ public class PureFunctionGenerator {
       if (purePrimitive instanceof Mod) {
         _matched=true;
         _switchResult = (("Primitives.mod(" + argName) + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof LeftPair) {
+        _matched=true;
+        _switchResult = (("Primitives.leftPair(" + argName) + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof RightPair) {
+        _matched=true;
+        _switchResult = (("Primitives.rightPair(" + argName) + ")");
       }
     }
     if (!_matched) {

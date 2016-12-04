@@ -131,10 +131,14 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.MINUS: return createMinus();
       case FPMLPackage.TIMES: return createTimes();
       case FPMLPackage.MOD: return createMod();
+      case FPMLPackage.LEFT_PAIR: return createLeftPair();
+      case FPMLPackage.RIGHT_PAIR: return createRightPair();
       case FPMLPackage.APPLY_F: return createApplyF();
       case FPMLPackage.APPLY_FFACTOR: return createApplyFFactor();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
+      case FPMLPackage.LEFT_PAIR_IO: return createLeftPairIO();
+      case FPMLPackage.RIGHT_PAIR_IO: return createRightPairIO();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_VALUE: return createPrimitiveEffectFullValue();
       case FPMLPackage.PRIMITIVE_RANDOM: return createPrimitiveRandom();
       case FPMLPackage.PRIMITIVE_RETURN: return createPrimitiveReturn();
@@ -884,6 +888,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public LeftPair createLeftPair()
+  {
+    LeftPairImpl leftPair = new LeftPairImpl();
+    return leftPair;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RightPair createRightPair()
+  {
+    RightPairImpl rightPair = new RightPairImpl();
+    return rightPair;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ApplyF createApplyF()
   {
     ApplyFImpl applyF = new ApplyFImpl();
@@ -921,6 +947,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     PrimitivePrintImpl primitivePrint = new PrimitivePrintImpl();
     return primitivePrint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LeftPairIO createLeftPairIO()
+  {
+    LeftPairIOImpl leftPairIO = new LeftPairIOImpl();
+    return leftPairIO;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RightPairIO createRightPairIO()
+  {
+    RightPairIOImpl rightPairIO = new RightPairIOImpl();
+    return rightPairIO;
   }
 
   /**

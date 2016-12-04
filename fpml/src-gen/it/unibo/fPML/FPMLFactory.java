@@ -618,6 +618,24 @@ public interface FPMLFactory extends EFactory
   Mod createMod();
 
   /**
+   * Returns a new object of class '<em>Left Pair</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Left Pair</em>'.
+   * @generated
+   */
+  LeftPair createLeftPair();
+
+  /**
+   * Returns a new object of class '<em>Right Pair</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Right Pair</em>'.
+   * @generated
+   */
+  RightPair createRightPair();
+
+  /**
    * Returns a new object of class '<em>Apply F</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -652,6 +670,24 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   PrimitivePrint createPrimitivePrint();
+
+  /**
+   * Returns a new object of class '<em>Left Pair IO</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Left Pair IO</em>'.
+   * @generated
+   */
+  LeftPairIO createLeftPairIO();
+
+  /**
+   * Returns a new object of class '<em>Right Pair IO</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Right Pair IO</em>'.
+   * @generated
+   */
+  RightPairIO createRightPairIO();
 
   /**
    * Returns a new object of class '<em>Primitive Effect Full Value</em>'.

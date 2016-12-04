@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
@@ -15,6 +16,8 @@ import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
+import it.unibo.fPML.LeftPair;
+import it.unibo.fPML.LeftPairIO;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
@@ -29,6 +32,8 @@ import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureValue;
+import it.unibo.fPML.RightPair;
+import it.unibo.fPML.RightPairIO;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.ValueType;
@@ -108,6 +113,18 @@ public class GetArgType {
       if (f instanceof ApplyF) {
         _matched=true;
         return ((ApplyF)f).getFunctionType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof LeftPair) {
+        _matched=true;
+        return ((LeftPair)f).getType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof RightPair) {
+        _matched=true;
+        return ((RightPair)f).getType();
       }
     }
     return null;
@@ -203,6 +220,7 @@ public class GetArgType {
   }
   
   public static Type primitiveEffectFullFunction(final PrimitiveEffectFullFunction function) {
+    EffectFullAlgebraicType _switchResult = null;
     boolean _matched = false;
     if (function instanceof PrimitivePrint) {
       _matched=true;
@@ -220,7 +238,19 @@ public class GetArgType {
         return ((PrimitiveReturn)function).getType();
       }
     }
-    return null;
+    if (!_matched) {
+      if (function instanceof LeftPairIO) {
+        _matched=true;
+        _switchResult = ((LeftPairIO)function).getType();
+      }
+    }
+    if (!_matched) {
+      if (function instanceof RightPairIO) {
+        _matched=true;
+        _switchResult = ((RightPairIO)function).getType();
+      }
+    }
+    return _switchResult;
   }
   
   public static Type primitiveEffectFullValue(final PrimitiveEffectFullValue pefv) {

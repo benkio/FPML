@@ -11,6 +11,7 @@ import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataValue;
+import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
@@ -30,6 +31,8 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
+import it.unibo.fPML.LeftPair;
+import it.unibo.fPML.LeftPairIO;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
@@ -41,6 +44,7 @@ import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PrimitiveRandom;
 import it.unibo.fPML.PrimitiveReturn;
 import it.unibo.fPML.PrimitiveTime;
+import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
@@ -48,6 +52,8 @@ import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.RecursiveEffectFullExpression;
+import it.unibo.fPML.RightPair;
+import it.unibo.fPML.RightPairIO;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
@@ -267,6 +273,20 @@ public class GetReturnType {
         _matched=true;
         PureFunctionType _functionType = ((ApplyF)f).getFunctionType();
         return _functionType.getReturnType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof LeftPair) {
+        _matched=true;
+        PureAlgebraicType _type = ((LeftPair)f).getType();
+        return _type.getPureAdtElement1();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof RightPair) {
+        _matched=true;
+        PureAlgebraicType _type = ((RightPair)f).getType();
+        return Others.getElement2ValueTypeFromPureAlgebraicType(_type);
       }
     }
     return null;
@@ -544,6 +564,20 @@ public class GetReturnType {
         _matched=true;
         Type _type = ((PrimitiveReturn)function).getType();
         _switchResult = Others.IOWrap(_type);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof LeftPairIO) {
+        _matched=true;
+        EffectFullAlgebraicType _type = ((LeftPairIO)function).getType();
+        _switchResult = _type.getEffectFullAdtElement1();
+      }
+    }
+    if (!_matched) {
+      if (function instanceof RightPairIO) {
+        _matched=true;
+        EffectFullAlgebraicType _type = ((RightPairIO)function).getType();
+        _switchResult = Others.getElement2ValueTypeFromEffectFullAlgebraicType(_type);
       }
     }
     return _switchResult;

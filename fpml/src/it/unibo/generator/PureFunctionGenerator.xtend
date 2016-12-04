@@ -22,6 +22,8 @@ import it.unibo.fPML.Argument
 import it.unibo.fPML.PureValue
 import it.unibo.fPML.PureFunctionType
 import it.unibo.fPML.ApplyFFactor
+import it.unibo.fPML.LeftPair
+import it.unibo.fPML.RightPair
 
 class PureFunctionGenerator {
 	
@@ -96,6 +98,8 @@ class PureFunctionGenerator {
 			Minus: "Primitives.minus(" + argName + ")"
 			Times: "Primitives.times(" + argName + ")"
 			Mod: "Primitives.mod(" + argName + ")"
+      		LeftPair: "Primitives.leftPair(" + argName + ")"
+      		RightPair: "Primitives.rightPair(" + argName + ")"
 			ApplyF: argName + ".f(" + compileApplyFFactor(purePrimitive.value, argName, outsideCalls) + ")"		
 		}
 	}

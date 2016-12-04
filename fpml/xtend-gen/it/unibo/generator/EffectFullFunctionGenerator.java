@@ -20,6 +20,8 @@ import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
+import it.unibo.fPML.LeftPair;
+import it.unibo.fPML.LeftPairIO;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
@@ -31,6 +33,8 @@ import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureValue;
+import it.unibo.fPML.RightPair;
+import it.unibo.fPML.RightPairIO;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -267,6 +271,26 @@ public class EffectFullFunctionGenerator {
       }
     }
     if (!_matched) {
+      if (e instanceof LeftPair) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(", Primitives::leftPair)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof RightPair) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(", Primitives::rightPair)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
       if (e instanceof Mod) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
@@ -283,6 +307,26 @@ public class EffectFullFunctionGenerator {
         _builder.append("IOFunctions.bind(");
         _builder.append(valueName, "");
         _builder.append(", PrimitivesEffectFull::primitivePrint)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof LeftPairIO) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", primitivesEffectFull:leftPairIO)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof RightPairIO) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", primitivesEffectFull:rightPairIO)");
         _switchResult = _builder;
       }
     }
@@ -488,6 +532,18 @@ public class EffectFullFunctionGenerator {
       }
     }
     if (!_matched) {
+      if (e instanceof LeftPair) {
+        _matched=true;
+        _switchResult = ".map(Primitives::leftPair)";
+      }
+    }
+    if (!_matched) {
+      if (e instanceof RightPair) {
+        _matched=true;
+        _switchResult = ".map(Primitives::rightPair)";
+      }
+    }
+    if (!_matched) {
       if (e instanceof Mod) {
         _matched=true;
         _switchResult = ".map(Primitives::mod)";
@@ -498,6 +554,22 @@ public class EffectFullFunctionGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(".bind(PrimitivesEffectFull::primitivePrint)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof LeftPairIO) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".bind(PrimitivesEffectFull::leftPairIO)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof RightPairIO) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".bind(PrimitivesEffectFull::rightPairIO)");
         _switchResult = _builder;
       }
     }

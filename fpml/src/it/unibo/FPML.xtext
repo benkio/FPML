@@ -277,14 +277,16 @@ EffectFullSumValue:
 /////////////////////////////////////////////////////////////////////
 
 PrimitivePureFunction: 
-	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF;
+	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair;
 
-IntToString: {IntToString} 'IntToString';
-IntPow:	{IntPow} 'IntPow';
+IntToString: {IntToString} 'intToString';
+IntPow:	{IntPow} 'intPow';
 Plus: {Plus} '+';
 Minus: {Minus} '-';
 Times: {Times} '*';
 Mod: {Mod} 'mod';
+LeftPair: {LeftPair} 'leftPair' type=PureAlgebraicType;
+RightPair: {RightPair} 'rightPair' type=PureAlgebraicType;
 ApplyF: {ApplyF} 'applyF' functionType=PureFunctionType value=ApplyFFactor;
 ApplyFFactor:
 	valueReference=[PureReference]
@@ -292,14 +294,16 @@ ApplyFFactor:
 ;
 
 PrimitiveEffectFullFunction:
-	PrimitivePrint | ApplyFIO | PrimitiveReturn;
+	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO;
 
 PrimitivePrint:
     {PrimitivePrint} "print";
 
+LeftPairIO: {LeftPairIO} 'leftPair' type=EffectFullAlgebraicType;
+RightPairIO: {RightPairIO} 'rightPair' type=EffectFullAlgebraicType;
+
 PrimitiveEffectFullValue:
-	PrimitiveRandom  | PrimitiveTime
-;
+	PrimitiveRandom  | PrimitiveTime;
 
 PrimitiveRandom:
 	{PrimitiveRandom} "randomInt";

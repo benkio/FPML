@@ -42,6 +42,8 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
+import it.unibo.fPML.LeftPair;
+import it.unibo.fPML.LeftPairIO;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
@@ -67,6 +69,8 @@ import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueBlock;
 import it.unibo.fPML.PureValueRef;
 import it.unibo.fPML.RecursiveEffectFullExpression;
+import it.unibo.fPML.RightPair;
+import it.unibo.fPML.RightPairIO;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.UnitType;
@@ -231,6 +235,12 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case FPMLPackage.LEFT_PAIR:
+				sequence_LeftPair(context, (LeftPair) semanticObject); 
+				return; 
+			case FPMLPackage.LEFT_PAIR_IO:
+				sequence_LeftPairIO(context, (LeftPairIO) semanticObject); 
+				return; 
 			case FPMLPackage.MAIN_FUNC:
 				sequence_MainFunc(context, (MainFunc) semanticObject); 
 				return; 
@@ -317,6 +327,12 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION:
 				sequence_EffectFullExpression(context, (RecursiveEffectFullExpression) semanticObject); 
+				return; 
+			case FPMLPackage.RIGHT_PAIR:
+				sequence_RightPair(context, (RightPair) semanticObject); 
+				return; 
+			case FPMLPackage.RIGHT_PAIR_IO:
+				sequence_RightPairIO(context, (RightPairIO) semanticObject); 
 				return; 
 			case FPMLPackage.STRING_TYPE:
 				if (rule == grammarAccess.getValueTypeRule()
@@ -1084,6 +1100,52 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns LeftPairIO
+	 *     EffectFullFunction returns LeftPairIO
+	 *     EffectFullReference returns LeftPairIO
+	 *     PrimitiveFunction returns LeftPairIO
+	 *     PrimitiveEffectFullFunction returns LeftPairIO
+	 *     LeftPairIO returns LeftPairIO
+	 *
+	 * Constraint:
+	 *     type=EffectFullAlgebraicType
+	 */
+	protected void sequence_LeftPairIO(ISerializationContext context, LeftPairIO semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.LEFT_PAIR_IO__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.LEFT_PAIR_IO__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLeftPairIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns LeftPair
+	 *     PureFunction returns LeftPair
+	 *     EffectFullReference returns LeftPair
+	 *     PrimitiveFunction returns LeftPair
+	 *     PrimitivePureFunction returns LeftPair
+	 *     LeftPair returns LeftPair
+	 *
+	 * Constraint:
+	 *     type=PureAlgebraicType
+	 */
+	protected void sequence_LeftPair(ISerializationContext context, LeftPair semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.LEFT_PAIR__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.LEFT_PAIR__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLeftPairAccess().getTypePureAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     MainFunc returns MainFunc
 	 *
 	 * Constraint:
@@ -1478,6 +1540,52 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPureValueAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getPureValueAccess().getValueExpressionParserRuleCall_3_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns RightPairIO
+	 *     EffectFullFunction returns RightPairIO
+	 *     EffectFullReference returns RightPairIO
+	 *     PrimitiveFunction returns RightPairIO
+	 *     PrimitiveEffectFullFunction returns RightPairIO
+	 *     RightPairIO returns RightPairIO
+	 *
+	 * Constraint:
+	 *     type=EffectFullAlgebraicType
+	 */
+	protected void sequence_RightPairIO(ISerializationContext context, RightPairIO semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RIGHT_PAIR_IO__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RIGHT_PAIR_IO__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRightPairIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns RightPair
+	 *     PureFunction returns RightPair
+	 *     EffectFullReference returns RightPair
+	 *     PrimitiveFunction returns RightPair
+	 *     PrimitivePureFunction returns RightPair
+	 *     RightPair returns RightPair
+	 *
+	 * Constraint:
+	 *     type=PureAlgebraicType
+	 */
+	protected void sequence_RightPair(ISerializationContext context, RightPair semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RIGHT_PAIR__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RIGHT_PAIR__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRightPairAccess().getTypePureAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	

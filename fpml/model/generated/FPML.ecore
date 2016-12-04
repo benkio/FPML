@@ -243,6 +243,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Minus" eSuperTypes="#//PrimitivePureFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="Times" eSuperTypes="#//PrimitivePureFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="Mod" eSuperTypes="#//PrimitivePureFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LeftPair" eSuperTypes="#//PrimitivePureFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PureAlgebraicType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RightPair" eSuperTypes="#//PrimitivePureFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PureAlgebraicType"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ApplyF" eSuperTypes="#//PrimitivePureFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionType" eType="#//PureFunctionType"
         containment="true"/>
@@ -256,6 +264,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveEffectFullFunction" eSuperTypes="#//EffectFullFunction #//PrimitiveFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//PrimitiveEffectFullFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LeftPairIO" eSuperTypes="#//PrimitiveEffectFullFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//EffectFullAlgebraicType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RightPairIO" eSuperTypes="#//PrimitiveEffectFullFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//EffectFullAlgebraicType"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveEffectFullValue" eSuperTypes="#//EffectFullReference #//PrimitiveFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveRandom" eSuperTypes="#//PrimitiveEffectFullValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveReturn" eSuperTypes="#//PrimitiveEffectFullFunction">

@@ -2596,15 +2596,17 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTimesParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cModParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cApplyFParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cLeftPairParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cRightPairParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		///////////////////////////////////////////////////////////////////////
 		//// Primitives
 		///////////////////////////////////////////////////////////////////////
 		//PrimitivePureFunction:
-		//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF;
+		//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF
+		//IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntToString
@@ -2627,6 +2629,12 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ApplyF
 		public RuleCall getApplyFParserRuleCall_6() { return cApplyFParserRuleCall_6; }
+		
+		//LeftPair
+		public RuleCall getLeftPairParserRuleCall_7() { return cLeftPairParserRuleCall_7; }
+		
+		//RightPair
+		public RuleCall getRightPairParserRuleCall_8() { return cRightPairParserRuleCall_8; }
 	}
 	public class IntToStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.IntToString");
@@ -2635,16 +2643,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIntToStringKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//IntToString:
-		//	{IntToString} 'IntToString';
+		//	{IntToString} 'intToString';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{IntToString} 'IntToString'
+		//{IntToString} 'intToString'
 		public Group getGroup() { return cGroup; }
 		
 		//{IntToString}
 		public Action getIntToStringAction_0() { return cIntToStringAction_0; }
 		
-		//'IntToString'
+		//'intToString'
 		public Keyword getIntToStringKeyword_1() { return cIntToStringKeyword_1; }
 	}
 	public class IntPowElements extends AbstractParserRuleElementFinder {
@@ -2654,16 +2662,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIntPowKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//IntPow:
-		//	{IntPow} 'IntPow';
+		//	{IntPow} 'intPow';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{IntPow} 'IntPow'
+		//{IntPow} 'intPow'
 		public Group getGroup() { return cGroup; }
 		
 		//{IntPow}
 		public Action getIntPowAction_0() { return cIntPowAction_0; }
 		
-		//'IntPow'
+		//'intPow'
 		public Keyword getIntPowKeyword_1() { return cIntPowKeyword_1; }
 	}
 	public class PlusElements extends AbstractParserRuleElementFinder {
@@ -2741,6 +2749,60 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'mod'
 		public Keyword getModKeyword_1() { return cModKeyword_1; }
+	}
+	public class LeftPairElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.LeftPair");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLeftPairAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLeftPairKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypePureAlgebraicTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		
+		//LeftPair:
+		//	{LeftPair} 'leftPair' type=PureAlgebraicType;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{LeftPair} 'leftPair' type=PureAlgebraicType
+		public Group getGroup() { return cGroup; }
+		
+		//{LeftPair}
+		public Action getLeftPairAction_0() { return cLeftPairAction_0; }
+		
+		//'leftPair'
+		public Keyword getLeftPairKeyword_1() { return cLeftPairKeyword_1; }
+		
+		//type=PureAlgebraicType
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//PureAlgebraicType
+		public RuleCall getTypePureAlgebraicTypeParserRuleCall_2_0() { return cTypePureAlgebraicTypeParserRuleCall_2_0; }
+	}
+	public class RightPairElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.RightPair");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRightPairAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cRightPairKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypePureAlgebraicTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		
+		//RightPair:
+		//	{RightPair} 'rightPair' type=PureAlgebraicType;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{RightPair} 'rightPair' type=PureAlgebraicType
+		public Group getGroup() { return cGroup; }
+		
+		//{RightPair}
+		public Action getRightPairAction_0() { return cRightPairAction_0; }
+		
+		//'rightPair'
+		public Keyword getRightPairKeyword_1() { return cRightPairKeyword_1; }
+		
+		//type=PureAlgebraicType
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//PureAlgebraicType
+		public RuleCall getTypePureAlgebraicTypeParserRuleCall_2_0() { return cTypePureAlgebraicTypeParserRuleCall_2_0; }
 	}
 	public class ApplyFElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.ApplyF");
@@ -2826,12 +2888,14 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPrimitivePrintParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cApplyFIOParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cPrimitiveReturnParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cLeftPairIOParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cRightPairIOParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//PrimitiveEffectFullFunction:
-		//	PrimitivePrint | ApplyFIO | PrimitiveReturn;
+		//	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PrimitivePrint | ApplyFIO | PrimitiveReturn
+		//PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//PrimitivePrint
@@ -2842,6 +2906,12 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PrimitiveReturn
 		public RuleCall getPrimitiveReturnParserRuleCall_2() { return cPrimitiveReturnParserRuleCall_2; }
+		
+		//LeftPairIO
+		public RuleCall getLeftPairIOParserRuleCall_3() { return cLeftPairIOParserRuleCall_3; }
+		
+		//RightPairIO
+		public RuleCall getRightPairIOParserRuleCall_4() { return cRightPairIOParserRuleCall_4; }
 	}
 	public class PrimitivePrintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitivePrint");
@@ -2861,6 +2931,60 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//"print"
 		public Keyword getPrintKeyword_1() { return cPrintKeyword_1; }
+	}
+	public class LeftPairIOElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.LeftPairIO");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLeftPairIOAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLeftPairKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeEffectFullAlgebraicTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		
+		//LeftPairIO:
+		//	{LeftPairIO} 'leftPair' type=EffectFullAlgebraicType;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{LeftPairIO} 'leftPair' type=EffectFullAlgebraicType
+		public Group getGroup() { return cGroup; }
+		
+		//{LeftPairIO}
+		public Action getLeftPairIOAction_0() { return cLeftPairIOAction_0; }
+		
+		//'leftPair'
+		public Keyword getLeftPairKeyword_1() { return cLeftPairKeyword_1; }
+		
+		//type=EffectFullAlgebraicType
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//EffectFullAlgebraicType
+		public RuleCall getTypeEffectFullAlgebraicTypeParserRuleCall_2_0() { return cTypeEffectFullAlgebraicTypeParserRuleCall_2_0; }
+	}
+	public class RightPairIOElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.RightPairIO");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRightPairIOAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cRightPairKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeEffectFullAlgebraicTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		
+		//RightPairIO:
+		//	{RightPairIO} 'rightPair' type=EffectFullAlgebraicType;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{RightPairIO} 'rightPair' type=EffectFullAlgebraicType
+		public Group getGroup() { return cGroup; }
+		
+		//{RightPairIO}
+		public Action getRightPairIOAction_0() { return cRightPairIOAction_0; }
+		
+		//'rightPair'
+		public Keyword getRightPairKeyword_1() { return cRightPairKeyword_1; }
+		
+		//type=EffectFullAlgebraicType
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//EffectFullAlgebraicType
+		public RuleCall getTypeEffectFullAlgebraicTypeParserRuleCall_2_0() { return cTypeEffectFullAlgebraicTypeParserRuleCall_2_0; }
 	}
 	public class PrimitiveEffectFullValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveEffectFullValue");
@@ -3112,10 +3236,14 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final MinusElements pMinus;
 	private final TimesElements pTimes;
 	private final ModElements pMod;
+	private final LeftPairElements pLeftPair;
+	private final RightPairElements pRightPair;
 	private final ApplyFElements pApplyF;
 	private final ApplyFFactorElements pApplyFFactor;
 	private final PrimitiveEffectFullFunctionElements pPrimitiveEffectFullFunction;
 	private final PrimitivePrintElements pPrimitivePrint;
+	private final LeftPairIOElements pLeftPairIO;
+	private final RightPairIOElements pRightPairIO;
 	private final PrimitiveEffectFullValueElements pPrimitiveEffectFullValue;
 	private final PrimitiveRandomElements pPrimitiveRandom;
 	private final PrimitiveReturnElements pPrimitiveReturn;
@@ -3209,10 +3337,14 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pMinus = new MinusElements();
 		this.pTimes = new TimesElements();
 		this.pMod = new ModElements();
+		this.pLeftPair = new LeftPairElements();
+		this.pRightPair = new RightPairElements();
 		this.pApplyF = new ApplyFElements();
 		this.pApplyFFactor = new ApplyFFactorElements();
 		this.pPrimitiveEffectFullFunction = new PrimitiveEffectFullFunctionElements();
 		this.pPrimitivePrint = new PrimitivePrintElements();
+		this.pLeftPairIO = new LeftPairIOElements();
+		this.pRightPairIO = new RightPairIOElements();
 		this.pPrimitiveEffectFullValue = new PrimitiveEffectFullValueElements();
 		this.pPrimitiveRandom = new PrimitiveRandomElements();
 		this.pPrimitiveReturn = new PrimitiveReturnElements();
@@ -4024,7 +4156,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//// Primitives
 	///////////////////////////////////////////////////////////////////////
 	//PrimitivePureFunction:
-	//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF;
+	//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair;
 	public PrimitivePureFunctionElements getPrimitivePureFunctionAccess() {
 		return pPrimitivePureFunction;
 	}
@@ -4034,7 +4166,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//IntToString:
-	//	{IntToString} 'IntToString';
+	//	{IntToString} 'intToString';
 	public IntToStringElements getIntToStringAccess() {
 		return pIntToString;
 	}
@@ -4044,7 +4176,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//IntPow:
-	//	{IntPow} 'IntPow';
+	//	{IntPow} 'intPow';
 	public IntPowElements getIntPowAccess() {
 		return pIntPow;
 	}
@@ -4093,6 +4225,26 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getModAccess().getRule();
 	}
 	
+	//LeftPair:
+	//	{LeftPair} 'leftPair' type=PureAlgebraicType;
+	public LeftPairElements getLeftPairAccess() {
+		return pLeftPair;
+	}
+	
+	public ParserRule getLeftPairRule() {
+		return getLeftPairAccess().getRule();
+	}
+	
+	//RightPair:
+	//	{RightPair} 'rightPair' type=PureAlgebraicType;
+	public RightPairElements getRightPairAccess() {
+		return pRightPair;
+	}
+	
+	public ParserRule getRightPairRule() {
+		return getRightPairAccess().getRule();
+	}
+	
 	//ApplyF:
 	//	{ApplyF} 'applyF' functionType=PureFunctionType value=ApplyFFactor;
 	public ApplyFElements getApplyFAccess() {
@@ -4114,7 +4266,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrimitiveEffectFullFunction:
-	//	PrimitivePrint | ApplyFIO | PrimitiveReturn;
+	//	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO;
 	public PrimitiveEffectFullFunctionElements getPrimitiveEffectFullFunctionAccess() {
 		return pPrimitiveEffectFullFunction;
 	}
@@ -4131,6 +4283,26 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPrimitivePrintRule() {
 		return getPrimitivePrintAccess().getRule();
+	}
+	
+	//LeftPairIO:
+	//	{LeftPairIO} 'leftPair' type=EffectFullAlgebraicType;
+	public LeftPairIOElements getLeftPairIOAccess() {
+		return pLeftPairIO;
+	}
+	
+	public ParserRule getLeftPairIORule() {
+		return getLeftPairIOAccess().getRule();
+	}
+	
+	//RightPairIO:
+	//	{RightPairIO} 'rightPair' type=EffectFullAlgebraicType;
+	public RightPairIOElements getRightPairIOAccess() {
+		return pRightPairIO;
+	}
+	
+	public ParserRule getRightPairIORule() {
+		return getRightPairIOAccess().getRule();
 	}
 	
 	//PrimitiveEffectFullValue:

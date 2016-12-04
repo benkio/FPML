@@ -36,6 +36,8 @@ class GetArgType {
 			Times: return FPMLFactory.eINSTANCE.createIntegerType
 			Mod: return FPMLFactory.eINSTANCE.createIntegerType
 			ApplyF: return f.functionType
+      		LeftPair: return f.type
+      		RightPair: return f.type
 		}
 	}
 	
@@ -78,6 +80,8 @@ class GetArgType {
 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType 
 			ApplyFIO: return function.functionType
      		PrimitiveReturn: return function.type
+      LeftPairIO: function.type
+      RightPairIO: function.type
 		}
 	}
 	
