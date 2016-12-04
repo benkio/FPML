@@ -67,9 +67,7 @@ public class EffectFullFunctionGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("import fj.data.*;");
     _builder.newLine();
-    _builder.append("import fj.F;");
-    _builder.newLine();
-    _builder.append("import fj.Unit;");
+    _builder.append("import fj.*;");
     _builder.newLine();
     _builder.append("import ");
     String _basePackageJava_2 = FPMLGenerator.basePackageJava();

@@ -17,13 +17,10 @@ class EffectFullValueGenerator {
 	    import it.unibo.Pure.PureFunctionDefinitions;
 	    import it.unibo.Pure.Data.PureValue;
 	    import fj.data.*;
-	    import fj.P;
-	    import fj.P2;
-	    import fj.Unit;
+	    import fj.*;
 	    import it.unibo.Effectfull.PrimitivesEffectFull;
 	    import it.unibo.Effectfull.EffectFullFunctionDefinitions;
-	    import fj.F;
-	    import fj.F0;
+
 	    
 	    public class EffectFullValue {
 	    	«FOR v:values»

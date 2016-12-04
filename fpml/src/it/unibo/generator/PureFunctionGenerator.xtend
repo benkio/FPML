@@ -29,7 +29,7 @@ class PureFunctionGenerator {
 		package «FPMLGenerator.basePackageJava»Pure;
 		
 		import «FPMLGenerator.basePackageJava»Pure.Data.*;
-		import fj.F;
+		import fj.*;
 		import fj.data.*;
 		
 		public class PureFunctionDefinitions {

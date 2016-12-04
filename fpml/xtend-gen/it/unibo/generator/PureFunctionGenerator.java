@@ -45,7 +45,7 @@ public class PureFunctionGenerator {
     _builder.append(_basePackageJava_1, "");
     _builder.append("Pure.Data.*;");
     _builder.newLineIfNotEmpty();
-    _builder.append("import fj.F;");
+    _builder.append("import fj.*;");
     _builder.newLine();
     _builder.append("import fj.data.*;");
     _builder.newLine();

@@ -11,9 +11,7 @@ class EffectFullDataGenerator {
 	    package «FPMLGenerator.basePackageJava»Effectfull.Data;
 	    
 	    import fj.data.*;
-	    import fj.P2;
-	    import fj.F;
-	    import fj.Unit;
+	    import fj.*;
 	    
 	    public class «d.name» {
 	    	public final «typeGenerator.compile(d.content as Type)» value;

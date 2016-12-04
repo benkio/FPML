@@ -50,17 +50,11 @@ public class ValueGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("import fj.data.*;");
     _builder.newLine();
-    _builder.append("import fj.P;");
-    _builder.newLine();
-    _builder.append("import fj.P2;");
-    _builder.newLine();
-    _builder.append("import fj.Unit;");
+    _builder.append("import fj.*;");
     _builder.newLine();
     _builder.append("import it.unibo.Pure.Primitives;");
     _builder.newLine();
     _builder.append("import it.unibo.Pure.PureFunctionDefinitions;");
-    _builder.newLine();
-    _builder.append("import fj.F;");
     _builder.newLine();
     _builder.newLine();
     _builder.append("public class PureValue {");

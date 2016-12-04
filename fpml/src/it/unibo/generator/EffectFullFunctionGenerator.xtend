@@ -15,8 +15,7 @@ class EffectFullFunctionGenerator {
 	    		
 	    import «FPMLGenerator.basePackageJava»Pure.Data.*;
 	    import fj.data.*;
-	    import fj.F;
-	    import fj.Unit;
+	    import fj.*;
 	    import «FPMLGenerator.basePackageJava»Effectfull.Data.*;
 	    import «FPMLGenerator.basePackageJava»Pure.*;
 	    

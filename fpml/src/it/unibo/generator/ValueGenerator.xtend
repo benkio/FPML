@@ -14,12 +14,9 @@ class ValueGenerator {
 	    
 	    import «FPMLGenerator.basePackageJava»Pure.Data.*;
 	    import fj.data.*;
-	    import fj.P;
-	    import fj.P2;
-	    import fj.Unit;
+	    import fj.*;
 	    import it.unibo.Pure.Primitives;
 	    import it.unibo.Pure.PureFunctionDefinitions;
-	    import fj.F;
 	    
 	    public class PureValue {
 	    	«FOR v:values»
