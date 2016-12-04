@@ -131,7 +131,13 @@ public class GetArgType {
   
   public static ValueType pureLambda(final PureLambda l) {
     Argument _arg = l.getArg();
-    return _arg.getType();
+    boolean _notEquals = (!Objects.equal(_arg, null));
+    if (_notEquals) {
+      Argument _arg_1 = l.getArg();
+      return _arg_1.getType();
+    } else {
+      return null;
+    }
   }
   
   public static Type effectFullReference(final EffectFullReference reference) {

@@ -215,8 +215,8 @@ EffectFullFunctionValue returns EffectFullFunctionType: value=EffectFullLambda;
 EffectFullValueRef: {EffectFullValueRef} value=[EffectFullValue];
 
 EffectFullLambda returns EffectFullFunctionDefinition: 
-	{EffectFullLambda} '[' arg=EffectFullArgument ']' ':' functionBody=FunctionBodyEffectFull
-	| {EffectFullLambda} functionBody=FunctionBodyEffectFull;
+	{EffectFullLambda} '[' arg=EffectFullArgument ']' ':' functionBody=CompositionFunctionBodyEffect
+	| {EffectFullLambda} functionBody=CompositionFunctionBodyEffect;
 
 Expression:
     IntValue 
@@ -237,7 +237,8 @@ EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[Effe
 PureValueRef: {PureValueRef} value=[PureValue];
 
 PureLambda returns PureFunctionDefinition: 
-	{PureLambda} '(' arg=Argument ')' ':' functionBody=FunctionBodyPure
+	{PureLambda} '(' arg=Argument ')' ':' functionBody=CompositionFunctionBodyPure
+	| {PureLambda} functionBody=CompositionFunctionBodyPure
 ;
 
 PureAdtValue:

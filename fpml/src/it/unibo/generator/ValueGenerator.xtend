@@ -27,16 +27,16 @@ class ValueGenerator {
 	def compile(PureValue v) '''
 	
 	public static «typeGenerator.compileType(v.value)» «v.name»() {
-		return «v.value.compile»;
+		«v.value.compile»
 	}
 	'''
 	
 	def compile(Expression e) {
 		switch e {
-			IntegerType: return e.value
-			UnitType: return "IOFunctions.ioUnit"
-			StringType: return '''"«e.value»"'''
-			DataType: return '''new «typeGenerator.compileType(e)»(«compileAdtValue((e as DataValue).value, (e as DataValue).type.content)»)'''
+			IntegerType: return "return "+ e.value + ';'
+			UnitType: return "return IOFunctions.ioUnit;"
+			StringType: return '''return "«e.value»";'''
+			DataType: return '''return new «typeGenerator.compileType(e)»(«compileAdtValue((e as DataValue).value, (e as DataValue).type.content)»);'''
 			PureFunctionType: return e.compile 
 		}	
 	}
@@ -57,20 +57,22 @@ class ValueGenerator {
 	}
 	
 	def compile(PureFunctionType pft) '''
-	«IF (pft.value.functionBody instanceof CompositionFunctionBodyPure)»
-	new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))»>() {
+	«IF (pft.value.functionBody instanceof CompositionFunctionBodyPure) && pft.value.arg != null»
+	return new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))»>() {
 				@Override
 				public «typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
 					«pureFunctionGenerator.compile(pft.value.functionBody, pft.value.arg.name, true)»
 				}
-		}
+		};
 	«ELSEIF (pft.value.functionBody instanceof EmptyFunctionBody)»
-	new F<() {
+	return new F<() {
 					@Override
 					public Object f(Object «pft.value.arg.name») {
 						throw new UnsupportedOperationException("TODO");
 					}
-			}
+			};
+	«ELSE»
+	«pureFunctionGenerator.compile(pft.value.functionBody, "", true)»
 	«ENDIF»
 	'''
 }

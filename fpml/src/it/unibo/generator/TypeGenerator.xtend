@@ -65,7 +65,8 @@ class TypeGenerator {
 			IntegerType: return "int"
 			StringType: return "String"
 			DataType: return e.type.name
-			PureFunctionType: return '''F<«e.value.arg.type.compile», «GetReturnType.function(e.value).compile »>'''
+			PureFunctionType: 	if (e.value.arg != null) return '''F<«e.value.arg.type.compile», «GetReturnType.function(e.value).compile»>'''
+								else return GetReturnType.function(e.value).compile
 		}
 	}
 	

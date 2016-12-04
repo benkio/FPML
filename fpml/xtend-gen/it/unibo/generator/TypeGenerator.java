@@ -211,7 +211,7 @@ public class TypeGenerator {
     return _switchResult;
   }
   
-  public String compileType(final Expression e) {
+  public Object compileType(final Expression e) {
     boolean _matched = false;
     if (e instanceof IntegerType) {
       _matched=true;
@@ -233,20 +233,29 @@ public class TypeGenerator {
     if (!_matched) {
       if (e instanceof PureFunctionType) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("F<");
         PureFunctionDefinition _value = ((PureFunctionType)e).getValue();
         Argument _arg = _value.getArg();
-        ValueType _type = _arg.getType();
-        Object _compile = this.compile(_type);
-        _builder.append(_compile, "");
-        _builder.append(", ");
-        PureFunctionDefinition _value_1 = ((PureFunctionType)e).getValue();
-        Type _function = GetReturnType.function(_value_1);
-        Object _compile_1 = this.compile(_function);
-        _builder.append(_compile_1, "");
-        _builder.append(">");
-        return _builder.toString();
+        boolean _notEquals = (!Objects.equal(_arg, null));
+        if (_notEquals) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("F<");
+          PureFunctionDefinition _value_1 = ((PureFunctionType)e).getValue();
+          Argument _arg_1 = _value_1.getArg();
+          ValueType _type = _arg_1.getType();
+          Object _compile = this.compile(_type);
+          _builder.append(_compile, "");
+          _builder.append(", ");
+          PureFunctionDefinition _value_2 = ((PureFunctionType)e).getValue();
+          Type _function = GetReturnType.function(_value_2);
+          Object _compile_1 = this.compile(_function);
+          _builder.append(_compile_1, "");
+          _builder.append(">");
+          return _builder.toString();
+        } else {
+          PureFunctionDefinition _value_3 = ((PureFunctionType)e).getValue();
+          Type _function_1 = GetReturnType.function(_value_3);
+          return this.compile(_function_1);
+        }
       }
     }
     return null;
@@ -259,7 +268,7 @@ public class TypeGenerator {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("IO<");
-      String _compileType = this.compileType(((Expression)e));
+      Object _compileType = this.compileType(((Expression)e));
       _builder.append(_compileType, "");
       _builder.append(">");
       _switchResult = _builder;

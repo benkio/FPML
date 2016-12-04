@@ -805,7 +805,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullLambda returns EffectFullLambda
 	 *
 	 * Constraint:
-	 *     ((arg=EffectFullArgument functionBody=FunctionBodyEffectFull) | functionBody=FunctionBodyEffectFull)
+	 *     ((arg=EffectFullArgument functionBody=CompositionFunctionBodyEffect) | functionBody=CompositionFunctionBodyEffect)
 	 */
 	protected void sequence_EffectFullLambda(ISerializationContext context, EffectFullLambda semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1334,19 +1334,10 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     PureLambda returns PureLambda
 	 *
 	 * Constraint:
-	 *     (arg=Argument functionBody=FunctionBodyPure)
+	 *     ((arg=Argument functionBody=CompositionFunctionBodyPure) | functionBody=CompositionFunctionBodyPure)
 	 */
 	protected void sequence_PureLambda(ISerializationContext context, PureLambda semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG));
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__FUNCTION_BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPureLambdaAccess().getArgArgumentParserRuleCall_2_0(), semanticObject.getArg());
-		feeder.accept(grammarAccess.getPureLambdaAccess().getFunctionBodyFunctionBodyPureParserRuleCall_5_0(), semanticObject.getFunctionBody());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

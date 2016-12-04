@@ -76,7 +76,7 @@ public class ValueGenerator {
     _builder.newLine();
     _builder.append("public static ");
     Expression _value = v.getValue();
-    String _compileType = this.typeGenerator.compileType(_value);
+    Object _compileType = this.typeGenerator.compileType(_value);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = v.getName();
@@ -84,37 +84,37 @@ public class ValueGenerator {
     _builder.append("() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("return ");
     Expression _value_1 = v.getValue();
-    Object _compile = this.compile(_value_1);
+    CharSequence _compile = this.compile(_value_1);
     _builder.append(_compile, "\t");
-    _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();
     return _builder;
   }
   
-  public Object compile(final Expression e) {
+  public CharSequence compile(final Expression e) {
     boolean _matched = false;
     if (e instanceof IntegerType) {
       _matched=true;
-      return Integer.valueOf(((IntegerType)e).getValue());
+      int _value = ((IntegerType)e).getValue();
+      String _plus = ("return " + Integer.valueOf(_value));
+      return (_plus + ";");
     }
     if (!_matched) {
       if (e instanceof UnitType) {
         _matched=true;
-        return "IOFunctions.ioUnit";
+        return "return IOFunctions.ioUnit;";
       }
     }
     if (!_matched) {
       if (e instanceof StringType) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("\"");
+        _builder.append("return \"");
         String _value = ((StringType)e).getValue();
         _builder.append(_value, "");
-        _builder.append("\"");
+        _builder.append("\";");
         return _builder.toString();
       }
     }
@@ -122,8 +122,8 @@ public class ValueGenerator {
       if (e instanceof DataType) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("new ");
-        String _compileType = this.typeGenerator.compileType(e);
+        _builder.append("return new ");
+        Object _compileType = this.typeGenerator.compileType(e);
         _builder.append(_compileType, "");
         _builder.append("(");
         PureAdtValue _value = ((DataValue) e).getValue();
@@ -131,7 +131,7 @@ public class ValueGenerator {
         ValueType _content = _type.getContent();
         Object _compileAdtValue = this.compileAdtValue(_value, _content);
         _builder.append(_compileAdtValue, "");
-        _builder.append(")");
+        _builder.append(");");
         return _builder.toString();
       }
     }
@@ -166,7 +166,7 @@ public class ValueGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("new ");
-        String _compileType = this.typeGenerator.compileType(((Expression)v));
+        Object _compileType = this.typeGenerator.compileType(((Expression)v));
         _builder.append(_compileType, "");
         _builder.append("(");
         PureAdtValue _value = ((DataValue) v).getValue();
@@ -255,18 +255,16 @@ public class ValueGenerator {
   public CharSequence compile(final PureFunctionType pft) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      PureFunctionDefinition _value = pft.getValue();
-      FunctionBodyPure _functionBody = _value.getFunctionBody();
-      if ((_functionBody instanceof CompositionFunctionBodyPure)) {
-        _builder.append("new F<");
-        PureFunctionDefinition _value_1 = pft.getValue();
-        Argument _arg = _value_1.getArg();
+      if (((pft.getValue().getFunctionBody() instanceof CompositionFunctionBodyPure) && (!Objects.equal(pft.getValue().getArg(), null)))) {
+        _builder.append("return new F<");
+        PureFunctionDefinition _value = pft.getValue();
+        Argument _arg = _value.getArg();
         ValueType _type = _arg.getType();
         Object _compile = this.typeGenerator.compile(_type);
         _builder.append(_compile, "");
         _builder.append(",");
-        PureFunctionDefinition _value_2 = pft.getValue();
-        ValueType _pureFunctionDefinition = GetReturnType.pureFunctionDefinition(_value_2);
+        PureFunctionDefinition _value_1 = pft.getValue();
+        ValueType _pureFunctionDefinition = GetReturnType.pureFunctionDefinition(_value_1);
         Object _compile_1 = this.typeGenerator.compile(_pureFunctionDefinition);
         _builder.append(_compile_1, "");
         _builder.append(">() {");
@@ -276,51 +274,51 @@ public class ValueGenerator {
         _builder.newLine();
         _builder.append("\t\t\t");
         _builder.append("public ");
-        PureFunctionDefinition _value_3 = pft.getValue();
-        ValueType _pureFunctionDefinition_1 = GetReturnType.pureFunctionDefinition(_value_3);
+        PureFunctionDefinition _value_2 = pft.getValue();
+        ValueType _pureFunctionDefinition_1 = GetReturnType.pureFunctionDefinition(_value_2);
         Object _compile_2 = this.typeGenerator.compile(_pureFunctionDefinition_1);
         _builder.append(_compile_2, "\t\t\t");
         _builder.append(" f(");
-        PureFunctionDefinition _value_4 = pft.getValue();
-        Argument _arg_1 = _value_4.getArg();
+        PureFunctionDefinition _value_3 = pft.getValue();
+        Argument _arg_1 = _value_3.getArg();
         ValueType _type_1 = _arg_1.getType();
         Object _compile_3 = this.typeGenerator.compile(_type_1);
         _builder.append(_compile_3, "\t\t\t");
         _builder.append(" ");
-        PureFunctionDefinition _value_5 = pft.getValue();
-        Argument _arg_2 = _value_5.getArg();
+        PureFunctionDefinition _value_4 = pft.getValue();
+        Argument _arg_2 = _value_4.getArg();
         String _name = _arg_2.getName();
         _builder.append(_name, "\t\t\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t\t");
+        PureFunctionDefinition _value_5 = pft.getValue();
+        FunctionBodyPure _functionBody = _value_5.getFunctionBody();
         PureFunctionDefinition _value_6 = pft.getValue();
-        FunctionBodyPure _functionBody_1 = _value_6.getFunctionBody();
-        PureFunctionDefinition _value_7 = pft.getValue();
-        Argument _arg_3 = _value_7.getArg();
+        Argument _arg_3 = _value_6.getArg();
         String _name_1 = _arg_3.getName();
-        String _compile_4 = this.pureFunctionGenerator.compile(_functionBody_1, _name_1, true);
+        String _compile_4 = this.pureFunctionGenerator.compile(_functionBody, _name_1, true);
         _builder.append(_compile_4, "\t\t\t\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t");
         _builder.append("}");
         _builder.newLine();
         _builder.append("\t");
-        _builder.append("}");
+        _builder.append("};");
         _builder.newLine();
       } else {
-        PureFunctionDefinition _value_8 = pft.getValue();
-        FunctionBodyPure _functionBody_2 = _value_8.getFunctionBody();
-        if ((_functionBody_2 instanceof EmptyFunctionBody)) {
-          _builder.append("new F<() {");
+        PureFunctionDefinition _value_7 = pft.getValue();
+        FunctionBodyPure _functionBody_1 = _value_7.getFunctionBody();
+        if ((_functionBody_1 instanceof EmptyFunctionBody)) {
+          _builder.append("return new F<() {");
           _builder.newLine();
           _builder.append("\t\t\t\t");
           _builder.append("@Override");
           _builder.newLine();
           _builder.append("\t\t\t\t");
           _builder.append("public Object f(Object ");
-          PureFunctionDefinition _value_9 = pft.getValue();
-          Argument _arg_4 = _value_9.getArg();
+          PureFunctionDefinition _value_8 = pft.getValue();
+          Argument _arg_4 = _value_8.getArg();
           String _name_2 = _arg_4.getName();
           _builder.append(_name_2, "\t\t\t\t");
           _builder.append(") {");
@@ -332,8 +330,14 @@ public class ValueGenerator {
           _builder.append("}");
           _builder.newLine();
           _builder.append("\t\t");
-          _builder.append("}");
+          _builder.append("};");
           _builder.newLine();
+        } else {
+          PureFunctionDefinition _value_9 = pft.getValue();
+          FunctionBodyPure _functionBody_2 = _value_9.getFunctionBody();
+          String _compile_5 = this.pureFunctionGenerator.compile(_functionBody_2, "", true);
+          _builder.append(_compile_5, "");
+          _builder.newLineIfNotEmpty();
         }
       }
     }

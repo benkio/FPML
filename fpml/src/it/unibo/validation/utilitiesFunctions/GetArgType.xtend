@@ -48,7 +48,10 @@ class GetArgType {
 	}
 	
 	def static ValueType pureLambda(PureLambda l){
-		return l.arg.type
+    if (l.arg != null) 
+		  return l.arg.type
+    else
+      return null
 	}
 	
 	def static Type effectFullReference(EffectFullReference reference) {

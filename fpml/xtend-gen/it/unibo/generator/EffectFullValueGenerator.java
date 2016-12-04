@@ -110,7 +110,7 @@ public class EffectFullValueGenerator {
     boolean _matched = false;
     if (e instanceof Expression) {
       _matched=true;
-      Object _compile = this.valueGenerator.compile(((Expression)e));
+      CharSequence _compile = this.valueGenerator.compile(((Expression)e));
       String _plus = ("IOFunctions.unit(" + _compile);
       return (_plus + ")");
     }
