@@ -5,6 +5,7 @@ package it.unibo.validation;
 
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
+import it.unibo.fPML.Argument;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
@@ -23,6 +24,8 @@ import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureValue;
+import it.unibo.fPML.UnitType;
+import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
 import it.unibo.validation.utilitiesFunctions.Checks;
 import org.eclipse.xtext.validation.Check;
@@ -41,6 +44,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public final static String TYPEMISMATCHBETWEENVALUEANDDATA = "The value doesn\'t match the data declaration";
   
   public final static String APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type";
+  
+  public final static String FUNCTIONDEFINITIONWITHUNITARGUMENT = "The function definition cannot have the first argument as Unit type. Use Values instead";
   
   @Check
   public void typeCheck(final Function f) {
@@ -166,6 +171,11 @@ public class FPMLValidator extends AbstractFPMLValidator {
   }
   
   public void typeCheckPureFunction(final PureFunctionDefinition f) {
+    Argument _arg = f.getArg();
+    ValueType _type = _arg.getType();
+    if ((_type instanceof UnitType)) {
+      this.error(FPMLValidator.FUNCTIONDEFINITIONWITHUNITARGUMENT, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG);
+    }
     boolean _functionReturnType = Checks.functionReturnType(f);
     boolean _not = (!_functionReturnType);
     if (_not) {

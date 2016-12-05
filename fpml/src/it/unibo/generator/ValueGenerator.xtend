@@ -34,7 +34,7 @@ class ValueGenerator {
 	def compile(Expression e) {
 		switch e {
 			IntegerType: return "return "+ e.value + ';'
-			UnitType: return "return IOFunctions.ioUnit;"
+			UnitType: return "return Unit.unit();"
 			StringType: return '''return "«e.value»";'''
 			DataType: return '''return new «typeGenerator.compileType(e)»(«compileAdtValue((e as DataValue).value, (e as DataValue).type.content)»);'''
 			PureFunctionType: return e.compile 
@@ -45,6 +45,7 @@ class ValueGenerator {
 		switch v {
 			IntegerType: return v.value
 			StringType: return '''"«v.value»"'''
+			UnitType: return '''Unit.unit()'''
 			DataType: return '''new «typeGenerator.compileType(v)»(«compileAdtValue((v as DataValue).value, (v as DataValue).type.content)»)'''
 			PureSumValue: {
 				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromPureAlgebraicType(d as PureAlgebraicType))»)'''

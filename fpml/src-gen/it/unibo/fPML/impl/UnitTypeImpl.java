@@ -5,7 +5,9 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.EffectFullAdtValue;
 import it.unibo.fPML.EffectFullExpression;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.UnitType;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -31,7 +33,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class UnitTypeImpl extends EffectFullTypeImpl implements UnitType
+public class UnitTypeImpl extends ValueTypeImpl implements UnitType
 {
   /**
    * The cached value of the '{@link #getInnerValue() <em>Inner Value</em>}' containment reference.
@@ -262,6 +264,20 @@ public class UnitTypeImpl extends EffectFullTypeImpl implements UnitType
         default: return -1;
       }
     }
+    if (baseClass == PureAdtValue.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == Expression.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
     if (baseClass == EffectFullAdtValue.class)
     {
       switch (derivedFeatureID)
@@ -282,6 +298,20 @@ public class UnitTypeImpl extends EffectFullTypeImpl implements UnitType
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
   {
     if (baseClass == EffectFullExpression.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == PureAdtValue.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == Expression.class)
     {
       switch (baseFeatureID)
       {

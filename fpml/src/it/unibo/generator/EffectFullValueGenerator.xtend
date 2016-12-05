@@ -38,7 +38,6 @@ class EffectFullValueGenerator {
 	def compile(EffectFullExpression e) {
 		switch e {
 			Expression: return "IOFunctions.unit(" + valueGenerator.compile(e) + ")"
-			UnitType: return "Unit.unit()"
 			EffectFullFunctionType: return e.compile 
 			EffectFullDataValue: '''new «e.type.name»(«compileAdtValue(e.value,e.type.content)»)'''
 			RecursiveEffectFullExpression: return "IOFunctions.unit(" + e.exp.compile + ")"
@@ -60,7 +59,6 @@ class EffectFullValueGenerator {
 				else if (d instanceof IOType)
 					return '''IOFunctions.unit(«v.compile»)'''
 			}
-			UnitType: return '''IOFunctions.ioUnit()'''
 			EffectFullDataValue: return compile(v as EffectFullExpression)
 			default: {
 				switch v.innerValue {

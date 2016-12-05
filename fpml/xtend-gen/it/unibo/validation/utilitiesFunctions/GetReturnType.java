@@ -172,6 +172,12 @@ public class GetReturnType {
         _switchResult = _xifexpression;
       }
     }
+    if (!_matched) {
+      if (expression instanceof UnitType) {
+        _matched=true;
+        _switchResult = ((ValueType)expression);
+      }
+    }
     return _switchResult;
   }
   
@@ -206,8 +212,7 @@ public class GetReturnType {
   }
   
   public static ValueType pureFunctionChain(final List<PureFunction> definitions, final PureFunction first, final Argument argument, final AdditionalPureArgument argument2) {
-    boolean _notEquals = (!Objects.equal(argument2, null));
-    if (_notEquals) {
+    if (((!Objects.equal(argument2, null)) && (!(argument2.getArg2().getType() instanceof VoidType)))) {
       final PureFunctionType functionType = FPMLFactory.eINSTANCE.createPureFunctionType();
       Argument _arg2 = argument2.getArg2();
       ValueType _type = _arg2.getType();
@@ -363,8 +368,7 @@ public class GetReturnType {
   }
   
   public static Type effectFullFunctionChain(final List<EffectFullReference> references, final EffectFullReference first, final EffectFullArgument argument, final AdditionalEffectFullArgument argument2) {
-    boolean _notEquals = (!Objects.equal(argument2, null));
-    if (_notEquals) {
+    if (((!Objects.equal(argument2, null)) && (!(argument2.getArg2().getType() instanceof VoidType)))) {
       Type _effectFullFunctionChain = GetReturnType.effectFullFunctionChain(references, first, argument, null);
       final Type returnFunctionType = EcoreUtil2.<Type>copy(_effectFullFunctionChain);
       final EffectFullFunctionType functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
@@ -476,12 +480,6 @@ public class GetReturnType {
       return Others.IOWrap(_expression);
     }
     if (!_matched) {
-      if (expression instanceof UnitType) {
-        _matched=true;
-        _switchResult = ((Type)expression);
-      }
-    }
-    if (!_matched) {
       if (expression instanceof EffectFullFunctionType) {
         _matched=true;
         Type _xifexpression = null;
@@ -489,7 +487,9 @@ public class GetReturnType {
         if ((_value instanceof EffectFullLambda)) {
           Type _xblockexpression = null;
           {
-            EffectFullArgument arg = null;
+            EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument();
+            UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+            arg.setType(_createUnitType);
             EffectFullFunctionDefinition _value_1 = ((EffectFullFunctionType)expression).getValue();
             EffectFullArgument _arg = _value_1.getArg();
             boolean _notEquals = (!Objects.equal(_arg, null));
@@ -588,8 +588,12 @@ public class GetReturnType {
     {
       UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
       final IOType ioType = Others.IOWrap(_createUnitType);
+      AdditionalEffectFullArgument addictionalEffectFullArgument = FPMLFactory.eINSTANCE.createAdditionalEffectFullArgument();
+      EffectFullArgument _createVoidEffectFullArgument = Others.createVoidEffectFullArgument();
+      addictionalEffectFullArgument.setArg2(_createVoidEffectFullArgument);
       FunctionBodyEffectFull _functionBody = m.getFunctionBody();
-      _xblockexpression = GetReturnType.functionBodyEffectFull(_functionBody, null, null, ioType);
+      EffectFullArgument _createUnitEffectFullArgument = Others.createUnitEffectFullArgument();
+      _xblockexpression = GetReturnType.functionBodyEffectFull(_functionBody, _createUnitEffectFullArgument, addictionalEffectFullArgument, ioType);
     }
     return _xblockexpression;
   }

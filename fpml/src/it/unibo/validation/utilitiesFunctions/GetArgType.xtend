@@ -43,7 +43,12 @@ class GetArgType {
 	
 	def static ValueType pureFunctionDefinition(PureFunctionDefinition f) {
 		switch f {
-			PureValue: return null
+			PureValue: {
+				if (f.value instanceof PureFunctionType) {
+						return pureLambda((f.value as PureFunctionType).value as PureLambda)
+				}else 
+					return FPMLFactory.eINSTANCE.createUnitType
+			}
 			PureLambda: return pureLambda(f)
 			default: return f.arg.type
 		}
@@ -53,7 +58,7 @@ class GetArgType {
     if (l.arg != null) 
 		  return l.arg.type
     else
-      return null
+      return FPMLFactory.eINSTANCE.createUnitType
 	}
 	
 	def static Type effectFullReference(EffectFullReference reference) {
@@ -95,13 +100,18 @@ class GetArgType {
 	
 	def static Type effectFullFunctionDefinition(EffectFullFunctionDefinition definition) {
 		switch definition{
-			EffectFullValue: GetReturnType.effectFullExpression(definition.value)
+			EffectFullValue: {
+				switch definition.value{
+					EffectFullFunctionType: effectFullLambda((definition.value as EffectFullFunctionType).value as EffectFullLambda)
+					default: FPMLFactory.eINSTANCE.createUnitType
+				}
+			}
 			EffectFullLambda: effectFullLambda(definition)
 			EffectFullFunctionDefinition: definition.arg.type
 		}
 	}
 	
-	def static effectFullLambda(EffectFullLambda lambda) {
+	def static Type effectFullLambda(EffectFullLambda lambda) {
 		if (lambda.arg == null) return FPMLFactory.eINSTANCE.createUnitType
 		else return lambda.arg.type
 	}

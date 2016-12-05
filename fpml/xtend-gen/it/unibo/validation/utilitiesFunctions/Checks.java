@@ -59,7 +59,6 @@ import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -205,9 +204,13 @@ public class Checks {
         return false;
       }
     }
-    EClass _eClass = v.eClass();
-    EClass _eClass_1 = v2.eClass();
-    return Objects.equal(_eClass, _eClass_1);
+    if (!_matched) {
+      if (v instanceof UnitType) {
+        _matched=true;
+        return (v2 instanceof UnitType);
+      }
+    }
+    return ((v2 instanceof UnitType) || Objects.equal(v.eClass(), v2.eClass()));
   }
   
   public static boolean TypeEquals(final Type t, final Type t1) {
@@ -301,6 +304,9 @@ public class Checks {
   }
   
   public static boolean functionChainPure(final List<PureFunction> functions, final PureFunction first, final ValueType type) {
+    if ((type instanceof VoidType)) {
+      return false;
+    }
     ValueType startType = type;
     final ValueType argFuncFirst = GetArgType.pureFunction(first);
     boolean _ValueTypeEquals = Checks.ValueTypeEquals(startType, argFuncFirst);
@@ -357,6 +363,9 @@ public class Checks {
   }
   
   public static boolean functionChainEffectFull(final List<EffectFullReference> references, final EffectFullReference first, final Type type) {
+    if ((type instanceof VoidType)) {
+      return false;
+    }
     Type startType = type;
     final Type argFuncFirst = GetArgType.effectFullReference(first);
     boolean _TypeEquals = Checks.TypeEquals(startType, argFuncFirst);

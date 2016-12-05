@@ -2524,6 +2524,12 @@ rule__ValueType__Alternatives
 		rulePureAlgebraicType
 		{ after(grammarAccess.getValueTypeAccess().getPureAlgebraicTypeParserRuleCall_4()); }
 	)
+	|
+	(
+		{ before(grammarAccess.getValueTypeAccess().getUnitTypeParserRuleCall_5()); }
+		ruleUnitType
+		{ after(grammarAccess.getValueTypeAccess().getUnitTypeParserRuleCall_5()); }
+	)
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -2556,39 +2562,33 @@ rule__EffectFullType__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getEffectFullTypeAccess().getUnitTypeParserRuleCall_0()); }
-		ruleUnitType
-		{ after(grammarAccess.getEffectFullTypeAccess().getUnitTypeParserRuleCall_0()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getEffectFullTypeAccess().getEffectFullFunctionTypeParserRuleCall_1()); }
+		{ before(grammarAccess.getEffectFullTypeAccess().getEffectFullFunctionTypeParserRuleCall_0()); }
 		ruleEffectFullFunctionType
-		{ after(grammarAccess.getEffectFullTypeAccess().getEffectFullFunctionTypeParserRuleCall_1()); }
+		{ after(grammarAccess.getEffectFullTypeAccess().getEffectFullFunctionTypeParserRuleCall_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullTypeAccess().getEffectFullDataTypeParserRuleCall_2()); }
+		{ before(grammarAccess.getEffectFullTypeAccess().getEffectFullDataTypeParserRuleCall_1()); }
 		ruleEffectFullDataType
-		{ after(grammarAccess.getEffectFullTypeAccess().getEffectFullDataTypeParserRuleCall_2()); }
+		{ after(grammarAccess.getEffectFullTypeAccess().getEffectFullDataTypeParserRuleCall_1()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullTypeAccess().getEffectFullAlgebraicTypeParserRuleCall_3()); }
+		{ before(grammarAccess.getEffectFullTypeAccess().getEffectFullAlgebraicTypeParserRuleCall_2()); }
 		ruleEffectFullAlgebraicType
-		{ after(grammarAccess.getEffectFullTypeAccess().getEffectFullAlgebraicTypeParserRuleCall_3()); }
+		{ after(grammarAccess.getEffectFullTypeAccess().getEffectFullAlgebraicTypeParserRuleCall_2()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullTypeAccess().getIOTypeParserRuleCall_4()); }
+		{ before(grammarAccess.getEffectFullTypeAccess().getIOTypeParserRuleCall_3()); }
 		ruleIOType
-		{ after(grammarAccess.getEffectFullTypeAccess().getIOTypeParserRuleCall_4()); }
+		{ after(grammarAccess.getEffectFullTypeAccess().getIOTypeParserRuleCall_3()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullTypeAccess().getVoidTypeParserRuleCall_5()); }
+		{ before(grammarAccess.getEffectFullTypeAccess().getVoidTypeParserRuleCall_4()); }
 		ruleVoidType
-		{ after(grammarAccess.getEffectFullTypeAccess().getVoidTypeParserRuleCall_5()); }
+		{ after(grammarAccess.getEffectFullTypeAccess().getVoidTypeParserRuleCall_4()); }
 	)
 ;
 finally {
@@ -2655,21 +2655,15 @@ rule__EffectFullExpression__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullExpressionAccess().getUnitValueParserRuleCall_2()); }
-		ruleUnitValue
-		{ after(grammarAccess.getEffectFullExpressionAccess().getUnitValueParserRuleCall_2()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionValueParserRuleCall_3()); }
+		{ before(grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionValueParserRuleCall_2()); }
 		ruleEffectFullFunctionValue
-		{ after(grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionValueParserRuleCall_3()); }
+		{ after(grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionValueParserRuleCall_2()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullExpressionAccess().getEffectFullDataValueParserRuleCall_4()); }
+		{ before(grammarAccess.getEffectFullExpressionAccess().getEffectFullDataValueParserRuleCall_3()); }
 		ruleEffectFullDataValue
-		{ after(grammarAccess.getEffectFullExpressionAccess().getEffectFullDataValueParserRuleCall_4()); }
+		{ after(grammarAccess.getEffectFullExpressionAccess().getEffectFullDataValueParserRuleCall_3()); }
 	)
 ;
 finally {
@@ -2724,6 +2718,12 @@ rule__Expression__Alternatives
 		{ before(grammarAccess.getExpressionAccess().getFunctionValueParserRuleCall_3()); }
 		ruleFunctionValue
 		{ after(grammarAccess.getExpressionAccess().getFunctionValueParserRuleCall_3()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getExpressionAccess().getUnitValueParserRuleCall_4()); }
+		ruleUnitValue
+		{ after(grammarAccess.getExpressionAccess().getUnitValueParserRuleCall_4()); }
 	)
 ;
 finally {

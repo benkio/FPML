@@ -60,4 +60,16 @@ class Others {
 		returnT.type = EcoreUtil2.copy(t)
 		return returnT	
 	}
+	
+	def static EffectFullArgument createUnitEffectFullArgument(){
+		val arg = FPMLFactory.eINSTANCE.createEffectFullArgument
+		arg.type = FPMLFactory.eINSTANCE.createUnitType
+		return arg
+	}
+	
+	def static EffectFullArgument createVoidEffectFullArgument(){
+		val arg = FPMLFactory.eINSTANCE.createEffectFullArgument
+		arg.type = FPMLFactory.eINSTANCE.createVoidType
+		return arg
+	}
 }

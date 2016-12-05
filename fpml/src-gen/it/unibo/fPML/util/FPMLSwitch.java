@@ -378,10 +378,12 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         UnitType unitType = (UnitType)theEObject;
         T result = caseUnitType(unitType);
-        if (result == null) result = caseEffectFullType(unitType);
-        if (result == null) result = caseEffectFullExpression(unitType);
+        if (result == null) result = caseValueType(unitType);
+        if (result == null) result = caseExpression(unitType);
         if (result == null) result = caseEffectFullAdtValue(unitType);
         if (result == null) result = caseType(unitType);
+        if (result == null) result = caseEffectFullExpression(unitType);
+        if (result == null) result = casePureAdtValue(unitType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

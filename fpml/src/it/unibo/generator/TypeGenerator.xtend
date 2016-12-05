@@ -38,6 +38,7 @@ class TypeGenerator {
 				else
 					return '''P2<«vt.pureAdtElement1.compile», «Others.getElement2ValueTypeFromPureAlgebraicType(vt).compile»>'''
 			}
+			UnitType: '''Unit'''
 		}»'''
 
 	def compile(Argument arg) '''«arg.type.compile» «arg.name»'''
@@ -73,7 +74,6 @@ class TypeGenerator {
 	def compileType(EffectFullExpression e) {
 		switch e {
 			Expression: '''IO<«compileType(e)»>'''
-			UnitType: '''Unit'''
 			EffectFullFunctionType: if (e.argType != null && e.returnType != null) 
 										return '''F<«e.argType.compile», IO<«e.returnType.type.compile»>>'''
 									else if(e.returnType != null)

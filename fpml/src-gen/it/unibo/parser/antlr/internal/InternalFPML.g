@@ -2086,6 +2086,15 @@ ruleValueType returns [EObject current=null]
 			$current = $this_PureAlgebraicType_4.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getValueTypeAccess().getUnitTypeParserRuleCall_5());
+		}
+		this_UnitType_5=ruleUnitType
+		{
+			$current = $this_UnitType_5.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -2142,56 +2151,47 @@ ruleEffectFullType returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getUnitTypeParserRuleCall_0());
+			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getEffectFullFunctionTypeParserRuleCall_0());
 		}
-		this_UnitType_0=ruleUnitType
+		this_EffectFullFunctionType_0=ruleEffectFullFunctionType
 		{
-			$current = $this_UnitType_0.current;
+			$current = $this_EffectFullFunctionType_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getEffectFullFunctionTypeParserRuleCall_1());
+			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getEffectFullDataTypeParserRuleCall_1());
 		}
-		this_EffectFullFunctionType_1=ruleEffectFullFunctionType
+		this_EffectFullDataType_1=ruleEffectFullDataType
 		{
-			$current = $this_EffectFullFunctionType_1.current;
+			$current = $this_EffectFullDataType_1.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getEffectFullDataTypeParserRuleCall_2());
+			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getEffectFullAlgebraicTypeParserRuleCall_2());
 		}
-		this_EffectFullDataType_2=ruleEffectFullDataType
+		this_EffectFullAlgebraicType_2=ruleEffectFullAlgebraicType
 		{
-			$current = $this_EffectFullDataType_2.current;
+			$current = $this_EffectFullAlgebraicType_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getEffectFullAlgebraicTypeParserRuleCall_3());
+			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getIOTypeParserRuleCall_3());
 		}
-		this_EffectFullAlgebraicType_3=ruleEffectFullAlgebraicType
+		this_IOType_3=ruleIOType
 		{
-			$current = $this_EffectFullAlgebraicType_3.current;
+			$current = $this_IOType_3.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getIOTypeParserRuleCall_4());
+			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getVoidTypeParserRuleCall_4());
 		}
-		this_IOType_4=ruleIOType
+		this_VoidType_4=ruleVoidType
 		{
-			$current = $this_IOType_4.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getEffectFullTypeAccess().getVoidTypeParserRuleCall_5());
-		}
-		this_VoidType_5=ruleVoidType
-		{
-			$current = $this_VoidType_5.current;
+			$current = $this_VoidType_4.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -3002,29 +3002,20 @@ ruleEffectFullExpression returns [EObject current=null]
 		)
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getUnitValueParserRuleCall_2());
+			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionValueParserRuleCall_2());
 		}
-		this_UnitValue_9=ruleUnitValue
+		this_EffectFullFunctionValue_9=ruleEffectFullFunctionValue
 		{
-			$current = $this_UnitValue_9.current;
+			$current = $this_EffectFullFunctionValue_9.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionValueParserRuleCall_3());
+			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullDataValueParserRuleCall_3());
 		}
-		this_EffectFullFunctionValue_10=ruleEffectFullFunctionValue
+		this_EffectFullDataValue_10=ruleEffectFullDataValue
 		{
-			$current = $this_EffectFullFunctionValue_10.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullDataValueParserRuleCall_4());
-		}
-		this_EffectFullDataValue_11=ruleEffectFullDataValue
-		{
-			$current = $this_EffectFullDataValue_11.current;
+			$current = $this_EffectFullDataValue_10.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -3319,6 +3310,15 @@ ruleExpression returns [EObject current=null]
 		this_FunctionValue_3=ruleFunctionValue
 		{
 			$current = $this_FunctionValue_3.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getExpressionAccess().getUnitValueParserRuleCall_4());
+		}
+		this_UnitValue_4=ruleUnitValue
+		{
+			$current = $this_UnitValue_4.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

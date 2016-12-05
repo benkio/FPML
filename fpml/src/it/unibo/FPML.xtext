@@ -152,13 +152,13 @@ IOType:
 	'IO' type=Type ;
 
 ValueType:
-	IntegerType | StringType | DataType | PureFunctionType | PureAlgebraicType;
+	IntegerType | StringType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
 
 Type:
 	ValueType | EffectFullType;
 
 EffectFullType:
-	UnitType | EffectFullFunctionType | EffectFullDataType | EffectFullAlgebraicType | IOType | VoidType;
+	EffectFullFunctionType | EffectFullDataType | EffectFullAlgebraicType | IOType | VoidType;
 
 VoidType: {VoidType};
 
@@ -203,8 +203,7 @@ EffectFullProdTypeFactor:
 
 EffectFullExpression:
 	{RecursiveEffectFullExpression} 'IO' '[' exp=EffectFullExpression ']' 
-	| 'IO' '(' Expression ')' 
-	| UnitValue 
+	| 'IO' '(' Expression ')'  
 	| EffectFullFunctionValue 
 	| EffectFullDataValue;
 	
@@ -222,7 +221,8 @@ Expression:
     IntValue 
     | StringValue 
     | DataValue 
-    | FunctionValue;
+    | FunctionValue
+    | UnitValue;
 
 IntValue returns IntegerType: {IntegerType} value=INT;
 
@@ -257,7 +257,6 @@ PureSumValue:
 EffectFullAdtValue:
 	 'IO' '(' innerValue=PureAdtValue ')'
 	 | 'IO' '[' innerValue=EffectFullAdtValue ']'
-	 | UnitValue
 	 | EffectFullFunctionValue
 	 | EffectFullProdValue
 	 | EffectFullValueRef

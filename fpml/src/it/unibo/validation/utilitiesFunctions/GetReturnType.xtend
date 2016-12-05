@@ -1,11 +1,9 @@
 package it.unibo.validation.utilitiesFunctions
 
 import it.unibo.fPML.*
-import org.eclipse.emf.common.util.EList
 import it.unibo.fPML.EffectFullArgument
 import org.eclipse.xtext.EcoreUtil2
 import java.util.List
-import org.eclipse.emf.ecore.EObject
 import it.unibo.fPML.EffectFullExpression
 import org.eclipse.emf.ecore.util.EcoreUtil
 
@@ -43,7 +41,8 @@ class GetReturnType {
 					functionBodyPure(expression.value.functionBody, expression.value.arg, null, expression.value.returnType)
 				}else
 					expression
-				} 
+				}
+       		UnitType: expression
 		}
 	}
 	
@@ -61,7 +60,7 @@ class GetReturnType {
 	}
 	
 	def static ValueType pureFunctionChain(List<PureFunction> definitions, PureFunction first ,Argument argument, AdditionalPureArgument argument2) {
-		if (argument2 != null) { //HigherOrder
+		if (argument2 != null && !(argument2.arg2.type instanceof VoidType)) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createPureFunctionType
 			functionType.argType = EcoreUtil.copy(argument2.arg2.type)
 			functionType.returnType = EcoreUtil.copy(pureFunctionChain(definitions, first, argument, null))
@@ -123,7 +122,7 @@ class GetReturnType {
 	}
 	
 	def static Type effectFullFunctionChain(List<EffectFullReference> references, EffectFullReference first, EffectFullArgument argument, AdditionalEffectFullArgument argument2) {
-		if (argument2 != null) { //HigherOrder
+		if (argument2 != null && !(argument2.arg2.type instanceof VoidType)) { //HigherOrder
 			val returnFunctionType = EcoreUtil2.copy(effectFullFunctionChain(references, first, argument, null))
 			val functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType
 			functionType.argType = EcoreUtil.copy(argument2.arg2.type)
@@ -167,10 +166,10 @@ class GetReturnType {
 			Expression: {
 				return Others.IOWrap(expression(expression))
 			}
-			UnitType: expression
 			EffectFullFunctionType:{
 				if (expression.value instanceof EffectFullLambda){
-					var EffectFullArgument arg = null
+					var EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument
+					arg.type = FPMLFactory.eINSTANCE.createUnitType
 					if (expression.value.arg != null) arg = expression.value.arg
 					functionBodyEffectFull(expression.value.functionBody, arg, null, expression.value.returnType)
 				}else
@@ -193,15 +192,17 @@ class GetReturnType {
 	def static primitiveEffectFullFunction(PrimitiveEffectFullFunction function) {
 		switch function {
 			PrimitivePrint: Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
-			ApplyFIO: function.functionType.returnType
-			  PrimitiveReturn: Others.IOWrap(function.type)
-			  LeftPairIO: function.type.effectFullAdtElement1
-			  RightPairIO: Others.getElement2ValueTypeFromEffectFullAlgebraicType(function.type)
+  			ApplyFIO: function.functionType.returnType
+			PrimitiveReturn: Others.IOWrap(function.type)
+			LeftPairIO: function.type.effectFullAdtElement1
+			RightPairIO: Others.getElement2ValueTypeFromEffectFullAlgebraicType(function.type)
 		}
 	}
 	
 	def static Type mainFunc(MainFunc m) {
 		val ioType = Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
-		functionBodyEffectFull(m.functionBody, null, null, ioType)
+		var addictionalEffectFullArgument = FPMLFactory.eINSTANCE.createAdditionalEffectFullArgument
+		addictionalEffectFullArgument.arg2 = Others.createVoidEffectFullArgument
+		functionBodyEffectFull(m.functionBody, Others.createUnitEffectFullArgument, addictionalEffectFullArgument, ioType)
 	}
 }

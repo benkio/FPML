@@ -353,14 +353,16 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_Times(context, (Times) semanticObject); 
 				return; 
 			case FPMLPackage.UNIT_TYPE:
-				if (rule == grammarAccess.getTypeRule()
-						|| rule == grammarAccess.getEffectFullTypeRule()
+				if (rule == grammarAccess.getValueTypeRule()
+						|| rule == grammarAccess.getTypeRule()
 						|| rule == grammarAccess.getUnitTypeRule()) {
 					sequence_UnitType(context, (UnitType) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getUnitValueRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPureAdtValueRule()
 						|| rule == grammarAccess.getEffectFullAdtValueRule()) {
 					sequence_UnitValue(context, (UnitType) semanticObject); 
 					return; 
@@ -1650,8 +1652,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     ValueType returns UnitType
 	 *     Type returns UnitType
-	 *     EffectFullType returns UnitType
 	 *     UnitType returns UnitType
 	 *
 	 * Constraint:
@@ -1672,6 +1674,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     EffectFullExpression returns UnitType
 	 *     UnitValue returns UnitType
+	 *     Expression returns UnitType
+	 *     PureAdtValue returns UnitType
 	 *     EffectFullAdtValue returns UnitType
 	 *
 	 * Constraint:

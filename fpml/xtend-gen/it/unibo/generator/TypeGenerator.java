@@ -33,6 +33,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 public class TypeGenerator {
   public Object compile(final ValueType vt) {
     StringConcatenation _builder = new StringConcatenation();
+    CharSequence _switchResult = null;
     boolean _matched = false;
     if (vt instanceof DataType) {
       _matched=true;
@@ -98,6 +99,15 @@ public class TypeGenerator {
         }
       }
     }
+    if (!_matched) {
+      if (vt instanceof UnitType) {
+        _matched=true;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("Unit");
+        _switchResult = _builder_1;
+      }
+    }
+    _builder.append(_switchResult, "");
     return _builder;
   }
   
@@ -272,14 +282,6 @@ public class TypeGenerator {
       _builder.append(_compileType, "");
       _builder.append(">");
       _switchResult = _builder;
-    }
-    if (!_matched) {
-      if (e instanceof UnitType) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("Unit");
-        _switchResult = _builder;
-      }
     }
     if (!_matched) {
       if (e instanceof EffectFullFunctionType) {

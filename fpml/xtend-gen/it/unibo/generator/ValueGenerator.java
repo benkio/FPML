@@ -104,7 +104,7 @@ public class ValueGenerator {
     if (!_matched) {
       if (e instanceof UnitType) {
         _matched=true;
-        return "return IOFunctions.ioUnit;";
+        return "return Unit.unit();";
       }
     }
     if (!_matched) {
@@ -158,6 +158,14 @@ public class ValueGenerator {
         String _value = ((StringType)v).getValue();
         _builder.append(_value, "");
         _builder.append("\"");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (v instanceof UnitType) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Unit.unit()");
         return _builder.toString();
       }
     }

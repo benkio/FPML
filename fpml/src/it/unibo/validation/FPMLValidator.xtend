@@ -24,8 +24,9 @@ class FPMLValidator extends AbstractFPMLValidator {
 
     public static val TYPEMISMATCHFUNCTIONCOMPOSITION = "Type mismatch between the input of one function and the return of another in the function chain";
     public static val TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN = "The return type of the function chain and the outside function doesn't match";
-     public static val TYPEMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
+    public static val TYPEMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
 	public static val APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type"
+	public static val FUNCTIONDEFINITIONWITHUNITARGUMENT = "The function definition cannot have the first argument as Unit type. Use Values instead"
 	
    @Check
    def typeCheck(Function f){
@@ -95,6 +96,8 @@ class FPMLValidator extends AbstractFPMLValidator {
    		}
    }
    def typeCheckPureFunction(PureFunctionDefinition f){
+   		if (f.arg.type instanceof UnitType)
+   			error(FUNCTIONDEFINITIONWITHUNITARGUMENT, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG)
    		if (!Checks.functionReturnType(f))
    			error(TYPEMISMATCHFUNCTIONCOMPOSITIONRETURN, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__RETURN_TYPE)
    		if (!Checks.functionArgType(f))

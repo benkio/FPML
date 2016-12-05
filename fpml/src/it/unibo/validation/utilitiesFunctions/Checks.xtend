@@ -79,7 +79,8 @@ class Checks {
 											ValueTypeEquals(v.pureAdtElement1, (v2 as PureAlgebraicType).pureAdtElement1) &&
 											ValueTypeEquals(Others.getElement2ValueTypeFromPureAlgebraicType(v), Others.getElement2ValueTypeFromPureAlgebraicType(v2 as PureAlgebraicType))
 			VoidType: return false
-			default: return v.eClass == v2.eClass
+			UnitType: return v2 instanceof UnitType
+			default: return  v2 instanceof UnitType || v.eClass == v2.eClass
 		}
 	}
 	
@@ -132,6 +133,7 @@ class Checks {
 	}
 	
 	def static boolean functionChainPure(List<PureFunction> functions, PureFunction first, ValueType type) {
+		if(type instanceof VoidType) return false
 		var startType = type
 		
 		val argFuncFirst = GetArgType.pureFunction(first)
@@ -164,6 +166,7 @@ class Checks {
 	}
 	
 	def static functionChainEffectFull(List<EffectFullReference> references, EffectFullReference first, Type type) {
+		if(type instanceof VoidType) return false
 		var startType = type
 		
 		val argFuncFirst = GetArgType.effectFullReference(first)

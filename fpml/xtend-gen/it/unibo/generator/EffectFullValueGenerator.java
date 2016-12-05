@@ -22,7 +22,6 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.Type;
-import it.unibo.fPML.UnitType;
 import it.unibo.generator.EffectFullFunctionGenerator;
 import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
@@ -113,12 +112,6 @@ public class EffectFullValueGenerator {
       CharSequence _compile = this.valueGenerator.compile(((Expression)e));
       String _plus = ("IOFunctions.unit(" + _compile);
       return (_plus + ")");
-    }
-    if (!_matched) {
-      if (e instanceof UnitType) {
-        _matched=true;
-        return "Unit.unit()";
-      }
     }
     if (!_matched) {
       if (e instanceof EffectFullFunctionType) {
@@ -249,14 +242,6 @@ public class EffectFullValueGenerator {
             return _builder.toString();
           }
         }
-      }
-    }
-    if (!_matched) {
-      if (v instanceof UnitType) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.ioUnit()");
-        return _builder.toString();
       }
     }
     if (!_matched) {

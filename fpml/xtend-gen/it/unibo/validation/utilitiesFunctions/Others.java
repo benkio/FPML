@@ -8,6 +8,7 @@ import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.EffectFullAlgebraicType;
+import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullSumTypeFactor;
@@ -25,7 +26,9 @@ import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.Type;
+import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
+import it.unibo.fPML.VoidType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
@@ -149,5 +152,19 @@ public class Others {
     Type _copy = EcoreUtil2.<Type>copy(t);
     returnT.setType(_copy);
     return returnT;
+  }
+  
+  public static EffectFullArgument createUnitEffectFullArgument() {
+    final EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument();
+    UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+    arg.setType(_createUnitType);
+    return arg;
+  }
+  
+  public static EffectFullArgument createVoidEffectFullArgument() {
+    final EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument();
+    VoidType _createVoidType = FPMLFactory.eINSTANCE.createVoidType();
+    arg.setType(_createVoidType);
+    return arg;
   }
 }
