@@ -93,7 +93,7 @@ AdditionalEffectFullArgument: arg2=EffectFullArgument;
 
 Function: EffectFullFunction | PureFunction;
 
-PureFunction: PureFunctionDefinition | PrimitivePureFunction;
+PureFunction: PureFunctionDefinition | PrimitivePureFunction | Argument;
 
 EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
 
@@ -103,8 +103,6 @@ EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
  * 	cannot be referenced because of no ids, but where the effectfullReference is used them are also allowed(not as reference).
  */
 EffectFullReference: EffectFullValue | EffectFullArgument | PureValue | PrimitiveEffectFullValue | PrimitiveFunction | Function;
-
-PureReference: PureValue | Argument;
 
 PrimitiveFunction: PrimitiveEffectFullFunction | PrimitivePureFunction | PrimitiveEffectFullValue;
 
@@ -129,11 +127,11 @@ EmptyFunctionBody:
     {EmptyFunctionBody} 'Undefined';
 
 CompositionFunctionBodyPure:
-      referenceElement=[PureFunctionDefinition] (functionChain+=CompositionFunctionBodyPureFactor)+ 
+      referenceElement=[PureFunction] (functionChain+=CompositionFunctionBodyPureFactor)+ 
     | primitiveElement=PrimitivePureFunction (functionChain+=CompositionFunctionBodyPureFactor)+;
     
 CompositionFunctionBodyPureFactor:
-	  ( '|>' (referenceElement=[PureFunctionDefinition]))
+	  ( '|>' (referenceElement=[PureFunction]))
 	| ( '|>' (PrimitiveElement=PrimitivePureFunction));
 
 CompositionFunctionBodyEffect:
@@ -288,7 +286,7 @@ LeftPair: {LeftPair} 'leftPair' type=PureAlgebraicType;
 RightPair: {RightPair} 'rightPair' type=PureAlgebraicType;
 ApplyF: {ApplyF} 'applyF' functionType=PureFunctionType value=ApplyFFactor;
 ApplyFFactor:
-	valueReference=[PureReference]
+	valueReference=[PureFunction]
 	| '(' valueLambda=PureLambda ')'
 ;
 

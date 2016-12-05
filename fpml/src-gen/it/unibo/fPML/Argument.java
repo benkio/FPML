@@ -14,13 +14,14 @@ package it.unibo.fPML;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.Argument#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.Argument#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getArgument()
  * @model
  * @generated
  */
-public interface Argument extends PureReference
+public interface Argument extends PureFunction
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
@@ -47,5 +48,31 @@ public interface Argument extends PureReference
    * @generated
    */
   void setType(ValueType value);
+
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see it.unibo.fPML.FPMLPackage#getArgument_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.Argument#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
 
 } // Argument

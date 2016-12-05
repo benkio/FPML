@@ -6,7 +6,7 @@ package it.unibo.fPML.impl;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.PrimitivePureFunction;
-import it.unibo.fPML.PureFunctionDefinition;
+import it.unibo.fPML.PureFunction;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -41,7 +41,7 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * @generated
    * @ordered
    */
-  protected PureFunctionDefinition referenceElement;
+  protected PureFunction referenceElement;
 
   /**
    * The cached value of the '{@link #getPrimitiveElement() <em>Primitive Element</em>}' containment reference.
@@ -79,12 +79,12 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureFunctionDefinition getReferenceElement()
+  public PureFunction getReferenceElement()
   {
     if (referenceElement != null && referenceElement.eIsProxy())
     {
       InternalEObject oldReferenceElement = (InternalEObject)referenceElement;
-      referenceElement = (PureFunctionDefinition)eResolveProxy(oldReferenceElement);
+      referenceElement = (PureFunction)eResolveProxy(oldReferenceElement);
       if (referenceElement != oldReferenceElement)
       {
         if (eNotificationRequired())
@@ -99,7 +99,7 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureFunctionDefinition basicGetReferenceElement()
+  public PureFunction basicGetReferenceElement()
   {
     return referenceElement;
   }
@@ -109,9 +109,9 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setReferenceElement(PureFunctionDefinition newReferenceElement)
+  public void setReferenceElement(PureFunction newReferenceElement)
   {
-    PureFunctionDefinition oldReferenceElement = referenceElement;
+    PureFunction oldReferenceElement = referenceElement;
     referenceElement = newReferenceElement;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__REFERENCE_ELEMENT, oldReferenceElement, referenceElement));
@@ -211,7 +211,7 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
     switch (featureID)
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__REFERENCE_ELEMENT:
-        setReferenceElement((PureFunctionDefinition)newValue);
+        setReferenceElement((PureFunction)newValue);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__PRIMITIVE_ELEMENT:
         setPrimitiveElement((PrimitivePureFunction)newValue);
@@ -231,7 +231,7 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
     switch (featureID)
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__REFERENCE_ELEMENT:
-        setReferenceElement((PureFunctionDefinition)null);
+        setReferenceElement((PureFunction)null);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__PRIMITIVE_ELEMENT:
         setPrimitiveElement((PrimitivePureFunction)null);

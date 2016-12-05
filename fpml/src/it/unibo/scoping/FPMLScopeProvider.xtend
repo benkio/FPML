@@ -6,6 +6,20 @@ package it.unibo.scoping
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import it.unibo.fPML.PureLambda
+import it.unibo.fPML.EffectFullLambda
+import org.eclipse.xtext.scoping.Scopes
+import it.unibo.fPML.Argument
+import java.util.Collection
+import it.unibo.fPML.PureFunctionDefinition
+import it.unibo.fPML.PureBlock
+import java.util.LinkedList
+import it.unibo.fPML.EffectFullArgument
+import it.unibo.fPML.EffectFullFunctionDefinition
+import it.unibo.fPML.EffectFullBlock
+import it.unibo.fPML.CompositionFunctionBodyPure
+import it.unibo.fPML.CompositionFunctionBodyEffect
+import it.unibo.fPML.MainFunc
 
 /**
  * This class contains custom scoping description.
@@ -14,25 +28,55 @@ import org.eclipse.emf.ecore.EReference
  * on how and when to use it.
  */
 class FPMLScopeProvider extends AbstractFPMLScopeProvider {
-/* 
+ 
+ /*
    override getScope(EObject ctx, EReference ref) {
-	   if (context instanceof FieldReference) {
-			FieldReference fieldReference = (FieldReference) context;
-			Greeting greeting = (Greeting) fieldReference.eContainer();
-			return getFields(greeting, new LinkedList<Greeting>());
+	   if (ctx instanceof CompositionFunctionBodyPure || ctx instanceof CompositionFunctionBodyEffect) {
+	   		if (ctx instanceof CompositionFunctionBodyPure) {
+	   			return getArguments(ctx.eContainer as PureFunctionDefinition, new LinkedList<Argument>())
+	   		}else if (!(ctx.eContainer instanceof MainFunc)) {
+	   			return getEffectFullArguments(ctx.eContainer as EffectFullFunctionDefinition, new LinkedList<EffectFullArgument>())
+	   		}
+	   		return super.getScope(ctx,ref)
 		}
 
-		return super.getScope(context, reference);
+		return super.getScope(ctx, ref);
 	}
 	
-	def IScope getFields(Greeting greeting, Collection<Greeting> visited) {
+	def IScope getArguments(PureFunctionDefinition f, Collection<Argument> visited) {
 		// deal with possible cycle in the hierarchy
-		if (greeting == null || visited.contains(greeting))
-			return IScope.NULLSCOPE;
-		visited.add(greeting);
-		IScope parentScope = getFields(greeting.getSuperType(), visited);
-		return Scopes.scopeFor(greeting.getFields(), parentScope);
+		if (f == null || (visited.contains(f.arg) && visited.contains(f.higherOrderArg.arg2)))
+			return Scopes.scopeFor(visited);
+		if (f.arg != null && !visited.contains(f.arg)) visited.add(f.arg);
+		if (f.higherOrderArg != null && !visited.contains(f.higherOrderArg.arg2)) visited.add(f.higherOrderArg.arg2);
+		var EObject parent = f.eContainer
+		while (!(parent instanceof PureFunctionDefinition) && !(parent instanceof PureBlock)) {
+			if (parent.eContainer == null)
+				return Scopes.scopeFor(visited) 
+			parent = parent.eContainer
+		}
+		if (parent instanceof PureBlock)
+			return Scopes.scopeFor(visited)
+		else
+			return getArguments(parent as PureFunctionDefinition, visited)
 	}
-	* 
-	*/
+	
+	def IScope getEffectFullArguments(EffectFullFunctionDefinition f, Collection<EffectFullArgument> visited) {
+		// deal with possible cycle in the hierarchy
+		if (f == null || (visited.contains(f.arg) && visited.contains(f.higherOrderArg.arg2)))
+			return Scopes.scopeFor(visited);
+		if (f.arg != null && !visited.contains(f.arg)) visited.add(f.arg);
+		if (f.higherOrderArg != null && !visited.contains(f.higherOrderArg.arg2)) visited.add(f.higherOrderArg.arg2);
+		var EObject parent = f.eContainer
+		while (!(parent instanceof EffectFullFunctionDefinition) && !(parent instanceof EffectFullBlock)) {
+			if (parent.eContainer == null)
+				return Scopes.scopeFor(visited)
+			parent = parent.eContainer
+		}
+		if (parent instanceof EffectFullBlock)
+			return Scopes.scopeFor(visited)
+		else
+			return getEffectFullArguments(parent as EffectFullFunctionDefinition, visited)
+	}
+	* */
 }

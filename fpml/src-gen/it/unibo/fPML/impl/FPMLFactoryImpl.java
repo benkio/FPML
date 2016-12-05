@@ -85,7 +85,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.PURE_FUNCTION: return createPureFunction();
       case FPMLPackage.EFFECT_FULL_FUNCTION: return createEffectFullFunction();
       case FPMLPackage.EFFECT_FULL_REFERENCE: return createEffectFullReference();
-      case FPMLPackage.PURE_REFERENCE: return createPureReference();
       case FPMLPackage.PRIMITIVE_FUNCTION: return createPrimitiveFunction();
       case FPMLPackage.EFFECT_FULL_ARGUMENT: return createEffectFullArgument();
       case FPMLPackage.ARGUMENT: return createArgument();
@@ -375,17 +374,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     EffectFullReferenceImpl effectFullReference = new EffectFullReferenceImpl();
     return effectFullReference;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PureReference createPureReference()
-  {
-    PureReferenceImpl pureReference = new PureReferenceImpl();
-    return pureReference;
   }
 
   /**

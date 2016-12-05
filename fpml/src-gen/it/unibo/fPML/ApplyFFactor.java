@@ -33,12 +33,12 @@ public interface ApplyFFactor extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value Reference</em>' reference.
-   * @see #setValueReference(PureReference)
+   * @see #setValueReference(PureFunction)
    * @see it.unibo.fPML.FPMLPackage#getApplyFFactor_ValueReference()
    * @model
    * @generated
    */
-  PureReference getValueReference();
+  PureFunction getValueReference();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.ApplyFFactor#getValueReference <em>Value Reference</em>}' reference.
@@ -48,7 +48,7 @@ public interface ApplyFFactor extends EObject
    * @see #getValueReference()
    * @generated
    */
-  void setValueReference(PureReference value);
+  void setValueReference(PureFunction value);
 
   /**
    * Returns the value of the '<em><b>Value Lambda</b></em>' containment reference.

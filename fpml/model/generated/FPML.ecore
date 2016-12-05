@@ -48,9 +48,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//ValueType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PureFunctionDefinition" eSuperTypes="#//PureFunction #//EffectFullReference #//PureReference">
+  <eClassifiers xsi:type="ecore:EClass" name="PureFunctionDefinition" eSuperTypes="#//PureFunction #//EffectFullReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//ValueType"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arg" eType="#//Argument"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="higherOrderArg" eType="#//AdditionalPureArgument"
@@ -92,30 +93,28 @@
   <eClassifiers xsi:type="ecore:EClass" name="PureFunction" eSuperTypes="#//Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullFunction" eSuperTypes="#//Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullReference"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PureReference">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveFunction" eSuperTypes="#//EffectFullReference"/>
   <eClassifiers xsi:type="ecore:EClass" name="EffectFullArgument" eSuperTypes="#//EffectFullReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Argument" eSuperTypes="#//PureReference">
+  <eClassifiers xsi:type="ecore:EClass" name="Argument" eSuperTypes="#//PureFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ValueType"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionBodyPure"/>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionBodyEffectFull"/>
   <eClassifiers xsi:type="ecore:EClass" name="EmptyFunctionBody" eSuperTypes="#//FunctionBodyPure #//FunctionBodyEffectFull"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyPure" eSuperTypes="#//FunctionBodyPure">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceElement" eType="#//PureFunctionDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceElement" eType="#//PureFunction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionChain" upperBound="-1"
         eType="#//CompositionFunctionBodyPureFactor" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveElement" eType="#//PrimitivePureFunction"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositionFunctionBodyPureFactor">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceElement" eType="#//PureFunctionDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceElement" eType="#//PureFunction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="PrimitiveElement" eType="#//PrimitivePureFunction"
         containment="true"/>
   </eClassifiers>
@@ -258,7 +257,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ApplyFFactor">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueReference" eType="#//PureReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueReference" eType="#//PureFunction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueLambda" eType="#//PureFunctionDefinition"
         containment="true"/>
   </eClassifiers>

@@ -7,7 +7,7 @@ import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.PrimitivePureFunction;
-import it.unibo.fPML.PureFunctionDefinition;
+import it.unibo.fPML.PureFunction;
 
 import java.util.Collection;
 
@@ -49,7 +49,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * @generated
    * @ordered
    */
-  protected PureFunctionDefinition referenceElement;
+  protected PureFunction referenceElement;
 
   /**
    * The cached value of the '{@link #getFunctionChain() <em>Function Chain</em>}' containment reference list.
@@ -97,12 +97,12 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureFunctionDefinition getReferenceElement()
+  public PureFunction getReferenceElement()
   {
     if (referenceElement != null && referenceElement.eIsProxy())
     {
       InternalEObject oldReferenceElement = (InternalEObject)referenceElement;
-      referenceElement = (PureFunctionDefinition)eResolveProxy(oldReferenceElement);
+      referenceElement = (PureFunction)eResolveProxy(oldReferenceElement);
       if (referenceElement != oldReferenceElement)
       {
         if (eNotificationRequired())
@@ -117,7 +117,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureFunctionDefinition basicGetReferenceElement()
+  public PureFunction basicGetReferenceElement()
   {
     return referenceElement;
   }
@@ -127,9 +127,9 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setReferenceElement(PureFunctionDefinition newReferenceElement)
+  public void setReferenceElement(PureFunction newReferenceElement)
   {
-    PureFunctionDefinition oldReferenceElement = referenceElement;
+    PureFunction oldReferenceElement = referenceElement;
     referenceElement = newReferenceElement;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__REFERENCE_ELEMENT, oldReferenceElement, referenceElement));
@@ -248,7 +248,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
     switch (featureID)
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__REFERENCE_ELEMENT:
-        setReferenceElement((PureFunctionDefinition)newValue);
+        setReferenceElement((PureFunction)newValue);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN:
         getFunctionChain().clear();
@@ -272,7 +272,7 @@ public class CompositionFunctionBodyPureImpl extends FunctionBodyPureImpl implem
     switch (featureID)
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__REFERENCE_ELEMENT:
-        setReferenceElement((PureFunctionDefinition)null);
+        setReferenceElement((PureFunction)null);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE__FUNCTION_CHAIN:
         getFunctionChain().clear();

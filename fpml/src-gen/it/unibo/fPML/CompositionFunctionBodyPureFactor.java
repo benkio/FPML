@@ -33,12 +33,12 @@ public interface CompositionFunctionBodyPureFactor extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Reference Element</em>' reference.
-   * @see #setReferenceElement(PureFunctionDefinition)
+   * @see #setReferenceElement(PureFunction)
    * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPureFactor_ReferenceElement()
    * @model
    * @generated
    */
-  PureFunctionDefinition getReferenceElement();
+  PureFunction getReferenceElement();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyPureFactor#getReferenceElement <em>Reference Element</em>}' reference.
@@ -48,7 +48,7 @@ public interface CompositionFunctionBodyPureFactor extends EObject
    * @see #getReferenceElement()
    * @generated
    */
-  void setReferenceElement(PureFunctionDefinition value);
+  void setReferenceElement(PureFunction value);
 
   /**
    * Returns the value of the '<em><b>Primitive Element</b></em>' containment reference.

@@ -204,15 +204,6 @@ public interface FPMLFactory extends EFactory
   EffectFullReference createEffectFullReference();
 
   /**
-   * Returns a new object of class '<em>Pure Reference</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Reference</em>'.
-   * @generated
-   */
-  PureReference createPureReference();
-
-  /**
    * Returns a new object of class '<em>Primitive Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

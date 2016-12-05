@@ -17,7 +17,6 @@ import it.unibo.fPML.ApplyF
 import it.unibo.fPML.PureLambda
 import it.unibo.fPML.PrimitivePureFunction
 import it.unibo.fPML.PureFunction
-import it.unibo.fPML.PureReference
 import it.unibo.fPML.Argument
 import it.unibo.fPML.PureValue
 import it.unibo.fPML.PureFunctionType
@@ -62,52 +61,52 @@ class PureFunctionGenerator {
 	}
 
 	def String compileCompositionFunctionBodyPure(CompositionFunctionBodyPure cfbp, String argName, boolean outsideCalls) {
-		var result = ""
+		var result = argName
 		val initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
 		switch initialElement {
 			PureValue: result = "PureValue." + (initialElement as PureValue).name + "()"
 			PureLambda: result = "(" + typeGenerator.compile(initialElement.arg) + ") -> " + initialElement.functionBody.compile(argName,outsideCalls)
-			PrimitivePureFunction: result = compilePrimitiveCall(initialElement, argName, outsideCalls)
-			PureFunctionDefinition: result = compileCall(initialElement, argName, outsideCalls)
+			PrimitivePureFunction: result = compilePrimitiveCall(initialElement, argName, argName, outsideCalls)
+			PureFunctionDefinition: result = compileCall(initialElement, argName, argName, outsideCalls)
 		}
 		for (f : cfbp.functionChain){
-			result = compileCall( Others.getFunctionDefinitionFromPureFactor(f), result, outsideCalls)
+			result = compileCall( Others.getFunctionDefinitionFromPureFactor(f), result, argName , outsideCalls)
 		}
 		return result
 	} 
 	
-	def String compileCall(PureFunction pf, String args, boolean outsideCalls) {
+	def String compileCall(PureFunction pf, String acc, String argName, boolean outsideCalls) {
 		switch pf {
 			PureValue: return "PureValue." + (pf as PureValue).name + "()"
-			PureLambda: return "(" + typeGenerator.compile(pf.higherOrderArg.arg2) + ") -> " + pf.functionBody.compile(args,outsideCalls)
-			PrimitivePureFunction: return compilePrimitiveCall(pf, args, outsideCalls)
+			PureLambda: return "(" + typeGenerator.compile(pf.higherOrderArg.arg2) + ") -> " + pf.functionBody.compile(argName,outsideCalls)
+			PrimitivePureFunction: return compilePrimitiveCall(pf, acc, argName, outsideCalls)
 			PureFunctionDefinition: {
 				if (!outsideCalls)
-					return pf.name + "(" + args + ")"
+					return pf.name + "(" + acc + ")"
 				else 
-					return "PureFunctionDefinitions." + pf.name + "(" + args + ")"	
+					return "PureFunctionDefinitions." + pf.name + "(" + acc + ")"	
 			}
 		}
 	}
 	
-	def compilePrimitiveCall(PrimitivePureFunction purePrimitive, String argName, boolean outsideCalls){
+	def compilePrimitiveCall(PrimitivePureFunction purePrimitive, String acc, String argName , boolean outsideCalls){
 		switch purePrimitive {
-			IntToString: "Primitives.intToString(" + argName + ")"
-      		IntPow: "Primitives.intPow(" + argName + ")"
-			Plus: "Primitives.plus(" + argName + ")"
-			Minus: "Primitives.minus(" + argName + ")"
-			Times: "Primitives.times(" + argName + ")"
-			Mod: "Primitives.mod(" + argName + ")"
-      		LeftPair: "Primitives.leftPair(" + argName + ")"
-      		RightPair: "Primitives.rightPair(" + argName + ")"
-			ApplyF: argName + ".f(" + compileApplyFFactor(purePrimitive.value, argName, outsideCalls) + ")"		
+			IntToString: "Primitives.intToString(" + acc + ")"
+      		IntPow: "Primitives.intPow(" + acc + ")"
+			Plus: "Primitives.plus(" + acc + ")"
+			Minus: "Primitives.minus(" + acc + ")"
+			Times: "Primitives.times(" + acc + ")"
+			Mod: "Primitives.mod(" + acc + ")"
+      		LeftPair: "Primitives.leftPair(" + acc + ")"
+      		RightPair: "Primitives.rightPair(" + acc + ")"
+			ApplyF: acc + ".f(" + compileApplyFFactor(purePrimitive.value, argName, outsideCalls) + ")"		
 		}
 	}
 	
 	def String compileApplyFFactor(ApplyFFactor r,  String argName, boolean outsideCalls) {
 		switch r.valueReference {
-			PureValue: return compileCall(r.valueReference as PureValue ,argName, outsideCalls)
-			Argument: return r.valueReference.name
+			PureValue: return compileCall(r.valueReference as PureValue, argName, argName, outsideCalls)
+			Argument: return (r.valueReference as Argument).name
 			default: {
 				if (r.valueLambda.arg != null) {
 					return '''( «typeGenerator.compile(r.valueLambda.arg.type)» «r.valueLambda.arg.name» ) -> «r.valueLambda.functionBody.compile(argName, outsideCalls)»'''

@@ -77,7 +77,6 @@ import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureProdValue;
-import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
@@ -247,13 +246,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass effectFullReferenceEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass pureReferenceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1045,9 +1037,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPureFunctionDefinition_Arg()
+  public EAttribute getPureFunctionDefinition_Name()
   {
-    return (EReference)pureFunctionDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)pureFunctionDefinitionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1055,7 +1047,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPureFunctionDefinition_HigherOrderArg()
+  public EReference getPureFunctionDefinition_Arg()
   {
     return (EReference)pureFunctionDefinitionEClass.getEStructuralFeatures().get(2);
   }
@@ -1065,9 +1057,19 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPureFunctionDefinition_FunctionBody()
+  public EReference getPureFunctionDefinition_HigherOrderArg()
   {
     return (EReference)pureFunctionDefinitionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPureFunctionDefinition_FunctionBody()
+  {
+    return (EReference)pureFunctionDefinitionEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1275,26 +1277,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPureReference()
-  {
-    return pureReferenceEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPureReference_Name()
-  {
-    return (EAttribute)pureReferenceEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getPrimitiveFunction()
   {
     return primitiveFunctionEClass;
@@ -1348,6 +1330,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EReference getArgument_Type()
   {
     return (EReference)argumentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getArgument_Name()
+  {
+    return (EAttribute)argumentEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2666,6 +2658,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     pureFunctionDefinitionEClass = createEClass(PURE_FUNCTION_DEFINITION);
     createEReference(pureFunctionDefinitionEClass, PURE_FUNCTION_DEFINITION__RETURN_TYPE);
+    createEAttribute(pureFunctionDefinitionEClass, PURE_FUNCTION_DEFINITION__NAME);
     createEReference(pureFunctionDefinitionEClass, PURE_FUNCTION_DEFINITION__ARG);
     createEReference(pureFunctionDefinitionEClass, PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG);
     createEReference(pureFunctionDefinitionEClass, PURE_FUNCTION_DEFINITION__FUNCTION_BODY);
@@ -2699,9 +2692,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     effectFullReferenceEClass = createEClass(EFFECT_FULL_REFERENCE);
 
-    pureReferenceEClass = createEClass(PURE_REFERENCE);
-    createEAttribute(pureReferenceEClass, PURE_REFERENCE__NAME);
-
     primitiveFunctionEClass = createEClass(PRIMITIVE_FUNCTION);
 
     effectFullArgumentEClass = createEClass(EFFECT_FULL_ARGUMENT);
@@ -2710,6 +2700,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     argumentEClass = createEClass(ARGUMENT);
     createEReference(argumentEClass, ARGUMENT__TYPE);
+    createEAttribute(argumentEClass, ARGUMENT__NAME);
 
     functionBodyPureEClass = createEClass(FUNCTION_BODY_PURE);
 
@@ -2931,7 +2922,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     // Add supertypes to classes
     pureFunctionDefinitionEClass.getESuperTypes().add(this.getPureFunction());
     pureFunctionDefinitionEClass.getESuperTypes().add(this.getEffectFullReference());
-    pureFunctionDefinitionEClass.getESuperTypes().add(this.getPureReference());
     effectFullFunctionDefinitionEClass.getESuperTypes().add(this.getEffectFullFunction());
     effectFullFunctionDefinitionEClass.getESuperTypes().add(this.getEffectFullReference());
     functionEClass.getESuperTypes().add(this.getEffectFullReference());
@@ -2939,7 +2929,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     effectFullFunctionEClass.getESuperTypes().add(this.getFunction());
     primitiveFunctionEClass.getESuperTypes().add(this.getEffectFullReference());
     effectFullArgumentEClass.getESuperTypes().add(this.getEffectFullReference());
-    argumentEClass.getESuperTypes().add(this.getPureReference());
+    argumentEClass.getESuperTypes().add(this.getPureFunction());
     emptyFunctionBodyEClass.getESuperTypes().add(this.getFunctionBodyPure());
     emptyFunctionBodyEClass.getESuperTypes().add(this.getFunctionBodyEffectFull());
     compositionFunctionBodyPureEClass.getESuperTypes().add(this.getFunctionBodyPure());
@@ -3041,6 +3031,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(pureFunctionDefinitionEClass, PureFunctionDefinition.class, "PureFunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPureFunctionDefinition_ReturnType(), this.getValueType(), null, "returnType", null, 0, 1, PureFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPureFunctionDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PureFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPureFunctionDefinition_Arg(), this.getArgument(), null, "arg", null, 0, 1, PureFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPureFunctionDefinition_HigherOrderArg(), this.getAdditionalPureArgument(), null, "higherOrderArg", null, 0, 1, PureFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPureFunctionDefinition_FunctionBody(), this.getFunctionBodyPure(), null, "functionBody", null, 0, 1, PureFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3074,9 +3065,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(effectFullReferenceEClass, EffectFullReference.class, "EffectFullReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(pureReferenceEClass, PureReference.class, "PureReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPureReference_Name(), ecorePackage.getEString(), "name", null, 0, 1, PureReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(primitiveFunctionEClass, PrimitiveFunction.class, "PrimitiveFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(effectFullArgumentEClass, EffectFullArgument.class, "EffectFullArgument", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3085,6 +3073,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(argumentEClass, Argument.class, "Argument", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArgument_Type(), this.getValueType(), null, "type", null, 0, 1, Argument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getArgument_Name(), ecorePackage.getEString(), "name", null, 0, 1, Argument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionBodyPureEClass, FunctionBodyPure.class, "FunctionBodyPure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3093,12 +3082,12 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(emptyFunctionBodyEClass, EmptyFunctionBody.class, "EmptyFunctionBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(compositionFunctionBodyPureEClass, CompositionFunctionBodyPure.class, "CompositionFunctionBodyPure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCompositionFunctionBodyPure_ReferenceElement(), this.getPureFunctionDefinition(), null, "referenceElement", null, 0, 1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompositionFunctionBodyPure_ReferenceElement(), this.getPureFunction(), null, "referenceElement", null, 0, 1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompositionFunctionBodyPure_FunctionChain(), this.getCompositionFunctionBodyPureFactor(), null, "functionChain", null, 0, -1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompositionFunctionBodyPure_PrimitiveElement(), this.getPrimitivePureFunction(), null, "primitiveElement", null, 0, 1, CompositionFunctionBodyPure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(compositionFunctionBodyPureFactorEClass, CompositionFunctionBodyPureFactor.class, "CompositionFunctionBodyPureFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCompositionFunctionBodyPureFactor_ReferenceElement(), this.getPureFunctionDefinition(), null, "referenceElement", null, 0, 1, CompositionFunctionBodyPureFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompositionFunctionBodyPureFactor_ReferenceElement(), this.getPureFunction(), null, "referenceElement", null, 0, 1, CompositionFunctionBodyPureFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompositionFunctionBodyPureFactor_PrimitiveElement(), this.getPrimitivePureFunction(), null, "PrimitiveElement", null, 0, 1, CompositionFunctionBodyPureFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(compositionFunctionBodyEffectEClass, CompositionFunctionBodyEffect.class, "CompositionFunctionBodyEffect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3224,7 +3213,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEReference(getApplyF_Value(), this.getApplyFFactor(), null, "value", null, 0, 1, ApplyF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(applyFFactorEClass, ApplyFFactor.class, "ApplyFFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getApplyFFactor_ValueReference(), this.getPureReference(), null, "valueReference", null, 0, 1, ApplyFFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getApplyFFactor_ValueReference(), this.getPureFunction(), null, "valueReference", null, 0, 1, ApplyFFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getApplyFFactor_ValueLambda(), this.getPureFunctionDefinition(), null, "valueLambda", null, 0, 1, ApplyFFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primitiveEffectFullFunctionEClass, PrimitiveEffectFullFunction.class, "PrimitiveEffectFullFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

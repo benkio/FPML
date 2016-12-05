@@ -13,7 +13,7 @@ class Others {
 		if (cfbef.primitiveElement == null) return cfbef.referenceElement
 		else return cfbef.primitiveElement
 	}
-	def static PureFunction  getFirstFunctionDefinitionFromCompositionBodyPure(CompositionFunctionBodyPure cfbp) {
+	def static PureFunction getFirstFunctionDefinitionFromCompositionBodyPure(CompositionFunctionBodyPure cfbp) {
 		if (cfbp.primitiveElement == null) return cfbp.referenceElement
 		else return cfbp.primitiveElement
 	}

@@ -42,6 +42,7 @@
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PureFunctionDefinition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureFunctionDefinition/returnType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//PureFunctionDefinition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureFunctionDefinition/arg"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureFunctionDefinition/higherOrderArg"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureFunctionDefinition/functionBody"/>
@@ -71,9 +72,6 @@
     <genClasses ecoreClass="FPML.ecore#//PureFunction"/>
     <genClasses ecoreClass="FPML.ecore#//EffectFullFunction"/>
     <genClasses ecoreClass="FPML.ecore#//EffectFullReference"/>
-    <genClasses ecoreClass="FPML.ecore#//PureReference">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//PureReference/name"/>
-    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveFunction"/>
     <genClasses ecoreClass="FPML.ecore#//EffectFullArgument">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullArgument/type"/>
@@ -81,6 +79,7 @@
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//Argument">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//Argument/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//Argument/name"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//FunctionBodyPure"/>
     <genClasses ecoreClass="FPML.ecore#//FunctionBodyEffectFull"/>

@@ -49,7 +49,6 @@ import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
-import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.RightPair;
@@ -98,6 +97,12 @@ public class GetReturnType {
       if (f instanceof PrimitivePureFunction) {
         _matched=true;
         _switchResult = GetReturnType.primitivePureFunction(((PrimitivePureFunction)f));
+      }
+    }
+    if (!_matched) {
+      if (f instanceof Argument) {
+        _matched=true;
+        _switchResult = ((Argument)f).getType();
       }
     }
     return _switchResult;
@@ -292,22 +297,6 @@ public class GetReturnType {
         _matched=true;
         PureAlgebraicType _type = ((RightPair)f).getType();
         return Others.getElement2ValueTypeFromPureAlgebraicType(_type);
-      }
-    }
-    return null;
-  }
-  
-  public static ValueType pureReference(final PureReference reference) {
-    boolean _matched = false;
-    if (reference instanceof PureValue) {
-      _matched=true;
-      Expression _value = ((PureValue)reference).getValue();
-      return GetReturnType.expression(_value);
-    }
-    if (!_matched) {
-      if (reference instanceof Argument) {
-        _matched=true;
-        return ((Argument)reference).getType();
       }
     }
     return null;

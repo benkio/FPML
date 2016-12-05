@@ -72,6 +72,12 @@ public class GetArgType {
         _switchResult = GetArgType.primitivePureFunction(((PrimitivePureFunction)f));
       }
     }
+    if (!_matched) {
+      if (f instanceof Argument) {
+        _matched=true;
+        _switchResult = FPMLFactory.eINSTANCE.createUnitType();
+      }
+    }
     return _switchResult;
   }
   

@@ -24,6 +24,7 @@ class GetArgType {
 		switch f {
 			PureFunctionDefinition: pureFunctionDefinition(f) 
 			PrimitivePureFunction: primitivePureFunction(f)
+			Argument: FPMLFactory.eINSTANCE.createUnitType
 		}
 	}
 	

@@ -176,11 +176,6 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createEffectFullReferenceAdapter();
       }
       @Override
-      public Adapter casePureReference(PureReference object)
-      {
-        return createPureReferenceAdapter();
-      }
-      @Override
       public Adapter casePrimitiveFunction(PrimitiveFunction object)
       {
         return createPrimitiveFunctionAdapter();
@@ -828,21 +823,6 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEffectFullReferenceAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureReference <em>Pure Reference</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see it.unibo.fPML.PureReference
-   * @generated
-   */
-  public Adapter createPureReferenceAdapter()
   {
     return null;
   }

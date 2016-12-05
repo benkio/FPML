@@ -23,7 +23,6 @@ import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureProdTypeFactor;
-import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -90,7 +89,7 @@ public class Others {
     }
   }
   
-  public static PureReference getValueFromApplyFFactor(final ApplyFFactor afiof) {
+  public static PureFunction getValueFromApplyFFactor(final ApplyFFactor afiof) {
     PureFunctionDefinition _valueLambda = afiof.getValueLambda();
     boolean _notEquals = (!Objects.equal(_valueLambda, null));
     if (_notEquals) {

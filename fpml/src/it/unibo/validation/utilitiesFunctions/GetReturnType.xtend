@@ -20,6 +20,7 @@ class GetReturnType {
 		switch f {
 			PureFunctionDefinition: pureFunctionDefinition(f)
 			PrimitivePureFunction: primitivePureFunction(f)
+			Argument: f.type
 		}
 	}	
 	
@@ -88,14 +89,6 @@ class GetReturnType {
       		RightPair: return Others.getElement2ValueTypeFromPureAlgebraicType(f.type)
 		}
 	}
-	
-	def static ValueType pureReference(PureReference reference) {
-		switch reference {
-			PureValue: return expression(reference.value)
-			Argument: return reference.type
-		}
-	}
-	
 	
 	def static Type effectFullFunction(EffectFullFunction function) {
 		switch function {

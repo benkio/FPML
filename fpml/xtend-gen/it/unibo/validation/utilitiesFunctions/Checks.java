@@ -44,7 +44,6 @@ import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureProdValue;
-import it.unibo.fPML.PureReference;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
@@ -498,9 +497,9 @@ public class Checks {
       PureFunctionType _functionType = af.getFunctionType();
       ValueType _argType = _functionType.getArgType();
       ApplyFFactor _value_1 = af.getValue();
-      PureReference _valueReference = _value_1.getValueReference();
-      ValueType _pureReference = GetReturnType.pureReference(_valueReference);
-      return Checks.ValueTypeEquals(_argType, _pureReference);
+      PureFunction _valueReference = _value_1.getValueReference();
+      ValueType _pureFunction = GetReturnType.pureFunction(_valueReference);
+      return Checks.ValueTypeEquals(_argType, _pureFunction);
     } else {
       return ((((af.getFunctionType().getArgType() instanceof PureFunctionType) && Checks.ValueTypeEquals(((PureFunctionType) af.getFunctionType().getArgType()).getReturnType(), GetReturnType.pureFunctionDefinition(af.getValue().getValueLambda()))) && Checks.ValueTypeEquals(((PureFunctionType) af.getFunctionType().getArgType()).getArgType(), GetArgType.pureFunctionDefinition(af.getValue().getValueLambda()))) || (Objects.equal(af.getValue().getValueLambda().getArg(), null) && Checks.ValueTypeEquals(af.getFunctionType().getArgType(), GetReturnType.pureFunctionDefinition(af.getValue().getValueLambda()))));
     }

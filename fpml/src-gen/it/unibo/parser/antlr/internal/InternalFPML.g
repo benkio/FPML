@@ -1370,6 +1370,15 @@ rulePureFunction returns [EObject current=null]
 			$current = $this_PrimitivePureFunction_1.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPureFunctionAccess().getArgumentParserRuleCall_2());
+		}
+		this_Argument_2=ruleArgument
+		{
+			$current = $this_Argument_2.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -1694,7 +1703,7 @@ ruleCompositionFunctionBodyPure returns [EObject current=null]
 					}
 					otherlv_0=RULE_ID
 					{
-						newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementPureFunctionDefinitionCrossReference_0_0_0());
+						newLeafNode(otherlv_0, grammarAccess.getCompositionFunctionBodyPureAccess().getReferenceElementPureFunctionCrossReference_0_0_0());
 					}
 				)
 			)
@@ -1792,7 +1801,7 @@ ruleCompositionFunctionBodyPureFactor returns [EObject current=null]
 					}
 					otherlv_1=RULE_ID
 					{
-						newLeafNode(otherlv_1, grammarAccess.getCompositionFunctionBodyPureFactorAccess().getReferenceElementPureFunctionDefinitionCrossReference_0_1_0());
+						newLeafNode(otherlv_1, grammarAccess.getCompositionFunctionBodyPureFactorAccess().getReferenceElementPureFunctionCrossReference_0_1_0());
 					}
 				)
 			)
@@ -4719,7 +4728,7 @@ ruleApplyFFactor returns [EObject current=null]
 				}
 				otherlv_0=RULE_ID
 				{
-					newLeafNode(otherlv_0, grammarAccess.getApplyFFactorAccess().getValueReferencePureReferenceCrossReference_0_0());
+					newLeafNode(otherlv_0, grammarAccess.getApplyFFactorAccess().getValueReferencePureFunctionCrossReference_0_0());
 				}
 			)
 		)

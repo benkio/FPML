@@ -5,8 +5,8 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
-import it.unibo.fPML.PureReference;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -41,7 +41,7 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
    * @generated
    * @ordered
    */
-  protected PureReference valueReference;
+  protected PureFunction valueReference;
 
   /**
    * The cached value of the '{@link #getValueLambda() <em>Value Lambda</em>}' containment reference.
@@ -79,12 +79,12 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureReference getValueReference()
+  public PureFunction getValueReference()
   {
     if (valueReference != null && valueReference.eIsProxy())
     {
       InternalEObject oldValueReference = (InternalEObject)valueReference;
-      valueReference = (PureReference)eResolveProxy(oldValueReference);
+      valueReference = (PureFunction)eResolveProxy(oldValueReference);
       if (valueReference != oldValueReference)
       {
         if (eNotificationRequired())
@@ -99,7 +99,7 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureReference basicGetValueReference()
+  public PureFunction basicGetValueReference()
   {
     return valueReference;
   }
@@ -109,9 +109,9 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValueReference(PureReference newValueReference)
+  public void setValueReference(PureFunction newValueReference)
   {
-    PureReference oldValueReference = valueReference;
+    PureFunction oldValueReference = valueReference;
     valueReference = newValueReference;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FFACTOR__VALUE_REFERENCE, oldValueReference, valueReference));
@@ -211,7 +211,7 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
     switch (featureID)
     {
       case FPMLPackage.APPLY_FFACTOR__VALUE_REFERENCE:
-        setValueReference((PureReference)newValue);
+        setValueReference((PureFunction)newValue);
         return;
       case FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA:
         setValueLambda((PureFunctionDefinition)newValue);
@@ -231,7 +231,7 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
     switch (featureID)
     {
       case FPMLPackage.APPLY_FFACTOR__VALUE_REFERENCE:
-        setValueReference((PureReference)null);
+        setValueReference((PureFunction)null);
         return;
       case FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA:
         setValueLambda((PureFunctionDefinition)null);

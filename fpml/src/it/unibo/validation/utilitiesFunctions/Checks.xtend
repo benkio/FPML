@@ -247,7 +247,7 @@ class Checks {
 	
 	def static boolean applyF(ApplyF af){
 		if (af.value.valueLambda == null) {
-			return Checks.ValueTypeEquals(af.functionType.argType, GetReturnType.pureReference(af.value.valueReference))
+			return Checks.ValueTypeEquals(af.functionType.argType, GetReturnType.pureFunction(af.value.valueReference))
 		} else {
 			return 	(af.functionType.argType instanceof PureFunctionType 
 				&&	Checks.ValueTypeEquals((af.functionType.argType as PureFunctionType).returnType, GetReturnType.pureFunctionDefinition(af.value.valueLambda))
