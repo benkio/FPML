@@ -248,8 +248,14 @@ class Checks {
 	def static boolean applyF(ApplyF af){
 		if (af.value.valueLambda == null) {
 			return Checks.ValueTypeEquals(af.functionType.argType, GetReturnType.pureReference(af.value.valueReference))
-		} else
-			return Checks.ValueTypeEquals(af.functionType.argType, GetReturnType.pureFunctionDefinition(af.value.valueLambda))
+		} else {
+			return 	(af.functionType.argType instanceof PureFunctionType 
+				&&	Checks.ValueTypeEquals((af.functionType.argType as PureFunctionType).returnType, GetReturnType.pureFunctionDefinition(af.value.valueLambda))
+				&&  Checks.ValueTypeEquals((af.functionType.argType as PureFunctionType).argType, GetArgType.pureFunctionDefinition(af.value.valueLambda))
+				)|| (af.value.valueLambda.arg == null
+				&&   Checks.ValueTypeEquals(af.functionType.argType, GetReturnType.pureFunctionDefinition(af.value.valueLambda))
+				)
+		}
 	}
 	
 	def static boolean applyFIO(ApplyFIO afio){

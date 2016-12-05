@@ -362,8 +362,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				else if (rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getUnitValueRule()
 						|| rule == grammarAccess.getExpressionRule()
-						|| rule == grammarAccess.getPureAdtValueRule()
-						|| rule == grammarAccess.getEffectFullAdtValueRule()) {
+						|| rule == grammarAccess.getPureAdtValueRule()) {
 					sequence_UnitValue(context, (UnitType) semanticObject); 
 					return; 
 				}
@@ -1676,7 +1675,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     UnitValue returns UnitType
 	 *     Expression returns UnitType
 	 *     PureAdtValue returns UnitType
-	 *     EffectFullAdtValue returns UnitType
 	 *
 	 * Constraint:
 	 *     {UnitType}

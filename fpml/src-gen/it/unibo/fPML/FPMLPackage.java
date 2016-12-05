@@ -1240,22 +1240,13 @@ public interface FPMLPackage extends EPackage
   int UNIT_TYPE = 38;
 
   /**
-   * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNIT_TYPE__INNER_VALUE = VALUE_TYPE_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int UNIT_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 1;
+  int UNIT_TYPE__TYPE = VALUE_TYPE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -1264,7 +1255,7 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int UNIT_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 2;
+  int UNIT_TYPE_FEATURE_COUNT = VALUE_TYPE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.DataTypeImpl <em>Data Type</em>}' class.

@@ -47,7 +47,6 @@ class TypeGenerator {
 	
 	def compile(Type t){
 		switch t {
-			UnitType: return '''Unit'''
 			ValueType: return compile(t)
 			EffectFullFunctionType: return '''F<«t.argType.compile», IO<«t.returnType.type.compile»>>'''
 			EffectFullDataType: '''«t.type.name»'''
@@ -63,6 +62,7 @@ class TypeGenerator {
 	
 	def compileType(Expression e) {
 		switch e {
+			UnitType: return '''Unit'''
 			IntegerType: return "int"
 			StringType: return "String"
 			DataType: return e.type.name

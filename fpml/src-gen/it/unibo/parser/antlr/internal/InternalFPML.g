@@ -4048,56 +4048,47 @@ ruleEffectFullAdtValue returns [EObject current=null]
 		)
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getUnitValueParserRuleCall_2());
+			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullFunctionValueParserRuleCall_2());
 		}
-		this_UnitValue_8=ruleUnitValue
+		this_EffectFullFunctionValue_8=ruleEffectFullFunctionValue
 		{
-			$current = $this_UnitValue_8.current;
+			$current = $this_EffectFullFunctionValue_8.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullFunctionValueParserRuleCall_3());
+			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullProdValueParserRuleCall_3());
 		}
-		this_EffectFullFunctionValue_9=ruleEffectFullFunctionValue
+		this_EffectFullProdValue_9=ruleEffectFullProdValue
 		{
-			$current = $this_EffectFullFunctionValue_9.current;
+			$current = $this_EffectFullProdValue_9.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullProdValueParserRuleCall_4());
+			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullValueRefParserRuleCall_4());
 		}
-		this_EffectFullProdValue_10=ruleEffectFullProdValue
+		this_EffectFullValueRef_10=ruleEffectFullValueRef
 		{
-			$current = $this_EffectFullProdValue_10.current;
+			$current = $this_EffectFullValueRef_10.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullValueRefParserRuleCall_5());
+			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullDataValueParserRuleCall_5());
 		}
-		this_EffectFullValueRef_11=ruleEffectFullValueRef
+		this_EffectFullDataValue_11=ruleEffectFullDataValue
 		{
-			$current = $this_EffectFullValueRef_11.current;
+			$current = $this_EffectFullDataValue_11.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullDataValueParserRuleCall_6());
+			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_6());
 		}
-		this_EffectFullDataValue_12=ruleEffectFullDataValue
+		this_EffectFullSumValue_12=ruleEffectFullSumValue
 		{
-			$current = $this_EffectFullDataValue_12.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_7());
-		}
-		this_EffectFullSumValue_13=ruleEffectFullSumValue
-		{
-			$current = $this_EffectFullSumValue_13.current;
+			$current = $this_EffectFullSumValue_12.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

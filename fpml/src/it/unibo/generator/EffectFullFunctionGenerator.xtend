@@ -70,7 +70,7 @@ class EffectFullFunctionGenerator {
 	}
 	
 	
-	def compileIO(EffectFullReference e, String valueName){
+	def String compileIO(EffectFullReference e, String valueName){
 		switch e {
 			IntToString: '''IOFunctions.map(«valueName» ,Primitives::intToString)'''
       		IntPow: '''IOFunctions.map(«valueName»,Primitives::intPow) '''
@@ -86,28 +86,28 @@ class EffectFullFunctionGenerator {
       PrimitiveRandom: valueEmbellishment(valueName,"PrimitivesEffectFull.primitiveRandom()")
       		PrimitiveTime: valueEmbellishment(valueName,"PrimitivesEffectFull.primitiveTime()")
       		PrimitiveReturn: '''«valueName»'''
-			ApplyFIO: '''IOFunctions.bind(«valueName», («typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIO(Others.getValueFromApplyFIOFactor(e.value), null)»)))'''
+			ApplyFIO: '''IOFunctions.bind(«valueName», («typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIOEffectFullReference(compileIO(Others.getValueFromApplyFIOFactor(e.value), null), null, (e.functionType.argType instanceof IOType))»)))'''
 			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«valueName»).f(«pureFunctionGenerator.compileApplyFFactor(e.value,"", true)»))'''
 			PureValue: valueEmbellishment(valueName,'''IOFunctions.unit(PureValue.«(e as PureValue).name»())''')
-			EffectFullValue: compileIOEffectFullReference('''EffectFullValue.«(e as EffectFullValue).name»()''', valueName, GetReturnType.effectFullReference(e))
+			EffectFullValue: compileIOEffectFullReference('''EffectFullValue.«(e as EffectFullValue).name»()''', valueName, !(GetReturnType.effectFullReference(e) instanceof IOType))
 			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
-      		EffectFullArgument: compileIOEffectFullReference((e as EffectFullArgument).name, valueName, e.type)
+      		EffectFullArgument: compileIOEffectFullReference((e as EffectFullArgument).name, valueName, !(e.type instanceof IOType))
       		EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
 		}
 	}
 
-	def compileIOEffectFullReference(String effectFullReferenceCompiled, String valueName, Type effectFullReferenceType){
-		if (effectFullReferenceType instanceof IOType)
-			return valueEmbellishment(valueName,'''IOFunctions.runSafe(«effectFullReferenceCompiled»)''')
+	def compileIOEffectFullReference(String effectFullReferenceCompiled, String valueName, boolean unitWrap){
+		if (unitWrap)
+			return valueEmbellishment(valueName,'''IOFunctions.unit(«effectFullReferenceCompiled»)''')
 		else
-			return valueEmbellishment(valueName,'''«effectFullReferenceCompiled»''')
+			return valueEmbellishment(valueName,effectFullReferenceCompiled)
 	}
 
 	def valueEmbellishment(String inputChain, String valueCompiled){
 		if (inputChain.isNullOrEmpty) {
 			return valueCompiled;
 		}else
-			return '''IOFunctions.as(«inputChain»,«valueCompiled»)'''
+			return '''IOFunctions.left(«valueCompiled»,«inputChain»)'''
 	}
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -131,12 +131,12 @@ class EffectFullFunctionGenerator {
 			Plus: ".map(Primitives::plus)"
 			Minus: ".map(Primitives::minus)"
 			Times: ".map(Primitives::times)"
-      LeftPair: ".map(Primitives::leftPair)"
-      RightPair: ".map(Primitives::rightPair)"
-      Mod: ".map(Primitives::mod)"
+      		LeftPair: ".map(Primitives::leftPair)"
+      		RightPair: ".map(Primitives::rightPair)"
+      		Mod: ".map(Primitives::mod)"
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
-      LeftPairIO: '''.bind(PrimitivesEffectFull::leftPairIO)'''
-      RightPairIO:'''.bind(PrimitivesEffectFull::rightPairIO)'''
+      		LeftPairIO: '''.bind(PrimitivesEffectFull::leftPairIO)'''
+      		RightPairIO:'''.bind(PrimitivesEffectFull::rightPairIO)'''
 			PrimitiveRandom: '''.append(PrimitivesEffectFull.primitiveRandom())'''
       		PrimitiveTime: '''.append(PrimitivesEffectFull.primitiveTime())'''
       		PrimitiveReturn: ''''''

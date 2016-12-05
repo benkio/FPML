@@ -2954,7 +2954,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     stringTypeEClass.getESuperTypes().add(this.getExpression());
     unitTypeEClass.getESuperTypes().add(this.getValueType());
     unitTypeEClass.getESuperTypes().add(this.getExpression());
-    unitTypeEClass.getESuperTypes().add(this.getEffectFullAdtValue());
     dataTypeEClass.getESuperTypes().add(this.getValueType());
     dataTypeEClass.getESuperTypes().add(this.getExpression());
     effectFullDataTypeEClass.getESuperTypes().add(this.getEffectFullType());

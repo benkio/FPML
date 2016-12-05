@@ -2823,39 +2823,33 @@ rule__EffectFullAdtValue__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullAdtValueAccess().getUnitValueParserRuleCall_2()); }
-		ruleUnitValue
-		{ after(grammarAccess.getEffectFullAdtValueAccess().getUnitValueParserRuleCall_2()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullFunctionValueParserRuleCall_3()); }
+		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullFunctionValueParserRuleCall_2()); }
 		ruleEffectFullFunctionValue
-		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullFunctionValueParserRuleCall_3()); }
+		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullFunctionValueParserRuleCall_2()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullProdValueParserRuleCall_4()); }
+		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullProdValueParserRuleCall_3()); }
 		ruleEffectFullProdValue
-		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullProdValueParserRuleCall_4()); }
+		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullProdValueParserRuleCall_3()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullValueRefParserRuleCall_5()); }
+		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullValueRefParserRuleCall_4()); }
 		ruleEffectFullValueRef
-		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullValueRefParserRuleCall_5()); }
+		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullValueRefParserRuleCall_4()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullDataValueParserRuleCall_6()); }
+		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullDataValueParserRuleCall_5()); }
 		ruleEffectFullDataValue
-		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullDataValueParserRuleCall_6()); }
+		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullDataValueParserRuleCall_5()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_7()); }
+		{ before(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_6()); }
 		ruleEffectFullSumValue
-		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_7()); }
+		{ after(grammarAccess.getEffectFullAdtValueAccess().getEffectFullSumValueParserRuleCall_6()); }
 	)
 ;
 finally {

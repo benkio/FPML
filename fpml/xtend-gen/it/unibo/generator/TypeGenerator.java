@@ -136,17 +136,9 @@ public class TypeGenerator {
   public Object compile(final Type t) {
     CharSequence _switchResult = null;
     boolean _matched = false;
-    if (t instanceof UnitType) {
+    if (t instanceof ValueType) {
       _matched=true;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Unit");
-      return _builder.toString();
-    }
-    if (!_matched) {
-      if (t instanceof ValueType) {
-        _matched=true;
-        return this.compile(((ValueType)t));
-      }
+      return this.compile(((ValueType)t));
     }
     if (!_matched) {
       if (t instanceof EffectFullFunctionType) {
@@ -223,9 +215,17 @@ public class TypeGenerator {
   
   public Object compileType(final Expression e) {
     boolean _matched = false;
-    if (e instanceof IntegerType) {
+    if (e instanceof UnitType) {
       _matched=true;
-      return "int";
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Unit");
+      return _builder.toString();
+    }
+    if (!_matched) {
+      if (e instanceof IntegerType) {
+        _matched=true;
+        return "int";
+      }
     }
     if (!_matched) {
       if (e instanceof StringType) {

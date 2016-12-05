@@ -502,12 +502,7 @@ public class Checks {
       ValueType _pureReference = GetReturnType.pureReference(_valueReference);
       return Checks.ValueTypeEquals(_argType, _pureReference);
     } else {
-      PureFunctionType _functionType_1 = af.getFunctionType();
-      ValueType _argType_1 = _functionType_1.getArgType();
-      ApplyFFactor _value_2 = af.getValue();
-      PureFunctionDefinition _valueLambda_1 = _value_2.getValueLambda();
-      ValueType _pureFunctionDefinition = GetReturnType.pureFunctionDefinition(_valueLambda_1);
-      return Checks.ValueTypeEquals(_argType_1, _pureFunctionDefinition);
+      return ((((af.getFunctionType().getArgType() instanceof PureFunctionType) && Checks.ValueTypeEquals(((PureFunctionType) af.getFunctionType().getArgType()).getReturnType(), GetReturnType.pureFunctionDefinition(af.getValue().getValueLambda()))) && Checks.ValueTypeEquals(((PureFunctionType) af.getFunctionType().getArgType()).getArgType(), GetArgType.pureFunctionDefinition(af.getValue().getValueLambda()))) || (Objects.equal(af.getValue().getValueLambda().getArg(), null) && Checks.ValueTypeEquals(af.getFunctionType().getArgType(), GetReturnType.pureFunctionDefinition(af.getValue().getValueLambda()))));
     }
   }
   
