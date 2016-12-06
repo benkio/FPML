@@ -22,7 +22,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullFunctionType extends EffectFullType, EffectFullExpression, EffectFullAdtValue
+public interface EffectFullFunctionType extends EffectFullType, EffectFullExpression
 {
   /**
    * Returns the value of the '<em><b>Arg Type</b></em>' containment reference.

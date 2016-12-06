@@ -3,7 +3,7 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullAdtValue;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.FPMLPackage;
 
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements EffectFullProdValue
+public class EffectFullProdValueImpl extends EffectFullExpressionImpl implements EffectFullProdValue
 {
   /**
    * The cached value of the '{@link #getProdAdtElement1() <em>Prod Adt Element1</em>}' containment reference.
@@ -39,7 +39,7 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
    * @generated
    * @ordered
    */
-  protected EffectFullAdtValue prodAdtElement1;
+  protected EffectFullExpression prodAdtElement1;
 
   /**
    * The cached value of the '{@link #getProdAdtElement2() <em>Prod Adt Element2</em>}' containment reference.
@@ -49,7 +49,7 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
    * @generated
    * @ordered
    */
-  protected EffectFullAdtValue prodAdtElement2;
+  protected EffectFullExpression prodAdtElement2;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullAdtValue getProdAdtElement1()
+  public EffectFullExpression getProdAdtElement1()
   {
     return prodAdtElement1;
   }
@@ -87,9 +87,9 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProdAdtElement1(EffectFullAdtValue newProdAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetProdAdtElement1(EffectFullExpression newProdAdtElement1, NotificationChain msgs)
   {
-    EffectFullAdtValue oldProdAdtElement1 = prodAdtElement1;
+    EffectFullExpression oldProdAdtElement1 = prodAdtElement1;
     prodAdtElement1 = newProdAdtElement1;
     if (eNotificationRequired())
     {
@@ -104,7 +104,7 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProdAdtElement1(EffectFullAdtValue newProdAdtElement1)
+  public void setProdAdtElement1(EffectFullExpression newProdAdtElement1)
   {
     if (newProdAdtElement1 != prodAdtElement1)
     {
@@ -125,7 +125,7 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullAdtValue getProdAdtElement2()
+  public EffectFullExpression getProdAdtElement2()
   {
     return prodAdtElement2;
   }
@@ -135,9 +135,9 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProdAdtElement2(EffectFullAdtValue newProdAdtElement2, NotificationChain msgs)
+  public NotificationChain basicSetProdAdtElement2(EffectFullExpression newProdAdtElement2, NotificationChain msgs)
   {
-    EffectFullAdtValue oldProdAdtElement2 = prodAdtElement2;
+    EffectFullExpression oldProdAdtElement2 = prodAdtElement2;
     prodAdtElement2 = newProdAdtElement2;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProdAdtElement2(EffectFullAdtValue newProdAdtElement2)
+  public void setProdAdtElement2(EffectFullExpression newProdAdtElement2)
   {
     if (newProdAdtElement2 != prodAdtElement2)
     {
@@ -215,10 +215,10 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT1:
-        setProdAdtElement1((EffectFullAdtValue)newValue);
+        setProdAdtElement1((EffectFullExpression)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT2:
-        setProdAdtElement2((EffectFullAdtValue)newValue);
+        setProdAdtElement2((EffectFullExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,10 +235,10 @@ public class EffectFullProdValueImpl extends EffectFullAdtValueImpl implements E
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT1:
-        setProdAdtElement1((EffectFullAdtValue)null);
+        setProdAdtElement1((EffectFullExpression)null);
         return;
       case FPMLPackage.EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT2:
-        setProdAdtElement2((EffectFullAdtValue)null);
+        setProdAdtElement2((EffectFullExpression)null);
         return;
     }
     super.eUnset(featureID);

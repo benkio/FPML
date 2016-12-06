@@ -394,7 +394,6 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseEffectFullDataType(effectFullDataType);
         if (result == null) result = caseEffectFullType(effectFullDataType);
         if (result == null) result = caseEffectFullExpression(effectFullDataType);
-        if (result == null) result = caseEffectFullAdtValue(effectFullDataType);
         if (result == null) result = caseType(effectFullDataType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -416,7 +415,6 @@ public class FPMLSwitch<T> extends Switch<T>
         T result = caseEffectFullFunctionType(effectFullFunctionType);
         if (result == null) result = caseEffectFullType(effectFullFunctionType);
         if (result == null) result = caseEffectFullExpression(effectFullFunctionType);
-        if (result == null) result = caseEffectFullAdtValue(effectFullFunctionType);
         if (result == null) result = caseType(effectFullFunctionType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -478,7 +476,7 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         EffectFullValueRef effectFullValueRef = (EffectFullValueRef)theEObject;
         T result = caseEffectFullValueRef(effectFullValueRef);
-        if (result == null) result = caseEffectFullAdtValue(effectFullValueRef);
+        if (result == null) result = caseEffectFullExpression(effectFullValueRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -517,18 +515,11 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.EFFECT_FULL_ADT_VALUE:
-      {
-        EffectFullAdtValue effectFullAdtValue = (EffectFullAdtValue)theEObject;
-        T result = caseEffectFullAdtValue(effectFullAdtValue);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case FPMLPackage.EFFECT_FULL_PROD_VALUE:
       {
         EffectFullProdValue effectFullProdValue = (EffectFullProdValue)theEObject;
         T result = caseEffectFullProdValue(effectFullProdValue);
-        if (result == null) result = caseEffectFullAdtValue(effectFullProdValue);
+        if (result == null) result = caseEffectFullExpression(effectFullProdValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -536,7 +527,7 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         EffectFullSumValue effectFullSumValue = (EffectFullSumValue)theEObject;
         T result = caseEffectFullSumValue(effectFullSumValue);
-        if (result == null) result = caseEffectFullAdtValue(effectFullSumValue);
+        if (result == null) result = caseEffectFullExpression(effectFullSumValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -833,7 +824,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullDataType(effectFullDataValue);
         if (result == null) result = caseEffectFullType(effectFullDataValue);
         if (result == null) result = caseEffectFullExpression(effectFullDataValue);
-        if (result == null) result = caseEffectFullAdtValue(effectFullDataValue);
         if (result == null) result = caseType(effectFullDataValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -1713,22 +1703,6 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePureSumValue(PureSumValue object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Effect Full Adt Value</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Effect Full Adt Value</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEffectFullAdtValue(EffectFullAdtValue object)
   {
     return null;
   }

@@ -510,15 +510,6 @@ public interface FPMLFactory extends EFactory
   PureSumValue createPureSumValue();
 
   /**
-   * Returns a new object of class '<em>Effect Full Adt Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect Full Adt Value</em>'.
-   * @generated
-   */
-  EffectFullAdtValue createEffectFullAdtValue();
-
-  /**
    * Returns a new object of class '<em>Effect Full Prod Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

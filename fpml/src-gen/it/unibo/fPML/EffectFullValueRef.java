@@ -20,7 +20,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullValueRef extends EffectFullAdtValue
+public interface EffectFullValueRef extends EffectFullExpression
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' reference.

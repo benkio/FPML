@@ -203,7 +203,11 @@ EffectFullExpression:
 	{RecursiveEffectFullExpression} 'IO' '[' exp=EffectFullExpression ']' 
 	| 'IO' '(' Expression ')'  
 	| EffectFullFunctionValue 
-	| EffectFullDataValue;
+	| EffectFullDataValue
+	| EffectFullProdValue
+	| EffectFullSumValue
+	| EffectFullValueRef;
+
 	
 UnitValue returns UnitType: {UnitType} '()';
 
@@ -233,7 +237,7 @@ FunctionValue returns PureFunctionType: value=PureLambda;
 
 DataValue returns DataType: {DataValue} type=[PureData]'(' value=Expression ')';
 
-EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[EffectFullData]'(' value=EffectFullAdtValue ')';
+EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[EffectFullData]'(' value=EffectFullExpression ')';
 
 PureValueRef: {PureValueRef} value=[PureValue];
 
@@ -250,21 +254,13 @@ PureSumValue:
 	'Left' '(' sumAdtElement1=Expression ')'
 	| 'Right' '(' sumAdtElement2=Expression ')';
 
-EffectFullAdtValue:
-	 'IO' '(' innerValue=Expression ')'
-	 | 'IO' '[' innerValue=EffectFullAdtValue ']'
-	 | EffectFullFunctionValue
-	 | EffectFullProdValue
-	 | EffectFullValueRef
-	 | EffectFullDataValue
-	 | EffectFullSumValue ;
 
 EffectFullProdValue: 
-	'(' prodAdtElement1=EffectFullAdtValue ',' prodAdtElement2=EffectFullAdtValue ')';
+	'(' prodAdtElement1=EffectFullExpression ',' prodAdtElement2=EffectFullExpression ')';
 
 EffectFullSumValue:
-	'Left' '(' sumAdtElement1=EffectFullAdtValue ')'
-	| 'Right' '(' sumAdtElement2=EffectFullAdtValue ')';
+	'Left' '(' sumAdtElement1=EffectFullExpression ')'
+	| 'Right' '(' sumAdtElement2=EffectFullExpression ')';
     
     
 /////////////////////////////////////////////////////////////////////

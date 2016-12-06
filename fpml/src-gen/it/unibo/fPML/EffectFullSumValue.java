@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullSumValue extends EffectFullAdtValue
+public interface EffectFullSumValue extends EffectFullExpression
 {
   /**
    * Returns the value of the '<em><b>Sum Adt Element1</b></em>' containment reference.
@@ -32,12 +32,12 @@ public interface EffectFullSumValue extends EffectFullAdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sum Adt Element1</em>' containment reference.
-   * @see #setSumAdtElement1(EffectFullAdtValue)
+   * @see #setSumAdtElement1(EffectFullExpression)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullSumValue_SumAdtElement1()
    * @model containment="true"
    * @generated
    */
-  EffectFullAdtValue getSumAdtElement1();
+  EffectFullExpression getSumAdtElement1();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullSumValue#getSumAdtElement1 <em>Sum Adt Element1</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface EffectFullSumValue extends EffectFullAdtValue
    * @see #getSumAdtElement1()
    * @generated
    */
-  void setSumAdtElement1(EffectFullAdtValue value);
+  void setSumAdtElement1(EffectFullExpression value);
 
   /**
    * Returns the value of the '<em><b>Sum Adt Element2</b></em>' containment reference.
@@ -58,12 +58,12 @@ public interface EffectFullSumValue extends EffectFullAdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sum Adt Element2</em>' containment reference.
-   * @see #setSumAdtElement2(EffectFullAdtValue)
+   * @see #setSumAdtElement2(EffectFullExpression)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullSumValue_SumAdtElement2()
    * @model containment="true"
    * @generated
    */
-  EffectFullAdtValue getSumAdtElement2();
+  EffectFullExpression getSumAdtElement2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullSumValue#getSumAdtElement2 <em>Sum Adt Element2</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface EffectFullSumValue extends EffectFullAdtValue
    * @see #getSumAdtElement2()
    * @generated
    */
-  void setSumAdtElement2(EffectFullAdtValue value);
+  void setSumAdtElement2(EffectFullExpression value);
 
 } // EffectFullSumValue

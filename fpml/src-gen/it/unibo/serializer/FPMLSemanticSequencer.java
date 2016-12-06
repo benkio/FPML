@@ -17,7 +17,6 @@ import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
-import it.unibo.fPML.EffectFullAdtValue;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBlock;
@@ -140,9 +139,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.DATA_VALUE:
 				sequence_DataValue(context, (DataValue) semanticObject); 
 				return; 
-			case FPMLPackage.EFFECT_FULL_ADT_VALUE:
-				sequence_EffectFullAdtValue(context, (EffectFullAdtValue) semanticObject); 
-				return; 
 			case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE:
 				sequence_EffectFullAlgebraicType(context, (EffectFullAlgebraicType) semanticObject); 
 				return; 
@@ -178,8 +174,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else if (rule == grammarAccess.getEffectFullExpressionRule()
-						|| rule == grammarAccess.getEffectFullFunctionValueRule()
-						|| rule == grammarAccess.getEffectFullAdtValueRule()) {
+						|| rule == grammarAccess.getEffectFullFunctionValueRule()) {
 					sequence_EffectFullFunctionValue(context, (EffectFullFunctionType) semanticObject); 
 					return; 
 				}
@@ -608,18 +603,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullAdtValue returns EffectFullAdtValue
-	 *
-	 * Constraint:
-	 *     (innerValue=Expression | innerValue=EffectFullAdtValue)
-	 */
-	protected void sequence_EffectFullAdtValue(ISerializationContext context, EffectFullAdtValue semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Type returns EffectFullAlgebraicType
 	 *     EffectFullType returns EffectFullAlgebraicType
 	 *     EffectFullAlgebraicType returns EffectFullAlgebraicType
@@ -702,10 +685,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     EffectFullExpression returns EffectFullDataValue
 	 *     EffectFullDataValue returns EffectFullDataValue
-	 *     EffectFullAdtValue returns EffectFullDataValue
 	 *
 	 * Constraint:
-	 *     (type=[EffectFullData|ID] value=EffectFullAdtValue)
+	 *     (type=[EffectFullData|ID] value=EffectFullExpression)
 	 */
 	protected void sequence_EffectFullDataValue(ISerializationContext context, EffectFullDataValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -716,7 +698,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEffectFullDataValueAccess().getTypeEffectFullDataIDTerminalRuleCall_1_0_1(), semanticObject.getType());
-		feeder.accept(grammarAccess.getEffectFullDataValueAccess().getValueEffectFullAdtValueParserRuleCall_3_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getEffectFullDataValueAccess().getValueEffectFullExpressionParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -814,7 +796,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     EffectFullExpression returns EffectFullFunctionType
 	 *     EffectFullFunctionValue returns EffectFullFunctionType
-	 *     EffectFullAdtValue returns EffectFullFunctionType
 	 *
 	 * Constraint:
 	 *     value=EffectFullLambda
@@ -862,11 +843,11 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullAdtValue returns EffectFullProdValue
+	 *     EffectFullExpression returns EffectFullProdValue
 	 *     EffectFullProdValue returns EffectFullProdValue
 	 *
 	 * Constraint:
-	 *     (prodAdtElement1=EffectFullAdtValue prodAdtElement2=EffectFullAdtValue)
+	 *     (prodAdtElement1=EffectFullExpression prodAdtElement2=EffectFullExpression)
 	 */
 	protected void sequence_EffectFullProdValue(ISerializationContext context, EffectFullProdValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -876,8 +857,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT2));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEffectFullProdValueAccess().getProdAdtElement1EffectFullAdtValueParserRuleCall_1_0(), semanticObject.getProdAdtElement1());
-		feeder.accept(grammarAccess.getEffectFullProdValueAccess().getProdAdtElement2EffectFullAdtValueParserRuleCall_3_0(), semanticObject.getProdAdtElement2());
+		feeder.accept(grammarAccess.getEffectFullProdValueAccess().getProdAdtElement1EffectFullExpressionParserRuleCall_1_0(), semanticObject.getProdAdtElement1());
+		feeder.accept(grammarAccess.getEffectFullProdValueAccess().getProdAdtElement2EffectFullExpressionParserRuleCall_3_0(), semanticObject.getProdAdtElement2());
 		feeder.finish();
 	}
 	
@@ -902,11 +883,11 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullAdtValue returns EffectFullSumValue
+	 *     EffectFullExpression returns EffectFullSumValue
 	 *     EffectFullSumValue returns EffectFullSumValue
 	 *
 	 * Constraint:
-	 *     (sumAdtElement1=EffectFullAdtValue | sumAdtElement2=EffectFullAdtValue)
+	 *     (sumAdtElement1=EffectFullExpression | sumAdtElement2=EffectFullExpression)
 	 */
 	protected void sequence_EffectFullSumValue(ISerializationContext context, EffectFullSumValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -927,8 +908,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     EffectFullExpression returns EffectFullValueRef
 	 *     EffectFullValueRef returns EffectFullValueRef
-	 *     EffectFullAdtValue returns EffectFullValueRef
 	 *
 	 * Constraint:
 	 *     value=[EffectFullValue|ID]

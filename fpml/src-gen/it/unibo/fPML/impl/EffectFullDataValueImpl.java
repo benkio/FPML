@@ -3,8 +3,8 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullAdtValue;
 import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.FPMLPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -38,7 +38,7 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
    * @generated
    * @ordered
    */
-  protected EffectFullAdtValue value;
+  protected EffectFullExpression value;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullAdtValue getValue()
+  public EffectFullExpression getValue()
   {
     return value;
   }
@@ -76,9 +76,9 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(EffectFullAdtValue newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(EffectFullExpression newValue, NotificationChain msgs)
   {
-    EffectFullAdtValue oldValue = value;
+    EffectFullExpression oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(EffectFullAdtValue newValue)
+  public void setValue(EffectFullExpression newValue)
   {
     if (newValue != value)
     {
@@ -152,7 +152,7 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE:
-        setValue((EffectFullAdtValue)newValue);
+        setValue((EffectFullExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE:
-        setValue((EffectFullAdtValue)null);
+        setValue((EffectFullExpression)null);
         return;
     }
     super.eUnset(featureID);

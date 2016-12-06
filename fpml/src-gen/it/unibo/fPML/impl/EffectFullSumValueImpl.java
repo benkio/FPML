@@ -3,7 +3,7 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullAdtValue;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.FPMLPackage;
 
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements EffectFullSumValue
+public class EffectFullSumValueImpl extends EffectFullExpressionImpl implements EffectFullSumValue
 {
   /**
    * The cached value of the '{@link #getSumAdtElement1() <em>Sum Adt Element1</em>}' containment reference.
@@ -39,7 +39,7 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
    * @generated
    * @ordered
    */
-  protected EffectFullAdtValue sumAdtElement1;
+  protected EffectFullExpression sumAdtElement1;
 
   /**
    * The cached value of the '{@link #getSumAdtElement2() <em>Sum Adt Element2</em>}' containment reference.
@@ -49,7 +49,7 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
    * @generated
    * @ordered
    */
-  protected EffectFullAdtValue sumAdtElement2;
+  protected EffectFullExpression sumAdtElement2;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullAdtValue getSumAdtElement1()
+  public EffectFullExpression getSumAdtElement1()
   {
     return sumAdtElement1;
   }
@@ -87,9 +87,9 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSumAdtElement1(EffectFullAdtValue newSumAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetSumAdtElement1(EffectFullExpression newSumAdtElement1, NotificationChain msgs)
   {
-    EffectFullAdtValue oldSumAdtElement1 = sumAdtElement1;
+    EffectFullExpression oldSumAdtElement1 = sumAdtElement1;
     sumAdtElement1 = newSumAdtElement1;
     if (eNotificationRequired())
     {
@@ -104,7 +104,7 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSumAdtElement1(EffectFullAdtValue newSumAdtElement1)
+  public void setSumAdtElement1(EffectFullExpression newSumAdtElement1)
   {
     if (newSumAdtElement1 != sumAdtElement1)
     {
@@ -125,7 +125,7 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullAdtValue getSumAdtElement2()
+  public EffectFullExpression getSumAdtElement2()
   {
     return sumAdtElement2;
   }
@@ -135,9 +135,9 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSumAdtElement2(EffectFullAdtValue newSumAdtElement2, NotificationChain msgs)
+  public NotificationChain basicSetSumAdtElement2(EffectFullExpression newSumAdtElement2, NotificationChain msgs)
   {
-    EffectFullAdtValue oldSumAdtElement2 = sumAdtElement2;
+    EffectFullExpression oldSumAdtElement2 = sumAdtElement2;
     sumAdtElement2 = newSumAdtElement2;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSumAdtElement2(EffectFullAdtValue newSumAdtElement2)
+  public void setSumAdtElement2(EffectFullExpression newSumAdtElement2)
   {
     if (newSumAdtElement2 != sumAdtElement2)
     {
@@ -215,10 +215,10 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT1:
-        setSumAdtElement1((EffectFullAdtValue)newValue);
+        setSumAdtElement1((EffectFullExpression)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT2:
-        setSumAdtElement2((EffectFullAdtValue)newValue);
+        setSumAdtElement2((EffectFullExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,10 +235,10 @@ public class EffectFullSumValueImpl extends EffectFullAdtValueImpl implements Ef
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT1:
-        setSumAdtElement1((EffectFullAdtValue)null);
+        setSumAdtElement1((EffectFullExpression)null);
         return;
       case FPMLPackage.EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT2:
-        setSumAdtElement2((EffectFullAdtValue)null);
+        setSumAdtElement2((EffectFullExpression)null);
         return;
     }
     super.eUnset(featureID);

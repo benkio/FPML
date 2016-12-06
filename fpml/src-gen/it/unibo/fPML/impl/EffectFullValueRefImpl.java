@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EffectFullValueRefImpl extends EffectFullAdtValueImpl implements EffectFullValueRef
+public class EffectFullValueRefImpl extends EffectFullExpressionImpl implements EffectFullValueRef
 {
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' reference.

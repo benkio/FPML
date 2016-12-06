@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullProdValue extends EffectFullAdtValue
+public interface EffectFullProdValue extends EffectFullExpression
 {
   /**
    * Returns the value of the '<em><b>Prod Adt Element1</b></em>' containment reference.
@@ -32,12 +32,12 @@ public interface EffectFullProdValue extends EffectFullAdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prod Adt Element1</em>' containment reference.
-   * @see #setProdAdtElement1(EffectFullAdtValue)
+   * @see #setProdAdtElement1(EffectFullExpression)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullProdValue_ProdAdtElement1()
    * @model containment="true"
    * @generated
    */
-  EffectFullAdtValue getProdAdtElement1();
+  EffectFullExpression getProdAdtElement1();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullProdValue#getProdAdtElement1 <em>Prod Adt Element1</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface EffectFullProdValue extends EffectFullAdtValue
    * @see #getProdAdtElement1()
    * @generated
    */
-  void setProdAdtElement1(EffectFullAdtValue value);
+  void setProdAdtElement1(EffectFullExpression value);
 
   /**
    * Returns the value of the '<em><b>Prod Adt Element2</b></em>' containment reference.
@@ -58,12 +58,12 @@ public interface EffectFullProdValue extends EffectFullAdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prod Adt Element2</em>' containment reference.
-   * @see #setProdAdtElement2(EffectFullAdtValue)
+   * @see #setProdAdtElement2(EffectFullExpression)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullProdValue_ProdAdtElement2()
    * @model containment="true"
    * @generated
    */
-  EffectFullAdtValue getProdAdtElement2();
+  EffectFullExpression getProdAdtElement2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullProdValue#getProdAdtElement2 <em>Prod Adt Element2</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface EffectFullProdValue extends EffectFullAdtValue
    * @see #getProdAdtElement2()
    * @generated
    */
-  void setProdAdtElement2(EffectFullAdtValue value);
+  void setProdAdtElement2(EffectFullExpression value);
 
 } // EffectFullProdValue

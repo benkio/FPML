@@ -1739,6 +1739,9 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		private final RuleCall cEffectFullFunctionValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cEffectFullDataValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cEffectFullProdValueParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cEffectFullSumValueParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cEffectFullValueRefParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//////////////////////////////////////////////////////////////////////
 		//// Values
@@ -1747,11 +1750,14 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	{RecursiveEffectFullExpression} 'IO' '[' exp=EffectFullExpression ']'
 		//	| 'IO' '(' Expression ')'
 		//	| EffectFullFunctionValue
-		//	| EffectFullDataValue;
+		//	| EffectFullDataValue
+		//	| EffectFullProdValue
+		//	| EffectFullSumValue
+		//	| EffectFullValueRef;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{RecursiveEffectFullExpression} 'IO' '[' exp=EffectFullExpression ']' | 'IO' '(' Expression ')' |
-		//EffectFullFunctionValue | EffectFullDataValue
+		//EffectFullFunctionValue | EffectFullDataValue | EffectFullProdValue | EffectFullSumValue | EffectFullValueRef
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//{RecursiveEffectFullExpression} 'IO' '[' exp=EffectFullExpression ']'
@@ -1795,6 +1801,15 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//EffectFullDataValue
 		public RuleCall getEffectFullDataValueParserRuleCall_3() { return cEffectFullDataValueParserRuleCall_3; }
+		
+		//EffectFullProdValue
+		public RuleCall getEffectFullProdValueParserRuleCall_4() { return cEffectFullProdValueParserRuleCall_4; }
+		
+		//EffectFullSumValue
+		public RuleCall getEffectFullSumValueParserRuleCall_5() { return cEffectFullSumValueParserRuleCall_5; }
+		
+		//EffectFullValueRef
+		public RuleCall getEffectFullValueRefParserRuleCall_6() { return cEffectFullValueRefParserRuleCall_6; }
 	}
 	public class UnitValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.UnitValue");
@@ -2113,14 +2128,14 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeEffectFullDataIDTerminalRuleCall_1_0_1 = (RuleCall)cTypeEffectFullDataCrossReference_1_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cValueEffectFullAdtValueParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
+		private final RuleCall cValueEffectFullExpressionParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//EffectFullDataValue EffectFullDataType:
-		//	{EffectFullDataValue} type=[EffectFullData] '(' value=EffectFullAdtValue ')'
+		//	{EffectFullDataValue} type=[EffectFullData] '(' value=EffectFullExpression ')'
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{EffectFullDataValue} type=[EffectFullData] '(' value=EffectFullAdtValue ')'
+		//{EffectFullDataValue} type=[EffectFullData] '(' value=EffectFullExpression ')'
 		public Group getGroup() { return cGroup; }
 		
 		//{EffectFullDataValue}
@@ -2138,11 +2153,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
-		//value=EffectFullAdtValue
+		//value=EffectFullExpression
 		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
 		
-		//EffectFullAdtValue
-		public RuleCall getValueEffectFullAdtValueParserRuleCall_3_0() { return cValueEffectFullAdtValueParserRuleCall_3_0; }
+		//EffectFullExpression
+		public RuleCall getValueEffectFullExpressionParserRuleCall_3_0() { return cValueEffectFullExpressionParserRuleCall_3_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
@@ -2366,127 +2381,41 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
 	}
-	public class EffectFullAdtValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EffectFullAdtValue");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cIOKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Assignment cInnerValueAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cInnerValueExpressionParserRuleCall_0_2_0 = (RuleCall)cInnerValueAssignment_0_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cIOKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cInnerValueAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cInnerValueEffectFullAdtValueParserRuleCall_1_2_0 = (RuleCall)cInnerValueAssignment_1_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		private final RuleCall cEffectFullFunctionValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cEffectFullProdValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cEffectFullValueRefParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cEffectFullDataValueParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cEffectFullSumValueParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		
-		//EffectFullAdtValue:
-		//	'IO' '(' innerValue=Expression ')'
-		//	| 'IO' '[' innerValue=EffectFullAdtValue ']'
-		//	| EffectFullFunctionValue
-		//	| EffectFullProdValue
-		//	| EffectFullValueRef
-		//	| EffectFullDataValue
-		//	| EffectFullSumValue;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'IO' '(' innerValue=Expression ')' | 'IO' '[' innerValue=EffectFullAdtValue ']' | EffectFullFunctionValue |
-		//EffectFullProdValue | EffectFullValueRef | EffectFullDataValue | EffectFullSumValue
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'IO' '(' innerValue=Expression ')'
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//'IO'
-		public Keyword getIOKeyword_0_0() { return cIOKeyword_0_0; }
-		
-		//'('
-		public Keyword getLeftParenthesisKeyword_0_1() { return cLeftParenthesisKeyword_0_1; }
-		
-		//innerValue=Expression
-		public Assignment getInnerValueAssignment_0_2() { return cInnerValueAssignment_0_2; }
-		
-		//Expression
-		public RuleCall getInnerValueExpressionParserRuleCall_0_2_0() { return cInnerValueExpressionParserRuleCall_0_2_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
-		
-		//'IO' '[' innerValue=EffectFullAdtValue ']'
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//'IO'
-		public Keyword getIOKeyword_1_0() { return cIOKeyword_1_0; }
-		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_1_1() { return cLeftSquareBracketKeyword_1_1; }
-		
-		//innerValue=EffectFullAdtValue
-		public Assignment getInnerValueAssignment_1_2() { return cInnerValueAssignment_1_2; }
-		
-		//EffectFullAdtValue
-		public RuleCall getInnerValueEffectFullAdtValueParserRuleCall_1_2_0() { return cInnerValueEffectFullAdtValueParserRuleCall_1_2_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_1_3() { return cRightSquareBracketKeyword_1_3; }
-		
-		//EffectFullFunctionValue
-		public RuleCall getEffectFullFunctionValueParserRuleCall_2() { return cEffectFullFunctionValueParserRuleCall_2; }
-		
-		//EffectFullProdValue
-		public RuleCall getEffectFullProdValueParserRuleCall_3() { return cEffectFullProdValueParserRuleCall_3; }
-		
-		//EffectFullValueRef
-		public RuleCall getEffectFullValueRefParserRuleCall_4() { return cEffectFullValueRefParserRuleCall_4; }
-		
-		//EffectFullDataValue
-		public RuleCall getEffectFullDataValueParserRuleCall_5() { return cEffectFullDataValueParserRuleCall_5; }
-		
-		//EffectFullSumValue
-		public RuleCall getEffectFullSumValueParserRuleCall_6() { return cEffectFullSumValueParserRuleCall_6; }
-	}
 	public class EffectFullProdValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EffectFullProdValue");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cProdAdtElement1Assignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cProdAdtElement1EffectFullAdtValueParserRuleCall_1_0 = (RuleCall)cProdAdtElement1Assignment_1.eContents().get(0);
+		private final RuleCall cProdAdtElement1EffectFullExpressionParserRuleCall_1_0 = (RuleCall)cProdAdtElement1Assignment_1.eContents().get(0);
 		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cProdAdtElement2Assignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cProdAdtElement2EffectFullAdtValueParserRuleCall_3_0 = (RuleCall)cProdAdtElement2Assignment_3.eContents().get(0);
+		private final RuleCall cProdAdtElement2EffectFullExpressionParserRuleCall_3_0 = (RuleCall)cProdAdtElement2Assignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//EffectFullProdValue:
-		//	'(' prodAdtElement1=EffectFullAdtValue ',' prodAdtElement2=EffectFullAdtValue ')';
+		//	'(' prodAdtElement1=EffectFullExpression ',' prodAdtElement2=EffectFullExpression ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' prodAdtElement1=EffectFullAdtValue ',' prodAdtElement2=EffectFullAdtValue ')'
+		//'(' prodAdtElement1=EffectFullExpression ',' prodAdtElement2=EffectFullExpression ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 		
-		//prodAdtElement1=EffectFullAdtValue
+		//prodAdtElement1=EffectFullExpression
 		public Assignment getProdAdtElement1Assignment_1() { return cProdAdtElement1Assignment_1; }
 		
-		//EffectFullAdtValue
-		public RuleCall getProdAdtElement1EffectFullAdtValueParserRuleCall_1_0() { return cProdAdtElement1EffectFullAdtValueParserRuleCall_1_0; }
+		//EffectFullExpression
+		public RuleCall getProdAdtElement1EffectFullExpressionParserRuleCall_1_0() { return cProdAdtElement1EffectFullExpressionParserRuleCall_1_0; }
 		
 		//','
 		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
 		
-		//prodAdtElement2=EffectFullAdtValue
+		//prodAdtElement2=EffectFullExpression
 		public Assignment getProdAdtElement2Assignment_3() { return cProdAdtElement2Assignment_3; }
 		
-		//EffectFullAdtValue
-		public RuleCall getProdAdtElement2EffectFullAdtValueParserRuleCall_3_0() { return cProdAdtElement2EffectFullAdtValueParserRuleCall_3_0; }
+		//EffectFullExpression
+		public RuleCall getProdAdtElement2EffectFullExpressionParserRuleCall_3_0() { return cProdAdtElement2EffectFullExpressionParserRuleCall_3_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
@@ -2498,24 +2427,24 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Assignment cSumAdtElement1Assignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cSumAdtElement1EffectFullAdtValueParserRuleCall_0_2_0 = (RuleCall)cSumAdtElement1Assignment_0_2.eContents().get(0);
+		private final RuleCall cSumAdtElement1EffectFullExpressionParserRuleCall_0_2_0 = (RuleCall)cSumAdtElement1Assignment_0_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Keyword cRightKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cSumAdtElement2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cSumAdtElement2EffectFullAdtValueParserRuleCall_1_2_0 = (RuleCall)cSumAdtElement2Assignment_1_2.eContents().get(0);
+		private final RuleCall cSumAdtElement2EffectFullExpressionParserRuleCall_1_2_0 = (RuleCall)cSumAdtElement2Assignment_1_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//EffectFullSumValue:
-		//	'Left' '(' sumAdtElement1=EffectFullAdtValue ')'
-		//	| 'Right' '(' sumAdtElement2=EffectFullAdtValue ')';
+		//	'Left' '(' sumAdtElement1=EffectFullExpression ')'
+		//	| 'Right' '(' sumAdtElement2=EffectFullExpression ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Left' '(' sumAdtElement1=EffectFullAdtValue ')' | 'Right' '(' sumAdtElement2=EffectFullAdtValue ')'
+		//'Left' '(' sumAdtElement1=EffectFullExpression ')' | 'Right' '(' sumAdtElement2=EffectFullExpression ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'Left' '(' sumAdtElement1=EffectFullAdtValue ')'
+		//'Left' '(' sumAdtElement1=EffectFullExpression ')'
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//'Left'
@@ -2524,16 +2453,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_0_1() { return cLeftParenthesisKeyword_0_1; }
 		
-		//sumAdtElement1=EffectFullAdtValue
+		//sumAdtElement1=EffectFullExpression
 		public Assignment getSumAdtElement1Assignment_0_2() { return cSumAdtElement1Assignment_0_2; }
 		
-		//EffectFullAdtValue
-		public RuleCall getSumAdtElement1EffectFullAdtValueParserRuleCall_0_2_0() { return cSumAdtElement1EffectFullAdtValueParserRuleCall_0_2_0; }
+		//EffectFullExpression
+		public RuleCall getSumAdtElement1EffectFullExpressionParserRuleCall_0_2_0() { return cSumAdtElement1EffectFullExpressionParserRuleCall_0_2_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
 		
-		//'Right' '(' sumAdtElement2=EffectFullAdtValue ')'
+		//'Right' '(' sumAdtElement2=EffectFullExpression ')'
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//'Right'
@@ -2542,11 +2471,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1_1() { return cLeftParenthesisKeyword_1_1; }
 		
-		//sumAdtElement2=EffectFullAdtValue
+		//sumAdtElement2=EffectFullExpression
 		public Assignment getSumAdtElement2Assignment_1_2() { return cSumAdtElement2Assignment_1_2; }
 		
-		//EffectFullAdtValue
-		public RuleCall getSumAdtElement2EffectFullAdtValueParserRuleCall_1_2_0() { return cSumAdtElement2EffectFullAdtValueParserRuleCall_1_2_0; }
+		//EffectFullExpression
+		public RuleCall getSumAdtElement2EffectFullExpressionParserRuleCall_1_2_0() { return cSumAdtElement2EffectFullExpressionParserRuleCall_1_2_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
@@ -3189,7 +3118,6 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final PureLambdaElements pPureLambda;
 	private final PureProdValueElements pPureProdValue;
 	private final PureSumValueElements pPureSumValue;
-	private final EffectFullAdtValueElements pEffectFullAdtValue;
 	private final EffectFullProdValueElements pEffectFullProdValue;
 	private final EffectFullSumValueElements pEffectFullSumValue;
 	private final PrimitivePureFunctionElements pPrimitivePureFunction;
@@ -3288,7 +3216,6 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPureLambda = new PureLambdaElements();
 		this.pPureProdValue = new PureProdValueElements();
 		this.pPureSumValue = new PureSumValueElements();
-		this.pEffectFullAdtValue = new EffectFullAdtValueElements();
 		this.pEffectFullProdValue = new EffectFullProdValueElements();
 		this.pEffectFullSumValue = new EffectFullSumValueElements();
 		this.pPrimitivePureFunction = new PrimitivePureFunctionElements();
@@ -3896,7 +3823,10 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//	{RecursiveEffectFullExpression} 'IO' '[' exp=EffectFullExpression ']'
 	//	| 'IO' '(' Expression ')'
 	//	| EffectFullFunctionValue
-	//	| EffectFullDataValue;
+	//	| EffectFullDataValue
+	//	| EffectFullProdValue
+	//	| EffectFullSumValue
+	//	| EffectFullValueRef;
 	public EffectFullExpressionElements getEffectFullExpressionAccess() {
 		return pEffectFullExpression;
 	}
@@ -4004,7 +3934,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//EffectFullDataValue EffectFullDataType:
-	//	{EffectFullDataValue} type=[EffectFullData] '(' value=EffectFullAdtValue ')'
+	//	{EffectFullDataValue} type=[EffectFullData] '(' value=EffectFullExpression ')'
 	public EffectFullDataValueElements getEffectFullDataValueAccess() {
 		return pEffectFullDataValue;
 	}
@@ -4055,24 +3985,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPureSumValueAccess().getRule();
 	}
 	
-	//EffectFullAdtValue:
-	//	'IO' '(' innerValue=Expression ')'
-	//	| 'IO' '[' innerValue=EffectFullAdtValue ']'
-	//	| EffectFullFunctionValue
-	//	| EffectFullProdValue
-	//	| EffectFullValueRef
-	//	| EffectFullDataValue
-	//	| EffectFullSumValue;
-	public EffectFullAdtValueElements getEffectFullAdtValueAccess() {
-		return pEffectFullAdtValue;
-	}
-	
-	public ParserRule getEffectFullAdtValueRule() {
-		return getEffectFullAdtValueAccess().getRule();
-	}
-	
 	//EffectFullProdValue:
-	//	'(' prodAdtElement1=EffectFullAdtValue ',' prodAdtElement2=EffectFullAdtValue ')';
+	//	'(' prodAdtElement1=EffectFullExpression ',' prodAdtElement2=EffectFullExpression ')';
 	public EffectFullProdValueElements getEffectFullProdValueAccess() {
 		return pEffectFullProdValue;
 	}
@@ -4082,8 +3996,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//EffectFullSumValue:
-	//	'Left' '(' sumAdtElement1=EffectFullAdtValue ')'
-	//	| 'Right' '(' sumAdtElement2=EffectFullAdtValue ')';
+	//	'Left' '(' sumAdtElement1=EffectFullExpression ')'
+	//	| 'Right' '(' sumAdtElement2=EffectFullExpression ')';
 	public EffectFullSumValueElements getEffectFullSumValueAccess() {
 		return pEffectFullSumValue;
 	}
