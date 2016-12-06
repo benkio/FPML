@@ -118,8 +118,8 @@ public class Others {
     return _switchResult;
   }
   
-  public static IOType getElement2ValueTypeFromEffectFullAlgebraicType(final EffectFullAlgebraicType eat) {
-    IOType _switchResult = null;
+  public static Type getElement2ValueTypeFromEffectFullAlgebraicType(final EffectFullAlgebraicType eat) {
+    Type _switchResult = null;
     EObject _effectFullAdtElement2 = eat.getEffectFullAdtElement2();
     boolean _matched = false;
     if (_effectFullAdtElement2 instanceof EffectFullSumTypeFactor) {
@@ -183,6 +183,26 @@ public class Others {
         pat.setPureAdtElement1(vt1);
       }
       _xblockexpression = pat;
+    }
+    return _xblockexpression;
+  }
+  
+  public static EffectFullAlgebraicType createEffectFullAlgebraicType(final Type t1, final Type t2, final boolean isSumType) {
+    EffectFullAlgebraicType _xblockexpression = null;
+    {
+      final EffectFullAlgebraicType efat = FPMLFactory.eINSTANCE.createEffectFullAlgebraicType();
+      if (isSumType) {
+        final EffectFullSumTypeFactor factor = FPMLFactory.eINSTANCE.createEffectFullSumTypeFactor();
+        factor.setAdtElement(t2);
+        efat.setEffectFullAdtElement2(factor);
+        efat.setEffectFullAdtElement1(t1);
+      } else {
+        final EffectFullProdTypeFactor factor_1 = FPMLFactory.eINSTANCE.createEffectFullProdTypeFactor();
+        factor_1.setAdtElement(t2);
+        efat.setEffectFullAdtElement2(factor_1);
+        efat.setEffectFullAdtElement1(t1);
+      }
+      _xblockexpression = efat;
     }
     return _xblockexpression;
   }

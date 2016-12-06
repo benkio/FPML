@@ -173,8 +173,11 @@ class GetReturnType {
 				} 
 			EffectFullDataValue: expression
 			RecursiveEffectFullExpression: {
-				return Others.IOWrap(effectFullExpression(expression.exp))
+				return Others.IOWrap(effectFullExpression(expression.innerValue as EffectFullExpression))
 			}
+			EffectFullProdValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.prodAdtElement1), effectFullExpression(expression.prodAdtElement2), false)
+			EffectFullSumValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.sumAdtElement1), effectFullExpression(expression.sumAdtElement2), true)
+			EffectFullValueRef: effectFullExpression(expression.value.value)
 		}
 	}
 	

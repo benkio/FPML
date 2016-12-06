@@ -351,7 +351,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseValueType(integerType);
         if (result == null) result = caseExpression(integerType);
         if (result == null) result = caseType(integerType);
-        if (result == null) result = caseEffectFullExpression(integerType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -362,7 +361,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseValueType(stringType);
         if (result == null) result = caseExpression(stringType);
         if (result == null) result = caseType(stringType);
-        if (result == null) result = caseEffectFullExpression(stringType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -373,7 +371,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseValueType(unitType);
         if (result == null) result = caseExpression(unitType);
         if (result == null) result = caseType(unitType);
-        if (result == null) result = caseEffectFullExpression(unitType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -384,7 +381,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseValueType(dataType);
         if (result == null) result = caseExpression(dataType);
         if (result == null) result = caseType(dataType);
-        if (result == null) result = caseEffectFullExpression(dataType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -405,7 +401,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseValueType(pureFunctionType);
         if (result == null) result = caseExpression(pureFunctionType);
         if (result == null) result = caseType(pureFunctionType);
-        if (result == null) result = caseEffectFullExpression(pureFunctionType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -484,7 +479,6 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
-        if (result == null) result = caseEffectFullExpression(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -493,7 +487,6 @@ public class FPMLSwitch<T> extends Switch<T>
         PureValueRef pureValueRef = (PureValueRef)theEObject;
         T result = casePureValueRef(pureValueRef);
         if (result == null) result = caseExpression(pureValueRef);
-        if (result == null) result = caseEffectFullExpression(pureValueRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -502,7 +495,6 @@ public class FPMLSwitch<T> extends Switch<T>
         PureProdValue pureProdValue = (PureProdValue)theEObject;
         T result = casePureProdValue(pureProdValue);
         if (result == null) result = caseExpression(pureProdValue);
-        if (result == null) result = caseEffectFullExpression(pureProdValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -511,7 +503,6 @@ public class FPMLSwitch<T> extends Switch<T>
         PureSumValue pureSumValue = (PureSumValue)theEObject;
         T result = casePureSumValue(pureSumValue);
         if (result == null) result = caseExpression(pureSumValue);
-        if (result == null) result = caseEffectFullExpression(pureSumValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -813,7 +804,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseValueType(dataValue);
         if (result == null) result = caseExpression(dataValue);
         if (result == null) result = caseType(dataValue);
-        if (result == null) result = caseEffectFullExpression(dataValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

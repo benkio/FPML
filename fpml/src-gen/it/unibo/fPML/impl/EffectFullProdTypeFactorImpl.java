@@ -5,7 +5,7 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.IOType;
+import it.unibo.fPML.Type;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -39,7 +39,7 @@ public class EffectFullProdTypeFactorImpl extends MinimalEObjectImpl.Container i
    * @generated
    * @ordered
    */
-  protected IOType adtElement;
+  protected Type adtElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class EffectFullProdTypeFactorImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public IOType getAdtElement()
+  public Type getAdtElement()
   {
     return adtElement;
   }
@@ -77,9 +77,9 @@ public class EffectFullProdTypeFactorImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAdtElement(IOType newAdtElement, NotificationChain msgs)
+  public NotificationChain basicSetAdtElement(Type newAdtElement, NotificationChain msgs)
   {
-    IOType oldAdtElement = adtElement;
+    Type oldAdtElement = adtElement;
     adtElement = newAdtElement;
     if (eNotificationRequired())
     {
@@ -94,7 +94,7 @@ public class EffectFullProdTypeFactorImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAdtElement(IOType newAdtElement)
+  public void setAdtElement(Type newAdtElement)
   {
     if (newAdtElement != adtElement)
     {
@@ -153,7 +153,7 @@ public class EffectFullProdTypeFactorImpl extends MinimalEObjectImpl.Container i
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT:
-        setAdtElement((IOType)newValue);
+        setAdtElement((Type)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,7 +170,7 @@ public class EffectFullProdTypeFactorImpl extends MinimalEObjectImpl.Container i
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT:
-        setAdtElement((IOType)null);
+        setAdtElement((Type)null);
         return;
     }
     super.eUnset(featureID);

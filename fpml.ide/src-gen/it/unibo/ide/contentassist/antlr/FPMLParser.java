@@ -213,7 +213,8 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullAlgebraicTypeAccess().getEffectFullAdtElement2Assignment_2(), "rule__EffectFullAlgebraicType__EffectFullAdtElement2Assignment_2");
 					put(grammarAccess.getEffectFullSumTypeFactorAccess().getAdtElementAssignment_1(), "rule__EffectFullSumTypeFactor__AdtElementAssignment_1");
 					put(grammarAccess.getEffectFullProdTypeFactorAccess().getAdtElementAssignment_1(), "rule__EffectFullProdTypeFactor__AdtElementAssignment_1");
-					put(grammarAccess.getEffectFullExpressionAccess().getExpAssignment_0_3(), "rule__EffectFullExpression__ExpAssignment_0_3");
+					put(grammarAccess.getEffectFullExpressionAccess().getInnerValueAssignment_0_3(), "rule__EffectFullExpression__InnerValueAssignment_0_3");
+					put(grammarAccess.getEffectFullExpressionAccess().getInnerValueAssignment_1_2(), "rule__EffectFullExpression__InnerValueAssignment_1_2");
 					put(grammarAccess.getEffectFullFunctionValueAccess().getValueAssignment(), "rule__EffectFullFunctionValue__ValueAssignment");
 					put(grammarAccess.getEffectFullValueRefAccess().getValueAssignment_1(), "rule__EffectFullValueRef__ValueAssignment_1");
 					put(grammarAccess.getEffectFullLambdaAccess().getArgAssignment_0_2(), "rule__EffectFullLambda__ArgAssignment_0_2");

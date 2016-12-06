@@ -33,12 +33,12 @@ public interface EffectFullAlgebraicType extends EffectFullType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Effect Full Adt Element1</em>' containment reference.
-   * @see #setEffectFullAdtElement1(IOType)
+   * @see #setEffectFullAdtElement1(Type)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullAlgebraicType_EffectFullAdtElement1()
    * @model containment="true"
    * @generated
    */
-  IOType getEffectFullAdtElement1();
+  Type getEffectFullAdtElement1();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullAlgebraicType#getEffectFullAdtElement1 <em>Effect Full Adt Element1</em>}' containment reference.
@@ -48,7 +48,7 @@ public interface EffectFullAlgebraicType extends EffectFullType
    * @see #getEffectFullAdtElement1()
    * @generated
    */
-  void setEffectFullAdtElement1(IOType value);
+  void setEffectFullAdtElement1(Type value);
 
   /**
    * Returns the value of the '<em><b>Effect Full Adt Element2</b></em>' containment reference.

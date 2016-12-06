@@ -41,7 +41,7 @@ class Others {
 		}
 	}
 	
-	def static IOType getElement2ValueTypeFromEffectFullAlgebraicType(EffectFullAlgebraicType eat) {
+	def static Type getElement2ValueTypeFromEffectFullAlgebraicType(EffectFullAlgebraicType eat) {
 		switch eat.effectFullAdtElement2 {
 			EffectFullSumTypeFactor: (eat.effectFullAdtElement2 as EffectFullSumTypeFactor).adtElement
 			EffectFullProdTypeFactor: (eat.effectFullAdtElement2 as EffectFullProdTypeFactor).adtElement 
@@ -87,5 +87,21 @@ class Others {
 			pat.pureAdtElement1 = vt1
 		}
 		 pat
+	}
+	
+	def static EffectFullAlgebraicType createEffectFullAlgebraicType(Type t1, Type t2, boolean isSumType) {
+		val EffectFullAlgebraicType efat = FPMLFactory.eINSTANCE.createEffectFullAlgebraicType;
+		if (isSumType) {
+			val factor = FPMLFactory.eINSTANCE.createEffectFullSumTypeFactor
+			factor.adtElement = t2
+			efat.effectFullAdtElement2 =  factor
+			efat.effectFullAdtElement1 = t1
+		}else { //is prod type
+			val factor = FPMLFactory.eINSTANCE.createEffectFullProdTypeFactor
+			factor.adtElement = t2
+			efat.effectFullAdtElement2 =  factor
+			efat.effectFullAdtElement1 = t1
+		}
+		 efat
 	}
 }

@@ -5,7 +5,7 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.IOType;
+import it.unibo.fPML.Type;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -40,7 +40,7 @@ public class EffectFullAlgebraicTypeImpl extends EffectFullTypeImpl implements E
    * @generated
    * @ordered
    */
-  protected IOType effectFullAdtElement1;
+  protected Type effectFullAdtElement1;
 
   /**
    * The cached value of the '{@link #getEffectFullAdtElement2() <em>Effect Full Adt Element2</em>}' containment reference.
@@ -78,7 +78,7 @@ public class EffectFullAlgebraicTypeImpl extends EffectFullTypeImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public IOType getEffectFullAdtElement1()
+  public Type getEffectFullAdtElement1()
   {
     return effectFullAdtElement1;
   }
@@ -88,9 +88,9 @@ public class EffectFullAlgebraicTypeImpl extends EffectFullTypeImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetEffectFullAdtElement1(IOType newEffectFullAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetEffectFullAdtElement1(Type newEffectFullAdtElement1, NotificationChain msgs)
   {
-    IOType oldEffectFullAdtElement1 = effectFullAdtElement1;
+    Type oldEffectFullAdtElement1 = effectFullAdtElement1;
     effectFullAdtElement1 = newEffectFullAdtElement1;
     if (eNotificationRequired())
     {
@@ -105,7 +105,7 @@ public class EffectFullAlgebraicTypeImpl extends EffectFullTypeImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEffectFullAdtElement1(IOType newEffectFullAdtElement1)
+  public void setEffectFullAdtElement1(Type newEffectFullAdtElement1)
   {
     if (newEffectFullAdtElement1 != effectFullAdtElement1)
     {
@@ -216,7 +216,7 @@ public class EffectFullAlgebraicTypeImpl extends EffectFullTypeImpl implements E
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1:
-        setEffectFullAdtElement1((IOType)newValue);
+        setEffectFullAdtElement1((Type)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2:
         setEffectFullAdtElement2((EObject)newValue);
@@ -236,7 +236,7 @@ public class EffectFullAlgebraicTypeImpl extends EffectFullTypeImpl implements E
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT1:
-        setEffectFullAdtElement1((IOType)null);
+        setEffectFullAdtElement1((Type)null);
         return;
       case FPMLPackage.EFFECT_FULL_ALGEBRAIC_TYPE__EFFECT_FULL_ADT_ELEMENT2:
         setEffectFullAdtElement2((EObject)null);

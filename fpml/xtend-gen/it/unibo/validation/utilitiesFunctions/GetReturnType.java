@@ -19,8 +19,11 @@ import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullLambda;
+import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.EffectFullValue;
+import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
@@ -66,6 +69,7 @@ import it.unibo.fPML.VoidType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -541,9 +545,37 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof RecursiveEffectFullExpression) {
         _matched=true;
-        EffectFullExpression _exp = ((RecursiveEffectFullExpression)expression).getExp();
-        Type _effectFullExpression = GetReturnType.effectFullExpression(_exp);
+        EObject _innerValue = ((RecursiveEffectFullExpression)expression).getInnerValue();
+        Type _effectFullExpression = GetReturnType.effectFullExpression(((EffectFullExpression) _innerValue));
         return Others.IOWrap(_effectFullExpression);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof EffectFullProdValue) {
+        _matched=true;
+        EffectFullExpression _prodAdtElement1 = ((EffectFullProdValue)expression).getProdAdtElement1();
+        Type _effectFullExpression = GetReturnType.effectFullExpression(_prodAdtElement1);
+        EffectFullExpression _prodAdtElement2 = ((EffectFullProdValue)expression).getProdAdtElement2();
+        Type _effectFullExpression_1 = GetReturnType.effectFullExpression(_prodAdtElement2);
+        _switchResult = Others.createEffectFullAlgebraicType(_effectFullExpression, _effectFullExpression_1, false);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof EffectFullSumValue) {
+        _matched=true;
+        EffectFullExpression _sumAdtElement1 = ((EffectFullSumValue)expression).getSumAdtElement1();
+        Type _effectFullExpression = GetReturnType.effectFullExpression(_sumAdtElement1);
+        EffectFullExpression _sumAdtElement2 = ((EffectFullSumValue)expression).getSumAdtElement2();
+        Type _effectFullExpression_1 = GetReturnType.effectFullExpression(_sumAdtElement2);
+        _switchResult = Others.createEffectFullAlgebraicType(_effectFullExpression, _effectFullExpression_1, true);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof EffectFullValueRef) {
+        _matched=true;
+        EffectFullValue _value = ((EffectFullValueRef)expression).getValue();
+        EffectFullExpression _value_1 = _value.getValue();
+        _switchResult = GetReturnType.effectFullExpression(_value_1);
       }
     }
     return _switchResult;
@@ -565,8 +597,8 @@ public class GetReturnType {
     return _switchResult;
   }
   
-  public static IOType primitiveEffectFullFunction(final PrimitiveEffectFullFunction function) {
-    IOType _switchResult = null;
+  public static Type primitiveEffectFullFunction(final PrimitiveEffectFullFunction function) {
+    Type _switchResult = null;
     boolean _matched = false;
     if (function instanceof PrimitivePrint) {
       _matched=true;

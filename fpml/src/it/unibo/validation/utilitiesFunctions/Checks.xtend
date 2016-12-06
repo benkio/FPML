@@ -13,7 +13,6 @@ import it.unibo.fPML.CompositionFunctionBodyEffect
 import it.unibo.fPML.EffectFullReference
 import it.unibo.fPML.Type
 import it.unibo.fPML.EffectFullFunctionDefinition
-import it.unibo.fPML.EffectFullAdtValue
 import org.eclipse.xtend.lib.annotations.EqualsHashCodeProcessor.Util
 import org.eclipse.emf.ecore.util.EcoreUtil
 
@@ -21,6 +20,9 @@ class Checks {
 	
 	def static boolean DataAndValue(Expression value, ValueType type) {
 		switch type {
+			UnitType: value instanceof UnitType ||
+					(value instanceof PureValueRef &&
+				      TypeEquals(GetReturnType.expression((value as PureValueRef).value.value), type)) 
 			IntegerType: return value instanceof IntegerType || 
 						       (value instanceof PureValueRef &&
 						       	checkValueType((value as PureValueRef).value, type)
@@ -199,12 +201,9 @@ class Checks {
 	///
 	/// Most Delicate method
 	///
-	def static boolean effectFullDataAndValue(EffectFullAdtValue value, EffectFullType type) {
+	def static boolean effectFullDataAndValue(EffectFullExpression value, Type type) {
 		switch type {
-			UnitType: value instanceof UnitType ||
-					(value instanceof EffectFullValueRef &&
-				      TypeEquals(GetReturnType.effectFullExpression((value as EffectFullValueRef).value.value), type)) 
-			
+			ValueType: value instanceof Expression && DataAndValue(value as Expression, type)
 			EffectFullFunctionType: 
 				if (value instanceof EffectFullFunctionType) 
 					return (value as EffectFullFunctionType).value.getFunctionBody instanceof CompositionFunctionBodyEffect &&
@@ -236,7 +235,7 @@ class Checks {
 			IOType: {
 				switch value.innerValue {
 					Expression: return ((type as IOType).type instanceof ValueType) && DataAndValue(value.innerValue as Expression, (type as IOType).type as ValueType)
-					EffectFullAdtValue: return ((type as IOType).type instanceof EffectFullType) && effectFullDataAndValue(value.innerValue as EffectFullAdtValue, (type as IOType).type as EffectFullType)					
+					EffectFullExpression: return ((type as IOType).type instanceof EffectFullType) && effectFullDataAndValue(value.innerValue as EffectFullExpression, (type as IOType).type as EffectFullType)					
 					default: return false
 				}
 			}

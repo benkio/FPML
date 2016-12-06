@@ -26,6 +26,9 @@ import it.unibo.fPML.RecursiveEffectFullExpression
 import it.unibo.fPML.PureValueRef
 import it.unibo.fPML.PureSumValue
 import it.unibo.fPML.PureProdValue
+import it.unibo.fPML.EffectFullProdValue
+import it.unibo.fPML.EffectFullSumValue
+import it.unibo.fPML.EffectFullValueRef
 
 class TypeGenerator {
 	
@@ -79,7 +82,7 @@ class TypeGenerator {
 	
 	def compileType(EffectFullExpression e) {
 		switch e {
-			Expression: '''IO<«compileType(e)»>'''
+			Expression: '''IO<«compileType(e.innerValue as Expression)»>'''
 			EffectFullFunctionType: if (e.argType != null && e.returnType != null) 
 										return '''F<«e.argType.compile», IO<«e.returnType.type.compile»>>'''
 									else if(e.returnType != null)
@@ -87,7 +90,10 @@ class TypeGenerator {
 									else 
 										return '''«GetReturnType.function(e.value).compile»'''
 			EffectFullDataType: e.type.name
-		    RecursiveEffectFullExpression: '''IO<«e.exp.compileType»>'''
+		    RecursiveEffectFullExpression: '''IO<«(e.innerValue as EffectFullExpression).compileType»>'''
+		    EffectFullProdValue: '''P2<«e.prodAdtElement1.compileType», «e.prodAdtElement2.compileType»>'''
+		    EffectFullSumValue: '''Either<«e.sumAdtElement1.compileType», «e.sumAdtElement2.compileType»>'''
+			EffectFullValueRef: '''«compileType(e.value.value)»'''
 		}
 	}
 }

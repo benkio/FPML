@@ -6842,20 +6842,10 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
                 int LA1_3 = input.LA(2);
 
                 if ( (LA1_3==34) ) {
-                    int LA1_6 = input.LA(3);
-
-                    if ( (LA1_6==28||LA1_6==30||LA1_6==34||(LA1_6>=53 && LA1_6<=55)) ) {
-                        alt1=2;
-                    }
-                    else if ( (LA1_6==23) ) {
-                        alt1=1;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 1, 6, input);
-
-                        throw nvae;
-                    }
+                    alt1=2;
+                }
+                else if ( (LA1_3==12) ) {
+                    alt1=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -6870,20 +6860,10 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
                 int LA1_4 = input.LA(2);
 
                 if ( (LA1_4==34) ) {
-                    int LA1_7 = input.LA(3);
-
-                    if ( (LA1_7==28||LA1_7==30||LA1_7==34||(LA1_7>=53 && LA1_7<=55)) ) {
-                        alt1=2;
-                    }
-                    else if ( (LA1_7==23) ) {
-                        alt1=1;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 1, 7, input);
-
-                        throw nvae;
-                    }
+                    alt1=2;
+                }
+                else if ( (LA1_4==12) ) {
+                    alt1=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -7194,20 +7174,10 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
                 int LA4_2 = input.LA(2);
 
                 if ( (LA4_2==34) ) {
-                    int LA4_6 = input.LA(3);
-
-                    if ( (LA4_6==28||LA4_6==30||LA4_6==34||(LA4_6>=53 && LA4_6<=55)) ) {
-                        alt4=2;
-                    }
-                    else if ( (LA4_6==23) ) {
-                        alt4=1;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 4, 6, input);
-
-                        throw nvae;
-                    }
+                    alt4=2;
+                }
+                else if ( (LA4_2==12) ) {
+                    alt4=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -7222,20 +7192,10 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
                 int LA4_3 = input.LA(2);
 
                 if ( (LA4_3==34) ) {
-                    int LA4_7 = input.LA(3);
-
-                    if ( (LA4_7==28||LA4_7==30||LA4_7==34||(LA4_7>=53 && LA4_7<=55)) ) {
-                        alt4=2;
-                    }
-                    else if ( (LA4_7==23) ) {
-                        alt4=1;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 4, 7, input);
-
-                        throw nvae;
-                    }
+                    alt4=2;
+                }
+                else if ( (LA4_3==12) ) {
+                    alt4=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -7607,11 +7567,11 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA8_0==26) ) {
                 int LA8_1 = input.LA(2);
 
-                if ( ((LA8_1>=36 && LA8_1<=37)||(LA8_1>=41 && LA8_1<=47)) ) {
-                    alt8=2;
-                }
-                else if ( (LA8_1==RULE_ID) ) {
+                if ( (LA8_1==RULE_ID) ) {
                     alt8=1;
+                }
+                else if ( ((LA8_1>=36 && LA8_1<=37)||(LA8_1>=41 && LA8_1<=47)) ) {
+                    alt8=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -7799,11 +7759,11 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA10_0==27) ) {
                 int LA10_1 = input.LA(2);
 
-                if ( (LA10_1==RULE_ID) ) {
-                    alt10=1;
-                }
-                else if ( ((LA10_1>=36 && LA10_1<=37)||(LA10_1>=41 && LA10_1<=52)) ) {
+                if ( ((LA10_1>=36 && LA10_1<=37)||(LA10_1>=41 && LA10_1<=52)) ) {
                     alt10=2;
+                }
+                else if ( (LA10_1==RULE_ID) ) {
+                    alt10=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -8074,58 +8034,20 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
         try {
             // InternalFPML.g:2498:1: ( ( ruleValueType ) | ( ruleEffectFullType ) )
             int alt12=2;
-            switch ( input.LA(1) ) {
-            case 28:
-            case 30:
-            case 53:
-            case 54:
-            case 55:
-                {
+            int LA12_0 = input.LA(1);
+
+            if ( (LA12_0==28||LA12_0==30||LA12_0==34||(LA12_0>=53 && LA12_0<=55)) ) {
                 alt12=1;
-                }
-                break;
-            case 34:
-                {
-                int LA12_2 = input.LA(2);
-
-                if ( (LA12_2==23) ) {
-                    alt12=2;
-                }
-                else if ( (LA12_2==28||LA12_2==30||LA12_2==34||(LA12_2>=53 && LA12_2<=55)) ) {
-                    alt12=1;
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 12, 2, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case EOF:
-            case RULE_ID:
-            case 13:
-            case 16:
-            case 22:
-            case 23:
-            case 27:
-            case 29:
-            case 32:
-            case 33:
-            case 35:
-            case 36:
-            case 37:
-                {
+            }
+            else if ( (LA12_0==EOF||LA12_0==RULE_ID||(LA12_0>=12 && LA12_0<=13)||LA12_0==16||(LA12_0>=22 && LA12_0<=23)||LA12_0==27||LA12_0==29||(LA12_0>=32 && LA12_0<=33)||(LA12_0>=36 && LA12_0<=37)) ) {
                 alt12=2;
-                }
-                break;
-            default:
+            }
+            else {
                 NoViableAltException nvae =
                     new NoViableAltException("", 12, 0, input);
 
                 throw nvae;
             }
-
             switch (alt12) {
                 case 1 :
                     // InternalFPML.g:2499:2: ( ruleValueType )
@@ -8202,7 +8124,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
                 alt13=2;
                 }
                 break;
-            case 34:
+            case 12:
                 {
                 alt13=3;
                 }
@@ -8219,7 +8141,6 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             case 22:
             case 27:
             case 32:
-            case 35:
             case 36:
             case 37:
                 {
@@ -8691,7 +8612,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA17_0==34) ) {
                 int LA17_1 = input.LA(2);
 
-                if ( (LA17_1==RULE_ID||LA17_1==23||(LA17_1>=28 && LA17_1<=30)||(LA17_1>=33 && LA17_1<=34)||(LA17_1>=53 && LA17_1<=55)) ) {
+                if ( (LA17_1==RULE_ID||LA17_1==12||LA17_1==23||(LA17_1>=28 && LA17_1<=30)||(LA17_1>=33 && LA17_1<=34)||(LA17_1>=53 && LA17_1<=55)) ) {
                     alt17=1;
                 }
                 else if ( (LA17_1==35) ) {
@@ -8972,11 +8893,11 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             if ( (LA19_0==20) ) {
                 int LA19_1 = input.LA(2);
 
-                if ( (LA19_1==28||LA19_1==30||LA19_1==34||(LA19_1>=53 && LA19_1<=55)) ) {
-                    alt19=1;
-                }
-                else if ( (LA19_1==21) ) {
+                if ( (LA19_1==21) ) {
                     alt19=2;
+                }
+                else if ( (LA19_1==28||LA19_1==30||LA19_1==34||(LA19_1>=53 && LA19_1<=55)) ) {
+                    alt19=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -21525,7 +21446,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:6879:1: ( rule__EffectFullAlgebraicType__Group__0__Impl rule__EffectFullAlgebraicType__Group__1 )
             // InternalFPML.g:6880:2: rule__EffectFullAlgebraicType__Group__0__Impl rule__EffectFullAlgebraicType__Group__1
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__EffectFullAlgebraicType__Group__0__Impl();
 
             state._fsp--;
@@ -21554,21 +21475,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullAlgebraicType__Group__0__Impl"
-    // InternalFPML.g:6887:1: rule__EffectFullAlgebraicType__Group__0__Impl : ( '[' ) ;
+    // InternalFPML.g:6887:1: rule__EffectFullAlgebraicType__Group__0__Impl : ( '{' ) ;
     public final void rule__EffectFullAlgebraicType__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:6891:1: ( ( '[' ) )
-            // InternalFPML.g:6892:1: ( '[' )
+            // InternalFPML.g:6891:1: ( ( '{' ) )
+            // InternalFPML.g:6892:1: ( '{' )
             {
-            // InternalFPML.g:6892:1: ( '[' )
-            // InternalFPML.g:6893:2: '['
+            // InternalFPML.g:6892:1: ( '{' )
+            // InternalFPML.g:6893:2: '{'
             {
-             before(grammarAccess.getEffectFullAlgebraicTypeAccess().getLeftSquareBracketKeyword_0()); 
-            match(input,34,FOLLOW_2); 
-             after(grammarAccess.getEffectFullAlgebraicTypeAccess().getLeftSquareBracketKeyword_0()); 
+             before(grammarAccess.getEffectFullAlgebraicTypeAccess().getLeftCurlyBracketKeyword_0()); 
+            match(input,12,FOLLOW_2); 
+             after(grammarAccess.getEffectFullAlgebraicTypeAccess().getLeftCurlyBracketKeyword_0()); 
 
             }
 
@@ -21685,7 +21606,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:6933:1: ( rule__EffectFullAlgebraicType__Group__2__Impl rule__EffectFullAlgebraicType__Group__3 )
             // InternalFPML.g:6934:2: rule__EffectFullAlgebraicType__Group__2__Impl rule__EffectFullAlgebraicType__Group__3
             {
-            pushFollow(FOLLOW_42);
+            pushFollow(FOLLOW_7);
             rule__EffectFullAlgebraicType__Group__2__Impl();
 
             state._fsp--;
@@ -21794,21 +21715,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullAlgebraicType__Group__3__Impl"
-    // InternalFPML.g:6967:1: rule__EffectFullAlgebraicType__Group__3__Impl : ( ']' ) ;
+    // InternalFPML.g:6967:1: rule__EffectFullAlgebraicType__Group__3__Impl : ( '}' ) ;
     public final void rule__EffectFullAlgebraicType__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:6971:1: ( ( ']' ) )
-            // InternalFPML.g:6972:1: ( ']' )
+            // InternalFPML.g:6971:1: ( ( '}' ) )
+            // InternalFPML.g:6972:1: ( '}' )
             {
-            // InternalFPML.g:6972:1: ( ']' )
-            // InternalFPML.g:6973:2: ']'
+            // InternalFPML.g:6972:1: ( '}' )
+            // InternalFPML.g:6973:2: '}'
             {
-             before(grammarAccess.getEffectFullAlgebraicTypeAccess().getRightSquareBracketKeyword_3()); 
-            match(input,35,FOLLOW_2); 
-             after(grammarAccess.getEffectFullAlgebraicTypeAccess().getRightSquareBracketKeyword_3()); 
+             before(grammarAccess.getEffectFullAlgebraicTypeAccess().getRightCurlyBracketKeyword_3()); 
+            match(input,13,FOLLOW_2); 
+             after(grammarAccess.getEffectFullAlgebraicTypeAccess().getRightCurlyBracketKeyword_3()); 
 
             }
 
@@ -21840,7 +21761,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:6987:1: ( rule__EffectFullSumTypeFactor__Group__0__Impl rule__EffectFullSumTypeFactor__Group__1 )
             // InternalFPML.g:6988:2: rule__EffectFullSumTypeFactor__Group__0__Impl rule__EffectFullSumTypeFactor__Group__1
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__EffectFullSumTypeFactor__Group__0__Impl();
 
             state._fsp--;
@@ -21995,7 +21916,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:7041:1: ( rule__EffectFullProdTypeFactor__Group__0__Impl rule__EffectFullProdTypeFactor__Group__1 )
             // InternalFPML.g:7042:2: rule__EffectFullProdTypeFactor__Group__0__Impl rule__EffectFullProdTypeFactor__Group__1
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__EffectFullProdTypeFactor__Group__0__Impl();
 
             state._fsp--;
@@ -22404,31 +22325,31 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullExpression__Group_0__3__Impl"
-    // InternalFPML.g:7184:1: rule__EffectFullExpression__Group_0__3__Impl : ( ( rule__EffectFullExpression__ExpAssignment_0_3 ) ) ;
+    // InternalFPML.g:7184:1: rule__EffectFullExpression__Group_0__3__Impl : ( ( rule__EffectFullExpression__InnerValueAssignment_0_3 ) ) ;
     public final void rule__EffectFullExpression__Group_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:7188:1: ( ( ( rule__EffectFullExpression__ExpAssignment_0_3 ) ) )
-            // InternalFPML.g:7189:1: ( ( rule__EffectFullExpression__ExpAssignment_0_3 ) )
+            // InternalFPML.g:7188:1: ( ( ( rule__EffectFullExpression__InnerValueAssignment_0_3 ) ) )
+            // InternalFPML.g:7189:1: ( ( rule__EffectFullExpression__InnerValueAssignment_0_3 ) )
             {
-            // InternalFPML.g:7189:1: ( ( rule__EffectFullExpression__ExpAssignment_0_3 ) )
-            // InternalFPML.g:7190:2: ( rule__EffectFullExpression__ExpAssignment_0_3 )
+            // InternalFPML.g:7189:1: ( ( rule__EffectFullExpression__InnerValueAssignment_0_3 ) )
+            // InternalFPML.g:7190:2: ( rule__EffectFullExpression__InnerValueAssignment_0_3 )
             {
-             before(grammarAccess.getEffectFullExpressionAccess().getExpAssignment_0_3()); 
-            // InternalFPML.g:7191:2: ( rule__EffectFullExpression__ExpAssignment_0_3 )
-            // InternalFPML.g:7191:3: rule__EffectFullExpression__ExpAssignment_0_3
+             before(grammarAccess.getEffectFullExpressionAccess().getInnerValueAssignment_0_3()); 
+            // InternalFPML.g:7191:2: ( rule__EffectFullExpression__InnerValueAssignment_0_3 )
+            // InternalFPML.g:7191:3: rule__EffectFullExpression__InnerValueAssignment_0_3
             {
             pushFollow(FOLLOW_2);
-            rule__EffectFullExpression__ExpAssignment_0_3();
+            rule__EffectFullExpression__InnerValueAssignment_0_3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getEffectFullExpressionAccess().getExpAssignment_0_3()); 
+             after(grammarAccess.getEffectFullExpressionAccess().getInnerValueAssignment_0_3()); 
 
             }
 
@@ -22709,25 +22630,31 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullExpression__Group_1__2__Impl"
-    // InternalFPML.g:7292:1: rule__EffectFullExpression__Group_1__2__Impl : ( ruleExpression ) ;
+    // InternalFPML.g:7292:1: rule__EffectFullExpression__Group_1__2__Impl : ( ( rule__EffectFullExpression__InnerValueAssignment_1_2 ) ) ;
     public final void rule__EffectFullExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:7296:1: ( ( ruleExpression ) )
-            // InternalFPML.g:7297:1: ( ruleExpression )
+            // InternalFPML.g:7296:1: ( ( ( rule__EffectFullExpression__InnerValueAssignment_1_2 ) ) )
+            // InternalFPML.g:7297:1: ( ( rule__EffectFullExpression__InnerValueAssignment_1_2 ) )
             {
-            // InternalFPML.g:7297:1: ( ruleExpression )
-            // InternalFPML.g:7298:2: ruleExpression
+            // InternalFPML.g:7297:1: ( ( rule__EffectFullExpression__InnerValueAssignment_1_2 ) )
+            // InternalFPML.g:7298:2: ( rule__EffectFullExpression__InnerValueAssignment_1_2 )
             {
-             before(grammarAccess.getEffectFullExpressionAccess().getExpressionParserRuleCall_1_2()); 
+             before(grammarAccess.getEffectFullExpressionAccess().getInnerValueAssignment_1_2()); 
+            // InternalFPML.g:7299:2: ( rule__EffectFullExpression__InnerValueAssignment_1_2 )
+            // InternalFPML.g:7299:3: rule__EffectFullExpression__InnerValueAssignment_1_2
+            {
             pushFollow(FOLLOW_2);
-            ruleExpression();
+            rule__EffectFullExpression__InnerValueAssignment_1_2();
 
             state._fsp--;
 
-             after(grammarAccess.getEffectFullExpressionAccess().getExpressionParserRuleCall_1_2()); 
+
+            }
+
+             after(grammarAccess.getEffectFullExpressionAccess().getInnerValueAssignment_1_2()); 
 
             }
 
@@ -30759,7 +30686,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:10146:1: ( rule__LeftPairIO__Group__1__Impl rule__LeftPairIO__Group__2 )
             // InternalFPML.g:10147:2: rule__LeftPairIO__Group__1__Impl rule__LeftPairIO__Group__2
             {
-            pushFollow(FOLLOW_43);
+            pushFollow(FOLLOW_4);
             rule__LeftPairIO__Group__1__Impl();
 
             state._fsp--;
@@ -30989,7 +30916,7 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:10227:1: ( rule__RightPairIO__Group__1__Impl rule__RightPairIO__Group__2 )
             // InternalFPML.g:10228:2: rule__RightPairIO__Group__1__Impl rule__RightPairIO__Group__2
             {
-            pushFollow(FOLLOW_43);
+            pushFollow(FOLLOW_4);
             rule__RightPairIO__Group__1__Impl();
 
             state._fsp--;
@@ -34957,25 +34884,25 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullAlgebraicType__EffectFullAdtElement1Assignment_1"
-    // InternalFPML.g:11696:1: rule__EffectFullAlgebraicType__EffectFullAdtElement1Assignment_1 : ( ruleIOType ) ;
+    // InternalFPML.g:11696:1: rule__EffectFullAlgebraicType__EffectFullAdtElement1Assignment_1 : ( ruleType ) ;
     public final void rule__EffectFullAlgebraicType__EffectFullAdtElement1Assignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11700:1: ( ( ruleIOType ) )
-            // InternalFPML.g:11701:2: ( ruleIOType )
+            // InternalFPML.g:11700:1: ( ( ruleType ) )
+            // InternalFPML.g:11701:2: ( ruleType )
             {
-            // InternalFPML.g:11701:2: ( ruleIOType )
-            // InternalFPML.g:11702:3: ruleIOType
+            // InternalFPML.g:11701:2: ( ruleType )
+            // InternalFPML.g:11702:3: ruleType
             {
-             before(grammarAccess.getEffectFullAlgebraicTypeAccess().getEffectFullAdtElement1IOTypeParserRuleCall_1_0()); 
+             before(grammarAccess.getEffectFullAlgebraicTypeAccess().getEffectFullAdtElement1TypeParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
-            ruleIOType();
+            ruleType();
 
             state._fsp--;
 
-             after(grammarAccess.getEffectFullAlgebraicTypeAccess().getEffectFullAdtElement1IOTypeParserRuleCall_1_0()); 
+             after(grammarAccess.getEffectFullAlgebraicTypeAccess().getEffectFullAdtElement1TypeParserRuleCall_1_0()); 
 
             }
 
@@ -35045,25 +34972,25 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullSumTypeFactor__AdtElementAssignment_1"
-    // InternalFPML.g:11726:1: rule__EffectFullSumTypeFactor__AdtElementAssignment_1 : ( ruleIOType ) ;
+    // InternalFPML.g:11726:1: rule__EffectFullSumTypeFactor__AdtElementAssignment_1 : ( ruleType ) ;
     public final void rule__EffectFullSumTypeFactor__AdtElementAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11730:1: ( ( ruleIOType ) )
-            // InternalFPML.g:11731:2: ( ruleIOType )
+            // InternalFPML.g:11730:1: ( ( ruleType ) )
+            // InternalFPML.g:11731:2: ( ruleType )
             {
-            // InternalFPML.g:11731:2: ( ruleIOType )
-            // InternalFPML.g:11732:3: ruleIOType
+            // InternalFPML.g:11731:2: ( ruleType )
+            // InternalFPML.g:11732:3: ruleType
             {
-             before(grammarAccess.getEffectFullSumTypeFactorAccess().getAdtElementIOTypeParserRuleCall_1_0()); 
+             before(grammarAccess.getEffectFullSumTypeFactorAccess().getAdtElementTypeParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
-            ruleIOType();
+            ruleType();
 
             state._fsp--;
 
-             after(grammarAccess.getEffectFullSumTypeFactorAccess().getAdtElementIOTypeParserRuleCall_1_0()); 
+             after(grammarAccess.getEffectFullSumTypeFactorAccess().getAdtElementTypeParserRuleCall_1_0()); 
 
             }
 
@@ -35086,25 +35013,25 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullProdTypeFactor__AdtElementAssignment_1"
-    // InternalFPML.g:11741:1: rule__EffectFullProdTypeFactor__AdtElementAssignment_1 : ( ruleIOType ) ;
+    // InternalFPML.g:11741:1: rule__EffectFullProdTypeFactor__AdtElementAssignment_1 : ( ruleType ) ;
     public final void rule__EffectFullProdTypeFactor__AdtElementAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11745:1: ( ( ruleIOType ) )
-            // InternalFPML.g:11746:2: ( ruleIOType )
+            // InternalFPML.g:11745:1: ( ( ruleType ) )
+            // InternalFPML.g:11746:2: ( ruleType )
             {
-            // InternalFPML.g:11746:2: ( ruleIOType )
-            // InternalFPML.g:11747:3: ruleIOType
+            // InternalFPML.g:11746:2: ( ruleType )
+            // InternalFPML.g:11747:3: ruleType
             {
-             before(grammarAccess.getEffectFullProdTypeFactorAccess().getAdtElementIOTypeParserRuleCall_1_0()); 
+             before(grammarAccess.getEffectFullProdTypeFactorAccess().getAdtElementTypeParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
-            ruleIOType();
+            ruleType();
 
             state._fsp--;
 
-             after(grammarAccess.getEffectFullProdTypeFactorAccess().getAdtElementIOTypeParserRuleCall_1_0()); 
+             after(grammarAccess.getEffectFullProdTypeFactorAccess().getAdtElementTypeParserRuleCall_1_0()); 
 
             }
 
@@ -35126,9 +35053,9 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EffectFullProdTypeFactor__AdtElementAssignment_1"
 
 
-    // $ANTLR start "rule__EffectFullExpression__ExpAssignment_0_3"
-    // InternalFPML.g:11756:1: rule__EffectFullExpression__ExpAssignment_0_3 : ( ruleEffectFullExpression ) ;
-    public final void rule__EffectFullExpression__ExpAssignment_0_3() throws RecognitionException {
+    // $ANTLR start "rule__EffectFullExpression__InnerValueAssignment_0_3"
+    // InternalFPML.g:11756:1: rule__EffectFullExpression__InnerValueAssignment_0_3 : ( ruleEffectFullExpression ) ;
+    public final void rule__EffectFullExpression__InnerValueAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -35139,13 +35066,13 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
             // InternalFPML.g:11761:2: ( ruleEffectFullExpression )
             // InternalFPML.g:11762:3: ruleEffectFullExpression
             {
-             before(grammarAccess.getEffectFullExpressionAccess().getExpEffectFullExpressionParserRuleCall_0_3_0()); 
+             before(grammarAccess.getEffectFullExpressionAccess().getInnerValueEffectFullExpressionParserRuleCall_0_3_0()); 
             pushFollow(FOLLOW_2);
             ruleEffectFullExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getEffectFullExpressionAccess().getExpEffectFullExpressionParserRuleCall_0_3_0()); 
+             after(grammarAccess.getEffectFullExpressionAccess().getInnerValueEffectFullExpressionParserRuleCall_0_3_0()); 
 
             }
 
@@ -35164,21 +35091,62 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__EffectFullExpression__ExpAssignment_0_3"
+    // $ANTLR end "rule__EffectFullExpression__InnerValueAssignment_0_3"
+
+
+    // $ANTLR start "rule__EffectFullExpression__InnerValueAssignment_1_2"
+    // InternalFPML.g:11771:1: rule__EffectFullExpression__InnerValueAssignment_1_2 : ( ruleExpression ) ;
+    public final void rule__EffectFullExpression__InnerValueAssignment_1_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFPML.g:11775:1: ( ( ruleExpression ) )
+            // InternalFPML.g:11776:2: ( ruleExpression )
+            {
+            // InternalFPML.g:11776:2: ( ruleExpression )
+            // InternalFPML.g:11777:3: ruleExpression
+            {
+             before(grammarAccess.getEffectFullExpressionAccess().getInnerValueExpressionParserRuleCall_1_2_0()); 
+            pushFollow(FOLLOW_2);
+            ruleExpression();
+
+            state._fsp--;
+
+             after(grammarAccess.getEffectFullExpressionAccess().getInnerValueExpressionParserRuleCall_1_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EffectFullExpression__InnerValueAssignment_1_2"
 
 
     // $ANTLR start "rule__EffectFullFunctionValue__ValueAssignment"
-    // InternalFPML.g:11771:1: rule__EffectFullFunctionValue__ValueAssignment : ( ruleEffectFullLambda ) ;
+    // InternalFPML.g:11786:1: rule__EffectFullFunctionValue__ValueAssignment : ( ruleEffectFullLambda ) ;
     public final void rule__EffectFullFunctionValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11775:1: ( ( ruleEffectFullLambda ) )
-            // InternalFPML.g:11776:2: ( ruleEffectFullLambda )
+            // InternalFPML.g:11790:1: ( ( ruleEffectFullLambda ) )
+            // InternalFPML.g:11791:2: ( ruleEffectFullLambda )
             {
-            // InternalFPML.g:11776:2: ( ruleEffectFullLambda )
-            // InternalFPML.g:11777:3: ruleEffectFullLambda
+            // InternalFPML.g:11791:2: ( ruleEffectFullLambda )
+            // InternalFPML.g:11792:3: ruleEffectFullLambda
             {
              before(grammarAccess.getEffectFullFunctionValueAccess().getValueEffectFullLambdaParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -35209,21 +35177,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullValueRef__ValueAssignment_1"
-    // InternalFPML.g:11786:1: rule__EffectFullValueRef__ValueAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalFPML.g:11801:1: rule__EffectFullValueRef__ValueAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__EffectFullValueRef__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11790:1: ( ( ( RULE_ID ) ) )
-            // InternalFPML.g:11791:2: ( ( RULE_ID ) )
+            // InternalFPML.g:11805:1: ( ( ( RULE_ID ) ) )
+            // InternalFPML.g:11806:2: ( ( RULE_ID ) )
             {
-            // InternalFPML.g:11791:2: ( ( RULE_ID ) )
-            // InternalFPML.g:11792:3: ( RULE_ID )
+            // InternalFPML.g:11806:2: ( ( RULE_ID ) )
+            // InternalFPML.g:11807:3: ( RULE_ID )
             {
              before(grammarAccess.getEffectFullValueRefAccess().getValueEffectFullValueCrossReference_1_0()); 
-            // InternalFPML.g:11793:3: ( RULE_ID )
-            // InternalFPML.g:11794:4: RULE_ID
+            // InternalFPML.g:11808:3: ( RULE_ID )
+            // InternalFPML.g:11809:4: RULE_ID
             {
              before(grammarAccess.getEffectFullValueRefAccess().getValueEffectFullValueIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -35254,17 +35222,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullLambda__ArgAssignment_0_2"
-    // InternalFPML.g:11805:1: rule__EffectFullLambda__ArgAssignment_0_2 : ( ruleEffectFullArgument ) ;
+    // InternalFPML.g:11820:1: rule__EffectFullLambda__ArgAssignment_0_2 : ( ruleEffectFullArgument ) ;
     public final void rule__EffectFullLambda__ArgAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11809:1: ( ( ruleEffectFullArgument ) )
-            // InternalFPML.g:11810:2: ( ruleEffectFullArgument )
+            // InternalFPML.g:11824:1: ( ( ruleEffectFullArgument ) )
+            // InternalFPML.g:11825:2: ( ruleEffectFullArgument )
             {
-            // InternalFPML.g:11810:2: ( ruleEffectFullArgument )
-            // InternalFPML.g:11811:3: ruleEffectFullArgument
+            // InternalFPML.g:11825:2: ( ruleEffectFullArgument )
+            // InternalFPML.g:11826:3: ruleEffectFullArgument
             {
              before(grammarAccess.getEffectFullLambdaAccess().getArgEffectFullArgumentParserRuleCall_0_2_0()); 
             pushFollow(FOLLOW_2);
@@ -35295,17 +35263,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullLambda__FunctionBodyAssignment_0_6"
-    // InternalFPML.g:11820:1: rule__EffectFullLambda__FunctionBodyAssignment_0_6 : ( ruleCompositionFunctionBodyEffect ) ;
+    // InternalFPML.g:11835:1: rule__EffectFullLambda__FunctionBodyAssignment_0_6 : ( ruleCompositionFunctionBodyEffect ) ;
     public final void rule__EffectFullLambda__FunctionBodyAssignment_0_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11824:1: ( ( ruleCompositionFunctionBodyEffect ) )
-            // InternalFPML.g:11825:2: ( ruleCompositionFunctionBodyEffect )
+            // InternalFPML.g:11839:1: ( ( ruleCompositionFunctionBodyEffect ) )
+            // InternalFPML.g:11840:2: ( ruleCompositionFunctionBodyEffect )
             {
-            // InternalFPML.g:11825:2: ( ruleCompositionFunctionBodyEffect )
-            // InternalFPML.g:11826:3: ruleCompositionFunctionBodyEffect
+            // InternalFPML.g:11840:2: ( ruleCompositionFunctionBodyEffect )
+            // InternalFPML.g:11841:3: ruleCompositionFunctionBodyEffect
             {
              before(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyCompositionFunctionBodyEffectParserRuleCall_0_6_0()); 
             pushFollow(FOLLOW_2);
@@ -35336,17 +35304,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullLambda__FunctionBodyAssignment_1_5"
-    // InternalFPML.g:11835:1: rule__EffectFullLambda__FunctionBodyAssignment_1_5 : ( ruleCompositionFunctionBodyEffect ) ;
+    // InternalFPML.g:11850:1: rule__EffectFullLambda__FunctionBodyAssignment_1_5 : ( ruleCompositionFunctionBodyEffect ) ;
     public final void rule__EffectFullLambda__FunctionBodyAssignment_1_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11839:1: ( ( ruleCompositionFunctionBodyEffect ) )
-            // InternalFPML.g:11840:2: ( ruleCompositionFunctionBodyEffect )
+            // InternalFPML.g:11854:1: ( ( ruleCompositionFunctionBodyEffect ) )
+            // InternalFPML.g:11855:2: ( ruleCompositionFunctionBodyEffect )
             {
-            // InternalFPML.g:11840:2: ( ruleCompositionFunctionBodyEffect )
-            // InternalFPML.g:11841:3: ruleCompositionFunctionBodyEffect
+            // InternalFPML.g:11855:2: ( ruleCompositionFunctionBodyEffect )
+            // InternalFPML.g:11856:3: ruleCompositionFunctionBodyEffect
             {
              before(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyCompositionFunctionBodyEffectParserRuleCall_1_5_0()); 
             pushFollow(FOLLOW_2);
@@ -35377,17 +35345,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IntValue__ValueAssignment_1"
-    // InternalFPML.g:11850:1: rule__IntValue__ValueAssignment_1 : ( RULE_INT ) ;
+    // InternalFPML.g:11865:1: rule__IntValue__ValueAssignment_1 : ( RULE_INT ) ;
     public final void rule__IntValue__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11854:1: ( ( RULE_INT ) )
-            // InternalFPML.g:11855:2: ( RULE_INT )
+            // InternalFPML.g:11869:1: ( ( RULE_INT ) )
+            // InternalFPML.g:11870:2: ( RULE_INT )
             {
-            // InternalFPML.g:11855:2: ( RULE_INT )
-            // InternalFPML.g:11856:3: RULE_INT
+            // InternalFPML.g:11870:2: ( RULE_INT )
+            // InternalFPML.g:11871:3: RULE_INT
             {
              before(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_1_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -35414,17 +35382,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StringValue__ValueAssignment_1"
-    // InternalFPML.g:11865:1: rule__StringValue__ValueAssignment_1 : ( RULE_STRING ) ;
+    // InternalFPML.g:11880:1: rule__StringValue__ValueAssignment_1 : ( RULE_STRING ) ;
     public final void rule__StringValue__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11869:1: ( ( RULE_STRING ) )
-            // InternalFPML.g:11870:2: ( RULE_STRING )
+            // InternalFPML.g:11884:1: ( ( RULE_STRING ) )
+            // InternalFPML.g:11885:2: ( RULE_STRING )
             {
-            // InternalFPML.g:11870:2: ( RULE_STRING )
-            // InternalFPML.g:11871:3: RULE_STRING
+            // InternalFPML.g:11885:2: ( RULE_STRING )
+            // InternalFPML.g:11886:3: RULE_STRING
             {
              before(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -35451,17 +35419,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionValue__ValueAssignment"
-    // InternalFPML.g:11880:1: rule__FunctionValue__ValueAssignment : ( rulePureLambda ) ;
+    // InternalFPML.g:11895:1: rule__FunctionValue__ValueAssignment : ( rulePureLambda ) ;
     public final void rule__FunctionValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11884:1: ( ( rulePureLambda ) )
-            // InternalFPML.g:11885:2: ( rulePureLambda )
+            // InternalFPML.g:11899:1: ( ( rulePureLambda ) )
+            // InternalFPML.g:11900:2: ( rulePureLambda )
             {
-            // InternalFPML.g:11885:2: ( rulePureLambda )
-            // InternalFPML.g:11886:3: rulePureLambda
+            // InternalFPML.g:11900:2: ( rulePureLambda )
+            // InternalFPML.g:11901:3: rulePureLambda
             {
              before(grammarAccess.getFunctionValueAccess().getValuePureLambdaParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -35492,21 +35460,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataValue__TypeAssignment_1"
-    // InternalFPML.g:11895:1: rule__DataValue__TypeAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalFPML.g:11910:1: rule__DataValue__TypeAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__DataValue__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11899:1: ( ( ( RULE_ID ) ) )
-            // InternalFPML.g:11900:2: ( ( RULE_ID ) )
+            // InternalFPML.g:11914:1: ( ( ( RULE_ID ) ) )
+            // InternalFPML.g:11915:2: ( ( RULE_ID ) )
             {
-            // InternalFPML.g:11900:2: ( ( RULE_ID ) )
-            // InternalFPML.g:11901:3: ( RULE_ID )
+            // InternalFPML.g:11915:2: ( ( RULE_ID ) )
+            // InternalFPML.g:11916:3: ( RULE_ID )
             {
              before(grammarAccess.getDataValueAccess().getTypePureDataCrossReference_1_0()); 
-            // InternalFPML.g:11902:3: ( RULE_ID )
-            // InternalFPML.g:11903:4: RULE_ID
+            // InternalFPML.g:11917:3: ( RULE_ID )
+            // InternalFPML.g:11918:4: RULE_ID
             {
              before(grammarAccess.getDataValueAccess().getTypePureDataIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -35537,17 +35505,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataValue__ValueAssignment_3"
-    // InternalFPML.g:11914:1: rule__DataValue__ValueAssignment_3 : ( ruleExpression ) ;
+    // InternalFPML.g:11929:1: rule__DataValue__ValueAssignment_3 : ( ruleExpression ) ;
     public final void rule__DataValue__ValueAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11918:1: ( ( ruleExpression ) )
-            // InternalFPML.g:11919:2: ( ruleExpression )
+            // InternalFPML.g:11933:1: ( ( ruleExpression ) )
+            // InternalFPML.g:11934:2: ( ruleExpression )
             {
-            // InternalFPML.g:11919:2: ( ruleExpression )
-            // InternalFPML.g:11920:3: ruleExpression
+            // InternalFPML.g:11934:2: ( ruleExpression )
+            // InternalFPML.g:11935:3: ruleExpression
             {
              before(grammarAccess.getDataValueAccess().getValueExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -35578,21 +35546,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullDataValue__TypeAssignment_1"
-    // InternalFPML.g:11929:1: rule__EffectFullDataValue__TypeAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalFPML.g:11944:1: rule__EffectFullDataValue__TypeAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__EffectFullDataValue__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11933:1: ( ( ( RULE_ID ) ) )
-            // InternalFPML.g:11934:2: ( ( RULE_ID ) )
+            // InternalFPML.g:11948:1: ( ( ( RULE_ID ) ) )
+            // InternalFPML.g:11949:2: ( ( RULE_ID ) )
             {
-            // InternalFPML.g:11934:2: ( ( RULE_ID ) )
-            // InternalFPML.g:11935:3: ( RULE_ID )
+            // InternalFPML.g:11949:2: ( ( RULE_ID ) )
+            // InternalFPML.g:11950:3: ( RULE_ID )
             {
              before(grammarAccess.getEffectFullDataValueAccess().getTypeEffectFullDataCrossReference_1_0()); 
-            // InternalFPML.g:11936:3: ( RULE_ID )
-            // InternalFPML.g:11937:4: RULE_ID
+            // InternalFPML.g:11951:3: ( RULE_ID )
+            // InternalFPML.g:11952:4: RULE_ID
             {
              before(grammarAccess.getEffectFullDataValueAccess().getTypeEffectFullDataIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -35623,17 +35591,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullDataValue__ValueAssignment_3"
-    // InternalFPML.g:11948:1: rule__EffectFullDataValue__ValueAssignment_3 : ( ruleEffectFullExpression ) ;
+    // InternalFPML.g:11963:1: rule__EffectFullDataValue__ValueAssignment_3 : ( ruleEffectFullExpression ) ;
     public final void rule__EffectFullDataValue__ValueAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11952:1: ( ( ruleEffectFullExpression ) )
-            // InternalFPML.g:11953:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:11967:1: ( ( ruleEffectFullExpression ) )
+            // InternalFPML.g:11968:2: ( ruleEffectFullExpression )
             {
-            // InternalFPML.g:11953:2: ( ruleEffectFullExpression )
-            // InternalFPML.g:11954:3: ruleEffectFullExpression
+            // InternalFPML.g:11968:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:11969:3: ruleEffectFullExpression
             {
              before(grammarAccess.getEffectFullDataValueAccess().getValueEffectFullExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -35664,21 +35632,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureValueRef__ValueAssignment_1"
-    // InternalFPML.g:11963:1: rule__PureValueRef__ValueAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalFPML.g:11978:1: rule__PureValueRef__ValueAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__PureValueRef__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11967:1: ( ( ( RULE_ID ) ) )
-            // InternalFPML.g:11968:2: ( ( RULE_ID ) )
+            // InternalFPML.g:11982:1: ( ( ( RULE_ID ) ) )
+            // InternalFPML.g:11983:2: ( ( RULE_ID ) )
             {
-            // InternalFPML.g:11968:2: ( ( RULE_ID ) )
-            // InternalFPML.g:11969:3: ( RULE_ID )
+            // InternalFPML.g:11983:2: ( ( RULE_ID ) )
+            // InternalFPML.g:11984:3: ( RULE_ID )
             {
              before(grammarAccess.getPureValueRefAccess().getValuePureValueCrossReference_1_0()); 
-            // InternalFPML.g:11970:3: ( RULE_ID )
-            // InternalFPML.g:11971:4: RULE_ID
+            // InternalFPML.g:11985:3: ( RULE_ID )
+            // InternalFPML.g:11986:4: RULE_ID
             {
              before(grammarAccess.getPureValueRefAccess().getValuePureValueIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -35709,17 +35677,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureLambda__ArgAssignment_0_2"
-    // InternalFPML.g:11982:1: rule__PureLambda__ArgAssignment_0_2 : ( ruleArgument ) ;
+    // InternalFPML.g:11997:1: rule__PureLambda__ArgAssignment_0_2 : ( ruleArgument ) ;
     public final void rule__PureLambda__ArgAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:11986:1: ( ( ruleArgument ) )
-            // InternalFPML.g:11987:2: ( ruleArgument )
+            // InternalFPML.g:12001:1: ( ( ruleArgument ) )
+            // InternalFPML.g:12002:2: ( ruleArgument )
             {
-            // InternalFPML.g:11987:2: ( ruleArgument )
-            // InternalFPML.g:11988:3: ruleArgument
+            // InternalFPML.g:12002:2: ( ruleArgument )
+            // InternalFPML.g:12003:3: ruleArgument
             {
              before(grammarAccess.getPureLambdaAccess().getArgArgumentParserRuleCall_0_2_0()); 
             pushFollow(FOLLOW_2);
@@ -35750,17 +35718,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureLambda__FunctionBodyAssignment_0_6"
-    // InternalFPML.g:11997:1: rule__PureLambda__FunctionBodyAssignment_0_6 : ( ruleCompositionFunctionBodyPure ) ;
+    // InternalFPML.g:12012:1: rule__PureLambda__FunctionBodyAssignment_0_6 : ( ruleCompositionFunctionBodyPure ) ;
     public final void rule__PureLambda__FunctionBodyAssignment_0_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12001:1: ( ( ruleCompositionFunctionBodyPure ) )
-            // InternalFPML.g:12002:2: ( ruleCompositionFunctionBodyPure )
+            // InternalFPML.g:12016:1: ( ( ruleCompositionFunctionBodyPure ) )
+            // InternalFPML.g:12017:2: ( ruleCompositionFunctionBodyPure )
             {
-            // InternalFPML.g:12002:2: ( ruleCompositionFunctionBodyPure )
-            // InternalFPML.g:12003:3: ruleCompositionFunctionBodyPure
+            // InternalFPML.g:12017:2: ( ruleCompositionFunctionBodyPure )
+            // InternalFPML.g:12018:3: ruleCompositionFunctionBodyPure
             {
              before(grammarAccess.getPureLambdaAccess().getFunctionBodyCompositionFunctionBodyPureParserRuleCall_0_6_0()); 
             pushFollow(FOLLOW_2);
@@ -35791,17 +35759,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureLambda__FunctionBodyAssignment_1_5"
-    // InternalFPML.g:12012:1: rule__PureLambda__FunctionBodyAssignment_1_5 : ( ruleCompositionFunctionBodyPure ) ;
+    // InternalFPML.g:12027:1: rule__PureLambda__FunctionBodyAssignment_1_5 : ( ruleCompositionFunctionBodyPure ) ;
     public final void rule__PureLambda__FunctionBodyAssignment_1_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12016:1: ( ( ruleCompositionFunctionBodyPure ) )
-            // InternalFPML.g:12017:2: ( ruleCompositionFunctionBodyPure )
+            // InternalFPML.g:12031:1: ( ( ruleCompositionFunctionBodyPure ) )
+            // InternalFPML.g:12032:2: ( ruleCompositionFunctionBodyPure )
             {
-            // InternalFPML.g:12017:2: ( ruleCompositionFunctionBodyPure )
-            // InternalFPML.g:12018:3: ruleCompositionFunctionBodyPure
+            // InternalFPML.g:12032:2: ( ruleCompositionFunctionBodyPure )
+            // InternalFPML.g:12033:3: ruleCompositionFunctionBodyPure
             {
              before(grammarAccess.getPureLambdaAccess().getFunctionBodyCompositionFunctionBodyPureParserRuleCall_1_5_0()); 
             pushFollow(FOLLOW_2);
@@ -35832,17 +35800,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureProdValue__ProdAdtElement1Assignment_1"
-    // InternalFPML.g:12027:1: rule__PureProdValue__ProdAdtElement1Assignment_1 : ( ruleExpression ) ;
+    // InternalFPML.g:12042:1: rule__PureProdValue__ProdAdtElement1Assignment_1 : ( ruleExpression ) ;
     public final void rule__PureProdValue__ProdAdtElement1Assignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12031:1: ( ( ruleExpression ) )
-            // InternalFPML.g:12032:2: ( ruleExpression )
+            // InternalFPML.g:12046:1: ( ( ruleExpression ) )
+            // InternalFPML.g:12047:2: ( ruleExpression )
             {
-            // InternalFPML.g:12032:2: ( ruleExpression )
-            // InternalFPML.g:12033:3: ruleExpression
+            // InternalFPML.g:12047:2: ( ruleExpression )
+            // InternalFPML.g:12048:3: ruleExpression
             {
              before(grammarAccess.getPureProdValueAccess().getProdAdtElement1ExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -35873,17 +35841,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureProdValue__ProdAdtElement2Assignment_3"
-    // InternalFPML.g:12042:1: rule__PureProdValue__ProdAdtElement2Assignment_3 : ( ruleExpression ) ;
+    // InternalFPML.g:12057:1: rule__PureProdValue__ProdAdtElement2Assignment_3 : ( ruleExpression ) ;
     public final void rule__PureProdValue__ProdAdtElement2Assignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12046:1: ( ( ruleExpression ) )
-            // InternalFPML.g:12047:2: ( ruleExpression )
+            // InternalFPML.g:12061:1: ( ( ruleExpression ) )
+            // InternalFPML.g:12062:2: ( ruleExpression )
             {
-            // InternalFPML.g:12047:2: ( ruleExpression )
-            // InternalFPML.g:12048:3: ruleExpression
+            // InternalFPML.g:12062:2: ( ruleExpression )
+            // InternalFPML.g:12063:3: ruleExpression
             {
              before(grammarAccess.getPureProdValueAccess().getProdAdtElement2ExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -35914,17 +35882,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureSumValue__SumAdtElement1Assignment_0_2"
-    // InternalFPML.g:12057:1: rule__PureSumValue__SumAdtElement1Assignment_0_2 : ( ruleExpression ) ;
+    // InternalFPML.g:12072:1: rule__PureSumValue__SumAdtElement1Assignment_0_2 : ( ruleExpression ) ;
     public final void rule__PureSumValue__SumAdtElement1Assignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12061:1: ( ( ruleExpression ) )
-            // InternalFPML.g:12062:2: ( ruleExpression )
+            // InternalFPML.g:12076:1: ( ( ruleExpression ) )
+            // InternalFPML.g:12077:2: ( ruleExpression )
             {
-            // InternalFPML.g:12062:2: ( ruleExpression )
-            // InternalFPML.g:12063:3: ruleExpression
+            // InternalFPML.g:12077:2: ( ruleExpression )
+            // InternalFPML.g:12078:3: ruleExpression
             {
              before(grammarAccess.getPureSumValueAccess().getSumAdtElement1ExpressionParserRuleCall_0_2_0()); 
             pushFollow(FOLLOW_2);
@@ -35955,17 +35923,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PureSumValue__SumAdtElement2Assignment_1_2"
-    // InternalFPML.g:12072:1: rule__PureSumValue__SumAdtElement2Assignment_1_2 : ( ruleExpression ) ;
+    // InternalFPML.g:12087:1: rule__PureSumValue__SumAdtElement2Assignment_1_2 : ( ruleExpression ) ;
     public final void rule__PureSumValue__SumAdtElement2Assignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12076:1: ( ( ruleExpression ) )
-            // InternalFPML.g:12077:2: ( ruleExpression )
+            // InternalFPML.g:12091:1: ( ( ruleExpression ) )
+            // InternalFPML.g:12092:2: ( ruleExpression )
             {
-            // InternalFPML.g:12077:2: ( ruleExpression )
-            // InternalFPML.g:12078:3: ruleExpression
+            // InternalFPML.g:12092:2: ( ruleExpression )
+            // InternalFPML.g:12093:3: ruleExpression
             {
              before(grammarAccess.getPureSumValueAccess().getSumAdtElement2ExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -35996,17 +35964,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullProdValue__ProdAdtElement1Assignment_1"
-    // InternalFPML.g:12087:1: rule__EffectFullProdValue__ProdAdtElement1Assignment_1 : ( ruleEffectFullExpression ) ;
+    // InternalFPML.g:12102:1: rule__EffectFullProdValue__ProdAdtElement1Assignment_1 : ( ruleEffectFullExpression ) ;
     public final void rule__EffectFullProdValue__ProdAdtElement1Assignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12091:1: ( ( ruleEffectFullExpression ) )
-            // InternalFPML.g:12092:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:12106:1: ( ( ruleEffectFullExpression ) )
+            // InternalFPML.g:12107:2: ( ruleEffectFullExpression )
             {
-            // InternalFPML.g:12092:2: ( ruleEffectFullExpression )
-            // InternalFPML.g:12093:3: ruleEffectFullExpression
+            // InternalFPML.g:12107:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:12108:3: ruleEffectFullExpression
             {
              before(grammarAccess.getEffectFullProdValueAccess().getProdAdtElement1EffectFullExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -36037,17 +36005,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullProdValue__ProdAdtElement2Assignment_3"
-    // InternalFPML.g:12102:1: rule__EffectFullProdValue__ProdAdtElement2Assignment_3 : ( ruleEffectFullExpression ) ;
+    // InternalFPML.g:12117:1: rule__EffectFullProdValue__ProdAdtElement2Assignment_3 : ( ruleEffectFullExpression ) ;
     public final void rule__EffectFullProdValue__ProdAdtElement2Assignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12106:1: ( ( ruleEffectFullExpression ) )
-            // InternalFPML.g:12107:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:12121:1: ( ( ruleEffectFullExpression ) )
+            // InternalFPML.g:12122:2: ( ruleEffectFullExpression )
             {
-            // InternalFPML.g:12107:2: ( ruleEffectFullExpression )
-            // InternalFPML.g:12108:3: ruleEffectFullExpression
+            // InternalFPML.g:12122:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:12123:3: ruleEffectFullExpression
             {
              before(grammarAccess.getEffectFullProdValueAccess().getProdAdtElement2EffectFullExpressionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -36078,17 +36046,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullSumValue__SumAdtElement1Assignment_0_2"
-    // InternalFPML.g:12117:1: rule__EffectFullSumValue__SumAdtElement1Assignment_0_2 : ( ruleEffectFullExpression ) ;
+    // InternalFPML.g:12132:1: rule__EffectFullSumValue__SumAdtElement1Assignment_0_2 : ( ruleEffectFullExpression ) ;
     public final void rule__EffectFullSumValue__SumAdtElement1Assignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12121:1: ( ( ruleEffectFullExpression ) )
-            // InternalFPML.g:12122:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:12136:1: ( ( ruleEffectFullExpression ) )
+            // InternalFPML.g:12137:2: ( ruleEffectFullExpression )
             {
-            // InternalFPML.g:12122:2: ( ruleEffectFullExpression )
-            // InternalFPML.g:12123:3: ruleEffectFullExpression
+            // InternalFPML.g:12137:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:12138:3: ruleEffectFullExpression
             {
              before(grammarAccess.getEffectFullSumValueAccess().getSumAdtElement1EffectFullExpressionParserRuleCall_0_2_0()); 
             pushFollow(FOLLOW_2);
@@ -36119,17 +36087,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EffectFullSumValue__SumAdtElement2Assignment_1_2"
-    // InternalFPML.g:12132:1: rule__EffectFullSumValue__SumAdtElement2Assignment_1_2 : ( ruleEffectFullExpression ) ;
+    // InternalFPML.g:12147:1: rule__EffectFullSumValue__SumAdtElement2Assignment_1_2 : ( ruleEffectFullExpression ) ;
     public final void rule__EffectFullSumValue__SumAdtElement2Assignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12136:1: ( ( ruleEffectFullExpression ) )
-            // InternalFPML.g:12137:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:12151:1: ( ( ruleEffectFullExpression ) )
+            // InternalFPML.g:12152:2: ( ruleEffectFullExpression )
             {
-            // InternalFPML.g:12137:2: ( ruleEffectFullExpression )
-            // InternalFPML.g:12138:3: ruleEffectFullExpression
+            // InternalFPML.g:12152:2: ( ruleEffectFullExpression )
+            // InternalFPML.g:12153:3: ruleEffectFullExpression
             {
              before(grammarAccess.getEffectFullSumValueAccess().getSumAdtElement2EffectFullExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -36160,17 +36128,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LeftPair__TypeAssignment_2"
-    // InternalFPML.g:12147:1: rule__LeftPair__TypeAssignment_2 : ( rulePureAlgebraicType ) ;
+    // InternalFPML.g:12162:1: rule__LeftPair__TypeAssignment_2 : ( rulePureAlgebraicType ) ;
     public final void rule__LeftPair__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12151:1: ( ( rulePureAlgebraicType ) )
-            // InternalFPML.g:12152:2: ( rulePureAlgebraicType )
+            // InternalFPML.g:12166:1: ( ( rulePureAlgebraicType ) )
+            // InternalFPML.g:12167:2: ( rulePureAlgebraicType )
             {
-            // InternalFPML.g:12152:2: ( rulePureAlgebraicType )
-            // InternalFPML.g:12153:3: rulePureAlgebraicType
+            // InternalFPML.g:12167:2: ( rulePureAlgebraicType )
+            // InternalFPML.g:12168:3: rulePureAlgebraicType
             {
              before(grammarAccess.getLeftPairAccess().getTypePureAlgebraicTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -36201,17 +36169,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RightPair__TypeAssignment_2"
-    // InternalFPML.g:12162:1: rule__RightPair__TypeAssignment_2 : ( rulePureAlgebraicType ) ;
+    // InternalFPML.g:12177:1: rule__RightPair__TypeAssignment_2 : ( rulePureAlgebraicType ) ;
     public final void rule__RightPair__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12166:1: ( ( rulePureAlgebraicType ) )
-            // InternalFPML.g:12167:2: ( rulePureAlgebraicType )
+            // InternalFPML.g:12181:1: ( ( rulePureAlgebraicType ) )
+            // InternalFPML.g:12182:2: ( rulePureAlgebraicType )
             {
-            // InternalFPML.g:12167:2: ( rulePureAlgebraicType )
-            // InternalFPML.g:12168:3: rulePureAlgebraicType
+            // InternalFPML.g:12182:2: ( rulePureAlgebraicType )
+            // InternalFPML.g:12183:3: rulePureAlgebraicType
             {
              before(grammarAccess.getRightPairAccess().getTypePureAlgebraicTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -36242,17 +36210,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyF__FunctionTypeAssignment_2"
-    // InternalFPML.g:12177:1: rule__ApplyF__FunctionTypeAssignment_2 : ( rulePureFunctionType ) ;
+    // InternalFPML.g:12192:1: rule__ApplyF__FunctionTypeAssignment_2 : ( rulePureFunctionType ) ;
     public final void rule__ApplyF__FunctionTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12181:1: ( ( rulePureFunctionType ) )
-            // InternalFPML.g:12182:2: ( rulePureFunctionType )
+            // InternalFPML.g:12196:1: ( ( rulePureFunctionType ) )
+            // InternalFPML.g:12197:2: ( rulePureFunctionType )
             {
-            // InternalFPML.g:12182:2: ( rulePureFunctionType )
-            // InternalFPML.g:12183:3: rulePureFunctionType
+            // InternalFPML.g:12197:2: ( rulePureFunctionType )
+            // InternalFPML.g:12198:3: rulePureFunctionType
             {
              before(grammarAccess.getApplyFAccess().getFunctionTypePureFunctionTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -36283,17 +36251,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyF__ValueAssignment_3"
-    // InternalFPML.g:12192:1: rule__ApplyF__ValueAssignment_3 : ( ruleApplyFFactor ) ;
+    // InternalFPML.g:12207:1: rule__ApplyF__ValueAssignment_3 : ( ruleApplyFFactor ) ;
     public final void rule__ApplyF__ValueAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12196:1: ( ( ruleApplyFFactor ) )
-            // InternalFPML.g:12197:2: ( ruleApplyFFactor )
+            // InternalFPML.g:12211:1: ( ( ruleApplyFFactor ) )
+            // InternalFPML.g:12212:2: ( ruleApplyFFactor )
             {
-            // InternalFPML.g:12197:2: ( ruleApplyFFactor )
-            // InternalFPML.g:12198:3: ruleApplyFFactor
+            // InternalFPML.g:12212:2: ( ruleApplyFFactor )
+            // InternalFPML.g:12213:3: ruleApplyFFactor
             {
              before(grammarAccess.getApplyFAccess().getValueApplyFFactorParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -36324,21 +36292,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyFFactor__ValueReferenceAssignment_0"
-    // InternalFPML.g:12207:1: rule__ApplyFFactor__ValueReferenceAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalFPML.g:12222:1: rule__ApplyFFactor__ValueReferenceAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__ApplyFFactor__ValueReferenceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12211:1: ( ( ( RULE_ID ) ) )
-            // InternalFPML.g:12212:2: ( ( RULE_ID ) )
+            // InternalFPML.g:12226:1: ( ( ( RULE_ID ) ) )
+            // InternalFPML.g:12227:2: ( ( RULE_ID ) )
             {
-            // InternalFPML.g:12212:2: ( ( RULE_ID ) )
-            // InternalFPML.g:12213:3: ( RULE_ID )
+            // InternalFPML.g:12227:2: ( ( RULE_ID ) )
+            // InternalFPML.g:12228:3: ( RULE_ID )
             {
              before(grammarAccess.getApplyFFactorAccess().getValueReferencePureFunctionCrossReference_0_0()); 
-            // InternalFPML.g:12214:3: ( RULE_ID )
-            // InternalFPML.g:12215:4: RULE_ID
+            // InternalFPML.g:12229:3: ( RULE_ID )
+            // InternalFPML.g:12230:4: RULE_ID
             {
              before(grammarAccess.getApplyFFactorAccess().getValueReferencePureFunctionIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -36369,17 +36337,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyFFactor__ValueLambdaAssignment_1_1"
-    // InternalFPML.g:12226:1: rule__ApplyFFactor__ValueLambdaAssignment_1_1 : ( rulePureLambda ) ;
+    // InternalFPML.g:12241:1: rule__ApplyFFactor__ValueLambdaAssignment_1_1 : ( rulePureLambda ) ;
     public final void rule__ApplyFFactor__ValueLambdaAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12230:1: ( ( rulePureLambda ) )
-            // InternalFPML.g:12231:2: ( rulePureLambda )
+            // InternalFPML.g:12245:1: ( ( rulePureLambda ) )
+            // InternalFPML.g:12246:2: ( rulePureLambda )
             {
-            // InternalFPML.g:12231:2: ( rulePureLambda )
-            // InternalFPML.g:12232:3: rulePureLambda
+            // InternalFPML.g:12246:2: ( rulePureLambda )
+            // InternalFPML.g:12247:3: rulePureLambda
             {
              before(grammarAccess.getApplyFFactorAccess().getValueLambdaPureLambdaParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -36410,17 +36378,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LeftPairIO__TypeAssignment_2"
-    // InternalFPML.g:12241:1: rule__LeftPairIO__TypeAssignment_2 : ( ruleEffectFullAlgebraicType ) ;
+    // InternalFPML.g:12256:1: rule__LeftPairIO__TypeAssignment_2 : ( ruleEffectFullAlgebraicType ) ;
     public final void rule__LeftPairIO__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12245:1: ( ( ruleEffectFullAlgebraicType ) )
-            // InternalFPML.g:12246:2: ( ruleEffectFullAlgebraicType )
+            // InternalFPML.g:12260:1: ( ( ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:12261:2: ( ruleEffectFullAlgebraicType )
             {
-            // InternalFPML.g:12246:2: ( ruleEffectFullAlgebraicType )
-            // InternalFPML.g:12247:3: ruleEffectFullAlgebraicType
+            // InternalFPML.g:12261:2: ( ruleEffectFullAlgebraicType )
+            // InternalFPML.g:12262:3: ruleEffectFullAlgebraicType
             {
              before(grammarAccess.getLeftPairIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -36451,17 +36419,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RightPairIO__TypeAssignment_2"
-    // InternalFPML.g:12256:1: rule__RightPairIO__TypeAssignment_2 : ( ruleEffectFullAlgebraicType ) ;
+    // InternalFPML.g:12271:1: rule__RightPairIO__TypeAssignment_2 : ( ruleEffectFullAlgebraicType ) ;
     public final void rule__RightPairIO__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12260:1: ( ( ruleEffectFullAlgebraicType ) )
-            // InternalFPML.g:12261:2: ( ruleEffectFullAlgebraicType )
+            // InternalFPML.g:12275:1: ( ( ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:12276:2: ( ruleEffectFullAlgebraicType )
             {
-            // InternalFPML.g:12261:2: ( ruleEffectFullAlgebraicType )
-            // InternalFPML.g:12262:3: ruleEffectFullAlgebraicType
+            // InternalFPML.g:12276:2: ( ruleEffectFullAlgebraicType )
+            // InternalFPML.g:12277:3: ruleEffectFullAlgebraicType
             {
              before(grammarAccess.getRightPairIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -36492,17 +36460,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveReturn__TypeAssignment_2"
-    // InternalFPML.g:12271:1: rule__PrimitiveReturn__TypeAssignment_2 : ( ruleType ) ;
+    // InternalFPML.g:12286:1: rule__PrimitiveReturn__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__PrimitiveReturn__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12275:1: ( ( ruleType ) )
-            // InternalFPML.g:12276:2: ( ruleType )
+            // InternalFPML.g:12290:1: ( ( ruleType ) )
+            // InternalFPML.g:12291:2: ( ruleType )
             {
-            // InternalFPML.g:12276:2: ( ruleType )
-            // InternalFPML.g:12277:3: ruleType
+            // InternalFPML.g:12291:2: ( ruleType )
+            // InternalFPML.g:12292:3: ruleType
             {
              before(grammarAccess.getPrimitiveReturnAccess().getTypeTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -36533,17 +36501,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyFIO__FunctionTypeAssignment_2"
-    // InternalFPML.g:12286:1: rule__ApplyFIO__FunctionTypeAssignment_2 : ( ruleEffectFullFunctionType ) ;
+    // InternalFPML.g:12301:1: rule__ApplyFIO__FunctionTypeAssignment_2 : ( ruleEffectFullFunctionType ) ;
     public final void rule__ApplyFIO__FunctionTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12290:1: ( ( ruleEffectFullFunctionType ) )
-            // InternalFPML.g:12291:2: ( ruleEffectFullFunctionType )
+            // InternalFPML.g:12305:1: ( ( ruleEffectFullFunctionType ) )
+            // InternalFPML.g:12306:2: ( ruleEffectFullFunctionType )
             {
-            // InternalFPML.g:12291:2: ( ruleEffectFullFunctionType )
-            // InternalFPML.g:12292:3: ruleEffectFullFunctionType
+            // InternalFPML.g:12306:2: ( ruleEffectFullFunctionType )
+            // InternalFPML.g:12307:3: ruleEffectFullFunctionType
             {
              before(grammarAccess.getApplyFIOAccess().getFunctionTypeEffectFullFunctionTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -36574,17 +36542,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyFIO__ValueAssignment_3"
-    // InternalFPML.g:12301:1: rule__ApplyFIO__ValueAssignment_3 : ( ruleApplyFIOFactor ) ;
+    // InternalFPML.g:12316:1: rule__ApplyFIO__ValueAssignment_3 : ( ruleApplyFIOFactor ) ;
     public final void rule__ApplyFIO__ValueAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12305:1: ( ( ruleApplyFIOFactor ) )
-            // InternalFPML.g:12306:2: ( ruleApplyFIOFactor )
+            // InternalFPML.g:12320:1: ( ( ruleApplyFIOFactor ) )
+            // InternalFPML.g:12321:2: ( ruleApplyFIOFactor )
             {
-            // InternalFPML.g:12306:2: ( ruleApplyFIOFactor )
-            // InternalFPML.g:12307:3: ruleApplyFIOFactor
+            // InternalFPML.g:12321:2: ( ruleApplyFIOFactor )
+            // InternalFPML.g:12322:3: ruleApplyFIOFactor
             {
              before(grammarAccess.getApplyFIOAccess().getValueApplyFIOFactorParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -36615,21 +36583,21 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyFIOFactor__ValueReferenceAssignment_0"
-    // InternalFPML.g:12316:1: rule__ApplyFIOFactor__ValueReferenceAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalFPML.g:12331:1: rule__ApplyFIOFactor__ValueReferenceAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__ApplyFIOFactor__ValueReferenceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12320:1: ( ( ( RULE_ID ) ) )
-            // InternalFPML.g:12321:2: ( ( RULE_ID ) )
+            // InternalFPML.g:12335:1: ( ( ( RULE_ID ) ) )
+            // InternalFPML.g:12336:2: ( ( RULE_ID ) )
             {
-            // InternalFPML.g:12321:2: ( ( RULE_ID ) )
-            // InternalFPML.g:12322:3: ( RULE_ID )
+            // InternalFPML.g:12336:2: ( ( RULE_ID ) )
+            // InternalFPML.g:12337:3: ( RULE_ID )
             {
              before(grammarAccess.getApplyFIOFactorAccess().getValueReferenceEffectFullReferenceCrossReference_0_0()); 
-            // InternalFPML.g:12323:3: ( RULE_ID )
-            // InternalFPML.g:12324:4: RULE_ID
+            // InternalFPML.g:12338:3: ( RULE_ID )
+            // InternalFPML.g:12339:4: RULE_ID
             {
              before(grammarAccess.getApplyFIOFactorAccess().getValueReferenceEffectFullReferenceIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -36660,17 +36628,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyFIOFactor__ValuePrimitiveAssignment_1"
-    // InternalFPML.g:12335:1: rule__ApplyFIOFactor__ValuePrimitiveAssignment_1 : ( rulePrimitiveEffectFullValue ) ;
+    // InternalFPML.g:12350:1: rule__ApplyFIOFactor__ValuePrimitiveAssignment_1 : ( rulePrimitiveEffectFullValue ) ;
     public final void rule__ApplyFIOFactor__ValuePrimitiveAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12339:1: ( ( rulePrimitiveEffectFullValue ) )
-            // InternalFPML.g:12340:2: ( rulePrimitiveEffectFullValue )
+            // InternalFPML.g:12354:1: ( ( rulePrimitiveEffectFullValue ) )
+            // InternalFPML.g:12355:2: ( rulePrimitiveEffectFullValue )
             {
-            // InternalFPML.g:12340:2: ( rulePrimitiveEffectFullValue )
-            // InternalFPML.g:12341:3: rulePrimitiveEffectFullValue
+            // InternalFPML.g:12355:2: ( rulePrimitiveEffectFullValue )
+            // InternalFPML.g:12356:3: rulePrimitiveEffectFullValue
             {
              before(grammarAccess.getApplyFIOFactorAccess().getValuePrimitivePrimitiveEffectFullValueParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -36701,17 +36669,17 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ApplyFIOFactor__ValueLambdaAssignment_2_1"
-    // InternalFPML.g:12350:1: rule__ApplyFIOFactor__ValueLambdaAssignment_2_1 : ( ruleEffectFullLambda ) ;
+    // InternalFPML.g:12365:1: rule__ApplyFIOFactor__ValueLambdaAssignment_2_1 : ( ruleEffectFullLambda ) ;
     public final void rule__ApplyFIOFactor__ValueLambdaAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFPML.g:12354:1: ( ( ruleEffectFullLambda ) )
-            // InternalFPML.g:12355:2: ( ruleEffectFullLambda )
+            // InternalFPML.g:12369:1: ( ( ruleEffectFullLambda ) )
+            // InternalFPML.g:12370:2: ( ruleEffectFullLambda )
             {
-            // InternalFPML.g:12355:2: ( ruleEffectFullLambda )
-            // InternalFPML.g:12356:3: ruleEffectFullLambda
+            // InternalFPML.g:12370:2: ( ruleEffectFullLambda )
+            // InternalFPML.g:12371:3: ruleEffectFullLambda
             {
              before(grammarAccess.getApplyFIOFactorAccess().getValueLambdaEffectFullLambdaParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -36793,14 +36761,14 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     static final String dfa_9s = "\3\uffff\1\10\7\uffff";
     static final String dfa_10s = "\1\4\2\uffff\2\4\6\uffff";
     static final String dfa_11s = "\1\50\2\uffff\1\26\1\67\6\uffff";
-    static final String dfa_12s = "\1\uffff\1\1\1\2\2\uffff\1\5\1\7\1\3\1\6\1\4\1\10";
+    static final String dfa_12s = "\1\uffff\1\1\1\2\2\uffff\1\5\1\7\1\3\1\6\1\10\1\4";
     static final String dfa_13s = "\13\uffff}>";
     static final String[] dfa_14s = {
             "\1\3\1\1\1\2\15\uffff\1\4\21\uffff\1\5\2\6",
             "",
             "",
             "\1\10\10\uffff\1\10\6\uffff\1\7\2\10",
-            "\3\12\15\uffff\1\12\1\11\6\uffff\1\11\1\uffff\1\11\3\uffff\1\11\3\uffff\3\12\14\uffff\3\11",
+            "\3\11\15\uffff\1\11\1\12\6\uffff\1\12\1\uffff\1\12\3\uffff\1\12\3\uffff\3\11\14\uffff\3\12",
             "",
             "",
             "",
@@ -36853,13 +36821,13 @@ public class InternalFPMLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x00E0000450000000L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x000001C000100070L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000620800000L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000220801000L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000018400900010L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000000600000L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000FE3002000010L});
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x00E0000670800000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x00E0000670801000L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x001FFE3002000010L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000001000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000002000000L});

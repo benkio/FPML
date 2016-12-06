@@ -188,20 +188,20 @@ PureSumTypeFactor:
 PureProdTypeFactor:
     '*' adtElement=ValueType;
 
-EffectFullAlgebraicType: '[' effectFullAdtElement1=IOType effectFullAdtElement2=(EffectFullSumTypeFactor | EffectFullProdTypeFactor) ']';
+EffectFullAlgebraicType: '{' effectFullAdtElement1=Type effectFullAdtElement2=(EffectFullSumTypeFactor | EffectFullProdTypeFactor) '}';
 
 EffectFullSumTypeFactor:
-    '+' adtElement=IOType;
+    '+' adtElement=Type;
 EffectFullProdTypeFactor:
-    '*' adtElement=IOType;
+    '*' adtElement=Type;
 
 ////////////////////////////////////////////////////////////////////
 // Values
 ////////////////////////////////////////////////////////////////////
 
 EffectFullExpression:
-	{RecursiveEffectFullExpression} 'IO' '[' exp=EffectFullExpression ']' 
-	| 'IO' '(' Expression ')'  
+	{RecursiveEffectFullExpression} 'IO' '[' innerValue=EffectFullExpression ']' 
+	| 'IO' '(' innerValue=Expression ')'
 	| EffectFullFunctionValue 
 	| EffectFullDataValue
 	| EffectFullProdValue

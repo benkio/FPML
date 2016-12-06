@@ -24,6 +24,7 @@ import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataBlock;
 import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunctionBlock;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
@@ -160,6 +161,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.EFFECT_FULL_DATA_VALUE:
 				sequence_EffectFullDataValue(context, (EffectFullDataValue) semanticObject); 
 				return; 
+			case FPMLPackage.EFFECT_FULL_EXPRESSION:
+				sequence_EffectFullExpression(context, (EffectFullExpression) semanticObject); 
+				return; 
 			case FPMLPackage.EFFECT_FULL_FUNCTION_BLOCK:
 				sequence_EffectFullFunctionBlock(context, (EffectFullFunctionBlock) semanticObject); 
 				return; 
@@ -216,8 +220,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_IntToString(context, (IntToString) semanticObject); 
 				return; 
 			case FPMLPackage.INTEGER_TYPE:
-				if (rule == grammarAccess.getEffectFullExpressionRule()
-						|| rule == grammarAccess.getExpressionRule()
+				if (rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getIntValueRule()) {
 					sequence_IntValue(context, (IntegerType) semanticObject); 
 					return; 
@@ -281,8 +284,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_PureFunctionDefinition(context, (PureFunctionDefinition) semanticObject); 
 				return; 
 			case FPMLPackage.PURE_FUNCTION_TYPE:
-				if (rule == grammarAccess.getEffectFullExpressionRule()
-						|| rule == grammarAccess.getExpressionRule()
+				if (rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getFunctionValueRule()) {
 					sequence_FunctionValue(context, (PureFunctionType) semanticObject); 
 					return; 
@@ -334,8 +336,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_StringType(context, (StringType) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getEffectFullExpressionRule()
-						|| rule == grammarAccess.getExpressionRule()
+				else if (rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getStringValueRule()) {
 					sequence_StringValue(context, (StringType) semanticObject); 
 					return; 
@@ -351,8 +352,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_UnitType(context, (UnitType) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getEffectFullExpressionRule()
-						|| rule == grammarAccess.getUnitValueRule()
+				else if (rule == grammarAccess.getUnitValueRule()
 						|| rule == grammarAccess.getExpressionRule()) {
 					sequence_UnitValue(context, (UnitType) semanticObject); 
 					return; 
@@ -580,7 +580,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullExpression returns DataValue
 	 *     Expression returns DataValue
 	 *     DataValue returns DataValue
 	 *
@@ -608,7 +607,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullAlgebraicType returns EffectFullAlgebraicType
 	 *
 	 * Constraint:
-	 *     (effectFullAdtElement1=IOType (effectFullAdtElement2=EffectFullSumTypeFactor | effectFullAdtElement2=EffectFullProdTypeFactor))
+	 *     (effectFullAdtElement1=Type (effectFullAdtElement2=EffectFullSumTypeFactor | effectFullAdtElement2=EffectFullProdTypeFactor))
 	 */
 	protected void sequence_EffectFullAlgebraicType(ISerializationContext context, EffectFullAlgebraicType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -726,18 +725,36 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     EffectFullExpression returns EffectFullExpression
+	 *
+	 * Constraint:
+	 *     innerValue=Expression
+	 */
+	protected void sequence_EffectFullExpression(ISerializationContext context, EffectFullExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_EXPRESSION__INNER_VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_EXPRESSION__INNER_VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEffectFullExpressionAccess().getInnerValueExpressionParserRuleCall_1_2_0(), semanticObject.getInnerValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     EffectFullExpression returns RecursiveEffectFullExpression
 	 *
 	 * Constraint:
-	 *     exp=EffectFullExpression
+	 *     innerValue=EffectFullExpression
 	 */
 	protected void sequence_EffectFullExpression(ISerializationContext context, RecursiveEffectFullExpression semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RECURSIVE_EFFECT_FULL_EXPRESSION__EXP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RECURSIVE_EFFECT_FULL_EXPRESSION__EXP));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_EXPRESSION__INNER_VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_EXPRESSION__INNER_VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEffectFullExpressionAccess().getExpEffectFullExpressionParserRuleCall_0_3_0(), semanticObject.getExp());
+		feeder.accept(grammarAccess.getEffectFullExpressionAccess().getInnerValueEffectFullExpressionParserRuleCall_0_3_0(), semanticObject.getInnerValue());
 		feeder.finish();
 	}
 	
@@ -828,7 +845,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullProdTypeFactor returns EffectFullProdTypeFactor
 	 *
 	 * Constraint:
-	 *     adtElement=IOType
+	 *     adtElement=Type
 	 */
 	protected void sequence_EffectFullProdTypeFactor(ISerializationContext context, EffectFullProdTypeFactor semanticObject) {
 		if (errorAcceptor != null) {
@@ -836,7 +853,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEffectFullProdTypeFactorAccess().getAdtElementIOTypeParserRuleCall_1_0(), semanticObject.getAdtElement());
+		feeder.accept(grammarAccess.getEffectFullProdTypeFactorAccess().getAdtElementTypeParserRuleCall_1_0(), semanticObject.getAdtElement());
 		feeder.finish();
 	}
 	
@@ -868,7 +885,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullSumTypeFactor returns EffectFullSumTypeFactor
 	 *
 	 * Constraint:
-	 *     adtElement=IOType
+	 *     adtElement=Type
 	 */
 	protected void sequence_EffectFullSumTypeFactor(ISerializationContext context, EffectFullSumTypeFactor semanticObject) {
 		if (errorAcceptor != null) {
@@ -876,7 +893,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_SUM_TYPE_FACTOR__ADT_ELEMENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEffectFullSumTypeFactorAccess().getAdtElementIOTypeParserRuleCall_1_0(), semanticObject.getAdtElement());
+		feeder.accept(grammarAccess.getEffectFullSumTypeFactorAccess().getAdtElementTypeParserRuleCall_1_0(), semanticObject.getAdtElement());
 		feeder.finish();
 	}
 	
@@ -963,7 +980,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullExpression returns PureFunctionType
 	 *     Expression returns PureFunctionType
 	 *     FunctionValue returns PureFunctionType
 	 *
@@ -1037,7 +1053,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullExpression returns IntegerType
 	 *     Expression returns IntegerType
 	 *     IntValue returns IntegerType
 	 *
@@ -1416,7 +1431,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullExpression returns PureProdValue
 	 *     Expression returns PureProdValue
 	 *     PureProdValue returns PureProdValue
 	 *
@@ -1457,7 +1471,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullExpression returns PureSumValue
 	 *     Expression returns PureSumValue
 	 *     PureSumValue returns PureSumValue
 	 *
@@ -1483,7 +1496,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullExpression returns PureValueRef
 	 *     Expression returns PureValueRef
 	 *     PureValueRef returns PureValueRef
 	 *
@@ -1591,7 +1603,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullExpression returns StringType
 	 *     Expression returns StringType
 	 *     StringValue returns StringType
 	 *
@@ -1648,7 +1659,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     EffectFullExpression returns UnitType
 	 *     UnitValue returns UnitType
 	 *     Expression returns UnitType
 	 *

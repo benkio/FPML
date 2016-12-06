@@ -9,12 +9,6 @@ package it.unibo.fPML;
  * A representation of the model object '<em><b>Recursive Effect Full Expression</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link it.unibo.fPML.RecursiveEffectFullExpression#getExp <em>Exp</em>}</li>
- * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getRecursiveEffectFullExpression()
  * @model
@@ -22,30 +16,4 @@ package it.unibo.fPML;
  */
 public interface RecursiveEffectFullExpression extends EffectFullExpression
 {
-  /**
-   * Returns the value of the '<em><b>Exp</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Exp</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Exp</em>' containment reference.
-   * @see #setExp(EffectFullExpression)
-   * @see it.unibo.fPML.FPMLPackage#getRecursiveEffectFullExpression_Exp()
-   * @model containment="true"
-   * @generated
-   */
-  EffectFullExpression getExp();
-
-  /**
-   * Sets the value of the '{@link it.unibo.fPML.RecursiveEffectFullExpression#getExp <em>Exp</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Exp</em>' containment reference.
-   * @see #getExp()
-   * @generated
-   */
-  void setExp(EffectFullExpression value);
-
 } // RecursiveEffectFullExpression

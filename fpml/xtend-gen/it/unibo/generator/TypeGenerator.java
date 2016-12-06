@@ -10,7 +10,11 @@ import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullSumTypeFactor;
+import it.unibo.fPML.EffectFullSumValue;
+import it.unibo.fPML.EffectFullValue;
+import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
@@ -178,11 +182,11 @@ public class TypeGenerator {
         if ((_effectFullAdtElement2 instanceof EffectFullSumTypeFactor)) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("Either<");
-          IOType _effectFullAdtElement1 = ((EffectFullAlgebraicType)t).getEffectFullAdtElement1();
+          Type _effectFullAdtElement1 = ((EffectFullAlgebraicType)t).getEffectFullAdtElement1();
           Object _compile = this.compile(_effectFullAdtElement1);
           _builder.append(_compile, "");
           _builder.append(", ");
-          IOType _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)t));
+          Type _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)t));
           Object _compile_1 = this.compile(_element2ValueTypeFromEffectFullAlgebraicType);
           _builder.append(_compile_1, "");
           _builder.append(">");
@@ -190,11 +194,11 @@ public class TypeGenerator {
         } else {
           StringConcatenation _builder_1 = new StringConcatenation();
           _builder_1.append("P2<");
-          IOType _effectFullAdtElement1_1 = ((EffectFullAlgebraicType)t).getEffectFullAdtElement1();
+          Type _effectFullAdtElement1_1 = ((EffectFullAlgebraicType)t).getEffectFullAdtElement1();
           Object _compile_2 = this.compile(_effectFullAdtElement1_1);
           _builder_1.append(_compile_2, "");
           _builder_1.append(", ");
-          IOType _element2ValueTypeFromEffectFullAlgebraicType_1 = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)t));
+          Type _element2ValueTypeFromEffectFullAlgebraicType_1 = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)t));
           Object _compile_3 = this.compile(_element2ValueTypeFromEffectFullAlgebraicType_1);
           _builder_1.append(_compile_3, "");
           _builder_1.append(">");
@@ -319,7 +323,8 @@ public class TypeGenerator {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("IO<");
-      Object _compileType = this.compileType(((Expression)e));
+      EObject _innerValue = e.getInnerValue();
+      Object _compileType = this.compileType(((Expression) _innerValue));
       _builder.append(_compileType, "");
       _builder.append(">");
       _switchResult = _builder;
@@ -373,10 +378,53 @@ public class TypeGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IO<");
-        EffectFullExpression _exp = ((RecursiveEffectFullExpression)e).getExp();
-        Object _compileType = this.compileType(_exp);
+        EObject _innerValue = ((RecursiveEffectFullExpression)e).getInnerValue();
+        Object _compileType = this.compileType(((EffectFullExpression) _innerValue));
         _builder.append(_compileType, "");
         _builder.append(">");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullProdValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("P2<");
+        EffectFullExpression _prodAdtElement1 = ((EffectFullProdValue)e).getProdAdtElement1();
+        Object _compileType = this.compileType(_prodAdtElement1);
+        _builder.append(_compileType, "");
+        _builder.append(", ");
+        EffectFullExpression _prodAdtElement2 = ((EffectFullProdValue)e).getProdAdtElement2();
+        Object _compileType_1 = this.compileType(_prodAdtElement2);
+        _builder.append(_compileType_1, "");
+        _builder.append(">");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullSumValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Either<");
+        EffectFullExpression _sumAdtElement1 = ((EffectFullSumValue)e).getSumAdtElement1();
+        Object _compileType = this.compileType(_sumAdtElement1);
+        _builder.append(_compileType, "");
+        _builder.append(", ");
+        EffectFullExpression _sumAdtElement2 = ((EffectFullSumValue)e).getSumAdtElement2();
+        Object _compileType_1 = this.compileType(_sumAdtElement2);
+        _builder.append(_compileType_1, "");
+        _builder.append(">");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullValueRef) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        EffectFullValue _value = ((EffectFullValueRef)e).getValue();
+        EffectFullExpression _value_1 = _value.getValue();
+        Object _compileType = this.compileType(_value_1);
+        _builder.append(_compileType, "");
         _switchResult = _builder;
       }
     }

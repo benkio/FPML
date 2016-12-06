@@ -37,16 +37,25 @@ class EffectFullValueGenerator {
 	
 	def compile(EffectFullExpression e) {
 		switch e {
-			Expression: return "IOFunctions.unit(" + valueGenerator.compile(e) + ")"
 			EffectFullFunctionType: return e.compile 
 			EffectFullDataValue: '''new «e.type.name»(«compileAdtValue(e.value,e.type.content)»)'''
-			RecursiveEffectFullExpression: return "IOFunctions.unit(" + e.exp.compile + ")"
+			EffectFullProdValue: '''P.p(«e.prodAdtElement1.compile», «e.prodAdtElement2.compile»)'''
+			EffectFullSumValue: {
+				if (e.sumAdtElement1 == null) return '''Either.right(«e.sumAdtElement2.compile»)'''
+				return '''Either.left(«e.sumAdtElement1.compile»)'''
+			}
+			EffectFullValueRef: ''''EffectFullValue.«e.value.name»()'''
+			default: {
+				switch e.innerValue {
+					Expression: return "IOFunctions.unit(" + valueGenerator.compile(e.innerValue as Expression) + ")"
+					EffectFullExpression: return "IOFunctions.unit(" + (e.innerValue as EffectFullExpression).compile + ")"
+				}
+			}
 		}	
 	}
 	
-	def compileAdtValue(EffectFullAdtValue v, EffectFullType d) {
+	def compileAdtValue(EffectFullExpression v, Type d) {
 		switch v {
-			Expression: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v, (d as IOType).type)»)'''
 			EffectFullSumValue: {
 				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d as EffectFullAlgebraicType))»)'''
 				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as EffectFullAlgebraicType).effectFullAdtElement1))»)'''
@@ -63,7 +72,7 @@ class EffectFullValueGenerator {
 			default: {
 				switch v.innerValue {
 					Expression: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v.innerValue as Expression, (d as IOType).type)»)'''
-					EffectFullAdtValue: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullAdtValue, (d as IOType).type as EffectFullType)»)'''		
+					EffectFullExpression: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullExpression, (d as IOType).type as EffectFullType)»)'''
 				} 
 			}
 		}

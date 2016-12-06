@@ -32,12 +32,12 @@ public interface EffectFullProdTypeFactor extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Adt Element</em>' containment reference.
-   * @see #setAdtElement(IOType)
+   * @see #setAdtElement(Type)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullProdTypeFactor_AdtElement()
    * @model containment="true"
    * @generated
    */
-  IOType getAdtElement();
+  Type getAdtElement();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullProdTypeFactor#getAdtElement <em>Adt Element</em>}' containment reference.
@@ -47,6 +47,6 @@ public interface EffectFullProdTypeFactor extends EObject
    * @see #getAdtElement()
    * @generated
    */
-  void setAdtElement(IOType value);
+  void setAdtElement(Type value);
 
 } // EffectFullProdTypeFactor
