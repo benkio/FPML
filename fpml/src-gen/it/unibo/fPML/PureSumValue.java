@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PureSumValue extends PureAdtValue
+public interface PureSumValue extends Expression
 {
   /**
    * Returns the value of the '<em><b>Sum Adt Element1</b></em>' containment reference.
@@ -32,12 +32,12 @@ public interface PureSumValue extends PureAdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sum Adt Element1</em>' containment reference.
-   * @see #setSumAdtElement1(PureAdtValue)
+   * @see #setSumAdtElement1(Expression)
    * @see it.unibo.fPML.FPMLPackage#getPureSumValue_SumAdtElement1()
    * @model containment="true"
    * @generated
    */
-  PureAdtValue getSumAdtElement1();
+  Expression getSumAdtElement1();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureSumValue#getSumAdtElement1 <em>Sum Adt Element1</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface PureSumValue extends PureAdtValue
    * @see #getSumAdtElement1()
    * @generated
    */
-  void setSumAdtElement1(PureAdtValue value);
+  void setSumAdtElement1(Expression value);
 
   /**
    * Returns the value of the '<em><b>Sum Adt Element2</b></em>' containment reference.
@@ -58,12 +58,12 @@ public interface PureSumValue extends PureAdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sum Adt Element2</em>' containment reference.
-   * @see #setSumAdtElement2(PureAdtValue)
+   * @see #setSumAdtElement2(Expression)
    * @see it.unibo.fPML.FPMLPackage#getPureSumValue_SumAdtElement2()
    * @model containment="true"
    * @generated
    */
-  PureAdtValue getSumAdtElement2();
+  Expression getSumAdtElement2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureSumValue#getSumAdtElement2 <em>Sum Adt Element2</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface PureSumValue extends PureAdtValue
    * @see #getSumAdtElement2()
    * @generated
    */
-  void setSumAdtElement2(PureAdtValue value);
+  void setSumAdtElement2(Expression value);
 
 } // PureSumValue

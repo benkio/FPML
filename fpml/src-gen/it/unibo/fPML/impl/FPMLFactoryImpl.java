@@ -117,7 +117,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_VALUE_REF: return createEffectFullValueRef();
       case FPMLPackage.EXPRESSION: return createExpression();
       case FPMLPackage.PURE_VALUE_REF: return createPureValueRef();
-      case FPMLPackage.PURE_ADT_VALUE: return createPureAdtValue();
       case FPMLPackage.PURE_PROD_VALUE: return createPureProdValue();
       case FPMLPackage.PURE_SUM_VALUE: return createPureSumValue();
       case FPMLPackage.EFFECT_FULL_ADT_VALUE: return createEffectFullAdtValue();
@@ -726,17 +725,6 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     PureValueRefImpl pureValueRef = new PureValueRefImpl();
     return pureValueRef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PureAdtValue createPureAdtValue()
-  {
-    PureAdtValueImpl pureAdtValue = new PureAdtValueImpl();
-    return pureAdtValue;
   }
 
   /**

@@ -44,6 +44,9 @@ class GetReturnType {
 					expression
 				}
        		UnitType: expression
+       		PureValueRef: expression(expression.value.value)
+			PureSumValue: Others.createPureAlgebraicType(expression(expression.sumAdtElement1), expression(expression.sumAdtElement2), true)
+			PureProdValue: Others.createPureAlgebraicType(expression(expression.prodAdtElement1), expression(expression.prodAdtElement2), false)
 		}
 	}
 	
@@ -175,7 +178,7 @@ class GetReturnType {
 		}
 	}
 	
-	def static Type pritiveFunction(Object function) {
+	def static Type pritiveFunction(PrimitiveFunction function) {
 		switch function {
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)
 			PrimitivePureFunction: primitivePureFunction(function)

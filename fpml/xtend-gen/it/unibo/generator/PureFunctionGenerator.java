@@ -99,11 +99,13 @@ public class PureFunctionGenerator {
       _builder.append(_xifexpression, "\t");
       _builder.newLineIfNotEmpty();
       _builder.append("\t");
+      _builder.append("return ");
       FunctionBodyPure _functionBody = pf.getFunctionBody();
       Argument _arg_1 = pf.getArg();
       String _name_1 = _arg_1.getName();
       String _compile_3 = this.compile(_functionBody, _name_1, false);
       _builder.append(_compile_3, "\t");
+      _builder.append(";");
       _builder.newLineIfNotEmpty();
       _builder.append("\t");
       String _xifexpression_1 = null;
@@ -120,19 +122,22 @@ public class PureFunctionGenerator {
     return null;
   }
   
-  public String compile(final FunctionBodyPure fbp, final String arg, final boolean outsideCalls) {
-    if ((fbp instanceof EmptyFunctionBody)) {
+  public String compile(final FunctionBodyPure pf, final String argName, final boolean outSideCall) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (pf instanceof EmptyFunctionBody) {
+      _matched=true;
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("throw new UnsupportedOperationException(\"TODO\");");
-      return _builder.toString();
-    } else {
-      if ((fbp instanceof CompositionFunctionBodyPure)) {
-        String _compileCompositionFunctionBodyPure = this.compileCompositionFunctionBodyPure(((CompositionFunctionBodyPure) fbp), arg, outsideCalls);
-        String _plus = ("return " + _compileCompositionFunctionBodyPure);
-        return (_plus + ";");
+      _builder.append("null");
+      _switchResult = _builder.toString();
+    }
+    if (!_matched) {
+      if (pf instanceof CompositionFunctionBodyPure) {
+        _matched=true;
+        _switchResult = this.compileCompositionFunctionBodyPure(((CompositionFunctionBodyPure)pf), argName, outSideCall);
       }
     }
-    return null;
+    return _switchResult;
   }
   
   public String compileCompositionFunctionBodyPure(final CompositionFunctionBodyPure cfbp, final String argName, final boolean outsideCalls) {
@@ -152,11 +157,12 @@ public class PureFunctionGenerator {
         Argument _arg = ((PureLambda)initialElement).getArg();
         CharSequence _compile = this.typeGenerator.compile(_arg);
         String _plus = ("(" + _compile);
-        String _plus_1 = (_plus + ") -> ");
+        String _plus_1 = (_plus + ") -> return ");
         FunctionBodyPure _functionBody = ((PureLambda)initialElement).getFunctionBody();
         String _compile_1 = this.compile(_functionBody, argName, outsideCalls);
         String _plus_2 = (_plus_1 + _compile_1);
-        result = _plus_2;
+        String _plus_3 = (_plus_2 + ";");
+        result = _plus_3;
       }
     }
     if (!_matched) {
@@ -197,10 +203,11 @@ public class PureFunctionGenerator {
         Argument _arg2 = _higherOrderArg.getArg2();
         CharSequence _compile = this.typeGenerator.compile(_arg2);
         String _plus = ("(" + _compile);
-        String _plus_1 = (_plus + ") -> ");
+        String _plus_1 = (_plus + ") -> return ");
         FunctionBodyPure _functionBody = ((PureLambda)pf).getFunctionBody();
         String _compile_1 = this.compile(_functionBody, argName, outsideCalls);
-        return (_plus_1 + _compile_1);
+        String _plus_2 = (_plus_1 + _compile_1);
+        return (_plus_2 + ";");
       }
     }
     if (!_matched) {
@@ -321,11 +328,12 @@ public class PureFunctionGenerator {
       Argument _arg_2 = _valueLambda_2.getArg();
       String _name = _arg_2.getName();
       _builder.append(_name, "");
-      _builder.append(" ) -> ");
+      _builder.append(" ) -> return ");
       PureFunctionDefinition _valueLambda_3 = r.getValueLambda();
       FunctionBodyPure _functionBody = _valueLambda_3.getFunctionBody();
       String _compile_1 = this.compile(_functionBody, argName, outsideCalls);
       _builder.append(_compile_1, "");
+      _builder.append(";");
       return _builder.toString();
     } else {
       PureFunctionDefinition _valueLambda_4 = r.getValueLambda();

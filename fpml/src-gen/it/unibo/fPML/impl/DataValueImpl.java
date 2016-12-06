@@ -4,8 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.DataValue;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PureAdtValue;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,7 +38,7 @@ public class DataValueImpl extends DataTypeImpl implements DataValue
    * @generated
    * @ordered
    */
-  protected PureAdtValue value;
+  protected Expression value;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class DataValueImpl extends DataTypeImpl implements DataValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureAdtValue getValue()
+  public Expression getValue()
   {
     return value;
   }
@@ -76,9 +76,9 @@ public class DataValueImpl extends DataTypeImpl implements DataValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(PureAdtValue newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs)
   {
-    PureAdtValue oldValue = value;
+    Expression oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class DataValueImpl extends DataTypeImpl implements DataValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(PureAdtValue newValue)
+  public void setValue(Expression newValue)
   {
     if (newValue != value)
     {
@@ -152,7 +152,7 @@ public class DataValueImpl extends DataTypeImpl implements DataValue
     switch (featureID)
     {
       case FPMLPackage.DATA_VALUE__VALUE:
-        setValue((PureAdtValue)newValue);
+        setValue((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class DataValueImpl extends DataTypeImpl implements DataValue
     switch (featureID)
     {
       case FPMLPackage.DATA_VALUE__VALUE:
-        setValue((PureAdtValue)null);
+        setValue((Expression)null);
         return;
     }
     super.eUnset(featureID);

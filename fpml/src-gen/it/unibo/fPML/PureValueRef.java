@@ -20,7 +20,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PureValueRef extends PureAdtValue
+public interface PureValueRef extends Expression
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' reference.

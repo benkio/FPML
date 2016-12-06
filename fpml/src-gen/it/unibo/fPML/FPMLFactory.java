@@ -492,15 +492,6 @@ public interface FPMLFactory extends EFactory
   PureValueRef createPureValueRef();
 
   /**
-   * Returns a new object of class '<em>Pure Adt Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Adt Value</em>'.
-   * @generated
-   */
-  PureAdtValue createPureAdtValue();
-
-  /**
    * Returns a new object of class '<em>Pure Prod Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

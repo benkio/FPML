@@ -220,7 +220,10 @@ Expression:
     | StringValue 
     | DataValue 
     | FunctionValue
-    | UnitValue;
+    | UnitValue
+    | PureValueRef
+	| PureSumValue
+	| PureProdValue;
 
 IntValue returns IntegerType: {IntegerType} value=INT;
 
@@ -228,7 +231,7 @@ StringValue returns StringType: {StringType} value=STRING;
 
 FunctionValue returns PureFunctionType: value=PureLambda;
 
-DataValue returns DataType: {DataValue} type=[PureData]'(' value=PureAdtValue ')';
+DataValue returns DataType: {DataValue} type=[PureData]'(' value=Expression ')';
 
 EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[EffectFullData]'(' value=EffectFullAdtValue ')';
 
@@ -239,21 +242,16 @@ PureLambda returns PureFunctionDefinition:
 	| {PureLambda} '(' ')' ':' '{' functionBody=CompositionFunctionBodyPure '}'
 ;
 
-PureAdtValue:
-	Expression
-	| PureValueRef
-	| PureSumValue
-	| PureProdValue;
 
 PureProdValue: 
-	'(' prodAdtElement1=PureAdtValue ',' prodAdtElement2=PureAdtValue ')';
+	'(' prodAdtElement1=Expression ',' prodAdtElement2=Expression ')';
 
 PureSumValue:
-	'Left' '(' sumAdtElement1=PureAdtValue ')'
-	| 'Right' '(' sumAdtElement2=PureAdtValue ')';
+	'Left' '(' sumAdtElement1=Expression ')'
+	| 'Right' '(' sumAdtElement2=Expression ')';
 
 EffectFullAdtValue:
-	 'IO' '(' innerValue=PureAdtValue ')'
+	 'IO' '(' innerValue=Expression ')'
 	 | 'IO' '[' innerValue=EffectFullAdtValue ']'
 	 | EffectFullFunctionValue
 	 | EffectFullProdValue

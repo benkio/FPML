@@ -9,7 +9,6 @@ import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntegerType;
-import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunctionDefinition;
@@ -84,55 +83,56 @@ public class ValueGenerator {
     _builder.append("() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
+    _builder.append("return ");
     Expression _value_1 = v.getValue();
-    CharSequence _compile = this.compile(_value_1);
+    Object _compile = this.compile(_value_1);
     _builder.append(_compile, "\t");
+    _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();
     return _builder;
   }
   
-  public CharSequence compile(final Expression e) {
+  public Object compile(final Expression e) {
+    Object _switchResult = null;
     boolean _matched = false;
     if (e instanceof IntegerType) {
       _matched=true;
-      int _value = ((IntegerType)e).getValue();
-      String _plus = ("return " + Integer.valueOf(_value));
-      return (_plus + ";");
+      _switchResult = Integer.valueOf(((IntegerType)e).getValue());
     }
     if (!_matched) {
       if (e instanceof UnitType) {
         _matched=true;
-        return "return Unit.unit();";
+        _switchResult = "Unit.unit()";
       }
     }
     if (!_matched) {
       if (e instanceof StringType) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("return \"");
+        _builder.append("\"");
         String _value = ((StringType)e).getValue();
         _builder.append(_value, "");
-        _builder.append("\";");
-        return _builder.toString();
+        _builder.append("\"");
+        _switchResult = _builder;
       }
     }
     if (!_matched) {
       if (e instanceof DataType) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("return new ");
+        _builder.append("new ");
         Object _compileType = this.typeGenerator.compileType(e);
         _builder.append(_compileType, "");
         _builder.append("(");
-        PureAdtValue _value = ((DataValue) e).getValue();
+        Expression _value = ((DataValue) e).getValue();
         PureData _type = ((DataValue) e).getType();
         ValueType _content = _type.getContent();
         Object _compileAdtValue = this.compileAdtValue(_value, _content);
         _builder.append(_compileAdtValue, "");
-        _builder.append(");");
-        return _builder.toString();
+        _builder.append(")");
+        _switchResult = _builder;
       }
     }
     if (!_matched) {
@@ -141,10 +141,61 @@ public class ValueGenerator {
         return this.compile(((PureFunctionType)e));
       }
     }
-    return null;
+    if (!_matched) {
+      if (e instanceof PureSumValue) {
+        _matched=true;
+        Expression _sumAdtElement1 = ((PureSumValue)e).getSumAdtElement1();
+        boolean _equals = Objects.equal(_sumAdtElement1, null);
+        if (_equals) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Either.right(");
+          Expression _sumAdtElement2 = ((PureSumValue)e).getSumAdtElement2();
+          Object _compile = this.compile(_sumAdtElement2);
+          _builder.append(_compile, "");
+          _builder.append(")");
+          return _builder.toString();
+        }
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("Either.left(");
+        Expression _sumAdtElement1_1 = ((PureSumValue)e).getSumAdtElement1();
+        Object _compile_1 = this.compile(_sumAdtElement1_1);
+        _builder_1.append(_compile_1, "");
+        _builder_1.append(")");
+        return _builder_1.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureValueRef) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("PureValue.");
+        PureValue _value = ((PureValueRef)e).getValue();
+        String _name = _value.getName();
+        _builder.append(_name, "");
+        _builder.append("()");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureProdValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("P.p(");
+        Expression _prodAdtElement1 = ((PureProdValue)e).getProdAdtElement1();
+        Object _compile = this.compile(_prodAdtElement1);
+        _builder.append(_compile, "");
+        _builder.append(", ");
+        Expression _prodAdtElement2 = ((PureProdValue)e).getProdAdtElement2();
+        Object _compile_1 = this.compile(_prodAdtElement2);
+        _builder.append(_compile_1, "");
+        _builder.append(")");
+        _switchResult = _builder;
+      }
+    }
+    return _switchResult;
   }
   
-  public Object compileAdtValue(final PureAdtValue v, final Type d) {
+  public Object compileAdtValue(final Expression v, final Type d) {
     boolean _matched = false;
     if (v instanceof IntegerType) {
       _matched=true;
@@ -174,10 +225,10 @@ public class ValueGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("new ");
-        Object _compileType = this.typeGenerator.compileType(((Expression)v));
+        Object _compileType = this.typeGenerator.compileType(v);
         _builder.append(_compileType, "");
         _builder.append("(");
-        PureAdtValue _value = ((DataValue) v).getValue();
+        Expression _value = ((DataValue) v).getValue();
         PureData _type = ((DataValue) v).getType();
         ValueType _content = _type.getContent();
         Object _compileAdtValue = this.compileAdtValue(_value, _content);
@@ -189,12 +240,12 @@ public class ValueGenerator {
     if (!_matched) {
       if (v instanceof PureSumValue) {
         _matched=true;
-        PureAdtValue _sumAdtElement1 = ((PureSumValue)v).getSumAdtElement1();
+        Expression _sumAdtElement1 = ((PureSumValue)v).getSumAdtElement1();
         boolean _equals = Objects.equal(_sumAdtElement1, null);
         if (_equals) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("Either.right(");
-          PureAdtValue _sumAdtElement2 = ((PureSumValue)v).getSumAdtElement2();
+          Expression _sumAdtElement2 = ((PureSumValue)v).getSumAdtElement2();
           ValueType _element2ValueTypeFromPureAlgebraicType = Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) d));
           Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _element2ValueTypeFromPureAlgebraicType);
           _builder.append(_compileAdtValue, "");
@@ -203,7 +254,7 @@ public class ValueGenerator {
         }
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("Either.left(");
-        PureAdtValue _sumAdtElement1_1 = ((PureSumValue)v).getSumAdtElement1();
+        Expression _sumAdtElement1_1 = ((PureSumValue)v).getSumAdtElement1();
         ValueType _pureAdtElement1 = ((PureAlgebraicType) d).getPureAdtElement1();
         Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _pureAdtElement1);
         _builder_1.append(_compileAdtValue_1, "");
@@ -216,12 +267,12 @@ public class ValueGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("P.p(");
-        PureAdtValue _prodAdtElement1 = ((PureProdValue)v).getProdAdtElement1();
+        Expression _prodAdtElement1 = ((PureProdValue)v).getProdAdtElement1();
         ValueType _pureAdtElement1 = ((PureAlgebraicType) d).getPureAdtElement1();
         Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _pureAdtElement1);
         _builder.append(_compileAdtValue, "");
         _builder.append(",");
-        PureAdtValue _prodAdtElement2 = ((PureProdValue)v).getProdAdtElement2();
+        Expression _prodAdtElement2 = ((PureProdValue)v).getProdAdtElement2();
         ValueType _element2ValueTypeFromPureAlgebraicType = Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) d));
         Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _element2ValueTypeFromPureAlgebraicType);
         _builder.append(_compileAdtValue_1, "");
@@ -264,7 +315,7 @@ public class ValueGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       if (((pft.getValue().getFunctionBody() instanceof CompositionFunctionBodyPure) && (!Objects.equal(pft.getValue().getArg(), null)))) {
-        _builder.append("return new F<");
+        _builder.append("new F<");
         PureFunctionDefinition _value = pft.getValue();
         Argument _arg = _value.getArg();
         ValueType _type = _arg.getType();
@@ -277,68 +328,69 @@ public class ValueGenerator {
         _builder.append(_compile_1, "");
         _builder.append(">() {");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t\t\t");
+        _builder.append("\t\t");
         _builder.append("@Override");
         _builder.newLine();
-        _builder.append("\t\t\t");
+        _builder.append("\t\t");
         _builder.append("public ");
         PureFunctionDefinition _value_2 = pft.getValue();
         ValueType _pureFunctionDefinition_1 = GetReturnType.pureFunctionDefinition(_value_2);
         Object _compile_2 = this.typeGenerator.compile(_pureFunctionDefinition_1);
-        _builder.append(_compile_2, "\t\t\t");
+        _builder.append(_compile_2, "\t\t");
         _builder.append(" f(");
         PureFunctionDefinition _value_3 = pft.getValue();
         Argument _arg_1 = _value_3.getArg();
         ValueType _type_1 = _arg_1.getType();
         Object _compile_3 = this.typeGenerator.compile(_type_1);
-        _builder.append(_compile_3, "\t\t\t");
+        _builder.append(_compile_3, "\t\t");
         _builder.append(" ");
         PureFunctionDefinition _value_4 = pft.getValue();
         Argument _arg_2 = _value_4.getArg();
         String _name = _arg_2.getName();
-        _builder.append(_name, "\t\t\t");
+        _builder.append(_name, "\t\t");
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t\t\t\t");
+        _builder.append("\t\t\t ");
+        _builder.append("return ");
         PureFunctionDefinition _value_5 = pft.getValue();
         FunctionBodyPure _functionBody = _value_5.getFunctionBody();
         PureFunctionDefinition _value_6 = pft.getValue();
         Argument _arg_3 = _value_6.getArg();
         String _name_1 = _arg_3.getName();
         String _compile_4 = this.pureFunctionGenerator.compile(_functionBody, _name_1, true);
-        _builder.append(_compile_4, "\t\t\t\t");
+        _builder.append(_compile_4, "\t\t\t ");
+        _builder.append(";");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t\t\t");
+        _builder.append("\t\t");
         _builder.append("}");
         _builder.newLine();
-        _builder.append("\t");
-        _builder.append("};");
+        _builder.append("}");
         _builder.newLine();
       } else {
         PureFunctionDefinition _value_7 = pft.getValue();
         FunctionBodyPure _functionBody_1 = _value_7.getFunctionBody();
         if ((_functionBody_1 instanceof EmptyFunctionBody)) {
-          _builder.append("return new F<() {");
+          _builder.append("new F<() {");
           _builder.newLine();
-          _builder.append("\t\t\t\t");
+          _builder.append("\t\t\t");
           _builder.append("@Override");
           _builder.newLine();
-          _builder.append("\t\t\t\t");
+          _builder.append("\t\t\t");
           _builder.append("public Object f(Object ");
           PureFunctionDefinition _value_8 = pft.getValue();
           Argument _arg_4 = _value_8.getArg();
           String _name_2 = _arg_4.getName();
-          _builder.append(_name_2, "\t\t\t\t");
+          _builder.append(_name_2, "\t\t\t");
           _builder.append(") {");
           _builder.newLineIfNotEmpty();
-          _builder.append("\t\t\t\t\t");
+          _builder.append("\t\t\t\t");
           _builder.append("throw new UnsupportedOperationException(\"TODO\");");
           _builder.newLine();
-          _builder.append("\t\t\t\t");
+          _builder.append("\t\t\t");
           _builder.append("}");
           _builder.newLine();
-          _builder.append("\t\t");
-          _builder.append("};");
+          _builder.append("\t");
+          _builder.append("}");
           _builder.newLine();
         } else {
           PureFunctionDefinition _value_9 = pft.getValue();

@@ -36,7 +36,6 @@ import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
-import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
@@ -65,7 +64,7 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class Checks {
-  public static boolean DataAndValue(final PureAdtValue value, final ValueType type) {
+  public static boolean DataAndValue(final Expression value, final ValueType type) {
     boolean _switchResult = false;
     boolean _matched = false;
     if (type instanceof IntegerType) {
@@ -470,9 +469,9 @@ public class Checks {
         _matched=true;
         EObject _innerValue = value.getInnerValue();
         boolean _matched_1 = false;
-        if (_innerValue instanceof PureAdtValue) {
+        if (_innerValue instanceof Expression) {
           _matched_1=true;
-          return ((((IOType) type).getType() instanceof ValueType) && Checks.DataAndValue(((PureAdtValue) value.getInnerValue()), ((ValueType) ((IOType) type).getType())));
+          return ((((IOType) type).getType() instanceof ValueType) && Checks.DataAndValue(((Expression) value.getInnerValue()), ((ValueType) ((IOType) type).getType())));
         }
         if (!_matched_1) {
           if (_innerValue instanceof EffectFullAdtValue) {

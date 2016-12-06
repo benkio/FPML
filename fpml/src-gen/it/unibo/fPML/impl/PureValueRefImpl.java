@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PureValueRefImpl extends PureAdtValueImpl implements PureValueRef
+public class PureValueRefImpl extends ExpressionImpl implements PureValueRef
 {
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' reference.

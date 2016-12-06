@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 
 class Checks {
 	
-	def static boolean DataAndValue(PureAdtValue value, ValueType type) {
+	def static boolean DataAndValue(Expression value, ValueType type) {
 		switch type {
 			IntegerType: return value instanceof IntegerType || 
 						       (value instanceof PureValueRef &&
@@ -187,7 +187,6 @@ class Checks {
 	
 	def static functionArgTypeEffectFull(it.unibo.fPML.EffectFullFunctionDefinition definition) {
 		return functionBodyEffectFull(definition.functionBody, definition.arg.type)
-		
 	}
 	
 	def static boolean effectFullLambda(EffectFullLambda lambda) {
@@ -236,7 +235,7 @@ class Checks {
 			}
 			IOType: {
 				switch value.innerValue {
-					PureAdtValue: return ((type as IOType).type instanceof ValueType) && DataAndValue(value.innerValue as PureAdtValue, (type as IOType).type as ValueType)
+					Expression: return ((type as IOType).type instanceof ValueType) && DataAndValue(value.innerValue as Expression, (type as IOType).type as ValueType)
 					EffectFullAdtValue: return ((type as IOType).type instanceof EffectFullType) && effectFullDataAndValue(value.innerValue as EffectFullAdtValue, (type as IOType).type as EffectFullType)					
 					default: return false
 				}

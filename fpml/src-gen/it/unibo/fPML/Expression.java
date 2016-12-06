@@ -14,6 +14,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface Expression extends EffectFullExpression, PureAdtValue
+public interface Expression extends EffectFullExpression
 {
 } // Expression

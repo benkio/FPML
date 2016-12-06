@@ -19,7 +19,6 @@ import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.IOType;
-import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.Type;
 import it.unibo.generator.EffectFullFunctionGenerator;
@@ -109,7 +108,7 @@ public class EffectFullValueGenerator {
     boolean _matched = false;
     if (e instanceof Expression) {
       _matched=true;
-      CharSequence _compile = this.valueGenerator.compile(((Expression)e));
+      Object _compile = this.valueGenerator.compile(((Expression)e));
       String _plus = ("IOFunctions.unit(" + _compile);
       return (_plus + ")");
     }
@@ -152,12 +151,12 @@ public class EffectFullValueGenerator {
   public Object compileAdtValue(final EffectFullAdtValue v, final EffectFullType d) {
     CharSequence _switchResult = null;
     boolean _matched = false;
-    if (v instanceof PureAdtValue) {
+    if (v instanceof Expression) {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("IOFunctions.unit(");
       Type _type = ((IOType) d).getType();
-      Object _compileAdtValue = this.valueGenerator.compileAdtValue(((PureAdtValue)v), _type);
+      Object _compileAdtValue = this.valueGenerator.compileAdtValue(((Expression)v), _type);
       _builder.append(_compileAdtValue, "");
       _builder.append(")");
       _switchResult = _builder;
@@ -254,13 +253,13 @@ public class EffectFullValueGenerator {
       CharSequence _switchResult_1 = null;
       EObject _innerValue = v.getInnerValue();
       boolean _matched_1 = false;
-      if (_innerValue instanceof PureAdtValue) {
+      if (_innerValue instanceof Expression) {
         _matched_1=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IOFunctions.unit(");
         EObject _innerValue_1 = v.getInnerValue();
         Type _type = ((IOType) d).getType();
-        Object _compileAdtValue = this.valueGenerator.compileAdtValue(((PureAdtValue) _innerValue_1), _type);
+        Object _compileAdtValue = this.valueGenerator.compileAdtValue(((Expression) _innerValue_1), _type);
         _builder.append(_compileAdtValue, "");
         _builder.append(")");
         _switchResult_1 = _builder;

@@ -352,7 +352,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseExpression(integerType);
         if (result == null) result = caseType(integerType);
         if (result == null) result = caseEffectFullExpression(integerType);
-        if (result == null) result = casePureAdtValue(integerType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -364,7 +363,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseExpression(stringType);
         if (result == null) result = caseType(stringType);
         if (result == null) result = caseEffectFullExpression(stringType);
-        if (result == null) result = casePureAdtValue(stringType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -376,7 +374,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseExpression(unitType);
         if (result == null) result = caseType(unitType);
         if (result == null) result = caseEffectFullExpression(unitType);
-        if (result == null) result = casePureAdtValue(unitType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -388,7 +385,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseExpression(dataType);
         if (result == null) result = caseType(dataType);
         if (result == null) result = caseEffectFullExpression(dataType);
-        if (result == null) result = casePureAdtValue(dataType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -411,7 +407,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseExpression(pureFunctionType);
         if (result == null) result = caseType(pureFunctionType);
         if (result == null) result = caseEffectFullExpression(pureFunctionType);
-        if (result == null) result = casePureAdtValue(pureFunctionType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -492,7 +487,6 @@ public class FPMLSwitch<T> extends Switch<T>
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
         if (result == null) result = caseEffectFullExpression(expression);
-        if (result == null) result = casePureAdtValue(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -500,14 +494,8 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         PureValueRef pureValueRef = (PureValueRef)theEObject;
         T result = casePureValueRef(pureValueRef);
-        if (result == null) result = casePureAdtValue(pureValueRef);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case FPMLPackage.PURE_ADT_VALUE:
-      {
-        PureAdtValue pureAdtValue = (PureAdtValue)theEObject;
-        T result = casePureAdtValue(pureAdtValue);
+        if (result == null) result = caseExpression(pureValueRef);
+        if (result == null) result = caseEffectFullExpression(pureValueRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -515,7 +503,8 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         PureProdValue pureProdValue = (PureProdValue)theEObject;
         T result = casePureProdValue(pureProdValue);
-        if (result == null) result = casePureAdtValue(pureProdValue);
+        if (result == null) result = caseExpression(pureProdValue);
+        if (result == null) result = caseEffectFullExpression(pureProdValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -523,7 +512,8 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         PureSumValue pureSumValue = (PureSumValue)theEObject;
         T result = casePureSumValue(pureSumValue);
-        if (result == null) result = casePureAdtValue(pureSumValue);
+        if (result == null) result = caseExpression(pureSumValue);
+        if (result == null) result = caseEffectFullExpression(pureSumValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -833,7 +823,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseExpression(dataValue);
         if (result == null) result = caseType(dataValue);
         if (result == null) result = caseEffectFullExpression(dataValue);
-        if (result == null) result = casePureAdtValue(dataValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1692,22 +1681,6 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePureValueRef(PureValueRef object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pure Adt Value</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pure Adt Value</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePureAdtValue(PureAdtValue object)
   {
     return null;
   }

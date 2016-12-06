@@ -223,8 +223,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.INTEGER_TYPE:
 				if (rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getExpressionRule()
-						|| rule == grammarAccess.getIntValueRule()
-						|| rule == grammarAccess.getPureAdtValueRule()) {
+						|| rule == grammarAccess.getIntValueRule()) {
 					sequence_IntValue(context, (IntegerType) semanticObject); 
 					return; 
 				}
@@ -289,8 +288,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.PURE_FUNCTION_TYPE:
 				if (rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getExpressionRule()
-						|| rule == grammarAccess.getFunctionValueRule()
-						|| rule == grammarAccess.getPureAdtValueRule()) {
+						|| rule == grammarAccess.getFunctionValueRule()) {
 					sequence_FunctionValue(context, (PureFunctionType) semanticObject); 
 					return; 
 				}
@@ -343,8 +341,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getExpressionRule()
-						|| rule == grammarAccess.getStringValueRule()
-						|| rule == grammarAccess.getPureAdtValueRule()) {
+						|| rule == grammarAccess.getStringValueRule()) {
 					sequence_StringValue(context, (StringType) semanticObject); 
 					return; 
 				}
@@ -361,8 +358,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getUnitValueRule()
-						|| rule == grammarAccess.getExpressionRule()
-						|| rule == grammarAccess.getPureAdtValueRule()) {
+						|| rule == grammarAccess.getExpressionRule()) {
 					sequence_UnitValue(context, (UnitType) semanticObject); 
 					return; 
 				}
@@ -592,10 +588,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullExpression returns DataValue
 	 *     Expression returns DataValue
 	 *     DataValue returns DataValue
-	 *     PureAdtValue returns DataValue
 	 *
 	 * Constraint:
-	 *     (type=[PureData|ID] value=PureAdtValue)
+	 *     (type=[PureData|ID] value=Expression)
 	 */
 	protected void sequence_DataValue(ISerializationContext context, DataValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -606,7 +601,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getDataValueAccess().getTypePureDataIDTerminalRuleCall_1_0_1(), semanticObject.getType());
-		feeder.accept(grammarAccess.getDataValueAccess().getValuePureAdtValueParserRuleCall_3_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getDataValueAccess().getValueExpressionParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -616,7 +611,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullAdtValue returns EffectFullAdtValue
 	 *
 	 * Constraint:
-	 *     (innerValue=PureAdtValue | innerValue=EffectFullAdtValue)
+	 *     (innerValue=Expression | innerValue=EffectFullAdtValue)
 	 */
 	protected void sequence_EffectFullAdtValue(ISerializationContext context, EffectFullAdtValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -990,7 +985,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullExpression returns PureFunctionType
 	 *     Expression returns PureFunctionType
 	 *     FunctionValue returns PureFunctionType
-	 *     PureAdtValue returns PureFunctionType
 	 *
 	 * Constraint:
 	 *     value=PureLambda
@@ -1065,7 +1059,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullExpression returns IntegerType
 	 *     Expression returns IntegerType
 	 *     IntValue returns IntegerType
-	 *     PureAdtValue returns IntegerType
 	 *
 	 * Constraint:
 	 *     value=INT
@@ -1442,11 +1435,12 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     PureAdtValue returns PureProdValue
+	 *     EffectFullExpression returns PureProdValue
+	 *     Expression returns PureProdValue
 	 *     PureProdValue returns PureProdValue
 	 *
 	 * Constraint:
-	 *     (prodAdtElement1=PureAdtValue prodAdtElement2=PureAdtValue)
+	 *     (prodAdtElement1=Expression prodAdtElement2=Expression)
 	 */
 	protected void sequence_PureProdValue(ISerializationContext context, PureProdValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -1456,8 +1450,8 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_PROD_VALUE__PROD_ADT_ELEMENT2));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPureProdValueAccess().getProdAdtElement1PureAdtValueParserRuleCall_1_0(), semanticObject.getProdAdtElement1());
-		feeder.accept(grammarAccess.getPureProdValueAccess().getProdAdtElement2PureAdtValueParserRuleCall_3_0(), semanticObject.getProdAdtElement2());
+		feeder.accept(grammarAccess.getPureProdValueAccess().getProdAdtElement1ExpressionParserRuleCall_1_0(), semanticObject.getProdAdtElement1());
+		feeder.accept(grammarAccess.getPureProdValueAccess().getProdAdtElement2ExpressionParserRuleCall_3_0(), semanticObject.getProdAdtElement2());
 		feeder.finish();
 	}
 	
@@ -1482,11 +1476,12 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     PureAdtValue returns PureSumValue
+	 *     EffectFullExpression returns PureSumValue
+	 *     Expression returns PureSumValue
 	 *     PureSumValue returns PureSumValue
 	 *
 	 * Constraint:
-	 *     (sumAdtElement1=PureAdtValue | sumAdtElement2=PureAdtValue)
+	 *     (sumAdtElement1=Expression | sumAdtElement2=Expression)
 	 */
 	protected void sequence_PureSumValue(ISerializationContext context, PureSumValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1507,8 +1502,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     EffectFullExpression returns PureValueRef
+	 *     Expression returns PureValueRef
 	 *     PureValueRef returns PureValueRef
-	 *     PureAdtValue returns PureValueRef
 	 *
 	 * Constraint:
 	 *     value=[PureValue|ID]
@@ -1617,7 +1613,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullExpression returns StringType
 	 *     Expression returns StringType
 	 *     StringValue returns StringType
-	 *     PureAdtValue returns StringType
 	 *
 	 * Constraint:
 	 *     value=STRING
@@ -1675,7 +1670,6 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullExpression returns UnitType
 	 *     UnitValue returns UnitType
 	 *     Expression returns UnitType
-	 *     PureAdtValue returns UnitType
 	 *
 	 * Constraint:
 	 *     {UnitType}

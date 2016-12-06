@@ -3330,6 +3330,33 @@ ruleExpression returns [EObject current=null]
 			$current = $this_UnitValue_4.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getExpressionAccess().getPureValueRefParserRuleCall_5());
+		}
+		this_PureValueRef_5=rulePureValueRef
+		{
+			$current = $this_PureValueRef_5.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getExpressionAccess().getPureSumValueParserRuleCall_6());
+		}
+		this_PureSumValue_6=rulePureSumValue
+		{
+			$current = $this_PureSumValue_6.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getExpressionAccess().getPureProdValueParserRuleCall_7());
+		}
+		this_PureProdValue_7=rulePureProdValue
+		{
+			$current = $this_PureProdValue_7.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -3500,9 +3527,9 @@ ruleDataValue returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDataValueAccess().getValuePureAdtValueParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getDataValueAccess().getValueExpressionParserRuleCall_3_0());
 				}
-				lv_value_3_0=rulePureAdtValue
+				lv_value_3_0=ruleExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDataValueRule());
@@ -3511,7 +3538,7 @@ ruleDataValue returns [EObject current=null]
 						$current,
 						"value",
 						lv_value_3_0,
-						"it.unibo.FPML.PureAdtValue");
+						"it.unibo.FPML.Expression");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -3763,60 +3790,6 @@ rulePureLambda returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRulePureAdtValue
-entryRulePureAdtValue returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPureAdtValueRule()); }
-	iv_rulePureAdtValue=rulePureAdtValue
-	{ $current=$iv_rulePureAdtValue.current; }
-	EOF;
-
-// Rule PureAdtValue
-rulePureAdtValue returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getPureAdtValueAccess().getExpressionParserRuleCall_0());
-		}
-		this_Expression_0=ruleExpression
-		{
-			$current = $this_Expression_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getPureAdtValueAccess().getPureValueRefParserRuleCall_1());
-		}
-		this_PureValueRef_1=rulePureValueRef
-		{
-			$current = $this_PureValueRef_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getPureAdtValueAccess().getPureSumValueParserRuleCall_2());
-		}
-		this_PureSumValue_2=rulePureSumValue
-		{
-			$current = $this_PureSumValue_2.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getPureAdtValueAccess().getPureProdValueParserRuleCall_3());
-		}
-		this_PureProdValue_3=rulePureProdValue
-		{
-			$current = $this_PureProdValue_3.current;
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
 // Entry rule entryRulePureProdValue
 entryRulePureProdValue returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getPureProdValueRule()); }
@@ -3840,9 +3813,9 @@ rulePureProdValue returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPureProdValueAccess().getProdAdtElement1PureAdtValueParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getPureProdValueAccess().getProdAdtElement1ExpressionParserRuleCall_1_0());
 				}
-				lv_prodAdtElement1_1_0=rulePureAdtValue
+				lv_prodAdtElement1_1_0=ruleExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPureProdValueRule());
@@ -3851,7 +3824,7 @@ rulePureProdValue returns [EObject current=null]
 						$current,
 						"prodAdtElement1",
 						lv_prodAdtElement1_1_0,
-						"it.unibo.FPML.PureAdtValue");
+						"it.unibo.FPML.Expression");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -3863,9 +3836,9 @@ rulePureProdValue returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPureProdValueAccess().getProdAdtElement2PureAdtValueParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getPureProdValueAccess().getProdAdtElement2ExpressionParserRuleCall_3_0());
 				}
-				lv_prodAdtElement2_3_0=rulePureAdtValue
+				lv_prodAdtElement2_3_0=ruleExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPureProdValueRule());
@@ -3874,7 +3847,7 @@ rulePureProdValue returns [EObject current=null]
 						$current,
 						"prodAdtElement2",
 						lv_prodAdtElement2_3_0,
-						"it.unibo.FPML.PureAdtValue");
+						"it.unibo.FPML.Expression");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -3914,9 +3887,9 @@ rulePureSumValue returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPureSumValueAccess().getSumAdtElement1PureAdtValueParserRuleCall_0_2_0());
+						newCompositeNode(grammarAccess.getPureSumValueAccess().getSumAdtElement1ExpressionParserRuleCall_0_2_0());
 					}
-					lv_sumAdtElement1_2_0=rulePureAdtValue
+					lv_sumAdtElement1_2_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPureSumValueRule());
@@ -3925,7 +3898,7 @@ rulePureSumValue returns [EObject current=null]
 							$current,
 							"sumAdtElement1",
 							lv_sumAdtElement1_2_0,
-							"it.unibo.FPML.PureAdtValue");
+							"it.unibo.FPML.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -3948,9 +3921,9 @@ rulePureSumValue returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPureSumValueAccess().getSumAdtElement2PureAdtValueParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getPureSumValueAccess().getSumAdtElement2ExpressionParserRuleCall_1_2_0());
 					}
-					lv_sumAdtElement2_6_0=rulePureAdtValue
+					lv_sumAdtElement2_6_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPureSumValueRule());
@@ -3959,7 +3932,7 @@ rulePureSumValue returns [EObject current=null]
 							$current,
 							"sumAdtElement2",
 							lv_sumAdtElement2_6_0,
-							"it.unibo.FPML.PureAdtValue");
+							"it.unibo.FPML.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -4000,9 +3973,9 @@ ruleEffectFullAdtValue returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getInnerValuePureAdtValueParserRuleCall_0_2_0());
+						newCompositeNode(grammarAccess.getEffectFullAdtValueAccess().getInnerValueExpressionParserRuleCall_0_2_0());
 					}
-					lv_innerValue_2_0=rulePureAdtValue
+					lv_innerValue_2_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getEffectFullAdtValueRule());
@@ -4011,7 +3984,7 @@ ruleEffectFullAdtValue returns [EObject current=null]
 							$current,
 							"innerValue",
 							lv_innerValue_2_0,
-							"it.unibo.FPML.PureAdtValue");
+							"it.unibo.FPML.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)

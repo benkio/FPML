@@ -3,8 +3,8 @@
  */
 package it.unibo.fPML.impl;
 
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.PureProdValue;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
+public class PureProdValueImpl extends ExpressionImpl implements PureProdValue
 {
   /**
    * The cached value of the '{@link #getProdAdtElement1() <em>Prod Adt Element1</em>}' containment reference.
@@ -39,7 +39,7 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
    * @generated
    * @ordered
    */
-  protected PureAdtValue prodAdtElement1;
+  protected Expression prodAdtElement1;
 
   /**
    * The cached value of the '{@link #getProdAdtElement2() <em>Prod Adt Element2</em>}' containment reference.
@@ -49,7 +49,7 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
    * @generated
    * @ordered
    */
-  protected PureAdtValue prodAdtElement2;
+  protected Expression prodAdtElement2;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureAdtValue getProdAdtElement1()
+  public Expression getProdAdtElement1()
   {
     return prodAdtElement1;
   }
@@ -87,9 +87,9 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProdAdtElement1(PureAdtValue newProdAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetProdAdtElement1(Expression newProdAdtElement1, NotificationChain msgs)
   {
-    PureAdtValue oldProdAdtElement1 = prodAdtElement1;
+    Expression oldProdAdtElement1 = prodAdtElement1;
     prodAdtElement1 = newProdAdtElement1;
     if (eNotificationRequired())
     {
@@ -104,7 +104,7 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProdAdtElement1(PureAdtValue newProdAdtElement1)
+  public void setProdAdtElement1(Expression newProdAdtElement1)
   {
     if (newProdAdtElement1 != prodAdtElement1)
     {
@@ -125,7 +125,7 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureAdtValue getProdAdtElement2()
+  public Expression getProdAdtElement2()
   {
     return prodAdtElement2;
   }
@@ -135,9 +135,9 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProdAdtElement2(PureAdtValue newProdAdtElement2, NotificationChain msgs)
+  public NotificationChain basicSetProdAdtElement2(Expression newProdAdtElement2, NotificationChain msgs)
   {
-    PureAdtValue oldProdAdtElement2 = prodAdtElement2;
+    Expression oldProdAdtElement2 = prodAdtElement2;
     prodAdtElement2 = newProdAdtElement2;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProdAdtElement2(PureAdtValue newProdAdtElement2)
+  public void setProdAdtElement2(Expression newProdAdtElement2)
   {
     if (newProdAdtElement2 != prodAdtElement2)
     {
@@ -215,10 +215,10 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
     switch (featureID)
     {
       case FPMLPackage.PURE_PROD_VALUE__PROD_ADT_ELEMENT1:
-        setProdAdtElement1((PureAdtValue)newValue);
+        setProdAdtElement1((Expression)newValue);
         return;
       case FPMLPackage.PURE_PROD_VALUE__PROD_ADT_ELEMENT2:
-        setProdAdtElement2((PureAdtValue)newValue);
+        setProdAdtElement2((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,10 +235,10 @@ public class PureProdValueImpl extends PureAdtValueImpl implements PureProdValue
     switch (featureID)
     {
       case FPMLPackage.PURE_PROD_VALUE__PROD_ADT_ELEMENT1:
-        setProdAdtElement1((PureAdtValue)null);
+        setProdAdtElement1((Expression)null);
         return;
       case FPMLPackage.PURE_PROD_VALUE__PROD_ADT_ELEMENT2:
-        setProdAdtElement2((PureAdtValue)null);
+        setProdAdtElement2((Expression)null);
         return;
     }
     super.eUnset(featureID);

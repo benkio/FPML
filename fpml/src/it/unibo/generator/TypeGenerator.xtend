@@ -23,6 +23,9 @@ import it.unibo.validation.utilitiesFunctions.Others
 import it.unibo.fPML.EffectFullAlgebraicType
 import it.unibo.fPML.EffectFullSumTypeFactor
 import it.unibo.fPML.RecursiveEffectFullExpression
+import it.unibo.fPML.PureValueRef
+import it.unibo.fPML.PureSumValue
+import it.unibo.fPML.PureProdValue
 
 class TypeGenerator {
 	
@@ -62,12 +65,15 @@ class TypeGenerator {
 	
 	def compileType(Expression e) {
 		switch e {
-			UnitType: return '''Unit'''
-			IntegerType: return "int"
+			IntegerType: return "Integer"
 			StringType: return "String"
 			DataType: return e.type.name
 			PureFunctionType: 	if (e.value.arg != null) return '''F<«e.value.arg.type.compile», «GetReturnType.function(e.value).compile»>'''
 								else return GetReturnType.function(e.value).compile
+			PureValueRef: return '''«compileType(e.value.value)»'''
+			PureSumValue: return '''Either<«e.sumAdtElement1.compileType», «e.sumAdtElement2.compileType»>'''
+			PureProdValue: return '''P2<«e.prodAdtElement1.compileType», «e.prodAdtElement2.compileType»>'''
+			default: return '''Unit'''
 		}
 	}
 	

@@ -18,7 +18,11 @@ import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureSumTypeFactor;
+import it.unibo.fPML.PureSumValue;
+import it.unibo.fPML.PureValue;
+import it.unibo.fPML.PureValueRef;
 import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Type;
@@ -215,17 +219,9 @@ public class TypeGenerator {
   
   public Object compileType(final Expression e) {
     boolean _matched = false;
-    if (e instanceof UnitType) {
+    if (e instanceof IntegerType) {
       _matched=true;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Unit");
-      return _builder.toString();
-    }
-    if (!_matched) {
-      if (e instanceof IntegerType) {
-        _matched=true;
-        return "int";
-      }
+      return "Integer";
     }
     if (!_matched) {
       if (e instanceof StringType) {
@@ -268,7 +264,52 @@ public class TypeGenerator {
         }
       }
     }
-    return null;
+    if (!_matched) {
+      if (e instanceof PureValueRef) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        PureValue _value = ((PureValueRef)e).getValue();
+        Expression _value_1 = _value.getValue();
+        Object _compileType = this.compileType(_value_1);
+        _builder.append(_compileType, "");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureSumValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Either<");
+        Expression _sumAdtElement1 = ((PureSumValue)e).getSumAdtElement1();
+        Object _compileType = this.compileType(_sumAdtElement1);
+        _builder.append(_compileType, "");
+        _builder.append(", ");
+        Expression _sumAdtElement2 = ((PureSumValue)e).getSumAdtElement2();
+        Object _compileType_1 = this.compileType(_sumAdtElement2);
+        _builder.append(_compileType_1, "");
+        _builder.append(">");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureProdValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("P2<");
+        Expression _prodAdtElement1 = ((PureProdValue)e).getProdAdtElement1();
+        Object _compileType = this.compileType(_prodAdtElement1);
+        _builder.append(_compileType, "");
+        _builder.append(", ");
+        Expression _prodAdtElement2 = ((PureProdValue)e).getProdAdtElement2();
+        Object _compileType_1 = this.compileType(_prodAdtElement2);
+        _builder.append(_compileType_1, "");
+        _builder.append(">");
+        return _builder.toString();
+      }
+    }
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Unit");
+    return _builder.toString();
   }
   
   public Object compileType(final EffectFullExpression e) {

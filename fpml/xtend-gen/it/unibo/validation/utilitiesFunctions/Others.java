@@ -166,4 +166,24 @@ public class Others {
     arg.setType(_createVoidType);
     return arg;
   }
+  
+  public static PureAlgebraicType createPureAlgebraicType(final ValueType vt1, final ValueType vt2, final boolean isSumType) {
+    PureAlgebraicType _xblockexpression = null;
+    {
+      final PureAlgebraicType pat = FPMLFactory.eINSTANCE.createPureAlgebraicType();
+      if (isSumType) {
+        final PureSumTypeFactor factor = FPMLFactory.eINSTANCE.createPureSumTypeFactor();
+        factor.setAdtElement(vt2);
+        pat.setPureAdtElement2(factor);
+        pat.setPureAdtElement1(vt1);
+      } else {
+        final PureProdTypeFactor factor_1 = FPMLFactory.eINSTANCE.createPureProdTypeFactor();
+        factor_1.setAdtElement(vt2);
+        pat.setPureAdtElement2(factor_1);
+        pat.setPureAdtElement1(vt1);
+      }
+      _xblockexpression = pat;
+    }
+    return _xblockexpression;
+  }
 }

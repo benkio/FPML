@@ -39,6 +39,7 @@ import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitiveEffectFullValue;
+import it.unibo.fPML.PrimitiveFunction;
 import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PrimitiveRandom;
@@ -49,7 +50,10 @@ import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.PureProdValue;
+import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
+import it.unibo.fPML.PureValueRef;
 import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.RightPair;
 import it.unibo.fPML.RightPairIO;
@@ -181,6 +185,34 @@ public class GetReturnType {
       if (expression instanceof UnitType) {
         _matched=true;
         _switchResult = ((ValueType)expression);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof PureValueRef) {
+        _matched=true;
+        PureValue _value = ((PureValueRef)expression).getValue();
+        Expression _value_1 = _value.getValue();
+        _switchResult = GetReturnType.expression(_value_1);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof PureSumValue) {
+        _matched=true;
+        Expression _sumAdtElement1 = ((PureSumValue)expression).getSumAdtElement1();
+        ValueType _expression = GetReturnType.expression(_sumAdtElement1);
+        Expression _sumAdtElement2 = ((PureSumValue)expression).getSumAdtElement2();
+        ValueType _expression_1 = GetReturnType.expression(_sumAdtElement2);
+        _switchResult = Others.createPureAlgebraicType(_expression, _expression_1, true);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof PureProdValue) {
+        _matched=true;
+        Expression _prodAdtElement1 = ((PureProdValue)expression).getProdAdtElement1();
+        ValueType _expression = GetReturnType.expression(_prodAdtElement1);
+        Expression _prodAdtElement2 = ((PureProdValue)expression).getProdAdtElement2();
+        ValueType _expression_1 = GetReturnType.expression(_prodAdtElement2);
+        _switchResult = Others.createPureAlgebraicType(_expression, _expression_1, false);
       }
     }
     return _switchResult;
@@ -517,7 +549,7 @@ public class GetReturnType {
     return _switchResult;
   }
   
-  public static Type pritiveFunction(final Object function) {
+  public static Type pritiveFunction(final PrimitiveFunction function) {
     Type _switchResult = null;
     boolean _matched = false;
     if (function instanceof PrimitiveEffectFullFunction) {

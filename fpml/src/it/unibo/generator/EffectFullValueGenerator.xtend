@@ -46,7 +46,7 @@ class EffectFullValueGenerator {
 	
 	def compileAdtValue(EffectFullAdtValue v, EffectFullType d) {
 		switch v {
-			PureAdtValue: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v, (d as IOType).type)»)'''
+			Expression: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v, (d as IOType).type)»)'''
 			EffectFullSumValue: {
 				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d as EffectFullAlgebraicType))»)'''
 				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as EffectFullAlgebraicType).effectFullAdtElement1))»)'''
@@ -62,7 +62,7 @@ class EffectFullValueGenerator {
 			EffectFullDataValue: return compile(v as EffectFullExpression)
 			default: {
 				switch v.innerValue {
-					PureAdtValue: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v.innerValue as PureAdtValue, (d as IOType).type)»)'''
+					Expression: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v.innerValue as Expression, (d as IOType).type)»)'''
 					EffectFullAdtValue: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullAdtValue, (d as IOType).type as EffectFullType)»)'''		
 				} 
 			}

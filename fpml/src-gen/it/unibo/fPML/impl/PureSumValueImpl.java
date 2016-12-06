@@ -3,8 +3,8 @@
  */
 package it.unibo.fPML.impl;
 
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PureAdtValue;
 import it.unibo.fPML.PureSumValue;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
+public class PureSumValueImpl extends ExpressionImpl implements PureSumValue
 {
   /**
    * The cached value of the '{@link #getSumAdtElement1() <em>Sum Adt Element1</em>}' containment reference.
@@ -39,7 +39,7 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
    * @generated
    * @ordered
    */
-  protected PureAdtValue sumAdtElement1;
+  protected Expression sumAdtElement1;
 
   /**
    * The cached value of the '{@link #getSumAdtElement2() <em>Sum Adt Element2</em>}' containment reference.
@@ -49,7 +49,7 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
    * @generated
    * @ordered
    */
-  protected PureAdtValue sumAdtElement2;
+  protected Expression sumAdtElement2;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureAdtValue getSumAdtElement1()
+  public Expression getSumAdtElement1()
   {
     return sumAdtElement1;
   }
@@ -87,9 +87,9 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSumAdtElement1(PureAdtValue newSumAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetSumAdtElement1(Expression newSumAdtElement1, NotificationChain msgs)
   {
-    PureAdtValue oldSumAdtElement1 = sumAdtElement1;
+    Expression oldSumAdtElement1 = sumAdtElement1;
     sumAdtElement1 = newSumAdtElement1;
     if (eNotificationRequired())
     {
@@ -104,7 +104,7 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSumAdtElement1(PureAdtValue newSumAdtElement1)
+  public void setSumAdtElement1(Expression newSumAdtElement1)
   {
     if (newSumAdtElement1 != sumAdtElement1)
     {
@@ -125,7 +125,7 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureAdtValue getSumAdtElement2()
+  public Expression getSumAdtElement2()
   {
     return sumAdtElement2;
   }
@@ -135,9 +135,9 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSumAdtElement2(PureAdtValue newSumAdtElement2, NotificationChain msgs)
+  public NotificationChain basicSetSumAdtElement2(Expression newSumAdtElement2, NotificationChain msgs)
   {
-    PureAdtValue oldSumAdtElement2 = sumAdtElement2;
+    Expression oldSumAdtElement2 = sumAdtElement2;
     sumAdtElement2 = newSumAdtElement2;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSumAdtElement2(PureAdtValue newSumAdtElement2)
+  public void setSumAdtElement2(Expression newSumAdtElement2)
   {
     if (newSumAdtElement2 != sumAdtElement2)
     {
@@ -215,10 +215,10 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
     switch (featureID)
     {
       case FPMLPackage.PURE_SUM_VALUE__SUM_ADT_ELEMENT1:
-        setSumAdtElement1((PureAdtValue)newValue);
+        setSumAdtElement1((Expression)newValue);
         return;
       case FPMLPackage.PURE_SUM_VALUE__SUM_ADT_ELEMENT2:
-        setSumAdtElement2((PureAdtValue)newValue);
+        setSumAdtElement2((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,10 +235,10 @@ public class PureSumValueImpl extends PureAdtValueImpl implements PureSumValue
     switch (featureID)
     {
       case FPMLPackage.PURE_SUM_VALUE__SUM_ADT_ELEMENT1:
-        setSumAdtElement1((PureAdtValue)null);
+        setSumAdtElement1((Expression)null);
         return;
       case FPMLPackage.PURE_SUM_VALUE__SUM_ADT_ELEMENT2:
-        setSumAdtElement2((PureAdtValue)null);
+        setSumAdtElement2((Expression)null);
         return;
     }
     super.eUnset(featureID);

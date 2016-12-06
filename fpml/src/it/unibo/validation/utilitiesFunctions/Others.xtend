@@ -72,4 +72,20 @@ class Others {
 		arg.type = FPMLFactory.eINSTANCE.createVoidType
 		return arg
 	}
+	
+	def static PureAlgebraicType createPureAlgebraicType(ValueType vt1, ValueType vt2, boolean isSumType) {
+		val PureAlgebraicType pat = FPMLFactory.eINSTANCE.createPureAlgebraicType;
+		if (isSumType) {
+			val factor = FPMLFactory.eINSTANCE.createPureSumTypeFactor
+			factor.adtElement = vt2
+			pat.pureAdtElement2 =  factor
+			pat.pureAdtElement1 = vt1
+		}else { //is prod type
+			val factor = FPMLFactory.eINSTANCE.createPureProdTypeFactor
+			factor.adtElement = vt2
+			pat.pureAdtElement2 =  factor
+			pat.pureAdtElement1 = vt1
+		}
+		 pat
+	}
 }

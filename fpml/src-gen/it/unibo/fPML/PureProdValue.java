@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PureProdValue extends PureAdtValue
+public interface PureProdValue extends Expression
 {
   /**
    * Returns the value of the '<em><b>Prod Adt Element1</b></em>' containment reference.
@@ -32,12 +32,12 @@ public interface PureProdValue extends PureAdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prod Adt Element1</em>' containment reference.
-   * @see #setProdAdtElement1(PureAdtValue)
+   * @see #setProdAdtElement1(Expression)
    * @see it.unibo.fPML.FPMLPackage#getPureProdValue_ProdAdtElement1()
    * @model containment="true"
    * @generated
    */
-  PureAdtValue getProdAdtElement1();
+  Expression getProdAdtElement1();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureProdValue#getProdAdtElement1 <em>Prod Adt Element1</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface PureProdValue extends PureAdtValue
    * @see #getProdAdtElement1()
    * @generated
    */
-  void setProdAdtElement1(PureAdtValue value);
+  void setProdAdtElement1(Expression value);
 
   /**
    * Returns the value of the '<em><b>Prod Adt Element2</b></em>' containment reference.
@@ -58,12 +58,12 @@ public interface PureProdValue extends PureAdtValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prod Adt Element2</em>' containment reference.
-   * @see #setProdAdtElement2(PureAdtValue)
+   * @see #setProdAdtElement2(Expression)
    * @see it.unibo.fPML.FPMLPackage#getPureProdValue_ProdAdtElement2()
    * @model containment="true"
    * @generated
    */
-  PureAdtValue getProdAdtElement2();
+  Expression getProdAdtElement2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureProdValue#getProdAdtElement2 <em>Prod Adt Element2</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface PureProdValue extends PureAdtValue
    * @see #getProdAdtElement2()
    * @generated
    */
-  void setProdAdtElement2(PureAdtValue value);
+  void setProdAdtElement2(Expression value);
 
 } // PureProdValue

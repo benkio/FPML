@@ -336,11 +336,6 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createPureValueRefAdapter();
       }
       @Override
-      public Adapter casePureAdtValue(PureAdtValue object)
-      {
-        return createPureAdtValueAdapter();
-      }
-      @Override
       public Adapter casePureProdValue(PureProdValue object)
       {
         return createPureProdValueAdapter();
@@ -1303,21 +1298,6 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPureValueRefAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureAdtValue <em>Pure Adt Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see it.unibo.fPML.PureAdtValue
-   * @generated
-   */
-  public Adapter createPureAdtValueAdapter()
   {
     return null;
   }

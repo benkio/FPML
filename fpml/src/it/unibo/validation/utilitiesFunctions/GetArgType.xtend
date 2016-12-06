@@ -86,8 +86,8 @@ class GetArgType {
 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType 
 			ApplyFIO: return function.functionType
      		PrimitiveReturn: return function.type
-      LeftPairIO: function.type
-      RightPairIO: function.type
+      		LeftPairIO: function.type
+      		RightPairIO: function.type
 		}
 	}
 	
