@@ -150,7 +150,7 @@ IOType:
 	'IO' type=Type ;
 
 ValueType:
-	IntegerType | StringType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
+	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
 
 Type:
 	ValueType | EffectFullType;
@@ -165,6 +165,9 @@ IntegerType:
 
 StringType:
 	{StringType} type="String";
+
+BooleanType:
+	{BooleanType} type="boolean";
 
 UnitType:
 	{UnitType} type="Unit";
@@ -222,7 +225,8 @@ EffectFullLambda returns EffectFullFunctionDefinition:
 
 Expression:
     IntValue 
-    | StringValue 
+    | StringValue
+    | BooleanValue
     | DataValue 
     | FunctionValue
     | UnitValue
@@ -233,6 +237,8 @@ Expression:
 IntValue returns IntegerType: {IntegerType} value=INT;
 
 StringValue returns StringType: {StringType} value=STRING;
+
+BooleanValue returns BooleanType: {BooleanType} value=BOOLEAN;
 
 FunctionValue returns PureFunctionType: value=PureLambda;
 
@@ -310,4 +316,9 @@ ApplyFIOFactor:
 	  valueReference=[EffectFullReference]
 	| valuePrimitive=PrimitiveEffectFullValue
 	| '(' valueLambda=EffectFullLambda ')';
-    
+	
+////////////////////////////////////////////////////////////////////////////////////////////
+// TERMINALS
+////////////////////////////////////////////////////////////////////////////////////////////
+
+terminal BOOLEAN returns ecore::EBoolean: 'true' | 'false';

@@ -6,6 +6,7 @@ import it.unibo.fPML.AdditionalPureArgument;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
@@ -158,6 +159,12 @@ public class GetReturnType {
       if (expression instanceof StringType) {
         _matched=true;
         return FPMLFactory.eINSTANCE.createStringType();
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof BooleanType) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createBooleanType();
       }
     }
     if (!_matched) {

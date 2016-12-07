@@ -11,6 +11,7 @@ import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
@@ -122,6 +123,20 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.ARGUMENT:
 				sequence_Argument(context, (Argument) semanticObject); 
 				return; 
+			case FPMLPackage.BOOLEAN_TYPE:
+				if (rule == grammarAccess.getValueTypeRule()
+						|| rule == grammarAccess.getTypeRule()
+						|| rule == grammarAccess.getBooleanTypeRule()) {
+					sequence_BooleanType(context, (BooleanType) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getEffectFullExpressionRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getBooleanValueRule()) {
+					sequence_BooleanValue(context, (BooleanType) semanticObject); 
+					return; 
+				}
+				else break;
 			case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT:
 				sequence_CompositionFunctionBodyEffect(context, (CompositionFunctionBodyEffect) semanticObject); 
 				return; 
@@ -502,6 +517,46 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getArgumentAccess().getTypeValueTypeParserRuleCall_0_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getArgumentAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ValueType returns BooleanType
+	 *     Type returns BooleanType
+	 *     BooleanType returns BooleanType
+	 *
+	 * Constraint:
+	 *     type='boolean'
+	 */
+	protected void sequence_BooleanType(ISerializationContext context, BooleanType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.BOOLEAN_TYPE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.BOOLEAN_TYPE__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBooleanTypeAccess().getTypeBooleanKeyword_1_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EffectFullExpression returns BooleanType
+	 *     Expression returns BooleanType
+	 *     BooleanValue returns BooleanType
+	 *
+	 * Constraint:
+	 *     value=BOOLEAN
+	 */
+	protected void sequence_BooleanValue(ISerializationContext context, BooleanType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.BOOLEAN_TYPE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.BOOLEAN_TYPE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBooleanValueAccess().getValueBOOLEANTerminalRuleCall_1_0(), semanticObject.isValue());
 		feeder.finish();
 	}
 	

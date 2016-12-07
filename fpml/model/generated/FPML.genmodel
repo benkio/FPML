@@ -117,6 +117,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//StringType/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//StringType/value"/>
     </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//BooleanType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//BooleanType/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//BooleanType/value"/>
+    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//UnitType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//UnitType/type"/>
     </genClasses>

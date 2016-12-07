@@ -94,6 +94,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIOTypeAccess().getGroup(), "rule__IOType__Group__0");
 					put(grammarAccess.getIntegerTypeAccess().getGroup(), "rule__IntegerType__Group__0");
 					put(grammarAccess.getStringTypeAccess().getGroup(), "rule__StringType__Group__0");
+					put(grammarAccess.getBooleanTypeAccess().getGroup(), "rule__BooleanType__Group__0");
 					put(grammarAccess.getUnitTypeAccess().getGroup(), "rule__UnitType__Group__0");
 					put(grammarAccess.getDataTypeAccess().getGroup(), "rule__DataType__Group__0");
 					put(grammarAccess.getEffectFullDataTypeAccess().getGroup(), "rule__EffectFullDataType__Group__0");
@@ -113,6 +114,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullLambdaAccess().getGroup_1(), "rule__EffectFullLambda__Group_1__0");
 					put(grammarAccess.getIntValueAccess().getGroup(), "rule__IntValue__Group__0");
 					put(grammarAccess.getStringValueAccess().getGroup(), "rule__StringValue__Group__0");
+					put(grammarAccess.getBooleanValueAccess().getGroup(), "rule__BooleanValue__Group__0");
 					put(grammarAccess.getDataValueAccess().getGroup(), "rule__DataValue__Group__0");
 					put(grammarAccess.getEffectFullDataValueAccess().getGroup(), "rule__EffectFullDataValue__Group__0");
 					put(grammarAccess.getPureValueRefAccess().getGroup(), "rule__PureValueRef__Group__0");
@@ -198,6 +200,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIOTypeAccess().getTypeAssignment_1(), "rule__IOType__TypeAssignment_1");
 					put(grammarAccess.getIntegerTypeAccess().getTypeAssignment_1(), "rule__IntegerType__TypeAssignment_1");
 					put(grammarAccess.getStringTypeAccess().getTypeAssignment_1(), "rule__StringType__TypeAssignment_1");
+					put(grammarAccess.getBooleanTypeAccess().getTypeAssignment_1(), "rule__BooleanType__TypeAssignment_1");
 					put(grammarAccess.getUnitTypeAccess().getTypeAssignment_1(), "rule__UnitType__TypeAssignment_1");
 					put(grammarAccess.getDataTypeAccess().getTypeAssignment_2(), "rule__DataType__TypeAssignment_2");
 					put(grammarAccess.getEffectFullDataTypeAccess().getTypeAssignment_2(), "rule__EffectFullDataType__TypeAssignment_2");
@@ -222,6 +225,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullLambdaAccess().getFunctionBodyAssignment_1_6(), "rule__EffectFullLambda__FunctionBodyAssignment_1_6");
 					put(grammarAccess.getIntValueAccess().getValueAssignment_1(), "rule__IntValue__ValueAssignment_1");
 					put(grammarAccess.getStringValueAccess().getValueAssignment_1(), "rule__StringValue__ValueAssignment_1");
+					put(grammarAccess.getBooleanValueAccess().getValueAssignment_1(), "rule__BooleanValue__ValueAssignment_1");
 					put(grammarAccess.getFunctionValueAccess().getValueAssignment(), "rule__FunctionValue__ValueAssignment");
 					put(grammarAccess.getDataValueAccess().getTypeAssignment_1(), "rule__DataValue__TypeAssignment_1");
 					put(grammarAccess.getDataValueAccess().getValueAssignment_3(), "rule__DataValue__ValueAssignment_3");

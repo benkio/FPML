@@ -36,6 +36,7 @@ class ValueGenerator {
 			IntegerType: e.value
 			UnitType: "Unit.unit()"
 			StringType: '''"«e.value»"'''
+      		BooleanType: e.value
 			DataType: '''new «typeGenerator.compileType(e)»(«compileAdtValue((e as DataValue).value, (e as DataValue).type.content)»)'''
 			PureFunctionType: return e.compile 
 			PureSumValue:  {
@@ -51,6 +52,7 @@ class ValueGenerator {
 		switch v {
 			IntegerType: return v.value
 			StringType: return '''"«v.value»"'''
+      		BooleanType: return v.value
 			UnitType: return '''Unit.unit()'''
 			DataType: return '''new «typeGenerator.compileType(v)»(«compileAdtValue((v as DataValue).value, (v as DataValue).type.content)»)'''
 			PureSumValue: {

@@ -1,21 +1,9 @@
 package it.unibo.validation.utilitiesFunctions
 
 import it.unibo.fPML.*
-import it.unibo.fPML.PureLambda
-import it.unibo.fPML.FunctionBodyPure
-import it.unibo.fPML.ValueType
-import it.unibo.fPML.CompositionFunctionBodyPure
 import java.util.List
-import it.unibo.fPML.PureFunction
-import it.unibo.fPML.MainFunc
-import it.unibo.fPML.FunctionBodyEffectFull
-import it.unibo.fPML.CompositionFunctionBodyEffect
-import it.unibo.fPML.EffectFullReference
-import it.unibo.fPML.Type
-import it.unibo.fPML.EffectFullFunctionDefinition
 import org.eclipse.xtend.lib.annotations.EqualsHashCodeProcessor.Util
 import org.eclipse.emf.ecore.util.EcoreUtil
-import it.unibo.fPML.EffectFullExpression
 
 class Checks {
 	
@@ -32,7 +20,11 @@ class Checks {
 							  (value instanceof PureValueRef &&
 						       	checkValueType((value as PureValueRef).value, type)
 						       )
-			DataType: return (value instanceof DataValue && 
+      BooleanType: return value instanceof BooleanType ||
+							  (value instanceof PureValueRef &&
+						       	checkValueType((value as PureValueRef).value, type)
+						       )
+      DataType: return (value instanceof DataValue && 
 							 DataAndValue((value as DataValue).value, (type as DataType).type.content))
 			PureFunctionType: {
 				if ( value instanceof PureFunctionType) 
@@ -65,6 +57,7 @@ class Checks {
 		switch adtt {
 			IntegerType: return valueType instanceof IntegerType
 			StringType: return valueType instanceof StringType
+      BooleanType: return valueType instanceof BooleanType
 			DataType: return valueType instanceof DataType && adtt.type.name.equals((valueType as DataType).type.name) 
 			PureFunctionType: valueType instanceof PureFunctionType && ValueTypeEquals(adtt.argType, (valueType as PureFunctionType).argType) && ValueTypeEquals(adtt.returnType, (valueType as PureFunctionType).returnType)
 			default: false

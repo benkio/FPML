@@ -102,6 +102,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.VOID_TYPE: return createVoidType();
       case FPMLPackage.INTEGER_TYPE: return createIntegerType();
       case FPMLPackage.STRING_TYPE: return createStringType();
+      case FPMLPackage.BOOLEAN_TYPE: return createBooleanType();
       case FPMLPackage.UNIT_TYPE: return createUnitType();
       case FPMLPackage.DATA_TYPE: return createDataType();
       case FPMLPackage.EFFECT_FULL_DATA_TYPE: return createEffectFullDataType();
@@ -560,6 +561,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     StringTypeImpl stringType = new StringTypeImpl();
     return stringType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BooleanType createBooleanType()
+  {
+    BooleanTypeImpl booleanType = new BooleanTypeImpl();
+    return booleanType;
   }
 
   /**

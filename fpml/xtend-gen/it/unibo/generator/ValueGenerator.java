@@ -2,6 +2,7 @@ package it.unibo.generator;
 
 import com.google.common.base.Objects;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
@@ -119,6 +120,12 @@ public class ValueGenerator {
       }
     }
     if (!_matched) {
+      if (e instanceof BooleanType) {
+        _matched=true;
+        _switchResult = Boolean.valueOf(((BooleanType)e).isValue());
+      }
+    }
+    if (!_matched) {
       if (e instanceof DataType) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
@@ -210,6 +217,12 @@ public class ValueGenerator {
         _builder.append(_value, "");
         _builder.append("\"");
         return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (v instanceof BooleanType) {
+        _matched=true;
+        return Boolean.valueOf(((BooleanType)v).isValue());
       }
     }
     if (!_matched) {

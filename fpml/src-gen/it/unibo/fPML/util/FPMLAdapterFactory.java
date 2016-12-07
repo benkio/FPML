@@ -261,6 +261,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createStringTypeAdapter();
       }
       @Override
+      public Adapter caseBooleanType(BooleanType object)
+      {
+        return createBooleanTypeAdapter();
+      }
+      @Override
       public Adapter caseUnitType(UnitType object)
       {
         return createUnitTypeAdapter();
@@ -1073,6 +1078,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStringTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.BooleanType <em>Boolean Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.BooleanType
+   * @generated
+   */
+  public Adapter createBooleanTypeAdapter()
   {
     return null;
   }

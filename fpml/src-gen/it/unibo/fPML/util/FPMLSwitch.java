@@ -366,6 +366,17 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.BOOLEAN_TYPE:
+      {
+        BooleanType booleanType = (BooleanType)theEObject;
+        T result = caseBooleanType(booleanType);
+        if (result == null) result = caseValueType(booleanType);
+        if (result == null) result = caseExpression(booleanType);
+        if (result == null) result = caseType(booleanType);
+        if (result == null) result = caseEffectFullExpression(booleanType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.UNIT_TYPE:
       {
         UnitType unitType = (UnitType)theEObject;
@@ -1439,6 +1450,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseStringType(StringType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Boolean Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Boolean Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBooleanType(BooleanType object)
   {
     return null;
   }

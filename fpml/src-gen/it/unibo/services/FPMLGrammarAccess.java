@@ -1228,16 +1228,17 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIntegerTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cStringTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cDataTypeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cPureFunctionTypeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cPureAlgebraicTypeParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cUnitTypeParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cBooleanTypeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cDataTypeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cPureFunctionTypeParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cPureAlgebraicTypeParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cUnitTypeParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//ValueType:
-		//	IntegerType | StringType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
+		//	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IntegerType | StringType | DataType | PureFunctionType | PureAlgebraicType | UnitType
+		//IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType | UnitType
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntegerType
@@ -1246,17 +1247,20 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//StringType
 		public RuleCall getStringTypeParserRuleCall_1() { return cStringTypeParserRuleCall_1; }
 		
+		//BooleanType
+		public RuleCall getBooleanTypeParserRuleCall_2() { return cBooleanTypeParserRuleCall_2; }
+		
 		//DataType
-		public RuleCall getDataTypeParserRuleCall_2() { return cDataTypeParserRuleCall_2; }
+		public RuleCall getDataTypeParserRuleCall_3() { return cDataTypeParserRuleCall_3; }
 		
 		//PureFunctionType
-		public RuleCall getPureFunctionTypeParserRuleCall_3() { return cPureFunctionTypeParserRuleCall_3; }
+		public RuleCall getPureFunctionTypeParserRuleCall_4() { return cPureFunctionTypeParserRuleCall_4; }
 		
 		//PureAlgebraicType
-		public RuleCall getPureAlgebraicTypeParserRuleCall_4() { return cPureAlgebraicTypeParserRuleCall_4; }
+		public RuleCall getPureAlgebraicTypeParserRuleCall_5() { return cPureAlgebraicTypeParserRuleCall_5; }
 		
 		//UnitType
-		public RuleCall getUnitTypeParserRuleCall_5() { return cUnitTypeParserRuleCall_5; }
+		public RuleCall getUnitTypeParserRuleCall_6() { return cUnitTypeParserRuleCall_6; }
 	}
 	public class TypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Type");
@@ -1364,6 +1368,29 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//"String"
 		public Keyword getTypeStringKeyword_1_0() { return cTypeStringKeyword_1_0; }
+	}
+	public class BooleanTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.BooleanType");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cBooleanTypeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cTypeBooleanKeyword_1_0 = (Keyword)cTypeAssignment_1.eContents().get(0);
+		
+		//BooleanType:
+		//	{BooleanType} type="boolean";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{BooleanType} type="boolean"
+		public Group getGroup() { return cGroup; }
+		
+		//{BooleanType}
+		public Action getBooleanTypeAction_0() { return cBooleanTypeAction_0; }
+		
+		//type="boolean"
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		
+		//"boolean"
+		public Keyword getTypeBooleanKeyword_1_0() { return cTypeBooleanKeyword_1_0; }
 	}
 	public class UnitTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.UnitType");
@@ -2004,16 +2031,18 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIntValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cStringValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cDataValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cFunctionValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cUnitValueParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cPureValueRefParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cPureSumValueParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cPureProdValueParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cBooleanValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cDataValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cFunctionValueParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cUnitValueParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cPureValueRefParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cPureSumValueParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cPureProdValueParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//Expression:
 		//	IntValue
 		//	| StringValue
+		//	| BooleanValue
 		//	| DataValue
 		//	| FunctionValue
 		//	| UnitValue
@@ -2022,7 +2051,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| PureProdValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IntValue | StringValue | DataValue | FunctionValue | UnitValue | PureValueRef | PureSumValue | PureProdValue
+		//IntValue | StringValue | BooleanValue | DataValue | FunctionValue | UnitValue | PureValueRef | PureSumValue |
+		//PureProdValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntValue
@@ -2031,23 +2061,26 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//StringValue
 		public RuleCall getStringValueParserRuleCall_1() { return cStringValueParserRuleCall_1; }
 		
+		//BooleanValue
+		public RuleCall getBooleanValueParserRuleCall_2() { return cBooleanValueParserRuleCall_2; }
+		
 		//DataValue
-		public RuleCall getDataValueParserRuleCall_2() { return cDataValueParserRuleCall_2; }
+		public RuleCall getDataValueParserRuleCall_3() { return cDataValueParserRuleCall_3; }
 		
 		//FunctionValue
-		public RuleCall getFunctionValueParserRuleCall_3() { return cFunctionValueParserRuleCall_3; }
+		public RuleCall getFunctionValueParserRuleCall_4() { return cFunctionValueParserRuleCall_4; }
 		
 		//UnitValue
-		public RuleCall getUnitValueParserRuleCall_4() { return cUnitValueParserRuleCall_4; }
+		public RuleCall getUnitValueParserRuleCall_5() { return cUnitValueParserRuleCall_5; }
 		
 		//PureValueRef
-		public RuleCall getPureValueRefParserRuleCall_5() { return cPureValueRefParserRuleCall_5; }
+		public RuleCall getPureValueRefParserRuleCall_6() { return cPureValueRefParserRuleCall_6; }
 		
 		//PureSumValue
-		public RuleCall getPureSumValueParserRuleCall_6() { return cPureSumValueParserRuleCall_6; }
+		public RuleCall getPureSumValueParserRuleCall_7() { return cPureSumValueParserRuleCall_7; }
 		
 		//PureProdValue
-		public RuleCall getPureProdValueParserRuleCall_7() { return cPureProdValueParserRuleCall_7; }
+		public RuleCall getPureProdValueParserRuleCall_8() { return cPureProdValueParserRuleCall_8; }
 	}
 	public class IntValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.IntValue");
@@ -2094,6 +2127,29 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//STRING
 		public RuleCall getValueSTRINGTerminalRuleCall_1_0() { return cValueSTRINGTerminalRuleCall_1_0; }
+	}
+	public class BooleanValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.BooleanValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cBooleanTypeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueBOOLEANTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//BooleanValue BooleanType:
+		//	{BooleanType} value=BOOLEAN
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{BooleanType} value=BOOLEAN
+		public Group getGroup() { return cGroup; }
+		
+		//{BooleanType}
+		public Action getBooleanTypeAction_0() { return cBooleanTypeAction_0; }
+		
+		//value=BOOLEAN
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
+		//BOOLEAN
+		public RuleCall getValueBOOLEANTerminalRuleCall_1_0() { return cValueBOOLEANTerminalRuleCall_1_0; }
 	}
 	public class FunctionValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.FunctionValue");
@@ -3146,6 +3202,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final VoidTypeElements pVoidType;
 	private final IntegerTypeElements pIntegerType;
 	private final StringTypeElements pStringType;
+	private final BooleanTypeElements pBooleanType;
 	private final UnitTypeElements pUnitType;
 	private final DataTypeElements pDataType;
 	private final EffectFullDataTypeElements pEffectFullDataType;
@@ -3165,6 +3222,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final ExpressionElements pExpression;
 	private final IntValueElements pIntValue;
 	private final StringValueElements pStringValue;
+	private final BooleanValueElements pBooleanValue;
 	private final FunctionValueElements pFunctionValue;
 	private final DataValueElements pDataValue;
 	private final EffectFullDataValueElements pEffectFullDataValue;
@@ -3195,6 +3253,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final PrimitiveTimeElements pPrimitiveTime;
 	private final ApplyFIOElements pApplyFIO;
 	private final ApplyFIOFactorElements pApplyFIOFactor;
+	private final TerminalRule tBOOLEAN;
 	
 	private final Grammar grammar;
 	
@@ -3244,6 +3303,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pVoidType = new VoidTypeElements();
 		this.pIntegerType = new IntegerTypeElements();
 		this.pStringType = new StringTypeElements();
+		this.pBooleanType = new BooleanTypeElements();
 		this.pUnitType = new UnitTypeElements();
 		this.pDataType = new DataTypeElements();
 		this.pEffectFullDataType = new EffectFullDataTypeElements();
@@ -3263,6 +3323,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pExpression = new ExpressionElements();
 		this.pIntValue = new IntValueElements();
 		this.pStringValue = new StringValueElements();
+		this.pBooleanValue = new BooleanValueElements();
 		this.pFunctionValue = new FunctionValueElements();
 		this.pDataValue = new DataValueElements();
 		this.pEffectFullDataValue = new EffectFullDataValueElements();
@@ -3293,6 +3354,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPrimitiveTime = new PrimitiveTimeElements();
 		this.pApplyFIO = new ApplyFIOElements();
 		this.pApplyFIOFactor = new ApplyFIOFactorElements();
+		this.tBOOLEAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.BOOLEAN");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -3701,7 +3763,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ValueType:
-	//	IntegerType | StringType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
+	//	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
 	public ValueTypeElements getValueTypeAccess() {
 		return pValueType;
 	}
@@ -3758,6 +3820,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getStringTypeRule() {
 		return getStringTypeAccess().getRule();
+	}
+	
+	//BooleanType:
+	//	{BooleanType} type="boolean";
+	public BooleanTypeElements getBooleanTypeAccess() {
+		return pBooleanType;
+	}
+	
+	public ParserRule getBooleanTypeRule() {
+		return getBooleanTypeAccess().getRule();
 	}
 	
 	//UnitType:
@@ -3934,6 +4006,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//Expression:
 	//	IntValue
 	//	| StringValue
+	//	| BooleanValue
 	//	| DataValue
 	//	| FunctionValue
 	//	| UnitValue
@@ -3966,6 +4039,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getStringValueRule() {
 		return getStringValueAccess().getRule();
+	}
+	
+	//BooleanValue BooleanType:
+	//	{BooleanType} value=BOOLEAN
+	public BooleanValueElements getBooleanValueAccess() {
+		return pBooleanValue;
+	}
+	
+	public ParserRule getBooleanValueRule() {
+		return getBooleanValueAccess().getRule();
 	}
 	
 	//FunctionValue PureFunctionType:
@@ -4273,6 +4356,12 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getApplyFIOFactorRule() {
 		return getApplyFIOFactorAccess().getRule();
+	}
+	
+	//terminal BOOLEAN returns ecore::EBoolean:
+	//	'true' | 'false';
+	public TerminalRule getBOOLEANRule() {
+		return tBOOLEAN;
 	}
 	
 	//terminal ID:

@@ -10,6 +10,7 @@ import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
@@ -364,6 +365,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass stringTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass booleanTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1629,6 +1637,36 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getBooleanType()
+  {
+    return booleanTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBooleanType_Type()
+  {
+    return (EAttribute)booleanTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBooleanType_Value()
+  {
+    return (EAttribute)booleanTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getUnitType()
   {
     return unitTypeEClass;
@@ -2727,6 +2765,10 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     createEAttribute(stringTypeEClass, STRING_TYPE__TYPE);
     createEAttribute(stringTypeEClass, STRING_TYPE__VALUE);
 
+    booleanTypeEClass = createEClass(BOOLEAN_TYPE);
+    createEAttribute(booleanTypeEClass, BOOLEAN_TYPE__TYPE);
+    createEAttribute(booleanTypeEClass, BOOLEAN_TYPE__VALUE);
+
     unitTypeEClass = createEClass(UNIT_TYPE);
     createEAttribute(unitTypeEClass, UNIT_TYPE__TYPE);
 
@@ -2922,6 +2964,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     integerTypeEClass.getESuperTypes().add(this.getExpression());
     stringTypeEClass.getESuperTypes().add(this.getValueType());
     stringTypeEClass.getESuperTypes().add(this.getExpression());
+    booleanTypeEClass.getESuperTypes().add(this.getValueType());
+    booleanTypeEClass.getESuperTypes().add(this.getExpression());
     unitTypeEClass.getESuperTypes().add(this.getValueType());
     unitTypeEClass.getESuperTypes().add(this.getExpression());
     dataTypeEClass.getESuperTypes().add(this.getValueType());
@@ -3095,6 +3139,10 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(stringTypeEClass, StringType.class, "StringType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getStringType_Type(), ecorePackage.getEString(), "type", null, 0, 1, StringType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStringType_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(booleanTypeEClass, BooleanType.class, "BooleanType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBooleanType_Type(), ecorePackage.getEString(), "type", null, 0, 1, BooleanType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBooleanType_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, BooleanType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unitTypeEClass, UnitType.class, "UnitType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnitType_Type(), ecorePackage.getEString(), "type", null, 0, 1, UnitType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

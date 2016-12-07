@@ -11,6 +11,7 @@ class TypeGenerator {
 			DataType: return vt.type.name
 			IntegerType: return 'Integer'
 			StringType: return vt.type
+      		BooleanType: return 'Boolean'
 			PureFunctionType: return '''F<«vt.argType.compile»,«vt.returnType.compile»>'''
 			PureAlgebraicType: {
 				if ((vt as PureAlgebraicType).pureAdtElement2 instanceof PureSumTypeFactor)
@@ -44,6 +45,7 @@ class TypeGenerator {
 		switch e {
 			IntegerType: return "Integer"
 			StringType: return "String"
+      		BooleanType: return "Boolean"
 			DataType: return e.type.name
 			PureFunctionType: 	if (e.value.arg != null) return '''F<«e.value.arg.type.compile», «GetReturnType.function(e.value).compile»>'''
 								else return GetReturnType.function(e.value).compile

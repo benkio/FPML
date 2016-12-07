@@ -2,6 +2,7 @@ package it.unibo.generator;
 
 import com.google.common.base.Objects;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
@@ -59,6 +60,12 @@ public class TypeGenerator {
       if (vt instanceof StringType) {
         _matched=true;
         return ((StringType)vt).getType();
+      }
+    }
+    if (!_matched) {
+      if (vt instanceof BooleanType) {
+        _matched=true;
+        return "Boolean";
       }
     }
     if (!_matched) {
@@ -232,6 +239,12 @@ public class TypeGenerator {
       if (e instanceof StringType) {
         _matched=true;
         return "String";
+      }
+    }
+    if (!_matched) {
+      if (e instanceof BooleanType) {
+        _matched=true;
+        return "Boolean";
       }
     }
     if (!_matched) {

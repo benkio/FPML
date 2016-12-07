@@ -6,6 +6,7 @@ import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
@@ -88,6 +89,13 @@ public class Checks {
       }
     }
     if (!_matched) {
+      if (type instanceof BooleanType) {
+        _matched=true;
+        return ((value instanceof BooleanType) || ((value instanceof PureValueRef) && 
+          Checks.checkValueType(((PureValueRef) value).getValue(), type)));
+      }
+    }
+    if (!_matched) {
       if (type instanceof DataType) {
         _matched=true;
         return ((value instanceof DataValue) && 
@@ -157,6 +165,12 @@ public class Checks {
         if (adtt instanceof StringType) {
           _matched=true;
           return (valueType instanceof StringType);
+        }
+      }
+      if (!_matched) {
+        if (adtt instanceof BooleanType) {
+          _matched=true;
+          return (valueType instanceof BooleanType);
         }
       }
       if (!_matched) {

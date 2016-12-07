@@ -35,7 +35,8 @@ class GetReturnType {
 	def static ValueType expression(Expression expression) {
 		switch expression {
 			IntegerType: return FPMLFactory.eINSTANCE.createIntegerType
-			StringType: return FPMLFactory.eINSTANCE.createStringType 
+			StringType: return FPMLFactory.eINSTANCE.createStringType
+      BooleanType: return FPMLFactory.eINSTANCE.createBooleanType
 			DataValue: return expression
 			PureFunctionType: {
 				if (expression.value instanceof PureLambda){

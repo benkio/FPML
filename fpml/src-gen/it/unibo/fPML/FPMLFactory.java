@@ -357,6 +357,15 @@ public interface FPMLFactory extends EFactory
   StringType createStringType();
 
   /**
+   * Returns a new object of class '<em>Boolean Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Boolean Type</em>'.
+   * @generated
+   */
+  BooleanType createBooleanType();
+
+  /**
    * Returns a new object of class '<em>Unit Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
