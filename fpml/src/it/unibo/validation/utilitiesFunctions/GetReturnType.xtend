@@ -159,9 +159,10 @@ class GetReturnType {
 	
 	def static Type effectFullExpression(EffectFullExpression expression) {
 		switch expression {
-			Expression: {
-				return Others.IOWrap(expression(expression))
+			IOExpression: {
+				return Others.IOWrap(expression(expression.innerValue))
 			}
+			Expression: expression(expression)
 			EffectFullFunctionType:{
 				if (expression.value instanceof EffectFullLambda){
 					var EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument

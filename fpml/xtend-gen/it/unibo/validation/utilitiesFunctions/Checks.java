@@ -14,6 +14,7 @@ import it.unibo.fPML.DataType;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
@@ -32,6 +33,7 @@ import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
+import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
@@ -46,6 +48,7 @@ import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueRef;
+import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -56,7 +59,6 @@ import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -69,7 +71,7 @@ public class Checks {
     if (type instanceof UnitType) {
       _matched=true;
       _switchResult = ((value instanceof UnitType) || ((value instanceof PureValueRef) && 
-        Checks.TypeEquals(GetReturnType.expression(((PureValueRef) value).getValue().getValue()), type)));
+        Checks.TypeEquals(GetReturnType.effectFullExpression(((PureValueRef) value).getValue().getValue()), type)));
     }
     if (!_matched) {
       if (type instanceof IntegerType) {
@@ -472,16 +474,15 @@ public class Checks {
     if (!_matched) {
       if (type instanceof IOType) {
         _matched=true;
-        EObject _innerValue = value.getInnerValue();
         boolean _matched_1 = false;
-        if (_innerValue instanceof Expression) {
+        if (value instanceof IOExpression) {
           _matched_1=true;
-          return ((((IOType) type).getType() instanceof ValueType) && Checks.DataAndValue(((Expression) value.getInnerValue()), ((ValueType) ((IOType) type).getType())));
+          return ((((IOType) type).getType() instanceof ValueType) && Checks.DataAndValue(((Expression) ((IOExpression)value).getInnerValue()), ((ValueType) ((IOType) type).getType())));
         }
         if (!_matched_1) {
-          if (_innerValue instanceof EffectFullExpression) {
+          if (value instanceof RecursiveEffectFullExpression) {
             _matched_1=true;
-            return ((((IOType) type).getType() instanceof EffectFullType) && Checks.effectFullDataAndValue(((EffectFullExpression) value.getInnerValue()), ((EffectFullType) ((IOType) type).getType())));
+            return ((((IOType) type).getType() instanceof EffectFullType) && Checks.effectFullDataAndValue(((EffectFullExpression) ((RecursiveEffectFullExpression)value).getInnerValue()), ((EffectFullType) ((IOType) type).getType())));
           }
         }
         return false;
@@ -516,5 +517,37 @@ public class Checks {
     EffectFullReference _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
     Type _effectFullReference = GetReturnType.effectFullReference(_valueFromApplyFIOFactor);
     return Checks.TypeEquals(_argType, _effectFullReference);
+  }
+  
+  public static boolean effectFullExpressionHasSideEffects(final EffectFullExpression expression) {
+    final Type effectFullExpressionType = GetReturnType.effectFullExpression(expression);
+    return Checks.checkTypeContainsIOTypes(effectFullExpressionType);
+  }
+  
+  public static boolean checkTypeContainsIOTypes(final Type type) {
+    boolean _switchResult = false;
+    boolean _matched = false;
+    if (type instanceof ValueType) {
+      _matched=true;
+      return false;
+    }
+    if (!_matched) {
+      if (type instanceof EffectFullDataType) {
+        _matched=true;
+        EffectFullData _type = ((EffectFullDataType)type).getType();
+        EffectFullType _content = _type.getContent();
+        _switchResult = Checks.checkTypeContainsIOTypes(_content);
+      }
+    }
+    if (!_matched) {
+      if (type instanceof EffectFullAlgebraicType) {
+        _matched=true;
+        _switchResult = (Checks.checkTypeContainsIOTypes(((EffectFullAlgebraicType)type).getEffectFullAdtElement1()) || Checks.checkTypeContainsIOTypes(Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)type))));
+      }
+    }
+    if (!_matched) {
+      return true;
+    }
+    return _switchResult;
   }
 }

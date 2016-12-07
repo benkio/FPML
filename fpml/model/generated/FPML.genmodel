@@ -156,9 +156,7 @@
     <genClasses ecoreClass="FPML.ecore#//EffectFullProdTypeFactor">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullProdTypeFactor/adtElement"/>
     </genClasses>
-    <genClasses ecoreClass="FPML.ecore#//EffectFullExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullExpression/innerValue"/>
-    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//EffectFullExpression"/>
     <genClasses ecoreClass="FPML.ecore#//EffectFullValueRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullValueRef/value"/>
     </genClasses>
@@ -232,7 +230,12 @@
     <genClasses ecoreClass="FPML.ecore#//EffectFullValue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="FPML.ecore#//RecursiveEffectFullExpression"/>
+    <genClasses ecoreClass="FPML.ecore#//RecursiveEffectFullExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//RecursiveEffectFullExpression/innerValue"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//IOExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//IOExpression/innerValue"/>
+    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//EffectFullLambda"/>
     <genClasses ecoreClass="FPML.ecore#//DataValue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//DataValue/value"/>

@@ -15,6 +15,7 @@ import it.unibo.fPML.Type
 import it.unibo.fPML.EffectFullFunctionDefinition
 import org.eclipse.xtend.lib.annotations.EqualsHashCodeProcessor.Util
 import org.eclipse.emf.ecore.util.EcoreUtil
+import it.unibo.fPML.EffectFullExpression
 
 class Checks {
 	
@@ -22,7 +23,7 @@ class Checks {
 		switch type {
 			UnitType: value instanceof UnitType ||
 					(value instanceof PureValueRef &&
-				      TypeEquals(GetReturnType.expression((value as PureValueRef).value.value), type)) 
+				      TypeEquals(GetReturnType.effectFullExpression((value as PureValueRef).value.value), type)) 
 			IntegerType: return value instanceof IntegerType || 
 						       (value instanceof PureValueRef &&
 						       	checkValueType((value as PureValueRef).value, type)
@@ -233,9 +234,9 @@ class Checks {
 				}
 			}
 			IOType: {
-				switch value.innerValue {
-					Expression: return ((type as IOType).type instanceof ValueType) && DataAndValue(value.innerValue as Expression, (type as IOType).type as ValueType)
-					EffectFullExpression: return ((type as IOType).type instanceof EffectFullType) && effectFullDataAndValue(value.innerValue as EffectFullExpression, (type as IOType).type as EffectFullType)					
+				switch value {
+					IOExpression: return ((type as IOType).type instanceof ValueType) && DataAndValue(value.innerValue as Expression, (type as IOType).type as ValueType)
+					RecursiveEffectFullExpression: return ((type as IOType).type instanceof EffectFullType) && effectFullDataAndValue(value.innerValue as EffectFullExpression, (type as IOType).type as EffectFullType)					
 					default: return false
 				}
 			}
@@ -259,4 +260,19 @@ class Checks {
 	def static boolean applyFIO(ApplyFIO afio){
 			return Checks.TypeEquals(afio.functionType.argType, GetReturnType.effectFullReference(Others.getValueFromApplyFIOFactor(afio.value)))
 	}
+	
+	def static boolean effectFullExpressionHasSideEffects(EffectFullExpression expression) {
+		val effectFullExpressionType = GetReturnType.effectFullExpression(expression)
+		return checkTypeContainsIOTypes(effectFullExpressionType)
+	}
+	
+	def static boolean checkTypeContainsIOTypes(Type type){
+		switch type {
+			ValueType: return false
+			EffectFullDataType: checkTypeContainsIOTypes(type.type.content)
+			EffectFullAlgebraicType: checkTypeContainsIOTypes(type.effectFullAdtElement1) || checkTypeContainsIOTypes(Others.getElement2ValueTypeFromEffectFullAlgebraicType(type))
+			default: return true
+		}
+	}
+	
 }

@@ -7,11 +7,13 @@ import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.DataValue;
+import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullLambda;
+import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
@@ -46,6 +48,10 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public final static String APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type";
   
   public final static String FUNCTIONDEFINITIONWITHUNITARGUMENT = "The function definition cannot have the first argument as Unit type. Use Values instead";
+  
+  public final static String EFFECTFULLVALUEWARING = "This value has a pure expression content, maybe you want to move it to pure value section";
+  
+  public final static String EFFECTFULLDATAWARING = "This data has a pure type, maybe you want to move it to pure data section";
   
   @Check
   public void typeCheck(final Function f) {
@@ -120,6 +126,16 @@ public class FPMLValidator extends AbstractFPMLValidator {
     }
   }
   
+  @Check
+  public void typeCheckEffectFullData(final EffectFullData data) {
+    EffectFullType _content = data.getContent();
+    boolean _checkTypeContainsIOTypes = Checks.checkTypeContainsIOTypes(_content);
+    boolean _not = (!_checkTypeContainsIOTypes);
+    if (_not) {
+      this.warning(FPMLValidator.EFFECTFULLDATAWARING, FPMLPackage.Literals.EFFECT_FULL_DATA__CONTENT);
+    }
+  }
+  
   public void typeCheckEffectFullLambda(final EffectFullLambda lambda) {
     boolean _effectFullLambda = Checks.effectFullLambda(lambda);
     boolean _not = (!_effectFullLambda);
@@ -135,11 +151,18 @@ public class FPMLValidator extends AbstractFPMLValidator {
       EffectFullExpression _value_1 = value.getValue();
       pureValue.setValue(((Expression) _value_1));
       this.typeCheckPureValue(pureValue);
+      this.warning(FPMLValidator.EFFECTFULLVALUEWARING, FPMLPackage.Literals.EFFECT_FULL_VALUE__VALUE);
     } else {
       if (((value.getValue() instanceof EffectFullDataValue) && 
         (!Checks.effectFullDataAndValue(((EffectFullDataValue) value.getValue()).getValue(), ((EffectFullDataValue) value.getValue()).getType().getContent())))) {
         this.error(FPMLValidator.TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.EFFECT_FULL_VALUE__VALUE);
       }
+    }
+    EffectFullExpression _value_2 = value.getValue();
+    boolean _effectFullExpressionHasSideEffects = Checks.effectFullExpressionHasSideEffects(_value_2);
+    boolean _not = (!_effectFullExpressionHasSideEffects);
+    if (_not) {
+      this.warning(FPMLValidator.EFFECTFULLVALUEWARING, FPMLPackage.Literals.EFFECT_FULL_VALUE__VALUE);
     }
   }
   

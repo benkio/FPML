@@ -28,6 +28,9 @@ class FPMLValidator extends AbstractFPMLValidator {
 	public static val APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type"
 	public static val FUNCTIONDEFINITIONWITHUNITARGUMENT = "The function definition cannot have the first argument as Unit type. Use Values instead"
 	
+	public static val EFFECTFULLVALUEWARING = "This value has a pure expression content, maybe you want to move it to pure value section"
+	public static val EFFECTFULLDATAWARING = "This data has a pure type, maybe you want to move it to pure data section"
+	
    @Check
    def typeCheck(Function f){
 		switch f {
@@ -58,6 +61,12 @@ class FPMLValidator extends AbstractFPMLValidator {
    			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.MAIN_FUNC__FUNCTION_BODY)
    }
    
+   @Check
+   def typeCheckEffectFullData(EffectFullData data) {
+   		if (!Checks.checkTypeContainsIOTypes(data.content))
+   			warning(EFFECTFULLDATAWARING, FPMLPackage.Literals.EFFECT_FULL_DATA__CONTENT)
+   }
+   
    	def typeCheckEffectFullLambda(EffectFullLambda lambda) {
  		if (!Checks.effectFullLambda(lambda)){
    			error(TYPEMISMATCHFUNCTIONCOMPOSITION, FPMLPackage.Literals.EFFECT_FULL_FUNCTION_DEFINITION__FUNCTION_BODY)
@@ -69,11 +78,14 @@ class FPMLValidator extends AbstractFPMLValidator {
 			val pureValue = FPMLFactory.eINSTANCE.createPureValue
 			pureValue.value = value.value as Expression
 			typeCheckPureValue(pureValue)
+			warning(EFFECTFULLVALUEWARING, FPMLPackage.Literals.EFFECT_FULL_VALUE__VALUE)
 		}
 		else if (value.value instanceof EffectFullDataValue &&
    		!Checks.effectFullDataAndValue((value.value as EffectFullDataValue).value, (value.value as EffectFullDataValue).type.content)) {
    			error(TYPEMISMATCHBETWEENVALUEANDDATA, FPMLPackage.Literals.EFFECT_FULL_VALUE__VALUE)
 		}
+		if (!Checks.effectFullExpressionHasSideEffects(value.value))
+			warning(EFFECTFULLVALUEWARING, FPMLPackage.Literals.EFFECT_FULL_VALUE__VALUE)
 	}
    
    def typeCheckPureValue(PureValue v){

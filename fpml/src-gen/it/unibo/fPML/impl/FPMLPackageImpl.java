@@ -45,6 +45,7 @@ import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
+import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
@@ -664,6 +665,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass recursiveEffectFullExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ioExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1911,16 +1919,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getEffectFullExpression_InnerValue()
-  {
-    return (EReference)effectFullExpressionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getEffectFullValueRef()
   {
     return effectFullValueRefEClass;
@@ -2491,6 +2489,36 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getRecursiveEffectFullExpression_InnerValue()
+  {
+    return (EReference)recursiveEffectFullExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIOExpression()
+  {
+    return ioExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIOExpression_InnerValue()
+  {
+    return (EReference)ioExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getEffectFullLambda()
   {
     return effectFullLambdaEClass;
@@ -2739,7 +2767,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     createEReference(effectFullProdTypeFactorEClass, EFFECT_FULL_PROD_TYPE_FACTOR__ADT_ELEMENT);
 
     effectFullExpressionEClass = createEClass(EFFECT_FULL_EXPRESSION);
-    createEReference(effectFullExpressionEClass, EFFECT_FULL_EXPRESSION__INNER_VALUE);
 
     effectFullValueRefEClass = createEClass(EFFECT_FULL_VALUE_REF);
     createEReference(effectFullValueRefEClass, EFFECT_FULL_VALUE_REF__VALUE);
@@ -2828,6 +2855,10 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     createEReference(effectFullValueEClass, EFFECT_FULL_VALUE__VALUE);
 
     recursiveEffectFullExpressionEClass = createEClass(RECURSIVE_EFFECT_FULL_EXPRESSION);
+    createEReference(recursiveEffectFullExpressionEClass, RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE);
+
+    ioExpressionEClass = createEClass(IO_EXPRESSION);
+    createEReference(ioExpressionEClass, IO_EXPRESSION__INNER_VALUE);
 
     effectFullLambdaEClass = createEClass(EFFECT_FULL_LAMBDA);
 
@@ -2904,6 +2935,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     pureAlgebraicTypeEClass.getESuperTypes().add(this.getValueType());
     effectFullAlgebraicTypeEClass.getESuperTypes().add(this.getEffectFullType());
     effectFullValueRefEClass.getESuperTypes().add(this.getEffectFullExpression());
+    expressionEClass.getESuperTypes().add(this.getEffectFullExpression());
     pureValueRefEClass.getESuperTypes().add(this.getExpression());
     pureProdValueEClass.getESuperTypes().add(this.getExpression());
     pureSumValueEClass.getESuperTypes().add(this.getExpression());
@@ -2934,6 +2966,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     pureValueEClass.getESuperTypes().add(this.getPureFunctionDefinition());
     effectFullValueEClass.getESuperTypes().add(this.getEffectFullFunctionDefinition());
     recursiveEffectFullExpressionEClass.getESuperTypes().add(this.getEffectFullExpression());
+    ioExpressionEClass.getESuperTypes().add(this.getEffectFullExpression());
     effectFullLambdaEClass.getESuperTypes().add(this.getEffectFullFunctionDefinition());
     dataValueEClass.getESuperTypes().add(this.getDataType());
     effectFullDataValueEClass.getESuperTypes().add(this.getEffectFullDataType());
@@ -3103,7 +3136,6 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEReference(getEffectFullProdTypeFactor_AdtElement(), this.getType(), null, "adtElement", null, 0, 1, EffectFullProdTypeFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(effectFullExpressionEClass, EffectFullExpression.class, "EffectFullExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEffectFullExpression_InnerValue(), ecorePackage.getEObject(), null, "innerValue", null, 0, 1, EffectFullExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(effectFullValueRefEClass, EffectFullValueRef.class, "EffectFullValueRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEffectFullValueRef_Value(), this.getEffectFullValue(), null, "value", null, 0, 1, EffectFullValueRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3192,6 +3224,10 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEReference(getEffectFullValue_Value(), this.getEffectFullExpression(), null, "value", null, 0, 1, EffectFullValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recursiveEffectFullExpressionEClass, RecursiveEffectFullExpression.class, "RecursiveEffectFullExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRecursiveEffectFullExpression_InnerValue(), this.getEffectFullExpression(), null, "innerValue", null, 0, 1, RecursiveEffectFullExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ioExpressionEClass, IOExpression.class, "IOExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIOExpression_InnerValue(), this.getExpression(), null, "innerValue", null, 0, 1, IOExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(effectFullLambdaEClass, EffectFullLambda.class, "EffectFullLambda", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

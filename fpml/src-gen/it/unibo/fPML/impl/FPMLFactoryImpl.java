@@ -145,6 +145,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.PURE_VALUE: return createPureValue();
       case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
       case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION: return createRecursiveEffectFullExpression();
+      case FPMLPackage.IO_EXPRESSION: return createIOExpression();
       case FPMLPackage.EFFECT_FULL_LAMBDA: return createEffectFullLambda();
       case FPMLPackage.DATA_VALUE: return createDataValue();
       case FPMLPackage.EFFECT_FULL_DATA_VALUE: return createEffectFullDataValue();
@@ -1032,6 +1033,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     RecursiveEffectFullExpressionImpl recursiveEffectFullExpression = new RecursiveEffectFullExpressionImpl();
     return recursiveEffectFullExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IOExpression createIOExpression()
+  {
+    IOExpressionImpl ioExpression = new IOExpressionImpl();
+    return ioExpression;
   }
 
   /**

@@ -45,12 +45,9 @@ class EffectFullValueGenerator {
 				return '''Either.left(«e.sumAdtElement1.compile»)'''
 			}
 			EffectFullValueRef: ''''EffectFullValue.«e.value.name»()'''
-			default: {
-				switch e.innerValue {
-					Expression: return "IOFunctions.unit(" + valueGenerator.compile(e.innerValue as Expression) + ")"
-					EffectFullExpression: return "IOFunctions.unit(" + (e.innerValue as EffectFullExpression).compile + ")"
-				}
-			}
+			Expression: valueGenerator.compile(e as Expression)
+			IOExpression: return "IOFunctions.unit(" + valueGenerator.compile(e.innerValue as Expression) + ")"
+			RecursiveEffectFullExpression: return "IOFunctions.unit(" + (e.innerValue as EffectFullExpression).compile + ")"
 		}	
 	}
 	
@@ -69,12 +66,9 @@ class EffectFullValueGenerator {
 					return '''IOFunctions.unit(«v.compile»)'''
 			}
 			EffectFullDataValue: return compile(v as EffectFullExpression)
-			default: {
-				switch v.innerValue {
-					Expression: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v.innerValue as Expression, (d as IOType).type)»)'''
-					EffectFullExpression: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullExpression, (d as IOType).type as EffectFullType)»)'''
-				} 
-			}
+			Expression: valueGenerator.compileAdtValue(v as Expression, (d as IOType).type)
+			IOExpression: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v.innerValue as Expression, (d as IOType).type)»)'''
+			RecursiveEffectFullExpression: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullExpression, (d as IOType).type as EffectFullType)»)'''
 		}
 	}
 	

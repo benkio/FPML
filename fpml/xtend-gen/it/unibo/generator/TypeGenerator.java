@@ -16,6 +16,7 @@ import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.Expression;
+import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.PureAlgebraicType;
@@ -317,17 +318,23 @@ public class TypeGenerator {
   }
   
   public Object compileType(final EffectFullExpression e) {
-    CharSequence _switchResult = null;
+    Object _switchResult = null;
     boolean _matched = false;
-    if (e instanceof Expression) {
+    if (e instanceof IOExpression) {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("IO<");
-      EObject _innerValue = e.getInnerValue();
+      Expression _innerValue = ((IOExpression)e).getInnerValue();
       Object _compileType = this.compileType(((Expression) _innerValue));
       _builder.append(_compileType, "");
       _builder.append(">");
       _switchResult = _builder;
+    }
+    if (!_matched) {
+      if (e instanceof Expression) {
+        _matched=true;
+        _switchResult = this.compileType(((Expression) e));
+      }
     }
     if (!_matched) {
       if (e instanceof EffectFullFunctionType) {
@@ -378,7 +385,7 @@ public class TypeGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IO<");
-        EObject _innerValue = ((RecursiveEffectFullExpression)e).getInnerValue();
+        EffectFullExpression _innerValue = ((RecursiveEffectFullExpression)e).getInnerValue();
         Object _compileType = this.compileType(((EffectFullExpression) _innerValue));
         _builder.append(_compileType, "");
         _builder.append(">");

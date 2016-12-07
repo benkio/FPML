@@ -17,7 +17,9 @@ import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FunctionBodyEffectFull;
+import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOType;
+import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.Type;
 import it.unibo.generator.EffectFullFunctionGenerator;
 import it.unibo.generator.FPMLGenerator;
@@ -25,7 +27,6 @@ import it.unibo.generator.TypeGenerator;
 import it.unibo.generator.ValueGenerator;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
@@ -92,7 +93,7 @@ public class EffectFullValueGenerator {
     _builder.append("\t");
     _builder.append("return ");
     EffectFullExpression _value_1 = v.getValue();
-    CharSequence _compile = this.compile(_value_1);
+    Object _compile = this.compile(_value_1);
     _builder.append(_compile, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
@@ -101,8 +102,8 @@ public class EffectFullValueGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final EffectFullExpression e) {
-    CharSequence _switchResult = null;
+  public Object compile(final EffectFullExpression e) {
+    Object _switchResult = null;
     boolean _matched = false;
     if (e instanceof EffectFullFunctionType) {
       _matched=true;
@@ -178,30 +179,34 @@ public class EffectFullValueGenerator {
       }
     }
     if (!_matched) {
-      EObject _innerValue = e.getInnerValue();
-      boolean _matched_1 = false;
-      if (_innerValue instanceof Expression) {
-        _matched_1=true;
-        EObject _innerValue_1 = e.getInnerValue();
-        Object _compile = this.valueGenerator.compile(((Expression) _innerValue_1));
+      if (e instanceof Expression) {
+        _matched=true;
+        _switchResult = this.valueGenerator.compile(((Expression) e));
+      }
+    }
+    if (!_matched) {
+      if (e instanceof IOExpression) {
+        _matched=true;
+        Expression _innerValue = ((IOExpression)e).getInnerValue();
+        Object _compile = this.valueGenerator.compile(((Expression) _innerValue));
         String _plus = ("IOFunctions.unit(" + _compile);
         return (_plus + ")");
       }
-      if (!_matched_1) {
-        if (_innerValue instanceof EffectFullExpression) {
-          _matched_1=true;
-          EObject _innerValue_1 = e.getInnerValue();
-          Object _compile = this.compile(((EffectFullExpression) _innerValue_1));
-          String _plus = ("IOFunctions.unit(" + _compile);
-          return (_plus + ")");
-        }
+    }
+    if (!_matched) {
+      if (e instanceof RecursiveEffectFullExpression) {
+        _matched=true;
+        EffectFullExpression _innerValue = ((RecursiveEffectFullExpression)e).getInnerValue();
+        Object _compile = this.compile(((EffectFullExpression) _innerValue));
+        String _plus = ("IOFunctions.unit(" + _compile);
+        return (_plus + ")");
       }
     }
     return _switchResult;
   }
   
   public Object compileAdtValue(final EffectFullExpression v, final Type d) {
-    CharSequence _switchResult = null;
+    Object _switchResult = null;
     boolean _matched = false;
     if (v instanceof EffectFullSumValue) {
       _matched=true;
@@ -290,34 +295,37 @@ public class EffectFullValueGenerator {
       }
     }
     if (!_matched) {
-      CharSequence _switchResult_1 = null;
-      EObject _innerValue = v.getInnerValue();
-      boolean _matched_1 = false;
-      if (_innerValue instanceof Expression) {
-        _matched_1=true;
+      if (v instanceof Expression) {
+        _matched=true;
+        Type _type = ((IOType) d).getType();
+        _switchResult = this.valueGenerator.compileAdtValue(((Expression) v), _type);
+      }
+    }
+    if (!_matched) {
+      if (v instanceof IOExpression) {
+        _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IOFunctions.unit(");
-        EObject _innerValue_1 = v.getInnerValue();
+        Expression _innerValue = ((IOExpression)v).getInnerValue();
         Type _type = ((IOType) d).getType();
-        Object _compileAdtValue = this.valueGenerator.compileAdtValue(((Expression) _innerValue_1), _type);
+        Object _compileAdtValue = this.valueGenerator.compileAdtValue(((Expression) _innerValue), _type);
         _builder.append(_compileAdtValue, "");
         _builder.append(")");
-        _switchResult_1 = _builder;
+        _switchResult = _builder;
       }
-      if (!_matched_1) {
-        if (_innerValue instanceof EffectFullExpression) {
-          _matched_1=true;
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("IOFunctions.unit(");
-          EObject _innerValue_1 = v.getInnerValue();
-          Type _type = ((IOType) d).getType();
-          Object _compileAdtValue = this.compileAdtValue(((EffectFullExpression) _innerValue_1), ((EffectFullType) _type));
-          _builder.append(_compileAdtValue, "");
-          _builder.append(")");
-          _switchResult_1 = _builder;
-        }
+    }
+    if (!_matched) {
+      if (v instanceof RecursiveEffectFullExpression) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.unit(");
+        EffectFullExpression _innerValue = ((RecursiveEffectFullExpression)v).getInnerValue();
+        Type _type = ((IOType) d).getType();
+        Object _compileAdtValue = this.compileAdtValue(((EffectFullExpression) _innerValue), ((EffectFullType) _type));
+        _builder.append(_compileAdtValue, "");
+        _builder.append(")");
+        _switchResult = _builder;
       }
-      _switchResult = _switchResult_1;
     }
     return _switchResult;
   }

@@ -201,7 +201,8 @@ EffectFullProdTypeFactor:
 
 EffectFullExpression:
 	{RecursiveEffectFullExpression} 'IO' '[' innerValue=EffectFullExpression ']' 
-	| 'IO' '(' innerValue=Expression ')'
+	| {IOExpression} 'IO' '(' innerValue=Expression ')'
+	| Expression
 	| EffectFullFunctionValue 
 	| EffectFullDataValue
 	| EffectFullProdValue
@@ -213,11 +214,11 @@ UnitValue returns UnitType: {UnitType} '()';
 
 EffectFullFunctionValue returns EffectFullFunctionType: value=EffectFullLambda;
 
-EffectFullValueRef: {EffectFullValueRef} value=[EffectFullValue];
+EffectFullValueRef: {EffectFullValueRef} 'EffectFullRef' '[' value=[EffectFullValue] ']' ;
 
 EffectFullLambda returns EffectFullFunctionDefinition: 
-	{EffectFullLambda} '[' arg=EffectFullArgument ']' ':' '{' functionBody=CompositionFunctionBodyEffect '}'
-	| {EffectFullLambda} '[' ']' ':' '{' functionBody=CompositionFunctionBodyEffect '}' ;
+	{EffectFullLambda} '\\' '[' arg=EffectFullArgument ']' '->' '{' functionBody=CompositionFunctionBodyEffect '}'
+	| {EffectFullLambda} '\\' '['']' '->'  '{' functionBody=CompositionFunctionBodyEffect '}' ;
 
 Expression:
     IntValue 
@@ -237,13 +238,13 @@ FunctionValue returns PureFunctionType: value=PureLambda;
 
 DataValue returns DataType: {DataValue} type=[PureData]'(' value=Expression ')';
 
-EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[EffectFullData]'(' value=EffectFullExpression ')';
+EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[EffectFullData]'[' value=EffectFullExpression ']';
 
-PureValueRef: {PureValueRef} value=[PureValue];
+PureValueRef: {PureValueRef} 'PureRef' '(' value=[PureValue] ')';
 
 PureLambda returns PureFunctionDefinition: 
-	{PureLambda} '(' arg=Argument ')' ':' '{' functionBody=CompositionFunctionBodyPure '}'
-	| {PureLambda} '(' ')' ':' '{' functionBody=CompositionFunctionBodyPure '}'
+	{PureLambda} '\\' '(' arg=Argument ')' '->' '{' functionBody=CompositionFunctionBodyPure '}'
+	| {PureLambda} '\\' '('')' '->' '{' functionBody=CompositionFunctionBodyPure '}'
 ;
 
 
@@ -256,11 +257,11 @@ PureSumValue:
 
 
 EffectFullProdValue: 
-	'(' prodAdtElement1=EffectFullExpression ',' prodAdtElement2=EffectFullExpression ')';
+	'[' prodAdtElement1=EffectFullExpression ',' prodAdtElement2=EffectFullExpression ']';
 
 EffectFullSumValue:
-	'Left' '(' sumAdtElement1=EffectFullExpression ')'
-	| 'Right' '(' sumAdtElement2=EffectFullExpression ')';
+	'Left' '[' sumAdtElement1=EffectFullExpression ']'
+	| 'Right' '[' sumAdtElement2=EffectFullExpression ']';
     
     
 /////////////////////////////////////////////////////////////////////

@@ -1,34 +1,8 @@
 package it.unibo.generator
 
-import it.unibo.fPML.ValueType
-import it.unibo.fPML.IntegerType
-import it.unibo.fPML.StringType
-import it.unibo.fPML.UnitType
-import it.unibo.fPML.Argument
-import it.unibo.fPML.DataType
-import it.unibo.fPML.EffectFullArgument
-import it.unibo.fPML.Type
-import it.unibo.fPML.IOType
-import it.unibo.fPML.Expression
-import it.unibo.fPML.PureFunctionType
-import it.unibo.fPML.EffectFullFunctionType
-import it.unibo.fPML.EffectFullExpression
-import it.unibo.fPML.EffectFullDataType
-import it.unibo.fPML.CompositionFunctionBodyEffect
+import it.unibo.fPML.*
 import it.unibo.validation.utilitiesFunctions.GetReturnType
-import it.unibo.fPML.PureAlgebraicType
-import it.unibo.fPML.PureSumTypeFactor
-import it.unibo.fPML.PureProdTypeFactor
 import it.unibo.validation.utilitiesFunctions.Others
-import it.unibo.fPML.EffectFullAlgebraicType
-import it.unibo.fPML.EffectFullSumTypeFactor
-import it.unibo.fPML.RecursiveEffectFullExpression
-import it.unibo.fPML.PureValueRef
-import it.unibo.fPML.PureSumValue
-import it.unibo.fPML.PureProdValue
-import it.unibo.fPML.EffectFullProdValue
-import it.unibo.fPML.EffectFullSumValue
-import it.unibo.fPML.EffectFullValueRef
 
 class TypeGenerator {
 	
@@ -82,7 +56,8 @@ class TypeGenerator {
 	
 	def compileType(EffectFullExpression e) {
 		switch e {
-			Expression: '''IO<«compileType(e.innerValue as Expression)»>'''
+			IOExpression: '''IO<«compileType(e.innerValue as Expression)»>'''
+			Expression: compileType(e as Expression)
 			EffectFullFunctionType: if (e.argType != null && e.returnType != null) 
 										return '''F<«e.argType.compile», IO<«e.returnType.type.compile»>>'''
 									else if(e.returnType != null)

@@ -30,6 +30,7 @@ import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
+import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
@@ -69,7 +70,6 @@ import it.unibo.fPML.VoidType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -499,10 +499,17 @@ public class GetReturnType {
   public static Type effectFullExpression(final EffectFullExpression expression) {
     Type _switchResult = null;
     boolean _matched = false;
-    if (expression instanceof Expression) {
+    if (expression instanceof IOExpression) {
       _matched=true;
-      ValueType _expression = GetReturnType.expression(((Expression)expression));
+      Expression _innerValue = ((IOExpression)expression).getInnerValue();
+      ValueType _expression = GetReturnType.expression(_innerValue);
       return Others.IOWrap(_expression);
+    }
+    if (!_matched) {
+      if (expression instanceof Expression) {
+        _matched=true;
+        _switchResult = GetReturnType.expression(((Expression)expression));
+      }
     }
     if (!_matched) {
       if (expression instanceof EffectFullFunctionType) {
@@ -545,7 +552,7 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof RecursiveEffectFullExpression) {
         _matched=true;
-        EObject _innerValue = ((RecursiveEffectFullExpression)expression).getInnerValue();
+        EffectFullExpression _innerValue = ((RecursiveEffectFullExpression)expression).getInnerValue();
         Type _effectFullExpression = GetReturnType.effectFullExpression(((EffectFullExpression) _innerValue));
         return Others.IOWrap(_effectFullExpression);
       }

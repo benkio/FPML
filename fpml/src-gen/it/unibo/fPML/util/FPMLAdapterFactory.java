@@ -476,6 +476,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createRecursiveEffectFullExpressionAdapter();
       }
       @Override
+      public Adapter caseIOExpression(IOExpression object)
+      {
+        return createIOExpressionAdapter();
+      }
+      @Override
       public Adapter caseEffectFullLambda(EffectFullLambda object)
       {
         return createEffectFullLambdaAdapter();
@@ -1713,6 +1718,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRecursiveEffectFullExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.IOExpression <em>IO Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.IOExpression
+   * @generated
+   */
+  public Adapter createIOExpressionAdapter()
   {
     return null;
   }

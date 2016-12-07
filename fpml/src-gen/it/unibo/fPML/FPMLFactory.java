@@ -744,6 +744,15 @@ public interface FPMLFactory extends EFactory
   RecursiveEffectFullExpression createRecursiveEffectFullExpression();
 
   /**
+   * Returns a new object of class '<em>IO Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>IO Expression</em>'.
+   * @generated
+   */
+  IOExpression createIOExpression();
+
+  /**
    * Returns a new object of class '<em>Effect Full Lambda</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

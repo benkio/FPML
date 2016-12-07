@@ -6,21 +6,21 @@ package it.unibo.fPML;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Recursive Effect Full Expression</b></em>'.
+ * A representation of the model object '<em><b>IO Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.RecursiveEffectFullExpression#getInnerValue <em>Inner Value</em>}</li>
+ *   <li>{@link it.unibo.fPML.IOExpression#getInnerValue <em>Inner Value</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getRecursiveEffectFullExpression()
+ * @see it.unibo.fPML.FPMLPackage#getIOExpression()
  * @model
  * @generated
  */
-public interface RecursiveEffectFullExpression extends EffectFullExpression
+public interface IOExpression extends EffectFullExpression
 {
   /**
    * Returns the value of the '<em><b>Inner Value</b></em>' containment reference.
@@ -31,21 +31,21 @@ public interface RecursiveEffectFullExpression extends EffectFullExpression
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Inner Value</em>' containment reference.
-   * @see #setInnerValue(EffectFullExpression)
-   * @see it.unibo.fPML.FPMLPackage#getRecursiveEffectFullExpression_InnerValue()
+   * @see #setInnerValue(Expression)
+   * @see it.unibo.fPML.FPMLPackage#getIOExpression_InnerValue()
    * @model containment="true"
    * @generated
    */
-  EffectFullExpression getInnerValue();
+  Expression getInnerValue();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.RecursiveEffectFullExpression#getInnerValue <em>Inner Value</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.IOExpression#getInnerValue <em>Inner Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Inner Value</em>' containment reference.
    * @see #getInnerValue()
    * @generated
    */
-  void setInnerValue(EffectFullExpression value);
+  void setInnerValue(Expression value);
 
-} // RecursiveEffectFullExpression
+} // IOExpression

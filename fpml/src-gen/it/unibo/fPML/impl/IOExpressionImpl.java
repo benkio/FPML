@@ -3,9 +3,9 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullExpression;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.RecursiveEffectFullExpression;
+import it.unibo.fPML.IOExpression;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,18 +17,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Recursive Effect Full Expression</b></em>'.
+ * An implementation of the model object '<em><b>IO Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.RecursiveEffectFullExpressionImpl#getInnerValue <em>Inner Value</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.IOExpressionImpl#getInnerValue <em>Inner Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl implements RecursiveEffectFullExpression
+public class IOExpressionImpl extends EffectFullExpressionImpl implements IOExpression
 {
   /**
    * The cached value of the '{@link #getInnerValue() <em>Inner Value</em>}' containment reference.
@@ -38,14 +38,14 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
    * @generated
    * @ordered
    */
-  protected EffectFullExpression innerValue;
+  protected Expression innerValue;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RecursiveEffectFullExpressionImpl()
+  protected IOExpressionImpl()
   {
     super();
   }
@@ -58,7 +58,7 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.RECURSIVE_EFFECT_FULL_EXPRESSION;
+    return FPMLPackage.Literals.IO_EXPRESSION;
   }
 
   /**
@@ -66,7 +66,7 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullExpression getInnerValue()
+  public Expression getInnerValue()
   {
     return innerValue;
   }
@@ -76,13 +76,13 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetInnerValue(EffectFullExpression newInnerValue, NotificationChain msgs)
+  public NotificationChain basicSetInnerValue(Expression newInnerValue, NotificationChain msgs)
   {
-    EffectFullExpression oldInnerValue = innerValue;
+    Expression oldInnerValue = innerValue;
     innerValue = newInnerValue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE, oldInnerValue, newInnerValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.IO_EXPRESSION__INNER_VALUE, oldInnerValue, newInnerValue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -93,20 +93,20 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setInnerValue(EffectFullExpression newInnerValue)
+  public void setInnerValue(Expression newInnerValue)
   {
     if (newInnerValue != innerValue)
     {
       NotificationChain msgs = null;
       if (innerValue != null)
-        msgs = ((InternalEObject)innerValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE, null, msgs);
+        msgs = ((InternalEObject)innerValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.IO_EXPRESSION__INNER_VALUE, null, msgs);
       if (newInnerValue != null)
-        msgs = ((InternalEObject)newInnerValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE, null, msgs);
+        msgs = ((InternalEObject)newInnerValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.IO_EXPRESSION__INNER_VALUE, null, msgs);
       msgs = basicSetInnerValue(newInnerValue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE, newInnerValue, newInnerValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.IO_EXPRESSION__INNER_VALUE, newInnerValue, newInnerValue));
   }
 
   /**
@@ -119,7 +119,7 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
   {
     switch (featureID)
     {
-      case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE:
+      case FPMLPackage.IO_EXPRESSION__INNER_VALUE:
         return basicSetInnerValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -135,7 +135,7 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
   {
     switch (featureID)
     {
-      case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE:
+      case FPMLPackage.IO_EXPRESSION__INNER_VALUE:
         return getInnerValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -151,8 +151,8 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
   {
     switch (featureID)
     {
-      case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE:
-        setInnerValue((EffectFullExpression)newValue);
+      case FPMLPackage.IO_EXPRESSION__INNER_VALUE:
+        setInnerValue((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,8 +168,8 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
   {
     switch (featureID)
     {
-      case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE:
-        setInnerValue((EffectFullExpression)null);
+      case FPMLPackage.IO_EXPRESSION__INNER_VALUE:
+        setInnerValue((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -185,10 +185,10 @@ public class RecursiveEffectFullExpressionImpl extends EffectFullExpressionImpl 
   {
     switch (featureID)
     {
-      case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION__INNER_VALUE:
+      case FPMLPackage.IO_EXPRESSION__INNER_VALUE:
         return innerValue != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //RecursiveEffectFullExpressionImpl
+} //IOExpressionImpl
