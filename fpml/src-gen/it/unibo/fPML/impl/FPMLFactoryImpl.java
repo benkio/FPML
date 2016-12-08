@@ -133,6 +133,13 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.RIGHT_PAIR: return createRightPair();
       case FPMLPackage.APPLY_F: return createApplyF();
       case FPMLPackage.APPLY_FFACTOR: return createApplyFFactor();
+      case FPMLPackage.EQUALS: return createEquals();
+      case FPMLPackage.MINOR_EQUALS: return createMinorEquals();
+      case FPMLPackage.MAJOR_EQUALS: return createMajorEquals();
+      case FPMLPackage.MINOR: return createMinor();
+      case FPMLPackage.MAJOR: return createMajor();
+      case FPMLPackage.LOGIC_AND: return createLogicAnd();
+      case FPMLPackage.LOGIC_OR: return createLogicOr();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
       case FPMLPackage.LEFT_PAIR_IO: return createLeftPairIO();
@@ -902,6 +909,83 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     ApplyFFactorImpl applyFFactor = new ApplyFFactorImpl();
     return applyFFactor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Equals createEquals()
+  {
+    EqualsImpl equals = new EqualsImpl();
+    return equals;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MinorEquals createMinorEquals()
+  {
+    MinorEqualsImpl minorEquals = new MinorEqualsImpl();
+    return minorEquals;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MajorEquals createMajorEquals()
+  {
+    MajorEqualsImpl majorEquals = new MajorEqualsImpl();
+    return majorEquals;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Minor createMinor()
+  {
+    MinorImpl minor = new MinorImpl();
+    return minor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Major createMajor()
+  {
+    MajorImpl major = new MajorImpl();
+    return major;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LogicAnd createLogicAnd()
+  {
+    LogicAndImpl logicAnd = new LogicAndImpl();
+    return logicAnd;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LogicOr createLogicOr()
+  {
+    LogicOrImpl logicOr = new LogicOrImpl();
+    return logicOr;
   }
 
   /**

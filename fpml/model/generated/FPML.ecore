@@ -237,7 +237,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePureFunction" eSuperTypes="#//PureFunction #//PrimitiveFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="IntToString" eSuperTypes="#//PrimitivePureFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="IntPow" eSuperTypes="#//PrimitivePureFunction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Plus" eSuperTypes="#//PrimitivePureFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Plus" eSuperTypes="#//PrimitivePureFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Minus" eSuperTypes="#//PrimitivePureFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="Times" eSuperTypes="#//PrimitivePureFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="Mod" eSuperTypes="#//PrimitivePureFunction"/>
@@ -260,6 +263,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueLambda" eType="#//PureFunctionDefinition"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Equals" eSuperTypes="#//PrimitivePureFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MinorEquals" eSuperTypes="#//PrimitivePureFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MajorEquals" eSuperTypes="#//PrimitivePureFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Minor" eSuperTypes="#//PrimitivePureFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Major" eSuperTypes="#//PrimitivePureFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicAnd" eSuperTypes="#//PrimitivePureFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicOr" eSuperTypes="#//PrimitivePureFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveEffectFullFunction" eSuperTypes="#//EffectFullFunction #//PrimitiveFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//PrimitiveEffectFullFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="LeftPairIO" eSuperTypes="#//PrimitiveEffectFullFunction">

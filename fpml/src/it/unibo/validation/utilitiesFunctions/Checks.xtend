@@ -20,12 +20,12 @@ class Checks {
 							  (value instanceof PureValueRef &&
 						       	checkValueType((value as PureValueRef).value, type)
 						       )
-      BooleanType: return value instanceof BooleanType ||
+		    BooleanType: return value instanceof BooleanType ||
 							  (value instanceof PureValueRef &&
 						       	checkValueType((value as PureValueRef).value, type)
 						       )
-      DataType: return (value instanceof DataValue && 
-							 DataAndValue((value as DataValue).value, (type as DataType).type.content))
+		    DataType: return (value instanceof DataValue && 
+							DataAndValue((value as DataValue).value, (type as DataType).type.content))
 			PureFunctionType: {
 				if ( value instanceof PureFunctionType) 
 					return (value as PureFunctionType).value.getFunctionBody instanceof CompositionFunctionBodyPure &&
@@ -57,7 +57,7 @@ class Checks {
 		switch adtt {
 			IntegerType: return valueType instanceof IntegerType
 			StringType: return valueType instanceof StringType
-      BooleanType: return valueType instanceof BooleanType
+      		BooleanType: return valueType instanceof BooleanType
 			DataType: return valueType instanceof DataType && adtt.type.name.equals((valueType as DataType).type.name) 
 			PureFunctionType: valueType instanceof PureFunctionType && ValueTypeEquals(adtt.argType, (valueType as PureFunctionType).argType) && ValueTypeEquals(adtt.returnType, (valueType as PureFunctionType).returnType)
 			default: false

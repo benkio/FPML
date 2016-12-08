@@ -187,7 +187,9 @@
     <genClasses ecoreClass="FPML.ecore#//PrimitivePureFunction"/>
     <genClasses ecoreClass="FPML.ecore#//IntToString"/>
     <genClasses ecoreClass="FPML.ecore#//IntPow"/>
-    <genClasses ecoreClass="FPML.ecore#//Plus"/>
+    <genClasses ecoreClass="FPML.ecore#//Plus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//Plus/type"/>
+    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//Minus"/>
     <genClasses ecoreClass="FPML.ecore#//Times"/>
     <genClasses ecoreClass="FPML.ecore#//Mod"/>
@@ -205,6 +207,15 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFFactor/valueReference"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyFFactor/valueLambda"/>
     </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//Equals">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//Equals/type"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//MinorEquals"/>
+    <genClasses ecoreClass="FPML.ecore#//MajorEquals"/>
+    <genClasses ecoreClass="FPML.ecore#//Minor"/>
+    <genClasses ecoreClass="FPML.ecore#//Major"/>
+    <genClasses ecoreClass="FPML.ecore#//LogicAnd"/>
+    <genClasses ecoreClass="FPML.ecore#//LogicOr"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveEffectFullFunction"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitivePrint"/>
     <genClasses ecoreClass="FPML.ecore#//LeftPairIO">

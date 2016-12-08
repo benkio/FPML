@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Plus</b></em>'.
+ * A representation of the model object '<em><b>Equals</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.Plus#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.Equals#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getPlus()
+ * @see it.unibo.fPML.FPMLPackage#getEquals()
  * @model
  * @generated
  */
-public interface Plus extends PrimitivePureFunction
+public interface Equals extends PrimitivePureFunction
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
@@ -33,14 +33,14 @@ public interface Plus extends PrimitivePureFunction
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(EObject)
-   * @see it.unibo.fPML.FPMLPackage#getPlus_Type()
+   * @see it.unibo.fPML.FPMLPackage#getEquals_Type()
    * @model containment="true"
    * @generated
    */
   EObject getType();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.Plus#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.Equals#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' containment reference.
@@ -49,4 +49,4 @@ public interface Plus extends PrimitivePureFunction
    */
   void setType(EObject value);
 
-} // Plus
+} // Equals

@@ -10,6 +10,7 @@ import it.unibo.fPML.EffectFullFunction
 import it.unibo.fPML.EffectFullFunctionDefinition
 import it.unibo.fPML.PrimitiveEffectFullFunction
 import it.unibo.fPML.EffectFullValue
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class GetArgType {
 	
@@ -32,13 +33,20 @@ class GetArgType {
 		switch f {
 			IntToString: return FPMLFactory.eINSTANCE.createIntegerType
 			IntPow: return FPMLFactory.eINSTANCE.createIntegerType
-			Plus: return FPMLFactory.eINSTANCE.createIntegerType
+			Plus: return EcoreUtil.copy(f.type) as ValueType
 			Minus: return FPMLFactory.eINSTANCE.createIntegerType
 			Times: return FPMLFactory.eINSTANCE.createIntegerType
 			Mod: return FPMLFactory.eINSTANCE.createIntegerType
-			ApplyF: return f.functionType
-      		LeftPair: return f.type
-      		RightPair: return f.type
+			ApplyF: return EcoreUtil.copy(f.functionType)
+      		LeftPair: return EcoreUtil.copy(f.type)
+      		RightPair: return EcoreUtil.copy(f.type)
+      		Equals: return EcoreUtil.copy(f.type) as ValueType 
+      		MinorEquals: return FPMLFactory.eINSTANCE.createIntegerType
+      		MajorEquals: return FPMLFactory.eINSTANCE.createIntegerType
+      		Minor: return FPMLFactory.eINSTANCE.createIntegerType 
+      		Major: return FPMLFactory.eINSTANCE.createIntegerType
+      		LogicAnd:return FPMLFactory.eINSTANCE.createBooleanType
+      		LogicOr: return FPMLFactory.eINSTANCE.createBooleanType
 		}
 	}
 	

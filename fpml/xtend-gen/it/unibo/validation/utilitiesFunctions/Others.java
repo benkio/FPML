@@ -14,7 +14,6 @@ import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullSumTypeFactor;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.IOType;
-import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.PrimitiveEffectFullValue;
 import it.unibo.fPML.PrimitiveFunction;
 import it.unibo.fPML.PrimitivePureFunction;
@@ -137,12 +136,10 @@ public class Others {
     return _switchResult;
   }
   
-  public static PureFunctionType createIntIntFuntionType() {
+  public static PureFunctionType createFuntionType(final ValueType argT, final ValueType returnT) {
     final PureFunctionType func = FPMLFactory.eINSTANCE.createPureFunctionType();
-    IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
-    func.setArgType(_createIntegerType);
-    IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
-    func.setReturnType(_createIntegerType_1);
+    func.setArgType(argT);
+    func.setReturnType(returnT);
     return func;
   }
   

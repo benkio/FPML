@@ -40,6 +40,7 @@ import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueBlock;
 import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
+import it.unibo.fPML.Equals;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FPMLPackage;
@@ -53,7 +54,13 @@ import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.LeftPair;
 import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.LogicAnd;
+import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.MainFunc;
+import it.unibo.fPML.Major;
+import it.unibo.fPML.MajorEquals;
+import it.unibo.fPML.Minor;
+import it.unibo.fPML.MinorEquals;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Model;
@@ -582,6 +589,55 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass applyFFactorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass equalsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass minorEqualsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass majorEqualsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass minorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass majorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass logicAndEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass logicOrEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2167,6 +2223,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getPlus_Type()
+  {
+    return (EReference)plusEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getMinus()
   {
     return minusEClass;
@@ -2290,6 +2356,86 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EReference getApplyFFactor_ValueLambda()
   {
     return (EReference)applyFFactorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEquals()
+  {
+    return equalsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEquals_Type()
+  {
+    return (EReference)equalsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMinorEquals()
+  {
+    return minorEqualsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMajorEquals()
+  {
+    return majorEqualsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMinor()
+  {
+    return minorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMajor()
+  {
+    return majorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLogicAnd()
+  {
+    return logicAndEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLogicOr()
+  {
+    return logicOrEClass;
   }
 
   /**
@@ -2841,6 +2987,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     intPowEClass = createEClass(INT_POW);
 
     plusEClass = createEClass(PLUS);
+    createEReference(plusEClass, PLUS__TYPE);
 
     minusEClass = createEClass(MINUS);
 
@@ -2861,6 +3008,21 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     applyFFactorEClass = createEClass(APPLY_FFACTOR);
     createEReference(applyFFactorEClass, APPLY_FFACTOR__VALUE_REFERENCE);
     createEReference(applyFFactorEClass, APPLY_FFACTOR__VALUE_LAMBDA);
+
+    equalsEClass = createEClass(EQUALS);
+    createEReference(equalsEClass, EQUALS__TYPE);
+
+    minorEqualsEClass = createEClass(MINOR_EQUALS);
+
+    majorEqualsEClass = createEClass(MAJOR_EQUALS);
+
+    minorEClass = createEClass(MINOR);
+
+    majorEClass = createEClass(MAJOR);
+
+    logicAndEClass = createEClass(LOGIC_AND);
+
+    logicOrEClass = createEClass(LOGIC_OR);
 
     primitiveEffectFullFunctionEClass = createEClass(PRIMITIVE_EFFECT_FULL_FUNCTION);
 
@@ -2996,6 +3158,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     leftPairEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     rightPairEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     applyFEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    equalsEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    minorEqualsEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    majorEqualsEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    minorEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    majorEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    logicAndEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    logicOrEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     primitiveEffectFullFunctionEClass.getESuperTypes().add(this.getEffectFullFunction());
     primitiveEffectFullFunctionEClass.getESuperTypes().add(this.getPrimitiveFunction());
     primitivePrintEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
@@ -3216,6 +3385,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(intPowEClass, IntPow.class, "IntPow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(plusEClass, Plus.class, "Plus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPlus_Type(), ecorePackage.getEObject(), null, "type", null, 0, 1, Plus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(minusEClass, Minus.class, "Minus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3236,6 +3406,21 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(applyFFactorEClass, ApplyFFactor.class, "ApplyFFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getApplyFFactor_ValueReference(), this.getPureFunction(), null, "valueReference", null, 0, 1, ApplyFFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getApplyFFactor_ValueLambda(), this.getPureFunctionDefinition(), null, "valueLambda", null, 0, 1, ApplyFFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(equalsEClass, Equals.class, "Equals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEquals_Type(), ecorePackage.getEObject(), null, "type", null, 0, 1, Equals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(minorEqualsEClass, MinorEquals.class, "MinorEquals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(majorEqualsEClass, MajorEquals.class, "MajorEquals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(minorEClass, Minor.class, "Minor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(majorEClass, Major.class, "Major", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(logicAndEClass, LogicAnd.class, "LogicAnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(logicOrEClass, LogicOr.class, "LogicOr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(primitiveEffectFullFunctionEClass, PrimitiveEffectFullFunction.class, "PrimitiveEffectFullFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

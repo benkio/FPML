@@ -1235,7 +1235,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitTypeParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//ValueType:
-		//	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
+		//	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType
+		//	| UnitType;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType | UnitType
@@ -2602,15 +2603,24 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cApplyFParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cLeftPairParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cRightPairParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cEqualsParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cMinorEqualsParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cMajorEqualsParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
+		private final RuleCall cMinorParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cMajorParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
+		private final RuleCall cLogicAndParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
+		private final RuleCall cLogicOrParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
 		
 		///////////////////////////////////////////////////////////////////////
 		//// Primitives
 		///////////////////////////////////////////////////////////////////////
 		//PrimitivePureFunction:
-		//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair;
+		//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair
+		//	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair
+		//IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair | Equals | MinorEquals | MajorEquals |
+		//Minor | Major | LogicAnd | LogicOr
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntToString
@@ -2639,6 +2649,27 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//RightPair
 		public RuleCall getRightPairParserRuleCall_8() { return cRightPairParserRuleCall_8; }
+		
+		//Equals
+		public RuleCall getEqualsParserRuleCall_9() { return cEqualsParserRuleCall_9; }
+		
+		//MinorEquals
+		public RuleCall getMinorEqualsParserRuleCall_10() { return cMinorEqualsParserRuleCall_10; }
+		
+		//MajorEquals
+		public RuleCall getMajorEqualsParserRuleCall_11() { return cMajorEqualsParserRuleCall_11; }
+		
+		//Minor
+		public RuleCall getMinorParserRuleCall_12() { return cMinorParserRuleCall_12; }
+		
+		//Major
+		public RuleCall getMajorParserRuleCall_13() { return cMajorParserRuleCall_13; }
+		
+		//LogicAnd
+		public RuleCall getLogicAndParserRuleCall_14() { return cLogicAndParserRuleCall_14; }
+		
+		//LogicOr
+		public RuleCall getLogicOrParserRuleCall_15() { return cLogicOrParserRuleCall_15; }
 	}
 	public class IntToStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.IntToString");
@@ -2683,12 +2714,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cPlusAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cPlusSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cTypeAlternatives_2_0 = (Alternatives)cTypeAssignment_2.eContents().get(0);
+		private final RuleCall cTypeIntegerTypeParserRuleCall_2_0_0 = (RuleCall)cTypeAlternatives_2_0.eContents().get(0);
+		private final RuleCall cTypeStringTypeParserRuleCall_2_0_1 = (RuleCall)cTypeAlternatives_2_0.eContents().get(1);
 		
 		//Plus:
-		//	{Plus} '+';
+		//	{Plus} '+' type=(IntegerType | StringType);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Plus} '+'
+		//{Plus} '+' type=(IntegerType | StringType)
 		public Group getGroup() { return cGroup; }
 		
 		//{Plus}
@@ -2696,6 +2731,18 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'+'
 		public Keyword getPlusSignKeyword_1() { return cPlusSignKeyword_1; }
+		
+		//type=(IntegerType | StringType)
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//(IntegerType | StringType)
+		public Alternatives getTypeAlternatives_2_0() { return cTypeAlternatives_2_0; }
+		
+		//IntegerType
+		public RuleCall getTypeIntegerTypeParserRuleCall_2_0_0() { return cTypeIntegerTypeParserRuleCall_2_0_0; }
+		
+		//StringType
+		public RuleCall getTypeStringTypeParserRuleCall_2_0_1() { return cTypeStringTypeParserRuleCall_2_0_1; }
 	}
 	public class MinusElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Minus");
@@ -2885,6 +2932,159 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
+	}
+	public class EqualsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Equals");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cEqualsAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cTypeAlternatives_2_0 = (Alternatives)cTypeAssignment_2.eContents().get(0);
+		private final RuleCall cTypeIntegerTypeParserRuleCall_2_0_0 = (RuleCall)cTypeAlternatives_2_0.eContents().get(0);
+		private final RuleCall cTypeStringTypeParserRuleCall_2_0_1 = (RuleCall)cTypeAlternatives_2_0.eContents().get(1);
+		private final RuleCall cTypeBooleanTypeParserRuleCall_2_0_2 = (RuleCall)cTypeAlternatives_2_0.eContents().get(2);
+		
+		//Equals:
+		//	{Equals} '==' type=(IntegerType | StringType | BooleanType);
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Equals} '==' type=(IntegerType | StringType | BooleanType)
+		public Group getGroup() { return cGroup; }
+		
+		//{Equals}
+		public Action getEqualsAction_0() { return cEqualsAction_0; }
+		
+		//'=='
+		public Keyword getEqualsSignEqualsSignKeyword_1() { return cEqualsSignEqualsSignKeyword_1; }
+		
+		//type=(IntegerType | StringType | BooleanType)
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//(IntegerType | StringType | BooleanType)
+		public Alternatives getTypeAlternatives_2_0() { return cTypeAlternatives_2_0; }
+		
+		//IntegerType
+		public RuleCall getTypeIntegerTypeParserRuleCall_2_0_0() { return cTypeIntegerTypeParserRuleCall_2_0_0; }
+		
+		//StringType
+		public RuleCall getTypeStringTypeParserRuleCall_2_0_1() { return cTypeStringTypeParserRuleCall_2_0_1; }
+		
+		//BooleanType
+		public RuleCall getTypeBooleanTypeParserRuleCall_2_0_2() { return cTypeBooleanTypeParserRuleCall_2_0_2; }
+	}
+	public class MinorEqualsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.MinorEquals");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMinorEqualsAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLessThanSignEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//MinorEquals:
+		//	{MinorEquals} '<=';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MinorEquals} '<='
+		public Group getGroup() { return cGroup; }
+		
+		//{MinorEquals}
+		public Action getMinorEqualsAction_0() { return cMinorEqualsAction_0; }
+		
+		//'<='
+		public Keyword getLessThanSignEqualsSignKeyword_1() { return cLessThanSignEqualsSignKeyword_1; }
+	}
+	public class MajorEqualsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.MajorEquals");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMajorEqualsAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cGreaterThanSignEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//MajorEquals:
+		//	{MajorEquals} '>=';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MajorEquals} '>='
+		public Group getGroup() { return cGroup; }
+		
+		//{MajorEquals}
+		public Action getMajorEqualsAction_0() { return cMajorEqualsAction_0; }
+		
+		//'>='
+		public Keyword getGreaterThanSignEqualsSignKeyword_1() { return cGreaterThanSignEqualsSignKeyword_1; }
+	}
+	public class MinorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Minor");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMinorAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLessThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//Minor:
+		//	{Minor} '<';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Minor} '<'
+		public Group getGroup() { return cGroup; }
+		
+		//{Minor}
+		public Action getMinorAction_0() { return cMinorAction_0; }
+		
+		//'<'
+		public Keyword getLessThanSignKeyword_1() { return cLessThanSignKeyword_1; }
+	}
+	public class MajorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Major");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMajorAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//Major:
+		//	{Major} '>';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Major} '>'
+		public Group getGroup() { return cGroup; }
+		
+		//{Major}
+		public Action getMajorAction_0() { return cMajorAction_0; }
+		
+		//'>'
+		public Keyword getGreaterThanSignKeyword_1() { return cGreaterThanSignKeyword_1; }
+	}
+	public class LogicAndElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.LogicAnd");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLogicAndAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cAmpersandAmpersandKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//LogicAnd:
+		//	{LogicAnd} '&&';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{LogicAnd} '&&'
+		public Group getGroup() { return cGroup; }
+		
+		//{LogicAnd}
+		public Action getLogicAndAction_0() { return cLogicAndAction_0; }
+		
+		//'&&'
+		public Keyword getAmpersandAmpersandKeyword_1() { return cAmpersandAmpersandKeyword_1; }
+	}
+	public class LogicOrElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.LogicOr");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLogicOrAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cVerticalLineVerticalLineKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//LogicOr:
+		//	{LogicOr} '||';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{LogicOr} '||'
+		public Group getGroup() { return cGroup; }
+		
+		//{LogicOr}
+		public Action getLogicOrAction_0() { return cLogicOrAction_0; }
+		
+		//'||'
+		public Keyword getVerticalLineVerticalLineKeyword_1() { return cVerticalLineVerticalLineKeyword_1; }
 	}
 	public class PrimitiveEffectFullFunctionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveEffectFullFunction");
@@ -3243,6 +3443,13 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final RightPairElements pRightPair;
 	private final ApplyFElements pApplyF;
 	private final ApplyFFactorElements pApplyFFactor;
+	private final EqualsElements pEquals;
+	private final MinorEqualsElements pMinorEquals;
+	private final MajorEqualsElements pMajorEquals;
+	private final MinorElements pMinor;
+	private final MajorElements pMajor;
+	private final LogicAndElements pLogicAnd;
+	private final LogicOrElements pLogicOr;
 	private final PrimitiveEffectFullFunctionElements pPrimitiveEffectFullFunction;
 	private final PrimitivePrintElements pPrimitivePrint;
 	private final LeftPairIOElements pLeftPairIO;
@@ -3344,6 +3551,13 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pRightPair = new RightPairElements();
 		this.pApplyF = new ApplyFElements();
 		this.pApplyFFactor = new ApplyFFactorElements();
+		this.pEquals = new EqualsElements();
+		this.pMinorEquals = new MinorEqualsElements();
+		this.pMajorEquals = new MajorEqualsElements();
+		this.pMinor = new MinorElements();
+		this.pMajor = new MajorElements();
+		this.pLogicAnd = new LogicAndElements();
+		this.pLogicOr = new LogicOrElements();
 		this.pPrimitiveEffectFullFunction = new PrimitiveEffectFullFunctionElements();
 		this.pPrimitivePrint = new PrimitivePrintElements();
 		this.pLeftPairIO = new LeftPairIOElements();
@@ -3763,7 +3977,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ValueType:
-	//	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
+	//	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType
+	//	| UnitType;
 	public ValueTypeElements getValueTypeAccess() {
 		return pValueType;
 	}
@@ -4148,7 +4363,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//// Primitives
 	///////////////////////////////////////////////////////////////////////
 	//PrimitivePureFunction:
-	//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair;
+	//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair
+	//	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr;
 	public PrimitivePureFunctionElements getPrimitivePureFunctionAccess() {
 		return pPrimitivePureFunction;
 	}
@@ -4178,7 +4394,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Plus:
-	//	{Plus} '+';
+	//	{Plus} '+' type=(IntegerType | StringType);
 	public PlusElements getPlusAccess() {
 		return pPlus;
 	}
@@ -4255,6 +4471,76 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getApplyFFactorRule() {
 		return getApplyFFactorAccess().getRule();
+	}
+	
+	//Equals:
+	//	{Equals} '==' type=(IntegerType | StringType | BooleanType);
+	public EqualsElements getEqualsAccess() {
+		return pEquals;
+	}
+	
+	public ParserRule getEqualsRule() {
+		return getEqualsAccess().getRule();
+	}
+	
+	//MinorEquals:
+	//	{MinorEquals} '<=';
+	public MinorEqualsElements getMinorEqualsAccess() {
+		return pMinorEquals;
+	}
+	
+	public ParserRule getMinorEqualsRule() {
+		return getMinorEqualsAccess().getRule();
+	}
+	
+	//MajorEquals:
+	//	{MajorEquals} '>=';
+	public MajorEqualsElements getMajorEqualsAccess() {
+		return pMajorEquals;
+	}
+	
+	public ParserRule getMajorEqualsRule() {
+		return getMajorEqualsAccess().getRule();
+	}
+	
+	//Minor:
+	//	{Minor} '<';
+	public MinorElements getMinorAccess() {
+		return pMinor;
+	}
+	
+	public ParserRule getMinorRule() {
+		return getMinorAccess().getRule();
+	}
+	
+	//Major:
+	//	{Major} '>';
+	public MajorElements getMajorAccess() {
+		return pMajor;
+	}
+	
+	public ParserRule getMajorRule() {
+		return getMajorAccess().getRule();
+	}
+	
+	//LogicAnd:
+	//	{LogicAnd} '&&';
+	public LogicAndElements getLogicAndAccess() {
+		return pLogicAnd;
+	}
+	
+	public ParserRule getLogicAndRule() {
+		return getLogicAndAccess().getRule();
+	}
+	
+	//LogicOr:
+	//	{LogicOr} '||';
+	public LogicOrElements getLogicOrAccess() {
+		return pLogicOr;
+	}
+	
+	public ParserRule getLogicOrRule() {
+		return getLogicOrAccess().getRule();
 	}
 	
 	//PrimitiveEffectFullFunction:

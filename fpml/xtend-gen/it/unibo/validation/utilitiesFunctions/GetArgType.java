@@ -13,6 +13,7 @@ import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullValue;
+import it.unibo.fPML.Equals;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
@@ -20,6 +21,12 @@ import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.LeftPair;
 import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.LogicAnd;
+import it.unibo.fPML.LogicOr;
+import it.unibo.fPML.Major;
+import it.unibo.fPML.MajorEquals;
+import it.unibo.fPML.Minor;
+import it.unibo.fPML.MinorEquals;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
@@ -30,6 +37,7 @@ import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PrimitiveRandom;
 import it.unibo.fPML.PrimitiveReturn;
 import it.unibo.fPML.PrimitiveTime;
+import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
@@ -40,6 +48,8 @@ import it.unibo.fPML.RightPairIO;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.ValueType;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 @SuppressWarnings("all")
 public class GetArgType {
@@ -96,7 +106,9 @@ public class GetArgType {
     if (!_matched) {
       if (f instanceof Plus) {
         _matched=true;
-        return FPMLFactory.eINSTANCE.createIntegerType();
+        EObject _type = ((Plus)f).getType();
+        EObject _copy = EcoreUtil.<EObject>copy(_type);
+        return ((ValueType) _copy);
       }
     }
     if (!_matched) {
@@ -120,19 +132,66 @@ public class GetArgType {
     if (!_matched) {
       if (f instanceof ApplyF) {
         _matched=true;
-        return ((ApplyF)f).getFunctionType();
+        PureFunctionType _functionType = ((ApplyF)f).getFunctionType();
+        return EcoreUtil.<PureFunctionType>copy(_functionType);
       }
     }
     if (!_matched) {
       if (f instanceof LeftPair) {
         _matched=true;
-        return ((LeftPair)f).getType();
+        PureAlgebraicType _type = ((LeftPair)f).getType();
+        return EcoreUtil.<PureAlgebraicType>copy(_type);
       }
     }
     if (!_matched) {
       if (f instanceof RightPair) {
         _matched=true;
-        return ((RightPair)f).getType();
+        PureAlgebraicType _type = ((RightPair)f).getType();
+        return EcoreUtil.<PureAlgebraicType>copy(_type);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof Equals) {
+        _matched=true;
+        EObject _type = ((Equals)f).getType();
+        EObject _copy = EcoreUtil.<EObject>copy(_type);
+        return ((ValueType) _copy);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof MinorEquals) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createIntegerType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof MajorEquals) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createIntegerType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof Minor) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createIntegerType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof Major) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createIntegerType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof LogicAnd) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createBooleanType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof LogicOr) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createBooleanType();
       }
     }
     return null;

@@ -1910,13 +1910,22 @@ public interface FPMLPackage extends EPackage
   int PLUS = 60;
 
   /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__TYPE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Plus</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLUS_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+  int PLUS_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.MinusImpl <em>Minus</em>}' class.
@@ -2106,6 +2115,148 @@ public interface FPMLPackage extends EPackage
   int APPLY_FFACTOR_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.EqualsImpl <em>Equals</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.EqualsImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getEquals()
+   * @generated
+   */
+  int EQUALS = 68;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQUALS__TYPE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Equals</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQUALS_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.MinorEqualsImpl <em>Minor Equals</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.MinorEqualsImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getMinorEquals()
+   * @generated
+   */
+  int MINOR_EQUALS = 69;
+
+  /**
+   * The number of structural features of the '<em>Minor Equals</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINOR_EQUALS_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.MajorEqualsImpl <em>Major Equals</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.MajorEqualsImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getMajorEquals()
+   * @generated
+   */
+  int MAJOR_EQUALS = 70;
+
+  /**
+   * The number of structural features of the '<em>Major Equals</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MAJOR_EQUALS_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.MinorImpl <em>Minor</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.MinorImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getMinor()
+   * @generated
+   */
+  int MINOR = 71;
+
+  /**
+   * The number of structural features of the '<em>Minor</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINOR_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.MajorImpl <em>Major</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.MajorImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getMajor()
+   * @generated
+   */
+  int MAJOR = 72;
+
+  /**
+   * The number of structural features of the '<em>Major</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MAJOR_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.LogicAndImpl <em>Logic And</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.LogicAndImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getLogicAnd()
+   * @generated
+   */
+  int LOGIC_AND = 73;
+
+  /**
+   * The number of structural features of the '<em>Logic And</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGIC_AND_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.LogicOrImpl <em>Logic Or</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.LogicOrImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getLogicOr()
+   * @generated
+   */
+  int LOGIC_OR = 74;
+
+  /**
+   * The number of structural features of the '<em>Logic Or</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGIC_OR_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullFunctionImpl <em>Primitive Effect Full Function</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2113,7 +2264,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullFunction()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_FUNCTION = 68;
+  int PRIMITIVE_EFFECT_FULL_FUNCTION = 75;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Function</em>' class.
@@ -2132,7 +2283,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePrint()
    * @generated
    */
-  int PRIMITIVE_PRINT = 69;
+  int PRIMITIVE_PRINT = 76;
 
   /**
    * The number of structural features of the '<em>Primitive Print</em>' class.
@@ -2151,7 +2302,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftPairIO()
    * @generated
    */
-  int LEFT_PAIR_IO = 70;
+  int LEFT_PAIR_IO = 77;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2179,7 +2330,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightPairIO()
    * @generated
    */
-  int RIGHT_PAIR_IO = 71;
+  int RIGHT_PAIR_IO = 78;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2207,7 +2358,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullValue()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_VALUE = 72;
+  int PRIMITIVE_EFFECT_FULL_VALUE = 79;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Value</em>' class.
@@ -2226,7 +2377,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveRandom()
    * @generated
    */
-  int PRIMITIVE_RANDOM = 73;
+  int PRIMITIVE_RANDOM = 80;
 
   /**
    * The number of structural features of the '<em>Primitive Random</em>' class.
@@ -2245,7 +2396,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveReturn()
    * @generated
    */
-  int PRIMITIVE_RETURN = 74;
+  int PRIMITIVE_RETURN = 81;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2273,7 +2424,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveTime()
    * @generated
    */
-  int PRIMITIVE_TIME = 75;
+  int PRIMITIVE_TIME = 82;
 
   /**
    * The number of structural features of the '<em>Primitive Time</em>' class.
@@ -2292,7 +2443,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIO()
    * @generated
    */
-  int APPLY_FIO = 76;
+  int APPLY_FIO = 83;
 
   /**
    * The feature id for the '<em><b>Function Type</b></em>' containment reference.
@@ -2329,7 +2480,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIOFactor()
    * @generated
    */
-  int APPLY_FIO_FACTOR = 77;
+  int APPLY_FIO_FACTOR = 84;
 
   /**
    * The feature id for the '<em><b>Value Reference</b></em>' reference.
@@ -2375,7 +2526,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureValue()
    * @generated
    */
-  int PURE_VALUE = 78;
+  int PURE_VALUE = 85;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2448,7 +2599,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullValue()
    * @generated
    */
-  int EFFECT_FULL_VALUE = 79;
+  int EFFECT_FULL_VALUE = 86;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2521,7 +2672,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getRecursiveEffectFullExpression()
    * @generated
    */
-  int RECURSIVE_EFFECT_FULL_EXPRESSION = 80;
+  int RECURSIVE_EFFECT_FULL_EXPRESSION = 87;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -2549,7 +2700,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOExpression()
    * @generated
    */
-  int IO_EXPRESSION = 81;
+  int IO_EXPRESSION = 88;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -2577,7 +2728,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullLambda()
    * @generated
    */
-  int EFFECT_FULL_LAMBDA = 82;
+  int EFFECT_FULL_LAMBDA = 89;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2641,7 +2792,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 83;
+  int DATA_VALUE = 90;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2678,7 +2829,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullDataValue()
    * @generated
    */
-  int EFFECT_FULL_DATA_VALUE = 84;
+  int EFFECT_FULL_DATA_VALUE = 91;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2715,7 +2866,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureLambda()
    * @generated
    */
-  int PURE_LAMBDA = 85;
+  int PURE_LAMBDA = 92;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -4241,6 +4392,17 @@ public interface FPMLPackage extends EPackage
   EClass getPlus();
 
   /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.Plus#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see it.unibo.fPML.Plus#getType()
+   * @see #getPlus()
+   * @generated
+   */
+  EReference getPlus_Type();
+
+  /**
    * Returns the meta object for class '{@link it.unibo.fPML.Minus <em>Minus</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4375,6 +4537,87 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EReference getApplyFFactor_ValueLambda();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.Equals <em>Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Equals</em>'.
+   * @see it.unibo.fPML.Equals
+   * @generated
+   */
+  EClass getEquals();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.Equals#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see it.unibo.fPML.Equals#getType()
+   * @see #getEquals()
+   * @generated
+   */
+  EReference getEquals_Type();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.MinorEquals <em>Minor Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Minor Equals</em>'.
+   * @see it.unibo.fPML.MinorEquals
+   * @generated
+   */
+  EClass getMinorEquals();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.MajorEquals <em>Major Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Major Equals</em>'.
+   * @see it.unibo.fPML.MajorEquals
+   * @generated
+   */
+  EClass getMajorEquals();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.Minor <em>Minor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Minor</em>'.
+   * @see it.unibo.fPML.Minor
+   * @generated
+   */
+  EClass getMinor();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.Major <em>Major</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Major</em>'.
+   * @see it.unibo.fPML.Major
+   * @generated
+   */
+  EClass getMajor();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.LogicAnd <em>Logic And</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Logic And</em>'.
+   * @see it.unibo.fPML.LogicAnd
+   * @generated
+   */
+  EClass getLogicAnd();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.LogicOr <em>Logic Or</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Logic Or</em>'.
+   * @see it.unibo.fPML.LogicOr
+   * @generated
+   */
+  EClass getLogicOr();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.PrimitiveEffectFullFunction <em>Primitive Effect Full Function</em>}'.
@@ -5968,6 +6211,14 @@ public interface FPMLPackage extends EPackage
     EClass PLUS = eINSTANCE.getPlus();
 
     /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PLUS__TYPE = eINSTANCE.getPlus_Type();
+
+    /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.MinusImpl <em>Minus</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6084,6 +6335,84 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EReference APPLY_FFACTOR__VALUE_LAMBDA = eINSTANCE.getApplyFFactor_ValueLambda();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.EqualsImpl <em>Equals</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.EqualsImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getEquals()
+     * @generated
+     */
+    EClass EQUALS = eINSTANCE.getEquals();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EQUALS__TYPE = eINSTANCE.getEquals_Type();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.MinorEqualsImpl <em>Minor Equals</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.MinorEqualsImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getMinorEquals()
+     * @generated
+     */
+    EClass MINOR_EQUALS = eINSTANCE.getMinorEquals();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.MajorEqualsImpl <em>Major Equals</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.MajorEqualsImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getMajorEquals()
+     * @generated
+     */
+    EClass MAJOR_EQUALS = eINSTANCE.getMajorEquals();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.MinorImpl <em>Minor</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.MinorImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getMinor()
+     * @generated
+     */
+    EClass MINOR = eINSTANCE.getMinor();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.MajorImpl <em>Major</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.MajorImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getMajor()
+     * @generated
+     */
+    EClass MAJOR = eINSTANCE.getMajor();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.LogicAndImpl <em>Logic And</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.LogicAndImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getLogicAnd()
+     * @generated
+     */
+    EClass LOGIC_AND = eINSTANCE.getLogicAnd();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.LogicOrImpl <em>Logic Or</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.LogicOrImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getLogicOr()
+     * @generated
+     */
+    EClass LOGIC_OR = eINSTANCE.getLogicOr();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullFunctionImpl <em>Primitive Effect Full Function</em>}' class.

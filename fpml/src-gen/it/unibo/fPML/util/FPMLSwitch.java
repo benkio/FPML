@@ -668,6 +668,90 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.EQUALS:
+      {
+        Equals equals = (Equals)theEObject;
+        T result = caseEquals(equals);
+        if (result == null) result = casePrimitivePureFunction(equals);
+        if (result == null) result = casePureFunction(equals);
+        if (result == null) result = casePrimitiveFunction(equals);
+        if (result == null) result = caseFunction(equals);
+        if (result == null) result = caseEffectFullReference(equals);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.MINOR_EQUALS:
+      {
+        MinorEquals minorEquals = (MinorEquals)theEObject;
+        T result = caseMinorEquals(minorEquals);
+        if (result == null) result = casePrimitivePureFunction(minorEquals);
+        if (result == null) result = casePureFunction(minorEquals);
+        if (result == null) result = casePrimitiveFunction(minorEquals);
+        if (result == null) result = caseFunction(minorEquals);
+        if (result == null) result = caseEffectFullReference(minorEquals);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.MAJOR_EQUALS:
+      {
+        MajorEquals majorEquals = (MajorEquals)theEObject;
+        T result = caseMajorEquals(majorEquals);
+        if (result == null) result = casePrimitivePureFunction(majorEquals);
+        if (result == null) result = casePureFunction(majorEquals);
+        if (result == null) result = casePrimitiveFunction(majorEquals);
+        if (result == null) result = caseFunction(majorEquals);
+        if (result == null) result = caseEffectFullReference(majorEquals);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.MINOR:
+      {
+        Minor minor = (Minor)theEObject;
+        T result = caseMinor(minor);
+        if (result == null) result = casePrimitivePureFunction(minor);
+        if (result == null) result = casePureFunction(minor);
+        if (result == null) result = casePrimitiveFunction(minor);
+        if (result == null) result = caseFunction(minor);
+        if (result == null) result = caseEffectFullReference(minor);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.MAJOR:
+      {
+        Major major = (Major)theEObject;
+        T result = caseMajor(major);
+        if (result == null) result = casePrimitivePureFunction(major);
+        if (result == null) result = casePureFunction(major);
+        if (result == null) result = casePrimitiveFunction(major);
+        if (result == null) result = caseFunction(major);
+        if (result == null) result = caseEffectFullReference(major);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.LOGIC_AND:
+      {
+        LogicAnd logicAnd = (LogicAnd)theEObject;
+        T result = caseLogicAnd(logicAnd);
+        if (result == null) result = casePrimitivePureFunction(logicAnd);
+        if (result == null) result = casePureFunction(logicAnd);
+        if (result == null) result = casePrimitiveFunction(logicAnd);
+        if (result == null) result = caseFunction(logicAnd);
+        if (result == null) result = caseEffectFullReference(logicAnd);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.LOGIC_OR:
+      {
+        LogicOr logicOr = (LogicOr)theEObject;
+        T result = caseLogicOr(logicOr);
+        if (result == null) result = casePrimitivePureFunction(logicOr);
+        if (result == null) result = casePureFunction(logicOr);
+        if (result == null) result = casePrimitiveFunction(logicOr);
+        if (result == null) result = caseFunction(logicOr);
+        if (result == null) result = caseEffectFullReference(logicOr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION:
       {
         PrimitiveEffectFullFunction primitiveEffectFullFunction = (PrimitiveEffectFullFunction)theEObject;
@@ -1946,6 +2030,118 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseApplyFFactor(ApplyFFactor object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Equals</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Equals</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEquals(Equals object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Minor Equals</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Minor Equals</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMinorEquals(MinorEquals object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Major Equals</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Major Equals</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMajorEquals(MajorEquals object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Minor</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Minor</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMinor(Minor object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Major</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Major</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMajor(Major object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Logic And</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Logic And</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLogicAnd(LogicAnd object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Logic Or</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Logic Or</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLogicOr(LogicOr object)
   {
     return null;
   }

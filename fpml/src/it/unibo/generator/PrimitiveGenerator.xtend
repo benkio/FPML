@@ -12,7 +12,11 @@ class PrimitiveGenerator {
 			public static F<Integer, Integer> plus(int x) {
 				return (Integer y) -> x + y;
 			}
-		
+
+      public static F<String, String> plus(String x) {
+				return (String y) -> x + y;
+			}
+
 			public static F<Integer, Integer> minus(int x) {
 				return (Integer y) -> x - y;
 			}

@@ -150,7 +150,8 @@ IOType:
 	'IO' type=Type ;
 
 ValueType:
-	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType | UnitType;
+	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType
+	| UnitType ;
 
 Type:
 	ValueType | EffectFullType;
@@ -275,11 +276,12 @@ EffectFullSumValue:
 /////////////////////////////////////////////////////////////////////
 
 PrimitivePureFunction: 
-	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair;
+	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair
+	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr;
 
 IntToString: {IntToString} 'intToString';
 IntPow:	{IntPow} 'intPow';
-Plus: {Plus} '+';
+Plus: {Plus} '+' type=(IntegerType | StringType);
 Minus: {Minus} '-';
 Times: {Times} '*';
 Mod: {Mod} 'mod';
@@ -290,6 +292,13 @@ ApplyFFactor:
 	valueReference=[PureFunction]
 	| '(' valueLambda=PureLambda ')'
 ;
+Equals: {Equals} '==' type=(IntegerType | StringType | BooleanType);
+MinorEquals: {MinorEquals} '<='; 
+MajorEquals: {MajorEquals} '>=';
+Minor: {Minor} '<'; 
+Major: {Major} '>';
+LogicAnd: {LogicAnd} '&&';
+LogicOr: {LogicOr} '||';
 
 PrimitiveEffectFullFunction:
 	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO;

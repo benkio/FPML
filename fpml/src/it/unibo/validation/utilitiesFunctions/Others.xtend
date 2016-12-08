@@ -48,10 +48,10 @@ class Others {
 		}
 	}
 	
-	def static PureFunctionType createIntIntFuntionType(){
+	def static PureFunctionType createFuntionType(ValueType argT, ValueType returnT){
 		val func = FPMLFactory.eINSTANCE.createPureFunctionType()
-      	func.argType = FPMLFactory.eINSTANCE.createIntegerType()
-      	func.returnType = FPMLFactory.eINSTANCE.createIntegerType()
+      	func.argType = argT
+      	func.returnType = returnT
       	return func
 	}
 	

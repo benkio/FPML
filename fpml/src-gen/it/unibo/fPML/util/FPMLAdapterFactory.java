@@ -416,6 +416,41 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createApplyFFactorAdapter();
       }
       @Override
+      public Adapter caseEquals(Equals object)
+      {
+        return createEqualsAdapter();
+      }
+      @Override
+      public Adapter caseMinorEquals(MinorEquals object)
+      {
+        return createMinorEqualsAdapter();
+      }
+      @Override
+      public Adapter caseMajorEquals(MajorEquals object)
+      {
+        return createMajorEqualsAdapter();
+      }
+      @Override
+      public Adapter caseMinor(Minor object)
+      {
+        return createMinorAdapter();
+      }
+      @Override
+      public Adapter caseMajor(Major object)
+      {
+        return createMajorAdapter();
+      }
+      @Override
+      public Adapter caseLogicAnd(LogicAnd object)
+      {
+        return createLogicAndAdapter();
+      }
+      @Override
+      public Adapter caseLogicOr(LogicOr object)
+      {
+        return createLogicOrAdapter();
+      }
+      @Override
       public Adapter casePrimitiveEffectFullFunction(PrimitiveEffectFullFunction object)
       {
         return createPrimitiveEffectFullFunctionAdapter();
@@ -1543,6 +1578,111 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createApplyFFactorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Equals <em>Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.Equals
+   * @generated
+   */
+  public Adapter createEqualsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.MinorEquals <em>Minor Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.MinorEquals
+   * @generated
+   */
+  public Adapter createMinorEqualsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.MajorEquals <em>Major Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.MajorEquals
+   * @generated
+   */
+  public Adapter createMajorEqualsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Minor <em>Minor</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.Minor
+   * @generated
+   */
+  public Adapter createMinorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.Major <em>Major</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.Major
+   * @generated
+   */
+  public Adapter createMajorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LogicAnd <em>Logic And</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.LogicAnd
+   * @generated
+   */
+  public Adapter createLogicAndAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LogicOr <em>Logic Or</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.LogicOr
+   * @generated
+   */
+  public Adapter createLogicOrAdapter()
   {
     return null;
   }

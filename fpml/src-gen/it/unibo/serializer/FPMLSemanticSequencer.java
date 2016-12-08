@@ -37,6 +37,7 @@ import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueBlock;
 import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
+import it.unibo.fPML.Equals;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOType;
@@ -45,7 +46,13 @@ import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.LeftPair;
 import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.LogicAnd;
+import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.MainFunc;
+import it.unibo.fPML.Major;
+import it.unibo.fPML.MajorEquals;
+import it.unibo.fPML.Minor;
+import it.unibo.fPML.MinorEquals;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Model;
@@ -222,6 +229,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.EMPTY_FUNCTION_BODY:
 				sequence_EmptyFunctionBody(context, (EmptyFunctionBody) semanticObject); 
 				return; 
+			case FPMLPackage.EQUALS:
+				sequence_Equals(context, (Equals) semanticObject); 
+				return; 
 			case FPMLPackage.IO_EXPRESSION:
 				sequence_EffectFullExpression(context, (IOExpression) semanticObject); 
 				return; 
@@ -254,8 +264,26 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.LEFT_PAIR_IO:
 				sequence_LeftPairIO(context, (LeftPairIO) semanticObject); 
 				return; 
+			case FPMLPackage.LOGIC_AND:
+				sequence_LogicAnd(context, (LogicAnd) semanticObject); 
+				return; 
+			case FPMLPackage.LOGIC_OR:
+				sequence_LogicOr(context, (LogicOr) semanticObject); 
+				return; 
 			case FPMLPackage.MAIN_FUNC:
 				sequence_MainFunc(context, (MainFunc) semanticObject); 
+				return; 
+			case FPMLPackage.MAJOR:
+				sequence_Major(context, (Major) semanticObject); 
+				return; 
+			case FPMLPackage.MAJOR_EQUALS:
+				sequence_MajorEquals(context, (MajorEquals) semanticObject); 
+				return; 
+			case FPMLPackage.MINOR:
+				sequence_Minor(context, (Minor) semanticObject); 
+				return; 
+			case FPMLPackage.MINOR_EQUALS:
+				sequence_MinorEquals(context, (MinorEquals) semanticObject); 
 				return; 
 			case FPMLPackage.MINUS:
 				sequence_Minus(context, (Minus) semanticObject); 
@@ -1040,6 +1068,23 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns Equals
+	 *     PureFunction returns Equals
+	 *     EffectFullReference returns Equals
+	 *     PrimitiveFunction returns Equals
+	 *     PrimitivePureFunction returns Equals
+	 *     Equals returns Equals
+	 *
+	 * Constraint:
+	 *     (type=IntegerType | type=StringType | type=BooleanType)
+	 */
+	protected void sequence_Equals(ISerializationContext context, Equals semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     EffectFullExpression returns PureFunctionType
 	 *     Expression returns PureFunctionType
 	 *     FunctionValue returns PureFunctionType
@@ -1200,6 +1245,40 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Function returns LogicAnd
+	 *     PureFunction returns LogicAnd
+	 *     EffectFullReference returns LogicAnd
+	 *     PrimitiveFunction returns LogicAnd
+	 *     PrimitivePureFunction returns LogicAnd
+	 *     LogicAnd returns LogicAnd
+	 *
+	 * Constraint:
+	 *     {LogicAnd}
+	 */
+	protected void sequence_LogicAnd(ISerializationContext context, LogicAnd semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns LogicOr
+	 *     PureFunction returns LogicOr
+	 *     EffectFullReference returns LogicOr
+	 *     PrimitiveFunction returns LogicOr
+	 *     PrimitivePureFunction returns LogicOr
+	 *     LogicOr returns LogicOr
+	 *
+	 * Constraint:
+	 *     {LogicOr}
+	 */
+	protected void sequence_LogicOr(ISerializationContext context, LogicOr semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     MainFunc returns MainFunc
 	 *
 	 * Constraint:
@@ -1216,6 +1295,74 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		feeder.accept(grammarAccess.getMainFuncAccess().getReturnTypeUnitTypeParserRuleCall_1_0(), semanticObject.getReturnType());
 		feeder.accept(grammarAccess.getMainFuncAccess().getFunctionBodyFunctionBodyEffectFullParserRuleCall_5_0(), semanticObject.getFunctionBody());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns MajorEquals
+	 *     PureFunction returns MajorEquals
+	 *     EffectFullReference returns MajorEquals
+	 *     PrimitiveFunction returns MajorEquals
+	 *     PrimitivePureFunction returns MajorEquals
+	 *     MajorEquals returns MajorEquals
+	 *
+	 * Constraint:
+	 *     {MajorEquals}
+	 */
+	protected void sequence_MajorEquals(ISerializationContext context, MajorEquals semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns Major
+	 *     PureFunction returns Major
+	 *     EffectFullReference returns Major
+	 *     PrimitiveFunction returns Major
+	 *     PrimitivePureFunction returns Major
+	 *     Major returns Major
+	 *
+	 * Constraint:
+	 *     {Major}
+	 */
+	protected void sequence_Major(ISerializationContext context, Major semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns MinorEquals
+	 *     PureFunction returns MinorEquals
+	 *     EffectFullReference returns MinorEquals
+	 *     PrimitiveFunction returns MinorEquals
+	 *     PrimitivePureFunction returns MinorEquals
+	 *     MinorEquals returns MinorEquals
+	 *
+	 * Constraint:
+	 *     {MinorEquals}
+	 */
+	protected void sequence_MinorEquals(ISerializationContext context, MinorEquals semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns Minor
+	 *     PureFunction returns Minor
+	 *     EffectFullReference returns Minor
+	 *     PrimitiveFunction returns Minor
+	 *     PrimitivePureFunction returns Minor
+	 *     Minor returns Minor
+	 *
+	 * Constraint:
+	 *     {Minor}
+	 */
+	protected void sequence_Minor(ISerializationContext context, Minor semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1275,7 +1422,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Plus returns Plus
 	 *
 	 * Constraint:
-	 *     {Plus}
+	 *     (type=IntegerType | type=StringType)
 	 */
 	protected void sequence_Plus(ISerializationContext context, Plus semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -36,7 +36,7 @@ class GetReturnType {
 		switch expression {
 			IntegerType: return FPMLFactory.eINSTANCE.createIntegerType
 			StringType: return FPMLFactory.eINSTANCE.createStringType
-      BooleanType: return FPMLFactory.eINSTANCE.createBooleanType
+      		BooleanType: return FPMLFactory.eINSTANCE.createBooleanType
 			DataValue: return expression
 			PureFunctionType: {
 				if (expression.value instanceof PureLambda){
@@ -84,13 +84,20 @@ class GetReturnType {
 		switch f {
 			IntToString: return FPMLFactory.eINSTANCE.createStringType
 			IntPow: return FPMLFactory.eINSTANCE.createIntegerType
-			Plus: return Others.createIntIntFuntionType
-			Minus: return Others.createIntIntFuntionType
-			Times: return Others.createIntIntFuntionType
-			Mod: return Others.createIntIntFuntionType
+			Plus: return Others.createFuntionType(EcoreUtil.copy(f.type) as ValueType, EcoreUtil.copy(f.type) as ValueType)
+			Minus: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
+			Times: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
+			Mod: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
 			ApplyF: return f.functionType.returnType
       		LeftPair: return f.type.pureAdtElement1
-      		RightPair: return Others.getElement2ValueTypeFromPureAlgebraicType(f.type)
+      		RightPair: return Others.getElement2ValueTypeFromPureAlgebraicType(EcoreUtil.copy(f.type))
+      		Equals: return Others.createFuntionType(EcoreUtil.copy(f.type) as ValueType, FPMLFactory.eINSTANCE.createBooleanType)
+      		MinorEquals: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
+      		MajorEquals: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
+      		Minor: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
+      		Major: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
+      		LogicAnd: return Others.createFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType) 
+      		LogicOr: return Others.createFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType)
 		}
 	}
 	

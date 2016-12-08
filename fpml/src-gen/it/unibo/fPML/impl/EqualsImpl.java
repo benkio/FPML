@@ -3,8 +3,8 @@
  */
 package it.unibo.fPML.impl;
 
+import it.unibo.fPML.Equals;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.Plus;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,18 +17,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Plus</b></em>'.
+ * An implementation of the model object '<em><b>Equals</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.PlusImpl#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EqualsImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
+public class EqualsImpl extends PrimitivePureFunctionImpl implements Equals
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -45,7 +45,7 @@ public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PlusImpl()
+  protected EqualsImpl()
   {
     super();
   }
@@ -58,7 +58,7 @@ public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PLUS;
+    return FPMLPackage.Literals.EQUALS;
   }
 
   /**
@@ -82,7 +82,7 @@ public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
     type = newType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PLUS__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EQUALS__TYPE, oldType, newType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -99,14 +99,14 @@ public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
     {
       NotificationChain msgs = null;
       if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PLUS__TYPE, null, msgs);
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EQUALS__TYPE, null, msgs);
       if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PLUS__TYPE, null, msgs);
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EQUALS__TYPE, null, msgs);
       msgs = basicSetType(newType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PLUS__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EQUALS__TYPE, newType, newType));
   }
 
   /**
@@ -119,7 +119,7 @@ public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
   {
     switch (featureID)
     {
-      case FPMLPackage.PLUS__TYPE:
+      case FPMLPackage.EQUALS__TYPE:
         return basicSetType(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -135,7 +135,7 @@ public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
   {
     switch (featureID)
     {
-      case FPMLPackage.PLUS__TYPE:
+      case FPMLPackage.EQUALS__TYPE:
         return getType();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -151,7 +151,7 @@ public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
   {
     switch (featureID)
     {
-      case FPMLPackage.PLUS__TYPE:
+      case FPMLPackage.EQUALS__TYPE:
         setType((EObject)newValue);
         return;
     }
@@ -168,7 +168,7 @@ public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
   {
     switch (featureID)
     {
-      case FPMLPackage.PLUS__TYPE:
+      case FPMLPackage.EQUALS__TYPE:
         setType((EObject)null);
         return;
     }
@@ -185,10 +185,10 @@ public class PlusImpl extends PrimitivePureFunctionImpl implements Plus
   {
     switch (featureID)
     {
-      case FPMLPackage.PLUS__TYPE:
+      case FPMLPackage.EQUALS__TYPE:
         return type != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //PlusImpl
+} //EqualsImpl

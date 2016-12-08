@@ -30,6 +30,16 @@ public class PrimitiveGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
+    _builder.append("      ");
+    _builder.append("public static F<String, String> plus(String x) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return (String y) -> x + y;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
     _builder.append("\t");
     _builder.append("public static F<Integer, Integer> minus(int x) {");
     _builder.newLine();

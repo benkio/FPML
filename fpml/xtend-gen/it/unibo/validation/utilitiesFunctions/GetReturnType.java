@@ -26,6 +26,7 @@ import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
+import it.unibo.fPML.Equals;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
@@ -38,7 +39,13 @@ import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.LeftPair;
 import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.LogicAnd;
+import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.MainFunc;
+import it.unibo.fPML.Major;
+import it.unibo.fPML.MajorEquals;
+import it.unibo.fPML.Minor;
+import it.unibo.fPML.MinorEquals;
 import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
@@ -71,6 +78,7 @@ import it.unibo.fPML.VoidType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -300,25 +308,35 @@ public class GetReturnType {
     if (!_matched) {
       if (f instanceof Plus) {
         _matched=true;
-        return Others.createIntIntFuntionType();
+        EObject _type = ((Plus)f).getType();
+        EObject _copy = EcoreUtil.<EObject>copy(_type);
+        EObject _type_1 = ((Plus)f).getType();
+        EObject _copy_1 = EcoreUtil.<EObject>copy(_type_1);
+        return Others.createFuntionType(((ValueType) _copy), ((ValueType) _copy_1));
       }
     }
     if (!_matched) {
       if (f instanceof Minus) {
         _matched=true;
-        return Others.createIntIntFuntionType();
+        IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+        IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
+        return Others.createFuntionType(_createIntegerType, _createIntegerType_1);
       }
     }
     if (!_matched) {
       if (f instanceof Times) {
         _matched=true;
-        return Others.createIntIntFuntionType();
+        IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+        IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
+        return Others.createFuntionType(_createIntegerType, _createIntegerType_1);
       }
     }
     if (!_matched) {
       if (f instanceof Mod) {
         _matched=true;
-        return Others.createIntIntFuntionType();
+        IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+        IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
+        return Others.createFuntionType(_createIntegerType, _createIntegerType_1);
       }
     }
     if (!_matched) {
@@ -339,7 +357,65 @@ public class GetReturnType {
       if (f instanceof RightPair) {
         _matched=true;
         PureAlgebraicType _type = ((RightPair)f).getType();
-        return Others.getElement2ValueTypeFromPureAlgebraicType(_type);
+        PureAlgebraicType _copy = EcoreUtil.<PureAlgebraicType>copy(_type);
+        return Others.getElement2ValueTypeFromPureAlgebraicType(_copy);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof Equals) {
+        _matched=true;
+        EObject _type = ((Equals)f).getType();
+        EObject _copy = EcoreUtil.<EObject>copy(_type);
+        BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
+        return Others.createFuntionType(((ValueType) _copy), _createBooleanType);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof MinorEquals) {
+        _matched=true;
+        IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+        BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
+        return Others.createFuntionType(_createIntegerType, _createBooleanType);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof MajorEquals) {
+        _matched=true;
+        IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+        BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
+        return Others.createFuntionType(_createIntegerType, _createBooleanType);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof Minor) {
+        _matched=true;
+        IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+        BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
+        return Others.createFuntionType(_createIntegerType, _createBooleanType);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof Major) {
+        _matched=true;
+        IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+        BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
+        return Others.createFuntionType(_createIntegerType, _createBooleanType);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof LogicAnd) {
+        _matched=true;
+        BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
+        BooleanType _createBooleanType_1 = FPMLFactory.eINSTANCE.createBooleanType();
+        return Others.createFuntionType(_createBooleanType, _createBooleanType_1);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof LogicOr) {
+        _matched=true;
+        BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
+        BooleanType _createBooleanType_1 = FPMLFactory.eINSTANCE.createBooleanType();
+        return Others.createFuntionType(_createBooleanType, _createBooleanType_1);
       }
     }
     return null;

@@ -636,6 +636,69 @@ public interface FPMLFactory extends EFactory
   ApplyFFactor createApplyFFactor();
 
   /**
+   * Returns a new object of class '<em>Equals</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Equals</em>'.
+   * @generated
+   */
+  Equals createEquals();
+
+  /**
+   * Returns a new object of class '<em>Minor Equals</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Minor Equals</em>'.
+   * @generated
+   */
+  MinorEquals createMinorEquals();
+
+  /**
+   * Returns a new object of class '<em>Major Equals</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Major Equals</em>'.
+   * @generated
+   */
+  MajorEquals createMajorEquals();
+
+  /**
+   * Returns a new object of class '<em>Minor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Minor</em>'.
+   * @generated
+   */
+  Minor createMinor();
+
+  /**
+   * Returns a new object of class '<em>Major</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Major</em>'.
+   * @generated
+   */
+  Major createMajor();
+
+  /**
+   * Returns a new object of class '<em>Logic And</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logic And</em>'.
+   * @generated
+   */
+  LogicAnd createLogicAnd();
+
+  /**
+   * Returns a new object of class '<em>Logic Or</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logic Or</em>'.
+   * @generated
+   */
+  LogicOr createLogicOr();
+
+  /**
    * Returns a new object of class '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
