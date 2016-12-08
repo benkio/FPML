@@ -199,6 +199,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getFunctionRule()
 						|| rule == grammarAccess.getEffectFullFunctionRule()
+						|| rule == grammarAccess.getEffectFullBodyContentRule()
 						|| rule == grammarAccess.getEffectFullExpressionRule()
 						|| rule == grammarAccess.getEffectFullFunctionValueRule()) {
 					sequence_EffectFullFunctionValue(context, (EffectFullFunctionType) semanticObject); 
@@ -498,6 +499,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullFunction returns ApplyFIO
 	 *     PrimitiveFunction returns ApplyFIO
 	 *     EffectFullPrimitive returns ApplyFIO
+	 *     EffectFullBodyContent returns ApplyFIO
 	 *     PrimitiveEffectFullFunction returns ApplyFIO
 	 *     ApplyFIO returns ApplyFIO
 	 *
@@ -770,6 +772,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Function returns EffectFullDataValue
 	 *     EffectFullFunction returns EffectFullDataValue
+	 *     EffectFullBodyContent returns EffectFullDataValue
 	 *     EffectFullExpression returns EffectFullDataValue
 	 *     EffectFullDataValue returns EffectFullDataValue
 	 *
@@ -815,6 +818,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Function returns IOExpression
 	 *     EffectFullFunction returns IOExpression
+	 *     EffectFullBodyContent returns IOExpression
 	 *     EffectFullExpression returns IOExpression
 	 *
 	 * Constraint:
@@ -835,6 +839,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Function returns IOPureFunction
 	 *     EffectFullFunction returns IOPureFunction
+	 *     EffectFullBodyContent returns IOPureFunction
 	 *     EffectFullExpression returns IOPureFunction
 	 *
 	 * Constraint:
@@ -855,6 +860,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Function returns RecursiveEffectFullExpression
 	 *     EffectFullFunction returns RecursiveEffectFullExpression
+	 *     EffectFullBodyContent returns RecursiveEffectFullExpression
 	 *     EffectFullExpression returns RecursiveEffectFullExpression
 	 *
 	 * Constraint:
@@ -888,6 +894,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullFunctionDefinition returns EffectFullFunctionDefinition
 	 *     Function returns EffectFullFunctionDefinition
 	 *     EffectFullFunction returns EffectFullFunctionDefinition
+	 *     EffectFullBodyContent returns EffectFullFunctionDefinition
 	 *
 	 * Constraint:
 	 *     (returnType=IOType name=ID arg=Argument higherOrderArg=AdditionalEffectFullArgument? functionBody=FunctionBodyEffectFull)
@@ -924,6 +931,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Function returns EffectFullFunctionType
 	 *     EffectFullFunction returns EffectFullFunctionType
+	 *     EffectFullBodyContent returns EffectFullFunctionType
 	 *     EffectFullExpression returns EffectFullFunctionType
 	 *     EffectFullFunctionValue returns EffectFullFunctionType
 	 *
@@ -975,6 +983,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Function returns EffectFullProdValue
 	 *     EffectFullFunction returns EffectFullProdValue
+	 *     EffectFullBodyContent returns EffectFullProdValue
 	 *     EffectFullExpression returns EffectFullProdValue
 	 *     EffectFullProdValue returns EffectFullProdValue
 	 *
@@ -1017,6 +1026,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Function returns EffectFullSumValue
 	 *     EffectFullFunction returns EffectFullSumValue
+	 *     EffectFullBodyContent returns EffectFullSumValue
 	 *     EffectFullExpression returns EffectFullSumValue
 	 *     EffectFullSumValue returns EffectFullSumValue
 	 *
@@ -1044,6 +1054,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     Function returns EffectFullValueRef
 	 *     EffectFullFunction returns EffectFullValueRef
+	 *     EffectFullBodyContent returns EffectFullValueRef
 	 *     EffectFullExpression returns EffectFullValueRef
 	 *     EffectFullValueRef returns EffectFullValueRef
 	 *
@@ -1066,6 +1077,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullValue returns EffectFullValue
 	 *     Function returns EffectFullValue
 	 *     EffectFullFunction returns EffectFullValue
+	 *     EffectFullBodyContent returns EffectFullValue
 	 *
 	 * Constraint:
 	 *     (name=ID value=EffectFullExpression)
@@ -1120,6 +1132,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullFunction returns ExtractEffectFull
 	 *     PrimitiveFunction returns ExtractEffectFull
 	 *     EffectFullPrimitive returns ExtractEffectFull
+	 *     EffectFullBodyContent returns ExtractEffectFull
 	 *     PrimitiveEffectFullFunction returns ExtractEffectFull
 	 *     ExtractEffectFull returns ExtractEffectFull
 	 *
@@ -1279,6 +1292,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullFunction returns LeftPairIO
 	 *     PrimitiveFunction returns LeftPairIO
 	 *     EffectFullPrimitive returns LeftPairIO
+	 *     EffectFullBodyContent returns LeftPairIO
 	 *     PrimitiveEffectFullFunction returns LeftPairIO
 	 *     LeftPairIO returns LeftPairIO
 	 *
@@ -1501,6 +1515,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullFunction returns PrimitivePrint
 	 *     PrimitiveFunction returns PrimitivePrint
 	 *     EffectFullPrimitive returns PrimitivePrint
+	 *     EffectFullBodyContent returns PrimitivePrint
 	 *     PrimitiveEffectFullFunction returns PrimitivePrint
 	 *     PrimitivePrint returns PrimitivePrint
 	 *
@@ -1516,6 +1531,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     PrimitiveFunction returns PrimitiveRandom
 	 *     EffectFullPrimitive returns PrimitiveRandom
+	 *     EffectFullBodyContent returns PrimitiveRandom
 	 *     PrimitiveEffectFullValue returns PrimitiveRandom
 	 *     PrimitiveRandom returns PrimitiveRandom
 	 *
@@ -1533,6 +1549,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullFunction returns PrimitiveReturn
 	 *     PrimitiveFunction returns PrimitiveReturn
 	 *     EffectFullPrimitive returns PrimitiveReturn
+	 *     EffectFullBodyContent returns PrimitiveReturn
 	 *     PrimitiveEffectFullFunction returns PrimitiveReturn
 	 *     PrimitiveReturn returns PrimitiveReturn
 	 *
@@ -1554,6 +1571,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Contexts:
 	 *     PrimitiveFunction returns PrimitiveTime
 	 *     EffectFullPrimitive returns PrimitiveTime
+	 *     EffectFullBodyContent returns PrimitiveTime
 	 *     PrimitiveEffectFullValue returns PrimitiveTime
 	 *     PrimitiveTime returns PrimitiveTime
 	 *
@@ -1846,6 +1864,7 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     EffectFullFunction returns RightPairIO
 	 *     PrimitiveFunction returns RightPairIO
 	 *     EffectFullPrimitive returns RightPairIO
+	 *     EffectFullBodyContent returns RightPairIO
 	 *     PrimitiveEffectFullFunction returns RightPairIO
 	 *     RightPairIO returns RightPairIO
 	 *

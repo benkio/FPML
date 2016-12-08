@@ -91,9 +91,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Function"/>
   <eClassifiers xsi:type="ecore:EClass" name="PureFunction" eSuperTypes="#//Function"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EffectFullFunction" eSuperTypes="#//Function"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EffectFullFunction" eSuperTypes="#//Function #//EffectFullBodyContent"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveFunction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EffectFullPrimitive" eSuperTypes="#//PrimitiveFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EffectFullPrimitive" eSuperTypes="#//PrimitiveFunction #//EffectFullBodyContent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EffectFullBodyContent"/>
   <eClassifiers xsi:type="ecore:EClass" name="Argument">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

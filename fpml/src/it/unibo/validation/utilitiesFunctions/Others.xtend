@@ -21,13 +21,13 @@ class Others {
 		else if (cfbp.referenceElement == null) return cfbp.primitiveElement 
 		else return cfbp.referenceElement
 	}
-	def static EffectFullReference getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect cfbe) {
+	def static EffectFullBodyContent getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect cfbe) {
 		if (cfbe.primitiveElement == null && cfbe.referenceElement == null) return cfbe.expressionElement
 		else if (cfbe.referenceElement == null) return cfbe.primitiveElement 
 		else return cfbe.referenceElement
 	}
 	
-	def static EffectFullReference getValueFromApplyFIOFactor(ApplyFIOFactor afiof) {
+	def static EffectFullBodyContent getValueFromApplyFIOFactor(ApplyFIOFactor afiof) {
 		if (afiof.valuePrimitive != null) return afiof.valuePrimitive
 		else if (afiof.valueReference != null) return afiof.valueReference
 		else return afiof.valueExpression 
@@ -53,6 +53,13 @@ class Others {
 		}
 	}
 	
+	def static Type getArgumentType(Argument a){
+		switch a {
+			EffectFullArgument: a.type
+			PureArgument: a.type
+		}
+	} 
+	
 	def static PureFunctionType createFuntionType(ValueType argT, ValueType returnT){
 		val func = FPMLFactory.eINSTANCE.createPureFunctionType()
       	func.argType = argT
@@ -68,7 +75,9 @@ class Others {
 	
 	def static EffectFullArgument createUnitEffectFullArgument(){
 		val arg = FPMLFactory.eINSTANCE.createEffectFullArgument
-		arg.type = FPMLFactory.eINSTANCE.createUnitType
+		val unitType = FPMLFactory.eINSTANCE.createIOType
+		unitType.type = FPMLFactory.eINSTANCE.createUnitType
+		arg.type = unitType
 		return arg
 	}
 	

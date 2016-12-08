@@ -1,7 +1,6 @@
 package it.unibo.generator;
 
 import com.google.common.base.Objects;
-import it.unibo.fPML.Argument;
 import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullAlgebraicType;
@@ -129,10 +128,15 @@ public class TypeGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final Argument arg) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field type is undefined for the type Argument"
-      + "\ncompile cannot be resolved");
+  public CharSequence compile(final PureArgument arg) {
+    StringConcatenation _builder = new StringConcatenation();
+    ValueType _type = arg.getType();
+    Object _compile = this.compile(_type);
+    _builder.append(_compile, "");
+    _builder.append(" ");
+    String _name = arg.getName();
+    _builder.append(_name, "");
+    return _builder;
   }
   
   public CharSequence compile(final EffectFullArgument arg) {

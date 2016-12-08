@@ -70,15 +70,15 @@ public class EffectFullFunctionGenerator {
   
   public String compile(final EffectFullFunctionDefinition pf) {
     throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from Argument to ValueType"
       + "\nType mismatch: cannot convert from Argument to EffectFullArgument"
+      + "\nType mismatch: cannot convert from Argument to ValueType"
       + "\nType mismatch: cannot convert from Argument to EffectFullArgument");
   }
   
   public CharSequence compileIOWalkthrough(final CompositionFunctionBodyEffect cfbe) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect) from the type Others refers to the missing type EffectFullReference"
-      + "\ncompileIOWalkthorugh cannot be resolved"
-      + "\n+ cannot be resolved");
+      + "\nThe method compileIOWalkthorugh(EffectFullReference) from the type EffectFullFunctionGenerator refers to the missing type EffectFullReference");
   }
   
   public CharSequence compileIOWalkThough(final CompositionFunctionBodyEffectFullFactor f) {
@@ -88,7 +88,7 @@ public class EffectFullFunctionGenerator {
   
   public CharSequence compileIOWalkthorugh(final /* EffectFullReference */Object e) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method getValueFromApplyFIOFactor(ApplyFIOFactor) from the type Others refers to the missing type EffectFullReference"
+      + "\nThe method compileIO(EffectFullReference, String) from the type ValueEffectFullFunctionCommonGenerator refers to the missing type EffectFullReference"
       + "\ndata cannot be resolved"
       + "\ncontent cannot be resolved"
       + "\nfunctionType cannot be resolved"

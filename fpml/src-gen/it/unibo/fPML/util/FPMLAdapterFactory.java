@@ -181,6 +181,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createEffectFullPrimitiveAdapter();
       }
       @Override
+      public Adapter caseEffectFullBodyContent(EffectFullBodyContent object)
+      {
+        return createEffectFullBodyContentAdapter();
+      }
+      @Override
       public Adapter caseArgument(Argument object)
       {
         return createArgumentAdapter();
@@ -893,6 +898,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEffectFullPrimitiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullBodyContent <em>Effect Full Body Content</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullBodyContent
+   * @generated
+   */
+  public Adapter createEffectFullBodyContentAdapter()
   {
     return null;
   }

@@ -11,7 +11,7 @@ class Checks {
 		switch type {
 			UnitType: value instanceof UnitType ||
 					(value instanceof PureValueRef &&
-				      TypeEquals(GetReturnType.effectFullExpression((value as PureValueRef).value.value), type)) 
+				      TypeEquals(GetReturnType.expression((value as PureValueRef).value.value), type)) 
 			IntegerType: return value instanceof IntegerType || 
 						       (value instanceof PureValueRef &&
 						       	checkValueType((value as PureValueRef).value, type)
@@ -161,20 +161,20 @@ class Checks {
 		return functionChainEffectFull(chain, first,  argType)
 	}
 	
-	def static functionChainEffectFull(List<EffectFullReference> references, EffectFullReference first, Type type) {
+	def static functionChainEffectFull(List<EffectFullBodyContent> references, EffectFullBodyContent first, Type type) {
 		if(type instanceof VoidType) return false
 		var startType = type
 		
-		val argFuncFirst = GetArgType.effectFullReference(first)
+		val argFuncFirst = GetArgType.effectFullBodyContent(first)
 		if (!TypeEquals(startType, argFuncFirst)) return false
-		startType = GetReturnType.effectFullReference(first)
+		startType = GetReturnType.effectFullBodyContent(first)
 	
-		for (EffectFullReference r : references) {
-			val argFunc = GetArgType.effectFullReference(r)
+		for (EffectFullBodyContent r : references) {
+			val argFunc = GetArgType.effectFullBodyContent(r)
 			val result	= !(startType instanceof IOType) 
 						|| !TypeEquals((startType as IOType).type, argFunc) 
 			if (result) return false
-			startType = GetReturnType.effectFullReference(r)
+			startType = GetReturnType.effectFullBodyContent(r)
 		}
 		return true
 	}
@@ -184,7 +184,7 @@ class Checks {
 	}
 	
 	def static functionArgTypeEffectFull(it.unibo.fPML.EffectFullFunctionDefinition definition) {
-		return functionBodyEffectFull(definition.functionBody, definition.arg.type)
+		return functionBodyEffectFull(definition.functionBody, Others.getArgumentType(definition.arg))
 	}
 	
 	def static boolean effectFullLambda(EffectFullLambda lambda) {
@@ -203,7 +203,7 @@ class Checks {
 			EffectFullFunctionType: 
 				if (value instanceof EffectFullFunctionType) 
 					return (value as EffectFullFunctionType).value.getFunctionBody instanceof CompositionFunctionBodyEffect &&
-					 TypeEquals((value as EffectFullFunctionType).value.arg.type, type.argType) && 
+					 TypeEquals(Others.getArgumentType((value as EffectFullFunctionType).value.arg), type.argType) && 
 					 TypeEquals(GetReturnType.effectFullFunctionDefinition((value as EffectFullFunctionType).value), type.returnType)
 				else if (value instanceof EffectFullValueRef && 
 						(value as EffectFullValueRef).value instanceof EffectFullFunctionType && 
@@ -253,7 +253,7 @@ class Checks {
 	}
 	
 	def static boolean applyFIO(ApplyFIO afio){
-			return Checks.TypeEquals(afio.functionType.argType, GetReturnType.effectFullReference(Others.getValueFromApplyFIOFactor(afio.value)))
+			return Checks.TypeEquals(afio.functionType.argType, GetReturnType.effectFullBodyContent(Others.getValueFromApplyFIOFactor(afio.value)))
 	}
 	
 	def static boolean effectFullExpressionHasSideEffects(EffectFullExpression expression) {

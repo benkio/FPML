@@ -867,6 +867,29 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//PrimitiveEffectFullValue
 		public RuleCall getPrimitiveEffectFullValueParserRuleCall_1() { return cPrimitiveEffectFullValueParserRuleCall_1; }
 	}
+	public class EffectFullBodyContentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EffectFullBodyContent");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cEffectFullFunctionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cEffectFullPrimitiveParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cEffectFullExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//EffectFullBodyContent:
+		//	EffectFullFunction | EffectFullPrimitive | EffectFullExpression;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//EffectFullFunction | EffectFullPrimitive | EffectFullExpression
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//EffectFullFunction
+		public RuleCall getEffectFullFunctionParserRuleCall_0() { return cEffectFullFunctionParserRuleCall_0; }
+		
+		//EffectFullPrimitive
+		public RuleCall getEffectFullPrimitiveParserRuleCall_1() { return cEffectFullPrimitiveParserRuleCall_1; }
+		
+		//EffectFullExpression
+		public RuleCall getEffectFullExpressionParserRuleCall_2() { return cEffectFullExpressionParserRuleCall_2; }
+	}
 	public class ArgumentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Argument");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -3600,6 +3623,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final EffectFullFunctionElements pEffectFullFunction;
 	private final PrimitiveFunctionElements pPrimitiveFunction;
 	private final EffectFullPrimitiveElements pEffectFullPrimitive;
+	private final EffectFullBodyContentElements pEffectFullBodyContent;
 	private final ArgumentElements pArgument;
 	private final EffectFullArgumentElements pEffectFullArgument;
 	private final PureArgumentElements pPureArgument;
@@ -3711,6 +3735,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pEffectFullFunction = new EffectFullFunctionElements();
 		this.pPrimitiveFunction = new PrimitiveFunctionElements();
 		this.pEffectFullPrimitive = new EffectFullPrimitiveElements();
+		this.pEffectFullBodyContent = new EffectFullBodyContentElements();
 		this.pArgument = new ArgumentElements();
 		this.pEffectFullArgument = new EffectFullArgumentElements();
 		this.pPureArgument = new PureArgumentElements();
@@ -4082,6 +4107,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getEffectFullPrimitiveRule() {
 		return getEffectFullPrimitiveAccess().getRule();
+	}
+	
+	//EffectFullBodyContent:
+	//	EffectFullFunction | EffectFullPrimitive | EffectFullExpression;
+	public EffectFullBodyContentElements getEffectFullBodyContentAccess() {
+		return pEffectFullBodyContent;
+	}
+	
+	public ParserRule getEffectFullBodyContentRule() {
+		return getEffectFullBodyContentAccess().getRule();
 	}
 	
 	/////////////////////////////////////////////////////////////////////

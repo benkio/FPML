@@ -727,6 +727,25 @@ public interface FPMLPackage extends EPackage
   int EFFECT_FULL_PRIMITIVE_FEATURE_COUNT = PRIMITIVE_FUNCTION_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.EffectFullBodyContentImpl <em>Effect Full Body Content</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.EffectFullBodyContentImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullBodyContent()
+   * @generated
+   */
+  int EFFECT_FULL_BODY_CONTENT = 21;
+
+  /**
+   * The number of structural features of the '<em>Effect Full Body Content</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT_FULL_BODY_CONTENT_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.ArgumentImpl <em>Argument</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -734,7 +753,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getArgument()
    * @generated
    */
-  int ARGUMENT = 21;
+  int ARGUMENT = 22;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -762,7 +781,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullArgument()
    * @generated
    */
-  int EFFECT_FULL_ARGUMENT = 22;
+  int EFFECT_FULL_ARGUMENT = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -799,7 +818,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureArgument()
    * @generated
    */
-  int PURE_ARGUMENT = 23;
+  int PURE_ARGUMENT = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -836,7 +855,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getFunctionBodyPure()
    * @generated
    */
-  int FUNCTION_BODY_PURE = 24;
+  int FUNCTION_BODY_PURE = 25;
 
   /**
    * The number of structural features of the '<em>Function Body Pure</em>' class.
@@ -855,7 +874,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getFunctionBodyEffectFull()
    * @generated
    */
-  int FUNCTION_BODY_EFFECT_FULL = 25;
+  int FUNCTION_BODY_EFFECT_FULL = 26;
 
   /**
    * The number of structural features of the '<em>Function Body Effect Full</em>' class.
@@ -874,7 +893,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEmptyFunctionBody()
    * @generated
    */
-  int EMPTY_FUNCTION_BODY = 26;
+  int EMPTY_FUNCTION_BODY = 27;
 
   /**
    * The number of structural features of the '<em>Empty Function Body</em>' class.
@@ -893,7 +912,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getCompositionFunctionBodyPure()
    * @generated
    */
-  int COMPOSITION_FUNCTION_BODY_PURE = 27;
+  int COMPOSITION_FUNCTION_BODY_PURE = 28;
 
   /**
    * The feature id for the '<em><b>Reference Element</b></em>' reference.
@@ -948,7 +967,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getCompositionFunctionBodyPureFactor()
    * @generated
    */
-  int COMPOSITION_FUNCTION_BODY_PURE_FACTOR = 28;
+  int COMPOSITION_FUNCTION_BODY_PURE_FACTOR = 29;
 
   /**
    * The feature id for the '<em><b>Reference Element</b></em>' reference.
@@ -994,7 +1013,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getCompositionFunctionBodyEffect()
    * @generated
    */
-  int COMPOSITION_FUNCTION_BODY_EFFECT = 29;
+  int COMPOSITION_FUNCTION_BODY_EFFECT = 30;
 
   /**
    * The feature id for the '<em><b>Reference Element</b></em>' reference.
@@ -1049,7 +1068,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getCompositionFunctionBodyEffectFullFactor()
    * @generated
    */
-  int COMPOSITION_FUNCTION_BODY_EFFECT_FULL_FACTOR = 30;
+  int COMPOSITION_FUNCTION_BODY_EFFECT_FULL_FACTOR = 31;
 
   /**
    * The feature id for the '<em><b>Reference Element</b></em>' reference.
@@ -1095,7 +1114,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getType()
    * @generated
    */
-  int TYPE = 33;
+  int TYPE = 34;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -1114,7 +1133,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullType()
    * @generated
    */
-  int EFFECT_FULL_TYPE = 34;
+  int EFFECT_FULL_TYPE = 35;
 
   /**
    * The number of structural features of the '<em>Effect Full Type</em>' class.
@@ -1133,7 +1152,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOType()
    * @generated
    */
-  int IO_TYPE = 31;
+  int IO_TYPE = 32;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1161,7 +1180,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getValueType()
    * @generated
    */
-  int VALUE_TYPE = 32;
+  int VALUE_TYPE = 33;
 
   /**
    * The number of structural features of the '<em>Value Type</em>' class.
@@ -1180,7 +1199,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getVoidType()
    * @generated
    */
-  int VOID_TYPE = 35;
+  int VOID_TYPE = 36;
 
   /**
    * The number of structural features of the '<em>Void Type</em>' class.
@@ -1199,7 +1218,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIntegerType()
    * @generated
    */
-  int INTEGER_TYPE = 36;
+  int INTEGER_TYPE = 37;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1236,7 +1255,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getStringType()
    * @generated
    */
-  int STRING_TYPE = 37;
+  int STRING_TYPE = 38;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1273,7 +1292,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getBooleanType()
    * @generated
    */
-  int BOOLEAN_TYPE = 38;
+  int BOOLEAN_TYPE = 39;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1310,7 +1329,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 39;
+  int UNIT_TYPE = 40;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1338,7 +1357,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 40;
+  int DATA_TYPE = 41;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1366,7 +1385,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullDataType()
    * @generated
    */
-  int EFFECT_FULL_DATA_TYPE = 41;
+  int EFFECT_FULL_DATA_TYPE = 42;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1394,7 +1413,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureFunctionType()
    * @generated
    */
-  int PURE_FUNCTION_TYPE = 42;
+  int PURE_FUNCTION_TYPE = 43;
 
   /**
    * The feature id for the '<em><b>Arg Type</b></em>' containment reference.
@@ -1440,7 +1459,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullFunctionType()
    * @generated
    */
-  int EFFECT_FULL_FUNCTION_TYPE = 43;
+  int EFFECT_FULL_FUNCTION_TYPE = 44;
 
   /**
    * The feature id for the '<em><b>Arg Type</b></em>' containment reference.
@@ -1486,7 +1505,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureAlgebraicType()
    * @generated
    */
-  int PURE_ALGEBRAIC_TYPE = 44;
+  int PURE_ALGEBRAIC_TYPE = 45;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -1523,7 +1542,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureSumTypeFactor()
    * @generated
    */
-  int PURE_SUM_TYPE_FACTOR = 45;
+  int PURE_SUM_TYPE_FACTOR = 46;
 
   /**
    * The feature id for the '<em><b>Adt Element</b></em>' containment reference.
@@ -1551,7 +1570,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureProdTypeFactor()
    * @generated
    */
-  int PURE_PROD_TYPE_FACTOR = 46;
+  int PURE_PROD_TYPE_FACTOR = 47;
 
   /**
    * The feature id for the '<em><b>Adt Element</b></em>' containment reference.
@@ -1579,7 +1598,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullAlgebraicType()
    * @generated
    */
-  int EFFECT_FULL_ALGEBRAIC_TYPE = 47;
+  int EFFECT_FULL_ALGEBRAIC_TYPE = 48;
 
   /**
    * The feature id for the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -1616,7 +1635,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullSumTypeFactor()
    * @generated
    */
-  int EFFECT_FULL_SUM_TYPE_FACTOR = 48;
+  int EFFECT_FULL_SUM_TYPE_FACTOR = 49;
 
   /**
    * The feature id for the '<em><b>Adt Element</b></em>' containment reference.
@@ -1644,7 +1663,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullProdTypeFactor()
    * @generated
    */
-  int EFFECT_FULL_PROD_TYPE_FACTOR = 49;
+  int EFFECT_FULL_PROD_TYPE_FACTOR = 50;
 
   /**
    * The feature id for the '<em><b>Adt Element</b></em>' containment reference.
@@ -1672,7 +1691,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullExpression()
    * @generated
    */
-  int EFFECT_FULL_EXPRESSION = 50;
+  int EFFECT_FULL_EXPRESSION = 51;
 
   /**
    * The number of structural features of the '<em>Effect Full Expression</em>' class.
@@ -1691,7 +1710,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullValueRef()
    * @generated
    */
-  int EFFECT_FULL_VALUE_REF = 51;
+  int EFFECT_FULL_VALUE_REF = 52;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -1719,7 +1738,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 52;
+  int EXPRESSION = 53;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -1738,7 +1757,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureValueRef()
    * @generated
    */
-  int PURE_VALUE_REF = 53;
+  int PURE_VALUE_REF = 54;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -1766,7 +1785,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePureFunction()
    * @generated
    */
-  int PRIMITIVE_PURE_FUNCTION = 54;
+  int PRIMITIVE_PURE_FUNCTION = 55;
 
   /**
    * The number of structural features of the '<em>Primitive Pure Function</em>' class.
@@ -1785,7 +1804,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIntToString()
    * @generated
    */
-  int INT_TO_STRING = 55;
+  int INT_TO_STRING = 56;
 
   /**
    * The number of structural features of the '<em>Int To String</em>' class.
@@ -1804,7 +1823,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIntPow()
    * @generated
    */
-  int INT_POW = 56;
+  int INT_POW = 57;
 
   /**
    * The number of structural features of the '<em>Int Pow</em>' class.
@@ -1823,7 +1842,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 57;
+  int PLUS = 58;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1851,7 +1870,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 58;
+  int MINUS = 59;
 
   /**
    * The number of structural features of the '<em>Minus</em>' class.
@@ -1870,7 +1889,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getTimes()
    * @generated
    */
-  int TIMES = 59;
+  int TIMES = 60;
 
   /**
    * The number of structural features of the '<em>Times</em>' class.
@@ -1889,7 +1908,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getMod()
    * @generated
    */
-  int MOD = 60;
+  int MOD = 61;
 
   /**
    * The number of structural features of the '<em>Mod</em>' class.
@@ -1908,7 +1927,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftPair()
    * @generated
    */
-  int LEFT_PAIR = 61;
+  int LEFT_PAIR = 62;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1936,7 +1955,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightPair()
    * @generated
    */
-  int RIGHT_PAIR = 62;
+  int RIGHT_PAIR = 63;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1964,7 +1983,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyF()
    * @generated
    */
-  int APPLY_F = 63;
+  int APPLY_F = 64;
 
   /**
    * The feature id for the '<em><b>Function Type</b></em>' containment reference.
@@ -2001,7 +2020,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFFactor()
    * @generated
    */
-  int APPLY_FFACTOR = 64;
+  int APPLY_FFACTOR = 65;
 
   /**
    * The feature id for the '<em><b>Value Reference</b></em>' reference.
@@ -2038,7 +2057,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEquals()
    * @generated
    */
-  int EQUALS = 65;
+  int EQUALS = 66;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2066,7 +2085,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getMinorEquals()
    * @generated
    */
-  int MINOR_EQUALS = 66;
+  int MINOR_EQUALS = 67;
 
   /**
    * The number of structural features of the '<em>Minor Equals</em>' class.
@@ -2085,7 +2104,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getMajorEquals()
    * @generated
    */
-  int MAJOR_EQUALS = 67;
+  int MAJOR_EQUALS = 68;
 
   /**
    * The number of structural features of the '<em>Major Equals</em>' class.
@@ -2104,7 +2123,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getMinor()
    * @generated
    */
-  int MINOR = 68;
+  int MINOR = 69;
 
   /**
    * The number of structural features of the '<em>Minor</em>' class.
@@ -2123,7 +2142,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getMajor()
    * @generated
    */
-  int MAJOR = 69;
+  int MAJOR = 70;
 
   /**
    * The number of structural features of the '<em>Major</em>' class.
@@ -2142,7 +2161,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLogicAnd()
    * @generated
    */
-  int LOGIC_AND = 70;
+  int LOGIC_AND = 71;
 
   /**
    * The number of structural features of the '<em>Logic And</em>' class.
@@ -2161,7 +2180,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLogicOr()
    * @generated
    */
-  int LOGIC_OR = 71;
+  int LOGIC_OR = 72;
 
   /**
    * The number of structural features of the '<em>Logic Or</em>' class.
@@ -2180,7 +2199,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getExtractPure()
    * @generated
    */
-  int EXTRACT_PURE = 72;
+  int EXTRACT_PURE = 73;
 
   /**
    * The feature id for the '<em><b>Data</b></em>' reference.
@@ -2208,7 +2227,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullFunction()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_FUNCTION = 73;
+  int PRIMITIVE_EFFECT_FULL_FUNCTION = 74;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Function</em>' class.
@@ -2227,7 +2246,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePrint()
    * @generated
    */
-  int PRIMITIVE_PRINT = 74;
+  int PRIMITIVE_PRINT = 75;
 
   /**
    * The number of structural features of the '<em>Primitive Print</em>' class.
@@ -2246,7 +2265,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftPairIO()
    * @generated
    */
-  int LEFT_PAIR_IO = 75;
+  int LEFT_PAIR_IO = 76;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2274,7 +2293,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightPairIO()
    * @generated
    */
-  int RIGHT_PAIR_IO = 76;
+  int RIGHT_PAIR_IO = 77;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2302,7 +2321,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullValue()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_VALUE = 77;
+  int PRIMITIVE_EFFECT_FULL_VALUE = 78;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Value</em>' class.
@@ -2321,7 +2340,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveRandom()
    * @generated
    */
-  int PRIMITIVE_RANDOM = 78;
+  int PRIMITIVE_RANDOM = 79;
 
   /**
    * The number of structural features of the '<em>Primitive Random</em>' class.
@@ -2340,7 +2359,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveReturn()
    * @generated
    */
-  int PRIMITIVE_RETURN = 79;
+  int PRIMITIVE_RETURN = 80;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2368,7 +2387,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveTime()
    * @generated
    */
-  int PRIMITIVE_TIME = 80;
+  int PRIMITIVE_TIME = 81;
 
   /**
    * The number of structural features of the '<em>Primitive Time</em>' class.
@@ -2387,7 +2406,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIO()
    * @generated
    */
-  int APPLY_FIO = 81;
+  int APPLY_FIO = 82;
 
   /**
    * The feature id for the '<em><b>Function Type</b></em>' containment reference.
@@ -2424,7 +2443,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIOFactor()
    * @generated
    */
-  int APPLY_FIO_FACTOR = 82;
+  int APPLY_FIO_FACTOR = 83;
 
   /**
    * The feature id for the '<em><b>Value Reference</b></em>' reference.
@@ -2470,7 +2489,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getExtractEffectFull()
    * @generated
    */
-  int EXTRACT_EFFECT_FULL = 83;
+  int EXTRACT_EFFECT_FULL = 84;
 
   /**
    * The feature id for the '<em><b>Data</b></em>' reference.
@@ -2498,7 +2517,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureValue()
    * @generated
    */
-  int PURE_VALUE = 84;
+  int PURE_VALUE = 85;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2571,7 +2590,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullValue()
    * @generated
    */
-  int EFFECT_FULL_VALUE = 85;
+  int EFFECT_FULL_VALUE = 86;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2644,7 +2663,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getRecursiveEffectFullExpression()
    * @generated
    */
-  int RECURSIVE_EFFECT_FULL_EXPRESSION = 86;
+  int RECURSIVE_EFFECT_FULL_EXPRESSION = 87;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -2672,7 +2691,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOExpression()
    * @generated
    */
-  int IO_EXPRESSION = 87;
+  int IO_EXPRESSION = 88;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -2700,7 +2719,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOPureFunction()
    * @generated
    */
-  int IO_PURE_FUNCTION = 88;
+  int IO_PURE_FUNCTION = 89;
 
   /**
    * The feature id for the '<em><b>Pure Function</b></em>' reference.
@@ -2728,7 +2747,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullLambda()
    * @generated
    */
-  int EFFECT_FULL_LAMBDA = 89;
+  int EFFECT_FULL_LAMBDA = 90;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2792,7 +2811,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 90;
+  int DATA_VALUE = 91;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2829,7 +2848,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullDataValue()
    * @generated
    */
-  int EFFECT_FULL_DATA_VALUE = 91;
+  int EFFECT_FULL_DATA_VALUE = 92;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2866,7 +2885,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureLambda()
    * @generated
    */
-  int PURE_LAMBDA = 92;
+  int PURE_LAMBDA = 93;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2930,7 +2949,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureProdValue()
    * @generated
    */
-  int PURE_PROD_VALUE = 93;
+  int PURE_PROD_VALUE = 94;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -2985,7 +3004,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureSumValue()
    * @generated
    */
-  int PURE_SUM_VALUE = 94;
+  int PURE_SUM_VALUE = 95;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -3040,7 +3059,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullProdValue()
    * @generated
    */
-  int EFFECT_FULL_PROD_VALUE = 95;
+  int EFFECT_FULL_PROD_VALUE = 96;
 
   /**
    * The feature id for the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -3095,7 +3114,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullSumValue()
    * @generated
    */
-  int EFFECT_FULL_SUM_VALUE = 96;
+  int EFFECT_FULL_SUM_VALUE = 97;
 
   /**
    * The feature id for the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -3682,6 +3701,16 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EClass getEffectFullPrimitive();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.EffectFullBodyContent <em>Effect Full Body Content</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Effect Full Body Content</em>'.
+   * @see it.unibo.fPML.EffectFullBodyContent
+   * @generated
+   */
+  EClass getEffectFullBodyContent();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.Argument <em>Argument</em>}'.
@@ -5751,6 +5780,16 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EClass EFFECT_FULL_PRIMITIVE = eINSTANCE.getEffectFullPrimitive();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.EffectFullBodyContentImpl <em>Effect Full Body Content</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.EffectFullBodyContentImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullBodyContent()
+     * @generated
+     */
+    EClass EFFECT_FULL_BODY_CONTENT = eINSTANCE.getEffectFullBodyContent();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.ArgumentImpl <em>Argument</em>}' class.

@@ -73,6 +73,7 @@
     <genClasses ecoreClass="FPML.ecore#//EffectFullFunction"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveFunction"/>
     <genClasses ecoreClass="FPML.ecore#//EffectFullPrimitive"/>
+    <genClasses ecoreClass="FPML.ecore#//EffectFullBodyContent"/>
     <genClasses ecoreClass="FPML.ecore#//Argument">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FPML.ecore#//Argument/name"/>
     </genClasses>

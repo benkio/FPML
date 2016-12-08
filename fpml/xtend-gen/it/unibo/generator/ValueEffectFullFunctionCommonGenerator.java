@@ -271,14 +271,13 @@ public class ValueEffectFullFunctionCommonGenerator {
   public String compileIO(final CompositionFunctionBodyEffect cfbe, final EffectFullArgument arg) {
     throw new Error("Unresolved compilation problems:"
       + "\nThe method compileIO(EffectFullReference, String) from the type ValueEffectFullFunctionCommonGenerator refers to the missing type EffectFullReference"
-      + "\nThe method getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect) from the type Others refers to the missing type EffectFullReference"
       + "\nThe method compileIO(EffectFullReference, String) from the type ValueEffectFullFunctionCommonGenerator refers to the missing type EffectFullReference");
   }
   
   public String compileIO(final /* EffectFullReference */Object e, final String valueName) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method getValueFromApplyFIOFactor(ApplyFIOFactor) from the type Others refers to the missing type EffectFullReference"
-      + "\nThe method effectFullReference(EffectFullReference) from the type GetReturnType refers to the missing type EffectFullReference"
+      + "\nThe method effectFullReference(EffectFullReference) is undefined for the type Class<GetReturnType>"
+      + "\nThe method compileIO(EffectFullReference, String) from the type ValueEffectFullFunctionCommonGenerator refers to the missing type EffectFullReference"
       + "\nfunctionType cannot be resolved"
       + "\nvalue cannot be resolved"
       + "\nfunctionType cannot be resolved"

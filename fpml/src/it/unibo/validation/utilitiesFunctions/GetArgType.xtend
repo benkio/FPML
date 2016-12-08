@@ -5,12 +5,13 @@ import it.unibo.validation.FPMLValidator
 import org.eclipse.emf.ecore.EReference
 import java.util.List
 import org.eclipse.xtext.EcoreUtil2
-import it.unibo.fPML.EffectFullReference
 import it.unibo.fPML.EffectFullFunction
 import it.unibo.fPML.EffectFullFunctionDefinition
 import it.unibo.fPML.PrimitiveEffectFullFunction
 import it.unibo.fPML.EffectFullValue
 import org.eclipse.emf.ecore.util.EcoreUtil
+import it.unibo.fPML.EffectFullPrimitive
+import it.unibo.fPML.EffectFullExpression
 
 class GetArgType {
 	
@@ -23,10 +24,11 @@ class GetArgType {
 	
 	def static ValueType pureFunction(PureFunction f) {
 		switch f {
+			PureValue: FPMLFactory.eINSTANCE.createUnitType
 			PureFunctionDefinition: pureFunctionDefinition(f) 
 			PrimitivePureFunction: primitivePureFunction(f)
-			Argument: FPMLFactory.eINSTANCE.createUnitType
-			Expression: return FPMLFactory.eINSTANCE.createUnitType
+			PureArgument: FPMLFactory.eINSTANCE.createUnitType
+			Expression: FPMLFactory.eINSTANCE.createUnitType
 		}
 	}
 	
@@ -72,21 +74,38 @@ class GetArgType {
       return FPMLFactory.eINSTANCE.createUnitType
 	}
 	
-	def static Type effectFullReference(EffectFullReference reference) {
+	def static Type effectFullBodyContent(EffectFullBodyContent reference) {
 		switch reference {
-			EffectFullValue: return FPMLFactory.eINSTANCE.createUnitType
-			PureValue: return FPMLFactory.eINSTANCE.createUnitType
-			PrimitiveEffectFullValue: return FPMLFactory.eINSTANCE.createUnitType 
-			PrimitiveEffectFullFunction: primitiveEffectFullFunction(reference)
-			PrimitivePureFunction: primitivePureFunction(reference)
-			EffectFullArgument:	return FPMLFactory.eINSTANCE.createUnitType
-			EffectFullExpression: return FPMLFactory.eINSTANCE.createUnitType
-			Function: function(reference)
+			EffectFullExpression: effectFullExpression(reference)
+			EffectFullFunction: effectFullFunction(reference)
+			EffectFullPrimitive: effectFullPrimitive(reference)
+		}
+	}
+	
+	def static Type effectFullExpression(EffectFullExpression expression) {
+		switch expression {
+			RecursiveEffectFullExpression: FPMLFactory.eINSTANCE.createUnitType 
+			IOExpression: FPMLFactory.eINSTANCE.createUnitType
+			IOPureFunction: pureFunction(expression.pureFunction)
+			EffectFullFunctionType: effectFullFunctionDefinition(expression.value) 
+			EffectFullDataValue: FPMLFactory.eINSTANCE.createUnitType
+			EffectFullProdValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.prodAdtElement1), effectFullExpression(expression.prodAdtElement2), false)
+			EffectFullSumValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.sumAdtElement1), effectFullExpression(expression.sumAdtElement2), true)
+			EffectFullValueRef: effectFullExpression(expression.value.value)
+		}
+	}
+	
+	def static Type effectFullPrimitive(EffectFullPrimitive primitive) {
+		switch primitive {
+			PrimitiveEffectFullFunction: primitiveEffectFullFunction(primitive)
+			PrimitiveEffectFullValue: primitiveEffectFullValue(primitive)
 		}
 	}
 	
 	def static Type effectFullFunction(EffectFullFunction function) {
 		switch function {
+			EffectFullExpression: effectFullExpression(function) 
+			EffectFullValue: effectFullExpression(function.value)
 			EffectFullFunctionDefinition: effectFullFunctionDefinition(function)
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)
 		}
@@ -107,7 +126,6 @@ class GetArgType {
 		switch pefv {
 			PrimitiveRandom: return FPMLFactory.eINSTANCE.createUnitType
       		PrimitiveTime: return FPMLFactory.eINSTANCE.createUnitType
-      		PrimitiveReturn: pefv.type
 		}
 	}
 	
@@ -120,12 +138,12 @@ class GetArgType {
 				}
 			}
 			EffectFullLambda: effectFullLambda(definition)
-			EffectFullFunctionDefinition: definition.arg.type
+			EffectFullFunctionDefinition: Others.getArgumentType(definition.arg)
 		}
 	}
 	
 	def static Type effectFullLambda(EffectFullLambda lambda) {
 		if (lambda.arg == null) return FPMLFactory.eINSTANCE.createUnitType
-		else return lambda.arg.type
+		else return Others.getArgumentType(lambda.arg)
 	}
 }

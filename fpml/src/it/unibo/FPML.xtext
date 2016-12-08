@@ -101,6 +101,8 @@ PrimitiveFunction: PrimitivePureFunction | EffectFullPrimitive;
 
 EffectFullPrimitive: PrimitiveEffectFullFunction | PrimitiveEffectFullValue;
 
+EffectFullBodyContent:  EffectFullFunction | EffectFullPrimitive | EffectFullExpression ;
+
 ///////////////////////////////////////////////////////////////////
 // Function Body Elements
 ///////////////////////////////////////////////////////////////////

@@ -3,6 +3,7 @@ package it.unibo.validation.utilitiesFunctions;
 import com.google.common.base.Objects;
 import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIOFactor;
+import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
@@ -10,6 +11,7 @@ import it.unibo.fPML.CompositionFunctionBodyPureFactor;
 import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullFunction;
@@ -20,12 +22,14 @@ import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.PureAlgebraicType;
+import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.Type;
+import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.fPML.VoidType;
 import org.eclipse.emf.ecore.EObject;
@@ -48,7 +52,7 @@ public class Others {
     }
   }
   
-  public static EObject getFunctionDefinitionFromEffectFullFactor(final CompositionFunctionBodyEffectFullFactor cfbef) {
+  public static EffectFullBodyContent getFunctionDefinitionFromEffectFullFactor(final CompositionFunctionBodyEffectFullFactor cfbef) {
     EffectFullFunction _xifexpression = null;
     if ((Objects.equal(cfbef.getPrimitiveElement(), null) && Objects.equal(cfbef.getReferenceElement(), null))) {
       return cfbef.getExpressionElement();
@@ -80,7 +84,7 @@ public class Others {
     }
   }
   
-  public static /* EffectFullReference */Object getFirstFunctionDefinitionFromCompositionBodyEffectFull(final CompositionFunctionBodyEffect cfbe) {
+  public static EffectFullBodyContent getFirstFunctionDefinitionFromCompositionBodyEffectFull(final CompositionFunctionBodyEffect cfbe) {
     if ((Objects.equal(cfbe.getPrimitiveElement(), null) && Objects.equal(cfbe.getReferenceElement(), null))) {
       return cfbe.getExpressionElement();
     } else {
@@ -94,7 +98,7 @@ public class Others {
     }
   }
   
-  public static /* EffectFullReference */Object getValueFromApplyFIOFactor(final ApplyFIOFactor afiof) {
+  public static EffectFullBodyContent getValueFromApplyFIOFactor(final ApplyFIOFactor afiof) {
     EffectFullPrimitive _valuePrimitive = afiof.getValuePrimitive();
     boolean _notEquals = (!Objects.equal(_valuePrimitive, null));
     if (_notEquals) {
@@ -158,6 +162,22 @@ public class Others {
     return _switchResult;
   }
   
+  public static Type getArgumentType(final Argument a) {
+    Type _switchResult = null;
+    boolean _matched = false;
+    if (a instanceof EffectFullArgument) {
+      _matched=true;
+      _switchResult = ((EffectFullArgument)a).getType();
+    }
+    if (!_matched) {
+      if (a instanceof PureArgument) {
+        _matched=true;
+        _switchResult = ((PureArgument)a).getType();
+      }
+    }
+    return _switchResult;
+  }
+  
   public static PureFunctionType createFuntionType(final ValueType argT, final ValueType returnT) {
     final PureFunctionType func = FPMLFactory.eINSTANCE.createPureFunctionType();
     func.setArgType(argT);
@@ -173,8 +193,12 @@ public class Others {
   }
   
   public static EffectFullArgument createUnitEffectFullArgument() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from UnitType to EffectFullType");
+    final EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument();
+    final IOType unitType = FPMLFactory.eINSTANCE.createIOType();
+    UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+    unitType.setType(_createUnitType);
+    arg.setType(unitType);
+    return arg;
   }
   
   public static EffectFullArgument createVoidEffectFullArgument() {

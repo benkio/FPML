@@ -6,6 +6,7 @@ import org.eclipse.xtext.EcoreUtil2
 import java.util.List
 import it.unibo.fPML.EffectFullExpression
 import org.eclipse.emf.ecore.util.EcoreUtil
+import it.unibo.fPML.EffectFullPrimitive
 
 class GetReturnType {
 	
@@ -18,9 +19,10 @@ class GetReturnType {
 	
 	def static ValueType pureFunction(PureFunction f){
 		switch f {
+			PureValue: expression(f.value)
 			PureFunctionDefinition: pureFunctionDefinition(f)
 			PrimitivePureFunction: primitivePureFunction(f)
-			Argument: f.type
+			PureArgument: f.type
 			Expression: expression(f)
 		}
 	}	
@@ -105,8 +107,10 @@ class GetReturnType {
 	
 	def static Type effectFullFunction(EffectFullFunction function) {
 		switch function {
+			EffectFullValue: effectFullExpression(function.value)
 			EffectFullFunctionDefinition: effectFullFunctionDefinition(function)
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)
+			EffectFullExpression: effectFullExpression(function)
 		}
 	}
 	
@@ -114,31 +118,34 @@ class GetReturnType {
 		functionBodyEffectFull(definition.functionBody, definition.arg, definition.higherOrderArg, definition.returnType)
 	}
 	
-	def static Type functionBodyEffectFull(FunctionBodyEffectFull full, EffectFullArgument argument, AdditionalEffectFullArgument argument2, IOType type) {
+	def static Type functionBodyEffectFull(FunctionBodyEffectFull full, Argument argument, AdditionalEffectFullArgument argument2, IOType type) {
 		switch full {
 			EmptyFunctionBody: type
 			CompositionFunctionBodyEffect: compositionFunctionBodyEffectFull(full, argument, argument2)
 		}
 	}
 	
-	def static Type compositionFunctionBodyEffectFull(CompositionFunctionBodyEffect effect, EffectFullArgument argument, AdditionalEffectFullArgument argument2) {
+	def static Type compositionFunctionBodyEffectFull(CompositionFunctionBodyEffect effect, Argument argument, AdditionalEffectFullArgument argument2) {
 		var first = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(effect)
 		var chain = effect.functionChain.map[x | Others.getFunctionDefinitionFromEffectFullFactor(x)]
 		effectFullFunctionChain(chain, first, argument, argument2)
 	}
 	
-	def static Type effectFullFunctionChain(List<EffectFullReference> references, EffectFullReference first, EffectFullArgument argument, AdditionalEffectFullArgument argument2) {
-		if (argument2 != null && !(argument2.arg2.type instanceof VoidType)) { //HigherOrder
+	def static Type effectFullFunctionChain(List<EffectFullBodyContent> references, EffectFullBodyContent first, Argument argument, AdditionalEffectFullArgument argument2) {
+		if (argument2 != null 
+			&& (argument2.arg2 instanceof EffectFullArgument 
+				&& !((argument2.arg2 as EffectFullArgument).type instanceof VoidType) )
+		) { //HigherOrder
 			val returnFunctionType = EcoreUtil2.copy(effectFullFunctionChain(references, first, argument, null))
 			val functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType
-			functionType.argType = EcoreUtil.copy(argument2.arg2.type)
+			functionType.argType = EcoreUtil.copy(Others.getArgumentType(argument2.arg2))
 			if (returnFunctionType instanceof IOType)
 				functionType.returnType = returnFunctionType
 			else 
 				functionType.returnType = Others.IOWrap(FPMLFactory.eINSTANCE.createVoidType)
 			return Others.IOWrap(functionType)
 		} else { //Normal single argument function
-			val firstFunctionReturnType = effectFullReference(first)
+			val firstFunctionReturnType = effectFullBodyContent(first)
 			if (references.size == 0)
 					return firstFunctionReturnType
 			else {
@@ -147,23 +154,24 @@ class GetReturnType {
 		}
 	}
 	
-	def static Type effectFullReference(EffectFullReference r) {
-		switch r {
-			EffectFullValue: effectFullExpression(r.value)
-			PureValue: expression(r.value)
-			PrimitiveEffectFullValue: primitiveEffectFullValue(r)
-			PrimitiveEffectFullFunction: primitiveEffectFullFunction(r)
-			PrimitivePureFunction: primitivePureFunction(r)
-			EffectFullArgument: r.type
-			EffectFullExpression: effectFullExpression(r)
-			Function: function(r)
+	def static Type effectFullBodyContent(EffectFullBodyContent efbc) {
+		switch efbc {
+			EffectFullExpression: effectFullExpression(efbc)
+			EffectFullFunction: effectFullFunction(efbc)
+			EffectFullPrimitive: effectFullPrimitive(efbc)
+		}
+	}
+	
+	def static effectFullPrimitive(EffectFullPrimitive primitive) {
+		switch primitive {
+			PrimitiveEffectFullFunction: primitiveEffectFullFunction(primitive)
+			PrimitiveEffectFullValue: primitiveEffectFullValue(primitive)
 		}
 	}
 	
 	def static primitiveEffectFullValue(PrimitiveEffectFullValue value) {
 		switch value {
 			PrimitiveRandom: return Others.IOWrap(FPMLFactory.eINSTANCE.createIntegerType)
-     		PrimitiveReturn: return Others.IOWrap(value.type)
      		PrimitiveTime: return Others.IOWrap(FPMLFactory.eINSTANCE.createStringType)
 		}
 	}
@@ -173,12 +181,12 @@ class GetReturnType {
 			IOExpression: {
 				return Others.IOWrap(expression(expression.innerValue))
 			}
-			Expression: expression(expression)
+			IOPureFunction: pureFunction(expression.pureFunction)
 			EffectFullFunctionType:{
 				if (expression.value instanceof EffectFullLambda){
 					var EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument
-					arg.type = FPMLFactory.eINSTANCE.createUnitType
-					if (expression.value.arg != null) arg = expression.value.arg
+					arg.type = Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
+					if (expression.value.arg != null) arg.type = Others.IOWrap(Others.getArgumentType(expression.value.arg))
 					functionBodyEffectFull(expression.value.functionBody, arg, null, expression.value.returnType)
 				}else
 					expression

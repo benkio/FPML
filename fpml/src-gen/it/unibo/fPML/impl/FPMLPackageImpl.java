@@ -20,6 +20,7 @@ import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBlock;
+import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataBlock;
 import it.unibo.fPML.EffectFullDataType;
@@ -264,6 +265,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass effectFullPrimitiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectFullBodyContentEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1368,6 +1376,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EClass getEffectFullPrimitive()
   {
     return effectFullPrimitiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffectFullBodyContent()
+  {
+    return effectFullBodyContentEClass;
   }
 
   /**
@@ -2992,6 +3010,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     effectFullPrimitiveEClass = createEClass(EFFECT_FULL_PRIMITIVE);
 
+    effectFullBodyContentEClass = createEClass(EFFECT_FULL_BODY_CONTENT);
+
     argumentEClass = createEClass(ARGUMENT);
     createEAttribute(argumentEClass, ARGUMENT__NAME);
 
@@ -3254,7 +3274,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     effectFullFunctionDefinitionEClass.getESuperTypes().add(this.getEffectFullFunction());
     pureFunctionEClass.getESuperTypes().add(this.getFunction());
     effectFullFunctionEClass.getESuperTypes().add(this.getFunction());
+    effectFullFunctionEClass.getESuperTypes().add(this.getEffectFullBodyContent());
     effectFullPrimitiveEClass.getESuperTypes().add(this.getPrimitiveFunction());
+    effectFullPrimitiveEClass.getESuperTypes().add(this.getEffectFullBodyContent());
     effectFullArgumentEClass.getESuperTypes().add(this.getArgument());
     pureArgumentEClass.getESuperTypes().add(this.getPureFunction());
     pureArgumentEClass.getESuperTypes().add(this.getArgument());
@@ -3406,6 +3428,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(primitiveFunctionEClass, PrimitiveFunction.class, "PrimitiveFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(effectFullPrimitiveEClass, EffectFullPrimitive.class, "EffectFullPrimitive", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(effectFullBodyContentEClass, EffectFullBodyContent.class, "EffectFullBodyContent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(argumentEClass, Argument.class, "Argument", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getArgument_Name(), ecorePackage.getEString(), "name", null, 0, 1, Argument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

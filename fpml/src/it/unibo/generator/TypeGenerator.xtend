@@ -22,7 +22,7 @@ class TypeGenerator {
 			UnitType: '''Unit'''
 		}»'''
 
-	def compile(Argument arg) '''«arg.type.compile» «arg.name»'''
+	def compile(PureArgument arg) '''«arg.type.compile» «arg.name»'''
 	
 	def compile(EffectFullArgument arg) '''«arg.type.compile» «arg.name»'''
 	

@@ -213,6 +213,15 @@ public interface FPMLFactory extends EFactory
   EffectFullPrimitive createEffectFullPrimitive();
 
   /**
+   * Returns a new object of class '<em>Effect Full Body Content</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Body Content</em>'.
+   * @generated
+   */
+  EffectFullBodyContent createEffectFullBodyContent();
+
+  /**
    * Returns a new object of class '<em>Argument</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
