@@ -14,6 +14,7 @@ import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullSumTypeFactor;
 import it.unibo.fPML.EffectFullSumValue;
+import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.Expression;
@@ -21,6 +22,7 @@ import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.PureAlgebraicType;
+import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
@@ -128,19 +130,14 @@ public class TypeGenerator {
   }
   
   public CharSequence compile(final Argument arg) {
-    StringConcatenation _builder = new StringConcatenation();
-    ValueType _type = arg.getType();
-    Object _compile = this.compile(_type);
-    _builder.append(_compile, "");
-    _builder.append(" ");
-    String _name = arg.getName();
-    _builder.append(_name, "");
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field type is undefined for the type Argument"
+      + "\ncompile cannot be resolved");
   }
   
   public CharSequence compile(final EffectFullArgument arg) {
     StringConcatenation _builder = new StringConcatenation();
-    Type _type = arg.getType();
+    EffectFullType _type = arg.getType();
     Object _compile = this.compile(_type);
     _builder.append(_compile, "");
     _builder.append(" ");
@@ -258,13 +255,13 @@ public class TypeGenerator {
       if (e instanceof PureFunctionType) {
         _matched=true;
         PureFunctionDefinition _value = ((PureFunctionType)e).getValue();
-        Argument _arg = _value.getArg();
+        PureArgument _arg = _value.getArg();
         boolean _notEquals = (!Objects.equal(_arg, null));
         if (_notEquals) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("F<");
           PureFunctionDefinition _value_1 = ((PureFunctionType)e).getValue();
-          Argument _arg_1 = _value_1.getArg();
+          PureArgument _arg_1 = _value_1.getArg();
           ValueType _type = _arg_1.getType();
           Object _compile = this.compile(_type);
           _builder.append(_compile, "");

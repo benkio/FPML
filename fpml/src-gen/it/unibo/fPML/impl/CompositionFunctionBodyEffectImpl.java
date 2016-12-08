@@ -5,9 +5,10 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
-import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullExpression;
+import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PrimitiveFunction;
 
 import java.util.Collection;
 
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyEffectImpl#getReferenceElement <em>Reference Element</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyEffectImpl#getFunctionChain <em>Function Chain</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyEffectImpl#getPrimitiveElement <em>Primitive Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyEffectImpl#getExpressionElement <em>Expression Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,7 +51,7 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * @generated
    * @ordered
    */
-  protected EffectFullReference referenceElement;
+  protected EffectFullFunction referenceElement;
 
   /**
    * The cached value of the '{@link #getFunctionChain() <em>Function Chain</em>}' containment reference list.
@@ -69,7 +71,17 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * @generated
    * @ordered
    */
-  protected PrimitiveFunction primitiveElement;
+  protected EffectFullPrimitive primitiveElement;
+
+  /**
+   * The cached value of the '{@link #getExpressionElement() <em>Expression Element</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExpressionElement()
+   * @generated
+   * @ordered
+   */
+  protected EffectFullExpression expressionElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -97,12 +109,12 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullReference getReferenceElement()
+  public EffectFullFunction getReferenceElement()
   {
     if (referenceElement != null && referenceElement.eIsProxy())
     {
       InternalEObject oldReferenceElement = (InternalEObject)referenceElement;
-      referenceElement = (EffectFullReference)eResolveProxy(oldReferenceElement);
+      referenceElement = (EffectFullFunction)eResolveProxy(oldReferenceElement);
       if (referenceElement != oldReferenceElement)
       {
         if (eNotificationRequired())
@@ -117,7 +129,7 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullReference basicGetReferenceElement()
+  public EffectFullFunction basicGetReferenceElement()
   {
     return referenceElement;
   }
@@ -127,9 +139,9 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setReferenceElement(EffectFullReference newReferenceElement)
+  public void setReferenceElement(EffectFullFunction newReferenceElement)
   {
-    EffectFullReference oldReferenceElement = referenceElement;
+    EffectFullFunction oldReferenceElement = referenceElement;
     referenceElement = newReferenceElement;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__REFERENCE_ELEMENT, oldReferenceElement, referenceElement));
@@ -154,7 +166,7 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public PrimitiveFunction getPrimitiveElement()
+  public EffectFullPrimitive getPrimitiveElement()
   {
     return primitiveElement;
   }
@@ -164,9 +176,9 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPrimitiveElement(PrimitiveFunction newPrimitiveElement, NotificationChain msgs)
+  public NotificationChain basicSetPrimitiveElement(EffectFullPrimitive newPrimitiveElement, NotificationChain msgs)
   {
-    PrimitiveFunction oldPrimitiveElement = primitiveElement;
+    EffectFullPrimitive oldPrimitiveElement = primitiveElement;
     primitiveElement = newPrimitiveElement;
     if (eNotificationRequired())
     {
@@ -181,7 +193,7 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPrimitiveElement(PrimitiveFunction newPrimitiveElement)
+  public void setPrimitiveElement(EffectFullPrimitive newPrimitiveElement)
   {
     if (newPrimitiveElement != primitiveElement)
     {
@@ -202,6 +214,54 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
    * <!-- end-user-doc -->
    * @generated
    */
+  public EffectFullExpression getExpressionElement()
+  {
+    return expressionElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExpressionElement(EffectFullExpression newExpressionElement, NotificationChain msgs)
+  {
+    EffectFullExpression oldExpressionElement = expressionElement;
+    expressionElement = newExpressionElement;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__EXPRESSION_ELEMENT, oldExpressionElement, newExpressionElement);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExpressionElement(EffectFullExpression newExpressionElement)
+  {
+    if (newExpressionElement != expressionElement)
+    {
+      NotificationChain msgs = null;
+      if (expressionElement != null)
+        msgs = ((InternalEObject)expressionElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__EXPRESSION_ELEMENT, null, msgs);
+      if (newExpressionElement != null)
+        msgs = ((InternalEObject)newExpressionElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__EXPRESSION_ELEMENT, null, msgs);
+      msgs = basicSetExpressionElement(newExpressionElement, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__EXPRESSION_ELEMENT, newExpressionElement, newExpressionElement));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -211,6 +271,8 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
         return ((InternalEList<?>)getFunctionChain()).basicRemove(otherEnd, msgs);
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
         return basicSetPrimitiveElement(null, msgs);
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__EXPRESSION_ELEMENT:
+        return basicSetExpressionElement(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -232,6 +294,8 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
         return getFunctionChain();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
         return getPrimitiveElement();
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__EXPRESSION_ELEMENT:
+        return getExpressionElement();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -248,14 +312,17 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
     switch (featureID)
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__REFERENCE_ELEMENT:
-        setReferenceElement((EffectFullReference)newValue);
+        setReferenceElement((EffectFullFunction)newValue);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN:
         getFunctionChain().clear();
         getFunctionChain().addAll((Collection<? extends CompositionFunctionBodyEffectFullFactor>)newValue);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((PrimitiveFunction)newValue);
+        setPrimitiveElement((EffectFullPrimitive)newValue);
+        return;
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__EXPRESSION_ELEMENT:
+        setExpressionElement((EffectFullExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -272,13 +339,16 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
     switch (featureID)
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__REFERENCE_ELEMENT:
-        setReferenceElement((EffectFullReference)null);
+        setReferenceElement((EffectFullFunction)null);
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__FUNCTION_CHAIN:
         getFunctionChain().clear();
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
-        setPrimitiveElement((PrimitiveFunction)null);
+        setPrimitiveElement((EffectFullPrimitive)null);
+        return;
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__EXPRESSION_ELEMENT:
+        setExpressionElement((EffectFullExpression)null);
         return;
     }
     super.eUnset(featureID);
@@ -300,6 +370,8 @@ public class CompositionFunctionBodyEffectImpl extends FunctionBodyEffectFullImp
         return functionChain != null && !functionChain.isEmpty();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__PRIMITIVE_ELEMENT:
         return primitiveElement != null;
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_EFFECT__EXPRESSION_ELEMENT:
+        return expressionElement != null;
     }
     return super.eIsSet(featureID);
   }

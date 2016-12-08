@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PureSumValueImpl extends ExpressionImpl implements PureSumValue
+public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumValue
 {
   /**
    * The cached value of the '{@link #getSumAdtElement1() <em>Sum Adt Element1</em>}' containment reference.

@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PureSumValue extends Expression
+public interface PureSumValue extends PureAlgebraicType
 {
   /**
    * Returns the value of the '<em><b>Sum Adt Element1</b></em>' containment reference.

@@ -24,7 +24,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullFunctionDefinition extends EffectFullFunction, EffectFullReference
+public interface EffectFullFunctionDefinition extends EffectFullFunction
 {
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
@@ -87,12 +87,12 @@ public interface EffectFullFunctionDefinition extends EffectFullFunction, Effect
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arg</em>' containment reference.
-   * @see #setArg(EffectFullArgument)
+   * @see #setArg(Argument)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullFunctionDefinition_Arg()
    * @model containment="true"
    * @generated
    */
-  EffectFullArgument getArg();
+  Argument getArg();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullFunctionDefinition#getArg <em>Arg</em>}' containment reference.
@@ -102,7 +102,7 @@ public interface EffectFullFunctionDefinition extends EffectFullFunction, Effect
    * @see #getArg()
    * @generated
    */
-  void setArg(EffectFullArgument value);
+  void setArg(Argument value);
 
   /**
    * Returns the value of the '<em><b>Higher Order Arg</b></em>' containment reference.

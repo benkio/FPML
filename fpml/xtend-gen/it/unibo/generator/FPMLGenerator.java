@@ -13,6 +13,7 @@ import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureValue;
 import it.unibo.generator.DataGenerator;
+import it.unibo.generator.DataInterfaceGenerator;
 import it.unibo.generator.EffectFullDataGenerator;
 import it.unibo.generator.EffectFullFunctionGenerator;
 import it.unibo.generator.EffectFullValueGenerator;
@@ -56,6 +57,8 @@ public class FPMLGenerator extends AbstractGenerator {
   
   private final EffectFullValueGenerator effectFullValueGenerator = new EffectFullValueGenerator();
   
+  private final DataInterfaceGenerator dataInterfaceGenerator = new DataInterfaceGenerator();
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
@@ -84,6 +87,9 @@ public class FPMLGenerator extends AbstractGenerator {
     CharSequence _compile_3 = this.valueGenerator.compile(_filter_3);
     fsa.generateFile(
       (this.basePackage + "Pure/Data/PureValue.java"), _compile_3);
+    String _compilePureInterface = this.dataInterfaceGenerator.compilePureInterface();
+    fsa.generateFile(
+      (this.basePackage + "Pure/Data/IPureData.java"), _compilePureInterface);
     TreeIterator<EObject> _allContents_4 = resource.getAllContents();
     Iterable<EObject> _iterable_2 = IteratorExtensions.<EObject>toIterable(_allContents_4);
     Iterable<EffectFullData> _filter_4 = Iterables.<EffectFullData>filter(_iterable_2, EffectFullData.class);
@@ -100,6 +106,9 @@ public class FPMLGenerator extends AbstractGenerator {
     CharSequence _compile_5 = this.effectFullValueGenerator.compile(_filter_5);
     fsa.generateFile(
       (this.basePackage + "Effectfull/Data/EffectFullValue.java"), _compile_5);
+    String _compileEffectFullInterface = this.dataInterfaceGenerator.compileEffectFullInterface();
+    fsa.generateFile(
+      (this.basePackage + "Effectfull/Data/IEffectFullData.java"), _compileEffectFullInterface);
     CharSequence _compilePure = this.primitiveGenerator.compilePure();
     fsa.generateFile(
       (this.basePackage + "Pure/Primitives.java"), _compilePure);

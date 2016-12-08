@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link it.unibo.fPML.ApplyFIOFactor#getValueReference <em>Value Reference</em>}</li>
  *   <li>{@link it.unibo.fPML.ApplyFIOFactor#getValuePrimitive <em>Value Primitive</em>}</li>
- *   <li>{@link it.unibo.fPML.ApplyFIOFactor#getValueLambda <em>Value Lambda</em>}</li>
+ *   <li>{@link it.unibo.fPML.ApplyFIOFactor#getValueExpression <em>Value Expression</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getApplyFIOFactor()
@@ -34,12 +34,12 @@ public interface ApplyFIOFactor extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value Reference</em>' reference.
-   * @see #setValueReference(EffectFullReference)
+   * @see #setValueReference(EffectFullFunction)
    * @see it.unibo.fPML.FPMLPackage#getApplyFIOFactor_ValueReference()
    * @model
    * @generated
    */
-  EffectFullReference getValueReference();
+  EffectFullFunction getValueReference();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.ApplyFIOFactor#getValueReference <em>Value Reference</em>}' reference.
@@ -49,7 +49,7 @@ public interface ApplyFIOFactor extends EObject
    * @see #getValueReference()
    * @generated
    */
-  void setValueReference(EffectFullReference value);
+  void setValueReference(EffectFullFunction value);
 
   /**
    * Returns the value of the '<em><b>Value Primitive</b></em>' containment reference.
@@ -60,12 +60,12 @@ public interface ApplyFIOFactor extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value Primitive</em>' containment reference.
-   * @see #setValuePrimitive(PrimitiveEffectFullValue)
+   * @see #setValuePrimitive(EffectFullPrimitive)
    * @see it.unibo.fPML.FPMLPackage#getApplyFIOFactor_ValuePrimitive()
    * @model containment="true"
    * @generated
    */
-  PrimitiveEffectFullValue getValuePrimitive();
+  EffectFullPrimitive getValuePrimitive();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.ApplyFIOFactor#getValuePrimitive <em>Value Primitive</em>}' containment reference.
@@ -75,32 +75,32 @@ public interface ApplyFIOFactor extends EObject
    * @see #getValuePrimitive()
    * @generated
    */
-  void setValuePrimitive(PrimitiveEffectFullValue value);
+  void setValuePrimitive(EffectFullPrimitive value);
 
   /**
-   * Returns the value of the '<em><b>Value Lambda</b></em>' containment reference.
+   * Returns the value of the '<em><b>Value Expression</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value Lambda</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Value Expression</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value Lambda</em>' containment reference.
-   * @see #setValueLambda(EffectFullFunctionDefinition)
-   * @see it.unibo.fPML.FPMLPackage#getApplyFIOFactor_ValueLambda()
+   * @return the value of the '<em>Value Expression</em>' containment reference.
+   * @see #setValueExpression(EffectFullExpression)
+   * @see it.unibo.fPML.FPMLPackage#getApplyFIOFactor_ValueExpression()
    * @model containment="true"
    * @generated
    */
-  EffectFullFunctionDefinition getValueLambda();
+  EffectFullExpression getValueExpression();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.ApplyFIOFactor#getValueLambda <em>Value Lambda</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.ApplyFIOFactor#getValueExpression <em>Value Expression</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value Lambda</em>' containment reference.
-   * @see #getValueLambda()
+   * @param value the new value of the '<em>Value Expression</em>' containment reference.
+   * @see #getValueExpression()
    * @generated
    */
-  void setValueLambda(EffectFullFunctionDefinition value);
+  void setValueExpression(EffectFullExpression value);
 
 } // ApplyFIOFactor

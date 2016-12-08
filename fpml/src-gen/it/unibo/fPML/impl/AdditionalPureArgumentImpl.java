@@ -4,8 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.AdditionalPureArgument;
-import it.unibo.fPML.Argument;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.PureArgument;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -39,7 +39,7 @@ public class AdditionalPureArgumentImpl extends MinimalEObjectImpl.Container imp
    * @generated
    * @ordered
    */
-  protected Argument arg2;
+  protected PureArgument arg2;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class AdditionalPureArgumentImpl extends MinimalEObjectImpl.Container imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public Argument getArg2()
+  public PureArgument getArg2()
   {
     return arg2;
   }
@@ -77,9 +77,9 @@ public class AdditionalPureArgumentImpl extends MinimalEObjectImpl.Container imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArg2(Argument newArg2, NotificationChain msgs)
+  public NotificationChain basicSetArg2(PureArgument newArg2, NotificationChain msgs)
   {
-    Argument oldArg2 = arg2;
+    PureArgument oldArg2 = arg2;
     arg2 = newArg2;
     if (eNotificationRequired())
     {
@@ -94,7 +94,7 @@ public class AdditionalPureArgumentImpl extends MinimalEObjectImpl.Container imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArg2(Argument newArg2)
+  public void setArg2(PureArgument newArg2)
   {
     if (newArg2 != arg2)
     {
@@ -153,7 +153,7 @@ public class AdditionalPureArgumentImpl extends MinimalEObjectImpl.Container imp
     switch (featureID)
     {
       case FPMLPackage.ADDITIONAL_PURE_ARGUMENT__ARG2:
-        setArg2((Argument)newValue);
+        setArg2((PureArgument)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,7 +170,7 @@ public class AdditionalPureArgumentImpl extends MinimalEObjectImpl.Container imp
     switch (featureID)
     {
       case FPMLPackage.ADDITIONAL_PURE_ARGUMENT__ARG2:
-        setArg2((Argument)null);
+        setArg2((PureArgument)null);
         return;
     }
     super.eUnset(featureID);

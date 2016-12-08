@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EffectFullSumValueImpl extends EffectFullExpressionImpl implements EffectFullSumValue
+public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implements EffectFullSumValue
 {
   /**
    * The cached value of the '{@link #getSumAdtElement1() <em>Sum Adt Element1</em>}' containment reference.

@@ -3,7 +3,6 @@
  */
 package it.unibo.fPML;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface EffectFullExpression extends EObject
+public interface EffectFullExpression extends EffectFullFunction
 {
 } // EffectFullExpression

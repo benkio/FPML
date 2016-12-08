@@ -3,33 +3,38 @@ package it.unibo.validation.utilitiesFunctions
 import it.unibo.fPML.*
 import it.unibo.fPML.EffectFullAlgebraicType
 import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class Others {
 	def static PureFunction getFunctionDefinitionFromPureFactor(CompositionFunctionBodyPureFactor cfbpf) {
-		if (cfbpf.primitiveElement == null) return cfbpf.referenceElement
-		else return cfbpf.primitiveElement
+		if (cfbpf.primitiveElement == null && cfbpf.referenceElement == null) return cfbpf.expressionElement
+		else if (cfbpf.referenceElement == null) return cfbpf.primitiveElement
+		else return cfbpf.referenceElement
 	}
 	def static getFunctionDefinitionFromEffectFullFactor(CompositionFunctionBodyEffectFullFactor cfbef) {
-		if (cfbef.primitiveElement == null) return cfbef.referenceElement
-		else return cfbef.primitiveElement
+		if (cfbef.primitiveElement == null && cfbef.referenceElement == null) return cfbef.expressionElement
+		else if (cfbef.referenceElement == null) return cfbef.primitiveElement
+		else cfbef.referenceElement
 	}
 	def static PureFunction getFirstFunctionDefinitionFromCompositionBodyPure(CompositionFunctionBodyPure cfbp) {
-		if (cfbp.primitiveElement == null) return cfbp.referenceElement
-		else return cfbp.primitiveElement
+		if (cfbp.primitiveElement == null && cfbp.referenceElement == null) return cfbp.expressionElement
+		else if (cfbp.referenceElement == null) return cfbp.primitiveElement 
+		else return cfbp.referenceElement
 	}
 	def static EffectFullReference getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect cfbe) {
-		if (cfbe.primitiveElement == null) return cfbe.referenceElement
-		else return cfbe.primitiveElement
+		if (cfbe.primitiveElement == null && cfbe.referenceElement == null) return cfbe.expressionElement
+		else if (cfbe.referenceElement == null) return cfbe.primitiveElement 
+		else return cfbe.referenceElement
 	}
 	
 	def static EffectFullReference getValueFromApplyFIOFactor(ApplyFIOFactor afiof) {
 		if (afiof.valuePrimitive != null) return afiof.valuePrimitive
 		else if (afiof.valueReference != null) return afiof.valueReference
-		else return afiof.valueLambda 
+		else return afiof.valueExpression 
 	}
 	
 	def static getValueFromApplyFFactor(ApplyFFactor afiof) {
-		if (afiof.valueLambda != null) return afiof.valueLambda
+		if (afiof.valueExpression != null) return afiof.valueExpression
 		else return afiof.valueReference
 
 	}
@@ -103,5 +108,17 @@ class Others {
 			efat.effectFullAdtElement1 = t1
 		}
 		 efat
+	}
+	
+	def static DataType createDataType(PureData pd) {
+		val dataType = FPMLFactory.eINSTANCE.createDataType
+		dataType.type = EcoreUtil.copy(pd)
+		return dataType
+	}
+	
+	def static EffectFullDataType createDataType(EffectFullData pd) {
+		val dataType = FPMLFactory.eINSTANCE.createEffectFullDataType
+		dataType.type = EcoreUtil.copy(pd)
+		return dataType
 	}
 }

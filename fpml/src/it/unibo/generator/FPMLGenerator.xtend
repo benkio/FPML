@@ -32,6 +32,7 @@ class FPMLGenerator extends AbstractGenerator {
 	val primitiveGenerator = new PrimitiveGenerator
 	val effectFullDataGenerator = new EffectFullDataGenerator
 	val effectFullValueGenerator = new EffectFullValueGenerator
+	val dataInterfaceGenerator = new DataInterfaceGenerator
 	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		fsa.generateFile(basePackage + "Pure/PureFunctionDefinitions.java", pureFunctionGenerator.compile(resource.getAllContents.filter(PureFunctionBlock).head));
@@ -46,6 +47,10 @@ class FPMLGenerator extends AbstractGenerator {
 			basePackage + "Pure/Data/PureValue.java",
 			valueGenerator.compile(resource.getAllContents.toIterable.filter(PureValue))
 		)
+		fsa.generateFile(
+			basePackage + "Pure/Data/IPureData.java",
+			dataInterfaceGenerator.compilePureInterface()
+		)
 		
 		for(e : resource.getAllContents.toIterable.filter(EffectFullData)){
 			fsa.generateFile(
@@ -56,6 +61,11 @@ class FPMLGenerator extends AbstractGenerator {
 		fsa.generateFile(
 			basePackage + "Effectfull/Data/EffectFullValue.java",
 			effectFullValueGenerator.compile(resource.getAllContents.toIterable.filter(EffectFullValue))
+		)
+		
+		fsa.generateFile(
+			basePackage + "Effectfull/Data/IEffectFullData.java",
+			dataInterfaceGenerator.compileEffectFullInterface()
 		)
 		
 		fsa.generateFile(

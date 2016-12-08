@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullProdValue extends EffectFullExpression
+public interface EffectFullProdValue extends EffectFullAlgebraicType
 {
   /**
    * Returns the value of the '<em><b>Prod Adt Element1</b></em>' containment reference.

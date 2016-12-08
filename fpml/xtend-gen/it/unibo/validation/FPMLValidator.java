@@ -5,7 +5,6 @@ package it.unibo.validation;
 
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
-import it.unibo.fPML.Argument;
 import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataValue;
@@ -22,6 +21,7 @@ import it.unibo.fPML.Function;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitivePureFunction;
+import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
@@ -194,7 +194,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
   }
   
   public void typeCheckPureFunction(final PureFunctionDefinition f) {
-    Argument _arg = f.getArg();
+    PureArgument _arg = f.getArg();
     ValueType _type = _arg.getType();
     if ((_type instanceof UnitType)) {
       this.error(FPMLValidator.FUNCTIONDEFINITIONWITHUNITARGUMENT, FPMLPackage.Literals.PURE_FUNCTION_DEFINITION__ARG);

@@ -7,8 +7,8 @@ import it.unibo.validation.utilitiesFunctions.Others
 class EffectFullValueGenerator {
 	
 	val typeGenerator = new TypeGenerator
-	val EffectFullFunctionGenerator = new EffectFullFunctionGenerator
-	val valueGenerator = new ValueGenerator
+	val commonEffectFullFunctions = new ValueEffectFullFunctionCommonGenerator
+	
 	
 	def compile(Iterable<EffectFullValue> values)	'''
 	    package «FPMLGenerator.basePackageJava»Effectfull.Data;
@@ -31,69 +31,9 @@ class EffectFullValueGenerator {
 	def compile(EffectFullValue v) '''
 	
 	public static «typeGenerator.compileType(v.value)» «v.name»() {
-		return «v.value.compile»;
+		return «commonEffectFullFunctions.compile(v.value)»;
 	}
 	'''
 	
-	def compile(EffectFullExpression e) {
-		switch e {
-			EffectFullFunctionType: return e.compile 
-			EffectFullDataValue: '''new «e.type.name»(«compileAdtValue(e.value,e.type.content)»)'''
-			EffectFullProdValue: '''P.p(«e.prodAdtElement1.compile», «e.prodAdtElement2.compile»)'''
-			EffectFullSumValue: {
-				if (e.sumAdtElement1 == null) return '''Either.right(«e.sumAdtElement2.compile»)'''
-				return '''Either.left(«e.sumAdtElement1.compile»)'''
-			}
-			EffectFullValueRef: ''''EffectFullValue.«e.value.name»()'''
-			Expression: valueGenerator.compile(e as Expression)
-			IOExpression: return "IOFunctions.unit(" + valueGenerator.compile(e.innerValue as Expression) + ")"
-			RecursiveEffectFullExpression: return "IOFunctions.unit(" + (e.innerValue as EffectFullExpression).compile + ")"
-		}	
-	}
 	
-	def compileAdtValue(EffectFullExpression v, Type d) {
-		switch v {
-			EffectFullSumValue: {
-				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d as EffectFullAlgebraicType))»)'''
-				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as EffectFullAlgebraicType).effectFullAdtElement1))»)'''
-			}
-			EffectFullProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,(d as EffectFullAlgebraicType).effectFullAdtElement1)»,«compileAdtValue(v.prodAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d as EffectFullAlgebraicType))»)'''
-			EffectFullValueRef: if ( v.value instanceof EffectFullValue ) return '''EffectFullValue.«(v.value as EffectFullValue).name»()''' else return '''EffectFullFunctionDefinitions::«(v.value as EffectFullFunctionDefinition).name»'''
-			EffectFullFunctionType: {
-				if (d instanceof EffectFullFunctionType)
-					return v.compile
-				else if (d instanceof IOType)
-					return '''IOFunctions.unit(«v.compile»)'''
-			}
-			EffectFullDataValue: return compile(v as EffectFullExpression)
-			Expression: valueGenerator.compileAdtValue(v as Expression, (d as IOType).type)
-			IOExpression: '''IOFunctions.unit(«valueGenerator.compileAdtValue(v.innerValue as Expression, (d as IOType).type)»)'''
-			RecursiveEffectFullExpression: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullExpression, (d as IOType).type as EffectFullType)»)'''
-		}
-	}
-	
-	def compile(EffectFullFunctionType pft) '''
-	«IF (pft.value.functionBody instanceof EmptyFunctionBody)»
-		new F<Object>() {
-						@Override
-						public Object f(Object «pft.value.arg.name») {
-							throw new UnsupportedOperationException("TODO");
-						}
-				}
-	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg != null)»
-	new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>() {
-				@Override
-				public «typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
-					return «EffectFullFunctionGenerator.compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), pft.value.arg)»;
-				}
-		}
-	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg == null)»
-		new F0<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>() {
-					@Override
-					public «typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))» f() {
-						return «EffectFullFunctionGenerator.compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), null)»;
-					}
-			}.f()
-	«ENDIF»
-	'''
 }

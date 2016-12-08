@@ -32,12 +32,12 @@ public interface AdditionalPureArgument extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arg2</em>' containment reference.
-   * @see #setArg2(Argument)
+   * @see #setArg2(PureArgument)
    * @see it.unibo.fPML.FPMLPackage#getAdditionalPureArgument_Arg2()
    * @model containment="true"
    * @generated
    */
-  Argument getArg2();
+  PureArgument getArg2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.AdditionalPureArgument#getArg2 <em>Arg2</em>}' containment reference.
@@ -47,6 +47,6 @@ public interface AdditionalPureArgument extends EObject
    * @see #getArg2()
    * @generated
    */
-  void setArg2(Argument value);
+  void setArg2(PureArgument value);
 
 } // AdditionalPureArgument

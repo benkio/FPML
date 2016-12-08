@@ -26,6 +26,7 @@ class GetArgType {
 			PureFunctionDefinition: pureFunctionDefinition(f) 
 			PrimitivePureFunction: primitivePureFunction(f)
 			Argument: FPMLFactory.eINSTANCE.createUnitType
+			Expression: return FPMLFactory.eINSTANCE.createUnitType
 		}
 	}
 	
@@ -47,6 +48,7 @@ class GetArgType {
       		Major: return FPMLFactory.eINSTANCE.createIntegerType
       		LogicAnd:return FPMLFactory.eINSTANCE.createBooleanType
       		LogicOr: return FPMLFactory.eINSTANCE.createBooleanType
+      		ExtractPure: return Others.createDataType(f.data)
 		}
 	}
 	
@@ -78,6 +80,7 @@ class GetArgType {
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(reference)
 			PrimitivePureFunction: primitivePureFunction(reference)
 			EffectFullArgument:	return FPMLFactory.eINSTANCE.createUnitType
+			EffectFullExpression: return FPMLFactory.eINSTANCE.createUnitType
 			Function: function(reference)
 		}
 	}
@@ -96,6 +99,7 @@ class GetArgType {
      		PrimitiveReturn: return function.type
       		LeftPairIO: function.type
       		RightPairIO: function.type
+      		ExtractEffectFull: return Others.createDataType(function.data)
 		}
 	}
 	

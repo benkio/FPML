@@ -138,7 +138,7 @@ class Checks {
 	
 		for (PureFunction f : functions) {
 			val argFunc = GetArgType.pureFunction(f)
-			if (startType != null && argFunc != null && !ValueTypeEquals(startType, argFunc)) return false
+			if (!ValueTypeEquals(startType, argFunc)) return false
 			startType = GetReturnType.pureFunction(f)
 		}
 		return true
@@ -171,7 +171,9 @@ class Checks {
 	
 		for (EffectFullReference r : references) {
 			val argFunc = GetArgType.effectFullReference(r)
-			if (startType != null && argFunc != null && startType instanceof IOType && !TypeEquals((startType as IOType).type, argFunc)) return false
+			val result	= !(startType instanceof IOType) 
+						|| !TypeEquals((startType as IOType).type, argFunc) 
+			if (result) return false
 			startType = GetReturnType.effectFullReference(r)
 		}
 		return true
@@ -238,15 +240,15 @@ class Checks {
 	}
 	
 	def static boolean applyF(ApplyF af){
-		if (af.value.valueLambda == null) {
+		if (af.value.valueExpression == null) {
 			return Checks.ValueTypeEquals(af.functionType.argType, GetReturnType.pureFunction(af.value.valueReference))
-		} else {
-			return 	(af.functionType.argType instanceof PureFunctionType 
-				&&	Checks.ValueTypeEquals((af.functionType.argType as PureFunctionType).returnType, GetReturnType.pureFunctionDefinition(af.value.valueLambda))
-				&&  Checks.ValueTypeEquals((af.functionType.argType as PureFunctionType).argType, GetArgType.pureFunctionDefinition(af.value.valueLambda))
-				)|| (af.value.valueLambda.arg == null
-				&&   Checks.ValueTypeEquals(af.functionType.argType, GetReturnType.pureFunctionDefinition(af.value.valueLambda))
-				)
+		} 
+		switch af.value.valueExpression {
+			PureFunctionType: if ((af.value.valueExpression as PureFunctionType).argType == null)
+								return ValueTypeEquals(GetReturnType.pureFunction((af.value.valueExpression as PureFunctionType).value), af.functionType.argType)
+							  else 
+								return DataAndValue(af.value.valueExpression, af.functionType.argType)
+			default: return DataAndValue(af.value.valueExpression, af.functionType.argType)
 		}
 	}
 	

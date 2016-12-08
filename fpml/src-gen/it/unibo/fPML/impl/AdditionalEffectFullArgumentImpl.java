@@ -4,7 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.AdditionalEffectFullArgument;
-import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.Argument;
 import it.unibo.fPML.FPMLPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -39,7 +39,7 @@ public class AdditionalEffectFullArgumentImpl extends MinimalEObjectImpl.Contain
    * @generated
    * @ordered
    */
-  protected EffectFullArgument arg2;
+  protected Argument arg2;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class AdditionalEffectFullArgumentImpl extends MinimalEObjectImpl.Contain
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullArgument getArg2()
+  public Argument getArg2()
   {
     return arg2;
   }
@@ -77,9 +77,9 @@ public class AdditionalEffectFullArgumentImpl extends MinimalEObjectImpl.Contain
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArg2(EffectFullArgument newArg2, NotificationChain msgs)
+  public NotificationChain basicSetArg2(Argument newArg2, NotificationChain msgs)
   {
-    EffectFullArgument oldArg2 = arg2;
+    Argument oldArg2 = arg2;
     arg2 = newArg2;
     if (eNotificationRequired())
     {
@@ -94,7 +94,7 @@ public class AdditionalEffectFullArgumentImpl extends MinimalEObjectImpl.Contain
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArg2(EffectFullArgument newArg2)
+  public void setArg2(Argument newArg2)
   {
     if (newArg2 != arg2)
     {
@@ -153,7 +153,7 @@ public class AdditionalEffectFullArgumentImpl extends MinimalEObjectImpl.Contain
     switch (featureID)
     {
       case FPMLPackage.ADDITIONAL_EFFECT_FULL_ARGUMENT__ARG2:
-        setArg2((EffectFullArgument)newValue);
+        setArg2((Argument)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,7 +170,7 @@ public class AdditionalEffectFullArgumentImpl extends MinimalEObjectImpl.Contain
     switch (featureID)
     {
       case FPMLPackage.ADDITIONAL_EFFECT_FULL_ARGUMENT__ARG2:
-        setArg2((EffectFullArgument)null);
+        setArg2((Argument)null);
         return;
     }
     super.eUnset(featureID);

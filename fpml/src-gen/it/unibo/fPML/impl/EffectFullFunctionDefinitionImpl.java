@@ -4,7 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.AdditionalEffectFullArgument;
-import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.Argument;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyEffectFull;
@@ -75,7 +75,7 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
    * @generated
    * @ordered
    */
-  protected EffectFullArgument arg;
+  protected Argument arg;
 
   /**
    * The cached value of the '{@link #getHigherOrderArg() <em>Higher Order Arg</em>}' containment reference.
@@ -194,7 +194,7 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullArgument getArg()
+  public Argument getArg()
   {
     return arg;
   }
@@ -204,9 +204,9 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArg(EffectFullArgument newArg, NotificationChain msgs)
+  public NotificationChain basicSetArg(Argument newArg, NotificationChain msgs)
   {
-    EffectFullArgument oldArg = arg;
+    Argument oldArg = arg;
     arg = newArg;
     if (eNotificationRequired())
     {
@@ -221,7 +221,7 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArg(EffectFullArgument newArg)
+  public void setArg(Argument newArg)
   {
     if (newArg != arg)
     {
@@ -396,7 +396,7 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
         setName((String)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
-        setArg((EffectFullArgument)newValue);
+        setArg((Argument)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
         setHigherOrderArg((AdditionalEffectFullArgument)newValue);
@@ -425,7 +425,7 @@ public class EffectFullFunctionDefinitionImpl extends EffectFullFunctionImpl imp
         setName(NAME_EDEFAULT);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__ARG:
-        setArg((EffectFullArgument)null);
+        setArg((Argument)null);
         return;
       case FPMLPackage.EFFECT_FULL_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
         setHigherOrderArg((AdditionalEffectFullArgument)null);

@@ -4,9 +4,9 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.AdditionalPureArgument;
-import it.unibo.fPML.Argument;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.FunctionBodyPure;
+import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.ValueType;
 
@@ -75,7 +75,7 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
    * @generated
    * @ordered
    */
-  protected Argument arg;
+  protected PureArgument arg;
 
   /**
    * The cached value of the '{@link #getHigherOrderArg() <em>Higher Order Arg</em>}' containment reference.
@@ -194,7 +194,7 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
    * <!-- end-user-doc -->
    * @generated
    */
-  public Argument getArg()
+  public PureArgument getArg()
   {
     return arg;
   }
@@ -204,9 +204,9 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArg(Argument newArg, NotificationChain msgs)
+  public NotificationChain basicSetArg(PureArgument newArg, NotificationChain msgs)
   {
-    Argument oldArg = arg;
+    PureArgument oldArg = arg;
     arg = newArg;
     if (eNotificationRequired())
     {
@@ -221,7 +221,7 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArg(Argument newArg)
+  public void setArg(PureArgument newArg)
   {
     if (newArg != arg)
     {
@@ -396,7 +396,7 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
         setName((String)newValue);
         return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
-        setArg((Argument)newValue);
+        setArg((PureArgument)newValue);
         return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
         setHigherOrderArg((AdditionalPureArgument)newValue);
@@ -425,7 +425,7 @@ public class PureFunctionDefinitionImpl extends PureFunctionImpl implements Pure
         setName(NAME_EDEFAULT);
         return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__ARG:
-        setArg((Argument)null);
+        setArg((PureArgument)null);
         return;
       case FPMLPackage.PURE_FUNCTION_DEFINITION__HIGHER_ORDER_ARG:
         setHigherOrderArg((AdditionalPureArgument)null);

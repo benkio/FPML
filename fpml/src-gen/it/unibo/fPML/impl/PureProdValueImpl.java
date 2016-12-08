@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PureProdValueImpl extends ExpressionImpl implements PureProdValue
+public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProdValue
 {
   /**
    * The cached value of the '{@link #getProdAdtElement1() <em>Prod Adt Element1</em>}' containment reference.

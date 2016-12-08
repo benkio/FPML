@@ -195,15 +195,6 @@ public interface FPMLFactory extends EFactory
   EffectFullFunction createEffectFullFunction();
 
   /**
-   * Returns a new object of class '<em>Effect Full Reference</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect Full Reference</em>'.
-   * @generated
-   */
-  EffectFullReference createEffectFullReference();
-
-  /**
    * Returns a new object of class '<em>Primitive Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -211,6 +202,24 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   PrimitiveFunction createPrimitiveFunction();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Primitive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Primitive</em>'.
+   * @generated
+   */
+  EffectFullPrimitive createEffectFullPrimitive();
+
+  /**
+   * Returns a new object of class '<em>Argument</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Argument</em>'.
+   * @generated
+   */
+  Argument createArgument();
 
   /**
    * Returns a new object of class '<em>Effect Full Argument</em>'.
@@ -222,13 +231,13 @@ public interface FPMLFactory extends EFactory
   EffectFullArgument createEffectFullArgument();
 
   /**
-   * Returns a new object of class '<em>Argument</em>'.
+   * Returns a new object of class '<em>Pure Argument</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Argument</em>'.
+   * @return a new object of class '<em>Pure Argument</em>'.
    * @generated
    */
-  Argument createArgument();
+  PureArgument createPureArgument();
 
   /**
    * Returns a new object of class '<em>Function Body Pure</em>'.
@@ -501,42 +510,6 @@ public interface FPMLFactory extends EFactory
   PureValueRef createPureValueRef();
 
   /**
-   * Returns a new object of class '<em>Pure Prod Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Prod Value</em>'.
-   * @generated
-   */
-  PureProdValue createPureProdValue();
-
-  /**
-   * Returns a new object of class '<em>Pure Sum Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pure Sum Value</em>'.
-   * @generated
-   */
-  PureSumValue createPureSumValue();
-
-  /**
-   * Returns a new object of class '<em>Effect Full Prod Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect Full Prod Value</em>'.
-   * @generated
-   */
-  EffectFullProdValue createEffectFullProdValue();
-
-  /**
-   * Returns a new object of class '<em>Effect Full Sum Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect Full Sum Value</em>'.
-   * @generated
-   */
-  EffectFullSumValue createEffectFullSumValue();
-
-  /**
    * Returns a new object of class '<em>Primitive Pure Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -699,6 +672,15 @@ public interface FPMLFactory extends EFactory
   LogicOr createLogicOr();
 
   /**
+   * Returns a new object of class '<em>Extract Pure</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extract Pure</em>'.
+   * @generated
+   */
+  ExtractPure createExtractPure();
+
+  /**
    * Returns a new object of class '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -789,6 +771,15 @@ public interface FPMLFactory extends EFactory
   ApplyFIOFactor createApplyFIOFactor();
 
   /**
+   * Returns a new object of class '<em>Extract Effect Full</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extract Effect Full</em>'.
+   * @generated
+   */
+  ExtractEffectFull createExtractEffectFull();
+
+  /**
    * Returns a new object of class '<em>Pure Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -825,6 +816,15 @@ public interface FPMLFactory extends EFactory
   IOExpression createIOExpression();
 
   /**
+   * Returns a new object of class '<em>IO Pure Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>IO Pure Function</em>'.
+   * @generated
+   */
+  IOPureFunction createIOPureFunction();
+
+  /**
    * Returns a new object of class '<em>Effect Full Lambda</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -859,6 +859,42 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   PureLambda createPureLambda();
+
+  /**
+   * Returns a new object of class '<em>Pure Prod Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Prod Value</em>'.
+   * @generated
+   */
+  PureProdValue createPureProdValue();
+
+  /**
+   * Returns a new object of class '<em>Pure Sum Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Sum Value</em>'.
+   * @generated
+   */
+  PureSumValue createPureSumValue();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Prod Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Prod Value</em>'.
+   * @generated
+   */
+  EffectFullProdValue createEffectFullProdValue();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Sum Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Sum Value</em>'.
+   * @generated
+   */
+  EffectFullSumValue createEffectFullSumValue();
 
   /**
    * Returns the package supported by this factory.

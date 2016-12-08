@@ -76,16 +76,16 @@ EffectFullData: name=ID ':' content=EffectFullType;
 EffectFullValue returns EffectFullFunctionDefinition: {EffectFullValue} name=ID ':' value=EffectFullExpression; 
    
 PureFunctionDefinition:
-	'def' returnType=ValueType name=ID '(' arg=Argument (',' higherOrderArg=AdditionalPureArgument)? ')' ':' '{' functionBody=FunctionBodyPure '}';
+	'def' returnType=ValueType name=ID '(' arg=PureArgument (',' higherOrderArg=AdditionalPureArgument)? ')' ':' '{' functionBody=FunctionBodyPure '}';
 
 EffectFullFunctionDefinition:
-	'def' returnType=IOType name=ID '(' arg=EffectFullArgument (',' higherOrderArg=AdditionalEffectFullArgument)? ')' ':' '{'  functionBody=FunctionBodyEffectFull '}';
+	'def' returnType=IOType name=ID '(' arg=Argument (',' higherOrderArg=AdditionalEffectFullArgument)? ')' ':' '{'  functionBody=FunctionBodyEffectFull '}';
 
 MainFunc:
 	'IO' returnType=UnitType 'main' ':' '{' functionBody=FunctionBodyEffectFull '}';
 
-AdditionalPureArgument: arg2=Argument;
-AdditionalEffectFullArgument: arg2=EffectFullArgument;
+AdditionalPureArgument: arg2=PureArgument;
+AdditionalEffectFullArgument: arg2=Argument;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Aggregate Types
@@ -93,28 +93,25 @@ AdditionalEffectFullArgument: arg2=EffectFullArgument;
 
 Function: EffectFullFunction | PureFunction;
 
-PureFunction: PureFunctionDefinition | PrimitivePureFunction | Argument;
+PureFunction: PureFunctionDefinition | PrimitivePureFunction | PureArgument | Expression | PureValue;
 
-EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction;
+EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction | EffectFullExpression | EffectFullValue;
 
-/*
- *  Tricky aggregate: is used in reference [] but has addictional components in order to 
- * 	facilitate the validation, those components suck as PrimitiveEffectFullValue or PrimitiveFunction
- * 	cannot be referenced because of no ids, but where the effectfullReference is used them are also allowed(not as reference).
- */
-EffectFullReference: EffectFullValue | EffectFullArgument | PureValue | PrimitiveEffectFullValue | PrimitiveFunction | Function;
+PrimitiveFunction: PrimitivePureFunction | EffectFullPrimitive;
 
-PrimitiveFunction: PrimitiveEffectFullFunction | PrimitivePureFunction | PrimitiveEffectFullValue;
+EffectFullPrimitive: PrimitiveEffectFullFunction | PrimitiveEffectFullValue;
 
 ///////////////////////////////////////////////////////////////////
 // Function Body Elements
 ///////////////////////////////////////////////////////////////////
 
 
-EffectFullArgument:
-	type=Type name=ID;
+Argument: EffectFullArgument | PureArgument;
 
-Argument:
+EffectFullArgument:
+	type=EffectFullType name=ID;
+
+PureArgument:
 	type=ValueType name=ID;
 
 FunctionBodyPure:
@@ -128,19 +125,23 @@ EmptyFunctionBody:
 
 CompositionFunctionBodyPure:
       referenceElement=[PureFunction] (functionChain+=CompositionFunctionBodyPureFactor)+ 
-    | primitiveElement=PrimitivePureFunction (functionChain+=CompositionFunctionBodyPureFactor)+;
+    | primitiveElement=PrimitivePureFunction (functionChain+=CompositionFunctionBodyPureFactor)+
+    | expressionElement=Expression (functionChain+=CompositionFunctionBodyPureFactor)+;
     
 CompositionFunctionBodyPureFactor:
 	  ( '|>' (referenceElement=[PureFunction]))
-	| ( '|>' (PrimitiveElement=PrimitivePureFunction));
+	| ( '|>' (primitiveElement=PrimitivePureFunction))
+	| ( '|>' (expressionElement=Expression));
 
 CompositionFunctionBodyEffect:
-      referenceElement=[EffectFullReference] (functionChain+=CompositionFunctionBodyEffectFullFactor)+
-    | primitiveElement=PrimitiveFunction (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
+      referenceElement=[EffectFullFunction] (functionChain+=CompositionFunctionBodyEffectFullFactor)+
+    | primitiveElement=EffectFullPrimitive (functionChain+=CompositionFunctionBodyEffectFullFactor)+
+    | expressionElement=EffectFullExpression (functionChain+=CompositionFunctionBodyEffectFullFactor)+;
     
 CompositionFunctionBodyEffectFullFactor:
-	  ( '>>=' (referenceElement=[EffectFullReference]))
-	| ( '>>=' (PrimitiveElement=PrimitiveFunction));
+	  ( '>>=' (referenceElement=[EffectFullFunction]))
+	| ( '>>=' (primitiveElement=EffectFullPrimitive))
+	| ( '>>=' (expressionElement=EffectFullExpression));
 
 //////////////////////////////////////////////////////////////////////
 // Types
@@ -206,7 +207,7 @@ EffectFullProdTypeFactor:
 EffectFullExpression:
 	{RecursiveEffectFullExpression} 'IO' '[' innerValue=EffectFullExpression ']' 
 	| {IOExpression} 'IO' '(' innerValue=Expression ')'
-	| Expression
+	| {IOPureFunction} 'Lift' '(' pureFunction=[PureFunction] ')'
 	| EffectFullFunctionValue 
 	| EffectFullDataValue
 	| EffectFullProdValue
@@ -221,7 +222,7 @@ EffectFullFunctionValue returns EffectFullFunctionType: value=EffectFullLambda;
 EffectFullValueRef: {EffectFullValueRef} 'EffectFullRef' '[' value=[EffectFullValue] ']' ;
 
 EffectFullLambda returns EffectFullFunctionDefinition: 
-	{EffectFullLambda} '\\' '[' arg=EffectFullArgument ']' '->' '{' functionBody=CompositionFunctionBodyEffect '}'
+	{EffectFullLambda} '\\' '[' arg=Argument ']' '->' '{' functionBody=CompositionFunctionBodyEffect '}'
 	| {EffectFullLambda} '\\' '['']' '->'  '{' functionBody=CompositionFunctionBodyEffect '}' ;
 
 Expression:
@@ -250,25 +251,25 @@ EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[Effe
 PureValueRef: {PureValueRef} 'PureRef' '(' value=[PureValue] ')';
 
 PureLambda returns PureFunctionDefinition: 
-	{PureLambda} '\\' '(' arg=Argument ')' '->' '{' functionBody=CompositionFunctionBodyPure '}'
+	{PureLambda} '\\' '(' arg=PureArgument ')' '->' '{' functionBody=CompositionFunctionBodyPure '}'
 	| {PureLambda} '\\' '('')' '->' '{' functionBody=CompositionFunctionBodyPure '}'
 ;
 
 
-PureProdValue: 
-	'(' prodAdtElement1=Expression ',' prodAdtElement2=Expression ')';
+PureProdValue returns PureAlgebraicType: 
+	{PureProdValue} '(' prodAdtElement1=Expression ',' prodAdtElement2=Expression ')';
 
-PureSumValue:
-	'Left' '(' sumAdtElement1=Expression ')'
-	| 'Right' '(' sumAdtElement2=Expression ')';
+PureSumValue returns PureAlgebraicType:
+	{PureSumValue} 'Left' '(' sumAdtElement1=Expression ')'
+	| {PureSumValue} 'Right' '(' sumAdtElement2=Expression ')';
 
 
-EffectFullProdValue: 
-	'[' prodAdtElement1=EffectFullExpression ',' prodAdtElement2=EffectFullExpression ']';
+EffectFullProdValue returns EffectFullAlgebraicType: 
+	{EffectFullProdValue} '[' prodAdtElement1=EffectFullExpression ',' prodAdtElement2=EffectFullExpression ']';
 
-EffectFullSumValue:
-	'Left' '[' sumAdtElement1=EffectFullExpression ']'
-	| 'Right' '[' sumAdtElement2=EffectFullExpression ']';
+EffectFullSumValue returns EffectFullAlgebraicType:
+	{EffectFullSumValue} 'Left' '[' sumAdtElement1=EffectFullExpression ']'
+	| {EffectFullSumValue} 'Right' '[' sumAdtElement2=EffectFullExpression ']';
     
     
 /////////////////////////////////////////////////////////////////////
@@ -277,7 +278,8 @@ EffectFullSumValue:
 
 PrimitivePureFunction: 
 	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair
-	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr;
+	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr
+	| ExtractPure;
 
 IntToString: {IntToString} 'intToString';
 IntPow:	{IntPow} 'intPow';
@@ -290,7 +292,7 @@ RightPair: {RightPair} 'rightPair' type=PureAlgebraicType;
 ApplyF: {ApplyF} 'applyF' functionType=PureFunctionType value=ApplyFFactor;
 ApplyFFactor:
 	valueReference=[PureFunction]
-	| '(' valueLambda=PureLambda ')'
+	| '(' valueExpression=Expression ')'
 ;
 Equals: {Equals} '==' type=(IntegerType | StringType | BooleanType);
 MinorEquals: {MinorEquals} '<='; 
@@ -299,9 +301,10 @@ Minor: {Minor} '<';
 Major: {Major} '>';
 LogicAnd: {LogicAnd} '&&';
 LogicOr: {LogicOr} '||';
+ExtractPure: {ExtractPure} 'extract' data=[PureData];
 
 PrimitiveEffectFullFunction:
-	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO;
+	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO | ExtractEffectFull;
 
 PrimitivePrint:
     {PrimitivePrint} "print";
@@ -322,9 +325,11 @@ PrimitiveTime: {PrimitiveTime} "currentTime";
 
 ApplyFIO: {ApplyFIO} 'applyFIO' functionType=EffectFullFunctionType value=ApplyFIOFactor;
 ApplyFIOFactor: 
-	  valueReference=[EffectFullReference]
-	| valuePrimitive=PrimitiveEffectFullValue
-	| '(' valueLambda=EffectFullLambda ')';
+	  valueReference=[EffectFullFunction]
+	| valuePrimitive=EffectFullPrimitive
+	| '(' valueExpression=EffectFullExpression ')';
+	
+ExtractEffectFull: {ExtractEffectFull} 'extractEffectFull' data=[EffectFullData];
 	
 ////////////////////////////////////////////////////////////////////////////////////////////
 // TERMINALS

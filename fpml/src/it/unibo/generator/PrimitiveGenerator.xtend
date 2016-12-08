@@ -13,7 +13,7 @@ class PrimitiveGenerator {
 				return (Integer y) -> x + y;
 			}
 
-      public static F<String, String> plus(String x) {
+			public static F<String, String> plus(String x) {
 				return (String y) -> x + y;
 			}
 
@@ -43,6 +43,38 @@ class PrimitiveGenerator {
 		
 			public static <A,B> B rightPair(P2<A,B> pair){
 				return pair._2();
+			}
+			
+			public static <A> F<A, Boolean> equalsCurrying(A x){
+				return (A y) -> x == y;
+			}
+			
+			public static F<String, Boolean> equalsCurrying(String x){
+				return (String y) -> x.equals(y);
+			}
+			
+			public static F<Integer, Boolean> minorEquals(Integer x) {
+				return (Integer y) -> x <= y;
+			}
+			
+			public static F<Integer, Boolean> majorEquals(Integer x) {
+				return (Integer y) -> x >= y;
+			}
+			
+			public static F<Integer, Boolean> minor(Integer x) {
+				return (Integer y) -> x < y;
+			}
+			
+			public static F<Integer, Boolean> major(Integer x) {
+				return (Integer y) -> x > y;
+			}
+			
+			public static F<Boolean, Boolean> logicAnd(Boolean b) {
+				return (Boolean c) -> b && c;
+			}
+			
+			public static F<Boolean, Boolean> logicOr(Boolean b) {
+				return (Boolean c) -> b || c;
 			}
 		}
 	'''

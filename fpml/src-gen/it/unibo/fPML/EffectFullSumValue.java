@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface EffectFullSumValue extends EffectFullExpression
+public interface EffectFullSumValue extends EffectFullAlgebraicType
 {
   /**
    * Returns the value of the '<em><b>Sum Adt Element1</b></em>' containment reference.

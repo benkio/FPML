@@ -24,7 +24,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PureFunctionDefinition extends PureFunction, EffectFullReference
+public interface PureFunctionDefinition extends PureFunction
 {
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
@@ -87,12 +87,12 @@ public interface PureFunctionDefinition extends PureFunction, EffectFullReferenc
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arg</em>' containment reference.
-   * @see #setArg(Argument)
+   * @see #setArg(PureArgument)
    * @see it.unibo.fPML.FPMLPackage#getPureFunctionDefinition_Arg()
    * @model containment="true"
    * @generated
    */
-  Argument getArg();
+  PureArgument getArg();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureFunctionDefinition#getArg <em>Arg</em>}' containment reference.
@@ -102,7 +102,7 @@ public interface PureFunctionDefinition extends PureFunction, EffectFullReferenc
    * @see #getArg()
    * @generated
    */
-  void setArg(Argument value);
+  void setArg(PureArgument value);
 
   /**
    * Returns the value of the '<em><b>Higher Order Arg</b></em>' containment reference.

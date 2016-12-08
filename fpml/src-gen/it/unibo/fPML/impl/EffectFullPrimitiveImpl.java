@@ -3,28 +3,26 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullReference;
+import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.FPMLPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Effect Full Reference</b></em>'.
+ * An implementation of the model object '<em><b>Effect Full Primitive</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class EffectFullReferenceImpl extends MinimalEObjectImpl.Container implements EffectFullReference
+public class EffectFullPrimitiveImpl extends PrimitiveFunctionImpl implements EffectFullPrimitive
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EffectFullReferenceImpl()
+  protected EffectFullPrimitiveImpl()
   {
     super();
   }
@@ -37,7 +35,7 @@ public class EffectFullReferenceImpl extends MinimalEObjectImpl.Container implem
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.EFFECT_FULL_REFERENCE;
+    return FPMLPackage.Literals.EFFECT_FULL_PRIMITIVE;
   }
 
-} //EffectFullReferenceImpl
+} //EffectFullPrimitiveImpl

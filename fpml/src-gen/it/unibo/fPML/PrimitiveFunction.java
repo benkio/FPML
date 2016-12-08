@@ -3,6 +3,7 @@
  */
 package it.unibo.fPML;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +15,6 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PrimitiveFunction extends EffectFullReference
+public interface PrimitiveFunction extends EObject
 {
 } // PrimitiveFunction

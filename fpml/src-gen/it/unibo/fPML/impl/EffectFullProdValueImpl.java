@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EffectFullProdValueImpl extends EffectFullExpressionImpl implements EffectFullProdValue
+public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl implements EffectFullProdValue
 {
   /**
    * The cached value of the '{@link #getProdAdtElement1() <em>Prod Adt Element1</em>}' containment reference.

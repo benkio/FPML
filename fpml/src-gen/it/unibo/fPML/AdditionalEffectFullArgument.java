@@ -32,12 +32,12 @@ public interface AdditionalEffectFullArgument extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arg2</em>' containment reference.
-   * @see #setArg2(EffectFullArgument)
+   * @see #setArg2(Argument)
    * @see it.unibo.fPML.FPMLPackage#getAdditionalEffectFullArgument_Arg2()
    * @model containment="true"
    * @generated
    */
-  EffectFullArgument getArg2();
+  Argument getArg2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.AdditionalEffectFullArgument#getArg2 <em>Arg2</em>}' containment reference.
@@ -47,6 +47,6 @@ public interface AdditionalEffectFullArgument extends EObject
    * @see #getArg2()
    * @generated
    */
-  void setArg2(EffectFullArgument value);
+  void setArg2(Argument value);
 
 } // AdditionalEffectFullArgument

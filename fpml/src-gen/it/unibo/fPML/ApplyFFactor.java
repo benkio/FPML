@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.ApplyFFactor#getValueReference <em>Value Reference</em>}</li>
- *   <li>{@link it.unibo.fPML.ApplyFFactor#getValueLambda <em>Value Lambda</em>}</li>
+ *   <li>{@link it.unibo.fPML.ApplyFFactor#getValueExpression <em>Value Expression</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getApplyFFactor()
@@ -51,29 +51,29 @@ public interface ApplyFFactor extends EObject
   void setValueReference(PureFunction value);
 
   /**
-   * Returns the value of the '<em><b>Value Lambda</b></em>' containment reference.
+   * Returns the value of the '<em><b>Value Expression</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value Lambda</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Value Expression</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value Lambda</em>' containment reference.
-   * @see #setValueLambda(PureFunctionDefinition)
-   * @see it.unibo.fPML.FPMLPackage#getApplyFFactor_ValueLambda()
+   * @return the value of the '<em>Value Expression</em>' containment reference.
+   * @see #setValueExpression(Expression)
+   * @see it.unibo.fPML.FPMLPackage#getApplyFFactor_ValueExpression()
    * @model containment="true"
    * @generated
    */
-  PureFunctionDefinition getValueLambda();
+  Expression getValueExpression();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.ApplyFFactor#getValueLambda <em>Value Lambda</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.ApplyFFactor#getValueExpression <em>Value Expression</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value Lambda</em>' containment reference.
-   * @see #getValueLambda()
+   * @param value the new value of the '<em>Value Expression</em>' containment reference.
+   * @see #getValueExpression()
    * @generated
    */
-  void setValueLambda(PureFunctionDefinition value);
+  void setValueExpression(Expression value);
 
 } // ApplyFFactor

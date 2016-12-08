@@ -24,10 +24,12 @@ import it.unibo.fPML.ApplyFFactor
 import it.unibo.fPML.LeftPair
 import it.unibo.fPML.RightPair
 import it.unibo.fPML.CompositionFunctionBodyEffect
+import it.unibo.fPML.Expression
 
 class PureFunctionGenerator {
 	
 	val typeGenerator = new TypeGenerator
+	val commonFunctions = new ValuePureFunctionCommonGenerator
 	
 	def compile(PureFunctionBlock pfb) '''
 		package «FPMLGenerator.basePackageJava»Pure;
@@ -49,72 +51,10 @@ class PureFunctionGenerator {
 
 		public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)» ){
 			« if (pf.higherOrderArg != null) "return (" + typeGenerator.compile(pf.higherOrderArg.arg2) +") -> {" »
-			return « pf.functionBody.compile(pf.arg.name, false)»;
+			return « commonFunctions.compile(pf.functionBody, pf.arg.name, false)»;
 			«if (pf.higherOrderArg != null) "};"»
 		}'''
 	}
 	
-	def String compile(FunctionBodyPure pf, String argName, boolean outSideCall) {
-		switch pf { 
-			EmptyFunctionBody: '''null''' //cannot throw exception because the return is outside and cannot use throw with return. 
-			CompositionFunctionBodyPure: compileCompositionFunctionBodyPure(pf, argName, outSideCall)
-		}
-	}
 
-	def String compileCompositionFunctionBodyPure(CompositionFunctionBodyPure cfbp, String argName, boolean outsideCalls) {
-		var result = argName
-		val initialElement = Others.getFirstFunctionDefinitionFromCompositionBodyPure(cfbp)
-		switch initialElement {
-			PureValue: result = "PureValue." + (initialElement as PureValue).name + "()"
-			PureLambda: result = "(" + typeGenerator.compile(initialElement.arg) + ") -> return " + initialElement.functionBody.compile(argName,outsideCalls) + ";"
-			PrimitivePureFunction: result = compilePrimitiveCall(initialElement, argName, argName, outsideCalls)
-			PureFunctionDefinition: result = compileCall(initialElement, argName, argName, outsideCalls)
-		}
-		for (f : cfbp.functionChain){
-			result = compileCall( Others.getFunctionDefinitionFromPureFactor(f), result, argName , outsideCalls)
-		}
-		return result
-	} 
-	
-	def String compileCall(PureFunction pf, String acc, String argName, boolean outsideCalls) {
-		switch pf {
-			PureValue: return "PureValue." + (pf as PureValue).name + "()"
-			PureLambda: return "(" + typeGenerator.compile(pf.higherOrderArg.arg2) + ") -> return " + pf.functionBody.compile(argName,outsideCalls) + ";"
-			PrimitivePureFunction: return compilePrimitiveCall(pf, acc, argName, outsideCalls)
-			PureFunctionDefinition: {
-				if (!outsideCalls)
-					return pf.name + "(" + acc + ")"
-				else 
-					return "PureFunctionDefinitions." + pf.name + "(" + acc + ")"	
-			}
-		}
-	}
-	
-	def compilePrimitiveCall(PrimitivePureFunction purePrimitive, String acc, String argName , boolean outsideCalls){
-		switch purePrimitive {
-			IntToString: "Primitives.intToString(" + acc + ")"
-      		IntPow: "Primitives.intPow(" + acc + ")"
-			Plus: "Primitives.plus(" + acc + ")"
-			Minus: "Primitives.minus(" + acc + ")"
-			Times: "Primitives.times(" + acc + ")"
-			Mod: "Primitives.mod(" + acc + ")"
-      		LeftPair: "Primitives.leftPair(" + acc + ")"
-      		RightPair: "Primitives.rightPair(" + acc + ")"
-			ApplyF: acc + ".f(" + compileApplyFFactor(purePrimitive.value, argName, outsideCalls) + ")"		
-		}
-	}
-	
-	def String compileApplyFFactor(ApplyFFactor r,  String argName, boolean outsideCalls) {
-		switch r.valueReference {
-			PureValue: return compileCall(r.valueReference as PureValue, argName, argName, outsideCalls)
-			Argument: return (r.valueReference as Argument).name
-			default: {
-				if (r.valueLambda.arg != null) {
-					return '''( «typeGenerator.compile(r.valueLambda.arg.type)» «r.valueLambda.arg.name» ) -> return «r.valueLambda.functionBody.compile(argName, outsideCalls)»;'''
-				} else {
-					return (r.valueLambda.functionBody as CompositionFunctionBodyPure).compileCompositionFunctionBodyPure(argName, outsideCalls)
-				}
-			}
-		}
-	}
 }

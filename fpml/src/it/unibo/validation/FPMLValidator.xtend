@@ -129,6 +129,5 @@ class FPMLValidator extends AbstractFPMLValidator {
    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE)
    			}
    		}
-   	
    }
 }

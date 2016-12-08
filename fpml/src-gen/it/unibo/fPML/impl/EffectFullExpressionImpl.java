@@ -8,8 +8,6 @@ import it.unibo.fPML.FPMLPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Effect Full Expression</b></em>'.
@@ -17,7 +15,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class EffectFullExpressionImpl extends MinimalEObjectImpl.Container implements EffectFullExpression
+public class EffectFullExpressionImpl extends EffectFullFunctionImpl implements EffectFullExpression
 {
   /**
    * <!-- begin-user-doc -->

@@ -14,11 +14,15 @@ class DataGenerator {
 	    import fj.data.*;
 	    import fj.*;
 	    
-	    public class «d.name» {
-	    	public final «typeGenerator.compile(d.content)» value;
+	    public class «d.name» implements IPureData<«typeGenerator.compile(d.content)»> {
+	    	private final «typeGenerator.compile(d.content)» value;
 	    	
 	    	public «d.name»(«typeGenerator.compile(d.content)» value){
 	    		this.value = value;
+	    	}
+	    	
+	    	public «typeGenerator.compile(d.content)» getValue() {
+	    		return value;
 	    	}
 	    }'''
 	}

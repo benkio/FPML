@@ -13,11 +13,15 @@ class EffectFullDataGenerator {
 	    import fj.data.*;
 	    import fj.*;
 	    
-	    public class «d.name» {
-	    	public final «typeGenerator.compile(d.content as Type)» value;
+	    public class «d.name» implements IEffectFullData<«typeGenerator.compile(d.content as Type)»> {
+	    	private final «typeGenerator.compile(d.content as Type)» value;
 	    	
 	    	public «d.name»(«typeGenerator.compile(d.content as Type)» value){
 	    		this.value = value;
+	    	}
+	    	
+	    	public «typeGenerator.compile(d.content as Type)» getValue() {
+	    		return value;
 	    	}
 	    }'''
 	

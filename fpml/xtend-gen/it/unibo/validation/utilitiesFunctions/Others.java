@@ -7,92 +7,114 @@ import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
+import it.unibo.fPML.DataType;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullData;
+import it.unibo.fPML.EffectFullDataType;
+import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdTypeFactor;
-import it.unibo.fPML.EffectFullReference;
 import it.unibo.fPML.EffectFullSumTypeFactor;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.IOType;
-import it.unibo.fPML.PrimitiveEffectFullValue;
-import it.unibo.fPML.PrimitiveFunction;
-import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureAlgebraicType;
+import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunction;
-import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.Type;
-import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.fPML.VoidType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 
 @SuppressWarnings("all")
 public class Others {
   public static PureFunction getFunctionDefinitionFromPureFactor(final CompositionFunctionBodyPureFactor cfbpf) {
-    PrimitivePureFunction _primitiveElement = cfbpf.getPrimitiveElement();
-    boolean _equals = Objects.equal(_primitiveElement, null);
-    if (_equals) {
-      return cfbpf.getReferenceElement();
+    if ((Objects.equal(cfbpf.getPrimitiveElement(), null) && Objects.equal(cfbpf.getReferenceElement(), null))) {
+      return cfbpf.getExpressionElement();
     } else {
-      return cfbpf.getPrimitiveElement();
+      PureFunction _referenceElement = cfbpf.getReferenceElement();
+      boolean _equals = Objects.equal(_referenceElement, null);
+      if (_equals) {
+        return cfbpf.getPrimitiveElement();
+      } else {
+        return cfbpf.getReferenceElement();
+      }
     }
   }
   
-  public static EffectFullReference getFunctionDefinitionFromEffectFullFactor(final CompositionFunctionBodyEffectFullFactor cfbef) {
-    PrimitiveFunction _primitiveElement = cfbef.getPrimitiveElement();
-    boolean _equals = Objects.equal(_primitiveElement, null);
-    if (_equals) {
-      return cfbef.getReferenceElement();
+  public static EObject getFunctionDefinitionFromEffectFullFactor(final CompositionFunctionBodyEffectFullFactor cfbef) {
+    EffectFullFunction _xifexpression = null;
+    if ((Objects.equal(cfbef.getPrimitiveElement(), null) && Objects.equal(cfbef.getReferenceElement(), null))) {
+      return cfbef.getExpressionElement();
     } else {
-      return cfbef.getPrimitiveElement();
+      EffectFullFunction _xifexpression_1 = null;
+      EffectFullFunction _referenceElement = cfbef.getReferenceElement();
+      boolean _equals = Objects.equal(_referenceElement, null);
+      if (_equals) {
+        return cfbef.getPrimitiveElement();
+      } else {
+        _xifexpression_1 = cfbef.getReferenceElement();
+      }
+      _xifexpression = _xifexpression_1;
     }
+    return _xifexpression;
   }
   
   public static PureFunction getFirstFunctionDefinitionFromCompositionBodyPure(final CompositionFunctionBodyPure cfbp) {
-    PrimitivePureFunction _primitiveElement = cfbp.getPrimitiveElement();
-    boolean _equals = Objects.equal(_primitiveElement, null);
-    if (_equals) {
-      return cfbp.getReferenceElement();
+    if ((Objects.equal(cfbp.getPrimitiveElement(), null) && Objects.equal(cfbp.getReferenceElement(), null))) {
+      return cfbp.getExpressionElement();
     } else {
-      return cfbp.getPrimitiveElement();
+      PureFunction _referenceElement = cfbp.getReferenceElement();
+      boolean _equals = Objects.equal(_referenceElement, null);
+      if (_equals) {
+        return cfbp.getPrimitiveElement();
+      } else {
+        return cfbp.getReferenceElement();
+      }
     }
   }
   
-  public static EffectFullReference getFirstFunctionDefinitionFromCompositionBodyEffectFull(final CompositionFunctionBodyEffect cfbe) {
-    PrimitiveFunction _primitiveElement = cfbe.getPrimitiveElement();
-    boolean _equals = Objects.equal(_primitiveElement, null);
-    if (_equals) {
-      return cfbe.getReferenceElement();
+  public static /* EffectFullReference */Object getFirstFunctionDefinitionFromCompositionBodyEffectFull(final CompositionFunctionBodyEffect cfbe) {
+    if ((Objects.equal(cfbe.getPrimitiveElement(), null) && Objects.equal(cfbe.getReferenceElement(), null))) {
+      return cfbe.getExpressionElement();
     } else {
-      return cfbe.getPrimitiveElement();
+      EffectFullFunction _referenceElement = cfbe.getReferenceElement();
+      boolean _equals = Objects.equal(_referenceElement, null);
+      if (_equals) {
+        return cfbe.getPrimitiveElement();
+      } else {
+        return cfbe.getReferenceElement();
+      }
     }
   }
   
-  public static EffectFullReference getValueFromApplyFIOFactor(final ApplyFIOFactor afiof) {
-    PrimitiveEffectFullValue _valuePrimitive = afiof.getValuePrimitive();
+  public static /* EffectFullReference */Object getValueFromApplyFIOFactor(final ApplyFIOFactor afiof) {
+    EffectFullPrimitive _valuePrimitive = afiof.getValuePrimitive();
     boolean _notEquals = (!Objects.equal(_valuePrimitive, null));
     if (_notEquals) {
       return afiof.getValuePrimitive();
     } else {
-      EffectFullReference _valueReference = afiof.getValueReference();
+      EffectFullFunction _valueReference = afiof.getValueReference();
       boolean _notEquals_1 = (!Objects.equal(_valueReference, null));
       if (_notEquals_1) {
         return afiof.getValueReference();
       } else {
-        return afiof.getValueLambda();
+        return afiof.getValueExpression();
       }
     }
   }
   
   public static PureFunction getValueFromApplyFFactor(final ApplyFFactor afiof) {
-    PureFunctionDefinition _valueLambda = afiof.getValueLambda();
-    boolean _notEquals = (!Objects.equal(_valueLambda, null));
+    Expression _valueExpression = afiof.getValueExpression();
+    boolean _notEquals = (!Objects.equal(_valueExpression, null));
     if (_notEquals) {
-      return afiof.getValueLambda();
+      return afiof.getValueExpression();
     } else {
       return afiof.getValueReference();
     }
@@ -151,10 +173,8 @@ public class Others {
   }
   
   public static EffectFullArgument createUnitEffectFullArgument() {
-    final EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument();
-    UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
-    arg.setType(_createUnitType);
-    return arg;
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from UnitType to EffectFullType");
   }
   
   public static EffectFullArgument createVoidEffectFullArgument() {
@@ -202,5 +222,19 @@ public class Others {
       _xblockexpression = efat;
     }
     return _xblockexpression;
+  }
+  
+  public static DataType createDataType(final PureData pd) {
+    final DataType dataType = FPMLFactory.eINSTANCE.createDataType();
+    PureData _copy = EcoreUtil.<PureData>copy(pd);
+    dataType.setType(_copy);
+    return dataType;
+  }
+  
+  public static EffectFullDataType createDataType(final EffectFullData pd) {
+    final EffectFullDataType dataType = FPMLFactory.eINSTANCE.createEffectFullDataType();
+    EffectFullData _copy = EcoreUtil.<EffectFullData>copy(pd);
+    dataType.setType(_copy);
+    return dataType;
   }
 }

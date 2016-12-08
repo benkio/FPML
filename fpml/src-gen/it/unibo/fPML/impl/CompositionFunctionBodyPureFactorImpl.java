@@ -4,6 +4,7 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureFunction;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyPureFactorImpl#getReferenceElement <em>Reference Element</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyPureFactorImpl#getPrimitiveElement <em>Primitive Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.CompositionFunctionBodyPureFactorImpl#getExpressionElement <em>Expression Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,6 +54,16 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * @ordered
    */
   protected PrimitivePureFunction primitiveElement;
+
+  /**
+   * The cached value of the '{@link #getExpressionElement() <em>Expression Element</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExpressionElement()
+   * @generated
+   * @ordered
+   */
+  protected Expression expressionElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -170,6 +182,54 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
    * <!-- end-user-doc -->
    * @generated
    */
+  public Expression getExpressionElement()
+  {
+    return expressionElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExpressionElement(Expression newExpressionElement, NotificationChain msgs)
+  {
+    Expression oldExpressionElement = expressionElement;
+    expressionElement = newExpressionElement;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__EXPRESSION_ELEMENT, oldExpressionElement, newExpressionElement);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExpressionElement(Expression newExpressionElement)
+  {
+    if (newExpressionElement != expressionElement)
+    {
+      NotificationChain msgs = null;
+      if (expressionElement != null)
+        msgs = ((InternalEObject)expressionElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__EXPRESSION_ELEMENT, null, msgs);
+      if (newExpressionElement != null)
+        msgs = ((InternalEObject)newExpressionElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__EXPRESSION_ELEMENT, null, msgs);
+      msgs = basicSetExpressionElement(newExpressionElement, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__EXPRESSION_ELEMENT, newExpressionElement, newExpressionElement));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -177,6 +237,8 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
     {
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__PRIMITIVE_ELEMENT:
         return basicSetPrimitiveElement(null, msgs);
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__EXPRESSION_ELEMENT:
+        return basicSetExpressionElement(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -196,6 +258,8 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
         return basicGetReferenceElement();
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__PRIMITIVE_ELEMENT:
         return getPrimitiveElement();
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__EXPRESSION_ELEMENT:
+        return getExpressionElement();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -215,6 +279,9 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
         return;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__PRIMITIVE_ELEMENT:
         setPrimitiveElement((PrimitivePureFunction)newValue);
+        return;
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__EXPRESSION_ELEMENT:
+        setExpressionElement((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -236,6 +303,9 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__PRIMITIVE_ELEMENT:
         setPrimitiveElement((PrimitivePureFunction)null);
         return;
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__EXPRESSION_ELEMENT:
+        setExpressionElement((Expression)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -254,6 +324,8 @@ public class CompositionFunctionBodyPureFactorImpl extends MinimalEObjectImpl.Co
         return referenceElement != null;
       case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__PRIMITIVE_ELEMENT:
         return primitiveElement != null;
+      case FPMLPackage.COMPOSITION_FUNCTION_BODY_PURE_FACTOR__EXPRESSION_ELEMENT:
+        return expressionElement != null;
     }
     return super.eIsSet(featureID);
   }

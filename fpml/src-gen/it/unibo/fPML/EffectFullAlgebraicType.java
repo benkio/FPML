@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface EffectFullAlgebraicType extends EffectFullType
+public interface EffectFullAlgebraicType extends EffectFullType, EffectFullExpression
 {
   /**
    * Returns the value of the '<em><b>Effect Full Adt Element1</b></em>' containment reference.

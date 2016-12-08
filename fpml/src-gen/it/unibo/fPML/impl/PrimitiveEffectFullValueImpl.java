@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PrimitiveEffectFullValueImpl extends EffectFullReferenceImpl implements PrimitiveEffectFullValue
+public class PrimitiveEffectFullValueImpl extends EffectFullPrimitiveImpl implements PrimitiveEffectFullValue
 {
   /**
    * <!-- begin-user-doc -->

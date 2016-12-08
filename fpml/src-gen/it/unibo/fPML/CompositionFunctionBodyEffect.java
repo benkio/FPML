@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyEffect#getReferenceElement <em>Reference Element</em>}</li>
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyEffect#getFunctionChain <em>Function Chain</em>}</li>
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyEffect#getPrimitiveElement <em>Primitive Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.CompositionFunctionBodyEffect#getExpressionElement <em>Expression Element</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyEffect()
@@ -34,12 +35,12 @@ public interface CompositionFunctionBodyEffect extends FunctionBodyEffectFull
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Reference Element</em>' reference.
-   * @see #setReferenceElement(EffectFullReference)
+   * @see #setReferenceElement(EffectFullFunction)
    * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyEffect_ReferenceElement()
    * @model
    * @generated
    */
-  EffectFullReference getReferenceElement();
+  EffectFullFunction getReferenceElement();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyEffect#getReferenceElement <em>Reference Element</em>}' reference.
@@ -49,7 +50,7 @@ public interface CompositionFunctionBodyEffect extends FunctionBodyEffectFull
    * @see #getReferenceElement()
    * @generated
    */
-  void setReferenceElement(EffectFullReference value);
+  void setReferenceElement(EffectFullFunction value);
 
   /**
    * Returns the value of the '<em><b>Function Chain</b></em>' containment reference list.
@@ -76,12 +77,12 @@ public interface CompositionFunctionBodyEffect extends FunctionBodyEffectFull
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Primitive Element</em>' containment reference.
-   * @see #setPrimitiveElement(PrimitiveFunction)
+   * @see #setPrimitiveElement(EffectFullPrimitive)
    * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyEffect_PrimitiveElement()
    * @model containment="true"
    * @generated
    */
-  PrimitiveFunction getPrimitiveElement();
+  EffectFullPrimitive getPrimitiveElement();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyEffect#getPrimitiveElement <em>Primitive Element</em>}' containment reference.
@@ -91,6 +92,32 @@ public interface CompositionFunctionBodyEffect extends FunctionBodyEffectFull
    * @see #getPrimitiveElement()
    * @generated
    */
-  void setPrimitiveElement(PrimitiveFunction value);
+  void setPrimitiveElement(EffectFullPrimitive value);
+
+  /**
+   * Returns the value of the '<em><b>Expression Element</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Expression Element</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Expression Element</em>' containment reference.
+   * @see #setExpressionElement(EffectFullExpression)
+   * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyEffect_ExpressionElement()
+   * @model containment="true"
+   * @generated
+   */
+  EffectFullExpression getExpressionElement();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyEffect#getExpressionElement <em>Expression Element</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Expression Element</em>' containment reference.
+   * @see #getExpressionElement()
+   * @generated
+   */
+  void setExpressionElement(EffectFullExpression value);
 
 } // CompositionFunctionBodyEffect

@@ -4,8 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.Type;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.EffectFullArgumentImpl#getType <em>Type</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.EffectFullArgumentImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements EffectFullArgument
+public class EffectFullArgumentImpl extends ArgumentImpl implements EffectFullArgument
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -39,27 +38,7 @@ public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements E
    * @generated
    * @ordered
    */
-  protected Type type;
-
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected EffectFullType type;
 
   /**
    * <!-- begin-user-doc -->
@@ -87,7 +66,7 @@ public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type getType()
+  public EffectFullType getType()
   {
     return type;
   }
@@ -97,9 +76,9 @@ public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
+  public NotificationChain basicSetType(EffectFullType newType, NotificationChain msgs)
   {
-    Type oldType = type;
+    EffectFullType oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -114,7 +93,7 @@ public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Type newType)
+  public void setType(EffectFullType newType)
   {
     if (newType != type)
     {
@@ -128,29 +107,6 @@ public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements E
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ARGUMENT__TYPE, newType, newType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_ARGUMENT__NAME, oldName, name));
   }
 
   /**
@@ -181,8 +137,6 @@ public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements E
     {
       case FPMLPackage.EFFECT_FULL_ARGUMENT__TYPE:
         return getType();
-      case FPMLPackage.EFFECT_FULL_ARGUMENT__NAME:
-        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -198,10 +152,7 @@ public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements E
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_ARGUMENT__TYPE:
-        setType((Type)newValue);
-        return;
-      case FPMLPackage.EFFECT_FULL_ARGUMENT__NAME:
-        setName((String)newValue);
+        setType((EffectFullType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -218,10 +169,7 @@ public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements E
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_ARGUMENT__TYPE:
-        setType((Type)null);
-        return;
-      case FPMLPackage.EFFECT_FULL_ARGUMENT__NAME:
-        setName(NAME_EDEFAULT);
+        setType((EffectFullType)null);
         return;
     }
     super.eUnset(featureID);
@@ -239,27 +187,8 @@ public class EffectFullArgumentImpl extends EffectFullReferenceImpl implements E
     {
       case FPMLPackage.EFFECT_FULL_ARGUMENT__TYPE:
         return type != null;
-      case FPMLPackage.EFFECT_FULL_ARGUMENT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //EffectFullArgumentImpl

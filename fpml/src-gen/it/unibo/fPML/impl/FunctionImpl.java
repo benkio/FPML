@@ -8,6 +8,8 @@ import it.unibo.fPML.Function;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Function</b></em>'.
@@ -15,7 +17,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class FunctionImpl extends EffectFullReferenceImpl implements Function
+public class FunctionImpl extends MinimalEObjectImpl.Container implements Function
 {
   /**
    * <!-- begin-user-doc -->

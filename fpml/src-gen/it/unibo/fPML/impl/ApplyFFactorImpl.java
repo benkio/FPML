@@ -4,9 +4,9 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.ApplyFFactor;
+import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.PureFunction;
-import it.unibo.fPML.PureFunctionDefinition;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.ApplyFFactorImpl#getValueReference <em>Value Reference</em>}</li>
- *   <li>{@link it.unibo.fPML.impl.ApplyFFactorImpl#getValueLambda <em>Value Lambda</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.ApplyFFactorImpl#getValueExpression <em>Value Expression</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,14 +44,14 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
   protected PureFunction valueReference;
 
   /**
-   * The cached value of the '{@link #getValueLambda() <em>Value Lambda</em>}' containment reference.
+   * The cached value of the '{@link #getValueExpression() <em>Value Expression</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValueLambda()
+   * @see #getValueExpression()
    * @generated
    * @ordered
    */
-  protected PureFunctionDefinition valueLambda;
+  protected Expression valueExpression;
 
   /**
    * <!-- begin-user-doc -->
@@ -122,9 +122,9 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
    * <!-- end-user-doc -->
    * @generated
    */
-  public PureFunctionDefinition getValueLambda()
+  public Expression getValueExpression()
   {
-    return valueLambda;
+    return valueExpression;
   }
 
   /**
@@ -132,13 +132,13 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValueLambda(PureFunctionDefinition newValueLambda, NotificationChain msgs)
+  public NotificationChain basicSetValueExpression(Expression newValueExpression, NotificationChain msgs)
   {
-    PureFunctionDefinition oldValueLambda = valueLambda;
-    valueLambda = newValueLambda;
+    Expression oldValueExpression = valueExpression;
+    valueExpression = newValueExpression;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA, oldValueLambda, newValueLambda);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FFACTOR__VALUE_EXPRESSION, oldValueExpression, newValueExpression);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -149,20 +149,20 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValueLambda(PureFunctionDefinition newValueLambda)
+  public void setValueExpression(Expression newValueExpression)
   {
-    if (newValueLambda != valueLambda)
+    if (newValueExpression != valueExpression)
     {
       NotificationChain msgs = null;
-      if (valueLambda != null)
-        msgs = ((InternalEObject)valueLambda).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA, null, msgs);
-      if (newValueLambda != null)
-        msgs = ((InternalEObject)newValueLambda).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA, null, msgs);
-      msgs = basicSetValueLambda(newValueLambda, msgs);
+      if (valueExpression != null)
+        msgs = ((InternalEObject)valueExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FFACTOR__VALUE_EXPRESSION, null, msgs);
+      if (newValueExpression != null)
+        msgs = ((InternalEObject)newValueExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.APPLY_FFACTOR__VALUE_EXPRESSION, null, msgs);
+      msgs = basicSetValueExpression(newValueExpression, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA, newValueLambda, newValueLambda));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.APPLY_FFACTOR__VALUE_EXPRESSION, newValueExpression, newValueExpression));
   }
 
   /**
@@ -175,8 +175,8 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
   {
     switch (featureID)
     {
-      case FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA:
-        return basicSetValueLambda(null, msgs);
+      case FPMLPackage.APPLY_FFACTOR__VALUE_EXPRESSION:
+        return basicSetValueExpression(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -194,8 +194,8 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
       case FPMLPackage.APPLY_FFACTOR__VALUE_REFERENCE:
         if (resolve) return getValueReference();
         return basicGetValueReference();
-      case FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA:
-        return getValueLambda();
+      case FPMLPackage.APPLY_FFACTOR__VALUE_EXPRESSION:
+        return getValueExpression();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -213,8 +213,8 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
       case FPMLPackage.APPLY_FFACTOR__VALUE_REFERENCE:
         setValueReference((PureFunction)newValue);
         return;
-      case FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA:
-        setValueLambda((PureFunctionDefinition)newValue);
+      case FPMLPackage.APPLY_FFACTOR__VALUE_EXPRESSION:
+        setValueExpression((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -233,8 +233,8 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
       case FPMLPackage.APPLY_FFACTOR__VALUE_REFERENCE:
         setValueReference((PureFunction)null);
         return;
-      case FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA:
-        setValueLambda((PureFunctionDefinition)null);
+      case FPMLPackage.APPLY_FFACTOR__VALUE_EXPRESSION:
+        setValueExpression((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -252,8 +252,8 @@ public class ApplyFFactorImpl extends MinimalEObjectImpl.Container implements Ap
     {
       case FPMLPackage.APPLY_FFACTOR__VALUE_REFERENCE:
         return valueReference != null;
-      case FPMLPackage.APPLY_FFACTOR__VALUE_LAMBDA:
-        return valueLambda != null;
+      case FPMLPackage.APPLY_FFACTOR__VALUE_EXPRESSION:
+        return valueExpression != null;
     }
     return super.eIsSet(featureID);
   }

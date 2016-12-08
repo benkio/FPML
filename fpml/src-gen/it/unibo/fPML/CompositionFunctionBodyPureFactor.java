@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPureFactor#getReferenceElement <em>Reference Element</em>}</li>
  *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPureFactor#getPrimitiveElement <em>Primitive Element</em>}</li>
+ *   <li>{@link it.unibo.fPML.CompositionFunctionBodyPureFactor#getExpressionElement <em>Expression Element</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPureFactor()
@@ -75,5 +76,31 @@ public interface CompositionFunctionBodyPureFactor extends EObject
    * @generated
    */
   void setPrimitiveElement(PrimitivePureFunction value);
+
+  /**
+   * Returns the value of the '<em><b>Expression Element</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Expression Element</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Expression Element</em>' containment reference.
+   * @see #setExpressionElement(Expression)
+   * @see it.unibo.fPML.FPMLPackage#getCompositionFunctionBodyPureFactor_ExpressionElement()
+   * @model containment="true"
+   * @generated
+   */
+  Expression getExpressionElement();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.CompositionFunctionBodyPureFactor#getExpressionElement <em>Expression Element</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Expression Element</em>' containment reference.
+   * @see #getExpressionElement()
+   * @generated
+   */
+  void setExpressionElement(Expression value);
 
 } // CompositionFunctionBodyPureFactor

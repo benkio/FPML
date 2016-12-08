@@ -8,6 +8,8 @@ import it.unibo.fPML.PrimitiveFunction;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Primitive Function</b></em>'.
@@ -15,7 +17,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PrimitiveFunctionImpl extends EffectFullReferenceImpl implements PrimitiveFunction
+public class PrimitiveFunctionImpl extends MinimalEObjectImpl.Container implements PrimitiveFunction
 {
   /**
    * <!-- begin-user-doc -->

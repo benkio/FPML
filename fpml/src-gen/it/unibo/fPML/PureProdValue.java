@@ -21,7 +21,7 @@ package it.unibo.fPML;
  * @model
  * @generated
  */
-public interface PureProdValue extends Expression
+public interface PureProdValue extends PureAlgebraicType
 {
   /**
    * Returns the value of the '<em><b>Prod Adt Element1</b></em>' containment reference.

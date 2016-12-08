@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface PureAlgebraicType extends ValueType
+public interface PureAlgebraicType extends ValueType, Expression
 {
   /**
    * Returns the value of the '<em><b>Pure Adt Element1</b></em>' containment reference.

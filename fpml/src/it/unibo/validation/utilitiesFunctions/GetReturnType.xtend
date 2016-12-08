@@ -21,6 +21,7 @@ class GetReturnType {
 			PureFunctionDefinition: pureFunctionDefinition(f)
 			PrimitivePureFunction: primitivePureFunction(f)
 			Argument: f.type
+			Expression: expression(f)
 		}
 	}	
 	
@@ -98,6 +99,7 @@ class GetReturnType {
       		Major: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
       		LogicAnd: return Others.createFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType) 
       		LogicOr: return Others.createFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType)
+      		ExtractPure: return f.data.content
 		}
 	}
 	
@@ -153,6 +155,7 @@ class GetReturnType {
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(r)
 			PrimitivePureFunction: primitivePureFunction(r)
 			EffectFullArgument: r.type
+			EffectFullExpression: effectFullExpression(r)
 			Function: function(r)
 		}
 	}
@@ -204,6 +207,7 @@ class GetReturnType {
 			PrimitiveReturn: Others.IOWrap(function.type)
 			LeftPairIO: function.type.effectFullAdtElement1
 			RightPairIO: Others.getElement2ValueTypeFromEffectFullAlgebraicType(function.type)
+			ExtractEffectFull: function.data.content
 		}
 	}
 	
