@@ -248,7 +248,10 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         EffectFullArgument effectFullArgument = (EffectFullArgument)theEObject;
         T result = caseEffectFullArgument(effectFullArgument);
+        if (result == null) result = caseEffectFullFunction(effectFullArgument);
         if (result == null) result = caseArgument(effectFullArgument);
+        if (result == null) result = caseFunction(effectFullArgument);
+        if (result == null) result = caseEffectFullBodyContent(effectFullArgument);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -423,8 +426,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullType(effectFullDataType);
         if (result == null) result = caseEffectFullExpression(effectFullDataType);
         if (result == null) result = caseType(effectFullDataType);
-        if (result == null) result = caseEffectFullFunction(effectFullDataType);
-        if (result == null) result = caseFunction(effectFullDataType);
         if (result == null) result = caseEffectFullBodyContent(effectFullDataType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -448,8 +449,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullType(effectFullFunctionType);
         if (result == null) result = caseEffectFullExpression(effectFullFunctionType);
         if (result == null) result = caseType(effectFullFunctionType);
-        if (result == null) result = caseEffectFullFunction(effectFullFunctionType);
-        if (result == null) result = caseFunction(effectFullFunctionType);
         if (result == null) result = caseEffectFullBodyContent(effectFullFunctionType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -487,8 +486,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullType(effectFullAlgebraicType);
         if (result == null) result = caseEffectFullExpression(effectFullAlgebraicType);
         if (result == null) result = caseType(effectFullAlgebraicType);
-        if (result == null) result = caseEffectFullFunction(effectFullAlgebraicType);
-        if (result == null) result = caseFunction(effectFullAlgebraicType);
         if (result == null) result = caseEffectFullBodyContent(effectFullAlgebraicType);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -511,8 +508,6 @@ public class FPMLSwitch<T> extends Switch<T>
       {
         EffectFullExpression effectFullExpression = (EffectFullExpression)theEObject;
         T result = caseEffectFullExpression(effectFullExpression);
-        if (result == null) result = caseEffectFullFunction(effectFullExpression);
-        if (result == null) result = caseFunction(effectFullExpression);
         if (result == null) result = caseEffectFullBodyContent(effectFullExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -522,8 +517,6 @@ public class FPMLSwitch<T> extends Switch<T>
         EffectFullValueRef effectFullValueRef = (EffectFullValueRef)theEObject;
         T result = caseEffectFullValueRef(effectFullValueRef);
         if (result == null) result = caseEffectFullExpression(effectFullValueRef);
-        if (result == null) result = caseEffectFullFunction(effectFullValueRef);
-        if (result == null) result = caseFunction(effectFullValueRef);
         if (result == null) result = caseEffectFullBodyContent(effectFullValueRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -901,14 +894,12 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION:
+      case FPMLPackage.IO_EFFECT_FULL_EXPRESSION:
       {
-        RecursiveEffectFullExpression recursiveEffectFullExpression = (RecursiveEffectFullExpression)theEObject;
-        T result = caseRecursiveEffectFullExpression(recursiveEffectFullExpression);
-        if (result == null) result = caseEffectFullExpression(recursiveEffectFullExpression);
-        if (result == null) result = caseEffectFullFunction(recursiveEffectFullExpression);
-        if (result == null) result = caseFunction(recursiveEffectFullExpression);
-        if (result == null) result = caseEffectFullBodyContent(recursiveEffectFullExpression);
+        IOEffectFullExpression ioEffectFullExpression = (IOEffectFullExpression)theEObject;
+        T result = caseIOEffectFullExpression(ioEffectFullExpression);
+        if (result == null) result = caseEffectFullExpression(ioEffectFullExpression);
+        if (result == null) result = caseEffectFullBodyContent(ioEffectFullExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -917,8 +908,6 @@ public class FPMLSwitch<T> extends Switch<T>
         IOExpression ioExpression = (IOExpression)theEObject;
         T result = caseIOExpression(ioExpression);
         if (result == null) result = caseEffectFullExpression(ioExpression);
-        if (result == null) result = caseEffectFullFunction(ioExpression);
-        if (result == null) result = caseFunction(ioExpression);
         if (result == null) result = caseEffectFullBodyContent(ioExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -928,9 +917,16 @@ public class FPMLSwitch<T> extends Switch<T>
         IOPureFunction ioPureFunction = (IOPureFunction)theEObject;
         T result = caseIOPureFunction(ioPureFunction);
         if (result == null) result = caseEffectFullExpression(ioPureFunction);
-        if (result == null) result = caseEffectFullFunction(ioPureFunction);
-        if (result == null) result = caseFunction(ioPureFunction);
         if (result == null) result = caseEffectFullBodyContent(ioPureFunction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.IO_EFFECT_FULL_FUNCTION:
+      {
+        IOEffectFullFunction ioEffectFullFunction = (IOEffectFullFunction)theEObject;
+        T result = caseIOEffectFullFunction(ioEffectFullFunction);
+        if (result == null) result = caseEffectFullExpression(ioEffectFullFunction);
+        if (result == null) result = caseEffectFullBodyContent(ioEffectFullFunction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -966,8 +962,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullType(effectFullDataValue);
         if (result == null) result = caseEffectFullExpression(effectFullDataValue);
         if (result == null) result = caseType(effectFullDataValue);
-        if (result == null) result = caseEffectFullFunction(effectFullDataValue);
-        if (result == null) result = caseFunction(effectFullDataValue);
         if (result == null) result = caseEffectFullBodyContent(effectFullDataValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -1016,8 +1010,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullType(effectFullProdValue);
         if (result == null) result = caseEffectFullExpression(effectFullProdValue);
         if (result == null) result = caseType(effectFullProdValue);
-        if (result == null) result = caseEffectFullFunction(effectFullProdValue);
-        if (result == null) result = caseFunction(effectFullProdValue);
         if (result == null) result = caseEffectFullBodyContent(effectFullProdValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -1030,8 +1022,6 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullType(effectFullSumValue);
         if (result == null) result = caseEffectFullExpression(effectFullSumValue);
         if (result == null) result = caseType(effectFullSumValue);
-        if (result == null) result = caseEffectFullFunction(effectFullSumValue);
-        if (result == null) result = caseFunction(effectFullSumValue);
         if (result == null) result = caseEffectFullBodyContent(effectFullSumValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -2433,17 +2423,17 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Recursive Effect Full Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>IO Effect Full Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Recursive Effect Full Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>IO Effect Full Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRecursiveEffectFullExpression(RecursiveEffectFullExpression object)
+  public T caseIOEffectFullExpression(IOEffectFullExpression object)
   {
     return null;
   }
@@ -2476,6 +2466,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIOPureFunction(IOPureFunction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>IO Effect Full Function</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>IO Effect Full Function</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIOEffectFullFunction(IOEffectFullFunction object)
   {
     return null;
   }

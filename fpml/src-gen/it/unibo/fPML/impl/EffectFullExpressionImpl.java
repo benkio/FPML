@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class EffectFullExpressionImpl extends EffectFullFunctionImpl implements EffectFullExpression
+public class EffectFullExpressionImpl extends EffectFullBodyContentImpl implements EffectFullExpression
 {
   /**
    * <!-- begin-user-doc -->

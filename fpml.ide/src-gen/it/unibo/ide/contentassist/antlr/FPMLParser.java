@@ -117,6 +117,9 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullExpressionAccess().getGroup_0(), "rule__EffectFullExpression__Group_0__0");
 					put(grammarAccess.getEffectFullExpressionAccess().getGroup_1(), "rule__EffectFullExpression__Group_1__0");
 					put(grammarAccess.getEffectFullExpressionAccess().getGroup_2(), "rule__EffectFullExpression__Group_2__0");
+					put(grammarAccess.getEffectFullExpressionAccess().getGroup_3(), "rule__EffectFullExpression__Group_3__0");
+					put(grammarAccess.getEffectFullExpressionAccess().getGroup_4(), "rule__EffectFullExpression__Group_4__0");
+					put(grammarAccess.getEffectFullExpressionAccess().getGroup_5(), "rule__EffectFullExpression__Group_5__0");
 					put(grammarAccess.getUnitValueAccess().getGroup(), "rule__UnitValue__Group__0");
 					put(grammarAccess.getEffectFullValueRefAccess().getGroup(), "rule__EffectFullValueRef__Group__0");
 					put(grammarAccess.getEffectFullLambdaAccess().getGroup_0(), "rule__EffectFullLambda__Group_0__0");
@@ -243,6 +246,9 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullExpressionAccess().getInnerValueAssignment_0_3(), "rule__EffectFullExpression__InnerValueAssignment_0_3");
 					put(grammarAccess.getEffectFullExpressionAccess().getInnerValueAssignment_1_3(), "rule__EffectFullExpression__InnerValueAssignment_1_3");
 					put(grammarAccess.getEffectFullExpressionAccess().getPureFunctionAssignment_2_3(), "rule__EffectFullExpression__PureFunctionAssignment_2_3");
+					put(grammarAccess.getEffectFullExpressionAccess().getPurePrimitiveAssignment_3_3(), "rule__EffectFullExpression__PurePrimitiveAssignment_3_3");
+					put(grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionAssignment_4_3(), "rule__EffectFullExpression__EffectFullFunctionAssignment_4_3");
+					put(grammarAccess.getEffectFullExpressionAccess().getEffectFullPrimitiveAssignment_5_3(), "rule__EffectFullExpression__EffectFullPrimitiveAssignment_5_3");
 					put(grammarAccess.getEffectFullFunctionValueAccess().getValueAssignment(), "rule__EffectFullFunctionValue__ValueAssignment");
 					put(grammarAccess.getEffectFullValueRefAccess().getValueAssignment_3(), "rule__EffectFullValueRef__ValueAssignment_3");
 					put(grammarAccess.getEffectFullLambdaAccess().getArgAssignment_0_3(), "rule__EffectFullLambda__ArgAssignment_0_3");

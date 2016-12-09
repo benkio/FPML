@@ -231,7 +231,17 @@ class Checks {
 			IOType: {
 				switch value {
 					IOExpression: return ((type as IOType).type instanceof ValueType) && DataAndValue(value.innerValue as Expression, (type as IOType).type as ValueType)
-					RecursiveEffectFullExpression: return ((type as IOType).type instanceof EffectFullType) && effectFullDataAndValue(value.innerValue as EffectFullExpression, (type as IOType).type as EffectFullType)					
+					IOEffectFullExpression: return ((type as IOType).type instanceof EffectFullType) && effectFullDataAndValue(value.innerValue as EffectFullExpression, (type as IOType).type as EffectFullType)					
+					IOPureFunction: {
+							var PureFunction function;
+							if (value.pureFunction != null) function = value.pureFunction else function = value.purePrimitive
+							return ((type as IOType).type instanceof ValueType) && ValueTypeEquals(Others.createTypeOfPureFunction(function), (type as IOType).type as ValueType)
+						}
+					IOEffectFullFunction: {
+							var EffectFullFunction function;
+							if (value.effectFullFunction != null) function = value.effectFullFunction else function = value.effectFullPrimitive
+							return ((type as IOType).type instanceof EffectFullType) && TypeEquals(Others.createTypeOfEffectFullFunction(function), (type as IOType).type as EffectFullType)
+					}
 					default: return false
 				}
 			}
@@ -253,7 +263,7 @@ class Checks {
 	}
 	
 	def static boolean applyFIO(ApplyFIO afio){
-			return Checks.TypeEquals(afio.functionType.argType, GetReturnType.effectFullBodyContent(Others.getValueFromApplyFIOFactor(afio.value)))
+			return Checks.TypeEquals(Others.IOWrap(afio.functionType.argType), GetReturnType.effectFullBodyContent(Others.getValueFromApplyFIOFactor(afio.value)))
 	}
 	
 	def static boolean effectFullExpressionHasSideEffects(EffectFullExpression expression) {

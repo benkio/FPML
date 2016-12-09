@@ -29,14 +29,14 @@ class EffectFullFunctionGenerator {
 	def compile(EffectFullFunctionDefinition pf) {
 		if (pf.name != "main") {
 			return '''
-			public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(pf.arg)»){
+			public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(Others.getArgumentType(pf.arg))»){
 				«IF pf.functionBody instanceof EmptyFunctionBody»
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
 					«IF pf.higherOrderArg == null»
 					return «commonEffectFullFunctions.compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»;
 					«ELSE»
-					return () -> { return ( «typeGenerator.compile(pf.higherOrderArg.arg2)» ) -> «commonEffectFullFunctions.compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»; };
+					return () -> { return ( «typeGenerator.compile(Others.getArgumentType(pf.higherOrderArg.arg2))» ) -> «commonEffectFullFunctions.compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»; };
 					«ENDIF»
 				«ENDIF»
 			}'''
@@ -67,7 +67,7 @@ class EffectFullFunctionGenerator {
 		return e.compileIOWalkthorugh	
 	}	
 	
-	def compileIOWalkthorugh(EffectFullReference e){
+	def compileIOWalkthorugh(EffectFullBodyContent e){
 		switch e {
 			IntToString: '''.map(Primitives::intToString)'''
       		IntPow: '''.map(Primitives::intPow) '''

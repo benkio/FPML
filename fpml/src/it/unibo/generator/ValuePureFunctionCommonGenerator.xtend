@@ -80,7 +80,7 @@ class ValuePureFunctionCommonGenerator {
 			PrimitivePureFunction: result = compilePrimitiveCall(initialElement, argName, argName, outsideCalls)
 			PureFunctionDefinition: result = compileCall(initialElement, argName, argName, outsideCalls)
 			Expression: result = initialElement.compile
-			Argument: result = initialElement.name
+			Argument: result = Others.getArgumentName(initialElement)
 		}
 		for (f : cfbp.functionChain){
 			result = compileCall( Others.getFunctionDefinitionFromPureFactor(f), result, argName , outsideCalls)
@@ -128,7 +128,7 @@ class ValuePureFunctionCommonGenerator {
 	def String compileApplyFFactor(ApplyFFactor r,  String argName, boolean outsideCalls) {
 		switch r.valueReference {
 			PureValue: return compileCall(r.valueReference as PureValue, argName, argName, outsideCalls)
-			Argument: return (r.valueReference as Argument).name
+			Argument: return Others.getArgumentName(r.valueReference as Argument)
 			default: return compile(r.valueExpression)
 		}
 	}

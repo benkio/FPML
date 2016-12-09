@@ -511,9 +511,9 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createEffectFullValueAdapter();
       }
       @Override
-      public Adapter caseRecursiveEffectFullExpression(RecursiveEffectFullExpression object)
+      public Adapter caseIOEffectFullExpression(IOEffectFullExpression object)
       {
-        return createRecursiveEffectFullExpressionAdapter();
+        return createIOEffectFullExpressionAdapter();
       }
       @Override
       public Adapter caseIOExpression(IOExpression object)
@@ -524,6 +524,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseIOPureFunction(IOPureFunction object)
       {
         return createIOPureFunctionAdapter();
+      }
+      @Override
+      public Adapter caseIOEffectFullFunction(IOEffectFullFunction object)
+      {
+        return createIOEffectFullFunctionAdapter();
       }
       @Override
       public Adapter caseEffectFullLambda(EffectFullLambda object)
@@ -1893,16 +1898,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.RecursiveEffectFullExpression <em>Recursive Effect Full Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.IOEffectFullExpression <em>IO Effect Full Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.RecursiveEffectFullExpression
+   * @see it.unibo.fPML.IOEffectFullExpression
    * @generated
    */
-  public Adapter createRecursiveEffectFullExpressionAdapter()
+  public Adapter createIOEffectFullExpressionAdapter()
   {
     return null;
   }
@@ -1933,6 +1938,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIOPureFunctionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.IOEffectFullFunction <em>IO Effect Full Function</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.IOEffectFullFunction
+   * @generated
+   */
+  public Adapter createIOEffectFullFunctionAdapter()
   {
     return null;
   }

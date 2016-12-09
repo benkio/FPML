@@ -3,7 +3,6 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.Argument;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.ValueType;
@@ -24,14 +23,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.PureArgumentImpl#getName <em>Name</em>}</li>
  *   <li>{@link it.unibo.fPML.impl.PureArgumentImpl#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureArgumentImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PureArgumentImpl extends PureFunctionImpl implements PureArgument
 {
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected ValueType type;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -53,16 +62,6 @@ public class PureArgumentImpl extends PureFunctionImpl implements PureArgument
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected ValueType type;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -81,29 +80,6 @@ public class PureArgumentImpl extends PureFunctionImpl implements PureArgument
   protected EClass eStaticClass()
   {
     return FPMLPackage.Literals.PURE_ARGUMENT;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ARGUMENT__NAME, oldName, name));
   }
 
   /**
@@ -159,6 +135,29 @@ public class PureArgumentImpl extends PureFunctionImpl implements PureArgument
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_ARGUMENT__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -180,10 +179,10 @@ public class PureArgumentImpl extends PureFunctionImpl implements PureArgument
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_ARGUMENT__NAME:
-        return getName();
       case FPMLPackage.PURE_ARGUMENT__TYPE:
         return getType();
+      case FPMLPackage.PURE_ARGUMENT__NAME:
+        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -198,11 +197,11 @@ public class PureArgumentImpl extends PureFunctionImpl implements PureArgument
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_ARGUMENT__NAME:
-        setName((String)newValue);
-        return;
       case FPMLPackage.PURE_ARGUMENT__TYPE:
         setType((ValueType)newValue);
+        return;
+      case FPMLPackage.PURE_ARGUMENT__NAME:
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -218,11 +217,11 @@ public class PureArgumentImpl extends PureFunctionImpl implements PureArgument
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_ARGUMENT__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case FPMLPackage.PURE_ARGUMENT__TYPE:
         setType((ValueType)null);
+        return;
+      case FPMLPackage.PURE_ARGUMENT__NAME:
+        setName(NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -238,50 +237,12 @@ public class PureArgumentImpl extends PureFunctionImpl implements PureArgument
   {
     switch (featureID)
     {
-      case FPMLPackage.PURE_ARGUMENT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case FPMLPackage.PURE_ARGUMENT__TYPE:
         return type != null;
+      case FPMLPackage.PURE_ARGUMENT__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-  {
-    if (baseClass == Argument.class)
-    {
-      switch (derivedFeatureID)
-      {
-        case FPMLPackage.PURE_ARGUMENT__NAME: return FPMLPackage.ARGUMENT__NAME;
-        default: return -1;
-      }
-    }
-    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-  {
-    if (baseClass == Argument.class)
-    {
-      switch (baseFeatureID)
-      {
-        case FPMLPackage.ARGUMENT__NAME: return FPMLPackage.PURE_ARGUMENT__NAME;
-        default: return -1;
-      }
-    }
-    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
   /**

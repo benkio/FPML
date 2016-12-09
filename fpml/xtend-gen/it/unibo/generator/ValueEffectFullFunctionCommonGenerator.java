@@ -1,9 +1,16 @@
 package it.unibo.generator;
 
 import com.google.common.base.Objects;
+import it.unibo.fPML.ApplyF;
+import it.unibo.fPML.ApplyFFactor;
+import it.unibo.fPML.ApplyFIO;
+import it.unibo.fPML.ApplyFIOFactor;
+import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
+import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
+import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
@@ -14,14 +21,39 @@ import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueRef;
+import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Expression;
+import it.unibo.fPML.ExtractEffectFull;
+import it.unibo.fPML.ExtractPure;
+import it.unibo.fPML.FunctionBodyEffectFull;
+import it.unibo.fPML.IOEffectFullExpression;
+import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
+import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IOType;
-import it.unibo.fPML.RecursiveEffectFullExpression;
+import it.unibo.fPML.IntPow;
+import it.unibo.fPML.IntToString;
+import it.unibo.fPML.LeftPair;
+import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.Minus;
+import it.unibo.fPML.Mod;
+import it.unibo.fPML.Plus;
+import it.unibo.fPML.PrimitivePrint;
+import it.unibo.fPML.PrimitiveRandom;
+import it.unibo.fPML.PrimitiveReturn;
+import it.unibo.fPML.PrimitiveTime;
+import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureFunctionDefinition;
+import it.unibo.fPML.PureValue;
+import it.unibo.fPML.RightPair;
+import it.unibo.fPML.RightPairIO;
+import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.generator.TypeGenerator;
 import it.unibo.generator.ValuePureFunctionCommonGenerator;
+import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
@@ -125,12 +157,28 @@ public class ValueEffectFullFunctionCommonGenerator {
       }
     }
     if (!_matched) {
-      if (e instanceof RecursiveEffectFullExpression) {
+      if (e instanceof IOEffectFullExpression) {
         _matched=true;
-        EffectFullExpression _innerValue = ((RecursiveEffectFullExpression)e).getInnerValue();
+        EffectFullExpression _innerValue = ((IOEffectFullExpression)e).getInnerValue();
         String _compile = this.compile(((EffectFullExpression) _innerValue));
         String _plus = ("IOFunctions.unit(" + _compile);
         return (_plus + ")");
+      }
+    }
+    if (!_matched) {
+      if (e instanceof IOPureFunction) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("TODO");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof IOEffectFullFunction) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("TODO");
+        _switchResult = _builder.toString();
       }
     }
     return _switchResult;
@@ -246,11 +294,11 @@ public class ValueEffectFullFunctionCommonGenerator {
       }
     }
     if (!_matched) {
-      if (v instanceof RecursiveEffectFullExpression) {
+      if (v instanceof IOEffectFullExpression) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IOFunctions.unit(");
-        EffectFullExpression _innerValue = ((RecursiveEffectFullExpression)v).getInnerValue();
+        EffectFullExpression _innerValue = ((IOEffectFullExpression)v).getInnerValue();
         Type _type = ((IOType) d).getType();
         Object _compileAdtValue = this.compileAdtValue(((EffectFullExpression) _innerValue), ((EffectFullType) _type));
         _builder.append(_compileAdtValue, "");
@@ -258,38 +306,445 @@ public class ValueEffectFullFunctionCommonGenerator {
         _switchResult = _builder;
       }
     }
+    if (!_matched) {
+      if (v instanceof IOPureFunction) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("TODO");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (v instanceof IOEffectFullFunction) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("TODO");
+        _switchResult = _builder;
+      }
+    }
     return _switchResult;
   }
   
   public String compile(final EffectFullFunctionType pft) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field type is undefined for the type Argument"
-      + "\nThe method or field type is undefined for the type Argument"
-      + "\nType mismatch: cannot convert from Argument to EffectFullArgument");
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EffectFullFunctionDefinition _value = pft.getValue();
+      FunctionBodyEffectFull _functionBody = _value.getFunctionBody();
+      if ((_functionBody instanceof EmptyFunctionBody)) {
+        _builder.append("new F<Object>() {");
+        _builder.newLine();
+        _builder.append("\t\t\t\t");
+        _builder.append("@Override");
+        _builder.newLine();
+        _builder.append("\t\t\t\t");
+        _builder.append("public Object f(Object ");
+        EffectFullFunctionDefinition _value_1 = pft.getValue();
+        Argument _arg = _value_1.getArg();
+        String _argumentName = Others.getArgumentName(_arg);
+        _builder.append(_argumentName, "\t\t\t\t");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t\t\t");
+        _builder.append("throw new UnsupportedOperationException(\"TODO\");");
+        _builder.newLine();
+        _builder.append("\t\t\t\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("}");
+        _builder.newLine();
+      } else {
+        if (((pft.getValue().getFunctionBody() instanceof CompositionFunctionBodyEffect) && (!Objects.equal(pft.getValue().getArg(), null)))) {
+          _builder.append("new F<");
+          EffectFullFunctionDefinition _value_2 = pft.getValue();
+          Argument _arg_1 = _value_2.getArg();
+          Type _argumentType = Others.getArgumentType(_arg_1);
+          Object _compile = this.typeGenerator.compile(_argumentType);
+          _builder.append(_compile, "");
+          _builder.append(",");
+          EffectFullFunctionDefinition _value_3 = pft.getValue();
+          Type _effectFullFunctionDefinition = GetReturnType.effectFullFunctionDefinition(_value_3);
+          Object _compile_1 = this.typeGenerator.compile(_effectFullFunctionDefinition);
+          _builder.append(_compile_1, "");
+          _builder.append(">() {");
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t\t");
+          _builder.append("@Override");
+          _builder.newLine();
+          _builder.append("\t\t\t");
+          _builder.append("public ");
+          EffectFullFunctionDefinition _value_4 = pft.getValue();
+          Type _effectFullFunctionDefinition_1 = GetReturnType.effectFullFunctionDefinition(_value_4);
+          Object _compile_2 = this.typeGenerator.compile(_effectFullFunctionDefinition_1);
+          _builder.append(_compile_2, "\t\t\t");
+          _builder.append(" f(");
+          EffectFullFunctionDefinition _value_5 = pft.getValue();
+          Argument _arg_2 = _value_5.getArg();
+          Type _argumentType_1 = Others.getArgumentType(_arg_2);
+          Object _compile_3 = this.typeGenerator.compile(_argumentType_1);
+          _builder.append(_compile_3, "\t\t\t");
+          _builder.append(" ");
+          EffectFullFunctionDefinition _value_6 = pft.getValue();
+          Argument _arg_3 = _value_6.getArg();
+          String _argumentName_1 = Others.getArgumentName(_arg_3);
+          _builder.append(_argumentName_1, "\t\t\t");
+          _builder.append(") {");
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t\t\t");
+          _builder.append("return ");
+          EffectFullFunctionDefinition _value_7 = pft.getValue();
+          FunctionBodyEffectFull _functionBody_1 = _value_7.getFunctionBody();
+          EffectFullFunctionDefinition _value_8 = pft.getValue();
+          Argument _arg_4 = _value_8.getArg();
+          String _compileIO = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_1), _arg_4);
+          _builder.append(_compileIO, "\t\t\t\t");
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t\t");
+          _builder.append("}");
+          _builder.newLine();
+          _builder.append("\t");
+          _builder.append("}");
+          _builder.newLine();
+        } else {
+          if (((pft.getValue().getFunctionBody() instanceof CompositionFunctionBodyEffect) && Objects.equal(pft.getValue().getArg(), null))) {
+            _builder.append("new F0<");
+            EffectFullFunctionDefinition _value_9 = pft.getValue();
+            Type _effectFullFunctionDefinition_2 = GetReturnType.effectFullFunctionDefinition(_value_9);
+            Object _compile_4 = this.typeGenerator.compile(_effectFullFunctionDefinition_2);
+            _builder.append(_compile_4, "");
+            _builder.append(">() {");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t\t");
+            _builder.append("@Override");
+            _builder.newLine();
+            _builder.append("\t\t\t");
+            _builder.append("public ");
+            EffectFullFunctionDefinition _value_10 = pft.getValue();
+            Type _effectFullFunctionDefinition_3 = GetReturnType.effectFullFunctionDefinition(_value_10);
+            Object _compile_5 = this.typeGenerator.compile(_effectFullFunctionDefinition_3);
+            _builder.append(_compile_5, "\t\t\t");
+            _builder.append(" f() {");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t\t\t");
+            _builder.append("return ");
+            EffectFullFunctionDefinition _value_11 = pft.getValue();
+            FunctionBodyEffectFull _functionBody_2 = _value_11.getFunctionBody();
+            String _compileIO_1 = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_2), null);
+            _builder.append(_compileIO_1, "\t\t\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t\t");
+            _builder.append("}");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("}.f()");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    return _builder.toString();
   }
   
-  public String compileIO(final CompositionFunctionBodyEffect cfbe, final EffectFullArgument arg) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method compileIO(EffectFullReference, String) from the type ValueEffectFullFunctionCommonGenerator refers to the missing type EffectFullReference"
-      + "\nThe method compileIO(EffectFullReference, String) from the type ValueEffectFullFunctionCommonGenerator refers to the missing type EffectFullReference");
+  public String compileIO(final CompositionFunctionBodyEffect cfbe, final Argument arg) {
+    String argName = "";
+    boolean _notEquals = (!Objects.equal(arg, null));
+    if (_notEquals) {
+      String _argumentName = Others.getArgumentName(arg);
+      String _plus = ("IOFunctions.unit(" + _argumentName);
+      String _plus_1 = (_plus + ")");
+      argName = _plus_1;
+    }
+    EffectFullBodyContent _firstFunctionDefinitionFromCompositionBodyEffectFull = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe);
+    String _compileIO = this.compileIO(_firstFunctionDefinitionFromCompositionBodyEffectFull, argName);
+    String result = _compileIO.toString();
+    EList<CompositionFunctionBodyEffectFullFactor> _functionChain = cfbe.getFunctionChain();
+    for (final CompositionFunctionBodyEffectFullFactor cfbef : _functionChain) {
+      {
+        String _result = result;
+        result = (_result + "\n\t");
+        EffectFullBodyContent _functionDefinitionFromEffectFullFactor = Others.getFunctionDefinitionFromEffectFullFactor(cfbef);
+        String _string = result.toString();
+        String _compileIO_1 = this.compileIO(_functionDefinitionFromEffectFullFactor, _string);
+        String _string_1 = _compileIO_1.toString();
+        result = _string_1;
+      }
+    }
+    return result;
   }
   
-  public String compileIO(final /* EffectFullReference */Object e, final String valueName) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method effectFullReference(EffectFullReference) is undefined for the type Class<GetReturnType>"
-      + "\nThe method compileIO(EffectFullReference, String) from the type ValueEffectFullFunctionCommonGenerator refers to the missing type EffectFullReference"
-      + "\nfunctionType cannot be resolved"
-      + "\nvalue cannot be resolved"
-      + "\nfunctionType cannot be resolved"
-      + "\nargType cannot be resolved"
-      + "\nvalue cannot be resolved"
-      + "\ntype cannot be resolved"
-      + "\ndata cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\ndata cannot be resolved"
-      + "\ncontent cannot be resolved"
-      + "\ndata cannot be resolved"
-      + "\nname cannot be resolved");
+  public String compileIO(final EffectFullBodyContent e, final String valueName) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (e instanceof IntToString) {
+      _matched=true;
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("IOFunctions.map(");
+      _builder.append(valueName, "");
+      _builder.append(" ,Primitives::intToString)");
+      _switchResult = _builder.toString();
+    }
+    if (!_matched) {
+      if (e instanceof IntPow) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(",Primitives::intPow) ");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof Plus) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(", Primitives::plus)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof Minus) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(", Primitives::minus)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof Times) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(", Primitives::times)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof LeftPair) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(", Primitives::leftPair)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof RightPair) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(", Primitives::rightPair)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof Mod) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(", Primitives::mod)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PrimitivePrint) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", PrimitivesEffectFull::primitivePrint)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof LeftPairIO) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", primitivesEffectFull:leftPairIO)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof RightPairIO) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", primitivesEffectFull:rightPairIO)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PrimitiveRandom) {
+        _matched=true;
+        _switchResult = this.valueEmbellishment(valueName, "PrimitivesEffectFull.primitiveRandom()");
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PrimitiveTime) {
+        _matched=true;
+        _switchResult = this.valueEmbellishment(valueName, "PrimitivesEffectFull.primitiveTime()");
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PrimitiveReturn) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(valueName, "");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof ApplyFIO) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", (");
+        EffectFullFunctionType _functionType = ((ApplyFIO)e).getFunctionType();
+        Object _compile = this.typeGenerator.compile(_functionType);
+        _builder.append(_compile, "");
+        _builder.append(" f) -> f.f(IOFunctions.runSafe(");
+        ApplyFIOFactor _value = ((ApplyFIO)e).getValue();
+        EffectFullBodyContent _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
+        String _compileIO = this.compileIO(_valueFromApplyFIOFactor, null);
+        EffectFullFunctionType _functionType_1 = ((ApplyFIO)e).getFunctionType();
+        Type _argType = _functionType_1.getArgType();
+        String _compileIOEffectFullReference = this.compileIOEffectFullReference(_compileIO, null, (_argType instanceof IOType));
+        _builder.append(_compileIOEffectFullReference, "");
+        _builder.append(")))");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof ApplyF) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.unit(IOFunctions.runSafe(");
+        _builder.append(valueName, "");
+        _builder.append(").f(");
+        ApplyFFactor _value = ((ApplyF)e).getValue();
+        String _compileApplyFFactor = this.commonPureFunctions.compileApplyFFactor(_value, "", true);
+        _builder.append(_compileApplyFFactor, "");
+        _builder.append("))");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.unit(PureValue.");
+        String _name = ((PureValue) e).getName();
+        _builder.append(_name, "");
+        _builder.append("())");
+        _switchResult = this.valueEmbellishment(valueName, _builder.toString());
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullValue) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("EffectFullValue.");
+        String _name = ((EffectFullValue) e).getName();
+        _builder.append(_name, "");
+        _builder.append("()");
+        Type _effectFullBodyContent = GetReturnType.effectFullBodyContent(e);
+        boolean _not = (!(_effectFullBodyContent instanceof IOType));
+        _switchResult = this.compileIOEffectFullReference(_builder.toString(), valueName, _not);
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureFunctionDefinition) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(valueName, "");
+        _builder.append(", PureFunctionDefinitions::");
+        String _name = ((PureFunctionDefinition) e).getName();
+        _builder.append(_name, "");
+        _builder.append(")");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullArgument) {
+        _matched=true;
+        String _name = ((EffectFullArgument) e).getName();
+        EffectFullType _type = ((EffectFullArgument)e).getType();
+        boolean _not = (!(_type instanceof IOType));
+        _switchResult = this.compileIOEffectFullReference(_name, valueName, _not);
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullFunctionDefinition) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", EffectFullFunctionDefinitions::");
+        String _name = ((EffectFullFunctionDefinition) e).getName();
+        _builder.append(_name, "");
+        _builder.append(")");
+        return _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof EffectFullExpression) {
+        _matched=true;
+        String _compile = this.compile(((EffectFullExpression)e));
+        _switchResult = this.valueEmbellishment(valueName, _compile);
+      }
+    }
+    if (!_matched) {
+      if (e instanceof ExtractEffectFull) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", (");
+        EffectFullData _data = ((ExtractEffectFull)e).getData();
+        String _name = _data.getName();
+        _builder.append(_name, "");
+        _builder.append(" d) -> ");
+        {
+          EffectFullData _data_1 = ((ExtractEffectFull)e).getData();
+          EffectFullType _content = _data_1.getContent();
+          if ((_content instanceof IOType)) {
+            _builder.append(" d.getValue() ");
+          } else {
+            _builder.append(" IOFunctions.unit(d.getValue())) ");
+          }
+        }
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof ExtractPure) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(valueName, "");
+        _builder.append(", (");
+        PureData _data = ((ExtractPure)e).getData();
+        String _name = _data.getName();
+        _builder.append(_name, "");
+        _builder.append(" d) ->  IOFunctions.unit(d.getValue()))");
+        _switchResult = _builder.toString();
+      }
+    }
+    return _switchResult;
   }
   
   public String compileIOEffectFullReference(final String effectFullReferenceCompiled, final String valueName, final boolean unitWrap) {

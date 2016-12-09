@@ -84,9 +84,10 @@ class GetArgType {
 	
 	def static Type effectFullExpression(EffectFullExpression expression) {
 		switch expression {
-			RecursiveEffectFullExpression: FPMLFactory.eINSTANCE.createUnitType 
+			IOEffectFullFunction: FPMLFactory.eINSTANCE.createUnitType
+			IOEffectFullExpression: FPMLFactory.eINSTANCE.createUnitType 
 			IOExpression: FPMLFactory.eINSTANCE.createUnitType
-			IOPureFunction: pureFunction(expression.pureFunction)
+			IOPureFunction: pureFunction(Others.getPureFunctionFromIOPureFunction(expression))
 			EffectFullFunctionType: effectFullFunctionDefinition(expression.value) 
 			EffectFullDataValue: FPMLFactory.eINSTANCE.createUnitType
 			EffectFullProdValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.prodAdtElement1), effectFullExpression(expression.prodAdtElement2), false)
@@ -104,7 +105,7 @@ class GetArgType {
 	
 	def static Type effectFullFunction(EffectFullFunction function) {
 		switch function {
-			EffectFullExpression: effectFullExpression(function) 
+			EffectFullArgument: FPMLFactory.eINSTANCE.createUnitType
 			EffectFullValue: effectFullExpression(function.value)
 			EffectFullFunctionDefinition: effectFullFunctionDefinition(function)
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)

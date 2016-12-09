@@ -95,13 +95,13 @@ Function: EffectFullFunction | PureFunction;
 
 PureFunction: PureFunctionDefinition | PrimitivePureFunction | PureArgument | Expression | PureValue;
 
-EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction | EffectFullExpression | EffectFullValue;
+EffectFullFunction: EffectFullFunctionDefinition | PrimitiveEffectFullFunction | EffectFullValue | EffectFullArgument;
 
 PrimitiveFunction: PrimitivePureFunction | EffectFullPrimitive;
 
 EffectFullPrimitive: PrimitiveEffectFullFunction | PrimitiveEffectFullValue;
 
-EffectFullBodyContent:  EffectFullFunction | EffectFullPrimitive | EffectFullExpression ;
+EffectFullBodyContent:  EffectFullFunction | EffectFullPrimitive | EffectFullExpression;
 
 ///////////////////////////////////////////////////////////////////
 // Function Body Elements
@@ -207,9 +207,12 @@ EffectFullProdTypeFactor:
 ////////////////////////////////////////////////////////////////////
 
 EffectFullExpression:
-	{RecursiveEffectFullExpression} 'IO' '[' innerValue=EffectFullExpression ']' 
+	{IOEffectFullExpression} 'IO' '[' innerValue=EffectFullExpression ']' 
 	| {IOExpression} 'IO' '(' innerValue=Expression ')'
 	| {IOPureFunction} 'Lift' '(' pureFunction=[PureFunction] ')'
+	| {IOPureFunction} 'Lift' '(' purePrimitive=PrimitivePureFunction ')'
+	| {IOEffectFullFunction} 'LiftIO' '(' effectFullFunction=[EffectFullFunction] ')'
+	| {IOEffectFullFunction} 'LiftIO' '(' effectFullPrimitive=PrimitiveEffectFullFunction ')'
 	| EffectFullFunctionValue 
 	| EffectFullDataValue
 	| EffectFullProdValue

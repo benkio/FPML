@@ -14,24 +14,36 @@ import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataType;
+import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
+import it.unibo.fPML.EffectFullFunctionDefinition;
+import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.EffectFullSumTypeFactor;
+import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
+import it.unibo.fPML.IOEffectFullFunction;
+import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IOType;
+import it.unibo.fPML.PrimitiveEffectFullFunction;
+import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunction;
+import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureSumTypeFactor;
+import it.unibo.fPML.PureValue;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.fPML.VoidType;
+import it.unibo.validation.utilitiesFunctions.GetArgType;
+import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
@@ -178,18 +190,56 @@ public class Others {
     return _switchResult;
   }
   
-  public static PureFunctionType createFuntionType(final ValueType argT, final ValueType returnT) {
+  public static PureFunction getPureFunctionFromIOPureFunction(final IOPureFunction iopf) {
+    PureFunction _pureFunction = iopf.getPureFunction();
+    boolean _equals = Objects.equal(_pureFunction, null);
+    if (_equals) {
+      return iopf.getPurePrimitive();
+    } else {
+      return iopf.getPureFunction();
+    }
+  }
+  
+  public static String getArgumentName(final Argument argument) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (argument instanceof PureArgument) {
+      _matched=true;
+      _switchResult = ((PureArgument)argument).getName();
+    }
+    if (!_matched) {
+      if (argument instanceof EffectFullArgument) {
+        _matched=true;
+        _switchResult = ((EffectFullArgument)argument).getName();
+      }
+    }
+    return _switchResult;
+  }
+  
+  public static EffectFullFunction getEffectFullFunctionFromIOEffectFullFunction(final IOEffectFullFunction function) {
+    EffectFullFunction _xifexpression = null;
+    EffectFullFunction _effectFullFunction = function.getEffectFullFunction();
+    boolean _equals = Objects.equal(_effectFullFunction, null);
+    if (_equals) {
+      _xifexpression = function.getEffectFullPrimitive();
+    } else {
+      _xifexpression = function.getEffectFullFunction();
+    }
+    return _xifexpression;
+  }
+  
+  public static PureFunctionType createPureFuntionType(final ValueType argT, final ValueType returnT) {
     final PureFunctionType func = FPMLFactory.eINSTANCE.createPureFunctionType();
     func.setArgType(argT);
     func.setReturnType(returnT);
     return func;
   }
   
-  public static IOType IOWrap(final Type t) {
-    final IOType returnT = FPMLFactory.eINSTANCE.createIOType();
-    Type _copy = EcoreUtil2.<Type>copy(t);
-    returnT.setType(_copy);
-    return returnT;
+  public static EffectFullFunctionType createEffectFullFuntionType(final Type argT, final IOType returnT) {
+    final EffectFullFunctionType func = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
+    func.setArgType(argT);
+    func.setReturnType(returnT);
+    return func;
   }
   
   public static EffectFullArgument createUnitEffectFullArgument() {
@@ -260,5 +310,84 @@ public class Others {
     EffectFullData _copy = EcoreUtil.<EffectFullData>copy(pd);
     dataType.setType(_copy);
     return dataType;
+  }
+  
+  public static IOType IOWrap(final Type t) {
+    final IOType returnT = FPMLFactory.eINSTANCE.createIOType();
+    Type _copy = EcoreUtil2.<Type>copy(t);
+    returnT.setType(_copy);
+    return returnT;
+  }
+  
+  public static ValueType createTypeOfPureFunction(final PureFunction pf) {
+    ValueType _switchResult = null;
+    boolean _matched = false;
+    if (pf instanceof PureValue) {
+      _matched=true;
+      Expression _value = ((PureValue)pf).getValue();
+      _switchResult = GetReturnType.expression(_value);
+    }
+    if (!_matched) {
+      if (pf instanceof PureFunctionDefinition) {
+        _matched=true;
+        ValueType _pureFunction = GetArgType.pureFunction(pf);
+        ValueType _pureFunction_1 = GetReturnType.pureFunction(pf);
+        _switchResult = Others.createPureFuntionType(_pureFunction, _pureFunction_1);
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof PrimitivePureFunction) {
+        _matched=true;
+        ValueType _pureFunction = GetArgType.pureFunction(pf);
+        ValueType _pureFunction_1 = GetReturnType.pureFunction(pf);
+        _switchResult = Others.createPureFuntionType(_pureFunction, _pureFunction_1);
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof PureArgument) {
+        _matched=true;
+        _switchResult = ((PureArgument)pf).getType();
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof Expression) {
+        _matched=true;
+        _switchResult = GetReturnType.expression(((Expression)pf));
+      }
+    }
+    return _switchResult;
+  }
+  
+  public static Type createTypeOfEffectFullFunction(final EffectFullFunction function) {
+    Type _switchResult = null;
+    boolean _matched = false;
+    if (function instanceof EffectFullValue) {
+      _matched=true;
+      EffectFullExpression _value = ((EffectFullValue)function).getValue();
+      _switchResult = GetReturnType.effectFullExpression(_value);
+    }
+    if (!_matched) {
+      if (function instanceof EffectFullArgument) {
+        _matched=true;
+        _switchResult = ((EffectFullArgument)function).getType();
+      }
+    }
+    if (!_matched) {
+      if (function instanceof PrimitiveEffectFullFunction) {
+        _matched=true;
+        Type _effectFullFunction = GetArgType.effectFullFunction(function);
+        Type _effectFullFunction_1 = GetReturnType.effectFullFunction(function);
+        _switchResult = Others.createEffectFullFuntionType(_effectFullFunction, ((IOType) _effectFullFunction_1));
+      }
+    }
+    if (!_matched) {
+      if (function instanceof EffectFullFunctionDefinition) {
+        _matched=true;
+        Type _effectFullFunction = GetArgType.effectFullFunction(function);
+        Type _effectFullFunction_1 = GetReturnType.effectFullFunction(function);
+        _switchResult = Others.createEffectFullFuntionType(_effectFullFunction, ((IOType) _effectFullFunction_1));
+      }
+    }
+    return _switchResult;
   }
 }

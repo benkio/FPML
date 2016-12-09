@@ -14,13 +14,14 @@ package it.unibo.fPML;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.EffectFullArgument#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullArgument#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getEffectFullArgument()
  * @model
  * @generated
  */
-public interface EffectFullArgument extends Argument
+public interface EffectFullArgument extends EffectFullFunction, Argument
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
@@ -47,5 +48,31 @@ public interface EffectFullArgument extends Argument
    * @generated
    */
   void setType(EffectFullType value);
+
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullArgument_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullArgument#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
 
 } // EffectFullArgument

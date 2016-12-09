@@ -152,9 +152,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EXTRACT_EFFECT_FULL: return createExtractEffectFull();
       case FPMLPackage.PURE_VALUE: return createPureValue();
       case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
-      case FPMLPackage.RECURSIVE_EFFECT_FULL_EXPRESSION: return createRecursiveEffectFullExpression();
+      case FPMLPackage.IO_EFFECT_FULL_EXPRESSION: return createIOEffectFullExpression();
       case FPMLPackage.IO_EXPRESSION: return createIOExpression();
       case FPMLPackage.IO_PURE_FUNCTION: return createIOPureFunction();
+      case FPMLPackage.IO_EFFECT_FULL_FUNCTION: return createIOEffectFullFunction();
       case FPMLPackage.EFFECT_FULL_LAMBDA: return createEffectFullLambda();
       case FPMLPackage.DATA_VALUE: return createDataValue();
       case FPMLPackage.EFFECT_FULL_DATA_VALUE: return createEffectFullDataValue();
@@ -1130,10 +1131,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public RecursiveEffectFullExpression createRecursiveEffectFullExpression()
+  public IOEffectFullExpression createIOEffectFullExpression()
   {
-    RecursiveEffectFullExpressionImpl recursiveEffectFullExpression = new RecursiveEffectFullExpressionImpl();
-    return recursiveEffectFullExpression;
+    IOEffectFullExpressionImpl ioEffectFullExpression = new IOEffectFullExpressionImpl();
+    return ioEffectFullExpression;
   }
 
   /**
@@ -1156,6 +1157,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     IOPureFunctionImpl ioPureFunction = new IOPureFunctionImpl();
     return ioPureFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IOEffectFullFunction createIOEffectFullFunction()
+  {
+    IOEffectFullFunctionImpl ioEffectFullFunction = new IOEffectFullFunctionImpl();
+    return ioEffectFullFunction;
   }
 
   /**

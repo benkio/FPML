@@ -5,6 +5,7 @@ import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.EffectFullAlgebraicType;
+import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataValue;
@@ -24,6 +25,8 @@ import it.unibo.fPML.ExtractEffectFull;
 import it.unibo.fPML.ExtractPure;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
+import it.unibo.fPML.IOEffectFullExpression;
+import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IntPow;
@@ -54,7 +57,6 @@ import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureValue;
-import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.RightPair;
 import it.unibo.fPML.RightPairIO;
 import it.unibo.fPML.Times;
@@ -288,9 +290,15 @@ public class GetArgType {
   public static Type effectFullExpression(final EffectFullExpression expression) {
     Type _switchResult = null;
     boolean _matched = false;
-    if (expression instanceof RecursiveEffectFullExpression) {
+    if (expression instanceof IOEffectFullFunction) {
       _matched=true;
       _switchResult = FPMLFactory.eINSTANCE.createUnitType();
+    }
+    if (!_matched) {
+      if (expression instanceof IOEffectFullExpression) {
+        _matched=true;
+        _switchResult = FPMLFactory.eINSTANCE.createUnitType();
+      }
     }
     if (!_matched) {
       if (expression instanceof IOExpression) {
@@ -301,8 +309,8 @@ public class GetArgType {
     if (!_matched) {
       if (expression instanceof IOPureFunction) {
         _matched=true;
-        PureFunction _pureFunction = ((IOPureFunction)expression).getPureFunction();
-        _switchResult = GetArgType.pureFunction(_pureFunction);
+        PureFunction _pureFunctionFromIOPureFunction = Others.getPureFunctionFromIOPureFunction(((IOPureFunction)expression));
+        _switchResult = GetArgType.pureFunction(_pureFunctionFromIOPureFunction);
       }
     }
     if (!_matched) {
@@ -368,9 +376,9 @@ public class GetArgType {
   public static Type effectFullFunction(final EffectFullFunction function) {
     Type _switchResult = null;
     boolean _matched = false;
-    if (function instanceof EffectFullExpression) {
+    if (function instanceof EffectFullArgument) {
       _matched=true;
-      _switchResult = GetArgType.effectFullExpression(((EffectFullExpression)function));
+      _switchResult = FPMLFactory.eINSTANCE.createUnitType();
     }
     if (!_matched) {
       if (function instanceof EffectFullValue) {

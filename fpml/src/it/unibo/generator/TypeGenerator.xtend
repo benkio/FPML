@@ -67,7 +67,9 @@ class TypeGenerator {
 									else 
 										return '''«GetReturnType.function(e.value).compile»'''
 			EffectFullDataType: e.type.name
-		    RecursiveEffectFullExpression: '''IO<«(e.innerValue as EffectFullExpression).compileType»>'''
+		    IOEffectFullExpression: '''IO<«(e.innerValue as EffectFullExpression).compileType»>'''
+		    IOPureFunction:	'''TODO'''
+			IOEffectFullFunction: '''TODO'''
 		    EffectFullProdValue: '''P2<«e.prodAdtElement1.compileType», «e.prodAdtElement2.compileType»>'''
 		    EffectFullSumValue: '''Either<«e.sumAdtElement1.compileType», «e.sumAdtElement2.compileType»>'''
 			EffectFullValueRef: '''«compileType(e.value.value)»'''

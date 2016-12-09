@@ -25,6 +25,7 @@ import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullSumValue;
+import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
@@ -36,6 +37,8 @@ import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
+import it.unibo.fPML.IOEffectFullExpression;
+import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IOType;
@@ -73,7 +76,6 @@ import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueRef;
-import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.RightPair;
 import it.unibo.fPML.RightPairIO;
 import it.unibo.fPML.StringType;
@@ -257,7 +259,7 @@ public class GetReturnType {
     return _switchResult;
   }
   
-  public static ValueType functionBodyPure(final FunctionBodyPure pure, final Argument arg1, final AdditionalPureArgument arg2, final ValueType returnType) {
+  public static ValueType functionBodyPure(final FunctionBodyPure pure, final PureArgument arg1, final AdditionalPureArgument arg2, final ValueType returnType) {
     ValueType _switchResult = null;
     boolean _matched = false;
     if (pure instanceof EmptyFunctionBody) {
@@ -273,7 +275,7 @@ public class GetReturnType {
     return _switchResult;
   }
   
-  public static ValueType compositionFunctionBodyPure(final CompositionFunctionBodyPure pure, final Argument arg1, final AdditionalPureArgument arg2) {
+  public static ValueType compositionFunctionBodyPure(final CompositionFunctionBodyPure pure, final PureArgument arg1, final AdditionalPureArgument arg2) {
     ValueType _xblockexpression = null;
     {
       PureFunction first = Others.getFirstFunctionDefinitionFromCompositionBodyPure(pure);
@@ -287,7 +289,7 @@ public class GetReturnType {
     return _xblockexpression;
   }
   
-  public static ValueType pureFunctionChain(final List<PureFunction> definitions, final PureFunction first, final Argument argument, final AdditionalPureArgument argument2) {
+  public static ValueType pureFunctionChain(final List<PureFunction> definitions, final PureFunction first, final PureArgument argument, final AdditionalPureArgument argument2) {
     if (((!Objects.equal(argument2, null)) && (!(argument2.getArg2().getType() instanceof VoidType)))) {
       final PureFunctionType functionType = FPMLFactory.eINSTANCE.createPureFunctionType();
       PureArgument _arg2 = argument2.getArg2();
@@ -332,7 +334,7 @@ public class GetReturnType {
         EObject _copy = EcoreUtil.<EObject>copy(_type);
         EObject _type_1 = ((Plus)f).getType();
         EObject _copy_1 = EcoreUtil.<EObject>copy(_type_1);
-        return Others.createFuntionType(((ValueType) _copy), ((ValueType) _copy_1));
+        return Others.createPureFuntionType(((ValueType) _copy), ((ValueType) _copy_1));
       }
     }
     if (!_matched) {
@@ -340,7 +342,7 @@ public class GetReturnType {
         _matched=true;
         IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
         IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
-        return Others.createFuntionType(_createIntegerType, _createIntegerType_1);
+        return Others.createPureFuntionType(_createIntegerType, _createIntegerType_1);
       }
     }
     if (!_matched) {
@@ -348,7 +350,7 @@ public class GetReturnType {
         _matched=true;
         IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
         IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
-        return Others.createFuntionType(_createIntegerType, _createIntegerType_1);
+        return Others.createPureFuntionType(_createIntegerType, _createIntegerType_1);
       }
     }
     if (!_matched) {
@@ -356,7 +358,7 @@ public class GetReturnType {
         _matched=true;
         IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
         IntegerType _createIntegerType_1 = FPMLFactory.eINSTANCE.createIntegerType();
-        return Others.createFuntionType(_createIntegerType, _createIntegerType_1);
+        return Others.createPureFuntionType(_createIntegerType, _createIntegerType_1);
       }
     }
     if (!_matched) {
@@ -387,7 +389,7 @@ public class GetReturnType {
         EObject _type = ((Equals)f).getType();
         EObject _copy = EcoreUtil.<EObject>copy(_type);
         BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
-        return Others.createFuntionType(((ValueType) _copy), _createBooleanType);
+        return Others.createPureFuntionType(((ValueType) _copy), _createBooleanType);
       }
     }
     if (!_matched) {
@@ -395,7 +397,7 @@ public class GetReturnType {
         _matched=true;
         IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
         BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
-        return Others.createFuntionType(_createIntegerType, _createBooleanType);
+        return Others.createPureFuntionType(_createIntegerType, _createBooleanType);
       }
     }
     if (!_matched) {
@@ -403,7 +405,7 @@ public class GetReturnType {
         _matched=true;
         IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
         BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
-        return Others.createFuntionType(_createIntegerType, _createBooleanType);
+        return Others.createPureFuntionType(_createIntegerType, _createBooleanType);
       }
     }
     if (!_matched) {
@@ -411,7 +413,7 @@ public class GetReturnType {
         _matched=true;
         IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
         BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
-        return Others.createFuntionType(_createIntegerType, _createBooleanType);
+        return Others.createPureFuntionType(_createIntegerType, _createBooleanType);
       }
     }
     if (!_matched) {
@@ -419,7 +421,7 @@ public class GetReturnType {
         _matched=true;
         IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
         BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
-        return Others.createFuntionType(_createIntegerType, _createBooleanType);
+        return Others.createPureFuntionType(_createIntegerType, _createBooleanType);
       }
     }
     if (!_matched) {
@@ -427,7 +429,7 @@ public class GetReturnType {
         _matched=true;
         BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
         BooleanType _createBooleanType_1 = FPMLFactory.eINSTANCE.createBooleanType();
-        return Others.createFuntionType(_createBooleanType, _createBooleanType_1);
+        return Others.createPureFuntionType(_createBooleanType, _createBooleanType_1);
       }
     }
     if (!_matched) {
@@ -435,7 +437,7 @@ public class GetReturnType {
         _matched=true;
         BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
         BooleanType _createBooleanType_1 = FPMLFactory.eINSTANCE.createBooleanType();
-        return Others.createFuntionType(_createBooleanType, _createBooleanType_1);
+        return Others.createPureFuntionType(_createBooleanType, _createBooleanType_1);
       }
     }
     if (!_matched) {
@@ -451,10 +453,24 @@ public class GetReturnType {
   public static Type effectFullFunction(final EffectFullFunction function) {
     Type _switchResult = null;
     boolean _matched = false;
-    if (function instanceof EffectFullValue) {
+    if (function instanceof EffectFullArgument) {
       _matched=true;
-      EffectFullExpression _value = ((EffectFullValue)function).getValue();
-      _switchResult = GetReturnType.effectFullExpression(_value);
+      EffectFullType _xifexpression = null;
+      EffectFullType _type = ((EffectFullArgument)function).getType();
+      if ((_type instanceof IOType)) {
+        _xifexpression = ((EffectFullArgument)function).getType();
+      } else {
+        EffectFullType _type_1 = ((EffectFullArgument)function).getType();
+        _xifexpression = Others.IOWrap(_type_1);
+      }
+      _switchResult = _xifexpression;
+    }
+    if (!_matched) {
+      if (function instanceof EffectFullValue) {
+        _matched=true;
+        EffectFullExpression _value = ((EffectFullValue)function).getValue();
+        _switchResult = GetReturnType.effectFullExpression(_value);
+      }
     }
     if (!_matched) {
       if (function instanceof EffectFullFunctionDefinition) {
@@ -466,12 +482,6 @@ public class GetReturnType {
       if (function instanceof PrimitiveEffectFullFunction) {
         _matched=true;
         _switchResult = GetReturnType.primitiveEffectFullFunction(((PrimitiveEffectFullFunction)function));
-      }
-    }
-    if (!_matched) {
-      if (function instanceof EffectFullExpression) {
-        _matched=true;
-        _switchResult = GetReturnType.effectFullExpression(((EffectFullExpression)function));
       }
     }
     return _switchResult;
@@ -516,7 +526,7 @@ public class GetReturnType {
   }
   
   public static Type effectFullFunctionChain(final List<EffectFullBodyContent> references, final EffectFullBodyContent first, final Argument argument, final AdditionalEffectFullArgument argument2) {
-    if (((!Objects.equal(argument2, null)) && ((argument2.getArg2() instanceof EffectFullArgument) && (!(((EffectFullArgument) argument2.getArg2()).getType() instanceof VoidType))))) {
+    if (((!Objects.equal(argument2, null)) && (((argument2.getArg2() instanceof EffectFullArgument) && (!(((EffectFullArgument) argument2.getArg2()).getType() instanceof VoidType))) || (argument2.getArg2() instanceof PureArgument)))) {
       Type _effectFullFunctionChain = GetReturnType.effectFullFunctionChain(references, first, argument, null);
       final Type returnFunctionType = EcoreUtil2.<Type>copy(_effectFullFunctionChain);
       final EffectFullFunctionType functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
@@ -612,10 +622,27 @@ public class GetReturnType {
       return Others.IOWrap(_expression);
     }
     if (!_matched) {
+      if (expression instanceof IOEffectFullExpression) {
+        _matched=true;
+        EffectFullExpression _innerValue = ((IOEffectFullExpression)expression).getInnerValue();
+        Type _effectFullExpression = GetReturnType.effectFullExpression(((EffectFullExpression) _innerValue));
+        return Others.IOWrap(_effectFullExpression);
+      }
+    }
+    if (!_matched) {
       if (expression instanceof IOPureFunction) {
         _matched=true;
-        PureFunction _pureFunction = ((IOPureFunction)expression).getPureFunction();
-        _switchResult = GetReturnType.pureFunction(_pureFunction);
+        PureFunction _pureFunctionFromIOPureFunction = Others.getPureFunctionFromIOPureFunction(((IOPureFunction)expression));
+        ValueType _pureFunction = GetReturnType.pureFunction(_pureFunctionFromIOPureFunction);
+        _switchResult = Others.IOWrap(_pureFunction);
+      }
+    }
+    if (!_matched) {
+      if (expression instanceof IOEffectFullFunction) {
+        _matched=true;
+        EffectFullFunction _effectFullFunctionFromIOEffectFullFunction = Others.getEffectFullFunctionFromIOEffectFullFunction(((IOEffectFullFunction)expression));
+        Type _effectFullFunction = GetReturnType.effectFullFunction(_effectFullFunctionFromIOEffectFullFunction);
+        _switchResult = Others.IOWrap(_effectFullFunction);
       }
     }
     if (!_matched) {
@@ -657,14 +684,6 @@ public class GetReturnType {
       if (expression instanceof EffectFullDataValue) {
         _matched=true;
         _switchResult = ((Type)expression);
-      }
-    }
-    if (!_matched) {
-      if (expression instanceof RecursiveEffectFullExpression) {
-        _matched=true;
-        EffectFullExpression _innerValue = ((RecursiveEffectFullExpression)expression).getInnerValue();
-        Type _effectFullExpression = GetReturnType.effectFullExpression(((EffectFullExpression) _innerValue));
-        return Others.IOWrap(_effectFullExpression);
       }
     }
     if (!_matched) {

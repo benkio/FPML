@@ -451,8 +451,8 @@ public class ValuePureFunctionCommonGenerator {
     if (!_matched) {
       if (initialElement instanceof Argument) {
         _matched=true;
-        String _name = ((Argument)initialElement).getName();
-        result = _name;
+        String _argumentName = Others.getArgumentName(((Argument)initialElement));
+        result = _argumentName;
       }
     }
     EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
@@ -640,7 +640,7 @@ public class ValuePureFunctionCommonGenerator {
       if (_valueReference instanceof Argument) {
         _matched=true;
         PureFunction _valueReference_1 = r.getValueReference();
-        return ((Argument) _valueReference_1).getName();
+        return Others.getArgumentName(((Argument) _valueReference_1));
       }
     }
     Expression _valueExpression = r.getValueExpression();

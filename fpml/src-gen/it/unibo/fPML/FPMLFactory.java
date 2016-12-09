@@ -807,13 +807,13 @@ public interface FPMLFactory extends EFactory
   EffectFullValue createEffectFullValue();
 
   /**
-   * Returns a new object of class '<em>Recursive Effect Full Expression</em>'.
+   * Returns a new object of class '<em>IO Effect Full Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Recursive Effect Full Expression</em>'.
+   * @return a new object of class '<em>IO Effect Full Expression</em>'.
    * @generated
    */
-  RecursiveEffectFullExpression createRecursiveEffectFullExpression();
+  IOEffectFullExpression createIOEffectFullExpression();
 
   /**
    * Returns a new object of class '<em>IO Expression</em>'.
@@ -832,6 +832,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   IOPureFunction createIOPureFunction();
+
+  /**
+   * Returns a new object of class '<em>IO Effect Full Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>IO Effect Full Function</em>'.
+   * @generated
+   */
+  IOEffectFullFunction createIOEffectFullFunction();
 
   /**
    * Returns a new object of class '<em>Effect Full Lambda</em>'.

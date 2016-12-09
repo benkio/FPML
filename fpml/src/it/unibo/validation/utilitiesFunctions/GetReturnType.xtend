@@ -54,20 +54,20 @@ class GetReturnType {
 		}
 	}
 	
-	def static ValueType functionBodyPure(FunctionBodyPure pure, Argument arg1, AdditionalPureArgument arg2, ValueType returnType) {
+	def static ValueType functionBodyPure(FunctionBodyPure pure, PureArgument arg1, AdditionalPureArgument arg2, ValueType returnType) {
 		switch pure {
 			EmptyFunctionBody: returnType
 			CompositionFunctionBodyPure: compositionFunctionBodyPure(pure, arg1, arg2)
 		}
 	}
 	
-	def static ValueType compositionFunctionBodyPure(CompositionFunctionBodyPure pure, Argument arg1, AdditionalPureArgument arg2) {
+	def static ValueType compositionFunctionBodyPure(CompositionFunctionBodyPure pure, PureArgument arg1, AdditionalPureArgument arg2) {
 		var first = Others.getFirstFunctionDefinitionFromCompositionBodyPure(pure)
 		var chain = pure.functionChain.map[x | Others.getFunctionDefinitionFromPureFactor(x)]
 		pureFunctionChain(chain,first, arg1, arg2)
 	}
 	
-	def static ValueType pureFunctionChain(List<PureFunction> definitions, PureFunction first ,Argument argument, AdditionalPureArgument argument2) {
+	def static ValueType pureFunctionChain(List<PureFunction> definitions, PureFunction first ,PureArgument argument, AdditionalPureArgument argument2) {
 		if (argument2 != null && !(argument2.arg2.type instanceof VoidType)) { //HigherOrder
 			val functionType = FPMLFactory.eINSTANCE.createPureFunctionType
 			functionType.argType = EcoreUtil.copy(argument2.arg2.type)
@@ -87,30 +87,30 @@ class GetReturnType {
 		switch f {
 			IntToString: return FPMLFactory.eINSTANCE.createStringType
 			IntPow: return FPMLFactory.eINSTANCE.createIntegerType
-			Plus: return Others.createFuntionType(EcoreUtil.copy(f.type) as ValueType, EcoreUtil.copy(f.type) as ValueType)
-			Minus: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
-			Times: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
-			Mod: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
+			Plus: return Others.createPureFuntionType(EcoreUtil.copy(f.type) as ValueType, EcoreUtil.copy(f.type) as ValueType)
+			Minus: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
+			Times: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
+			Mod: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
 			ApplyF: return f.functionType.returnType
       		LeftPair: return f.type.pureAdtElement1
       		RightPair: return Others.getElement2ValueTypeFromPureAlgebraicType(EcoreUtil.copy(f.type))
-      		Equals: return Others.createFuntionType(EcoreUtil.copy(f.type) as ValueType, FPMLFactory.eINSTANCE.createBooleanType)
-      		MinorEquals: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
-      		MajorEquals: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
-      		Minor: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
-      		Major: return Others.createFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
-      		LogicAnd: return Others.createFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType) 
-      		LogicOr: return Others.createFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType)
+      		Equals: return Others.createPureFuntionType(EcoreUtil.copy(f.type) as ValueType, FPMLFactory.eINSTANCE.createBooleanType)
+      		MinorEquals: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
+      		MajorEquals: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
+      		Minor: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
+      		Major: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
+      		LogicAnd: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType) 
+      		LogicOr: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType)
       		ExtractPure: return f.data.content
 		}
 	}
 	
 	def static Type effectFullFunction(EffectFullFunction function) {
 		switch function {
+			EffectFullArgument: if (function.type instanceof IOType) function.type else Others.IOWrap(function.type)
 			EffectFullValue: effectFullExpression(function.value)
 			EffectFullFunctionDefinition: effectFullFunctionDefinition(function)
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)
-			EffectFullExpression: effectFullExpression(function)
 		}
 	}
 	
@@ -133,8 +133,11 @@ class GetReturnType {
 	
 	def static Type effectFullFunctionChain(List<EffectFullBodyContent> references, EffectFullBodyContent first, Argument argument, AdditionalEffectFullArgument argument2) {
 		if (argument2 != null 
-			&& (argument2.arg2 instanceof EffectFullArgument 
+			&& ((argument2.arg2 instanceof EffectFullArgument 
 				&& !((argument2.arg2 as EffectFullArgument).type instanceof VoidType) )
+				||
+				(argument2.arg2 instanceof PureArgument)
+				)
 		) { //HigherOrder
 			val returnFunctionType = EcoreUtil2.copy(effectFullFunctionChain(references, first, argument, null))
 			val functionType = FPMLFactory.eINSTANCE.createEffectFullFunctionType
@@ -181,7 +184,11 @@ class GetReturnType {
 			IOExpression: {
 				return Others.IOWrap(expression(expression.innerValue))
 			}
-			IOPureFunction: pureFunction(expression.pureFunction)
+			IOEffectFullExpression: {
+				return Others.IOWrap(effectFullExpression(expression.innerValue as EffectFullExpression))
+			}
+			IOPureFunction: Others.IOWrap(pureFunction(Others.getPureFunctionFromIOPureFunction(expression)))
+			IOEffectFullFunction: Others.IOWrap(effectFullFunction(Others.getEffectFullFunctionFromIOEffectFullFunction(expression)))
 			EffectFullFunctionType:{
 				if (expression.value instanceof EffectFullLambda){
 					var EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument
@@ -192,9 +199,6 @@ class GetReturnType {
 					expression
 				} 
 			EffectFullDataValue: expression
-			RecursiveEffectFullExpression: {
-				return Others.IOWrap(effectFullExpression(expression.innerValue as EffectFullExpression))
-			}
 			EffectFullProdValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.prodAdtElement1), effectFullExpression(expression.prodAdtElement2), false)
 			EffectFullSumValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.sumAdtElement1), effectFullExpression(expression.sumAdtElement2), true)
 			EffectFullValueRef: effectFullExpression(expression.value.value)

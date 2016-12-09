@@ -1399,20 +1399,20 @@ ruleEffectFullFunction returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullFunctionAccess().getEffectFullExpressionParserRuleCall_2());
+			newCompositeNode(grammarAccess.getEffectFullFunctionAccess().getEffectFullValueParserRuleCall_2());
 		}
-		this_EffectFullExpression_2=ruleEffectFullExpression
+		this_EffectFullValue_2=ruleEffectFullValue
 		{
-			$current = $this_EffectFullExpression_2.current;
+			$current = $this_EffectFullValue_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullFunctionAccess().getEffectFullValueParserRuleCall_3());
+			newCompositeNode(grammarAccess.getEffectFullFunctionAccess().getEffectFullArgumentParserRuleCall_3());
 		}
-		this_EffectFullValue_3=ruleEffectFullValue
+		this_EffectFullArgument_3=ruleEffectFullArgument
 		{
-			$current = $this_EffectFullValue_3.current;
+			$current = $this_EffectFullArgument_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -3160,7 +3160,7 @@ ruleEffectFullExpression returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElement(
-						grammarAccess.getEffectFullExpressionAccess().getRecursiveEffectFullExpressionAction_0_0(),
+						grammarAccess.getEffectFullExpressionAccess().getIOEffectFullExpressionAction_0_0(),
 						$current);
 				}
 			)
@@ -3273,48 +3273,165 @@ ruleEffectFullExpression returns [EObject current=null]
 			}
 		)
 		    |
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getEffectFullExpressionAccess().getIOPureFunctionAction_3_0(),
+						$current);
+				}
+			)
+			otherlv_16='Lift'
+			{
+				newLeafNode(otherlv_16, grammarAccess.getEffectFullExpressionAccess().getLiftKeyword_3_1());
+			}
+			otherlv_17='('
+			{
+				newLeafNode(otherlv_17, grammarAccess.getEffectFullExpressionAccess().getLeftParenthesisKeyword_3_2());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getPurePrimitivePrimitivePureFunctionParserRuleCall_3_3_0());
+					}
+					lv_purePrimitive_18_0=rulePrimitivePureFunction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getEffectFullExpressionRule());
+						}
+						set(
+							$current,
+							"purePrimitive",
+							lv_purePrimitive_18_0,
+							"it.unibo.FPML.PrimitivePureFunction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_19=')'
+			{
+				newLeafNode(otherlv_19, grammarAccess.getEffectFullExpressionAccess().getRightParenthesisKeyword_3_4());
+			}
+		)
+		    |
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getEffectFullExpressionAccess().getIOEffectFullFunctionAction_4_0(),
+						$current);
+				}
+			)
+			otherlv_21='LiftIO'
+			{
+				newLeafNode(otherlv_21, grammarAccess.getEffectFullExpressionAccess().getLiftIOKeyword_4_1());
+			}
+			otherlv_22='('
+			{
+				newLeafNode(otherlv_22, grammarAccess.getEffectFullExpressionAccess().getLeftParenthesisKeyword_4_2());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getEffectFullExpressionRule());
+						}
+					}
+					otherlv_23=RULE_ID
+					{
+						newLeafNode(otherlv_23, grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionEffectFullFunctionCrossReference_4_3_0());
+					}
+				)
+			)
+			otherlv_24=')'
+			{
+				newLeafNode(otherlv_24, grammarAccess.getEffectFullExpressionAccess().getRightParenthesisKeyword_4_4());
+			}
+		)
+		    |
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getEffectFullExpressionAccess().getIOEffectFullFunctionAction_5_0(),
+						$current);
+				}
+			)
+			otherlv_26='LiftIO'
+			{
+				newLeafNode(otherlv_26, grammarAccess.getEffectFullExpressionAccess().getLiftIOKeyword_5_1());
+			}
+			otherlv_27='('
+			{
+				newLeafNode(otherlv_27, grammarAccess.getEffectFullExpressionAccess().getLeftParenthesisKeyword_5_2());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullPrimitivePrimitiveEffectFullFunctionParserRuleCall_5_3_0());
+					}
+					lv_effectFullPrimitive_28_0=rulePrimitiveEffectFullFunction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getEffectFullExpressionRule());
+						}
+						set(
+							$current,
+							"effectFullPrimitive",
+							lv_effectFullPrimitive_28_0,
+							"it.unibo.FPML.PrimitiveEffectFullFunction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_29=')'
+			{
+				newLeafNode(otherlv_29, grammarAccess.getEffectFullExpressionAccess().getRightParenthesisKeyword_5_4());
+			}
+		)
+		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionValueParserRuleCall_3());
+			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullFunctionValueParserRuleCall_6());
 		}
-		this_EffectFullFunctionValue_15=ruleEffectFullFunctionValue
+		this_EffectFullFunctionValue_30=ruleEffectFullFunctionValue
 		{
-			$current = $this_EffectFullFunctionValue_15.current;
+			$current = $this_EffectFullFunctionValue_30.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullDataValueParserRuleCall_4());
+			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullDataValueParserRuleCall_7());
 		}
-		this_EffectFullDataValue_16=ruleEffectFullDataValue
+		this_EffectFullDataValue_31=ruleEffectFullDataValue
 		{
-			$current = $this_EffectFullDataValue_16.current;
+			$current = $this_EffectFullDataValue_31.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullProdValueParserRuleCall_5());
+			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullProdValueParserRuleCall_8());
 		}
-		this_EffectFullProdValue_17=ruleEffectFullProdValue
+		this_EffectFullProdValue_32=ruleEffectFullProdValue
 		{
-			$current = $this_EffectFullProdValue_17.current;
+			$current = $this_EffectFullProdValue_32.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullSumValueParserRuleCall_6());
+			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullSumValueParserRuleCall_9());
 		}
-		this_EffectFullSumValue_18=ruleEffectFullSumValue
+		this_EffectFullSumValue_33=ruleEffectFullSumValue
 		{
-			$current = $this_EffectFullSumValue_18.current;
+			$current = $this_EffectFullSumValue_33.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullValueRefParserRuleCall_7());
+			newCompositeNode(grammarAccess.getEffectFullExpressionAccess().getEffectFullValueRefParserRuleCall_10());
 		}
-		this_EffectFullValueRef_19=ruleEffectFullValueRef
+		this_EffectFullValueRef_34=ruleEffectFullValueRef
 		{
-			$current = $this_EffectFullValueRef_19.current;
+			$current = $this_EffectFullValueRef_34.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

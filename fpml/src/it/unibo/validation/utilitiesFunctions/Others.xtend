@@ -4,8 +4,16 @@ import it.unibo.fPML.*
 import it.unibo.fPML.EffectFullAlgebraicType
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.EObject
+import it.unibo.fPML.IOEffectFullFunction
+import it.unibo.fPML.EffectFullFunction
 
 class Others {
+	
+	///////////////////////////////////////////////////////////////////////////////////////
+	// GETs
+	//////////////////////////////////////////////////////////////////////////////////////
+	
 	def static PureFunction getFunctionDefinitionFromPureFactor(CompositionFunctionBodyPureFactor cfbpf) {
 		if (cfbpf.primitiveElement == null && cfbpf.referenceElement == null) return cfbpf.expressionElement
 		else if (cfbpf.referenceElement == null) return cfbpf.primitiveElement
@@ -60,17 +68,40 @@ class Others {
 		}
 	} 
 	
-	def static PureFunctionType createFuntionType(ValueType argT, ValueType returnT){
+	def static PureFunction getPureFunctionFromIOPureFunction(IOPureFunction iopf) {
+		if (iopf.pureFunction == null) return iopf.purePrimitive
+		else return iopf.pureFunction
+	}
+	
+	
+	def static getArgumentName(Argument argument) {
+		switch argument {
+			PureArgument: argument.name
+			EffectFullArgument: argument.name
+		}
+	}
+	
+	def static getEffectFullFunctionFromIOEffectFullFunction(IOEffectFullFunction function) {
+		if (function.effectFullFunction == null) function.effectFullPrimitive
+		else function.effectFullFunction
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// CREATE
+	/////////////////////////////////////////////////////////////////////////////////////////
+	
+	def static PureFunctionType createPureFuntionType(ValueType argT, ValueType returnT){
 		val func = FPMLFactory.eINSTANCE.createPureFunctionType()
       	func.argType = argT
       	func.returnType = returnT
       	return func
 	}
 	
-	def static IOType IOWrap(Type t){
-		val returnT = FPMLFactory.eINSTANCE.createIOType
-		returnT.type = EcoreUtil2.copy(t)
-		return returnT	
+	def static EffectFullFunctionType createEffectFullFuntionType(Type argT, IOType returnT){
+		val func = FPMLFactory.eINSTANCE.createEffectFullFunctionType()
+      	func.argType = argT
+      	func.returnType = returnT
+      	return func
 	}
 	
 	def static EffectFullArgument createUnitEffectFullArgument(){
@@ -130,4 +161,30 @@ class Others {
 		dataType.type = EcoreUtil.copy(pd)
 		return dataType
 	}
+	
+	def static IOType IOWrap(Type t){
+		val returnT = FPMLFactory.eINSTANCE.createIOType
+		returnT.type = EcoreUtil2.copy(t)
+		return returnT	
+	}
+	
+	def static ValueType createTypeOfPureFunction(PureFunction pf){
+		switch pf {
+			PureValue: GetReturnType.expression(pf.value)
+			PureFunctionDefinition: it.unibo.validation.utilitiesFunctions.Others.createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
+			PrimitivePureFunction: it.unibo.validation.utilitiesFunctions.Others.createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
+			PureArgument: pf.type
+			Expression: GetReturnType.expression(pf)
+		}
+	}
+	
+	def static Type createTypeOfEffectFullFunction(EffectFullFunction function) {
+		switch function { 
+			EffectFullValue: GetReturnType.effectFullExpression(function.value)
+			EffectFullArgument: function.type
+			PrimitiveEffectFullFunction: it.unibo.validation.utilitiesFunctions.Others.createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
+			EffectFullFunctionDefinition: it.unibo.validation.utilitiesFunctions.Others.createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
+		}
+	}
+	
 }

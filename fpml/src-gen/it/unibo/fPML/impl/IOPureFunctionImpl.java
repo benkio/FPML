@@ -5,9 +5,11 @@ package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.IOPureFunction;
+import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureFunction;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -23,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.impl.IOPureFunctionImpl#getPureFunction <em>Pure Function</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.IOPureFunctionImpl#getPurePrimitive <em>Pure Primitive</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +41,16 @@ public class IOPureFunctionImpl extends EffectFullExpressionImpl implements IOPu
    * @ordered
    */
   protected PureFunction pureFunction;
+
+  /**
+   * The cached value of the '{@link #getPurePrimitive() <em>Pure Primitive</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPurePrimitive()
+   * @generated
+   * @ordered
+   */
+  protected PrimitivePureFunction purePrimitive;
 
   /**
    * <!-- begin-user-doc -->
@@ -108,6 +121,70 @@ public class IOPureFunctionImpl extends EffectFullExpressionImpl implements IOPu
    * <!-- end-user-doc -->
    * @generated
    */
+  public PrimitivePureFunction getPurePrimitive()
+  {
+    return purePrimitive;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetPurePrimitive(PrimitivePureFunction newPurePrimitive, NotificationChain msgs)
+  {
+    PrimitivePureFunction oldPurePrimitive = purePrimitive;
+    purePrimitive = newPurePrimitive;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.IO_PURE_FUNCTION__PURE_PRIMITIVE, oldPurePrimitive, newPurePrimitive);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPurePrimitive(PrimitivePureFunction newPurePrimitive)
+  {
+    if (newPurePrimitive != purePrimitive)
+    {
+      NotificationChain msgs = null;
+      if (purePrimitive != null)
+        msgs = ((InternalEObject)purePrimitive).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.IO_PURE_FUNCTION__PURE_PRIMITIVE, null, msgs);
+      if (newPurePrimitive != null)
+        msgs = ((InternalEObject)newPurePrimitive).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.IO_PURE_FUNCTION__PURE_PRIMITIVE, null, msgs);
+      msgs = basicSetPurePrimitive(newPurePrimitive, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.IO_PURE_FUNCTION__PURE_PRIMITIVE, newPurePrimitive, newPurePrimitive));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case FPMLPackage.IO_PURE_FUNCTION__PURE_PRIMITIVE:
+        return basicSetPurePrimitive(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -116,6 +193,8 @@ public class IOPureFunctionImpl extends EffectFullExpressionImpl implements IOPu
       case FPMLPackage.IO_PURE_FUNCTION__PURE_FUNCTION:
         if (resolve) return getPureFunction();
         return basicGetPureFunction();
+      case FPMLPackage.IO_PURE_FUNCTION__PURE_PRIMITIVE:
+        return getPurePrimitive();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -132,6 +211,9 @@ public class IOPureFunctionImpl extends EffectFullExpressionImpl implements IOPu
     {
       case FPMLPackage.IO_PURE_FUNCTION__PURE_FUNCTION:
         setPureFunction((PureFunction)newValue);
+        return;
+      case FPMLPackage.IO_PURE_FUNCTION__PURE_PRIMITIVE:
+        setPurePrimitive((PrimitivePureFunction)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -150,6 +232,9 @@ public class IOPureFunctionImpl extends EffectFullExpressionImpl implements IOPu
       case FPMLPackage.IO_PURE_FUNCTION__PURE_FUNCTION:
         setPureFunction((PureFunction)null);
         return;
+      case FPMLPackage.IO_PURE_FUNCTION__PURE_PRIMITIVE:
+        setPurePrimitive((PrimitivePureFunction)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -166,6 +251,8 @@ public class IOPureFunctionImpl extends EffectFullExpressionImpl implements IOPu
     {
       case FPMLPackage.IO_PURE_FUNCTION__PURE_FUNCTION:
         return pureFunction != null;
+      case FPMLPackage.IO_PURE_FUNCTION__PURE_PRIMITIVE:
+        return purePrimitive != null;
     }
     return super.eIsSet(featureID);
   }

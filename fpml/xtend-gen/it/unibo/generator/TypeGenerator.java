@@ -17,7 +17,10 @@ import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.Expression;
+import it.unibo.fPML.IOEffectFullExpression;
+import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
+import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.PureAlgebraicType;
@@ -30,7 +33,6 @@ import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueRef;
-import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -395,14 +397,30 @@ public class TypeGenerator {
       }
     }
     if (!_matched) {
-      if (e instanceof RecursiveEffectFullExpression) {
+      if (e instanceof IOEffectFullExpression) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IO<");
-        EffectFullExpression _innerValue = ((RecursiveEffectFullExpression)e).getInnerValue();
+        EffectFullExpression _innerValue = ((IOEffectFullExpression)e).getInnerValue();
         Object _compileType = this.compileType(((EffectFullExpression) _innerValue));
         _builder.append(_compileType, "");
         _builder.append(">");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof IOPureFunction) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("TODO");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (e instanceof IOEffectFullFunction) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("TODO");
         _switchResult = _builder;
       }
     }

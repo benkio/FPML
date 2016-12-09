@@ -19,6 +19,7 @@ import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
+import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullLambda;
@@ -33,10 +34,15 @@ import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
+import it.unibo.fPML.IOEffectFullExpression;
+import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
+import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.MainFunc;
+import it.unibo.fPML.PrimitiveEffectFullFunction;
+import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureFunction;
@@ -49,7 +55,6 @@ import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueRef;
-import it.unibo.fPML.RecursiveEffectFullExpression;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -497,9 +502,41 @@ public class Checks {
           return ((((IOType) type).getType() instanceof ValueType) && Checks.DataAndValue(((Expression) ((IOExpression)value).getInnerValue()), ((ValueType) ((IOType) type).getType())));
         }
         if (!_matched_1) {
-          if (value instanceof RecursiveEffectFullExpression) {
+          if (value instanceof IOEffectFullExpression) {
             _matched_1=true;
-            return ((((IOType) type).getType() instanceof EffectFullType) && Checks.effectFullDataAndValue(((EffectFullExpression) ((RecursiveEffectFullExpression)value).getInnerValue()), ((EffectFullType) ((IOType) type).getType())));
+            return ((((IOType) type).getType() instanceof EffectFullType) && Checks.effectFullDataAndValue(((EffectFullExpression) ((IOEffectFullExpression)value).getInnerValue()), ((EffectFullType) ((IOType) type).getType())));
+          }
+        }
+        if (!_matched_1) {
+          if (value instanceof IOPureFunction) {
+            _matched_1=true;
+            PureFunction function = null;
+            PureFunction _pureFunction = ((IOPureFunction)value).getPureFunction();
+            boolean _notEquals = (!Objects.equal(_pureFunction, null));
+            if (_notEquals) {
+              PureFunction _pureFunction_1 = ((IOPureFunction)value).getPureFunction();
+              function = _pureFunction_1;
+            } else {
+              PrimitivePureFunction _purePrimitive = ((IOPureFunction)value).getPurePrimitive();
+              function = _purePrimitive;
+            }
+            return ((((IOType) type).getType() instanceof ValueType) && Checks.ValueTypeEquals(Others.createTypeOfPureFunction(function), ((ValueType) ((IOType) type).getType())));
+          }
+        }
+        if (!_matched_1) {
+          if (value instanceof IOEffectFullFunction) {
+            _matched_1=true;
+            EffectFullFunction function = null;
+            EffectFullFunction _effectFullFunction = ((IOEffectFullFunction)value).getEffectFullFunction();
+            boolean _notEquals = (!Objects.equal(_effectFullFunction, null));
+            if (_notEquals) {
+              EffectFullFunction _effectFullFunction_1 = ((IOEffectFullFunction)value).getEffectFullFunction();
+              function = _effectFullFunction_1;
+            } else {
+              PrimitiveEffectFullFunction _effectFullPrimitive = ((IOEffectFullFunction)value).getEffectFullPrimitive();
+              function = _effectFullPrimitive;
+            }
+            return ((((IOType) type).getType() instanceof EffectFullType) && Checks.TypeEquals(Others.createTypeOfEffectFullFunction(function), ((EffectFullType) ((IOType) type).getType())));
           }
         }
         return false;
@@ -558,10 +595,11 @@ public class Checks {
   public static boolean applyFIO(final ApplyFIO afio) {
     EffectFullFunctionType _functionType = afio.getFunctionType();
     Type _argType = _functionType.getArgType();
+    IOType _IOWrap = Others.IOWrap(_argType);
     ApplyFIOFactor _value = afio.getValue();
     EffectFullBodyContent _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
     Type _effectFullBodyContent = GetReturnType.effectFullBodyContent(_valueFromApplyFIOFactor);
-    return Checks.TypeEquals(_argType, _effectFullBodyContent);
+    return Checks.TypeEquals(_IOWrap, _effectFullBodyContent);
   }
   
   public static boolean effectFullExpressionHasSideEffects(final EffectFullExpression expression) {

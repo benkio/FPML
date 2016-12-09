@@ -14,6 +14,7 @@ package it.unibo.fPML;
  * </p>
  * <ul>
  *   <li>{@link it.unibo.fPML.IOPureFunction#getPureFunction <em>Pure Function</em>}</li>
+ *   <li>{@link it.unibo.fPML.IOPureFunction#getPurePrimitive <em>Pure Primitive</em>}</li>
  * </ul>
  *
  * @see it.unibo.fPML.FPMLPackage#getIOPureFunction()
@@ -47,5 +48,31 @@ public interface IOPureFunction extends EffectFullExpression
    * @generated
    */
   void setPureFunction(PureFunction value);
+
+  /**
+   * Returns the value of the '<em><b>Pure Primitive</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Pure Primitive</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Pure Primitive</em>' containment reference.
+   * @see #setPurePrimitive(PrimitivePureFunction)
+   * @see it.unibo.fPML.FPMLPackage#getIOPureFunction_PurePrimitive()
+   * @model containment="true"
+   * @generated
+   */
+  PrimitivePureFunction getPurePrimitive();
+
+  /**
+   * Sets the value of the '{@link it.unibo.fPML.IOPureFunction#getPurePrimitive <em>Pure Primitive</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Pure Primitive</em>' containment reference.
+   * @see #getPurePrimitive()
+   * @generated
+   */
+  void setPurePrimitive(PrimitivePureFunction value);
 
 } // IOPureFunction

@@ -22,7 +22,9 @@ class ValueEffectFullFunctionCommonGenerator {
 			EffectFullValueRef: ''''EffectFullValue.«e.value.name»()'''
 			Expression: commonFunctions.compile(e as Expression)
 			IOExpression: return "IOFunctions.unit(" + commonFunctions.compile(e.innerValue as Expression) + ")"
-			RecursiveEffectFullExpression: return "IOFunctions.unit(" + (e.innerValue as EffectFullExpression).compile + ")"
+			IOEffectFullExpression: return "IOFunctions.unit(" + (e.innerValue as EffectFullExpression).compile + ")"
+			IOPureFunction: '''TODO'''
+			IOEffectFullFunction: '''TODO'''
 		}	
 	}
 	
@@ -43,7 +45,11 @@ class ValueEffectFullFunctionCommonGenerator {
 			EffectFullDataValue: return compile(v as EffectFullExpression)
 			Expression: commonFunctions.compileAdtValue(v as Expression, (d as IOType).type)
 			IOExpression: '''IOFunctions.unit(«commonFunctions.compileAdtValue(v.innerValue as Expression, (d as IOType).type)»)'''
-			RecursiveEffectFullExpression: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullExpression, (d as IOType).type as EffectFullType)»)'''
+			IOEffectFullExpression: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullExpression, (d as IOType).type as EffectFullType)»)'''
+			IOPureFunction:{
+				'''TODO'''
+			}
+			IOEffectFullFunction: '''TODO'''
 		}
 	}
 	
@@ -51,14 +57,14 @@ class ValueEffectFullFunctionCommonGenerator {
 	«IF (pft.value.functionBody instanceof EmptyFunctionBody)»
 		new F<Object>() {
 						@Override
-						public Object f(Object «pft.value.arg.name») {
+						public Object f(Object «Others.getArgumentName(pft.value.arg)») {
 							throw new UnsupportedOperationException("TODO");
 						}
 				}
 	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg != null)»
-	new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>() {
+	new F<«typeGenerator.compile(Others.getArgumentType(pft.value.arg))»,«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>() {
 				@Override
-				public «typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
+				public «typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))» f(«typeGenerator.compile(Others.getArgumentType(pft.value.arg))» «Others.getArgumentName(pft.value.arg)») {
 					return «compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), pft.value.arg)»;
 				}
 		}
@@ -76,10 +82,10 @@ class ValueEffectFullFunctionCommonGenerator {
 	// IO Functions
 	//////////////////////////////////////////////////////////////////////////////////
 	
-	def compileIO(CompositionFunctionBodyEffect cfbe, EffectFullArgument arg) {
+	def compileIO(CompositionFunctionBodyEffect cfbe, Argument arg) {
 		var String argName = ""
 		if (arg != null){
-			argName = "IOFunctions.unit(" + arg.name + ")"
+			argName = "IOFunctions.unit(" + Others.getArgumentName(arg) + ")"
  		}
 		var String result = compileIO(Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe), argName).toString
 		for (CompositionFunctionBodyEffectFullFactor cfbef: cfbe.functionChain){
@@ -90,7 +96,7 @@ class ValueEffectFullFunctionCommonGenerator {
 	}
 	
 	
-	def String compileIO(EffectFullReference e, String valueName){
+	def String compileIO(EffectFullBodyContent e, String valueName){
 		switch e {
 			IntToString: '''IOFunctions.map(«valueName» ,Primitives::intToString)'''
       		IntPow: '''IOFunctions.map(«valueName»,Primitives::intPow) '''
@@ -109,7 +115,7 @@ class ValueEffectFullFunctionCommonGenerator {
 			ApplyFIO: '''IOFunctions.bind(«valueName», («typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIOEffectFullReference(compileIO(Others.getValueFromApplyFIOFactor(e.value), null), null, (e.functionType.argType instanceof IOType))»)))'''
 			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«valueName»).f(«commonPureFunctions.compileApplyFFactor(e.value,"", true)»))'''
 			PureValue: valueEmbellishment(valueName,'''IOFunctions.unit(PureValue.«(e as PureValue).name»())''')
-			EffectFullValue: compileIOEffectFullReference('''EffectFullValue.«(e as EffectFullValue).name»()''', valueName, !(GetReturnType.effectFullReference(e) instanceof IOType))
+			EffectFullValue: compileIOEffectFullReference('''EffectFullValue.«(e as EffectFullValue).name»()''', valueName, !(GetReturnType.effectFullBodyContent(e) instanceof IOType))
 			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
       		EffectFullArgument: compileIOEffectFullReference((e as EffectFullArgument).name, valueName, !(e.type instanceof IOType))
       		EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)'''
