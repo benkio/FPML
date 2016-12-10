@@ -789,6 +789,24 @@ public interface FPMLFactory extends EFactory
   ExtractEffectFull createExtractEffectFull();
 
   /**
+   * Returns a new object of class '<em>Lift Pure Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lift Pure Function</em>'.
+   * @generated
+   */
+  LiftPureFunction createLiftPureFunction();
+
+  /**
+   * Returns a new object of class '<em>Lift Effect Full Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lift Effect Full Function</em>'.
+   * @generated
+   */
+  LiftEffectFullFunction createLiftEffectFullFunction();
+
+  /**
    * Returns a new object of class '<em>Pure Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

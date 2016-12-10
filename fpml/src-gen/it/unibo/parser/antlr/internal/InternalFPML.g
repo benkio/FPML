@@ -3246,9 +3246,9 @@ ruleEffectFullExpression returns [EObject current=null]
 						$current);
 				}
 			)
-			otherlv_11='Lift'
+			otherlv_11='IOF'
 			{
-				newLeafNode(otherlv_11, grammarAccess.getEffectFullExpressionAccess().getLiftKeyword_2_1());
+				newLeafNode(otherlv_11, grammarAccess.getEffectFullExpressionAccess().getIOFKeyword_2_1());
 			}
 			otherlv_12='('
 			{
@@ -3281,9 +3281,9 @@ ruleEffectFullExpression returns [EObject current=null]
 						$current);
 				}
 			)
-			otherlv_16='Lift'
+			otherlv_16='IOF'
 			{
-				newLeafNode(otherlv_16, grammarAccess.getEffectFullExpressionAccess().getLiftKeyword_3_1());
+				newLeafNode(otherlv_16, grammarAccess.getEffectFullExpressionAccess().getIOFKeyword_3_1());
 			}
 			otherlv_17='('
 			{
@@ -3322,13 +3322,13 @@ ruleEffectFullExpression returns [EObject current=null]
 						$current);
 				}
 			)
-			otherlv_21='LiftIO'
+			otherlv_21='IOF'
 			{
-				newLeafNode(otherlv_21, grammarAccess.getEffectFullExpressionAccess().getLiftIOKeyword_4_1());
+				newLeafNode(otherlv_21, grammarAccess.getEffectFullExpressionAccess().getIOFKeyword_4_1());
 			}
-			otherlv_22='('
+			otherlv_22='['
 			{
-				newLeafNode(otherlv_22, grammarAccess.getEffectFullExpressionAccess().getLeftParenthesisKeyword_4_2());
+				newLeafNode(otherlv_22, grammarAccess.getEffectFullExpressionAccess().getLeftSquareBracketKeyword_4_2());
 			}
 			(
 				(
@@ -3343,9 +3343,9 @@ ruleEffectFullExpression returns [EObject current=null]
 					}
 				)
 			)
-			otherlv_24=')'
+			otherlv_24=']'
 			{
-				newLeafNode(otherlv_24, grammarAccess.getEffectFullExpressionAccess().getRightParenthesisKeyword_4_4());
+				newLeafNode(otherlv_24, grammarAccess.getEffectFullExpressionAccess().getRightSquareBracketKeyword_4_4());
 			}
 		)
 		    |
@@ -3357,13 +3357,13 @@ ruleEffectFullExpression returns [EObject current=null]
 						$current);
 				}
 			)
-			otherlv_26='LiftIO'
+			otherlv_26='IOF'
 			{
-				newLeafNode(otherlv_26, grammarAccess.getEffectFullExpressionAccess().getLiftIOKeyword_5_1());
+				newLeafNode(otherlv_26, grammarAccess.getEffectFullExpressionAccess().getIOFKeyword_5_1());
 			}
-			otherlv_27='('
+			otherlv_27='['
 			{
-				newLeafNode(otherlv_27, grammarAccess.getEffectFullExpressionAccess().getLeftParenthesisKeyword_5_2());
+				newLeafNode(otherlv_27, grammarAccess.getEffectFullExpressionAccess().getLeftSquareBracketKeyword_5_2());
 			}
 			(
 				(
@@ -3384,9 +3384,9 @@ ruleEffectFullExpression returns [EObject current=null]
 					}
 				)
 			)
-			otherlv_29=')'
+			otherlv_29=']'
 			{
-				newLeafNode(otherlv_29, grammarAccess.getEffectFullExpressionAccess().getRightParenthesisKeyword_5_4());
+				newLeafNode(otherlv_29, grammarAccess.getEffectFullExpressionAccess().getRightSquareBracketKeyword_5_4());
 			}
 		)
 		    |
@@ -5633,6 +5633,24 @@ rulePrimitiveEffectFullFunction returns [EObject current=null]
 			$current = $this_ExtractEffectFull_5.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getLiftPureFunctionParserRuleCall_6());
+		}
+		this_LiftPureFunction_6=ruleLiftPureFunction
+		{
+			$current = $this_LiftPureFunction_6.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getLiftEffectFullFunctionParserRuleCall_7());
+		}
+		this_LiftEffectFullFunction_7=ruleLiftEffectFullFunction
+		{
+			$current = $this_LiftEffectFullFunction_7.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -6098,6 +6116,166 @@ ruleExtractEffectFull returns [EObject current=null]
 					newLeafNode(otherlv_2, grammarAccess.getExtractEffectFullAccess().getDataEffectFullDataCrossReference_2_0());
 				}
 			)
+		)
+	)
+;
+
+// Entry rule entryRuleLiftPureFunction
+entryRuleLiftPureFunction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLiftPureFunctionRule()); }
+	iv_ruleLiftPureFunction=ruleLiftPureFunction
+	{ $current=$iv_ruleLiftPureFunction.current; }
+	EOF;
+
+// Rule LiftPureFunction
+ruleLiftPureFunction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='Lift'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getLiftPureFunctionAccess().getLiftKeyword_0_0());
+			}
+			otherlv_1='('
+			{
+				newLeafNode(otherlv_1, grammarAccess.getLiftPureFunctionAccess().getLeftParenthesisKeyword_0_1());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getLiftPureFunctionRule());
+						}
+					}
+					otherlv_2=RULE_ID
+					{
+						newLeafNode(otherlv_2, grammarAccess.getLiftPureFunctionAccess().getFunctionRefPureFunctionCrossReference_0_2_0());
+					}
+				)
+			)
+			otherlv_3=')'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getLiftPureFunctionAccess().getRightParenthesisKeyword_0_3());
+			}
+		)
+		    |
+		(
+			otherlv_4='Lift'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getLiftPureFunctionAccess().getLiftKeyword_1_0());
+			}
+			otherlv_5='('
+			{
+				newLeafNode(otherlv_5, grammarAccess.getLiftPureFunctionAccess().getLeftParenthesisKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getLiftPureFunctionAccess().getFunctionPrimitivePrimitivePureFunctionParserRuleCall_1_2_0());
+					}
+					lv_functionPrimitive_6_0=rulePrimitivePureFunction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getLiftPureFunctionRule());
+						}
+						set(
+							$current,
+							"functionPrimitive",
+							lv_functionPrimitive_6_0,
+							"it.unibo.FPML.PrimitivePureFunction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_7=')'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getLiftPureFunctionAccess().getRightParenthesisKeyword_1_3());
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleLiftEffectFullFunction
+entryRuleLiftEffectFullFunction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLiftEffectFullFunctionRule()); }
+	iv_ruleLiftEffectFullFunction=ruleLiftEffectFullFunction
+	{ $current=$iv_ruleLiftEffectFullFunction.current; }
+	EOF;
+
+// Rule LiftEffectFullFunction
+ruleLiftEffectFullFunction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='Lift'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getLiftEffectFullFunctionAccess().getLiftKeyword_0_0());
+			}
+			otherlv_1='['
+			{
+				newLeafNode(otherlv_1, grammarAccess.getLiftEffectFullFunctionAccess().getLeftSquareBracketKeyword_0_1());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getLiftEffectFullFunctionRule());
+						}
+					}
+					otherlv_2=RULE_ID
+					{
+						newLeafNode(otherlv_2, grammarAccess.getLiftEffectFullFunctionAccess().getFunctionRefEffectFullFunctionCrossReference_0_2_0());
+					}
+				)
+			)
+			otherlv_3=']'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getLiftEffectFullFunctionAccess().getRightSquareBracketKeyword_0_3());
+			}
+		)
+		    |
+		(
+			otherlv_4='Lift'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getLiftEffectFullFunctionAccess().getLiftKeyword_1_0());
+			}
+			otherlv_5='['
+			{
+				newLeafNode(otherlv_5, grammarAccess.getLiftEffectFullFunctionAccess().getLeftSquareBracketKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getLiftEffectFullFunctionAccess().getFunctionPrimitivePrimitiveEffectFullFunctionParserRuleCall_1_2_0());
+					}
+					lv_functionPrimitive_6_0=rulePrimitiveEffectFullFunction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getLiftEffectFullFunctionRule());
+						}
+						set(
+							$current,
+							"functionPrimitive",
+							lv_functionPrimitive_6_0,
+							"it.unibo.FPML.PrimitiveEffectFullFunction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_7=']'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getLiftEffectFullFunctionAccess().getRightSquareBracketKeyword_1_3());
+			}
 		)
 	)
 ;

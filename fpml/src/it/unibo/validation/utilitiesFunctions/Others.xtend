@@ -63,14 +63,14 @@ class Others {
 	
 	def static Type getArgumentType(Argument a){
 		switch a {
-			EffectFullArgument: a.type
-			PureArgument: a.type
+			EffectFullArgument: EcoreUtil.copy(a.type)
+			PureArgument: EcoreUtil.copy(a.type)
 		}
 	} 
 	
 	def static PureFunction getPureFunctionFromIOPureFunction(IOPureFunction iopf) {
-		if (iopf.pureFunction == null) return iopf.purePrimitive
-		else return iopf.pureFunction
+		if (iopf.pureFunction == null) return EcoreUtil.copy(iopf.purePrimitive)
+		else return EcoreUtil.copy(iopf.pureFunction)
 	}
 	
 	
@@ -82,8 +82,18 @@ class Others {
 	}
 	
 	def static getEffectFullFunctionFromIOEffectFullFunction(IOEffectFullFunction function) {
-		if (function.effectFullFunction == null) function.effectFullPrimitive
-		else function.effectFullFunction
+		if (function.effectFullFunction == null) EcoreUtil.copy(function.effectFullPrimitive)
+		else EcoreUtil.copy(function.effectFullFunction)
+	}
+	
+	def static getPureFunctionFromLiftPureFunction(LiftPureFunction lpf) {
+		if (lpf.functionPrimitive == null) return EcoreUtil.copy(lpf.functionRef)
+		else EcoreUtil.copy(lpf.functionPrimitive)
+	}
+	
+	def static getEffectFullFunctionFromLiftEffectFullFunction(LiftEffectFullFunction eff) {
+		if (eff.functionPrimitive == null) return EcoreUtil.copy(eff.functionRef)
+		else EcoreUtil.copy(eff.functionPrimitive)
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////////////////

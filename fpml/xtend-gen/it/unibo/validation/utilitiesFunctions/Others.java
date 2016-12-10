@@ -21,12 +21,15 @@ import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.EffectFullSumTypeFactor;
+import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IOType;
+import it.unibo.fPML.LiftEffectFullFunction;
+import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureAlgebraicType;
@@ -179,12 +182,14 @@ public class Others {
     boolean _matched = false;
     if (a instanceof EffectFullArgument) {
       _matched=true;
-      _switchResult = ((EffectFullArgument)a).getType();
+      EffectFullType _type = ((EffectFullArgument)a).getType();
+      _switchResult = EcoreUtil.<EffectFullType>copy(_type);
     }
     if (!_matched) {
       if (a instanceof PureArgument) {
         _matched=true;
-        _switchResult = ((PureArgument)a).getType();
+        ValueType _type = ((PureArgument)a).getType();
+        _switchResult = EcoreUtil.<ValueType>copy(_type);
       }
     }
     return _switchResult;
@@ -194,9 +199,11 @@ public class Others {
     PureFunction _pureFunction = iopf.getPureFunction();
     boolean _equals = Objects.equal(_pureFunction, null);
     if (_equals) {
-      return iopf.getPurePrimitive();
+      PrimitivePureFunction _purePrimitive = iopf.getPurePrimitive();
+      return EcoreUtil.<PrimitivePureFunction>copy(_purePrimitive);
     } else {
-      return iopf.getPureFunction();
+      PureFunction _pureFunction_1 = iopf.getPureFunction();
+      return EcoreUtil.<PureFunction>copy(_pureFunction_1);
     }
   }
   
@@ -221,9 +228,39 @@ public class Others {
     EffectFullFunction _effectFullFunction = function.getEffectFullFunction();
     boolean _equals = Objects.equal(_effectFullFunction, null);
     if (_equals) {
-      _xifexpression = function.getEffectFullPrimitive();
+      PrimitiveEffectFullFunction _effectFullPrimitive = function.getEffectFullPrimitive();
+      _xifexpression = EcoreUtil.<PrimitiveEffectFullFunction>copy(_effectFullPrimitive);
     } else {
-      _xifexpression = function.getEffectFullFunction();
+      EffectFullFunction _effectFullFunction_1 = function.getEffectFullFunction();
+      _xifexpression = EcoreUtil.<EffectFullFunction>copy(_effectFullFunction_1);
+    }
+    return _xifexpression;
+  }
+  
+  public static PureFunction getPureFunctionFromLiftPureFunction(final LiftPureFunction lpf) {
+    PrimitivePureFunction _xifexpression = null;
+    PrimitivePureFunction _functionPrimitive = lpf.getFunctionPrimitive();
+    boolean _equals = Objects.equal(_functionPrimitive, null);
+    if (_equals) {
+      PureFunction _functionRef = lpf.getFunctionRef();
+      return EcoreUtil.<PureFunction>copy(_functionRef);
+    } else {
+      PrimitivePureFunction _functionPrimitive_1 = lpf.getFunctionPrimitive();
+      _xifexpression = EcoreUtil.<PrimitivePureFunction>copy(_functionPrimitive_1);
+    }
+    return _xifexpression;
+  }
+  
+  public static EffectFullFunction getEffectFullFunctionFromLiftEffectFullFunction(final LiftEffectFullFunction eff) {
+    PrimitiveEffectFullFunction _xifexpression = null;
+    PrimitiveEffectFullFunction _functionPrimitive = eff.getFunctionPrimitive();
+    boolean _equals = Objects.equal(_functionPrimitive, null);
+    if (_equals) {
+      EffectFullFunction _functionRef = eff.getFunctionRef();
+      return EcoreUtil.<EffectFullFunction>copy(_functionRef);
+    } else {
+      PrimitiveEffectFullFunction _functionPrimitive_1 = eff.getFunctionPrimitive();
+      _xifexpression = EcoreUtil.<PrimitiveEffectFullFunction>copy(_functionPrimitive_1);
     }
     return _xifexpression;
   }

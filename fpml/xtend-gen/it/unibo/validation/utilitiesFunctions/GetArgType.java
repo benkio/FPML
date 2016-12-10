@@ -33,6 +33,8 @@ import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.LeftPair;
 import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.LiftEffectFullFunction;
+import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
 import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.Major;
@@ -311,15 +313,13 @@ public class GetArgType {
     if (!_matched) {
       if (expression instanceof IOPureFunction) {
         _matched=true;
-        PureFunction _pureFunctionFromIOPureFunction = Others.getPureFunctionFromIOPureFunction(((IOPureFunction)expression));
-        _switchResult = GetArgType.pureFunction(_pureFunctionFromIOPureFunction);
+        _switchResult = FPMLFactory.eINSTANCE.createUnitType();
       }
     }
     if (!_matched) {
       if (expression instanceof EffectFullFunctionType) {
         _matched=true;
-        EffectFullFunctionDefinition _value = ((EffectFullFunctionType)expression).getValue();
-        _switchResult = GetArgType.effectFullFunctionDefinition(_value);
+        _switchResult = FPMLFactory.eINSTANCE.createUnitType();
       }
     }
     if (!_matched) {
@@ -444,6 +444,20 @@ public class GetArgType {
         _matched=true;
         EffectFullData _data = ((ExtractEffectFull)function).getData();
         return Others.createDataType(_data);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof LiftPureFunction) {
+        _matched=true;
+        PureFunction _pureFunctionFromLiftPureFunction = Others.getPureFunctionFromLiftPureFunction(((LiftPureFunction)function));
+        return GetArgType.pureFunction(_pureFunctionFromLiftPureFunction);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof LiftEffectFullFunction) {
+        _matched=true;
+        EffectFullFunction _effectFullFunctionFromLiftEffectFullFunction = Others.getEffectFullFunctionFromLiftEffectFullFunction(((LiftEffectFullFunction)function));
+        return GetArgType.effectFullFunction(_effectFullFunctionFromLiftEffectFullFunction);
       }
     }
     return _switchResult;

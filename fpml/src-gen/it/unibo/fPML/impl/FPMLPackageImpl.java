@@ -60,6 +60,8 @@ import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.LeftPair;
 import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.LiftEffectFullFunction;
+import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
 import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.MainFunc;
@@ -714,6 +716,20 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass extractEffectFullEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass liftPureFunctionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass liftEffectFullFunctionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2651,6 +2667,66 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getLiftPureFunction()
+  {
+    return liftPureFunctionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLiftPureFunction_FunctionRef()
+  {
+    return (EReference)liftPureFunctionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLiftPureFunction_FunctionPrimitive()
+  {
+    return (EReference)liftPureFunctionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLiftEffectFullFunction()
+  {
+    return liftEffectFullFunctionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLiftEffectFullFunction_FunctionRef()
+  {
+    return (EReference)liftEffectFullFunctionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLiftEffectFullFunction_FunctionPrimitive()
+  {
+    return (EReference)liftEffectFullFunctionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPureValue()
   {
     return pureValueEClass;
@@ -3258,6 +3334,14 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     extractEffectFullEClass = createEClass(EXTRACT_EFFECT_FULL);
     createEReference(extractEffectFullEClass, EXTRACT_EFFECT_FULL__DATA);
 
+    liftPureFunctionEClass = createEClass(LIFT_PURE_FUNCTION);
+    createEReference(liftPureFunctionEClass, LIFT_PURE_FUNCTION__FUNCTION_REF);
+    createEReference(liftPureFunctionEClass, LIFT_PURE_FUNCTION__FUNCTION_PRIMITIVE);
+
+    liftEffectFullFunctionEClass = createEClass(LIFT_EFFECT_FULL_FUNCTION);
+    createEReference(liftEffectFullFunctionEClass, LIFT_EFFECT_FULL_FUNCTION__FUNCTION_REF);
+    createEReference(liftEffectFullFunctionEClass, LIFT_EFFECT_FULL_FUNCTION__FUNCTION_PRIMITIVE);
+
     pureValueEClass = createEClass(PURE_VALUE);
     createEReference(pureValueEClass, PURE_VALUE__VALUE);
 
@@ -3407,6 +3491,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     primitiveTimeEClass.getESuperTypes().add(this.getPrimitiveEffectFullValue());
     applyFIOEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     extractEffectFullEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
+    liftPureFunctionEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
+    liftEffectFullFunctionEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     pureValueEClass.getESuperTypes().add(this.getPureFunctionDefinition());
     effectFullValueEClass.getESuperTypes().add(this.getEffectFullFunctionDefinition());
     ioEffectFullExpressionEClass.getESuperTypes().add(this.getEffectFullExpression());
@@ -3684,6 +3770,14 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     initEClass(extractEffectFullEClass, ExtractEffectFull.class, "ExtractEffectFull", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExtractEffectFull_Data(), this.getEffectFullData(), null, "data", null, 0, 1, ExtractEffectFull.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(liftPureFunctionEClass, LiftPureFunction.class, "LiftPureFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLiftPureFunction_FunctionRef(), this.getPureFunction(), null, "functionRef", null, 0, 1, LiftPureFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLiftPureFunction_FunctionPrimitive(), this.getPrimitivePureFunction(), null, "functionPrimitive", null, 0, 1, LiftPureFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(liftEffectFullFunctionEClass, LiftEffectFullFunction.class, "LiftEffectFullFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLiftEffectFullFunction_FunctionRef(), this.getEffectFullFunction(), null, "functionRef", null, 0, 1, LiftEffectFullFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLiftEffectFullFunction_FunctionPrimitive(), this.getPrimitiveEffectFullFunction(), null, "functionPrimitive", null, 0, 1, LiftEffectFullFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pureValueEClass, PureValue.class, "PureValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPureValue_Value(), this.getExpression(), null, "value", null, 0, 1, PureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

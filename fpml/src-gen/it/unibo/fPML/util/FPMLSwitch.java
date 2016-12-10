@@ -873,6 +873,32 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.LIFT_PURE_FUNCTION:
+      {
+        LiftPureFunction liftPureFunction = (LiftPureFunction)theEObject;
+        T result = caseLiftPureFunction(liftPureFunction);
+        if (result == null) result = casePrimitiveEffectFullFunction(liftPureFunction);
+        if (result == null) result = caseEffectFullFunction(liftPureFunction);
+        if (result == null) result = caseEffectFullPrimitive(liftPureFunction);
+        if (result == null) result = caseFunction(liftPureFunction);
+        if (result == null) result = caseEffectFullBodyContent(liftPureFunction);
+        if (result == null) result = casePrimitiveFunction(liftPureFunction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.LIFT_EFFECT_FULL_FUNCTION:
+      {
+        LiftEffectFullFunction liftEffectFullFunction = (LiftEffectFullFunction)theEObject;
+        T result = caseLiftEffectFullFunction(liftEffectFullFunction);
+        if (result == null) result = casePrimitiveEffectFullFunction(liftEffectFullFunction);
+        if (result == null) result = caseEffectFullFunction(liftEffectFullFunction);
+        if (result == null) result = caseEffectFullPrimitive(liftEffectFullFunction);
+        if (result == null) result = caseFunction(liftEffectFullFunction);
+        if (result == null) result = caseEffectFullBodyContent(liftEffectFullFunction);
+        if (result == null) result = casePrimitiveFunction(liftEffectFullFunction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.PURE_VALUE:
       {
         PureValue pureValue = (PureValue)theEObject;
@@ -2386,6 +2412,38 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExtractEffectFull(ExtractEffectFull object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Lift Pure Function</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Lift Pure Function</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLiftPureFunction(LiftPureFunction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Lift Effect Full Function</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Lift Effect Full Function</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLiftEffectFullFunction(LiftEffectFullFunction object)
   {
     return null;
   }

@@ -50,6 +50,8 @@ import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.LeftPair;
 import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.LiftEffectFullFunction;
+import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
 import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.MainFunc;
@@ -282,6 +284,12 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.LEFT_PAIR_IO:
 				sequence_LeftPairIO(context, (LeftPairIO) semanticObject); 
+				return; 
+			case FPMLPackage.LIFT_EFFECT_FULL_FUNCTION:
+				sequence_LiftEffectFullFunction(context, (LiftEffectFullFunction) semanticObject); 
+				return; 
+			case FPMLPackage.LIFT_PURE_FUNCTION:
+				sequence_LiftPureFunction(context, (LiftPureFunction) semanticObject); 
 				return; 
 			case FPMLPackage.LOGIC_AND:
 				sequence_LogicAnd(context, (LogicAnd) semanticObject); 
@@ -1325,6 +1333,42 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLeftPairAccess().getTypePureAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns LiftEffectFullFunction
+	 *     EffectFullFunction returns LiftEffectFullFunction
+	 *     PrimitiveFunction returns LiftEffectFullFunction
+	 *     EffectFullPrimitive returns LiftEffectFullFunction
+	 *     EffectFullBodyContent returns LiftEffectFullFunction
+	 *     PrimitiveEffectFullFunction returns LiftEffectFullFunction
+	 *     LiftEffectFullFunction returns LiftEffectFullFunction
+	 *
+	 * Constraint:
+	 *     (functionRef=[EffectFullFunction|ID] | functionPrimitive=PrimitiveEffectFullFunction)
+	 */
+	protected void sequence_LiftEffectFullFunction(ISerializationContext context, LiftEffectFullFunction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns LiftPureFunction
+	 *     EffectFullFunction returns LiftPureFunction
+	 *     PrimitiveFunction returns LiftPureFunction
+	 *     EffectFullPrimitive returns LiftPureFunction
+	 *     EffectFullBodyContent returns LiftPureFunction
+	 *     PrimitiveEffectFullFunction returns LiftPureFunction
+	 *     LiftPureFunction returns LiftPureFunction
+	 *
+	 * Constraint:
+	 *     (functionRef=[PureFunction|ID] | functionPrimitive=PrimitivePureFunction)
+	 */
+	protected void sequence_LiftPureFunction(ISerializationContext context, LiftPureFunction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

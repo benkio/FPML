@@ -235,6 +235,14 @@
     <genClasses ecoreClass="FPML.ecore#//ExtractEffectFull">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//ExtractEffectFull/data"/>
     </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//LiftPureFunction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//LiftPureFunction/functionRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//LiftPureFunction/functionPrimitive"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//LiftEffectFullFunction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//LiftEffectFullFunction/functionRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//LiftEffectFullFunction/functionPrimitive"/>
+    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PureValue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureValue/value"/>
     </genClasses>

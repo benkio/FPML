@@ -501,6 +501,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createExtractEffectFullAdapter();
       }
       @Override
+      public Adapter caseLiftPureFunction(LiftPureFunction object)
+      {
+        return createLiftPureFunctionAdapter();
+      }
+      @Override
+      public Adapter caseLiftEffectFullFunction(LiftEffectFullFunction object)
+      {
+        return createLiftEffectFullFunctionAdapter();
+      }
+      @Override
       public Adapter casePureValue(PureValue object)
       {
         return createPureValueAdapter();
@@ -1863,6 +1873,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExtractEffectFullAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LiftPureFunction <em>Lift Pure Function</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.LiftPureFunction
+   * @generated
+   */
+  public Adapter createLiftPureFunctionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LiftEffectFullFunction <em>Lift Effect Full Function</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.LiftEffectFullFunction
+   * @generated
+   */
+  public Adapter createLiftEffectFullFunctionAdapter()
   {
     return null;
   }

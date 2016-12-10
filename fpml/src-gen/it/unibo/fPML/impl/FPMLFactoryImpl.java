@@ -150,6 +150,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.APPLY_FIO: return createApplyFIO();
       case FPMLPackage.APPLY_FIO_FACTOR: return createApplyFIOFactor();
       case FPMLPackage.EXTRACT_EFFECT_FULL: return createExtractEffectFull();
+      case FPMLPackage.LIFT_PURE_FUNCTION: return createLiftPureFunction();
+      case FPMLPackage.LIFT_EFFECT_FULL_FUNCTION: return createLiftEffectFullFunction();
       case FPMLPackage.PURE_VALUE: return createPureValue();
       case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
       case FPMLPackage.IO_EFFECT_FULL_EXPRESSION: return createIOEffectFullExpression();
@@ -1102,6 +1104,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     ExtractEffectFullImpl extractEffectFull = new ExtractEffectFullImpl();
     return extractEffectFull;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LiftPureFunction createLiftPureFunction()
+  {
+    LiftPureFunctionImpl liftPureFunction = new LiftPureFunctionImpl();
+    return liftPureFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LiftEffectFullFunction createLiftEffectFullFunction()
+  {
+    LiftEffectFullFunctionImpl liftEffectFullFunction = new LiftEffectFullFunctionImpl();
+    return liftEffectFullFunction;
   }
 
   /**

@@ -295,6 +295,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExtractEffectFull" eSuperTypes="#//PrimitiveEffectFullFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//EffectFullData"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiftPureFunction" eSuperTypes="#//PrimitiveEffectFullFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionRef" eType="#//PureFunction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionPrimitive" eType="#//PrimitivePureFunction"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiftEffectFullFunction" eSuperTypes="#//PrimitiveEffectFullFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionRef" eType="#//EffectFullFunction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionPrimitive" eType="#//PrimitiveEffectFullFunction"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PureValue" eSuperTypes="#//PureFunctionDefinition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
         containment="true"/>

@@ -187,8 +187,8 @@ class GetReturnType {
 			IOEffectFullExpression: {
 				return Others.IOWrap(effectFullExpression(expression.innerValue as EffectFullExpression))
 			}
-			IOPureFunction: Others.IOWrap(pureFunction(Others.getPureFunctionFromIOPureFunction(expression)))
-			IOEffectFullFunction: Others.IOWrap(effectFullFunction(Others.getEffectFullFunctionFromIOEffectFullFunction(expression)))
+			IOPureFunction: Others.IOWrap(Others.createTypeOfPureFunction(Others.getPureFunctionFromIOPureFunction(expression)))
+			IOEffectFullFunction: Others.IOWrap(Others.createTypeOfEffectFullFunction(Others.getEffectFullFunctionFromIOEffectFullFunction(expression)))
 			EffectFullFunctionType:{
 				if (expression.value instanceof EffectFullLambda){
 					var EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument
@@ -220,6 +220,8 @@ class GetReturnType {
 			LeftPairIO: EcoreUtil.copy(function.type.effectFullAdtElement1)
 			RightPairIO: Others.getElement2ValueTypeFromEffectFullAlgebraicType(function.type)
 			ExtractEffectFull: EcoreUtil.copy(function.data.content)
+			LiftPureFunction: Others.IOWrap(pureFunction(Others.getPureFunctionFromLiftPureFunction(function)))
+			LiftEffectFullFunction: Others.IOWrap(effectFullFunction(Others.getEffectFullFunctionFromLiftEffectFullFunction(function)))
 		}
 	}
 	

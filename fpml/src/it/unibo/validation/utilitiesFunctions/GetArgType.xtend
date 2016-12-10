@@ -87,8 +87,8 @@ class GetArgType {
 			IOEffectFullFunction: FPMLFactory.eINSTANCE.createUnitType
 			IOEffectFullExpression: FPMLFactory.eINSTANCE.createUnitType 
 			IOExpression: FPMLFactory.eINSTANCE.createUnitType
-			IOPureFunction: pureFunction(Others.getPureFunctionFromIOPureFunction(expression))
-			EffectFullFunctionType: effectFullFunctionDefinition(expression.value) 
+			IOPureFunction: FPMLFactory.eINSTANCE.createUnitType
+			EffectFullFunctionType: FPMLFactory.eINSTANCE.createUnitType 
 			EffectFullDataValue: FPMLFactory.eINSTANCE.createUnitType
 			EffectFullProdValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.prodAdtElement1), effectFullExpression(expression.prodAdtElement2), false)
 			EffectFullSumValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.sumAdtElement1), effectFullExpression(expression.sumAdtElement2), true)
@@ -120,6 +120,8 @@ class GetArgType {
       		LeftPairIO: EcoreUtil.copy(function.type)
       		RightPairIO: EcoreUtil.copy(function.type)
       		ExtractEffectFull: return Others.createDataType(function.data)
+      		LiftPureFunction: return pureFunction(Others.getPureFunctionFromLiftPureFunction(function))
+      		LiftEffectFullFunction: return effectFullFunction(Others.getEffectFullFunctionFromLiftEffectFullFunction(function))
 		}
 	}
 	

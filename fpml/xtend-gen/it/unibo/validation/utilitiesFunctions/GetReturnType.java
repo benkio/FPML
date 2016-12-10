@@ -47,6 +47,8 @@ import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.LeftPair;
 import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.LiftEffectFullFunction;
+import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
 import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.MainFunc;
@@ -638,16 +640,16 @@ public class GetReturnType {
       if (expression instanceof IOPureFunction) {
         _matched=true;
         PureFunction _pureFunctionFromIOPureFunction = Others.getPureFunctionFromIOPureFunction(((IOPureFunction)expression));
-        ValueType _pureFunction = GetReturnType.pureFunction(_pureFunctionFromIOPureFunction);
-        _switchResult = Others.IOWrap(_pureFunction);
+        ValueType _createTypeOfPureFunction = Others.createTypeOfPureFunction(_pureFunctionFromIOPureFunction);
+        _switchResult = Others.IOWrap(_createTypeOfPureFunction);
       }
     }
     if (!_matched) {
       if (expression instanceof IOEffectFullFunction) {
         _matched=true;
         EffectFullFunction _effectFullFunctionFromIOEffectFullFunction = Others.getEffectFullFunctionFromIOEffectFullFunction(((IOEffectFullFunction)expression));
-        Type _effectFullFunction = GetReturnType.effectFullFunction(_effectFullFunctionFromIOEffectFullFunction);
-        _switchResult = Others.IOWrap(_effectFullFunction);
+        Type _createTypeOfEffectFullFunction = Others.createTypeOfEffectFullFunction(_effectFullFunctionFromIOEffectFullFunction);
+        _switchResult = Others.IOWrap(_createTypeOfEffectFullFunction);
       }
     }
     if (!_matched) {
@@ -782,6 +784,22 @@ public class GetReturnType {
         EffectFullData _data = ((ExtractEffectFull)function).getData();
         EffectFullType _content = _data.getContent();
         _switchResult = EcoreUtil.<EffectFullType>copy(_content);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof LiftPureFunction) {
+        _matched=true;
+        PureFunction _pureFunctionFromLiftPureFunction = Others.getPureFunctionFromLiftPureFunction(((LiftPureFunction)function));
+        ValueType _pureFunction = GetReturnType.pureFunction(_pureFunctionFromLiftPureFunction);
+        _switchResult = Others.IOWrap(_pureFunction);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof LiftEffectFullFunction) {
+        _matched=true;
+        EffectFullFunction _effectFullFunctionFromLiftEffectFullFunction = Others.getEffectFullFunctionFromLiftEffectFullFunction(((LiftEffectFullFunction)function));
+        Type _effectFullFunction = GetReturnType.effectFullFunction(_effectFullFunctionFromLiftEffectFullFunction);
+        _switchResult = Others.IOWrap(_effectFullFunction);
       }
     }
     return _switchResult;

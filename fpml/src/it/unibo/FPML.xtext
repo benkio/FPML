@@ -209,10 +209,10 @@ EffectFullProdTypeFactor:
 EffectFullExpression:
 	{IOEffectFullExpression} 'IO' '[' innerValue=EffectFullExpression ']' 
 	| {IOExpression} 'IO' '(' innerValue=Expression ')'
-	| {IOPureFunction} 'Lift' '(' pureFunction=[PureFunction] ')'
-	| {IOPureFunction} 'Lift' '(' purePrimitive=PrimitivePureFunction ')'
-	| {IOEffectFullFunction} 'LiftIO' '(' effectFullFunction=[EffectFullFunction] ')'
-	| {IOEffectFullFunction} 'LiftIO' '(' effectFullPrimitive=PrimitiveEffectFullFunction ')'
+	| {IOPureFunction} 'IOF' '(' pureFunction=[PureFunction] ')'
+	| {IOPureFunction} 'IOF' '(' purePrimitive=PrimitivePureFunction ')'
+	| {IOEffectFullFunction} 'IOF' '[' effectFullFunction=[EffectFullFunction] ']'
+	| {IOEffectFullFunction} 'IOF' '[' effectFullPrimitive=PrimitiveEffectFullFunction ']'
 	| EffectFullFunctionValue 
 	| EffectFullDataValue
 	| EffectFullProdValue
@@ -309,7 +309,8 @@ LogicOr: {LogicOr} '||';
 ExtractPure: {ExtractPure} 'extract' data=[PureData];
 
 PrimitiveEffectFullFunction:
-	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO | ExtractEffectFull;
+	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO | ExtractEffectFull
+	| LiftPureFunction | LiftEffectFullFunction;
 
 PrimitivePrint:
     {PrimitivePrint} "print";
@@ -335,7 +336,13 @@ ApplyFIOFactor:
 	| '(' valueExpression=EffectFullExpression ')';
 	
 ExtractEffectFull: {ExtractEffectFull} 'extractEffectFull' data=[EffectFullData];
-	
+
+LiftPureFunction: 'Lift' '(' functionRef=[PureFunction] ')'
+	| 'Lift' '(' functionPrimitive=PrimitivePureFunction ')'
+;
+LiftEffectFullFunction: 'Lift' '[' functionRef=[EffectFullFunction] ']'
+	| 'Lift' '[' functionPrimitive=PrimitiveEffectFullFunction ']'
+;
 ////////////////////////////////////////////////////////////////////////////////////////////
 // TERMINALS
 ////////////////////////////////////////////////////////////////////////////////////////////
