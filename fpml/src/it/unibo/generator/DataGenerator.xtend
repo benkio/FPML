@@ -13,6 +13,7 @@ class DataGenerator {
 	    
 	    import fj.data.*;
 	    import fj.*;
+	    import it.unibo.Pure.Data.*;
 	    
 	    public class «d.name» implements IPureData<«typeGenerator.compile(d.content)»> {
 	    	private final «typeGenerator.compile(d.content)» value;

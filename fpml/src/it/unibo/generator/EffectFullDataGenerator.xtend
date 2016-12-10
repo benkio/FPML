@@ -12,6 +12,7 @@ class EffectFullDataGenerator {
 	    
 	    import fj.data.*;
 	    import fj.*;
+	    import it.unibo.Pure.Data.*;
 	    
 	    public class «d.name» implements IEffectFullData<«typeGenerator.compile(d.content as Type)»> {
 	    	private final «typeGenerator.compile(d.content as Type)» value;

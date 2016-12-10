@@ -22,6 +22,8 @@ public class DataGenerator {
     _builder.newLine();
     _builder.append("import fj.*;");
     _builder.newLine();
+    _builder.append("import it.unibo.Pure.Data.*;");
+    _builder.newLine();
     _builder.newLine();
     _builder.append("public class ");
     String _name = d.getName();
