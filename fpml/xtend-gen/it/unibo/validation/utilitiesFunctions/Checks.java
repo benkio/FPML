@@ -255,13 +255,13 @@ public class Checks {
     if (!_matched) {
       if (t instanceof UnitType) {
         _matched=true;
-        return false;
+        return (t1 instanceof UnitType);
       }
     }
     if (!_matched) {
       if (t instanceof IOType) {
         _matched=true;
-        return ((t1 instanceof IOType) && Checks.TypeEquals(((IOType)t).getType(), ((IOType) t1).getType()));
+        return (((t1 instanceof IOType) && Checks.TypeEquals(((IOType)t).getType(), ((IOType) t1).getType())) && (!((((IOType) t1).getType() instanceof UnitType) && (!(((IOType)t).getType() instanceof UnitType)))));
       }
     }
     if (!_matched) {

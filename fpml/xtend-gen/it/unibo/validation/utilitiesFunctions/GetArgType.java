@@ -251,7 +251,8 @@ public class GetArgType {
       }
     }
     PureArgument _arg = f.getArg();
-    return _arg.getType();
+    ValueType _type = _arg.getType();
+    return EcoreUtil.<ValueType>copy(_type);
   }
   
   public static ValueType pureLambda(final PureLambda l) {
@@ -259,7 +260,8 @@ public class GetArgType {
     boolean _notEquals = (!Objects.equal(_arg, null));
     if (_notEquals) {
       PureArgument _arg_1 = l.getArg();
-      return _arg_1.getType();
+      ValueType _type = _arg_1.getType();
+      return EcoreUtil.<ValueType>copy(_type);
     } else {
       return FPMLFactory.eINSTANCE.createUnitType();
     }
@@ -412,25 +414,29 @@ public class GetArgType {
     if (!_matched) {
       if (function instanceof ApplyFIO) {
         _matched=true;
-        return ((ApplyFIO)function).getFunctionType();
+        EffectFullFunctionType _functionType = ((ApplyFIO)function).getFunctionType();
+        return EcoreUtil.<EffectFullFunctionType>copy(_functionType);
       }
     }
     if (!_matched) {
       if (function instanceof PrimitiveReturn) {
         _matched=true;
-        return ((PrimitiveReturn)function).getType();
+        Type _type = ((PrimitiveReturn)function).getType();
+        return EcoreUtil.<Type>copy(_type);
       }
     }
     if (!_matched) {
       if (function instanceof LeftPairIO) {
         _matched=true;
-        _switchResult = ((LeftPairIO)function).getType();
+        EffectFullAlgebraicType _type = ((LeftPairIO)function).getType();
+        _switchResult = EcoreUtil.<EffectFullAlgebraicType>copy(_type);
       }
     }
     if (!_matched) {
       if (function instanceof RightPairIO) {
         _matched=true;
-        _switchResult = ((RightPairIO)function).getType();
+        EffectFullAlgebraicType _type = ((RightPairIO)function).getType();
+        _switchResult = EcoreUtil.<EffectFullAlgebraicType>copy(_type);
       }
     }
     if (!_matched) {

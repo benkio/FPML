@@ -22,7 +22,7 @@ class GetReturnType {
 			PureValue: expression(f.value)
 			PureFunctionDefinition: pureFunctionDefinition(f)
 			PrimitivePureFunction: primitivePureFunction(f)
-			PureArgument: f.type
+			PureArgument: EcoreUtil.copy(f.type)
 			Expression: expression(f)
 		}
 	}	
@@ -40,14 +40,14 @@ class GetReturnType {
 			IntegerType: return FPMLFactory.eINSTANCE.createIntegerType
 			StringType: return FPMLFactory.eINSTANCE.createStringType
       		BooleanType: return FPMLFactory.eINSTANCE.createBooleanType
-			DataValue: return expression
+			DataValue: return EcoreUtil.copy(expression)
 			PureFunctionType: {
 				if (expression.value instanceof PureLambda){
 					functionBodyPure(expression.value.functionBody, expression.value.arg, null, expression.value.returnType)
 				}else
-					expression
+					EcoreUtil.copy(expression)
 				}
-       		UnitType: expression
+       		UnitType: EcoreUtil.copy(expression)
        		PureValueRef: expression(expression.value.value)
 			PureSumValue: Others.createPureAlgebraicType(expression(expression.sumAdtElement1), expression(expression.sumAdtElement2), true)
 			PureProdValue: Others.createPureAlgebraicType(expression(expression.prodAdtElement1), expression(expression.prodAdtElement2), false)
@@ -56,7 +56,7 @@ class GetReturnType {
 	
 	def static ValueType functionBodyPure(FunctionBodyPure pure, PureArgument arg1, AdditionalPureArgument arg2, ValueType returnType) {
 		switch pure {
-			EmptyFunctionBody: returnType
+			EmptyFunctionBody: EcoreUtil.copy(returnType)
 			CompositionFunctionBodyPure: compositionFunctionBodyPure(pure, arg1, arg2)
 		}
 	}
@@ -91,8 +91,8 @@ class GetReturnType {
 			Minus: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
 			Times: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
 			Mod: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
-			ApplyF: return f.functionType.returnType
-      		LeftPair: return f.type.pureAdtElement1
+			ApplyF: return EcoreUtil.copy(f.functionType.returnType)
+      		LeftPair: return EcoreUtil.copy(f.type.pureAdtElement1)
       		RightPair: return Others.getElement2ValueTypeFromPureAlgebraicType(EcoreUtil.copy(f.type))
       		Equals: return Others.createPureFuntionType(EcoreUtil.copy(f.type) as ValueType, FPMLFactory.eINSTANCE.createBooleanType)
       		MinorEquals: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
@@ -101,13 +101,13 @@ class GetReturnType {
       		Major: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
       		LogicAnd: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType) 
       		LogicOr: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType)
-      		ExtractPure: return f.data.content
+      		ExtractPure: return EcoreUtil.copy(f.data.content)
 		}
 	}
 	
 	def static Type effectFullFunction(EffectFullFunction function) {
 		switch function {
-			EffectFullArgument: if (function.type instanceof IOType) function.type else Others.IOWrap(function.type)
+			EffectFullArgument: if (function.type instanceof IOType) EcoreUtil.copy(function.type) else Others.IOWrap(function.type)
 			EffectFullValue: effectFullExpression(function.value)
 			EffectFullFunctionDefinition: effectFullFunctionDefinition(function)
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)
@@ -120,7 +120,7 @@ class GetReturnType {
 	
 	def static Type functionBodyEffectFull(FunctionBodyEffectFull full, Argument argument, AdditionalEffectFullArgument argument2, IOType type) {
 		switch full {
-			EmptyFunctionBody: type
+			EmptyFunctionBody: EcoreUtil.copy(type)
 			CompositionFunctionBodyEffect: compositionFunctionBodyEffectFull(full, argument, argument2)
 		}
 	}
@@ -196,9 +196,9 @@ class GetReturnType {
 					if (expression.value.arg != null) arg.type = Others.IOWrap(Others.getArgumentType(expression.value.arg))
 					functionBodyEffectFull(expression.value.functionBody, arg, null, expression.value.returnType)
 				}else
-					expression
+					EcoreUtil.copy(expression)
 				} 
-			EffectFullDataValue: expression
+			EffectFullDataValue: EcoreUtil.copy(expression)
 			EffectFullProdValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.prodAdtElement1), effectFullExpression(expression.prodAdtElement2), false)
 			EffectFullSumValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.sumAdtElement1), effectFullExpression(expression.sumAdtElement2), true)
 			EffectFullValueRef: effectFullExpression(expression.value.value)
@@ -215,11 +215,11 @@ class GetReturnType {
 	def static primitiveEffectFullFunction(PrimitiveEffectFullFunction function) {
 		switch function {
 			PrimitivePrint: Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
-  			ApplyFIO: function.functionType.returnType
+  			ApplyFIO: EcoreUtil.copy(function.functionType.returnType)
 			PrimitiveReturn: Others.IOWrap(function.type)
-			LeftPairIO: function.type.effectFullAdtElement1
+			LeftPairIO: EcoreUtil.copy(function.type.effectFullAdtElement1)
 			RightPairIO: Others.getElement2ValueTypeFromEffectFullAlgebraicType(function.type)
-			ExtractEffectFull: function.data.content
+			ExtractEffectFull: EcoreUtil.copy(function.data.content)
 		}
 	}
 	

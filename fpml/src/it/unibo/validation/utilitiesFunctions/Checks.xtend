@@ -87,8 +87,8 @@ class Checks {
 			EffectFullFunctionType: return 	t1 instanceof EffectFullFunctionType &&
 											TypeEquals(t.argType, (t1 as EffectFullFunctionType).argType) &&
 											TypeEquals(t.returnType.type, (t1 as EffectFullFunctionType).returnType.type)
-			UnitType: return false
-			IOType: return t1 instanceof IOType && TypeEquals(t.type, (t1 as IOType).type)
+			UnitType: return t1 instanceof UnitType
+			IOType: return t1 instanceof IOType && TypeEquals(t.type, (t1 as IOType).type) && !((t1 as IOType).type instanceof UnitType && !(t.type instanceof UnitType))
 			EffectFullDataType: return t1 instanceof EffectFullDataType && t.type.name.equals((t1 as EffectFullDataType).type.name)
 			EffectFullAlgebraicType: return t1 instanceof EffectFullAlgebraicType &&
 											TypeEquals(t.effectFullAdtElement1, (t1 as EffectFullAlgebraicType).effectFullAdtElement1) &&

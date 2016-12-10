@@ -63,13 +63,13 @@ class GetArgType {
 					return FPMLFactory.eINSTANCE.createUnitType
 			}
 			PureLambda: return pureLambda(f)
-			default: return f.arg.type
+			default: return EcoreUtil.copy(f.arg.type)
 		}
 	}
 	
 	def static ValueType pureLambda(PureLambda l){
     if (l.arg != null) 
-		  return l.arg.type
+		  return EcoreUtil.copy(l.arg.type)
     else
       return FPMLFactory.eINSTANCE.createUnitType
 	}
@@ -115,10 +115,10 @@ class GetArgType {
 	def static Type primitiveEffectFullFunction(PrimitiveEffectFullFunction function) {
 		switch function {
 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType 
-			ApplyFIO: return function.functionType
-     		PrimitiveReturn: return function.type
-      		LeftPairIO: function.type
-      		RightPairIO: function.type
+			ApplyFIO: return EcoreUtil.copy(function.functionType)
+     		PrimitiveReturn: return EcoreUtil.copy(function.type)
+      		LeftPairIO: EcoreUtil.copy(function.type)
+      		RightPairIO: EcoreUtil.copy(function.type)
       		ExtractEffectFull: return Others.createDataType(function.data)
 		}
 	}

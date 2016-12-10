@@ -135,7 +135,8 @@ public class GetReturnType {
     if (!_matched) {
       if (f instanceof PureArgument) {
         _matched=true;
-        _switchResult = ((PureArgument)f).getType();
+        ValueType _type = ((PureArgument)f).getType();
+        _switchResult = EcoreUtil.<ValueType>copy(_type);
       }
     }
     if (!_matched) {
@@ -200,7 +201,7 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof DataValue) {
         _matched=true;
-        return ((ValueType)expression);
+        return EcoreUtil.<DataValue>copy(((DataValue)expression));
       }
     }
     if (!_matched) {
@@ -217,7 +218,7 @@ public class GetReturnType {
           ValueType _returnType = _value_3.getReturnType();
           _xifexpression = GetReturnType.functionBodyPure(_functionBody, _arg, null, _returnType);
         } else {
-          _xifexpression = ((ValueType)expression);
+          _xifexpression = EcoreUtil.<PureFunctionType>copy(((PureFunctionType)expression));
         }
         _switchResult = _xifexpression;
       }
@@ -225,7 +226,7 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof UnitType) {
         _matched=true;
-        _switchResult = ((ValueType)expression);
+        _switchResult = EcoreUtil.<UnitType>copy(((UnitType)expression));
       }
     }
     if (!_matched) {
@@ -264,7 +265,7 @@ public class GetReturnType {
     boolean _matched = false;
     if (pure instanceof EmptyFunctionBody) {
       _matched=true;
-      _switchResult = returnType;
+      _switchResult = EcoreUtil.<ValueType>copy(returnType);
     }
     if (!_matched) {
       if (pure instanceof CompositionFunctionBodyPure) {
@@ -365,14 +366,16 @@ public class GetReturnType {
       if (f instanceof ApplyF) {
         _matched=true;
         PureFunctionType _functionType = ((ApplyF)f).getFunctionType();
-        return _functionType.getReturnType();
+        ValueType _returnType = _functionType.getReturnType();
+        return EcoreUtil.<ValueType>copy(_returnType);
       }
     }
     if (!_matched) {
       if (f instanceof LeftPair) {
         _matched=true;
         PureAlgebraicType _type = ((LeftPair)f).getType();
-        return _type.getPureAdtElement1();
+        ValueType _pureAdtElement1 = _type.getPureAdtElement1();
+        return EcoreUtil.<ValueType>copy(_pureAdtElement1);
       }
     }
     if (!_matched) {
@@ -444,7 +447,8 @@ public class GetReturnType {
       if (f instanceof ExtractPure) {
         _matched=true;
         PureData _data = ((ExtractPure)f).getData();
-        return _data.getContent();
+        ValueType _content = _data.getContent();
+        return EcoreUtil.<ValueType>copy(_content);
       }
     }
     return null;
@@ -458,10 +462,11 @@ public class GetReturnType {
       EffectFullType _xifexpression = null;
       EffectFullType _type = ((EffectFullArgument)function).getType();
       if ((_type instanceof IOType)) {
-        _xifexpression = ((EffectFullArgument)function).getType();
-      } else {
         EffectFullType _type_1 = ((EffectFullArgument)function).getType();
-        _xifexpression = Others.IOWrap(_type_1);
+        _xifexpression = EcoreUtil.<EffectFullType>copy(_type_1);
+      } else {
+        EffectFullType _type_2 = ((EffectFullArgument)function).getType();
+        _xifexpression = Others.IOWrap(_type_2);
       }
       _switchResult = _xifexpression;
     }
@@ -500,7 +505,7 @@ public class GetReturnType {
     boolean _matched = false;
     if (full instanceof EmptyFunctionBody) {
       _matched=true;
-      _switchResult = type;
+      _switchResult = EcoreUtil.<IOType>copy(type);
     }
     if (!_matched) {
       if (full instanceof CompositionFunctionBodyEffect) {
@@ -675,7 +680,7 @@ public class GetReturnType {
           }
           _xifexpression = _xblockexpression;
         } else {
-          _xifexpression = ((Type)expression);
+          _xifexpression = EcoreUtil.<EffectFullFunctionType>copy(((EffectFullFunctionType)expression));
         }
         _switchResult = _xifexpression;
       }
@@ -683,7 +688,7 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof EffectFullDataValue) {
         _matched=true;
-        _switchResult = ((Type)expression);
+        _switchResult = EcoreUtil.<EffectFullDataValue>copy(((EffectFullDataValue)expression));
       }
     }
     if (!_matched) {
@@ -745,7 +750,8 @@ public class GetReturnType {
       if (function instanceof ApplyFIO) {
         _matched=true;
         EffectFullFunctionType _functionType = ((ApplyFIO)function).getFunctionType();
-        _switchResult = _functionType.getReturnType();
+        IOType _returnType = _functionType.getReturnType();
+        _switchResult = EcoreUtil.<IOType>copy(_returnType);
       }
     }
     if (!_matched) {
@@ -759,7 +765,8 @@ public class GetReturnType {
       if (function instanceof LeftPairIO) {
         _matched=true;
         EffectFullAlgebraicType _type = ((LeftPairIO)function).getType();
-        _switchResult = _type.getEffectFullAdtElement1();
+        Type _effectFullAdtElement1 = _type.getEffectFullAdtElement1();
+        _switchResult = EcoreUtil.<Type>copy(_effectFullAdtElement1);
       }
     }
     if (!_matched) {
@@ -773,7 +780,8 @@ public class GetReturnType {
       if (function instanceof ExtractEffectFull) {
         _matched=true;
         EffectFullData _data = ((ExtractEffectFull)function).getData();
-        _switchResult = _data.getContent();
+        EffectFullType _content = _data.getContent();
+        _switchResult = EcoreUtil.<EffectFullType>copy(_content);
       }
     }
     return _switchResult;
