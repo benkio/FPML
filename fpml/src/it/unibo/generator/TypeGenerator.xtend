@@ -68,8 +68,14 @@ class TypeGenerator {
 										return '''«GetReturnType.function(e.value).compile»'''
 			EffectFullDataType: e.type.name
 		    IOEffectFullExpression: '''IO<«(e.innerValue as EffectFullExpression).compileType»>'''
-		    IOPureFunction:	'''TODO'''
-			IOEffectFullFunction: '''TODO'''
+		    IOPureFunction:	{
+		    	if (e.pureFunction == null) '''IO<«Others.createTypeOfPureFunction(e.purePrimitive).compile»>'''
+		    	else '''IO<«Others.createTypeOfPureFunction(e.pureFunction)»>'''
+		    }
+			IOEffectFullFunction: {
+				if (e.effectFullFunction == null) '''IO<«Others.createTypeOfEffectFullFunction(e.effectFullPrimitive).compile»>''' 
+				else '''IO<«Others.createTypeOfEffectFullFunction(e.effectFullFunction).compile»>'''
+			}
 		    EffectFullProdValue: '''P2<«e.prodAdtElement1.compileType», «e.prodAdtElement2.compileType»>'''
 		    EffectFullSumValue: '''Either<«e.sumAdtElement1.compileType», «e.sumAdtElement2.compileType»>'''
 			EffectFullValueRef: '''«compileType(e.value.value)»'''

@@ -29,14 +29,14 @@ class EffectFullFunctionGenerator {
 	def compile(EffectFullFunctionDefinition pf) {
 		if (pf.name != "main") {
 			return '''
-			public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(Others.getArgumentType(pf.arg))»){
+			public static «typeGenerator.compile(pf.returnType)» «pf.name» («typeGenerator.compile(Others.getArgumentType(pf.arg))» «Others.getArgumentName(pf.arg)»){
 				«IF pf.functionBody instanceof EmptyFunctionBody»
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
 					«IF pf.higherOrderArg == null»
 					return «commonEffectFullFunctions.compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»;
 					«ELSE»
-					return () -> { return ( «typeGenerator.compile(Others.getArgumentType(pf.higherOrderArg.arg2))» ) -> «commonEffectFullFunctions.compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»; };
+					return () -> { return ( «typeGenerator.compile(Others.getArgumentType(pf.higherOrderArg.arg2))» «Others.getArgumentName(pf.higherOrderArg.arg2)») -> «commonEffectFullFunctions.compileIO((pf.functionBody as CompositionFunctionBodyEffect), pf.arg)»; };
 					«ENDIF»
 				«ENDIF»
 			}'''

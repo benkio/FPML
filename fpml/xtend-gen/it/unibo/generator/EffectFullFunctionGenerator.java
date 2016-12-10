@@ -125,6 +125,10 @@ public class EffectFullFunctionGenerator {
       Type _argumentType = Others.getArgumentType(_arg);
       Object _compile_1 = this.typeGenerator.compile(_argumentType);
       _builder.append(_compile_1, "");
+      _builder.append(" ");
+      Argument _arg_1 = pf.getArg();
+      String _argumentName = Others.getArgumentName(_arg_1);
+      _builder.append(_argumentName, "");
       _builder.append("){");
       _builder.newLineIfNotEmpty();
       {
@@ -143,8 +147,8 @@ public class EffectFullFunctionGenerator {
                 _builder.append("\t");
                 _builder.append("return ");
                 FunctionBodyEffectFull _functionBody_2 = pf.getFunctionBody();
-                Argument _arg_1 = pf.getArg();
-                String _compileIO = this.commonEffectFullFunctions.compileIO(((CompositionFunctionBodyEffect) _functionBody_2), _arg_1);
+                Argument _arg_2 = pf.getArg();
+                String _compileIO = this.commonEffectFullFunctions.compileIO(((CompositionFunctionBodyEffect) _functionBody_2), _arg_2);
                 _builder.append(_compileIO, "\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -156,10 +160,15 @@ public class EffectFullFunctionGenerator {
                 Type _argumentType_1 = Others.getArgumentType(_arg2);
                 Object _compile_2 = this.typeGenerator.compile(_argumentType_1);
                 _builder.append(_compile_2, "\t");
-                _builder.append(" ) -> ");
+                _builder.append(" ");
+                AdditionalEffectFullArgument _higherOrderArg_2 = pf.getHigherOrderArg();
+                Argument _arg2_1 = _higherOrderArg_2.getArg2();
+                String _argumentName_1 = Others.getArgumentName(_arg2_1);
+                _builder.append(_argumentName_1, "\t");
+                _builder.append(") -> ");
                 FunctionBodyEffectFull _functionBody_3 = pf.getFunctionBody();
-                Argument _arg_2 = pf.getArg();
-                String _compileIO_1 = this.commonEffectFullFunctions.compileIO(((CompositionFunctionBodyEffect) _functionBody_3), _arg_2);
+                Argument _arg_3 = pf.getArg();
+                String _compileIO_1 = this.commonEffectFullFunctions.compileIO(((CompositionFunctionBodyEffect) _functionBody_3), _arg_3);
                 _builder.append(_compileIO_1, "\t");
                 _builder.append("; };");
                 _builder.newLineIfNotEmpty();

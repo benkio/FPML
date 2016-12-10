@@ -8,6 +8,7 @@ import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullExpression;
+import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullProdValue;
@@ -23,9 +24,12 @@ import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntegerType;
+import it.unibo.fPML.PrimitiveEffectFullFunction;
+import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureProdValue;
@@ -411,17 +415,56 @@ public class TypeGenerator {
     if (!_matched) {
       if (e instanceof IOPureFunction) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("TODO");
-        _switchResult = _builder;
+        CharSequence _xifexpression = null;
+        PureFunction _pureFunction = ((IOPureFunction)e).getPureFunction();
+        boolean _equals = Objects.equal(_pureFunction, null);
+        if (_equals) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("IO<");
+          PrimitivePureFunction _purePrimitive = ((IOPureFunction)e).getPurePrimitive();
+          ValueType _createTypeOfPureFunction = Others.createTypeOfPureFunction(_purePrimitive);
+          Object _compile = this.compile(_createTypeOfPureFunction);
+          _builder.append(_compile, "");
+          _builder.append(">");
+          _xifexpression = _builder;
+        } else {
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("IO<");
+          PureFunction _pureFunction_1 = ((IOPureFunction)e).getPureFunction();
+          ValueType _createTypeOfPureFunction_1 = Others.createTypeOfPureFunction(_pureFunction_1);
+          _builder_1.append(_createTypeOfPureFunction_1, "");
+          _builder_1.append(">");
+          _xifexpression = _builder_1;
+        }
+        _switchResult = _xifexpression;
       }
     }
     if (!_matched) {
       if (e instanceof IOEffectFullFunction) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("TODO");
-        _switchResult = _builder;
+        CharSequence _xifexpression = null;
+        EffectFullFunction _effectFullFunction = ((IOEffectFullFunction)e).getEffectFullFunction();
+        boolean _equals = Objects.equal(_effectFullFunction, null);
+        if (_equals) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("IO<");
+          PrimitiveEffectFullFunction _effectFullPrimitive = ((IOEffectFullFunction)e).getEffectFullPrimitive();
+          Type _createTypeOfEffectFullFunction = Others.createTypeOfEffectFullFunction(_effectFullPrimitive);
+          Object _compile = this.compile(_createTypeOfEffectFullFunction);
+          _builder.append(_compile, "");
+          _builder.append(">");
+          _xifexpression = _builder;
+        } else {
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("IO<");
+          EffectFullFunction _effectFullFunction_1 = ((IOEffectFullFunction)e).getEffectFullFunction();
+          Type _createTypeOfEffectFullFunction_1 = Others.createTypeOfEffectFullFunction(_effectFullFunction_1);
+          Object _compile_1 = this.compile(_createTypeOfEffectFullFunction_1);
+          _builder_1.append(_compile_1, "");
+          _builder_1.append(">");
+          _xifexpression = _builder_1;
+        }
+        _switchResult = _xifexpression;
       }
     }
     if (!_matched) {
