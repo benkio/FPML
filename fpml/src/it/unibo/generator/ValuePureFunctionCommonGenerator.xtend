@@ -3,7 +3,8 @@ package it.unibo.generator
 import it.unibo.fPML.*
 import it.unibo.validation.utilitiesFunctions.Others
 import it.unibo.validation.utilitiesFunctions.GetReturnType
-
+import it.unibo.fPML.LiftPureFunction
+import it.unibo.fPML.PrimitivePureFunction
 
 class ValuePureFunctionCommonGenerator {
 	
@@ -64,7 +65,7 @@ class ValuePureFunctionCommonGenerator {
 	'''
 	
 	
-		def String compile(FunctionBodyPure pf, String argName, boolean outSideCall) {
+	def String compile(FunctionBodyPure pf, String argName, boolean outSideCall) {
 		switch pf { 
 			EmptyFunctionBody: '''null''' //cannot throw exception because the return is outside and cannot use throw with return. 
 			CompositionFunctionBodyPure: compileCompositionFunctionBodyPure(pf, argName, outSideCall)
@@ -132,4 +133,37 @@ class ValuePureFunctionCommonGenerator {
 			default: return compile(r.valueExpression)
 		}
 	}
+	
+	def String compilePureFunctionRef(PureFunction pf) {
+		switch pf {
+			PureValue: '''PureValue::«pf.name»'''
+			PureFunctionDefinition: '''PureFunctionDefinitions::«pf.name»'''
+	//		PrimitivePureFunction: compilePrimitivePureFunctionRef(pf) CANNOT HAPPEN, DOES NOT HAVE NAME REFERENCE
+			PureArgument: pf.name
+			Expression: compile(pf)
+		}
+	}
+	
+	/*def compilePrimitivePureFunctionRef(PrimitivePureFunction purePrimitive) {
+		switch purePrimitive {
+			IntToString: "Primitives::intToString"
+      		IntPow: "Primitives::intPow"
+			Plus: "Primitives::plus"
+			Minus: "Primitives::minus"
+			Times: "Primitives::times"
+			Mod: "Primitives::mod"
+      		LeftPair: "Primitives::leftPair"
+      		RightPair: "Primitives::rightPair"
+			ApplyF: acc + ".f(" + compileApplyFFactor(purePrimitive.value, argName, outsideCalls) + ")"		
+			Equals: "Primitives::equalsCurrying"
+			MinorEquals: "Primitives::minorEquals"
+			MajorEquals: "Primitives::majorEquals" 
+			Minor: "Primitives::minor"
+			Major: "Primitives::major"
+			LogicAnd: "Primitives::logicAnd"
+			LogicOr: "Primitives::logicOr"
+			ExtractPure: acc + ".getValue()"
+		}
+	}*/
+	
 }

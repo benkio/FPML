@@ -3,6 +3,7 @@ package it.unibo.generator
 import it.unibo.fPML.*
 import it.unibo.validation.utilitiesFunctions.Others
 import it.unibo.validation.utilitiesFunctions.GetReturnType
+import it.unibo.fPML.EffectFullFunction
 
 class ValueEffectFullFunctionCommonGenerator {
 	
@@ -19,13 +20,21 @@ class ValueEffectFullFunctionCommonGenerator {
 				if (e.sumAdtElement1 == null) return '''Either.right(«e.sumAdtElement2.compile»)'''
 				return '''Either.left(«e.sumAdtElement1.compile»)'''
 			}
-			EffectFullValueRef: ''''EffectFullValue.«e.value.name»()'''
-			Expression: commonFunctions.compile(e as Expression)
+			EffectFullValueRef: '''EffectFullValue.«e.value.name»()'''
 			IOExpression: return "IOFunctions.unit(" + commonFunctions.compile(e.innerValue as Expression) + ")"
 			IOEffectFullExpression: return "IOFunctions.unit(" + (e.innerValue as EffectFullExpression).compile + ")"
-			IOPureFunction: '''TODO'''
-			IOEffectFullFunction: '''TODO'''
+			IOPureFunction: '''IOFunctions.unit(«commonPureFunctions.compilePureFunctionRef(Others.getPureFunctionFromIOPureFunction(e))»)'''
+			IOEffectFullFunction: '''IOFunctions.unit(«compileEffectFullFunctionRef(Others.getEffectFullFunctionFromIOEffectFullFunction(e))»)'''
 		}	
+	}
+	
+	def compileEffectFullFunctionRef(EffectFullFunction function) {
+		switch function {
+			// PrimitiveEffectFullFunction: cannot happen because hasn't the reference, the name. 
+			EffectFullValue: '''EffectFullValue::«(function as EffectFullValue).name»'''
+			EffectFullFunctionDefinition: '''EffectFullFunctionDefinitions::«function.name»'''
+			EffectFullArgument: (function as EffectFullArgument).name
+		}
 	}
 	
 	def compileAdtValue(EffectFullExpression v, Type d) {
@@ -43,13 +52,10 @@ class ValueEffectFullFunctionCommonGenerator {
 					return '''IOFunctions.unit(«v.compile»)'''
 			}
 			EffectFullDataValue: return compile(v as EffectFullExpression)
-			Expression: commonFunctions.compileAdtValue(v as Expression, (d as IOType).type)
 			IOExpression: '''IOFunctions.unit(«commonFunctions.compileAdtValue(v.innerValue as Expression, (d as IOType).type)»)'''
 			IOEffectFullExpression: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullExpression, (d as IOType).type as EffectFullType)»)'''
-			IOPureFunction:{
-				'''TODO'''
-			}
-			IOEffectFullFunction: '''TODO'''
+			IOPureFunction: '''IOFunctions.unit(«commonPureFunctions.compilePureFunctionRef(Others.getPureFunctionFromIOPureFunction(v))»)'''
+			IOEffectFullFunction: '''IOFunctions.unit(«compileEffectFullFunctionRef(Others.getEffectFullFunctionFromIOEffectFullFunction(v))»)'''
 		}
 	}
 	
@@ -98,32 +104,93 @@ class ValueEffectFullFunctionCommonGenerator {
 	
 	def String compileIO(EffectFullBodyContent e, String valueName){
 		switch e {
-			IntToString: '''IOFunctions.map(«valueName» ,Primitives::intToString)'''
-      		IntPow: '''IOFunctions.map(«valueName»,Primitives::intPow) '''
-			Plus: '''IOFunctions.map(«valueName», Primitives::plus)'''
-			Minus: '''IOFunctions.map(«valueName», Primitives::minus)'''
-			Times: '''IOFunctions.map(«valueName», Primitives::times)'''
-		  	LeftPair: '''IOFunctions.map(«valueName», Primitives::leftPair)'''
- 			RightPair: '''IOFunctions.map(«valueName», Primitives::rightPair)'''
-      		Mod: '''IOFunctions.map(«valueName», Primitives::mod)'''
-			PrimitivePrint: '''IOFunctions.bind(«valueName», PrimitivesEffectFull::primitivePrint)'''
-      		LeftPairIO: '''IOFunctions.bind(«valueName», primitivesEffectFull:leftPairIO)'''
-      		RightPairIO: '''IOFunctions.bind(«valueName», primitivesEffectFull:rightPairIO)'''
-      		PrimitiveRandom: valueEmbellishment(valueName,"PrimitivesEffectFull.primitiveRandom()")
-      		PrimitiveTime: valueEmbellishment(valueName,"PrimitivesEffectFull.primitiveTime()")
-      		PrimitiveReturn: '''«valueName»'''
-			ApplyFIO: '''IOFunctions.bind(«valueName», («typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIOEffectFullReference(compileIO(Others.getValueFromApplyFIOFactor(e.value), null), null, (e.functionType.argType instanceof IOType))»)))'''
-			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«valueName»).f(«commonPureFunctions.compileApplyFFactor(e.value,"", true)»))'''
-			PureValue: valueEmbellishment(valueName,'''IOFunctions.unit(PureValue.«(e as PureValue).name»())''')
-			EffectFullValue: compileIOEffectFullReference('''EffectFullValue.«(e as EffectFullValue).name»()''', valueName, !(GetReturnType.effectFullBodyContent(e) instanceof IOType))
-			PureFunctionDefinition: return '''IOFunctions.map(«valueName», PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
-      		EffectFullArgument: compileIOEffectFullReference((e as EffectFullArgument).name, valueName, !(e.type instanceof IOType))
-      		EffectFullFunctionDefinition: return '''IOFunctions.bind(«valueName», EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)'''
-      		EffectFullExpression: valueEmbellishment(valueName, compile(e))
-      		ExtractEffectFull: '''IOFunctions.bind(«valueName», («e.data.name» d) -> «IF (e.data.content instanceof IOType)» d.getValue() «ELSE» IOFunctions.unit(d.getValue())) «ENDIF»'''
-			ExtractPure: '''IOFunctions.bind(«valueName», («e.data.name» d) ->  IOFunctions.unit(d.getValue()))'''
+			EffectFullExpression: valueEmbellishment(valueName, compile(e))
+			EffectFullFunction: compileIO(e as EffectFullFunction, valueName)
+			EffectFullPrimitive: compileIO(e as EffectFullPrimitive, valueName)
 		}
 	}
+	
+	def String compileIO(EffectFullPrimitive effp, String acc) {
+		switch effp {
+			PrimitiveEffectFullFunction: compileIO(effp, acc)
+			PrimitiveEffectFullValue: compileIO(effp, acc)
+		}
+	}
+
+	def String compileIO(PrimitiveEffectFullValue pefv, String acc) {
+		switch pefv {
+			PrimitiveRandom: valueEmbellishment(acc,"PrimitivesEffectFull.primitiveRandom()")
+      		PrimitiveTime: valueEmbellishment(acc,"PrimitivesEffectFull.primitiveTime()")
+		}
+	}
+	
+	def String compileIO(EffectFullFunction eff, String acc) {
+		switch eff {
+			EffectFullValue: compileIOEffectFullReference('''EffectFullValue.«(eff as EffectFullValue).name»()''', acc, !(GetReturnType.effectFullBodyContent(eff) instanceof IOType))
+			EffectFullFunctionDefinition: '''IOFunctions.bind(«acc», EffectFullFunctionDefinitions::«(eff as EffectFullFunctionDefinition).name»)'''
+			PrimitiveEffectFullFunction: compileIO(eff, acc)
+			EffectFullArgument: compileIOEffectFullReference((eff as EffectFullArgument).name, acc, !(eff.type instanceof IOType))
+		}
+	}
+	
+	def String compileIO(PrimitiveEffectFullFunction peff, String acc) {
+		switch peff {
+			PrimitivePrint: '''IOFunctions.bind(«acc», PrimitivesEffectFull::primitivePrint)'''
+      		LeftPairIO: '''IOFunctions.bind(«acc», primitivesEffectFull:leftPairIO)'''
+      		RightPairIO: '''IOFunctions.bind(«acc», primitivesEffectFull:rightPairIO)'''
+			ApplyFIO: '''IOFunctions.bind(«acc», («typeGenerator.compile(peff.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIO(Others.getValueFromApplyFIOFactor(peff.value), null)»)))'''
+			PrimitiveReturn: '''«acc»'''
+			ExtractEffectFull: '''IOFunctions.bind(«acc», («peff.data.name» d) -> «IF (peff.data.content instanceof IOType)» d.getValue() «ELSE» IOFunctions.unit(d.getValue())) «ENDIF»'''
+			LiftPureFunction: compileIO(Others.getPureFunctionFromLiftPureFunction(peff), acc)
+			LiftEffectFullFunction: compileIO(Others.getEffectFullFunctionFromLiftEffectFullFunction(peff), acc)
+		}
+	}
+	
+	def String compileIO(PureFunction pf, String acc){
+		switch pf {
+			PureValue: valueEmbellishment(acc, '''IOFunctions.unit(PureValue.«(pf as PureValue).name»())''')
+			PureFunctionDefinition: '''IOFunctions.map(«acc», PureFunctionDefinitions::«(pf as PureFunctionDefinition).name»)'''
+			PrimitivePureFunction: compileIO(pf, acc)
+			PureArgument: valueEmbellishment(acc, '''IOFunctions.unit(«pf.name»)''')
+			Expression: valueEmbellishment(acc, '''IOFuncitons.unit(«commonPureFunctions.compile(pf)»)''')
+		}
+	}
+	
+	def String compileIO(PrimitivePureFunction ppf, String acc) {
+		switch ppf {
+			IntToString: '''IOFunctions.map(«acc» ,Primitives::intToString)'''
+      		IntPow: '''IOFunctions.map(«acc»,Primitives::intPow) '''
+			Plus: '''IOFunctions.map(«acc», Primitives::plus)'''
+			Minus: '''IOFunctions.map(«acc», Primitives::minus)'''
+			Times: '''IOFunctions.map(«acc», Primitives::times)'''
+		  	LeftPair: '''IOFunctions.map(«acc», Primitives::leftPair)'''
+ 			RightPair: '''IOFunctions.map(«acc», Primitives::rightPair)'''
+      		Mod: '''IOFunctions.map(«acc», Primitives::mod)'''
+   			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«acc»).f(«commonPureFunctions.compileApplyFFactor(ppf.value,"", true)»))'''
+			ExtractPure: '''IOFunctions.bind(«acc», («ppf.data.name» d) ->  IOFunctions.unit(d.getValue()))'''
+			Equals: '''IOFunctions.map(«acc», Primitives::equalsCurrying)'''
+			MinorEquals: '''IOFunctions.map(«acc», Primitives::minorEquals)'''
+			MajorEquals: '''IOFunctions.map(«acc», Primitives::majorEquals)'''
+			Minor: '''IOFunctions.map(«acc», Primitives::minor)'''
+			Major: '''IOFunctions.map(«acc», Primitives::major)'''
+			LogicAnd: '''IOFunctions.map(«acc», Primitives::logicAnd)'''
+			LogicOr: '''IOFunctions.map(«acc», Primitives::logicOr)'''
+		}
+	}
+
+/* 	def String compileIO(EffectFullExpression efe, String acc) {
+		switch efe {
+			EffectFullFunctionType: 
+			EffectFullDataValue:
+			EffectFullProdValue:
+			EffectFullSumValue:
+			EffectFullValueRef:
+			IOEffectFullExpression:
+			IOExpression:
+			IOPureFunction:
+			IOEffectFullFunction:
+		}
+	}*/
 
 	def compileIOEffectFullReference(String effectFullReferenceCompiled, String valueName, boolean unitWrap){
 		if (unitWrap)

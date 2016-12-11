@@ -646,4 +646,40 @@ public class ValuePureFunctionCommonGenerator {
     Expression _valueExpression = r.getValueExpression();
     return this.compile(_valueExpression);
   }
+  
+  public String compilePureFunctionRef(final PureFunction pf) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (pf instanceof PureValue) {
+      _matched=true;
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("PureValue::");
+      String _name = ((PureValue)pf).getName();
+      _builder.append(_name, "");
+      _switchResult = _builder.toString();
+    }
+    if (!_matched) {
+      if (pf instanceof PureFunctionDefinition) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("PureFunctionDefinitions::");
+        String _name = ((PureFunctionDefinition)pf).getName();
+        _builder.append(_name, "");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof PureArgument) {
+        _matched=true;
+        _switchResult = ((PureArgument)pf).getName();
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof Expression) {
+        _matched=true;
+        _switchResult = this.compile(((Expression)pf));
+      }
+    }
+    return _switchResult;
+  }
 }

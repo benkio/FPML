@@ -58,43 +58,115 @@ class EffectFullFunctionGenerator {
 	///////////////////////////////////////////////////////////////////////////////
 
 	def compileIOWalkthrough(CompositionFunctionBodyEffect cfbe) '''
-		«val firstElementCompiled = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe).compileIOWalkthorugh»
+		«val firstElementCompiled = Others.getFirstFunctionDefinitionFromCompositionBodyEffectFull(cfbe).compileIOWalkthrough»
 		«val Function2<String, CompositionFunctionBodyEffectFullFactor, String>  f = [String acc, CompositionFunctionBodyEffectFullFactor x | acc + x.compileIOWalkThough + "\n\t"]»
 		«cfbe.functionChain.fold(firstElementCompiled + "\n\t", f) »'''
 	
 	def compileIOWalkThough(CompositionFunctionBodyEffectFullFactor f) {
 		val e = Others.getFunctionDefinitionFromEffectFullFactor(f)
-		return e.compileIOWalkthorugh	
+		return e.compileIOWalkthrough	
 	}	
 	
-	def compileIOWalkthorugh(EffectFullBodyContent e){
+	def compileIOWalkthrough(EffectFullBodyContent e){
 		switch e {
-			IntToString: '''.map(Primitives::intToString)'''
-      		IntPow: '''.map(Primitives::intPow) '''
-			Plus: ".map(Primitives::plus)"
-			Minus: ".map(Primitives::minus)"
-			Times: ".map(Primitives::times)"
-      		LeftPair: ".map(Primitives::leftPair)"
-      		RightPair: ".map(Primitives::rightPair)"
-      		Mod: ".map(Primitives::mod)"
+			EffectFullFunction: compileIOWalkthrough(e)
+			EffectFullPrimitive: compileIOWalkthrough(e)
+			EffectFullExpression: '''.append(«commonEffectFullFunctions.compile(e)»)'''
+		}
+	}
+	
+	def compileIOWalkthrough(EffectFullPrimitive efp){
+		switch efp {
+			PrimitiveEffectFullFunction: compileIOWalkthrough(efp)
+			PrimitiveEffectFullValue: compileIOWalkthrough(efp)
+		}
+	}
+	
+	def compileIOWalkthrough(EffectFullFunction eff){
+		switch eff {
+			EffectFullValue: '''.append(EffectFullValue.«eff.name»())'''
+			EffectFullFunctionDefinition: return '''.bind(EffectFullFunctionDefinitions::«(eff as EffectFullFunctionDefinition).name»)'''
+			PrimitiveEffectFullFunction: compileIOWalkthrough(eff)
+		 	EffectFullArgument: '''.append(IOFunctions.unit(«(eff as EffectFullArgument).name»))'''
+		}
+	}
+	
+	def compileIOWalkthrough(PrimitiveEffectFullFunction pef){
+		switch pef {
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
       		LeftPairIO: '''.bind(PrimitivesEffectFull::leftPairIO)'''
       		RightPairIO:'''.bind(PrimitivesEffectFull::rightPairIO)'''
-			PrimitiveRandom: '''.append(PrimitivesEffectFull.primitiveRandom())'''
-      		PrimitiveTime: '''.append(PrimitivesEffectFull.primitiveTime())'''
-      		PrimitiveReturn: ''''''
-      		ExtractPure: '''.bind((IPureData<«typeGenerator.compile(e.data.content)»> d) -> d.getValue())'''
-			ApplyFIO: '''.bind((«typeGenerator.compile(e.functionType)» f) -> f.f(IOFunctions.runSafe(«commonEffectFullFunctions.compileIO(Others.getValueFromApplyFIOFactor(e.value), null)»)))'''
-			ApplyF: '''.map((«typeGenerator.compile(e.functionType)» f) -> f.f(«commonPureFunctions.compileApplyFFactor(e.value, "", true)»))'''
-			PureValue: return '''.append(IOFunctions.unit(PureValue.«(e as PureValue).name»()))'''
-			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(e as PureFunctionDefinition).name»)'''
-      		EffectFullArgument: return '''.append(IOFunctions.unit(«(e as EffectFullArgument).name»))'''
-      		EffectFullValue: return '''.append(EffectFullValue.«e.name»())'''
-			EffectFullFunctionDefinition: return '''.bind(EffectFullFunctionDefinitions::«(e as EffectFullFunctionDefinition).name»)''' 
-			EffectFullExpression: return '''.append(«commonEffectFullFunctions.compile(e)»)'''
-			ExtractEffectFull: '''.bind((IEffectFullData«typeGenerator.compile(e.data.content)» d) -> d.getValue())'''
+      		ApplyFIO: '''.bind((«typeGenerator.compile(pef.functionType)» f) -> f.f(IOFunctions.runSafe(«commonEffectFullFunctions.compileIO(Others.getValueFromApplyFIOFactor(pef.value), null)»)))'''
+			PrimitiveReturn: ''''''
+			ExtractEffectFull: '''.bind((IEffectFullData«typeGenerator.compile(pef.data.content)» d) -> d.getValue())'''
+			LiftPureFunction: compileIOWalkthrough(pef)
+			LiftEffectFullFunction: compileIOWalkthrough(pef)
 		}
 	}
+	
+	def compileIOWalkthrough(LiftEffectFullFunction lef) {
+		switch lef {
+			PrimitiveEffectFullFunction: compileIOWalkthrough(lef as PrimitiveEffectFullFunction)
+			EffectFullFunction: compileIOWalkthrough(lef as EffectFullFunction)
+		}
+	}
+	
+	def compileIOWalkthrough(LiftPureFunction function) {
+		val innerFunction = Others.getPureFunctionFromLiftPureFunction(function)
+		switch innerFunction {
+			PrimitivePureFunction: compileIOWalkthrough(innerFunction as PrimitivePureFunction)
+			PureFunction: compileIOWalkthrough(innerFunction as PureFunction)
+		}
+	}
+	
+	def compileIOWalkthrough(PrimitiveEffectFullValue pev) {
+		switch pev {
+			PrimitiveRandom: '''.append(PrimitivesEffectFull.primitiveRandom())'''
+			PrimitiveTime: '''.append(PrimitivesEffectFull.primitiveTime())'''
+		}	
+	}
+	
+	def compileIOWalkthrough(PrimitivePureFunction ppf){
+		switch ppf {
+			IntToString: '''.map(Primitives::intToString)'''
+			IntPow: '''.map(Primitives::intPow)'''
+			Plus: ".map(Primitives::plus)"
+			Minus: ".map(Primitives::minus)"
+			Times: ".map(Primitives::times)"
+			Mod: ".map(Primitives::mod)"
+			ApplyF: '''.map((«typeGenerator.compile(ppf.functionType)» f) -> f.f(«commonPureFunctions.compileApplyFFactor(ppf.value, "", true)»))''' 
+			LeftPair: ".map(Primitives::leftPair)" 
+			RightPair: ".map(Primitives::rightPair)"
+			Equals: '''.map(Primitives::equalsCurryng)'''
+			MinorEquals: '''.map(Primitives::minorEquals)'''
+			MajorEquals: '''.map(Primitives::majorEquals)'''
+			Minor: '''.map(Primitives::minor)'''
+			Major: '''.map(Primitives::major)'''
+			LogicAnd: '''.map(Primitives::logicAnd)'''
+			LogicOr: '''.map(Primitives::logicOr)'''
+			ExtractPure: '''.bind((IPureData<«typeGenerator.compile(ppf.data.content)»> d) -> d.getValue())'''
+		}
+	}
+	
+	def compileIOWalkthrough(PureFunction pf) {
+		switch pf {
+			// PrimitivePureFunction in previous liftpurefunction switch
+			PureArgument: '''.append(«pf.name»)'''
+			Expression: '''.append(«commonPureFunctions.compile(pf)»)'''
+			PureValue: return '''.append(IOFunctions.unit(PureValue.«(pf as PureValue).name»()))'''
+			PureLambda: {
+				if (pf.arg == null)
+					'''.bind(() -> «commonPureFunctions.compile(pf.functionBody,"" , true)»)'''
+				else
+					'''.bind((«typeGenerator.compile(pf.arg.type)» «pf.arg.name») -> «commonPureFunctions.compile(pf.functionBody, pf.arg.name, true)»)'''
+			}
+			PureFunctionDefinition: return '''.map(PureFunctionDefinitions::«(pf as PureFunctionDefinition).name»)'''
+		}
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Main
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	def compile(MainFunc mf)'''
 		package «FPMLGenerator.basePackageJava»Effectfull;
