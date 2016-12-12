@@ -136,13 +136,15 @@ class ValueEffectFullFunctionCommonGenerator {
 	def String compileIO(PrimitiveEffectFullFunction peff, String acc) {
 		switch peff {
 			PrimitivePrint: '''IOFunctions.bind(«acc», PrimitivesEffectFull::primitivePrint)'''
-      		LeftPairIO: '''IOFunctions.bind(«acc», primitivesEffectFull:leftPairIO)'''
-      		RightPairIO: '''IOFunctions.bind(«acc», primitivesEffectFull:rightPairIO)'''
+      		LeftAlgebraicIO: '''IOFunctions.bind(«acc», PrimitivesEffectFull:leftAlgebraicIO)'''
+      		RightAlgebraicIO: '''IOFunctions.bind(«acc», PrimitivesEffectFull:rightAlgebraicIO)'''
 			ApplyFIO: '''IOFunctions.bind(«acc», («typeGenerator.compile(peff.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIO(Others.getValueFromApplyFIOFactor(peff.value), null)»)))'''
 			PrimitiveReturn: '''«acc»'''
 			ExtractEffectFull: '''IOFunctions.bind(«acc», («peff.data.name» d) -> «IF (peff.data.content instanceof IOType)» d.getValue() «ELSE» IOFunctions.unit(d.getValue())) «ENDIF»'''
 			LiftPureFunction: compileIO(Others.getPureFunctionFromLiftPureFunction(peff), acc)
 			LiftEffectFullFunction: compileIO(Others.getEffectFullFunctionFromLiftEffectFullFunction(peff), acc)
+			IsLeftEffectFull: '''IOFuctions.bind(«acc», PrimitivesEffectFull::isLeft)'''
+			IsRightEffectFull: '''IOFunctions.bind(«acc», PrimitivesEffectFull::isRight)'''
 		}
 	}
 	
@@ -163,8 +165,8 @@ class ValueEffectFullFunctionCommonGenerator {
 			Plus: '''IOFunctions.map(«acc», Primitives::plus)'''
 			Minus: '''IOFunctions.map(«acc», Primitives::minus)'''
 			Times: '''IOFunctions.map(«acc», Primitives::times)'''
-		  	LeftPair: '''IOFunctions.map(«acc», Primitives::leftPair)'''
- 			RightPair: '''IOFunctions.map(«acc», Primitives::rightPair)'''
+		  	LeftAlgebraic: '''IOFunctions.map(«acc», Primitives::leftAlgebraic)'''
+ 			RightAlgebraic: '''IOFunctions.map(«acc», Primitives::rightAlgebraic)'''
       		Mod: '''IOFunctions.map(«acc», Primitives::mod)'''
    			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«acc»).f(«commonPureFunctions.compileApplyFFactor(ppf.value,"", true)»))'''
 			ExtractPure: '''IOFunctions.bind(«acc», («ppf.data.name» d) ->  IOFunctions.unit(d.getValue()))'''
@@ -175,23 +177,11 @@ class ValueEffectFullFunctionCommonGenerator {
 			Major: '''IOFunctions.map(«acc», Primitives::major)'''
 			LogicAnd: '''IOFunctions.map(«acc», Primitives::logicAnd)'''
 			LogicOr: '''IOFunctions.map(«acc», Primitives::logicOr)'''
+			IsLeftPure: '''IOFuncitons.map(«acc», Primitives::isLeft)'''
+			IsRightPure: '''IOFunctions.map(«acc», Primitives::isRight)'''
 		}
 	}
-
-/* 	def String compileIO(EffectFullExpression efe, String acc) {
-		switch efe {
-			EffectFullFunctionType: 
-			EffectFullDataValue:
-			EffectFullProdValue:
-			EffectFullSumValue:
-			EffectFullValueRef:
-			IOEffectFullExpression:
-			IOExpression:
-			IOPureFunction:
-			IOEffectFullFunction:
-		}
-	}*/
-
+	
 	def compileIOEffectFullReference(String effectFullReferenceCompiled, String valueName, boolean unitWrap){
 		if (unitWrap)
 			return valueEmbellishment(valueName,'''IOFunctions.unit(«effectFullReferenceCompiled»)''')

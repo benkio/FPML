@@ -231,11 +231,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Minus" eSuperTypes="#//PrimitivePureFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="Times" eSuperTypes="#//PrimitivePureFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="Mod" eSuperTypes="#//PrimitivePureFunction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LeftPair" eSuperTypes="#//PrimitivePureFunction">
+  <eClassifiers xsi:type="ecore:EClass" name="LeftAlgebraic" eSuperTypes="#//PrimitivePureFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PureAlgebraicType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RightPair" eSuperTypes="#//PrimitivePureFunction">
+  <eClassifiers xsi:type="ecore:EClass" name="RightAlgebraic" eSuperTypes="#//PrimitivePureFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PureAlgebraicType"
         containment="true"/>
   </eClassifiers>
@@ -263,13 +263,21 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExtractPure" eSuperTypes="#//PrimitivePureFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//PureData"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsLeftPure" eSuperTypes="#//PrimitivePureFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PureAlgebraicType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsRightPure" eSuperTypes="#//PrimitivePureFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PureAlgebraicType"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveEffectFullFunction" eSuperTypes="#//EffectFullFunction #//EffectFullPrimitive"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitivePrint" eSuperTypes="#//PrimitiveEffectFullFunction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LeftPairIO" eSuperTypes="#//PrimitiveEffectFullFunction">
+  <eClassifiers xsi:type="ecore:EClass" name="LeftAlgebraicIO" eSuperTypes="#//PrimitiveEffectFullFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//EffectFullAlgebraicType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RightPairIO" eSuperTypes="#//PrimitiveEffectFullFunction">
+  <eClassifiers xsi:type="ecore:EClass" name="RightAlgebraicIO" eSuperTypes="#//PrimitiveEffectFullFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//EffectFullAlgebraicType"
         containment="true"/>
   </eClassifiers>
@@ -303,6 +311,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="LiftEffectFullFunction" eSuperTypes="#//PrimitiveEffectFullFunction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionRef" eType="#//EffectFullFunction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionPrimitive" eType="#//PrimitiveEffectFullFunction"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsLeftEffectFull" eSuperTypes="#//PrimitiveEffectFullFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//EffectFullAlgebraicType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsRightEffectFull" eSuperTypes="#//PrimitiveEffectFullFunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//EffectFullAlgebraicType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PureValue" eSuperTypes="#//PureFunctionDefinition">

@@ -18,7 +18,7 @@ import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
-import it.unibo.fPML.LeftPair;
+import it.unibo.fPML.LeftAlgebraic;
 import it.unibo.fPML.LogicAnd;
 import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.Major;
@@ -40,7 +40,7 @@ import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueRef;
-import it.unibo.fPML.RightPair;
+import it.unibo.fPML.RightAlgebraic;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
@@ -557,15 +557,15 @@ public class ValuePureFunctionCommonGenerator {
       }
     }
     if (!_matched) {
-      if (purePrimitive instanceof LeftPair) {
+      if (purePrimitive instanceof LeftAlgebraic) {
         _matched=true;
-        _switchResult = (("Primitives.leftPair(" + acc) + ")");
+        _switchResult = (("Primitives.leftAlgebraic(" + acc) + ")");
       }
     }
     if (!_matched) {
-      if (purePrimitive instanceof RightPair) {
+      if (purePrimitive instanceof RightAlgebraic) {
         _matched=true;
-        _switchResult = (("Primitives.rightPair(" + acc) + ")");
+        _switchResult = (("Primitives.rightAlgebraic(" + acc) + ")");
       }
     }
     if (!_matched) {

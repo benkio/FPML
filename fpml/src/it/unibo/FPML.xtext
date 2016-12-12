@@ -282,9 +282,9 @@ EffectFullSumValue returns EffectFullAlgebraicType:
 /////////////////////////////////////////////////////////////////////
 
 PrimitivePureFunction: 
-	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftPair | RightPair
+	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
 	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr
-	| ExtractPure;
+	| ExtractPure | IsLeftPure | IsRightPure;
 
 IntToString: {IntToString} 'intToString';
 IntPow:	{IntPow} 'intPow';
@@ -292,8 +292,8 @@ Plus: {Plus} '+' type=(IntegerType | StringType);
 Minus: {Minus} '-';
 Times: {Times} '*';
 Mod: {Mod} 'mod';
-LeftPair: {LeftPair} 'leftPair' type=PureAlgebraicType;
-RightPair: {RightPair} 'rightPair' type=PureAlgebraicType;
+LeftAlgebraic: {LeftAlgebraic} 'leftADT' type=PureAlgebraicType;
+RightAlgebraic: {RightAlgebraic} 'rightADT' type=PureAlgebraicType;
 ApplyF: {ApplyF} 'applyF' functionType=PureFunctionType value=ApplyFFactor;
 ApplyFFactor:
 	valueReference=[PureFunction]
@@ -307,16 +307,18 @@ Major: {Major} '>';
 LogicAnd: {LogicAnd} '&&';
 LogicOr: {LogicOr} '||';
 ExtractPure: {ExtractPure} 'extract' data=[PureData];
+IsLeftPure: {IsLeftPure} 'isLeft' type=PureAlgebraicType;
+IsRightPure: {IsRightPure} 'isRight' type=PureAlgebraicType;
 
 PrimitiveEffectFullFunction:
-	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftPairIO | RightPairIO | ExtractEffectFull
-	| LiftPureFunction | LiftEffectFullFunction;
+	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull
+	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull;
 
 PrimitivePrint:
     {PrimitivePrint} "print";
 
-LeftPairIO: {LeftPairIO} 'leftPair' type=EffectFullAlgebraicType;
-RightPairIO: {RightPairIO} 'rightPair' type=EffectFullAlgebraicType;
+LeftAlgebraicIO: {LeftAlgebraicIO} 'leftADT' type=EffectFullAlgebraicType;
+RightAlgebraicIO: {RightAlgebraicIO} 'rightADT' type=EffectFullAlgebraicType;
 
 PrimitiveEffectFullValue:
 	PrimitiveRandom  | PrimitiveTime;
@@ -343,6 +345,10 @@ LiftPureFunction: 'Lift' '(' functionRef=[PureFunction] ')'
 LiftEffectFullFunction: 'Lift' '[' functionRef=[EffectFullFunction] ']'
 	| 'Lift' '[' functionPrimitive=PrimitiveEffectFullFunction ']'
 ;
+
+IsLeftEffectFull: {IsLeftEffectFull} 'isLeft' type=EffectFullAlgebraicType;
+IsRightEffectFull: {IsRightEffectFull} 'isRight' type=EffectFullAlgebraicType;
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 // TERMINALS
 ////////////////////////////////////////////////////////////////////////////////////////////

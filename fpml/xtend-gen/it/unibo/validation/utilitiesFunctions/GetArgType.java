@@ -31,8 +31,12 @@ import it.unibo.fPML.IOExpression;
 import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
-import it.unibo.fPML.LeftPair;
-import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.IsLeftEffectFull;
+import it.unibo.fPML.IsLeftPure;
+import it.unibo.fPML.IsRightEffectFull;
+import it.unibo.fPML.IsRightPure;
+import it.unibo.fPML.LeftAlgebraic;
+import it.unibo.fPML.LeftAlgebraicIO;
 import it.unibo.fPML.LiftEffectFullFunction;
 import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
@@ -59,8 +63,8 @@ import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureValue;
-import it.unibo.fPML.RightPair;
-import it.unibo.fPML.RightPairIO;
+import it.unibo.fPML.RightAlgebraic;
+import it.unibo.fPML.RightAlgebraicIO;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.ValueType;
@@ -121,6 +125,7 @@ public class GetArgType {
   }
   
   public static ValueType primitivePureFunction(final PrimitivePureFunction f) {
+    PureAlgebraicType _switchResult = null;
     boolean _matched = false;
     if (f instanceof IntToString) {
       _matched=true;
@@ -166,16 +171,16 @@ public class GetArgType {
       }
     }
     if (!_matched) {
-      if (f instanceof LeftPair) {
+      if (f instanceof LeftAlgebraic) {
         _matched=true;
-        PureAlgebraicType _type = ((LeftPair)f).getType();
+        PureAlgebraicType _type = ((LeftAlgebraic)f).getType();
         return EcoreUtil.<PureAlgebraicType>copy(_type);
       }
     }
     if (!_matched) {
-      if (f instanceof RightPair) {
+      if (f instanceof RightAlgebraic) {
         _matched=true;
-        PureAlgebraicType _type = ((RightPair)f).getType();
+        PureAlgebraicType _type = ((RightAlgebraic)f).getType();
         return EcoreUtil.<PureAlgebraicType>copy(_type);
       }
     }
@@ -230,7 +235,21 @@ public class GetArgType {
         return Others.createDataType(_data);
       }
     }
-    return null;
+    if (!_matched) {
+      if (f instanceof IsLeftPure) {
+        _matched=true;
+        PureAlgebraicType _type = ((IsLeftPure)f).getType();
+        _switchResult = EcoreUtil.<PureAlgebraicType>copy(_type);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof IsRightPure) {
+        _matched=true;
+        PureAlgebraicType _type = ((IsRightPure)f).getType();
+        _switchResult = EcoreUtil.<PureAlgebraicType>copy(_type);
+      }
+    }
+    return _switchResult;
   }
   
   public static ValueType pureFunctionDefinition(final PureFunctionDefinition f) {
@@ -426,16 +445,16 @@ public class GetArgType {
       }
     }
     if (!_matched) {
-      if (function instanceof LeftPairIO) {
+      if (function instanceof LeftAlgebraicIO) {
         _matched=true;
-        EffectFullAlgebraicType _type = ((LeftPairIO)function).getType();
+        EffectFullAlgebraicType _type = ((LeftAlgebraicIO)function).getType();
         _switchResult = EcoreUtil.<EffectFullAlgebraicType>copy(_type);
       }
     }
     if (!_matched) {
-      if (function instanceof RightPairIO) {
+      if (function instanceof RightAlgebraicIO) {
         _matched=true;
-        EffectFullAlgebraicType _type = ((RightPairIO)function).getType();
+        EffectFullAlgebraicType _type = ((RightAlgebraicIO)function).getType();
         _switchResult = EcoreUtil.<EffectFullAlgebraicType>copy(_type);
       }
     }
@@ -458,6 +477,20 @@ public class GetArgType {
         _matched=true;
         EffectFullFunction _effectFullFunctionFromLiftEffectFullFunction = Others.getEffectFullFunctionFromLiftEffectFullFunction(((LiftEffectFullFunction)function));
         return GetArgType.effectFullFunction(_effectFullFunctionFromLiftEffectFullFunction);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof IsLeftEffectFull) {
+        _matched=true;
+        EffectFullAlgebraicType _type = ((IsLeftEffectFull)function).getType();
+        _switchResult = EcoreUtil.<EffectFullAlgebraicType>copy(_type);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof IsRightEffectFull) {
+        _matched=true;
+        EffectFullAlgebraicType _type = ((IsRightEffectFull)function).getType();
+        _switchResult = EcoreUtil.<EffectFullAlgebraicType>copy(_type);
       }
     }
     return _switchResult;

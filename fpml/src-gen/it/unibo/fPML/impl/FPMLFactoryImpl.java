@@ -127,8 +127,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.MINUS: return createMinus();
       case FPMLPackage.TIMES: return createTimes();
       case FPMLPackage.MOD: return createMod();
-      case FPMLPackage.LEFT_PAIR: return createLeftPair();
-      case FPMLPackage.RIGHT_PAIR: return createRightPair();
+      case FPMLPackage.LEFT_ALGEBRAIC: return createLeftAlgebraic();
+      case FPMLPackage.RIGHT_ALGEBRAIC: return createRightAlgebraic();
       case FPMLPackage.APPLY_F: return createApplyF();
       case FPMLPackage.APPLY_FFACTOR: return createApplyFFactor();
       case FPMLPackage.EQUALS: return createEquals();
@@ -139,10 +139,12 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.LOGIC_AND: return createLogicAnd();
       case FPMLPackage.LOGIC_OR: return createLogicOr();
       case FPMLPackage.EXTRACT_PURE: return createExtractPure();
+      case FPMLPackage.IS_LEFT_PURE: return createIsLeftPure();
+      case FPMLPackage.IS_RIGHT_PURE: return createIsRightPure();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
-      case FPMLPackage.LEFT_PAIR_IO: return createLeftPairIO();
-      case FPMLPackage.RIGHT_PAIR_IO: return createRightPairIO();
+      case FPMLPackage.LEFT_ALGEBRAIC_IO: return createLeftAlgebraicIO();
+      case FPMLPackage.RIGHT_ALGEBRAIC_IO: return createRightAlgebraicIO();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_VALUE: return createPrimitiveEffectFullValue();
       case FPMLPackage.PRIMITIVE_RANDOM: return createPrimitiveRandom();
       case FPMLPackage.PRIMITIVE_RETURN: return createPrimitiveReturn();
@@ -152,6 +154,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EXTRACT_EFFECT_FULL: return createExtractEffectFull();
       case FPMLPackage.LIFT_PURE_FUNCTION: return createLiftPureFunction();
       case FPMLPackage.LIFT_EFFECT_FULL_FUNCTION: return createLiftEffectFullFunction();
+      case FPMLPackage.IS_LEFT_EFFECT_FULL: return createIsLeftEffectFull();
+      case FPMLPackage.IS_RIGHT_EFFECT_FULL: return createIsRightEffectFull();
       case FPMLPackage.PURE_VALUE: return createPureValue();
       case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
       case FPMLPackage.IO_EFFECT_FULL_EXPRESSION: return createIOEffectFullExpression();
@@ -858,10 +862,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public LeftPair createLeftPair()
+  public LeftAlgebraic createLeftAlgebraic()
   {
-    LeftPairImpl leftPair = new LeftPairImpl();
-    return leftPair;
+    LeftAlgebraicImpl leftAlgebraic = new LeftAlgebraicImpl();
+    return leftAlgebraic;
   }
 
   /**
@@ -869,10 +873,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public RightPair createRightPair()
+  public RightAlgebraic createRightAlgebraic()
   {
-    RightPairImpl rightPair = new RightPairImpl();
-    return rightPair;
+    RightAlgebraicImpl rightAlgebraic = new RightAlgebraicImpl();
+    return rightAlgebraic;
   }
 
   /**
@@ -990,6 +994,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public IsLeftPure createIsLeftPure()
+  {
+    IsLeftPureImpl isLeftPure = new IsLeftPureImpl();
+    return isLeftPure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IsRightPure createIsRightPure()
+  {
+    IsRightPureImpl isRightPure = new IsRightPureImpl();
+    return isRightPure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PrimitiveEffectFullFunction createPrimitiveEffectFullFunction()
   {
     PrimitiveEffectFullFunctionImpl primitiveEffectFullFunction = new PrimitiveEffectFullFunctionImpl();
@@ -1012,10 +1038,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public LeftPairIO createLeftPairIO()
+  public LeftAlgebraicIO createLeftAlgebraicIO()
   {
-    LeftPairIOImpl leftPairIO = new LeftPairIOImpl();
-    return leftPairIO;
+    LeftAlgebraicIOImpl leftAlgebraicIO = new LeftAlgebraicIOImpl();
+    return leftAlgebraicIO;
   }
 
   /**
@@ -1023,10 +1049,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public RightPairIO createRightPairIO()
+  public RightAlgebraicIO createRightAlgebraicIO()
   {
-    RightPairIOImpl rightPairIO = new RightPairIOImpl();
-    return rightPairIO;
+    RightAlgebraicIOImpl rightAlgebraicIO = new RightAlgebraicIOImpl();
+    return rightAlgebraicIO;
   }
 
   /**
@@ -1126,6 +1152,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     LiftEffectFullFunctionImpl liftEffectFullFunction = new LiftEffectFullFunctionImpl();
     return liftEffectFullFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IsLeftEffectFull createIsLeftEffectFull()
+  {
+    IsLeftEffectFullImpl isLeftEffectFull = new IsLeftEffectFullImpl();
+    return isLeftEffectFull;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IsRightEffectFull createIsRightEffectFull()
+  {
+    IsRightEffectFullImpl isRightEffectFull = new IsRightEffectFullImpl();
+    return isRightEffectFull;
   }
 
   /**

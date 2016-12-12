@@ -31,8 +31,12 @@ import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
-import it.unibo.fPML.LeftPair;
-import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.IsLeftEffectFull;
+import it.unibo.fPML.IsLeftPure;
+import it.unibo.fPML.IsRightEffectFull;
+import it.unibo.fPML.IsRightPure;
+import it.unibo.fPML.LeftAlgebraic;
+import it.unibo.fPML.LeftAlgebraicIO;
 import it.unibo.fPML.LiftEffectFullFunction;
 import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
@@ -59,8 +63,8 @@ import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureValue;
-import it.unibo.fPML.RightPair;
-import it.unibo.fPML.RightPairIO;
+import it.unibo.fPML.RightAlgebraic;
+import it.unibo.fPML.RightAlgebraicIO;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -351,18 +355,18 @@ public class EffectFullFunctionGenerator {
       _switchResult = _builder;
     }
     if (!_matched) {
-      if (pef instanceof LeftPairIO) {
+      if (pef instanceof LeftAlgebraicIO) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::leftPairIO)");
+        _builder.append(".bind(PrimitivesEffectFull::leftAlgebricIO)");
         _switchResult = _builder;
       }
     }
     if (!_matched) {
-      if (pef instanceof RightPairIO) {
+      if (pef instanceof RightAlgebraicIO) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::rightPairIO)");
+        _builder.append(".bind(PrimitivesEffectFull::rightAlgebricIO)");
         _switchResult = _builder;
       }
     }
@@ -413,6 +417,22 @@ public class EffectFullFunctionGenerator {
       if (pef instanceof LiftEffectFullFunction) {
         _matched=true;
         _switchResult = this.compileIOWalkthrough(((LiftEffectFullFunction)pef));
+      }
+    }
+    if (!_matched) {
+      if (pef instanceof IsLeftEffectFull) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".bind(PrimitivesEffectFull::isLeft)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (pef instanceof IsRightEffectFull) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".bind(PrimitivesEffectFull::isRight)");
+        _switchResult = _builder;
       }
     }
     return _switchResult;
@@ -533,15 +553,15 @@ public class EffectFullFunctionGenerator {
       }
     }
     if (!_matched) {
-      if (ppf instanceof LeftPair) {
+      if (ppf instanceof LeftAlgebraic) {
         _matched=true;
-        _switchResult = ".map(Primitives::leftPair)";
+        _switchResult = ".map(Primitives::leftAlgebraic)";
       }
     }
     if (!_matched) {
-      if (ppf instanceof RightPair) {
+      if (ppf instanceof RightAlgebraic) {
         _matched=true;
-        _switchResult = ".map(Primitives::rightPair)";
+        _switchResult = ".map(Primitives::rightAlgebric)";
       }
     }
     if (!_matched) {
@@ -610,6 +630,22 @@ public class EffectFullFunctionGenerator {
         Object _compile = this.typeGenerator.compile(_content);
         _builder.append(_compile, "");
         _builder.append("> d) -> d.getValue())");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (ppf instanceof IsLeftPure) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".map(Primitives::isLeft)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (ppf instanceof IsRightPure) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".map(Primitives::isRight)");
         _switchResult = _builder;
       }
     }

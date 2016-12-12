@@ -183,11 +183,11 @@
     <genClasses ecoreClass="FPML.ecore#//Minus"/>
     <genClasses ecoreClass="FPML.ecore#//Times"/>
     <genClasses ecoreClass="FPML.ecore#//Mod"/>
-    <genClasses ecoreClass="FPML.ecore#//LeftPair">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//LeftPair/type"/>
+    <genClasses ecoreClass="FPML.ecore#//LeftAlgebraic">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//LeftAlgebraic/type"/>
     </genClasses>
-    <genClasses ecoreClass="FPML.ecore#//RightPair">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//RightPair/type"/>
+    <genClasses ecoreClass="FPML.ecore#//RightAlgebraic">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//RightAlgebraic/type"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//ApplyF">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//ApplyF/functionType"/>
@@ -209,13 +209,19 @@
     <genClasses ecoreClass="FPML.ecore#//ExtractPure">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//ExtractPure/data"/>
     </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//IsLeftPure">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//IsLeftPure/type"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//IsRightPure">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//IsRightPure/type"/>
+    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveEffectFullFunction"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitivePrint"/>
-    <genClasses ecoreClass="FPML.ecore#//LeftPairIO">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//LeftPairIO/type"/>
+    <genClasses ecoreClass="FPML.ecore#//LeftAlgebraicIO">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//LeftAlgebraicIO/type"/>
     </genClasses>
-    <genClasses ecoreClass="FPML.ecore#//RightPairIO">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//RightPairIO/type"/>
+    <genClasses ecoreClass="FPML.ecore#//RightAlgebraicIO">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//RightAlgebraicIO/type"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveEffectFullValue"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveRandom"/>
@@ -242,6 +248,12 @@
     <genClasses ecoreClass="FPML.ecore#//LiftEffectFullFunction">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//LiftEffectFullFunction/functionRef"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//LiftEffectFullFunction/functionPrimitive"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//IsLeftEffectFull">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//IsLeftEffectFull/type"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//IsRightEffectFull">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//IsRightEffectFull/type"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PureValue">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureValue/value"/>

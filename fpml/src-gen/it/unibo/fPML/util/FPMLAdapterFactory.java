@@ -386,14 +386,14 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createModAdapter();
       }
       @Override
-      public Adapter caseLeftPair(LeftPair object)
+      public Adapter caseLeftAlgebraic(LeftAlgebraic object)
       {
-        return createLeftPairAdapter();
+        return createLeftAlgebraicAdapter();
       }
       @Override
-      public Adapter caseRightPair(RightPair object)
+      public Adapter caseRightAlgebraic(RightAlgebraic object)
       {
-        return createRightPairAdapter();
+        return createRightAlgebraicAdapter();
       }
       @Override
       public Adapter caseApplyF(ApplyF object)
@@ -446,6 +446,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createExtractPureAdapter();
       }
       @Override
+      public Adapter caseIsLeftPure(IsLeftPure object)
+      {
+        return createIsLeftPureAdapter();
+      }
+      @Override
+      public Adapter caseIsRightPure(IsRightPure object)
+      {
+        return createIsRightPureAdapter();
+      }
+      @Override
       public Adapter casePrimitiveEffectFullFunction(PrimitiveEffectFullFunction object)
       {
         return createPrimitiveEffectFullFunctionAdapter();
@@ -456,14 +466,14 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createPrimitivePrintAdapter();
       }
       @Override
-      public Adapter caseLeftPairIO(LeftPairIO object)
+      public Adapter caseLeftAlgebraicIO(LeftAlgebraicIO object)
       {
-        return createLeftPairIOAdapter();
+        return createLeftAlgebraicIOAdapter();
       }
       @Override
-      public Adapter caseRightPairIO(RightPairIO object)
+      public Adapter caseRightAlgebraicIO(RightAlgebraicIO object)
       {
-        return createRightPairIOAdapter();
+        return createRightAlgebraicIOAdapter();
       }
       @Override
       public Adapter casePrimitiveEffectFullValue(PrimitiveEffectFullValue object)
@@ -509,6 +519,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseLiftEffectFullFunction(LiftEffectFullFunction object)
       {
         return createLiftEffectFullFunctionAdapter();
+      }
+      @Override
+      public Adapter caseIsLeftEffectFull(IsLeftEffectFull object)
+      {
+        return createIsLeftEffectFullAdapter();
+      }
+      @Override
+      public Adapter caseIsRightEffectFull(IsRightEffectFull object)
+      {
+        return createIsRightEffectFullAdapter();
       }
       @Override
       public Adapter casePureValue(PureValue object)
@@ -1533,31 +1553,31 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LeftPair <em>Left Pair</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LeftAlgebraic <em>Left Algebraic</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.LeftPair
+   * @see it.unibo.fPML.LeftAlgebraic
    * @generated
    */
-  public Adapter createLeftPairAdapter()
+  public Adapter createLeftAlgebraicAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.RightPair <em>Right Pair</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.RightAlgebraic <em>Right Algebraic</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.RightPair
+   * @see it.unibo.fPML.RightAlgebraic
    * @generated
    */
-  public Adapter createRightPairAdapter()
+  public Adapter createRightAlgebraicAdapter()
   {
     return null;
   }
@@ -1713,6 +1733,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.IsLeftPure <em>Is Left Pure</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.IsLeftPure
+   * @generated
+   */
+  public Adapter createIsLeftPureAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.IsRightPure <em>Is Right Pure</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.IsRightPure
+   * @generated
+   */
+  public Adapter createIsRightPureAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitiveEffectFullFunction <em>Primitive Effect Full Function</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1743,31 +1793,31 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LeftPairIO <em>Left Pair IO</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.LeftAlgebraicIO <em>Left Algebraic IO</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.LeftPairIO
+   * @see it.unibo.fPML.LeftAlgebraicIO
    * @generated
    */
-  public Adapter createLeftPairIOAdapter()
+  public Adapter createLeftAlgebraicIOAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.RightPairIO <em>Right Pair IO</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.RightAlgebraicIO <em>Right Algebraic IO</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.RightPairIO
+   * @see it.unibo.fPML.RightAlgebraicIO
    * @generated
    */
-  public Adapter createRightPairIOAdapter()
+  public Adapter createRightAlgebraicIOAdapter()
   {
     return null;
   }
@@ -1903,6 +1953,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createLiftEffectFullFunctionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.IsLeftEffectFull <em>Is Left Effect Full</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.IsLeftEffectFull
+   * @generated
+   */
+  public Adapter createIsLeftEffectFullAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.IsRightEffectFull <em>Is Right Effect Full</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.IsRightEffectFull
+   * @generated
+   */
+  public Adapter createIsRightEffectFullAdapter()
   {
     return null;
   }

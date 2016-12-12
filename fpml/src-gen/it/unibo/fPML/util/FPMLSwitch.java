@@ -616,25 +616,25 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.LEFT_PAIR:
+      case FPMLPackage.LEFT_ALGEBRAIC:
       {
-        LeftPair leftPair = (LeftPair)theEObject;
-        T result = caseLeftPair(leftPair);
-        if (result == null) result = casePrimitivePureFunction(leftPair);
-        if (result == null) result = casePureFunction(leftPair);
-        if (result == null) result = casePrimitiveFunction(leftPair);
-        if (result == null) result = caseFunction(leftPair);
+        LeftAlgebraic leftAlgebraic = (LeftAlgebraic)theEObject;
+        T result = caseLeftAlgebraic(leftAlgebraic);
+        if (result == null) result = casePrimitivePureFunction(leftAlgebraic);
+        if (result == null) result = casePureFunction(leftAlgebraic);
+        if (result == null) result = casePrimitiveFunction(leftAlgebraic);
+        if (result == null) result = caseFunction(leftAlgebraic);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.RIGHT_PAIR:
+      case FPMLPackage.RIGHT_ALGEBRAIC:
       {
-        RightPair rightPair = (RightPair)theEObject;
-        T result = caseRightPair(rightPair);
-        if (result == null) result = casePrimitivePureFunction(rightPair);
-        if (result == null) result = casePureFunction(rightPair);
-        if (result == null) result = casePrimitiveFunction(rightPair);
-        if (result == null) result = caseFunction(rightPair);
+        RightAlgebraic rightAlgebraic = (RightAlgebraic)theEObject;
+        T result = caseRightAlgebraic(rightAlgebraic);
+        if (result == null) result = casePrimitivePureFunction(rightAlgebraic);
+        if (result == null) result = casePureFunction(rightAlgebraic);
+        if (result == null) result = casePrimitiveFunction(rightAlgebraic);
+        if (result == null) result = caseFunction(rightAlgebraic);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -744,6 +744,28 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.IS_LEFT_PURE:
+      {
+        IsLeftPure isLeftPure = (IsLeftPure)theEObject;
+        T result = caseIsLeftPure(isLeftPure);
+        if (result == null) result = casePrimitivePureFunction(isLeftPure);
+        if (result == null) result = casePureFunction(isLeftPure);
+        if (result == null) result = casePrimitiveFunction(isLeftPure);
+        if (result == null) result = caseFunction(isLeftPure);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.IS_RIGHT_PURE:
+      {
+        IsRightPure isRightPure = (IsRightPure)theEObject;
+        T result = caseIsRightPure(isRightPure);
+        if (result == null) result = casePrimitivePureFunction(isRightPure);
+        if (result == null) result = casePureFunction(isRightPure);
+        if (result == null) result = casePrimitiveFunction(isRightPure);
+        if (result == null) result = caseFunction(isRightPure);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION:
       {
         PrimitiveEffectFullFunction primitiveEffectFullFunction = (PrimitiveEffectFullFunction)theEObject;
@@ -769,29 +791,29 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.LEFT_PAIR_IO:
+      case FPMLPackage.LEFT_ALGEBRAIC_IO:
       {
-        LeftPairIO leftPairIO = (LeftPairIO)theEObject;
-        T result = caseLeftPairIO(leftPairIO);
-        if (result == null) result = casePrimitiveEffectFullFunction(leftPairIO);
-        if (result == null) result = caseEffectFullFunction(leftPairIO);
-        if (result == null) result = caseEffectFullPrimitive(leftPairIO);
-        if (result == null) result = caseFunction(leftPairIO);
-        if (result == null) result = caseEffectFullBodyContent(leftPairIO);
-        if (result == null) result = casePrimitiveFunction(leftPairIO);
+        LeftAlgebraicIO leftAlgebraicIO = (LeftAlgebraicIO)theEObject;
+        T result = caseLeftAlgebraicIO(leftAlgebraicIO);
+        if (result == null) result = casePrimitiveEffectFullFunction(leftAlgebraicIO);
+        if (result == null) result = caseEffectFullFunction(leftAlgebraicIO);
+        if (result == null) result = caseEffectFullPrimitive(leftAlgebraicIO);
+        if (result == null) result = caseFunction(leftAlgebraicIO);
+        if (result == null) result = caseEffectFullBodyContent(leftAlgebraicIO);
+        if (result == null) result = casePrimitiveFunction(leftAlgebraicIO);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.RIGHT_PAIR_IO:
+      case FPMLPackage.RIGHT_ALGEBRAIC_IO:
       {
-        RightPairIO rightPairIO = (RightPairIO)theEObject;
-        T result = caseRightPairIO(rightPairIO);
-        if (result == null) result = casePrimitiveEffectFullFunction(rightPairIO);
-        if (result == null) result = caseEffectFullFunction(rightPairIO);
-        if (result == null) result = caseEffectFullPrimitive(rightPairIO);
-        if (result == null) result = caseFunction(rightPairIO);
-        if (result == null) result = caseEffectFullBodyContent(rightPairIO);
-        if (result == null) result = casePrimitiveFunction(rightPairIO);
+        RightAlgebraicIO rightAlgebraicIO = (RightAlgebraicIO)theEObject;
+        T result = caseRightAlgebraicIO(rightAlgebraicIO);
+        if (result == null) result = casePrimitiveEffectFullFunction(rightAlgebraicIO);
+        if (result == null) result = caseEffectFullFunction(rightAlgebraicIO);
+        if (result == null) result = caseEffectFullPrimitive(rightAlgebraicIO);
+        if (result == null) result = caseFunction(rightAlgebraicIO);
+        if (result == null) result = caseEffectFullBodyContent(rightAlgebraicIO);
+        if (result == null) result = casePrimitiveFunction(rightAlgebraicIO);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -896,6 +918,32 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseFunction(liftEffectFullFunction);
         if (result == null) result = caseEffectFullBodyContent(liftEffectFullFunction);
         if (result == null) result = casePrimitiveFunction(liftEffectFullFunction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.IS_LEFT_EFFECT_FULL:
+      {
+        IsLeftEffectFull isLeftEffectFull = (IsLeftEffectFull)theEObject;
+        T result = caseIsLeftEffectFull(isLeftEffectFull);
+        if (result == null) result = casePrimitiveEffectFullFunction(isLeftEffectFull);
+        if (result == null) result = caseEffectFullFunction(isLeftEffectFull);
+        if (result == null) result = caseEffectFullPrimitive(isLeftEffectFull);
+        if (result == null) result = caseFunction(isLeftEffectFull);
+        if (result == null) result = caseEffectFullBodyContent(isLeftEffectFull);
+        if (result == null) result = casePrimitiveFunction(isLeftEffectFull);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.IS_RIGHT_EFFECT_FULL:
+      {
+        IsRightEffectFull isRightEffectFull = (IsRightEffectFull)theEObject;
+        T result = caseIsRightEffectFull(isRightEffectFull);
+        if (result == null) result = casePrimitiveEffectFullFunction(isRightEffectFull);
+        if (result == null) result = caseEffectFullFunction(isRightEffectFull);
+        if (result == null) result = caseEffectFullPrimitive(isRightEffectFull);
+        if (result == null) result = caseFunction(isRightEffectFull);
+        if (result == null) result = caseEffectFullBodyContent(isRightEffectFull);
+        if (result == null) result = casePrimitiveFunction(isRightEffectFull);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2049,33 +2097,33 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Left Pair</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Left Algebraic</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Left Pair</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Left Algebraic</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseLeftPair(LeftPair object)
+  public T caseLeftAlgebraic(LeftAlgebraic object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Right Pair</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Right Algebraic</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Right Pair</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Right Algebraic</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRightPair(RightPair object)
+  public T caseRightAlgebraic(RightAlgebraic object)
   {
     return null;
   }
@@ -2241,6 +2289,38 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Is Left Pure</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Is Left Pure</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIsLeftPure(IsLeftPure object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Is Right Pure</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Is Right Pure</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIsRightPure(IsRightPure object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2273,33 +2353,33 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Left Pair IO</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Left Algebraic IO</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Left Pair IO</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Left Algebraic IO</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseLeftPairIO(LeftPairIO object)
+  public T caseLeftAlgebraicIO(LeftAlgebraicIO object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Right Pair IO</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Right Algebraic IO</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Right Pair IO</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Right Algebraic IO</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRightPairIO(RightPairIO object)
+  public T caseRightAlgebraicIO(RightAlgebraicIO object)
   {
     return null;
   }
@@ -2444,6 +2524,38 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseLiftEffectFullFunction(LiftEffectFullFunction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Is Left Effect Full</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Is Left Effect Full</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIsLeftEffectFull(IsLeftEffectFull object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Is Right Effect Full</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Is Right Effect Full</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIsRightEffectFull(IsRightEffectFull object)
   {
     return null;
   }

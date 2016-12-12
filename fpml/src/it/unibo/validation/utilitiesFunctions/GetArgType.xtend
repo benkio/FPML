@@ -12,6 +12,7 @@ import it.unibo.fPML.EffectFullValue
 import org.eclipse.emf.ecore.util.EcoreUtil
 import it.unibo.fPML.EffectFullPrimitive
 import it.unibo.fPML.EffectFullExpression
+import it.unibo.services.FPMLGrammarAccess.IsLeftEffectFullElements
 
 class GetArgType {
 	
@@ -41,8 +42,8 @@ class GetArgType {
 			Times: return FPMLFactory.eINSTANCE.createIntegerType
 			Mod: return FPMLFactory.eINSTANCE.createIntegerType
 			ApplyF: return EcoreUtil.copy(f.functionType)
-      		LeftPair: return EcoreUtil.copy(f.type)
-      		RightPair: return EcoreUtil.copy(f.type)
+      		LeftAlgebraic: return EcoreUtil.copy(f.type)
+      		RightAlgebraic: return EcoreUtil.copy(f.type)
       		Equals: return EcoreUtil.copy(f.type) as ValueType 
       		MinorEquals: return FPMLFactory.eINSTANCE.createIntegerType
       		MajorEquals: return FPMLFactory.eINSTANCE.createIntegerType
@@ -51,6 +52,8 @@ class GetArgType {
       		LogicAnd:return FPMLFactory.eINSTANCE.createBooleanType
       		LogicOr: return FPMLFactory.eINSTANCE.createBooleanType
       		ExtractPure: return Others.createDataType(f.data)
+      		IsLeftPure: EcoreUtil.copy(f.type)
+      		IsRightPure: EcoreUtil.copy(f.type)
 		}
 	}
 	
@@ -117,11 +120,13 @@ class GetArgType {
 			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType 
 			ApplyFIO: return EcoreUtil.copy(function.functionType)
      		PrimitiveReturn: return EcoreUtil.copy(function.type)
-      		LeftPairIO: EcoreUtil.copy(function.type)
-      		RightPairIO: EcoreUtil.copy(function.type)
+      		LeftAlgebraicIO: EcoreUtil.copy(function.type)
+      		RightAlgebraicIO: EcoreUtil.copy(function.type)
       		ExtractEffectFull: return Others.createDataType(function.data)
       		LiftPureFunction: return pureFunction(Others.getPureFunctionFromLiftPureFunction(function))
       		LiftEffectFullFunction: return effectFullFunction(Others.getEffectFullFunctionFromLiftEffectFullFunction(function))
+			IsLeftEffectFull: EcoreUtil.copy(function.type)
+			IsRightEffectFull: EcoreUtil.copy(function.type)
 		}
 	}
 	

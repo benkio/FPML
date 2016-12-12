@@ -92,8 +92,8 @@ class GetReturnType {
 			Times: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
 			Mod: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
 			ApplyF: return EcoreUtil.copy(f.functionType.returnType)
-      		LeftPair: return EcoreUtil.copy(f.type.pureAdtElement1)
-      		RightPair: return Others.getElement2ValueTypeFromPureAlgebraicType(EcoreUtil.copy(f.type))
+      		LeftAlgebraic: return EcoreUtil.copy(f.type.pureAdtElement1)
+      		RightAlgebraic: return EcoreUtil.copy(Others.getElement2ValueTypeFromPureAlgebraicType(EcoreUtil.copy(f.type)))
       		Equals: return Others.createPureFuntionType(EcoreUtil.copy(f.type) as ValueType, FPMLFactory.eINSTANCE.createBooleanType)
       		MinorEquals: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
       		MajorEquals: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createBooleanType)
@@ -102,6 +102,8 @@ class GetReturnType {
       		LogicAnd: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType) 
       		LogicOr: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createBooleanType, FPMLFactory.eINSTANCE.createBooleanType)
       		ExtractPure: return EcoreUtil.copy(f.data.content)
+			IsLeftPure: return FPMLFactory.eINSTANCE.createBooleanType
+			IsRightPure: return FPMLFactory.eINSTANCE.createBooleanType
 		}
 	}
 	
@@ -217,11 +219,13 @@ class GetReturnType {
 			PrimitivePrint: Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
   			ApplyFIO: EcoreUtil.copy(function.functionType.returnType)
 			PrimitiveReturn: Others.IOWrap(function.type)
-			LeftPairIO: EcoreUtil.copy(function.type.effectFullAdtElement1)
-			RightPairIO: Others.getElement2ValueTypeFromEffectFullAlgebraicType(function.type)
+			LeftAlgebraicIO: EcoreUtil.copy(function.type.effectFullAdtElement1)
+			RightAlgebraicIO: EcoreUtil.copy(Others.getElement2ValueTypeFromEffectFullAlgebraicType(function.type))
 			ExtractEffectFull: EcoreUtil.copy(function.data.content)
 			LiftPureFunction: Others.IOWrap(pureFunction(Others.getPureFunctionFromLiftPureFunction(function)))
 			LiftEffectFullFunction: Others.IOWrap(effectFullFunction(Others.getEffectFullFunctionFromLiftEffectFullFunction(function)))
+			IsLeftEffectFull: Others.IOWrap(FPMLFactory.eINSTANCE.createBooleanType)
+			IsRightEffectFull: Others.IOWrap(FPMLFactory.eINSTANCE.createBooleanType)
 		}
 	}
 	

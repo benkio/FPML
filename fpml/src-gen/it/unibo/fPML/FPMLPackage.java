@@ -1911,14 +1911,14 @@ public interface FPMLPackage extends EPackage
   int MOD_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link it.unibo.fPML.impl.LeftPairImpl <em>Left Pair</em>}' class.
+   * The meta object id for the '{@link it.unibo.fPML.impl.LeftAlgebraicImpl <em>Left Algebraic</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see it.unibo.fPML.impl.LeftPairImpl
-   * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftPair()
+   * @see it.unibo.fPML.impl.LeftAlgebraicImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftAlgebraic()
    * @generated
    */
-  int LEFT_PAIR = 62;
+  int LEFT_ALGEBRAIC = 62;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1927,26 +1927,26 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LEFT_PAIR__TYPE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+  int LEFT_ALGEBRAIC__TYPE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Left Pair</em>' class.
+   * The number of structural features of the '<em>Left Algebraic</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LEFT_PAIR_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
+  int LEFT_ALGEBRAIC_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link it.unibo.fPML.impl.RightPairImpl <em>Right Pair</em>}' class.
+   * The meta object id for the '{@link it.unibo.fPML.impl.RightAlgebraicImpl <em>Right Algebraic</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see it.unibo.fPML.impl.RightPairImpl
-   * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightPair()
+   * @see it.unibo.fPML.impl.RightAlgebraicImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightAlgebraic()
    * @generated
    */
-  int RIGHT_PAIR = 63;
+  int RIGHT_ALGEBRAIC = 63;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1955,16 +1955,16 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RIGHT_PAIR__TYPE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+  int RIGHT_ALGEBRAIC__TYPE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Right Pair</em>' class.
+   * The number of structural features of the '<em>Right Algebraic</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RIGHT_PAIR_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
+  int RIGHT_ALGEBRAIC_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.ApplyFImpl <em>Apply F</em>}' class.
@@ -2211,6 +2211,62 @@ public interface FPMLPackage extends EPackage
   int EXTRACT_PURE_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.IsLeftPureImpl <em>Is Left Pure</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.IsLeftPureImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsLeftPure()
+   * @generated
+   */
+  int IS_LEFT_PURE = 74;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_LEFT_PURE__TYPE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Is Left Pure</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_LEFT_PURE_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.IsRightPureImpl <em>Is Right Pure</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.IsRightPureImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsRightPure()
+   * @generated
+   */
+  int IS_RIGHT_PURE = 75;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_RIGHT_PURE__TYPE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Is Right Pure</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_RIGHT_PURE_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullFunctionImpl <em>Primitive Effect Full Function</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2218,7 +2274,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullFunction()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_FUNCTION = 74;
+  int PRIMITIVE_EFFECT_FULL_FUNCTION = 76;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Function</em>' class.
@@ -2237,7 +2293,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePrint()
    * @generated
    */
-  int PRIMITIVE_PRINT = 75;
+  int PRIMITIVE_PRINT = 77;
 
   /**
    * The number of structural features of the '<em>Primitive Print</em>' class.
@@ -2249,14 +2305,14 @@ public interface FPMLPackage extends EPackage
   int PRIMITIVE_PRINT_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link it.unibo.fPML.impl.LeftPairIOImpl <em>Left Pair IO</em>}' class.
+   * The meta object id for the '{@link it.unibo.fPML.impl.LeftAlgebraicIOImpl <em>Left Algebraic IO</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see it.unibo.fPML.impl.LeftPairIOImpl
-   * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftPairIO()
+   * @see it.unibo.fPML.impl.LeftAlgebraicIOImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftAlgebraicIO()
    * @generated
    */
-  int LEFT_PAIR_IO = 76;
+  int LEFT_ALGEBRAIC_IO = 78;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2265,26 +2321,26 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LEFT_PAIR_IO__TYPE = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
+  int LEFT_ALGEBRAIC_IO__TYPE = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Left Pair IO</em>' class.
+   * The number of structural features of the '<em>Left Algebraic IO</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LEFT_PAIR_IO_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 1;
+  int LEFT_ALGEBRAIC_IO_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link it.unibo.fPML.impl.RightPairIOImpl <em>Right Pair IO</em>}' class.
+   * The meta object id for the '{@link it.unibo.fPML.impl.RightAlgebraicIOImpl <em>Right Algebraic IO</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see it.unibo.fPML.impl.RightPairIOImpl
-   * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightPairIO()
+   * @see it.unibo.fPML.impl.RightAlgebraicIOImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightAlgebraicIO()
    * @generated
    */
-  int RIGHT_PAIR_IO = 77;
+  int RIGHT_ALGEBRAIC_IO = 79;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2293,16 +2349,16 @@ public interface FPMLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RIGHT_PAIR_IO__TYPE = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
+  int RIGHT_ALGEBRAIC_IO__TYPE = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Right Pair IO</em>' class.
+   * The number of structural features of the '<em>Right Algebraic IO</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RIGHT_PAIR_IO_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 1;
+  int RIGHT_ALGEBRAIC_IO_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullValueImpl <em>Primitive Effect Full Value</em>}' class.
@@ -2312,7 +2368,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullValue()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_VALUE = 78;
+  int PRIMITIVE_EFFECT_FULL_VALUE = 80;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Value</em>' class.
@@ -2331,7 +2387,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveRandom()
    * @generated
    */
-  int PRIMITIVE_RANDOM = 79;
+  int PRIMITIVE_RANDOM = 81;
 
   /**
    * The number of structural features of the '<em>Primitive Random</em>' class.
@@ -2350,7 +2406,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveReturn()
    * @generated
    */
-  int PRIMITIVE_RETURN = 80;
+  int PRIMITIVE_RETURN = 82;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2378,7 +2434,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveTime()
    * @generated
    */
-  int PRIMITIVE_TIME = 81;
+  int PRIMITIVE_TIME = 83;
 
   /**
    * The number of structural features of the '<em>Primitive Time</em>' class.
@@ -2397,7 +2453,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIO()
    * @generated
    */
-  int APPLY_FIO = 82;
+  int APPLY_FIO = 84;
 
   /**
    * The feature id for the '<em><b>Function Type</b></em>' containment reference.
@@ -2434,7 +2490,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIOFactor()
    * @generated
    */
-  int APPLY_FIO_FACTOR = 83;
+  int APPLY_FIO_FACTOR = 85;
 
   /**
    * The feature id for the '<em><b>Value Reference</b></em>' reference.
@@ -2480,7 +2536,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getExtractEffectFull()
    * @generated
    */
-  int EXTRACT_EFFECT_FULL = 84;
+  int EXTRACT_EFFECT_FULL = 86;
 
   /**
    * The feature id for the '<em><b>Data</b></em>' reference.
@@ -2508,7 +2564,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLiftPureFunction()
    * @generated
    */
-  int LIFT_PURE_FUNCTION = 85;
+  int LIFT_PURE_FUNCTION = 87;
 
   /**
    * The feature id for the '<em><b>Function Ref</b></em>' reference.
@@ -2545,7 +2601,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLiftEffectFullFunction()
    * @generated
    */
-  int LIFT_EFFECT_FULL_FUNCTION = 86;
+  int LIFT_EFFECT_FULL_FUNCTION = 88;
 
   /**
    * The feature id for the '<em><b>Function Ref</b></em>' reference.
@@ -2575,6 +2631,62 @@ public interface FPMLPackage extends EPackage
   int LIFT_EFFECT_FULL_FUNCTION_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.IsLeftEffectFullImpl <em>Is Left Effect Full</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.IsLeftEffectFullImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsLeftEffectFull()
+   * @generated
+   */
+  int IS_LEFT_EFFECT_FULL = 89;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_LEFT_EFFECT_FULL__TYPE = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Is Left Effect Full</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_LEFT_EFFECT_FULL_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.IsRightEffectFullImpl <em>Is Right Effect Full</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.IsRightEffectFullImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsRightEffectFull()
+   * @generated
+   */
+  int IS_RIGHT_EFFECT_FULL = 90;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_RIGHT_EFFECT_FULL__TYPE = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Is Right Effect Full</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IS_RIGHT_EFFECT_FULL_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PureValueImpl <em>Pure Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2582,7 +2694,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureValue()
    * @generated
    */
-  int PURE_VALUE = 87;
+  int PURE_VALUE = 91;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2655,7 +2767,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullValue()
    * @generated
    */
-  int EFFECT_FULL_VALUE = 88;
+  int EFFECT_FULL_VALUE = 92;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2728,7 +2840,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOEffectFullExpression()
    * @generated
    */
-  int IO_EFFECT_FULL_EXPRESSION = 89;
+  int IO_EFFECT_FULL_EXPRESSION = 93;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -2756,7 +2868,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOExpression()
    * @generated
    */
-  int IO_EXPRESSION = 90;
+  int IO_EXPRESSION = 94;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -2784,7 +2896,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOPureFunction()
    * @generated
    */
-  int IO_PURE_FUNCTION = 91;
+  int IO_PURE_FUNCTION = 95;
 
   /**
    * The feature id for the '<em><b>Pure Function</b></em>' reference.
@@ -2821,7 +2933,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOEffectFullFunction()
    * @generated
    */
-  int IO_EFFECT_FULL_FUNCTION = 92;
+  int IO_EFFECT_FULL_FUNCTION = 96;
 
   /**
    * The feature id for the '<em><b>Effect Full Function</b></em>' reference.
@@ -2858,7 +2970,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullLambda()
    * @generated
    */
-  int EFFECT_FULL_LAMBDA = 93;
+  int EFFECT_FULL_LAMBDA = 97;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2922,7 +3034,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 94;
+  int DATA_VALUE = 98;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2959,7 +3071,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullDataValue()
    * @generated
    */
-  int EFFECT_FULL_DATA_VALUE = 95;
+  int EFFECT_FULL_DATA_VALUE = 99;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2996,7 +3108,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureLambda()
    * @generated
    */
-  int PURE_LAMBDA = 96;
+  int PURE_LAMBDA = 100;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -3060,7 +3172,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureProdValue()
    * @generated
    */
-  int PURE_PROD_VALUE = 97;
+  int PURE_PROD_VALUE = 101;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -3115,7 +3227,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureSumValue()
    * @generated
    */
-  int PURE_SUM_VALUE = 98;
+  int PURE_SUM_VALUE = 102;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -3170,7 +3282,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullProdValue()
    * @generated
    */
-  int EFFECT_FULL_PROD_VALUE = 99;
+  int EFFECT_FULL_PROD_VALUE = 103;
 
   /**
    * The feature id for the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -3225,7 +3337,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullSumValue()
    * @generated
    */
-  int EFFECT_FULL_SUM_VALUE = 100;
+  int EFFECT_FULL_SUM_VALUE = 104;
 
   /**
    * The feature id for the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -4719,46 +4831,46 @@ public interface FPMLPackage extends EPackage
   EClass getMod();
 
   /**
-   * Returns the meta object for class '{@link it.unibo.fPML.LeftPair <em>Left Pair</em>}'.
+   * Returns the meta object for class '{@link it.unibo.fPML.LeftAlgebraic <em>Left Algebraic</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Left Pair</em>'.
-   * @see it.unibo.fPML.LeftPair
+   * @return the meta object for class '<em>Left Algebraic</em>'.
+   * @see it.unibo.fPML.LeftAlgebraic
    * @generated
    */
-  EClass getLeftPair();
+  EClass getLeftAlgebraic();
 
   /**
-   * Returns the meta object for the containment reference '{@link it.unibo.fPML.LeftPair#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.LeftAlgebraic#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see it.unibo.fPML.LeftPair#getType()
-   * @see #getLeftPair()
+   * @see it.unibo.fPML.LeftAlgebraic#getType()
+   * @see #getLeftAlgebraic()
    * @generated
    */
-  EReference getLeftPair_Type();
+  EReference getLeftAlgebraic_Type();
 
   /**
-   * Returns the meta object for class '{@link it.unibo.fPML.RightPair <em>Right Pair</em>}'.
+   * Returns the meta object for class '{@link it.unibo.fPML.RightAlgebraic <em>Right Algebraic</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Right Pair</em>'.
-   * @see it.unibo.fPML.RightPair
+   * @return the meta object for class '<em>Right Algebraic</em>'.
+   * @see it.unibo.fPML.RightAlgebraic
    * @generated
    */
-  EClass getRightPair();
+  EClass getRightAlgebraic();
 
   /**
-   * Returns the meta object for the containment reference '{@link it.unibo.fPML.RightPair#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.RightAlgebraic#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see it.unibo.fPML.RightPair#getType()
-   * @see #getRightPair()
+   * @see it.unibo.fPML.RightAlgebraic#getType()
+   * @see #getRightAlgebraic()
    * @generated
    */
-  EReference getRightPair_Type();
+  EReference getRightAlgebraic_Type();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.ApplyF <em>Apply F</em>}'.
@@ -4927,6 +5039,48 @@ public interface FPMLPackage extends EPackage
   EReference getExtractPure_Data();
 
   /**
+   * Returns the meta object for class '{@link it.unibo.fPML.IsLeftPure <em>Is Left Pure</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Is Left Pure</em>'.
+   * @see it.unibo.fPML.IsLeftPure
+   * @generated
+   */
+  EClass getIsLeftPure();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.IsLeftPure#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see it.unibo.fPML.IsLeftPure#getType()
+   * @see #getIsLeftPure()
+   * @generated
+   */
+  EReference getIsLeftPure_Type();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.IsRightPure <em>Is Right Pure</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Is Right Pure</em>'.
+   * @see it.unibo.fPML.IsRightPure
+   * @generated
+   */
+  EClass getIsRightPure();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.IsRightPure#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see it.unibo.fPML.IsRightPure#getType()
+   * @see #getIsRightPure()
+   * @generated
+   */
+  EReference getIsRightPure_Type();
+
+  /**
    * Returns the meta object for class '{@link it.unibo.fPML.PrimitiveEffectFullFunction <em>Primitive Effect Full Function</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4947,46 +5101,46 @@ public interface FPMLPackage extends EPackage
   EClass getPrimitivePrint();
 
   /**
-   * Returns the meta object for class '{@link it.unibo.fPML.LeftPairIO <em>Left Pair IO</em>}'.
+   * Returns the meta object for class '{@link it.unibo.fPML.LeftAlgebraicIO <em>Left Algebraic IO</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Left Pair IO</em>'.
-   * @see it.unibo.fPML.LeftPairIO
+   * @return the meta object for class '<em>Left Algebraic IO</em>'.
+   * @see it.unibo.fPML.LeftAlgebraicIO
    * @generated
    */
-  EClass getLeftPairIO();
+  EClass getLeftAlgebraicIO();
 
   /**
-   * Returns the meta object for the containment reference '{@link it.unibo.fPML.LeftPairIO#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.LeftAlgebraicIO#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see it.unibo.fPML.LeftPairIO#getType()
-   * @see #getLeftPairIO()
+   * @see it.unibo.fPML.LeftAlgebraicIO#getType()
+   * @see #getLeftAlgebraicIO()
    * @generated
    */
-  EReference getLeftPairIO_Type();
+  EReference getLeftAlgebraicIO_Type();
 
   /**
-   * Returns the meta object for class '{@link it.unibo.fPML.RightPairIO <em>Right Pair IO</em>}'.
+   * Returns the meta object for class '{@link it.unibo.fPML.RightAlgebraicIO <em>Right Algebraic IO</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Right Pair IO</em>'.
-   * @see it.unibo.fPML.RightPairIO
+   * @return the meta object for class '<em>Right Algebraic IO</em>'.
+   * @see it.unibo.fPML.RightAlgebraicIO
    * @generated
    */
-  EClass getRightPairIO();
+  EClass getRightAlgebraicIO();
 
   /**
-   * Returns the meta object for the containment reference '{@link it.unibo.fPML.RightPairIO#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.RightAlgebraicIO#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see it.unibo.fPML.RightPairIO#getType()
-   * @see #getRightPairIO()
+   * @see it.unibo.fPML.RightAlgebraicIO#getType()
+   * @see #getRightAlgebraicIO()
    * @generated
    */
-  EReference getRightPairIO_Type();
+  EReference getRightAlgebraicIO_Type();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.PrimitiveEffectFullValue <em>Primitive Effect Full Value</em>}'.
@@ -5198,6 +5352,48 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EReference getLiftEffectFullFunction_FunctionPrimitive();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.IsLeftEffectFull <em>Is Left Effect Full</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Is Left Effect Full</em>'.
+   * @see it.unibo.fPML.IsLeftEffectFull
+   * @generated
+   */
+  EClass getIsLeftEffectFull();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.IsLeftEffectFull#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see it.unibo.fPML.IsLeftEffectFull#getType()
+   * @see #getIsLeftEffectFull()
+   * @generated
+   */
+  EReference getIsLeftEffectFull_Type();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.IsRightEffectFull <em>Is Right Effect Full</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Is Right Effect Full</em>'.
+   * @see it.unibo.fPML.IsRightEffectFull
+   * @generated
+   */
+  EClass getIsRightEffectFull();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.IsRightEffectFull#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see it.unibo.fPML.IsRightEffectFull#getType()
+   * @see #getIsRightEffectFull()
+   * @generated
+   */
+  EReference getIsRightEffectFull_Type();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.PureValue <em>Pure Value</em>}'.
@@ -6781,14 +6977,14 @@ public interface FPMLPackage extends EPackage
     EClass MOD = eINSTANCE.getMod();
 
     /**
-     * The meta object literal for the '{@link it.unibo.fPML.impl.LeftPairImpl <em>Left Pair</em>}' class.
+     * The meta object literal for the '{@link it.unibo.fPML.impl.LeftAlgebraicImpl <em>Left Algebraic</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see it.unibo.fPML.impl.LeftPairImpl
-     * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftPair()
+     * @see it.unibo.fPML.impl.LeftAlgebraicImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftAlgebraic()
      * @generated
      */
-    EClass LEFT_PAIR = eINSTANCE.getLeftPair();
+    EClass LEFT_ALGEBRAIC = eINSTANCE.getLeftAlgebraic();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -6796,17 +6992,17 @@ public interface FPMLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference LEFT_PAIR__TYPE = eINSTANCE.getLeftPair_Type();
+    EReference LEFT_ALGEBRAIC__TYPE = eINSTANCE.getLeftAlgebraic_Type();
 
     /**
-     * The meta object literal for the '{@link it.unibo.fPML.impl.RightPairImpl <em>Right Pair</em>}' class.
+     * The meta object literal for the '{@link it.unibo.fPML.impl.RightAlgebraicImpl <em>Right Algebraic</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see it.unibo.fPML.impl.RightPairImpl
-     * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightPair()
+     * @see it.unibo.fPML.impl.RightAlgebraicImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightAlgebraic()
      * @generated
      */
-    EClass RIGHT_PAIR = eINSTANCE.getRightPair();
+    EClass RIGHT_ALGEBRAIC = eINSTANCE.getRightAlgebraic();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -6814,7 +7010,7 @@ public interface FPMLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RIGHT_PAIR__TYPE = eINSTANCE.getRightPair_Type();
+    EReference RIGHT_ALGEBRAIC__TYPE = eINSTANCE.getRightAlgebraic_Type();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.ApplyFImpl <em>Apply F</em>}' class.
@@ -6965,6 +7161,42 @@ public interface FPMLPackage extends EPackage
     EReference EXTRACT_PURE__DATA = eINSTANCE.getExtractPure_Data();
 
     /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.IsLeftPureImpl <em>Is Left Pure</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.IsLeftPureImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsLeftPure()
+     * @generated
+     */
+    EClass IS_LEFT_PURE = eINSTANCE.getIsLeftPure();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IS_LEFT_PURE__TYPE = eINSTANCE.getIsLeftPure_Type();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.IsRightPureImpl <em>Is Right Pure</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.IsRightPureImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsRightPure()
+     * @generated
+     */
+    EClass IS_RIGHT_PURE = eINSTANCE.getIsRightPure();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IS_RIGHT_PURE__TYPE = eINSTANCE.getIsRightPure_Type();
+
+    /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullFunctionImpl <em>Primitive Effect Full Function</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6985,14 +7217,14 @@ public interface FPMLPackage extends EPackage
     EClass PRIMITIVE_PRINT = eINSTANCE.getPrimitivePrint();
 
     /**
-     * The meta object literal for the '{@link it.unibo.fPML.impl.LeftPairIOImpl <em>Left Pair IO</em>}' class.
+     * The meta object literal for the '{@link it.unibo.fPML.impl.LeftAlgebraicIOImpl <em>Left Algebraic IO</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see it.unibo.fPML.impl.LeftPairIOImpl
-     * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftPairIO()
+     * @see it.unibo.fPML.impl.LeftAlgebraicIOImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftAlgebraicIO()
      * @generated
      */
-    EClass LEFT_PAIR_IO = eINSTANCE.getLeftPairIO();
+    EClass LEFT_ALGEBRAIC_IO = eINSTANCE.getLeftAlgebraicIO();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -7000,17 +7232,17 @@ public interface FPMLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference LEFT_PAIR_IO__TYPE = eINSTANCE.getLeftPairIO_Type();
+    EReference LEFT_ALGEBRAIC_IO__TYPE = eINSTANCE.getLeftAlgebraicIO_Type();
 
     /**
-     * The meta object literal for the '{@link it.unibo.fPML.impl.RightPairIOImpl <em>Right Pair IO</em>}' class.
+     * The meta object literal for the '{@link it.unibo.fPML.impl.RightAlgebraicIOImpl <em>Right Algebraic IO</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see it.unibo.fPML.impl.RightPairIOImpl
-     * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightPairIO()
+     * @see it.unibo.fPML.impl.RightAlgebraicIOImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightAlgebraicIO()
      * @generated
      */
-    EClass RIGHT_PAIR_IO = eINSTANCE.getRightPairIO();
+    EClass RIGHT_ALGEBRAIC_IO = eINSTANCE.getRightAlgebraicIO();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -7018,7 +7250,7 @@ public interface FPMLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RIGHT_PAIR_IO__TYPE = eINSTANCE.getRightPairIO_Type();
+    EReference RIGHT_ALGEBRAIC_IO__TYPE = eINSTANCE.getRightAlgebraicIO_Type();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullValueImpl <em>Primitive Effect Full Value</em>}' class.
@@ -7197,6 +7429,42 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EReference LIFT_EFFECT_FULL_FUNCTION__FUNCTION_PRIMITIVE = eINSTANCE.getLiftEffectFullFunction_FunctionPrimitive();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.IsLeftEffectFullImpl <em>Is Left Effect Full</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.IsLeftEffectFullImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsLeftEffectFull()
+     * @generated
+     */
+    EClass IS_LEFT_EFFECT_FULL = eINSTANCE.getIsLeftEffectFull();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IS_LEFT_EFFECT_FULL__TYPE = eINSTANCE.getIsLeftEffectFull_Type();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.IsRightEffectFullImpl <em>Is Right Effect Full</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.IsRightEffectFullImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsRightEffectFull()
+     * @generated
+     */
+    EClass IS_RIGHT_EFFECT_FULL = eINSTANCE.getIsRightEffectFull();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IS_RIGHT_EFFECT_FULL__TYPE = eINSTANCE.getIsRightEffectFull_Type();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PureValueImpl <em>Pure Value</em>}' class.

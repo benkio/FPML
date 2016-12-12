@@ -94,13 +94,15 @@ class EffectFullFunctionGenerator {
 	def compileIOWalkthrough(PrimitiveEffectFullFunction pef){
 		switch pef {
 			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
-      		LeftPairIO: '''.bind(PrimitivesEffectFull::leftPairIO)'''
-      		RightPairIO:'''.bind(PrimitivesEffectFull::rightPairIO)'''
+      		LeftAlgebraicIO: '''.bind(PrimitivesEffectFull::leftAlgebricIO)'''
+      		RightAlgebraicIO:'''.bind(PrimitivesEffectFull::rightAlgebricIO)'''
       		ApplyFIO: '''.bind((«typeGenerator.compile(pef.functionType)» f) -> f.f(IOFunctions.runSafe(«commonEffectFullFunctions.compileIO(Others.getValueFromApplyFIOFactor(pef.value), null)»)))'''
 			PrimitiveReturn: ''''''
 			ExtractEffectFull: '''.bind((IEffectFullData«typeGenerator.compile(pef.data.content)» d) -> d.getValue())'''
 			LiftPureFunction: compileIOWalkthrough(pef)
 			LiftEffectFullFunction: compileIOWalkthrough(pef)
+			IsLeftEffectFull: '''.bind(PrimitivesEffectFull::isLeft)'''
+			IsRightEffectFull: '''.bind(PrimitivesEffectFull::isRight)'''
 		}
 	}
 	
@@ -135,8 +137,8 @@ class EffectFullFunctionGenerator {
 			Times: ".map(Primitives::times)"
 			Mod: ".map(Primitives::mod)"
 			ApplyF: '''.map((«typeGenerator.compile(ppf.functionType)» f) -> f.f(«commonPureFunctions.compileApplyFFactor(ppf.value, "", true)»))''' 
-			LeftPair: ".map(Primitives::leftPair)" 
-			RightPair: ".map(Primitives::rightPair)"
+			LeftAlgebraic: ".map(Primitives::leftAlgebraic)" 
+			RightAlgebraic: ".map(Primitives::rightAlgebric)"
 			Equals: '''.map(Primitives::equalsCurryng)'''
 			MinorEquals: '''.map(Primitives::minorEquals)'''
 			MajorEquals: '''.map(Primitives::majorEquals)'''
@@ -145,6 +147,8 @@ class EffectFullFunctionGenerator {
 			LogicAnd: '''.map(Primitives::logicAnd)'''
 			LogicOr: '''.map(Primitives::logicOr)'''
 			ExtractPure: '''.bind((IPureData<«typeGenerator.compile(ppf.data.content)»> d) -> d.getValue())'''
+			IsLeftPure: '''.map(Primitives::isLeft)'''
+			IsRightPure: '''.map(Primitives::isRight)'''
 		}
 	}
 	

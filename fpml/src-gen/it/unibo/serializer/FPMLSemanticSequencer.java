@@ -48,8 +48,12 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
-import it.unibo.fPML.LeftPair;
-import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.IsLeftEffectFull;
+import it.unibo.fPML.IsLeftPure;
+import it.unibo.fPML.IsRightEffectFull;
+import it.unibo.fPML.IsRightPure;
+import it.unibo.fPML.LeftAlgebraic;
+import it.unibo.fPML.LeftAlgebraicIO;
 import it.unibo.fPML.LiftEffectFullFunction;
 import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
@@ -83,8 +87,8 @@ import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueBlock;
 import it.unibo.fPML.PureValueRef;
-import it.unibo.fPML.RightPair;
-import it.unibo.fPML.RightPairIO;
+import it.unibo.fPML.RightAlgebraic;
+import it.unibo.fPML.RightAlgebraicIO;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.UnitType;
@@ -279,11 +283,23 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
-			case FPMLPackage.LEFT_PAIR:
-				sequence_LeftPair(context, (LeftPair) semanticObject); 
+			case FPMLPackage.IS_LEFT_EFFECT_FULL:
+				sequence_IsLeftEffectFull(context, (IsLeftEffectFull) semanticObject); 
 				return; 
-			case FPMLPackage.LEFT_PAIR_IO:
-				sequence_LeftPairIO(context, (LeftPairIO) semanticObject); 
+			case FPMLPackage.IS_LEFT_PURE:
+				sequence_IsLeftPure(context, (IsLeftPure) semanticObject); 
+				return; 
+			case FPMLPackage.IS_RIGHT_EFFECT_FULL:
+				sequence_IsRightEffectFull(context, (IsRightEffectFull) semanticObject); 
+				return; 
+			case FPMLPackage.IS_RIGHT_PURE:
+				sequence_IsRightPure(context, (IsRightPure) semanticObject); 
+				return; 
+			case FPMLPackage.LEFT_ALGEBRAIC:
+				sequence_LeftAlgebraic(context, (LeftAlgebraic) semanticObject); 
+				return; 
+			case FPMLPackage.LEFT_ALGEBRAIC_IO:
+				sequence_LeftAlgebraicIO(context, (LeftAlgebraicIO) semanticObject); 
 				return; 
 			case FPMLPackage.LIFT_EFFECT_FULL_FUNCTION:
 				sequence_LiftEffectFullFunction(context, (LiftEffectFullFunction) semanticObject); 
@@ -396,11 +412,11 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.PURE_VALUE_REF:
 				sequence_PureValueRef(context, (PureValueRef) semanticObject); 
 				return; 
-			case FPMLPackage.RIGHT_PAIR:
-				sequence_RightPair(context, (RightPair) semanticObject); 
+			case FPMLPackage.RIGHT_ALGEBRAIC:
+				sequence_RightAlgebraic(context, (RightAlgebraic) semanticObject); 
 				return; 
-			case FPMLPackage.RIGHT_PAIR_IO:
-				sequence_RightPairIO(context, (RightPairIO) semanticObject); 
+			case FPMLPackage.RIGHT_ALGEBRAIC_IO:
+				sequence_RightAlgebraicIO(context, (RightAlgebraicIO) semanticObject); 
 				return; 
 			case FPMLPackage.STRING_TYPE:
 				if (rule == grammarAccess.getValueTypeRule()
@@ -1292,46 +1308,138 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Function returns LeftPairIO
-	 *     EffectFullFunction returns LeftPairIO
-	 *     PrimitiveFunction returns LeftPairIO
-	 *     EffectFullPrimitive returns LeftPairIO
-	 *     EffectFullBodyContent returns LeftPairIO
-	 *     PrimitiveEffectFullFunction returns LeftPairIO
-	 *     LeftPairIO returns LeftPairIO
+	 *     Function returns IsLeftEffectFull
+	 *     EffectFullFunction returns IsLeftEffectFull
+	 *     PrimitiveFunction returns IsLeftEffectFull
+	 *     EffectFullPrimitive returns IsLeftEffectFull
+	 *     EffectFullBodyContent returns IsLeftEffectFull
+	 *     PrimitiveEffectFullFunction returns IsLeftEffectFull
+	 *     IsLeftEffectFull returns IsLeftEffectFull
 	 *
 	 * Constraint:
 	 *     type=EffectFullAlgebraicType
 	 */
-	protected void sequence_LeftPairIO(ISerializationContext context, LeftPairIO semanticObject) {
+	protected void sequence_IsLeftEffectFull(ISerializationContext context, IsLeftEffectFull semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.LEFT_PAIR_IO__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.LEFT_PAIR_IO__TYPE));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.IS_LEFT_EFFECT_FULL__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.IS_LEFT_EFFECT_FULL__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getLeftPairIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getIsLeftEffectFullAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Function returns LeftPair
-	 *     PureFunction returns LeftPair
-	 *     PrimitiveFunction returns LeftPair
-	 *     PrimitivePureFunction returns LeftPair
-	 *     LeftPair returns LeftPair
+	 *     Function returns IsLeftPure
+	 *     PureFunction returns IsLeftPure
+	 *     PrimitiveFunction returns IsLeftPure
+	 *     PrimitivePureFunction returns IsLeftPure
+	 *     IsLeftPure returns IsLeftPure
 	 *
 	 * Constraint:
 	 *     type=PureAlgebraicType
 	 */
-	protected void sequence_LeftPair(ISerializationContext context, LeftPair semanticObject) {
+	protected void sequence_IsLeftPure(ISerializationContext context, IsLeftPure semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.LEFT_PAIR__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.LEFT_PAIR__TYPE));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.IS_LEFT_PURE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.IS_LEFT_PURE__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getLeftPairAccess().getTypePureAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getIsLeftPureAccess().getTypePureAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns IsRightEffectFull
+	 *     EffectFullFunction returns IsRightEffectFull
+	 *     PrimitiveFunction returns IsRightEffectFull
+	 *     EffectFullPrimitive returns IsRightEffectFull
+	 *     EffectFullBodyContent returns IsRightEffectFull
+	 *     PrimitiveEffectFullFunction returns IsRightEffectFull
+	 *     IsRightEffectFull returns IsRightEffectFull
+	 *
+	 * Constraint:
+	 *     type=EffectFullAlgebraicType
+	 */
+	protected void sequence_IsRightEffectFull(ISerializationContext context, IsRightEffectFull semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.IS_RIGHT_EFFECT_FULL__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.IS_RIGHT_EFFECT_FULL__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIsRightEffectFullAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns IsRightPure
+	 *     PureFunction returns IsRightPure
+	 *     PrimitiveFunction returns IsRightPure
+	 *     PrimitivePureFunction returns IsRightPure
+	 *     IsRightPure returns IsRightPure
+	 *
+	 * Constraint:
+	 *     type=PureAlgebraicType
+	 */
+	protected void sequence_IsRightPure(ISerializationContext context, IsRightPure semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.IS_RIGHT_PURE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.IS_RIGHT_PURE__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIsRightPureAccess().getTypePureAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns LeftAlgebraicIO
+	 *     EffectFullFunction returns LeftAlgebraicIO
+	 *     PrimitiveFunction returns LeftAlgebraicIO
+	 *     EffectFullPrimitive returns LeftAlgebraicIO
+	 *     EffectFullBodyContent returns LeftAlgebraicIO
+	 *     PrimitiveEffectFullFunction returns LeftAlgebraicIO
+	 *     LeftAlgebraicIO returns LeftAlgebraicIO
+	 *
+	 * Constraint:
+	 *     type=EffectFullAlgebraicType
+	 */
+	protected void sequence_LeftAlgebraicIO(ISerializationContext context, LeftAlgebraicIO semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.LEFT_ALGEBRAIC_IO__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.LEFT_ALGEBRAIC_IO__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLeftAlgebraicIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns LeftAlgebraic
+	 *     PureFunction returns LeftAlgebraic
+	 *     PrimitiveFunction returns LeftAlgebraic
+	 *     PrimitivePureFunction returns LeftAlgebraic
+	 *     LeftAlgebraic returns LeftAlgebraic
+	 *
+	 * Constraint:
+	 *     type=PureAlgebraicType
+	 */
+	protected void sequence_LeftAlgebraic(ISerializationContext context, LeftAlgebraic semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.LEFT_ALGEBRAIC__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.LEFT_ALGEBRAIC__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLeftAlgebraicAccess().getTypePureAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -1900,46 +2008,46 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Function returns RightPairIO
-	 *     EffectFullFunction returns RightPairIO
-	 *     PrimitiveFunction returns RightPairIO
-	 *     EffectFullPrimitive returns RightPairIO
-	 *     EffectFullBodyContent returns RightPairIO
-	 *     PrimitiveEffectFullFunction returns RightPairIO
-	 *     RightPairIO returns RightPairIO
+	 *     Function returns RightAlgebraicIO
+	 *     EffectFullFunction returns RightAlgebraicIO
+	 *     PrimitiveFunction returns RightAlgebraicIO
+	 *     EffectFullPrimitive returns RightAlgebraicIO
+	 *     EffectFullBodyContent returns RightAlgebraicIO
+	 *     PrimitiveEffectFullFunction returns RightAlgebraicIO
+	 *     RightAlgebraicIO returns RightAlgebraicIO
 	 *
 	 * Constraint:
 	 *     type=EffectFullAlgebraicType
 	 */
-	protected void sequence_RightPairIO(ISerializationContext context, RightPairIO semanticObject) {
+	protected void sequence_RightAlgebraicIO(ISerializationContext context, RightAlgebraicIO semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RIGHT_PAIR_IO__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RIGHT_PAIR_IO__TYPE));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RIGHT_ALGEBRAIC_IO__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RIGHT_ALGEBRAIC_IO__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRightPairIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getRightAlgebraicIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Function returns RightPair
-	 *     PureFunction returns RightPair
-	 *     PrimitiveFunction returns RightPair
-	 *     PrimitivePureFunction returns RightPair
-	 *     RightPair returns RightPair
+	 *     Function returns RightAlgebraic
+	 *     PureFunction returns RightAlgebraic
+	 *     PrimitiveFunction returns RightAlgebraic
+	 *     PrimitivePureFunction returns RightAlgebraic
+	 *     RightAlgebraic returns RightAlgebraic
 	 *
 	 * Constraint:
 	 *     type=PureAlgebraicType
 	 */
-	protected void sequence_RightPair(ISerializationContext context, RightPair semanticObject) {
+	protected void sequence_RightAlgebraic(ISerializationContext context, RightAlgebraic semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RIGHT_PAIR__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RIGHT_PAIR__TYPE));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.RIGHT_ALGEBRAIC__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.RIGHT_ALGEBRAIC__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRightPairAccess().getTypePureAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getRightAlgebraicAccess().getTypePureAlgebraicTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	

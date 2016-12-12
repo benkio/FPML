@@ -21,8 +21,6 @@ import it.unibo.fPML.Argument
 import it.unibo.fPML.PureValue
 import it.unibo.fPML.PureFunctionType
 import it.unibo.fPML.ApplyFFactor
-import it.unibo.fPML.LeftPair
-import it.unibo.fPML.RightPair
 import it.unibo.fPML.CompositionFunctionBodyEffect
 import it.unibo.fPML.Expression
 

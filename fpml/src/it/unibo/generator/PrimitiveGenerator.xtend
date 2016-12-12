@@ -37,12 +37,28 @@ class PrimitiveGenerator {
 				return String.valueOf(x);
 			}
 		
-			public static <A,B> A leftPair(P2<A,B> pair){
+			public static <A,B> A leftAlgebraic(P2<A,B> pair){
 				return pair._1();
 			}
 		
-			public static <A,B> B rightPair(P2<A,B> pair){
+			public static <A,B> B rightAlgebraic(P2<A,B> pair){
 				return pair._2();
+			}
+			
+			public static <A,B> A leftAlgebraic(Either<A,B> pair){
+				return pair.left().value();
+			}
+		
+			public static <A,B> B rightAlgebraic(Either<A,B> pair){
+				return pair.right().value();
+			}
+			
+			public static <A,B> Boolean isLeft(Either<A,B> pair) {
+				return pair.isLeft();
+			}
+			
+			public static <A,B> Boolean isRight(Either<A,B> pair) {
+				return pair.isRight();
 			}
 			
 			public static <A> F<A, Boolean> equalsCurrying(A x){
@@ -106,12 +122,28 @@ class PrimitiveGenerator {
 					return IOFunctions.unit(x);
 				}
 			
-				public static <A,B> A leftPairIO(P2<A,B> pair){
+				public static <A,B> A leftAlgebraicIO(P2<A,B> pair){
 					return pair._1();
 				}
 			
-				public static <A,B> B rightPairIO(P2<A,B> pair){
+				public static <A,B> B rightAlgebraicIO(P2<A,B> pair){
 					return pair._2();
+				}
+				
+				public static <A,B> A leftAlgebraicIO(Either<A,B> pair){
+					return pair.left().value();
+				}
+			
+				public static <A,B> B rightAlgebraicIO(Either<A,B> pair){
+					return pair.right().value();
+				}
+				
+				public static <A,B> Boolean isLeft(Either<A,B> pair) {
+					return pair.isLeft();
+				}
+
+				public static <A,B> Boolean isRight(Either<A,B> pair) {
+					return pair.isRight();
 				}
 			}
 	'''

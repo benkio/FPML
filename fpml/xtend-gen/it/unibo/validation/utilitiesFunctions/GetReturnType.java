@@ -45,8 +45,12 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
-import it.unibo.fPML.LeftPair;
-import it.unibo.fPML.LeftPairIO;
+import it.unibo.fPML.IsLeftEffectFull;
+import it.unibo.fPML.IsLeftPure;
+import it.unibo.fPML.IsRightEffectFull;
+import it.unibo.fPML.IsRightPure;
+import it.unibo.fPML.LeftAlgebraic;
+import it.unibo.fPML.LeftAlgebraicIO;
 import it.unibo.fPML.LiftEffectFullFunction;
 import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
@@ -78,8 +82,8 @@ import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueRef;
-import it.unibo.fPML.RightPair;
-import it.unibo.fPML.RightPairIO;
+import it.unibo.fPML.RightAlgebraic;
+import it.unibo.fPML.RightAlgebraicIO;
 import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
@@ -373,19 +377,20 @@ public class GetReturnType {
       }
     }
     if (!_matched) {
-      if (f instanceof LeftPair) {
+      if (f instanceof LeftAlgebraic) {
         _matched=true;
-        PureAlgebraicType _type = ((LeftPair)f).getType();
+        PureAlgebraicType _type = ((LeftAlgebraic)f).getType();
         ValueType _pureAdtElement1 = _type.getPureAdtElement1();
         return EcoreUtil.<ValueType>copy(_pureAdtElement1);
       }
     }
     if (!_matched) {
-      if (f instanceof RightPair) {
+      if (f instanceof RightAlgebraic) {
         _matched=true;
-        PureAlgebraicType _type = ((RightPair)f).getType();
+        PureAlgebraicType _type = ((RightAlgebraic)f).getType();
         PureAlgebraicType _copy = EcoreUtil.<PureAlgebraicType>copy(_type);
-        return Others.getElement2ValueTypeFromPureAlgebraicType(_copy);
+        ValueType _element2ValueTypeFromPureAlgebraicType = Others.getElement2ValueTypeFromPureAlgebraicType(_copy);
+        return EcoreUtil.<ValueType>copy(_element2ValueTypeFromPureAlgebraicType);
       }
     }
     if (!_matched) {
@@ -451,6 +456,18 @@ public class GetReturnType {
         PureData _data = ((ExtractPure)f).getData();
         ValueType _content = _data.getContent();
         return EcoreUtil.<ValueType>copy(_content);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof IsLeftPure) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createBooleanType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof IsRightPure) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createBooleanType();
       }
     }
     return null;
@@ -764,18 +781,19 @@ public class GetReturnType {
       }
     }
     if (!_matched) {
-      if (function instanceof LeftPairIO) {
+      if (function instanceof LeftAlgebraicIO) {
         _matched=true;
-        EffectFullAlgebraicType _type = ((LeftPairIO)function).getType();
+        EffectFullAlgebraicType _type = ((LeftAlgebraicIO)function).getType();
         Type _effectFullAdtElement1 = _type.getEffectFullAdtElement1();
         _switchResult = EcoreUtil.<Type>copy(_effectFullAdtElement1);
       }
     }
     if (!_matched) {
-      if (function instanceof RightPairIO) {
+      if (function instanceof RightAlgebraicIO) {
         _matched=true;
-        EffectFullAlgebraicType _type = ((RightPairIO)function).getType();
-        _switchResult = Others.getElement2ValueTypeFromEffectFullAlgebraicType(_type);
+        EffectFullAlgebraicType _type = ((RightAlgebraicIO)function).getType();
+        Type _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(_type);
+        _switchResult = EcoreUtil.<Type>copy(_element2ValueTypeFromEffectFullAlgebraicType);
       }
     }
     if (!_matched) {
@@ -800,6 +818,20 @@ public class GetReturnType {
         EffectFullFunction _effectFullFunctionFromLiftEffectFullFunction = Others.getEffectFullFunctionFromLiftEffectFullFunction(((LiftEffectFullFunction)function));
         Type _effectFullFunction = GetReturnType.effectFullFunction(_effectFullFunctionFromLiftEffectFullFunction);
         _switchResult = Others.IOWrap(_effectFullFunction);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof IsLeftEffectFull) {
+        _matched=true;
+        BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
+        _switchResult = Others.IOWrap(_createBooleanType);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof IsRightEffectFull) {
+        _matched=true;
+        BooleanType _createBooleanType = FPMLFactory.eINSTANCE.createBooleanType();
+        _switchResult = Others.IOWrap(_createBooleanType);
       }
     }
     return _switchResult;

@@ -112,8 +112,8 @@ class ValuePureFunctionCommonGenerator {
 			Minus: "Primitives.minus(" + acc + ")"
 			Times: "Primitives.times(" + acc + ")"
 			Mod: "Primitives.mod(" + acc + ")"
-      		LeftPair: "Primitives.leftPair(" + acc + ")"
-      		RightPair: "Primitives.rightPair(" + acc + ")"
+      		LeftAlgebraic: "Primitives.leftAlgebraic(" + acc + ")"
+      		RightAlgebraic: "Primitives.rightAlgebraic(" + acc + ")"
 			ApplyF: acc + ".f(" + compileApplyFFactor(purePrimitive.value, argName, outsideCalls) + ")"		
 			Equals: "Primitives.equalsCurrying(" + acc + ")"
 			MinorEquals: "Primitives.minorEquals(" + acc + ")"
@@ -143,27 +143,4 @@ class ValuePureFunctionCommonGenerator {
 			Expression: compile(pf)
 		}
 	}
-	
-	/*def compilePrimitivePureFunctionRef(PrimitivePureFunction purePrimitive) {
-		switch purePrimitive {
-			IntToString: "Primitives::intToString"
-      		IntPow: "Primitives::intPow"
-			Plus: "Primitives::plus"
-			Minus: "Primitives::minus"
-			Times: "Primitives::times"
-			Mod: "Primitives::mod"
-      		LeftPair: "Primitives::leftPair"
-      		RightPair: "Primitives::rightPair"
-			ApplyF: acc + ".f(" + compileApplyFFactor(purePrimitive.value, argName, outsideCalls) + ")"		
-			Equals: "Primitives::equalsCurrying"
-			MinorEquals: "Primitives::minorEquals"
-			MajorEquals: "Primitives::majorEquals" 
-			Minor: "Primitives::minor"
-			Major: "Primitives::major"
-			LogicAnd: "Primitives::logicAnd"
-			LogicOr: "Primitives::logicOr"
-			ExtractPure: acc + ".getValue()"
-		}
-	}*/
-	
 }

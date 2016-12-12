@@ -6,30 +6,40 @@ package it.unibo.validation;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.DataValue;
+import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullLambda;
+import it.unibo.fPML.EffectFullSumTypeFactor;
 import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
+import it.unibo.fPML.IsLeftEffectFull;
+import it.unibo.fPML.IsLeftPure;
+import it.unibo.fPML.IsRightEffectFull;
+import it.unibo.fPML.IsRightPure;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitivePureFunction;
+import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureValue;
+import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
 import it.unibo.validation.utilitiesFunctions.Checks;
+import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.xtext.validation.Check;
 
 /**
@@ -48,6 +58,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public final static String APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type";
   
   public final static String FUNCTIONDEFINITIONWITHUNITARGUMENT = "The function definition cannot have the first argument as Unit type. Use Values instead";
+  
+  public final static String EITHERCHECKERROR = "The isRight or isLeft primitive can only be applied to SumTypes";
   
   public final static String EFFECTFULLVALUEWARING = "This value has a pure expression content, maybe you want to move it to pure value section";
   
@@ -183,12 +195,34 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   public void typeCheckPurePrimitive(final PrimitivePureFunction p) {
     boolean _matched = false;
-    if (p instanceof ApplyF) {
+    if (p instanceof IsLeftPure) {
       _matched=true;
-      boolean _applyF = Checks.applyF(((ApplyF)p));
-      boolean _not = (!_applyF);
+      PureAlgebraicType _type = ((IsLeftPure)p).getType();
+      ValueType _element2ValueTypeFromPureAlgebraicType = Others.getElement2ValueTypeFromPureAlgebraicType(_type);
+      boolean _not = (!(_element2ValueTypeFromPureAlgebraicType instanceof PureSumTypeFactor));
       if (_not) {
-        this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE);
+        this.error(FPMLValidator.EITHERCHECKERROR, FPMLPackage.Literals.IS_LEFT_PURE__TYPE);
+      }
+    }
+    if (!_matched) {
+      if (p instanceof IsRightPure) {
+        _matched=true;
+        PureAlgebraicType _type = ((IsRightPure)p).getType();
+        ValueType _element2ValueTypeFromPureAlgebraicType = Others.getElement2ValueTypeFromPureAlgebraicType(_type);
+        boolean _not = (!(_element2ValueTypeFromPureAlgebraicType instanceof PureSumTypeFactor));
+        if (_not) {
+          this.error(FPMLValidator.EITHERCHECKERROR, FPMLPackage.Literals.IS_RIGHT_PURE__TYPE);
+        }
+      }
+    }
+    if (!_matched) {
+      if (p instanceof ApplyF) {
+        _matched=true;
+        boolean _applyF = Checks.applyF(((ApplyF)p));
+        boolean _not = (!_applyF);
+        if (_not) {
+          this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE);
+        }
       }
     }
   }
@@ -226,12 +260,34 @@ public class FPMLValidator extends AbstractFPMLValidator {
   
   public void typeCheckEffectFullPrimitive(final PrimitiveEffectFullFunction p) {
     boolean _matched = false;
-    if (p instanceof ApplyFIO) {
+    if (p instanceof IsLeftEffectFull) {
       _matched=true;
-      boolean _applyFIO = Checks.applyFIO(((ApplyFIO)p));
-      boolean _not = (!_applyFIO);
+      EffectFullAlgebraicType _type = ((IsLeftEffectFull)p).getType();
+      Type _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(_type);
+      boolean _not = (!(_element2ValueTypeFromEffectFullAlgebraicType instanceof EffectFullSumTypeFactor));
       if (_not) {
-        this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE);
+        this.error(FPMLValidator.EITHERCHECKERROR, FPMLPackage.Literals.IS_LEFT_EFFECT_FULL__TYPE);
+      }
+    }
+    if (!_matched) {
+      if (p instanceof IsRightEffectFull) {
+        _matched=true;
+        EffectFullAlgebraicType _type = ((IsRightEffectFull)p).getType();
+        Type _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(_type);
+        boolean _not = (!(_element2ValueTypeFromEffectFullAlgebraicType instanceof EffectFullSumTypeFactor));
+        if (_not) {
+          this.error(FPMLValidator.EITHERCHECKERROR, FPMLPackage.Literals.IS_RIGHT_EFFECT_FULL__TYPE);
+        }
+      }
+    }
+    if (!_matched) {
+      if (p instanceof ApplyFIO) {
+        _matched=true;
+        boolean _applyFIO = Checks.applyFIO(((ApplyFIO)p));
+        boolean _not = (!_applyFIO);
+        if (_not) {
+          this.error(FPMLValidator.APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE);
+        }
       }
     }
   }

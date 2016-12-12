@@ -582,22 +582,22 @@ public interface FPMLFactory extends EFactory
   Mod createMod();
 
   /**
-   * Returns a new object of class '<em>Left Pair</em>'.
+   * Returns a new object of class '<em>Left Algebraic</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Left Pair</em>'.
+   * @return a new object of class '<em>Left Algebraic</em>'.
    * @generated
    */
-  LeftPair createLeftPair();
+  LeftAlgebraic createLeftAlgebraic();
 
   /**
-   * Returns a new object of class '<em>Right Pair</em>'.
+   * Returns a new object of class '<em>Right Algebraic</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Right Pair</em>'.
+   * @return a new object of class '<em>Right Algebraic</em>'.
    * @generated
    */
-  RightPair createRightPair();
+  RightAlgebraic createRightAlgebraic();
 
   /**
    * Returns a new object of class '<em>Apply F</em>'.
@@ -690,6 +690,24 @@ public interface FPMLFactory extends EFactory
   ExtractPure createExtractPure();
 
   /**
+   * Returns a new object of class '<em>Is Left Pure</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Is Left Pure</em>'.
+   * @generated
+   */
+  IsLeftPure createIsLeftPure();
+
+  /**
+   * Returns a new object of class '<em>Is Right Pure</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Is Right Pure</em>'.
+   * @generated
+   */
+  IsRightPure createIsRightPure();
+
+  /**
    * Returns a new object of class '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -708,22 +726,22 @@ public interface FPMLFactory extends EFactory
   PrimitivePrint createPrimitivePrint();
 
   /**
-   * Returns a new object of class '<em>Left Pair IO</em>'.
+   * Returns a new object of class '<em>Left Algebraic IO</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Left Pair IO</em>'.
+   * @return a new object of class '<em>Left Algebraic IO</em>'.
    * @generated
    */
-  LeftPairIO createLeftPairIO();
+  LeftAlgebraicIO createLeftAlgebraicIO();
 
   /**
-   * Returns a new object of class '<em>Right Pair IO</em>'.
+   * Returns a new object of class '<em>Right Algebraic IO</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Right Pair IO</em>'.
+   * @return a new object of class '<em>Right Algebraic IO</em>'.
    * @generated
    */
-  RightPairIO createRightPairIO();
+  RightAlgebraicIO createRightAlgebraicIO();
 
   /**
    * Returns a new object of class '<em>Primitive Effect Full Value</em>'.
@@ -805,6 +823,24 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   LiftEffectFullFunction createLiftEffectFullFunction();
+
+  /**
+   * Returns a new object of class '<em>Is Left Effect Full</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Is Left Effect Full</em>'.
+   * @generated
+   */
+  IsLeftEffectFull createIsLeftEffectFull();
+
+  /**
+   * Returns a new object of class '<em>Is Right Effect Full</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Is Right Effect Full</em>'.
+   * @generated
+   */
+  IsRightEffectFull createIsRightEffectFull();
 
   /**
    * Returns a new object of class '<em>Pure Value</em>'.

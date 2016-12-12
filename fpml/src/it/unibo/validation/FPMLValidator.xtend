@@ -27,6 +27,7 @@ class FPMLValidator extends AbstractFPMLValidator {
     public static val TYPEMISMATCHBETWEENVALUEANDDATA = "The value doesn't match the data declaration"
 	public static val APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type"
 	public static val FUNCTIONDEFINITIONWITHUNITARGUMENT = "The function definition cannot have the first argument as Unit type. Use Values instead"
+	public static val EITHERCHECKERROR = "The isRight or isLeft primitive can only be applied to SumTypes"
 	
 	public static val EFFECTFULLVALUEWARING = "This value has a pure expression content, maybe you want to move it to pure value section"
 	public static val EFFECTFULLDATAWARING = "This data has a pure type, maybe you want to move it to pure data section"
@@ -101,6 +102,10 @@ class FPMLValidator extends AbstractFPMLValidator {
    }
    def typeCheckPurePrimitive(PrimitivePureFunction p){
    		switch p {
+   			IsLeftPure: if (!(Others.getElement2ValueTypeFromPureAlgebraicType(p.type) instanceof PureSumTypeFactor))
+   							error(EITHERCHECKERROR, FPMLPackage.Literals.IS_LEFT_PURE__TYPE)
+   			IsRightPure: if (!(Others.getElement2ValueTypeFromPureAlgebraicType(p.type) instanceof PureSumTypeFactor))
+   							error(EITHERCHECKERROR, FPMLPackage.Literals.IS_RIGHT_PURE__TYPE)
    			ApplyF: {
    				if (!Checks.applyF(p))
    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE)
@@ -124,6 +129,10 @@ class FPMLValidator extends AbstractFPMLValidator {
    }
    def typeCheckEffectFullPrimitive(PrimitiveEffectFullFunction p){
    		switch p {
+   			IsLeftEffectFull: if (!(Others.getElement2ValueTypeFromEffectFullAlgebraicType(p.type) instanceof EffectFullSumTypeFactor))
+   								error(EITHERCHECKERROR, FPMLPackage.Literals.IS_LEFT_EFFECT_FULL__TYPE)
+   			IsRightEffectFull: if (!(Others.getElement2ValueTypeFromEffectFullAlgebraicType(p.type) instanceof EffectFullSumTypeFactor))
+   								error(EITHERCHECKERROR, FPMLPackage.Literals.IS_RIGHT_EFFECT_FULL__TYPE)
    			ApplyFIO: {
    				if (!Checks.applyFIO(p))
    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE)
