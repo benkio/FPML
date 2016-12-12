@@ -7,6 +7,8 @@ import java.util.List
 import it.unibo.fPML.EffectFullExpression
 import org.eclipse.emf.ecore.util.EcoreUtil
 import it.unibo.fPML.EffectFullPrimitive
+import it.unibo.fPML.EffectFullIfBody
+import org.eclipse.emf.ecore.EObject
 
 class GetReturnType {
 	
@@ -104,7 +106,20 @@ class GetReturnType {
       		ExtractPure: return EcoreUtil.copy(f.data.content)
 			IsLeftPure: return FPMLFactory.eINSTANCE.createBooleanType
 			IsRightPure: return FPMLFactory.eINSTANCE.createBooleanType
+			PureIf: {
+				val thenType = pureIfBody(f.then)
+				val elseType = pureIfBody(f.getElse)
+				if (Checks.TypeEquals(thenType, elseType) && thenType.eClass == elseType.eClass){
+					return thenType
+				} else {
+					return Others.createPureAlgebraicType(thenType, elseType, true)
+				}
+			}
 		}
+	}
+	
+	def static ValueType pureIfBody(PureIfBody body) {
+		return Others.createTypeOfPureFunction(Others.getFunctionFromPureIfBody(body))
 	}
 	
 	def static Type effectFullFunction(EffectFullFunction function) {
@@ -226,7 +241,20 @@ class GetReturnType {
 			LiftEffectFullFunction: Others.IOWrap(effectFullFunction(Others.getEffectFullFunctionFromLiftEffectFullFunction(function)))
 			IsLeftEffectFull: Others.IOWrap(FPMLFactory.eINSTANCE.createBooleanType)
 			IsRightEffectFull: Others.IOWrap(FPMLFactory.eINSTANCE.createBooleanType)
+			EffectFullIf: {
+				val thenType = effectFullIfBody(function.then)
+				val elseType = effectFullIfBody(function.getElse)
+				if (Checks.TypeEquals(thenType, elseType) && thenType.eClass == elseType.eClass){
+					return thenType
+				} else {
+					return Others.createEffectFullAlgebraicType(thenType, elseType, true)
+				}
+			}
 		}
+	}
+	
+	def static Type effectFullIfBody(EffectFullIfBody body) {
+		return Others.createTypeOfEffectFullBodyContent(Others.getFunctionFromEffectFullIfBody(body))
 	}
 	
 	def static Type mainFunc(MainFunc m) {

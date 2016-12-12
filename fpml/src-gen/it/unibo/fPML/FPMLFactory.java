@@ -708,6 +708,24 @@ public interface FPMLFactory extends EFactory
   IsRightPure createIsRightPure();
 
   /**
+   * Returns a new object of class '<em>Pure If</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure If</em>'.
+   * @generated
+   */
+  PureIf createPureIf();
+
+  /**
+   * Returns a new object of class '<em>Pure If Body</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure If Body</em>'.
+   * @generated
+   */
+  PureIfBody createPureIfBody();
+
+  /**
    * Returns a new object of class '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -841,6 +859,24 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   IsRightEffectFull createIsRightEffectFull();
+
+  /**
+   * Returns a new object of class '<em>Effect Full If</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full If</em>'.
+   * @generated
+   */
+  EffectFullIf createEffectFullIf();
+
+  /**
+   * Returns a new object of class '<em>Effect Full If Body</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full If Body</em>'.
+   * @generated
+   */
+  EffectFullIfBody createEffectFullIfBody();
 
   /**
    * Returns a new object of class '<em>Pure Value</em>'.

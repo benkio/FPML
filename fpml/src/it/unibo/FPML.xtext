@@ -284,7 +284,7 @@ EffectFullSumValue returns EffectFullAlgebraicType:
 PrimitivePureFunction: 
 	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
 	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr
-	| ExtractPure | IsLeftPure | IsRightPure;
+	| ExtractPure | IsLeftPure | IsRightPure | PureIf;
 
 IntToString: {IntToString} 'intToString';
 IntPow:	{IntPow} 'intPow';
@@ -309,10 +309,13 @@ LogicOr: {LogicOr} '||';
 ExtractPure: {ExtractPure} 'extract' data=[PureData];
 IsLeftPure: {IsLeftPure} 'isLeft' type=PureAlgebraicType;
 IsRightPure: {IsRightPure} 'isRight' type=PureAlgebraicType;
+PureIf: {PureIf} 'if' 'then' '{' then=PureIfBody '}' 'else' '{' else=PureIfBody '}';
+PureIfBody: functionReference=[PureFunction]
+	| functionExpression=Expression;
 
 PrimitiveEffectFullFunction:
 	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull
-	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull;
+	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf;
 
 PrimitivePrint:
     {PrimitivePrint} "print";
@@ -348,6 +351,10 @@ LiftEffectFullFunction: 'Lift' '[' functionRef=[EffectFullFunction] ']'
 
 IsLeftEffectFull: {IsLeftEffectFull} 'isLeft' type=EffectFullAlgebraicType;
 IsRightEffectFull: {IsRightEffectFull} 'isRight' type=EffectFullAlgebraicType;
+
+EffectFullIf: {EffectFullIf} 'if' 'then' '{' then=EffectFullIfBody '}' 'else' '{' else=EffectFullIfBody '}';
+EffectFullIfBody: functionReference=[EffectFullFunction]
+	| functionExpression=EffectFullExpression;
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // TERMINALS

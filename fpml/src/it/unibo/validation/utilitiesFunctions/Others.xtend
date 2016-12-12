@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.EObject
 import it.unibo.fPML.IOEffectFullFunction
 import it.unibo.fPML.EffectFullFunction
+import it.unibo.fPML.EffectFullBodyContent
+import it.unibo.fPML.EffectFullPrimitive
 
 class Others {
 	
@@ -94,6 +96,16 @@ class Others {
 	def static getEffectFullFunctionFromLiftEffectFullFunction(LiftEffectFullFunction eff) {
 		if (eff.functionPrimitive == null) return EcoreUtil.copy(eff.functionRef)
 		else EcoreUtil.copy(eff.functionPrimitive)
+	}
+	
+	def static PureFunction getFunctionFromPureIfBody(PureIfBody pib){
+		if (pib.functionExpression == null) pib.functionReference
+		else pib.functionExpression
+	}
+	
+	def static EffectFullBodyContent getFunctionFromEffectFullIfBody(EffectFullIfBody efib){
+		if (efib.functionExpression == null) efib.functionReference
+		else efib.functionExpression	
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////////////////
@@ -194,6 +206,39 @@ class Others {
 			EffectFullArgument: function.type
 			PrimitiveEffectFullFunction: it.unibo.validation.utilitiesFunctions.Others.createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
 			EffectFullFunctionDefinition: it.unibo.validation.utilitiesFunctions.Others.createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
+		}
+	}
+	
+	def static createTypeOfEffectFullBodyContent(EffectFullBodyContent content) {
+		switch content {
+			EffectFullFunction: createTypeOfEffectFullFunction(content)
+			EffectFullPrimitive: createTypeOfEffectFullPrimitive(content)
+			EffectFullFunctionType: {
+				val returnType = GetReturnType.effectFullExpression(content as EffectFullExpression)
+				if (content.value instanceof EffectFullLambda) {
+					val Type argType = GetArgType.effectFullLambda(content.value as EffectFullLambda)
+					if (returnType instanceof IOType)
+						Others.createEffectFullFuntionType(argType, (returnType as IOType))
+					else 
+						Others.createEffectFullFuntionType(argType, Others.IOWrap(returnType))				
+				} else {
+					returnType
+				}
+			}
+			EffectFullExpression: GetReturnType.effectFullExpression(content as EffectFullExpression)
+		}
+	}
+	
+	def static createTypeOfEffectFullPrimitive(EffectFullPrimitive primitive) {
+		switch primitive {
+			PrimitiveEffectFullFunction: {
+				val returnType = GetReturnType.effectFullPrimitive(primitive)
+				if (returnType instanceof IOType)
+					Others.createEffectFullFuntionType(GetArgType.effectFullPrimitive(primitive), GetReturnType.effectFullPrimitive(primitive) as IOType)
+				else
+					Others.createEffectFullFuntionType(GetArgType.effectFullPrimitive(primitive), Others.IOWrap(GetReturnType.effectFullPrimitive(primitive)))
+			}
+			PrimitiveEffectFullValue: GetReturnType.primitiveEffectFullValue(primitive)
 		}
 	}
 	

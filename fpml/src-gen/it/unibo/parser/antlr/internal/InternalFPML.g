@@ -4828,6 +4828,15 @@ rulePrimitivePureFunction returns [EObject current=null]
 			$current = $this_IsRightPure_18.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPureIfParserRuleCall_19());
+		}
+		this_PureIf_19=rulePureIf
+		{
+			$current = $this_PureIf_19.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -5680,6 +5689,150 @@ ruleIsRightPure returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRulePureIf
+entryRulePureIf returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPureIfRule()); }
+	iv_rulePureIf=rulePureIf
+	{ $current=$iv_rulePureIf.current; }
+	EOF;
+
+// Rule PureIf
+rulePureIf returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getPureIfAccess().getPureIfAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='if'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getPureIfAccess().getIfKeyword_1());
+		}
+		otherlv_2='then'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getPureIfAccess().getThenKeyword_2());
+		}
+		otherlv_3='{'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getPureIfAccess().getLeftCurlyBracketKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPureIfAccess().getThenPureIfBodyParserRuleCall_4_0());
+				}
+				lv_then_4_0=rulePureIfBody
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPureIfRule());
+					}
+					set(
+						$current,
+						"then",
+						lv_then_4_0,
+						"it.unibo.FPML.PureIfBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_5='}'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getPureIfAccess().getRightCurlyBracketKeyword_5());
+		}
+		otherlv_6='else'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getPureIfAccess().getElseKeyword_6());
+		}
+		otherlv_7='{'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getPureIfAccess().getLeftCurlyBracketKeyword_7());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPureIfAccess().getElsePureIfBodyParserRuleCall_8_0());
+				}
+				lv_else_8_0=rulePureIfBody
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPureIfRule());
+					}
+					set(
+						$current,
+						"else",
+						lv_else_8_0,
+						"it.unibo.FPML.PureIfBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_9='}'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getPureIfAccess().getRightCurlyBracketKeyword_9());
+		}
+	)
+;
+
+// Entry rule entryRulePureIfBody
+entryRulePureIfBody returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPureIfBodyRule()); }
+	iv_rulePureIfBody=rulePureIfBody
+	{ $current=$iv_rulePureIfBody.current; }
+	EOF;
+
+// Rule PureIfBody
+rulePureIfBody returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getPureIfBodyRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getPureIfBodyAccess().getFunctionReferencePureFunctionCrossReference_0_0());
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPureIfBodyAccess().getFunctionExpressionExpressionParserRuleCall_1_0());
+				}
+				lv_functionExpression_1_0=ruleExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPureIfBodyRule());
+					}
+					set(
+						$current,
+						"functionExpression",
+						lv_functionExpression_1_0,
+						"it.unibo.FPML.Expression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
 // Entry rule entryRulePrimitiveEffectFullFunction
 entryRulePrimitiveEffectFullFunction returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionRule()); }
@@ -5783,6 +5936,15 @@ rulePrimitiveEffectFullFunction returns [EObject current=null]
 		this_IsRightEffectFull_9=ruleIsRightEffectFull
 		{
 			$current = $this_IsRightEffectFull_9.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getEffectFullIfParserRuleCall_10());
+		}
+		this_EffectFullIf_10=ruleEffectFullIf
+		{
+			$current = $this_EffectFullIf_10.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -6505,6 +6667,150 @@ ruleIsRightEffectFull returns [EObject current=null]
 						"type",
 						lv_type_2_0,
 						"it.unibo.FPML.EffectFullAlgebraicType");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleEffectFullIf
+entryRuleEffectFullIf returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getEffectFullIfRule()); }
+	iv_ruleEffectFullIf=ruleEffectFullIf
+	{ $current=$iv_ruleEffectFullIf.current; }
+	EOF;
+
+// Rule EffectFullIf
+ruleEffectFullIf returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getEffectFullIfAccess().getEffectFullIfAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='if'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getEffectFullIfAccess().getIfKeyword_1());
+		}
+		otherlv_2='then'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getEffectFullIfAccess().getThenKeyword_2());
+		}
+		otherlv_3='{'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getEffectFullIfAccess().getLeftCurlyBracketKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getEffectFullIfAccess().getThenEffectFullIfBodyParserRuleCall_4_0());
+				}
+				lv_then_4_0=ruleEffectFullIfBody
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getEffectFullIfRule());
+					}
+					set(
+						$current,
+						"then",
+						lv_then_4_0,
+						"it.unibo.FPML.EffectFullIfBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_5='}'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getEffectFullIfAccess().getRightCurlyBracketKeyword_5());
+		}
+		otherlv_6='else'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getEffectFullIfAccess().getElseKeyword_6());
+		}
+		otherlv_7='{'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getEffectFullIfAccess().getLeftCurlyBracketKeyword_7());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getEffectFullIfAccess().getElseEffectFullIfBodyParserRuleCall_8_0());
+				}
+				lv_else_8_0=ruleEffectFullIfBody
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getEffectFullIfRule());
+					}
+					set(
+						$current,
+						"else",
+						lv_else_8_0,
+						"it.unibo.FPML.EffectFullIfBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_9='}'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getEffectFullIfAccess().getRightCurlyBracketKeyword_9());
+		}
+	)
+;
+
+// Entry rule entryRuleEffectFullIfBody
+entryRuleEffectFullIfBody returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getEffectFullIfBodyRule()); }
+	iv_ruleEffectFullIfBody=ruleEffectFullIfBody
+	{ $current=$iv_ruleEffectFullIfBody.current; }
+	EOF;
+
+// Rule EffectFullIfBody
+ruleEffectFullIfBody returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getEffectFullIfBodyRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getEffectFullIfBodyAccess().getFunctionReferenceEffectFullFunctionCrossReference_0_0());
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getEffectFullIfBodyAccess().getFunctionExpressionEffectFullExpressionParserRuleCall_1_0());
+				}
+				lv_functionExpression_1_0=ruleEffectFullExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getEffectFullIfBodyRule());
+					}
+					set(
+						$current,
+						"functionExpression",
+						lv_functionExpression_1_0,
+						"it.unibo.FPML.EffectFullExpression");
 					afterParserOrEnumRuleCall();
 				}
 			)

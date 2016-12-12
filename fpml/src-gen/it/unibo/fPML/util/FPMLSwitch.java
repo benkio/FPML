@@ -766,6 +766,24 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.PURE_IF:
+      {
+        PureIf pureIf = (PureIf)theEObject;
+        T result = casePureIf(pureIf);
+        if (result == null) result = casePrimitivePureFunction(pureIf);
+        if (result == null) result = casePureFunction(pureIf);
+        if (result == null) result = casePrimitiveFunction(pureIf);
+        if (result == null) result = caseFunction(pureIf);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.PURE_IF_BODY:
+      {
+        PureIfBody pureIfBody = (PureIfBody)theEObject;
+        T result = casePureIfBody(pureIfBody);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION:
       {
         PrimitiveEffectFullFunction primitiveEffectFullFunction = (PrimitiveEffectFullFunction)theEObject;
@@ -944,6 +962,26 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseFunction(isRightEffectFull);
         if (result == null) result = caseEffectFullBodyContent(isRightEffectFull);
         if (result == null) result = casePrimitiveFunction(isRightEffectFull);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_IF:
+      {
+        EffectFullIf effectFullIf = (EffectFullIf)theEObject;
+        T result = caseEffectFullIf(effectFullIf);
+        if (result == null) result = casePrimitiveEffectFullFunction(effectFullIf);
+        if (result == null) result = caseEffectFullFunction(effectFullIf);
+        if (result == null) result = caseEffectFullPrimitive(effectFullIf);
+        if (result == null) result = caseFunction(effectFullIf);
+        if (result == null) result = caseEffectFullBodyContent(effectFullIf);
+        if (result == null) result = casePrimitiveFunction(effectFullIf);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_IF_BODY:
+      {
+        EffectFullIfBody effectFullIfBody = (EffectFullIfBody)theEObject;
+        T result = caseEffectFullIfBody(effectFullIfBody);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2321,6 +2359,38 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Pure If</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pure If</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePureIf(PureIf object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pure If Body</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pure If Body</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePureIfBody(PureIfBody object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2556,6 +2626,38 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIsRightEffectFull(IsRightEffectFull object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full If</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full If</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullIf(EffectFullIf object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full If Body</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full If Body</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullIfBody(EffectFullIfBody object)
   {
     return null;
   }

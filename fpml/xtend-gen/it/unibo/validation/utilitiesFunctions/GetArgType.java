@@ -13,6 +13,7 @@ import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullIf;
 import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdValue;
@@ -61,6 +62,7 @@ import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureIf;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.RightAlgebraic;
@@ -249,6 +251,12 @@ public class GetArgType {
         _switchResult = EcoreUtil.<PureAlgebraicType>copy(_type);
       }
     }
+    if (!_matched) {
+      if (f instanceof PureIf) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createBooleanType();
+      }
+    }
     return _switchResult;
   }
   
@@ -424,7 +432,7 @@ public class GetArgType {
   }
   
   public static Type primitiveEffectFullFunction(final PrimitiveEffectFullFunction function) {
-    EffectFullAlgebraicType _switchResult = null;
+    Type _switchResult = null;
     boolean _matched = false;
     if (function instanceof PrimitivePrint) {
       _matched=true;
@@ -491,6 +499,12 @@ public class GetArgType {
         _matched=true;
         EffectFullAlgebraicType _type = ((IsRightEffectFull)function).getType();
         _switchResult = EcoreUtil.<EffectFullAlgebraicType>copy(_type);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof EffectFullIf) {
+        _matched=true;
+        _switchResult = FPMLFactory.eINSTANCE.createBooleanType();
       }
     }
     return _switchResult;

@@ -141,6 +141,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EXTRACT_PURE: return createExtractPure();
       case FPMLPackage.IS_LEFT_PURE: return createIsLeftPure();
       case FPMLPackage.IS_RIGHT_PURE: return createIsRightPure();
+      case FPMLPackage.PURE_IF: return createPureIf();
+      case FPMLPackage.PURE_IF_BODY: return createPureIfBody();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
       case FPMLPackage.LEFT_ALGEBRAIC_IO: return createLeftAlgebraicIO();
@@ -156,6 +158,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.LIFT_EFFECT_FULL_FUNCTION: return createLiftEffectFullFunction();
       case FPMLPackage.IS_LEFT_EFFECT_FULL: return createIsLeftEffectFull();
       case FPMLPackage.IS_RIGHT_EFFECT_FULL: return createIsRightEffectFull();
+      case FPMLPackage.EFFECT_FULL_IF: return createEffectFullIf();
+      case FPMLPackage.EFFECT_FULL_IF_BODY: return createEffectFullIfBody();
       case FPMLPackage.PURE_VALUE: return createPureValue();
       case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
       case FPMLPackage.IO_EFFECT_FULL_EXPRESSION: return createIOEffectFullExpression();
@@ -1016,6 +1020,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PureIf createPureIf()
+  {
+    PureIfImpl pureIf = new PureIfImpl();
+    return pureIf;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PureIfBody createPureIfBody()
+  {
+    PureIfBodyImpl pureIfBody = new PureIfBodyImpl();
+    return pureIfBody;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PrimitiveEffectFullFunction createPrimitiveEffectFullFunction()
   {
     PrimitiveEffectFullFunctionImpl primitiveEffectFullFunction = new PrimitiveEffectFullFunctionImpl();
@@ -1174,6 +1200,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     IsRightEffectFullImpl isRightEffectFull = new IsRightEffectFullImpl();
     return isRightEffectFull;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullIf createEffectFullIf()
+  {
+    EffectFullIfImpl effectFullIf = new EffectFullIfImpl();
+    return effectFullIf;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullIfBody createEffectFullIfBody()
+  {
+    EffectFullIfBodyImpl effectFullIfBody = new EffectFullIfBodyImpl();
+    return effectFullIfBody;
   }
 
   /**

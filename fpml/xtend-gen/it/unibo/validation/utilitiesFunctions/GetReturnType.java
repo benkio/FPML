@@ -21,6 +21,8 @@ import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullIf;
+import it.unibo.fPML.EffectFullIfBody;
 import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdValue;
@@ -77,6 +79,8 @@ import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureIf;
+import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureSumValue;
@@ -90,6 +94,7 @@ import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.fPML.VoidType;
+import it.unibo.validation.utilitiesFunctions.Checks;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
@@ -470,7 +475,26 @@ public class GetReturnType {
         return FPMLFactory.eINSTANCE.createBooleanType();
       }
     }
+    if (!_matched) {
+      if (f instanceof PureIf) {
+        _matched=true;
+        PureIfBody _then = ((PureIf)f).getThen();
+        final ValueType thenType = GetReturnType.pureIfBody(_then);
+        PureIfBody _else = ((PureIf)f).getElse();
+        final ValueType elseType = GetReturnType.pureIfBody(_else);
+        if ((Checks.TypeEquals(thenType, elseType) && Objects.equal(thenType.eClass(), elseType.eClass()))) {
+          return thenType;
+        } else {
+          return Others.createPureAlgebraicType(thenType, elseType, true);
+        }
+      }
+    }
     return null;
+  }
+  
+  public static ValueType pureIfBody(final PureIfBody body) {
+    PureFunction _functionFromPureIfBody = Others.getFunctionFromPureIfBody(body);
+    return Others.createTypeOfPureFunction(_functionFromPureIfBody);
   }
   
   public static Type effectFullFunction(final EffectFullFunction function) {
@@ -834,7 +858,26 @@ public class GetReturnType {
         _switchResult = Others.IOWrap(_createBooleanType);
       }
     }
+    if (!_matched) {
+      if (function instanceof EffectFullIf) {
+        _matched=true;
+        EffectFullIfBody _then = ((EffectFullIf)function).getThen();
+        final Type thenType = GetReturnType.effectFullIfBody(_then);
+        EffectFullIfBody _else = ((EffectFullIf)function).getElse();
+        final Type elseType = GetReturnType.effectFullIfBody(_else);
+        if ((Checks.TypeEquals(thenType, elseType) && Objects.equal(thenType.eClass(), elseType.eClass()))) {
+          return thenType;
+        } else {
+          return Others.createEffectFullAlgebraicType(thenType, elseType, true);
+        }
+      }
+    }
     return _switchResult;
+  }
+  
+  public static Type effectFullIfBody(final EffectFullIfBody body) {
+    EffectFullBodyContent _functionFromEffectFullIfBody = Others.getFunctionFromEffectFullIfBody(body);
+    return Others.createTypeOfEffectFullBodyContent(_functionFromEffectFullIfBody);
   }
   
   public static Type mainFunc(final MainFunc m) {

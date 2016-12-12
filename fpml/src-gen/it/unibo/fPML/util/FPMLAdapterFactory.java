@@ -456,6 +456,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createIsRightPureAdapter();
       }
       @Override
+      public Adapter casePureIf(PureIf object)
+      {
+        return createPureIfAdapter();
+      }
+      @Override
+      public Adapter casePureIfBody(PureIfBody object)
+      {
+        return createPureIfBodyAdapter();
+      }
+      @Override
       public Adapter casePrimitiveEffectFullFunction(PrimitiveEffectFullFunction object)
       {
         return createPrimitiveEffectFullFunctionAdapter();
@@ -529,6 +539,16 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseIsRightEffectFull(IsRightEffectFull object)
       {
         return createIsRightEffectFullAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullIf(EffectFullIf object)
+      {
+        return createEffectFullIfAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullIfBody(EffectFullIfBody object)
+      {
+        return createEffectFullIfBodyAdapter();
       }
       @Override
       public Adapter casePureValue(PureValue object)
@@ -1763,6 +1783,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureIf <em>Pure If</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PureIf
+   * @generated
+   */
+  public Adapter createPureIfAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureIfBody <em>Pure If Body</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PureIfBody
+   * @generated
+   */
+  public Adapter createPureIfBodyAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitiveEffectFullFunction <em>Primitive Effect Full Function</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1983,6 +2033,36 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIsRightEffectFullAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullIf <em>Effect Full If</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullIf
+   * @generated
+   */
+  public Adapter createEffectFullIfAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullIfBody <em>Effect Full If Body</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullIfBody
+   * @generated
+   */
+  public Adapter createEffectFullIfBodyAdapter()
   {
     return null;
   }

@@ -54,6 +54,7 @@ class GetArgType {
       		ExtractPure: return Others.createDataType(f.data)
       		IsLeftPure: EcoreUtil.copy(f.type)
       		IsRightPure: EcoreUtil.copy(f.type)
+      		PureIf: return FPMLFactory.eINSTANCE.createBooleanType
 		}
 	}
 	
@@ -127,6 +128,7 @@ class GetArgType {
       		LiftEffectFullFunction: return effectFullFunction(Others.getEffectFullFunctionFromLiftEffectFullFunction(function))
 			IsLeftEffectFull: EcoreUtil.copy(function.type)
 			IsRightEffectFull: EcoreUtil.copy(function.type)
+			EffectFullIf: FPMLFactory.eINSTANCE.createBooleanType
 		}
 	}
 	

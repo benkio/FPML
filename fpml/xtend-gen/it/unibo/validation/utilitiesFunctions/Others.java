@@ -18,6 +18,8 @@ import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullIfBody;
+import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.EffectFullSumTypeFactor;
@@ -31,6 +33,7 @@ import it.unibo.fPML.IOType;
 import it.unibo.fPML.LiftEffectFullFunction;
 import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
+import it.unibo.fPML.PrimitiveEffectFullValue;
 import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
@@ -38,6 +41,7 @@ import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureValue;
@@ -265,6 +269,30 @@ public class Others {
     return _xifexpression;
   }
   
+  public static PureFunction getFunctionFromPureIfBody(final PureIfBody pib) {
+    PureFunction _xifexpression = null;
+    Expression _functionExpression = pib.getFunctionExpression();
+    boolean _equals = Objects.equal(_functionExpression, null);
+    if (_equals) {
+      _xifexpression = pib.getFunctionReference();
+    } else {
+      _xifexpression = pib.getFunctionExpression();
+    }
+    return _xifexpression;
+  }
+  
+  public static EffectFullBodyContent getFunctionFromEffectFullIfBody(final EffectFullIfBody efib) {
+    EffectFullBodyContent _xifexpression = null;
+    EffectFullExpression _functionExpression = efib.getFunctionExpression();
+    boolean _equals = Objects.equal(_functionExpression, null);
+    if (_equals) {
+      _xifexpression = efib.getFunctionReference();
+    } else {
+      _xifexpression = efib.getFunctionExpression();
+    }
+    return _xifexpression;
+  }
+  
   public static PureFunctionType createPureFuntionType(final ValueType argT, final ValueType returnT) {
     final PureFunctionType func = FPMLFactory.eINSTANCE.createPureFunctionType();
     func.setArgType(argT);
@@ -423,6 +451,91 @@ public class Others {
         Type _effectFullFunction = GetArgType.effectFullFunction(function);
         Type _effectFullFunction_1 = GetReturnType.effectFullFunction(function);
         _switchResult = Others.createEffectFullFuntionType(_effectFullFunction, ((IOType) _effectFullFunction_1));
+      }
+    }
+    return _switchResult;
+  }
+  
+  public static Type createTypeOfEffectFullBodyContent(final EffectFullBodyContent content) {
+    Type _switchResult = null;
+    boolean _matched = false;
+    if (content instanceof EffectFullFunction) {
+      _matched=true;
+      _switchResult = Others.createTypeOfEffectFullFunction(((EffectFullFunction)content));
+    }
+    if (!_matched) {
+      if (content instanceof EffectFullPrimitive) {
+        _matched=true;
+        _switchResult = Others.createTypeOfEffectFullPrimitive(((EffectFullPrimitive)content));
+      }
+    }
+    if (!_matched) {
+      if (content instanceof EffectFullFunctionType) {
+        _matched=true;
+        Type _xblockexpression = null;
+        {
+          final Type returnType = GetReturnType.effectFullExpression(((EffectFullExpression) content));
+          Type _xifexpression = null;
+          EffectFullFunctionDefinition _value = ((EffectFullFunctionType)content).getValue();
+          if ((_value instanceof EffectFullLambda)) {
+            EffectFullFunctionType _xblockexpression_1 = null;
+            {
+              EffectFullFunctionDefinition _value_1 = ((EffectFullFunctionType)content).getValue();
+              final Type argType = GetArgType.effectFullLambda(((EffectFullLambda) _value_1));
+              EffectFullFunctionType _xifexpression_1 = null;
+              if ((returnType instanceof IOType)) {
+                _xifexpression_1 = Others.createEffectFullFuntionType(argType, ((IOType) returnType));
+              } else {
+                IOType _IOWrap = Others.IOWrap(returnType);
+                _xifexpression_1 = Others.createEffectFullFuntionType(argType, _IOWrap);
+              }
+              _xblockexpression_1 = _xifexpression_1;
+            }
+            _xifexpression = _xblockexpression_1;
+          } else {
+            _xifexpression = returnType;
+          }
+          _xblockexpression = _xifexpression;
+        }
+        _switchResult = _xblockexpression;
+      }
+    }
+    if (!_matched) {
+      if (content instanceof EffectFullExpression) {
+        _matched=true;
+        _switchResult = GetReturnType.effectFullExpression(((EffectFullExpression) content));
+      }
+    }
+    return _switchResult;
+  }
+  
+  public static EffectFullType createTypeOfEffectFullPrimitive(final EffectFullPrimitive primitive) {
+    EffectFullType _switchResult = null;
+    boolean _matched = false;
+    if (primitive instanceof PrimitiveEffectFullFunction) {
+      _matched=true;
+      EffectFullFunctionType _xblockexpression = null;
+      {
+        final Type returnType = GetReturnType.effectFullPrimitive(primitive);
+        EffectFullFunctionType _xifexpression = null;
+        if ((returnType instanceof IOType)) {
+          Type _effectFullPrimitive = GetArgType.effectFullPrimitive(primitive);
+          Type _effectFullPrimitive_1 = GetReturnType.effectFullPrimitive(primitive);
+          _xifexpression = Others.createEffectFullFuntionType(_effectFullPrimitive, ((IOType) _effectFullPrimitive_1));
+        } else {
+          Type _effectFullPrimitive_2 = GetArgType.effectFullPrimitive(primitive);
+          Type _effectFullPrimitive_3 = GetReturnType.effectFullPrimitive(primitive);
+          IOType _IOWrap = Others.IOWrap(_effectFullPrimitive_3);
+          _xifexpression = Others.createEffectFullFuntionType(_effectFullPrimitive_2, _IOWrap);
+        }
+        _xblockexpression = _xifexpression;
+      }
+      _switchResult = _xblockexpression;
+    }
+    if (!_matched) {
+      if (primitive instanceof PrimitiveEffectFullValue) {
+        _matched=true;
+        _switchResult = GetReturnType.primitiveEffectFullValue(((PrimitiveEffectFullValue)primitive));
       }
     }
     return _switchResult;
