@@ -663,7 +663,7 @@ public class ValuePureFunctionCommonGenerator {
         PureIfBody _then = ((PureEitherIf)purePrimitive).getThen();
         PureFunction _functionFromPureIfBody = Others.getFunctionFromPureIfBody(_then);
         String _compileCall = this.compileCall(_functionFromPureIfBody, acc, argName, outsideCalls);
-        String _plus = ((("Primitives.pureEitherIf(" + acc) + ", ") + _compileCall);
+        String _plus = ((("Primitives.pureIfEither(" + acc) + ", ") + _compileCall);
         String _plus_1 = (_plus + ", ");
         PureIfBody _else = ((PureEitherIf)purePrimitive).getElse();
         PureFunction _functionFromPureIfBody_1 = Others.getFunctionFromPureIfBody(_else);

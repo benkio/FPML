@@ -128,7 +128,7 @@ class ValuePureFunctionCommonGenerator {
 			PureIf: "Primitives.pureIf(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
 											   + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls) 
 											   + ")"
-    		PureEitherIf: "Primitives.pureEitherIf(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
+    		PureEitherIf: "Primitives.pureIfEither(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
 											   + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls) 
 											   + ")"
 		}
