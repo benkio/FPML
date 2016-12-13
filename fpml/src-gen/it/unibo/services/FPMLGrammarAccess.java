@@ -2873,6 +2873,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIsLeftPureParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
 		private final RuleCall cIsRightPureParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
 		private final RuleCall cPureIfParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
+		private final RuleCall cPureEitherIfParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
 		
 		///////////////////////////////////////////////////////////////////////
 		//// Primitives
@@ -2880,11 +2881,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//PrimitivePureFunction:
 		//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
 		//	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr
-		//	| ExtractPure | IsLeftPure | IsRightPure | PureIf;
+		//	| ExtractPure | IsLeftPure | IsRightPure | PureIf | PureEitherIf;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic | Equals | MinorEquals |
-		//MajorEquals | Minor | Major | LogicAnd | LogicOr | ExtractPure | IsLeftPure | IsRightPure | PureIf
+		//MajorEquals | Minor | Major | LogicAnd | LogicOr | ExtractPure | IsLeftPure | IsRightPure | PureIf | PureEitherIf
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntToString
@@ -2946,6 +2947,9 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PureIf
 		public RuleCall getPureIfParserRuleCall_19() { return cPureIfParserRuleCall_19; }
+		
+		//PureEitherIf
+		public RuleCall getPureEitherIfParserRuleCall_20() { return cPureEitherIfParserRuleCall_20; }
 	}
 	public class IntToStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.IntToString");
@@ -3537,6 +3541,65 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getFunctionExpressionExpressionParserRuleCall_1_0() { return cFunctionExpressionExpressionParserRuleCall_1_0; }
 	}
+	public class PureEitherIfElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PureEitherIf");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPureEitherIfAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cIfEitherKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cThenAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cThenPureIfBodyParserRuleCall_4_0 = (RuleCall)cThenAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cElseKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cLeftCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cElseAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cElsePureIfBodyParserRuleCall_8_0 = (RuleCall)cElseAssignment_8.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		
+		//PureEitherIf:
+		//	{PureEitherIf} 'ifEither' 'then' '{' then=PureIfBody '}' 'else' '{' else=PureIfBody '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{PureEitherIf} 'ifEither' 'then' '{' then=PureIfBody '}' 'else' '{' else=PureIfBody '}'
+		public Group getGroup() { return cGroup; }
+		
+		//{PureEitherIf}
+		public Action getPureEitherIfAction_0() { return cPureEitherIfAction_0; }
+		
+		//'ifEither'
+		public Keyword getIfEitherKeyword_1() { return cIfEitherKeyword_1; }
+		
+		//'then'
+		public Keyword getThenKeyword_2() { return cThenKeyword_2; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		
+		//then=PureIfBody
+		public Assignment getThenAssignment_4() { return cThenAssignment_4; }
+		
+		//PureIfBody
+		public RuleCall getThenPureIfBodyParserRuleCall_4_0() { return cThenPureIfBodyParserRuleCall_4_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		
+		//'else'
+		public Keyword getElseKeyword_6() { return cElseKeyword_6; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_7() { return cLeftCurlyBracketKeyword_7; }
+		
+		//else=PureIfBody
+		public Assignment getElseAssignment_8() { return cElseAssignment_8; }
+		
+		//PureIfBody
+		public RuleCall getElsePureIfBodyParserRuleCall_8_0() { return cElsePureIfBodyParserRuleCall_8_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+	}
 	public class PrimitiveEffectFullFunctionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitiveEffectFullFunction");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -3551,14 +3614,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIsLeftEffectFullParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		private final RuleCall cIsRightEffectFullParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		private final RuleCall cEffectFullIfParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cEffectFullEitherIfParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
 		
 		//PrimitiveEffectFullFunction:
 		//	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull
-		//	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf;
+		//	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf |
+		//	EffectFullEitherIf;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull | LiftPureFunction
-		//| LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf
+		//| LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf | EffectFullEitherIf
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//PrimitivePrint
@@ -3593,6 +3658,9 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//EffectFullIf
 		public RuleCall getEffectFullIfParserRuleCall_10() { return cEffectFullIfParserRuleCall_10; }
+		
+		//EffectFullEitherIf
+		public RuleCall getEffectFullEitherIfParserRuleCall_11() { return cEffectFullEitherIfParserRuleCall_11; }
 	}
 	public class PrimitivePrintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitivePrint");
@@ -4110,6 +4178,65 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
 	}
+	public class EffectFullEitherIfElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EffectFullEitherIf");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cEffectFullEitherIfAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cIfEitherKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cThenAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cThenEffectFullIfBodyParserRuleCall_4_0 = (RuleCall)cThenAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cElseKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cLeftCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cElseAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cElseEffectFullIfBodyParserRuleCall_8_0 = (RuleCall)cElseAssignment_8.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		
+		//EffectFullEitherIf:
+		//	{EffectFullEitherIf} 'ifEither' 'then' '{' then=EffectFullIfBody '}' 'else' '{' else=EffectFullIfBody '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{EffectFullEitherIf} 'ifEither' 'then' '{' then=EffectFullIfBody '}' 'else' '{' else=EffectFullIfBody '}'
+		public Group getGroup() { return cGroup; }
+		
+		//{EffectFullEitherIf}
+		public Action getEffectFullEitherIfAction_0() { return cEffectFullEitherIfAction_0; }
+		
+		//'ifEither'
+		public Keyword getIfEitherKeyword_1() { return cIfEitherKeyword_1; }
+		
+		//'then'
+		public Keyword getThenKeyword_2() { return cThenKeyword_2; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		
+		//then=EffectFullIfBody
+		public Assignment getThenAssignment_4() { return cThenAssignment_4; }
+		
+		//EffectFullIfBody
+		public RuleCall getThenEffectFullIfBodyParserRuleCall_4_0() { return cThenEffectFullIfBodyParserRuleCall_4_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		
+		//'else'
+		public Keyword getElseKeyword_6() { return cElseKeyword_6; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_7() { return cLeftCurlyBracketKeyword_7; }
+		
+		//else=EffectFullIfBody
+		public Assignment getElseAssignment_8() { return cElseAssignment_8; }
+		
+		//EffectFullIfBody
+		public RuleCall getElseEffectFullIfBodyParserRuleCall_8_0() { return cElseEffectFullIfBodyParserRuleCall_8_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+	}
 	public class EffectFullIfBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.EffectFullIfBody");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -4237,6 +4364,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final IsRightPureElements pIsRightPure;
 	private final PureIfElements pPureIf;
 	private final PureIfBodyElements pPureIfBody;
+	private final PureEitherIfElements pPureEitherIf;
 	private final PrimitiveEffectFullFunctionElements pPrimitiveEffectFullFunction;
 	private final PrimitivePrintElements pPrimitivePrint;
 	private final LeftAlgebraicIOElements pLeftAlgebraicIO;
@@ -4253,6 +4381,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final IsLeftEffectFullElements pIsLeftEffectFull;
 	private final IsRightEffectFullElements pIsRightEffectFull;
 	private final EffectFullIfElements pEffectFullIf;
+	private final EffectFullEitherIfElements pEffectFullEitherIf;
 	private final EffectFullIfBodyElements pEffectFullIfBody;
 	private final TerminalRule tBOOLEAN;
 	
@@ -4359,6 +4488,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pIsRightPure = new IsRightPureElements();
 		this.pPureIf = new PureIfElements();
 		this.pPureIfBody = new PureIfBodyElements();
+		this.pPureEitherIf = new PureEitherIfElements();
 		this.pPrimitiveEffectFullFunction = new PrimitiveEffectFullFunctionElements();
 		this.pPrimitivePrint = new PrimitivePrintElements();
 		this.pLeftAlgebraicIO = new LeftAlgebraicIOElements();
@@ -4375,6 +4505,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pIsLeftEffectFull = new IsLeftEffectFullElements();
 		this.pIsRightEffectFull = new IsRightEffectFullElements();
 		this.pEffectFullIf = new EffectFullIfElements();
+		this.pEffectFullEitherIf = new EffectFullEitherIfElements();
 		this.pEffectFullIfBody = new EffectFullIfBodyElements();
 		this.tBOOLEAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.BOOLEAN");
 	}
@@ -5196,7 +5327,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//PrimitivePureFunction:
 	//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
 	//	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr
-	//	| ExtractPure | IsLeftPure | IsRightPure | PureIf;
+	//	| ExtractPure | IsLeftPure | IsRightPure | PureIf | PureEitherIf;
 	public PrimitivePureFunctionElements getPrimitivePureFunctionAccess() {
 		return pPrimitivePureFunction;
 	}
@@ -5425,9 +5556,20 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPureIfBodyAccess().getRule();
 	}
 	
+	//PureEitherIf:
+	//	{PureEitherIf} 'ifEither' 'then' '{' then=PureIfBody '}' 'else' '{' else=PureIfBody '}';
+	public PureEitherIfElements getPureEitherIfAccess() {
+		return pPureEitherIf;
+	}
+	
+	public ParserRule getPureEitherIfRule() {
+		return getPureEitherIfAccess().getRule();
+	}
+	
 	//PrimitiveEffectFullFunction:
 	//	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull
-	//	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf;
+	//	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf |
+	//	EffectFullEitherIf;
 	public PrimitiveEffectFullFunctionElements getPrimitiveEffectFullFunctionAccess() {
 		return pPrimitiveEffectFullFunction;
 	}
@@ -5587,6 +5729,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getEffectFullIfRule() {
 		return getEffectFullIfAccess().getRule();
+	}
+	
+	//EffectFullEitherIf:
+	//	{EffectFullEitherIf} 'ifEither' 'then' '{' then=EffectFullIfBody '}' 'else' '{' else=EffectFullIfBody '}';
+	public EffectFullEitherIfElements getEffectFullEitherIfAccess() {
+		return pEffectFullEitherIf;
+	}
+	
+	public ParserRule getEffectFullEitherIfRule() {
+		return getEffectFullEitherIfAccess().getRule();
 	}
 	
 	//EffectFullIfBody:

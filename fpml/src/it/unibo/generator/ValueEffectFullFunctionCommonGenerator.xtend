@@ -28,7 +28,7 @@ class ValueEffectFullFunctionCommonGenerator {
 		}	
 	}
 	
-	def compileEffectFullFunctionRef(EffectFullFunction function) {
+	def String compileEffectFullFunctionRef(EffectFullFunction function) {
 		switch function {
 			// PrimitiveEffectFullFunction: cannot happen because hasn't the reference, the name. 
 			EffectFullValue: '''EffectFullValue::«(function as EffectFullValue).name»'''
@@ -145,6 +145,8 @@ class ValueEffectFullFunctionCommonGenerator {
 			LiftEffectFullFunction: compileIO(Others.getEffectFullFunctionFromLiftEffectFullFunction(peff), acc)
 			IsLeftEffectFull: '''IOFuctions.bind(«acc», PrimitivesEffectFull::isLeft)'''
 			IsRightEffectFull: '''IOFunctions.bind(«acc», PrimitivesEffectFull::isRight)'''
+			EffectFullIf:'''IOFunctions.bind(«acc», (Boolean c) -> PrimitivesEffectFull.effectFullIf(c, «peff.then.compile» , «peff.^else.compile»))'''
+			EffectFullEitherIf: '''IOFunctions.bind(«acc», (Boolean c) -> PrimitivesEffectFull.effectFullIfEither(c, «peff.then.compile» , «peff.^else.compile»))'''
 		}
 	}
 	
@@ -179,6 +181,8 @@ class ValueEffectFullFunctionCommonGenerator {
 			LogicOr: '''IOFunctions.map(«acc», Primitives::logicOr)'''
 			IsLeftPure: '''IOFuncitons.map(«acc», Primitives::isLeft)'''
 			IsRightPure: '''IOFunctions.map(«acc», Primitives::isRight)'''
+			PureIf: '''IOFunctions.map(«acc», (Boolean c) -> Primitives.pureIf(c, «commonPureFunctions.compile(ppf.then)» , «commonPureFunctions.compile(ppf.^else)»))'''
+			PureEitherIf: '''IOFunctions.map(«acc», (Boolean c) -> Primitives.pureIfEither(c, «commonPureFunctions.compile(ppf.then)» , «commonPureFunctions.compile(ppf.^else)»))'''
 		}
 	}
 	
@@ -194,5 +198,19 @@ class ValueEffectFullFunctionCommonGenerator {
 			return valueCompiled;
 		}else
 			return '''IOFunctions.left(«valueCompiled»,«inputChain»)'''
+	}
+
+	def String compile(EffectFullIfBody pib) {
+		switch pib {
+			EffectFullExpression: compile(pib as EffectFullExpression)
+			EffectFullFunction: {
+				switch pib {
+					EffectFullValue: pib.name
+					EffectFullFunctionDefinition: compileEffectFullFunctionRef(pib as EffectFullFunctionDefinition)
+					PrimitiveEffectFullFunction: compileEffectFullFunctionRef(pib as PrimitiveEffectFullFunction)
+					EffectFullArgument: pib.name
+				}
+			}
+		}
 	}
 }

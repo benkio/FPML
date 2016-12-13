@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalFPMLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_BOOLEAN", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Pure'", "'{'", "'}'", "'Functions'", "'Data'", "'Value'", "'Effects'", "':'", "'def'", "'('", "','", "')'", "'IO'", "'main'", "'Undefined'", "'|>'", "'>>='", "'int'", "'String'", "'boolean'", "'Unit'", "'ref'", "'refIO'", "'F'", "'<'", "'>'", "'FIO'", "'['", "']'", "'+'", "'*'", "'IOF'", "'()'", "'EffectFullRef'", "'\\\\'", "'->'", "'PureRef'", "'Left'", "'Right'", "'intToString'", "'intPow'", "'-'", "'mod'", "'leftADT'", "'rightADT'", "'applyF'", "'=='", "'<='", "'>='", "'&&'", "'||'", "'extract'", "'isLeft'", "'isRight'", "'if'", "'then'", "'else'", "'print'", "'randomInt'", "'return'", "'currentTime'", "'applyFIO'", "'extractEffectFull'", "'Lift'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_BOOLEAN", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Pure'", "'{'", "'}'", "'Functions'", "'Data'", "'Value'", "'Effects'", "':'", "'def'", "'('", "','", "')'", "'IO'", "'main'", "'Undefined'", "'|>'", "'>>='", "'int'", "'String'", "'boolean'", "'Unit'", "'ref'", "'refIO'", "'F'", "'<'", "'>'", "'FIO'", "'['", "']'", "'+'", "'*'", "'IOF'", "'()'", "'EffectFullRef'", "'\\\\'", "'->'", "'PureRef'", "'Left'", "'Right'", "'intToString'", "'intPow'", "'-'", "'mod'", "'leftADT'", "'rightADT'", "'applyF'", "'=='", "'<='", "'>='", "'&&'", "'||'", "'extract'", "'isLeft'", "'isRight'", "'if'", "'then'", "'else'", "'ifEither'", "'print'", "'randomInt'", "'return'", "'currentTime'", "'applyFIO'", "'extractEffectFull'", "'Lift'"
     };
     public static final int T__50=50;
     public static final int RULE_BOOLEAN=7;
@@ -84,6 +84,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
     public static final int T__31=31;
     public static final int T__75=75;
     public static final int T__32=32;
+    public static final int T__76=76;
     public static final int RULE_WS=10;
     public static final int RULE_ANY_OTHER=11;
     public static final int T__48=48;
@@ -3127,6 +3128,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             case 64:
             case 65:
             case 66:
+            case 69:
                 {
                 alt9=2;
                 }
@@ -3159,11 +3161,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                 {
                 int LA9_5 = input.LA(2);
 
-                if ( (LA9_5==21) ) {
-                    alt9=4;
-                }
-                else if ( (LA9_5==19) ) {
+                if ( (LA9_5==19) ) {
                     alt9=5;
+                }
+                else if ( (LA9_5==21) ) {
+                    alt9=4;
                 }
                 else {
                     NoViableAltException nvae =
@@ -3364,10 +3366,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             case 65:
             case 66:
             case 69:
-            case 71:
-            case 73:
+            case 70:
+            case 72:
             case 74:
             case 75:
+            case 76:
                 {
                 alt10=2;
                 }
@@ -3557,10 +3560,10 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             int alt11=2;
             int LA11_0 = input.LA(1);
 
-            if ( ((LA11_0>=55 && LA11_0<=56)||(LA11_0>=64 && LA11_0<=66)||LA11_0==69||LA11_0==71||(LA11_0>=73 && LA11_0<=75)) ) {
+            if ( ((LA11_0>=55 && LA11_0<=56)||(LA11_0>=64 && LA11_0<=66)||(LA11_0>=69 && LA11_0<=70)||LA11_0==72||(LA11_0>=74 && LA11_0<=76)) ) {
                 alt11=1;
             }
-            else if ( (LA11_0==70||LA11_0==72) ) {
+            else if ( (LA11_0==71||LA11_0==73) ) {
                 alt11=2;
             }
             else {
@@ -4084,7 +4087,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             if ( (LA13_0==26) ) {
                 alt13=1;
             }
-            else if ( ((LA13_0>=RULE_ID && LA13_0<=RULE_BOOLEAN)||LA13_0==21||(LA13_0>=36 && LA13_0<=37)||(LA13_0>=41 && LA13_0<=42)||LA13_0==44||LA13_0==46||(LA13_0>=48 && LA13_0<=66)) ) {
+            else if ( ((LA13_0>=RULE_ID && LA13_0<=RULE_BOOLEAN)||LA13_0==21||(LA13_0>=36 && LA13_0<=37)||(LA13_0>=41 && LA13_0<=42)||LA13_0==44||LA13_0==46||(LA13_0>=48 && LA13_0<=66)||LA13_0==69) ) {
                 alt13=2;
             }
             else {
@@ -4212,7 +4215,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             if ( (LA14_0==26) ) {
                 alt14=1;
             }
-            else if ( (LA14_0==RULE_ID||LA14_0==24||LA14_0==39||LA14_0==43||(LA14_0>=45 && LA14_0<=46)||(LA14_0>=49 && LA14_0<=50)||(LA14_0>=55 && LA14_0<=56)||(LA14_0>=64 && LA14_0<=66)||(LA14_0>=69 && LA14_0<=75)) ) {
+            else if ( (LA14_0==RULE_ID||LA14_0==24||LA14_0==39||LA14_0==43||(LA14_0>=45 && LA14_0<=46)||(LA14_0>=49 && LA14_0<=50)||(LA14_0>=55 && LA14_0<=56)||(LA14_0>=64 && LA14_0<=66)||(LA14_0>=69 && LA14_0<=76)) ) {
                 alt14=2;
             }
             else {
@@ -4471,6 +4474,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             case 64:
             case 65:
             case 66:
+            case 69:
                 {
                 alt18=2;
                 }
@@ -4879,11 +4883,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     {
                     int LA19_3 = input.LA(3);
 
-                    if ( (LA19_3==21) ) {
-                        alt19=3;
-                    }
-                    else if ( (LA19_3==EOF||LA19_3==14||LA19_3==27) ) {
+                    if ( (LA19_3==EOF||LA19_3==14||LA19_3==27) ) {
                         alt19=1;
+                    }
+                    else if ( (LA19_3==21) ) {
+                        alt19=3;
                     }
                     else {
                         NoViableAltException nvae =
@@ -4913,6 +4917,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                 case 64:
                 case 65:
                 case 66:
+                case 69:
                     {
                     alt19=2;
                     }
@@ -5152,11 +5157,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                 {
                 int LA23_1 = input.LA(2);
 
-                if ( (LA23_1==28) ) {
-                    alt23=1;
-                }
-                else if ( (LA23_1==39) ) {
+                if ( (LA23_1==39) ) {
                     alt23=3;
+                }
+                else if ( (LA23_1==28) ) {
+                    alt23=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -5178,6 +5183,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             case 73:
             case 74:
             case 75:
+            case 76:
                 {
                 alt23=2;
                 }
@@ -5567,15 +5573,21 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             if ( (LA24_0==28) ) {
                 switch ( input.LA(2) ) {
-                case 24:
-                case 39:
-                case 43:
-                case 45:
-                case 46:
-                case 49:
-                case 50:
+                case 55:
+                case 56:
+                case 64:
+                case 65:
+                case 66:
+                case 69:
+                case 70:
+                case 71:
+                case 72:
+                case 73:
+                case 74:
+                case 75:
+                case 76:
                     {
-                    alt24=3;
+                    alt24=2;
                     }
                     break;
                 case RULE_ID:
@@ -5596,20 +5608,15 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     }
                     break;
-                case 55:
-                case 56:
-                case 64:
-                case 65:
-                case 66:
-                case 69:
-                case 70:
-                case 71:
-                case 72:
-                case 73:
-                case 74:
-                case 75:
+                case 24:
+                case 39:
+                case 43:
+                case 45:
+                case 46:
+                case 49:
+                case 50:
                     {
-                    alt24=2;
+                    alt24=3;
                     }
                     break;
                 default:
@@ -11932,7 +11939,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimitivePureFunction"
-    // InternalFPML.g:4653:1: rulePrimitivePureFunction returns [EObject current=null] : (this_IntToString_0= ruleIntToString | this_IntPow_1= ruleIntPow | this_Plus_2= rulePlus | this_Minus_3= ruleMinus | this_Times_4= ruleTimes | this_Mod_5= ruleMod | this_ApplyF_6= ruleApplyF | this_LeftAlgebraic_7= ruleLeftAlgebraic | this_RightAlgebraic_8= ruleRightAlgebraic | this_Equals_9= ruleEquals | this_MinorEquals_10= ruleMinorEquals | this_MajorEquals_11= ruleMajorEquals | this_Minor_12= ruleMinor | this_Major_13= ruleMajor | this_LogicAnd_14= ruleLogicAnd | this_LogicOr_15= ruleLogicOr | this_ExtractPure_16= ruleExtractPure | this_IsLeftPure_17= ruleIsLeftPure | this_IsRightPure_18= ruleIsRightPure | this_PureIf_19= rulePureIf ) ;
+    // InternalFPML.g:4653:1: rulePrimitivePureFunction returns [EObject current=null] : (this_IntToString_0= ruleIntToString | this_IntPow_1= ruleIntPow | this_Plus_2= rulePlus | this_Minus_3= ruleMinus | this_Times_4= ruleTimes | this_Mod_5= ruleMod | this_ApplyF_6= ruleApplyF | this_LeftAlgebraic_7= ruleLeftAlgebraic | this_RightAlgebraic_8= ruleRightAlgebraic | this_Equals_9= ruleEquals | this_MinorEquals_10= ruleMinorEquals | this_MajorEquals_11= ruleMajorEquals | this_Minor_12= ruleMinor | this_Major_13= ruleMajor | this_LogicAnd_14= ruleLogicAnd | this_LogicOr_15= ruleLogicOr | this_ExtractPure_16= ruleExtractPure | this_IsLeftPure_17= ruleIsLeftPure | this_IsRightPure_18= ruleIsRightPure | this_PureIf_19= rulePureIf | this_PureEitherIf_20= rulePureEitherIf ) ;
     public final EObject rulePrimitivePureFunction() throws RecognitionException {
         EObject current = null;
 
@@ -11976,16 +11983,18 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
         EObject this_PureIf_19 = null;
 
+        EObject this_PureEitherIf_20 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalFPML.g:4659:2: ( (this_IntToString_0= ruleIntToString | this_IntPow_1= ruleIntPow | this_Plus_2= rulePlus | this_Minus_3= ruleMinus | this_Times_4= ruleTimes | this_Mod_5= ruleMod | this_ApplyF_6= ruleApplyF | this_LeftAlgebraic_7= ruleLeftAlgebraic | this_RightAlgebraic_8= ruleRightAlgebraic | this_Equals_9= ruleEquals | this_MinorEquals_10= ruleMinorEquals | this_MajorEquals_11= ruleMajorEquals | this_Minor_12= ruleMinor | this_Major_13= ruleMajor | this_LogicAnd_14= ruleLogicAnd | this_LogicOr_15= ruleLogicOr | this_ExtractPure_16= ruleExtractPure | this_IsLeftPure_17= ruleIsLeftPure | this_IsRightPure_18= ruleIsRightPure | this_PureIf_19= rulePureIf ) )
-            // InternalFPML.g:4660:2: (this_IntToString_0= ruleIntToString | this_IntPow_1= ruleIntPow | this_Plus_2= rulePlus | this_Minus_3= ruleMinus | this_Times_4= ruleTimes | this_Mod_5= ruleMod | this_ApplyF_6= ruleApplyF | this_LeftAlgebraic_7= ruleLeftAlgebraic | this_RightAlgebraic_8= ruleRightAlgebraic | this_Equals_9= ruleEquals | this_MinorEquals_10= ruleMinorEquals | this_MajorEquals_11= ruleMajorEquals | this_Minor_12= ruleMinor | this_Major_13= ruleMajor | this_LogicAnd_14= ruleLogicAnd | this_LogicOr_15= ruleLogicOr | this_ExtractPure_16= ruleExtractPure | this_IsLeftPure_17= ruleIsLeftPure | this_IsRightPure_18= ruleIsRightPure | this_PureIf_19= rulePureIf )
+            // InternalFPML.g:4659:2: ( (this_IntToString_0= ruleIntToString | this_IntPow_1= ruleIntPow | this_Plus_2= rulePlus | this_Minus_3= ruleMinus | this_Times_4= ruleTimes | this_Mod_5= ruleMod | this_ApplyF_6= ruleApplyF | this_LeftAlgebraic_7= ruleLeftAlgebraic | this_RightAlgebraic_8= ruleRightAlgebraic | this_Equals_9= ruleEquals | this_MinorEquals_10= ruleMinorEquals | this_MajorEquals_11= ruleMajorEquals | this_Minor_12= ruleMinor | this_Major_13= ruleMajor | this_LogicAnd_14= ruleLogicAnd | this_LogicOr_15= ruleLogicOr | this_ExtractPure_16= ruleExtractPure | this_IsLeftPure_17= ruleIsLeftPure | this_IsRightPure_18= ruleIsRightPure | this_PureIf_19= rulePureIf | this_PureEitherIf_20= rulePureEitherIf ) )
+            // InternalFPML.g:4660:2: (this_IntToString_0= ruleIntToString | this_IntPow_1= ruleIntPow | this_Plus_2= rulePlus | this_Minus_3= ruleMinus | this_Times_4= ruleTimes | this_Mod_5= ruleMod | this_ApplyF_6= ruleApplyF | this_LeftAlgebraic_7= ruleLeftAlgebraic | this_RightAlgebraic_8= ruleRightAlgebraic | this_Equals_9= ruleEquals | this_MinorEquals_10= ruleMinorEquals | this_MajorEquals_11= ruleMajorEquals | this_Minor_12= ruleMinor | this_Major_13= ruleMajor | this_LogicAnd_14= ruleLogicAnd | this_LogicOr_15= ruleLogicOr | this_ExtractPure_16= ruleExtractPure | this_IsLeftPure_17= ruleIsLeftPure | this_IsRightPure_18= ruleIsRightPure | this_PureIf_19= rulePureIf | this_PureEitherIf_20= rulePureEitherIf )
             {
-            // InternalFPML.g:4660:2: (this_IntToString_0= ruleIntToString | this_IntPow_1= ruleIntPow | this_Plus_2= rulePlus | this_Minus_3= ruleMinus | this_Times_4= ruleTimes | this_Mod_5= ruleMod | this_ApplyF_6= ruleApplyF | this_LeftAlgebraic_7= ruleLeftAlgebraic | this_RightAlgebraic_8= ruleRightAlgebraic | this_Equals_9= ruleEquals | this_MinorEquals_10= ruleMinorEquals | this_MajorEquals_11= ruleMajorEquals | this_Minor_12= ruleMinor | this_Major_13= ruleMajor | this_LogicAnd_14= ruleLogicAnd | this_LogicOr_15= ruleLogicOr | this_ExtractPure_16= ruleExtractPure | this_IsLeftPure_17= ruleIsLeftPure | this_IsRightPure_18= ruleIsRightPure | this_PureIf_19= rulePureIf )
-            int alt36=20;
+            // InternalFPML.g:4660:2: (this_IntToString_0= ruleIntToString | this_IntPow_1= ruleIntPow | this_Plus_2= rulePlus | this_Minus_3= ruleMinus | this_Times_4= ruleTimes | this_Mod_5= ruleMod | this_ApplyF_6= ruleApplyF | this_LeftAlgebraic_7= ruleLeftAlgebraic | this_RightAlgebraic_8= ruleRightAlgebraic | this_Equals_9= ruleEquals | this_MinorEquals_10= ruleMinorEquals | this_MajorEquals_11= ruleMajorEquals | this_Minor_12= ruleMinor | this_Major_13= ruleMajor | this_LogicAnd_14= ruleLogicAnd | this_LogicOr_15= ruleLogicOr | this_ExtractPure_16= ruleExtractPure | this_IsLeftPure_17= ruleIsLeftPure | this_IsRightPure_18= ruleIsRightPure | this_PureIf_19= rulePureIf | this_PureEitherIf_20= rulePureEitherIf )
+            int alt36=21;
             switch ( input.LA(1) ) {
             case 51:
                 {
@@ -12085,6 +12094,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             case 66:
                 {
                 alt36=20;
+                }
+                break;
+            case 69:
+                {
+                alt36=21;
                 }
                 break;
             default:
@@ -12455,6 +12469,24 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
+                case 21 :
+                    // InternalFPML.g:4841:3: this_PureEitherIf_20= rulePureEitherIf
+                    {
+
+                    			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPureEitherIfParserRuleCall_20());
+                    		
+                    pushFollow(FOLLOW_2);
+                    this_PureEitherIf_20=rulePureEitherIf();
+
+                    state._fsp--;
+
+
+                    			current = this_PureEitherIf_20;
+                    			afterParserOrEnumRuleCall();
+                    		
+
+                    }
+                    break;
 
             }
 
@@ -12478,7 +12510,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIntToString"
-    // InternalFPML.g:4844:1: entryRuleIntToString returns [EObject current=null] : iv_ruleIntToString= ruleIntToString EOF ;
+    // InternalFPML.g:4853:1: entryRuleIntToString returns [EObject current=null] : iv_ruleIntToString= ruleIntToString EOF ;
     public final EObject entryRuleIntToString() throws RecognitionException {
         EObject current = null;
 
@@ -12486,8 +12518,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:4844:52: (iv_ruleIntToString= ruleIntToString EOF )
-            // InternalFPML.g:4845:2: iv_ruleIntToString= ruleIntToString EOF
+            // InternalFPML.g:4853:52: (iv_ruleIntToString= ruleIntToString EOF )
+            // InternalFPML.g:4854:2: iv_ruleIntToString= ruleIntToString EOF
             {
              newCompositeNode(grammarAccess.getIntToStringRule()); 
             pushFollow(FOLLOW_1);
@@ -12514,7 +12546,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIntToString"
-    // InternalFPML.g:4851:1: ruleIntToString returns [EObject current=null] : ( () otherlv_1= 'intToString' ) ;
+    // InternalFPML.g:4860:1: ruleIntToString returns [EObject current=null] : ( () otherlv_1= 'intToString' ) ;
     public final EObject ruleIntToString() throws RecognitionException {
         EObject current = null;
 
@@ -12524,14 +12556,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:4857:2: ( ( () otherlv_1= 'intToString' ) )
-            // InternalFPML.g:4858:2: ( () otherlv_1= 'intToString' )
+            // InternalFPML.g:4866:2: ( ( () otherlv_1= 'intToString' ) )
+            // InternalFPML.g:4867:2: ( () otherlv_1= 'intToString' )
             {
-            // InternalFPML.g:4858:2: ( () otherlv_1= 'intToString' )
-            // InternalFPML.g:4859:3: () otherlv_1= 'intToString'
+            // InternalFPML.g:4867:2: ( () otherlv_1= 'intToString' )
+            // InternalFPML.g:4868:3: () otherlv_1= 'intToString'
             {
-            // InternalFPML.g:4859:3: ()
-            // InternalFPML.g:4860:4: 
+            // InternalFPML.g:4868:3: ()
+            // InternalFPML.g:4869:4: 
             {
 
             				current = forceCreateModelElement(
@@ -12568,7 +12600,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIntPow"
-    // InternalFPML.g:4874:1: entryRuleIntPow returns [EObject current=null] : iv_ruleIntPow= ruleIntPow EOF ;
+    // InternalFPML.g:4883:1: entryRuleIntPow returns [EObject current=null] : iv_ruleIntPow= ruleIntPow EOF ;
     public final EObject entryRuleIntPow() throws RecognitionException {
         EObject current = null;
 
@@ -12576,8 +12608,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:4874:47: (iv_ruleIntPow= ruleIntPow EOF )
-            // InternalFPML.g:4875:2: iv_ruleIntPow= ruleIntPow EOF
+            // InternalFPML.g:4883:47: (iv_ruleIntPow= ruleIntPow EOF )
+            // InternalFPML.g:4884:2: iv_ruleIntPow= ruleIntPow EOF
             {
              newCompositeNode(grammarAccess.getIntPowRule()); 
             pushFollow(FOLLOW_1);
@@ -12604,7 +12636,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIntPow"
-    // InternalFPML.g:4881:1: ruleIntPow returns [EObject current=null] : ( () otherlv_1= 'intPow' ) ;
+    // InternalFPML.g:4890:1: ruleIntPow returns [EObject current=null] : ( () otherlv_1= 'intPow' ) ;
     public final EObject ruleIntPow() throws RecognitionException {
         EObject current = null;
 
@@ -12614,14 +12646,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:4887:2: ( ( () otherlv_1= 'intPow' ) )
-            // InternalFPML.g:4888:2: ( () otherlv_1= 'intPow' )
+            // InternalFPML.g:4896:2: ( ( () otherlv_1= 'intPow' ) )
+            // InternalFPML.g:4897:2: ( () otherlv_1= 'intPow' )
             {
-            // InternalFPML.g:4888:2: ( () otherlv_1= 'intPow' )
-            // InternalFPML.g:4889:3: () otherlv_1= 'intPow'
+            // InternalFPML.g:4897:2: ( () otherlv_1= 'intPow' )
+            // InternalFPML.g:4898:3: () otherlv_1= 'intPow'
             {
-            // InternalFPML.g:4889:3: ()
-            // InternalFPML.g:4890:4: 
+            // InternalFPML.g:4898:3: ()
+            // InternalFPML.g:4899:4: 
             {
 
             				current = forceCreateModelElement(
@@ -12658,7 +12690,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePlus"
-    // InternalFPML.g:4904:1: entryRulePlus returns [EObject current=null] : iv_rulePlus= rulePlus EOF ;
+    // InternalFPML.g:4913:1: entryRulePlus returns [EObject current=null] : iv_rulePlus= rulePlus EOF ;
     public final EObject entryRulePlus() throws RecognitionException {
         EObject current = null;
 
@@ -12666,8 +12698,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:4904:45: (iv_rulePlus= rulePlus EOF )
-            // InternalFPML.g:4905:2: iv_rulePlus= rulePlus EOF
+            // InternalFPML.g:4913:45: (iv_rulePlus= rulePlus EOF )
+            // InternalFPML.g:4914:2: iv_rulePlus= rulePlus EOF
             {
              newCompositeNode(grammarAccess.getPlusRule()); 
             pushFollow(FOLLOW_1);
@@ -12694,7 +12726,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePlus"
-    // InternalFPML.g:4911:1: rulePlus returns [EObject current=null] : ( () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) ) ) ;
+    // InternalFPML.g:4920:1: rulePlus returns [EObject current=null] : ( () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) ) ) ;
     public final EObject rulePlus() throws RecognitionException {
         EObject current = null;
 
@@ -12708,14 +12740,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:4917:2: ( ( () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) ) ) )
-            // InternalFPML.g:4918:2: ( () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) ) )
+            // InternalFPML.g:4926:2: ( ( () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) ) ) )
+            // InternalFPML.g:4927:2: ( () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) ) )
             {
-            // InternalFPML.g:4918:2: ( () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) ) )
-            // InternalFPML.g:4919:3: () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) )
+            // InternalFPML.g:4927:2: ( () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) ) )
+            // InternalFPML.g:4928:3: () otherlv_1= '+' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) )
             {
-            // InternalFPML.g:4919:3: ()
-            // InternalFPML.g:4920:4: 
+            // InternalFPML.g:4928:3: ()
+            // InternalFPML.g:4929:4: 
             {
 
             				current = forceCreateModelElement(
@@ -12729,13 +12761,13 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getPlusAccess().getPlusSignKeyword_1());
             		
-            // InternalFPML.g:4930:3: ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) )
-            // InternalFPML.g:4931:4: ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) )
+            // InternalFPML.g:4939:3: ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) ) )
+            // InternalFPML.g:4940:4: ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) )
             {
-            // InternalFPML.g:4931:4: ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) )
-            // InternalFPML.g:4932:5: (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType )
+            // InternalFPML.g:4940:4: ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType ) )
+            // InternalFPML.g:4941:5: (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType )
             {
-            // InternalFPML.g:4932:5: (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType )
+            // InternalFPML.g:4941:5: (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType )
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -12753,7 +12785,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt37) {
                 case 1 :
-                    // InternalFPML.g:4933:6: lv_type_2_1= ruleIntegerType
+                    // InternalFPML.g:4942:6: lv_type_2_1= ruleIntegerType
                     {
 
                     						newCompositeNode(grammarAccess.getPlusAccess().getTypeIntegerTypeParserRuleCall_2_0_0());
@@ -12778,7 +12810,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:4949:6: lv_type_2_2= ruleStringType
+                    // InternalFPML.g:4958:6: lv_type_2_2= ruleStringType
                     {
 
                     						newCompositeNode(grammarAccess.getPlusAccess().getTypeStringTypeParserRuleCall_2_0_1());
@@ -12834,7 +12866,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMinus"
-    // InternalFPML.g:4971:1: entryRuleMinus returns [EObject current=null] : iv_ruleMinus= ruleMinus EOF ;
+    // InternalFPML.g:4980:1: entryRuleMinus returns [EObject current=null] : iv_ruleMinus= ruleMinus EOF ;
     public final EObject entryRuleMinus() throws RecognitionException {
         EObject current = null;
 
@@ -12842,8 +12874,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:4971:46: (iv_ruleMinus= ruleMinus EOF )
-            // InternalFPML.g:4972:2: iv_ruleMinus= ruleMinus EOF
+            // InternalFPML.g:4980:46: (iv_ruleMinus= ruleMinus EOF )
+            // InternalFPML.g:4981:2: iv_ruleMinus= ruleMinus EOF
             {
              newCompositeNode(grammarAccess.getMinusRule()); 
             pushFollow(FOLLOW_1);
@@ -12870,7 +12902,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMinus"
-    // InternalFPML.g:4978:1: ruleMinus returns [EObject current=null] : ( () otherlv_1= '-' ) ;
+    // InternalFPML.g:4987:1: ruleMinus returns [EObject current=null] : ( () otherlv_1= '-' ) ;
     public final EObject ruleMinus() throws RecognitionException {
         EObject current = null;
 
@@ -12880,14 +12912,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:4984:2: ( ( () otherlv_1= '-' ) )
-            // InternalFPML.g:4985:2: ( () otherlv_1= '-' )
+            // InternalFPML.g:4993:2: ( ( () otherlv_1= '-' ) )
+            // InternalFPML.g:4994:2: ( () otherlv_1= '-' )
             {
-            // InternalFPML.g:4985:2: ( () otherlv_1= '-' )
-            // InternalFPML.g:4986:3: () otherlv_1= '-'
+            // InternalFPML.g:4994:2: ( () otherlv_1= '-' )
+            // InternalFPML.g:4995:3: () otherlv_1= '-'
             {
-            // InternalFPML.g:4986:3: ()
-            // InternalFPML.g:4987:4: 
+            // InternalFPML.g:4995:3: ()
+            // InternalFPML.g:4996:4: 
             {
 
             				current = forceCreateModelElement(
@@ -12924,7 +12956,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTimes"
-    // InternalFPML.g:5001:1: entryRuleTimes returns [EObject current=null] : iv_ruleTimes= ruleTimes EOF ;
+    // InternalFPML.g:5010:1: entryRuleTimes returns [EObject current=null] : iv_ruleTimes= ruleTimes EOF ;
     public final EObject entryRuleTimes() throws RecognitionException {
         EObject current = null;
 
@@ -12932,8 +12964,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5001:46: (iv_ruleTimes= ruleTimes EOF )
-            // InternalFPML.g:5002:2: iv_ruleTimes= ruleTimes EOF
+            // InternalFPML.g:5010:46: (iv_ruleTimes= ruleTimes EOF )
+            // InternalFPML.g:5011:2: iv_ruleTimes= ruleTimes EOF
             {
              newCompositeNode(grammarAccess.getTimesRule()); 
             pushFollow(FOLLOW_1);
@@ -12960,7 +12992,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTimes"
-    // InternalFPML.g:5008:1: ruleTimes returns [EObject current=null] : ( () otherlv_1= '*' ) ;
+    // InternalFPML.g:5017:1: ruleTimes returns [EObject current=null] : ( () otherlv_1= '*' ) ;
     public final EObject ruleTimes() throws RecognitionException {
         EObject current = null;
 
@@ -12970,14 +13002,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5014:2: ( ( () otherlv_1= '*' ) )
-            // InternalFPML.g:5015:2: ( () otherlv_1= '*' )
+            // InternalFPML.g:5023:2: ( ( () otherlv_1= '*' ) )
+            // InternalFPML.g:5024:2: ( () otherlv_1= '*' )
             {
-            // InternalFPML.g:5015:2: ( () otherlv_1= '*' )
-            // InternalFPML.g:5016:3: () otherlv_1= '*'
+            // InternalFPML.g:5024:2: ( () otherlv_1= '*' )
+            // InternalFPML.g:5025:3: () otherlv_1= '*'
             {
-            // InternalFPML.g:5016:3: ()
-            // InternalFPML.g:5017:4: 
+            // InternalFPML.g:5025:3: ()
+            // InternalFPML.g:5026:4: 
             {
 
             				current = forceCreateModelElement(
@@ -13014,7 +13046,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMod"
-    // InternalFPML.g:5031:1: entryRuleMod returns [EObject current=null] : iv_ruleMod= ruleMod EOF ;
+    // InternalFPML.g:5040:1: entryRuleMod returns [EObject current=null] : iv_ruleMod= ruleMod EOF ;
     public final EObject entryRuleMod() throws RecognitionException {
         EObject current = null;
 
@@ -13022,8 +13054,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5031:44: (iv_ruleMod= ruleMod EOF )
-            // InternalFPML.g:5032:2: iv_ruleMod= ruleMod EOF
+            // InternalFPML.g:5040:44: (iv_ruleMod= ruleMod EOF )
+            // InternalFPML.g:5041:2: iv_ruleMod= ruleMod EOF
             {
              newCompositeNode(grammarAccess.getModRule()); 
             pushFollow(FOLLOW_1);
@@ -13050,7 +13082,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMod"
-    // InternalFPML.g:5038:1: ruleMod returns [EObject current=null] : ( () otherlv_1= 'mod' ) ;
+    // InternalFPML.g:5047:1: ruleMod returns [EObject current=null] : ( () otherlv_1= 'mod' ) ;
     public final EObject ruleMod() throws RecognitionException {
         EObject current = null;
 
@@ -13060,14 +13092,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5044:2: ( ( () otherlv_1= 'mod' ) )
-            // InternalFPML.g:5045:2: ( () otherlv_1= 'mod' )
+            // InternalFPML.g:5053:2: ( ( () otherlv_1= 'mod' ) )
+            // InternalFPML.g:5054:2: ( () otherlv_1= 'mod' )
             {
-            // InternalFPML.g:5045:2: ( () otherlv_1= 'mod' )
-            // InternalFPML.g:5046:3: () otherlv_1= 'mod'
+            // InternalFPML.g:5054:2: ( () otherlv_1= 'mod' )
+            // InternalFPML.g:5055:3: () otherlv_1= 'mod'
             {
-            // InternalFPML.g:5046:3: ()
-            // InternalFPML.g:5047:4: 
+            // InternalFPML.g:5055:3: ()
+            // InternalFPML.g:5056:4: 
             {
 
             				current = forceCreateModelElement(
@@ -13104,7 +13136,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLeftAlgebraic"
-    // InternalFPML.g:5061:1: entryRuleLeftAlgebraic returns [EObject current=null] : iv_ruleLeftAlgebraic= ruleLeftAlgebraic EOF ;
+    // InternalFPML.g:5070:1: entryRuleLeftAlgebraic returns [EObject current=null] : iv_ruleLeftAlgebraic= ruleLeftAlgebraic EOF ;
     public final EObject entryRuleLeftAlgebraic() throws RecognitionException {
         EObject current = null;
 
@@ -13112,8 +13144,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5061:54: (iv_ruleLeftAlgebraic= ruleLeftAlgebraic EOF )
-            // InternalFPML.g:5062:2: iv_ruleLeftAlgebraic= ruleLeftAlgebraic EOF
+            // InternalFPML.g:5070:54: (iv_ruleLeftAlgebraic= ruleLeftAlgebraic EOF )
+            // InternalFPML.g:5071:2: iv_ruleLeftAlgebraic= ruleLeftAlgebraic EOF
             {
              newCompositeNode(grammarAccess.getLeftAlgebraicRule()); 
             pushFollow(FOLLOW_1);
@@ -13140,7 +13172,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLeftAlgebraic"
-    // InternalFPML.g:5068:1: ruleLeftAlgebraic returns [EObject current=null] : ( () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) ;
+    // InternalFPML.g:5077:1: ruleLeftAlgebraic returns [EObject current=null] : ( () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) ;
     public final EObject ruleLeftAlgebraic() throws RecognitionException {
         EObject current = null;
 
@@ -13152,14 +13184,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5074:2: ( ( () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) )
-            // InternalFPML.g:5075:2: ( () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
+            // InternalFPML.g:5083:2: ( ( () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) )
+            // InternalFPML.g:5084:2: ( () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
             {
-            // InternalFPML.g:5075:2: ( () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
-            // InternalFPML.g:5076:3: () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) )
+            // InternalFPML.g:5084:2: ( () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
+            // InternalFPML.g:5085:3: () otherlv_1= 'leftADT' ( (lv_type_2_0= rulePureAlgebraicType ) )
             {
-            // InternalFPML.g:5076:3: ()
-            // InternalFPML.g:5077:4: 
+            // InternalFPML.g:5085:3: ()
+            // InternalFPML.g:5086:4: 
             {
 
             				current = forceCreateModelElement(
@@ -13173,11 +13205,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getLeftAlgebraicAccess().getLeftADTKeyword_1());
             		
-            // InternalFPML.g:5087:3: ( (lv_type_2_0= rulePureAlgebraicType ) )
-            // InternalFPML.g:5088:4: (lv_type_2_0= rulePureAlgebraicType )
+            // InternalFPML.g:5096:3: ( (lv_type_2_0= rulePureAlgebraicType ) )
+            // InternalFPML.g:5097:4: (lv_type_2_0= rulePureAlgebraicType )
             {
-            // InternalFPML.g:5088:4: (lv_type_2_0= rulePureAlgebraicType )
-            // InternalFPML.g:5089:5: lv_type_2_0= rulePureAlgebraicType
+            // InternalFPML.g:5097:4: (lv_type_2_0= rulePureAlgebraicType )
+            // InternalFPML.g:5098:5: lv_type_2_0= rulePureAlgebraicType
             {
 
             					newCompositeNode(grammarAccess.getLeftAlgebraicAccess().getTypePureAlgebraicTypeParserRuleCall_2_0());
@@ -13227,7 +13259,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRightAlgebraic"
-    // InternalFPML.g:5110:1: entryRuleRightAlgebraic returns [EObject current=null] : iv_ruleRightAlgebraic= ruleRightAlgebraic EOF ;
+    // InternalFPML.g:5119:1: entryRuleRightAlgebraic returns [EObject current=null] : iv_ruleRightAlgebraic= ruleRightAlgebraic EOF ;
     public final EObject entryRuleRightAlgebraic() throws RecognitionException {
         EObject current = null;
 
@@ -13235,8 +13267,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5110:55: (iv_ruleRightAlgebraic= ruleRightAlgebraic EOF )
-            // InternalFPML.g:5111:2: iv_ruleRightAlgebraic= ruleRightAlgebraic EOF
+            // InternalFPML.g:5119:55: (iv_ruleRightAlgebraic= ruleRightAlgebraic EOF )
+            // InternalFPML.g:5120:2: iv_ruleRightAlgebraic= ruleRightAlgebraic EOF
             {
              newCompositeNode(grammarAccess.getRightAlgebraicRule()); 
             pushFollow(FOLLOW_1);
@@ -13263,7 +13295,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRightAlgebraic"
-    // InternalFPML.g:5117:1: ruleRightAlgebraic returns [EObject current=null] : ( () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) ;
+    // InternalFPML.g:5126:1: ruleRightAlgebraic returns [EObject current=null] : ( () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) ;
     public final EObject ruleRightAlgebraic() throws RecognitionException {
         EObject current = null;
 
@@ -13275,14 +13307,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5123:2: ( ( () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) )
-            // InternalFPML.g:5124:2: ( () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
+            // InternalFPML.g:5132:2: ( ( () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) )
+            // InternalFPML.g:5133:2: ( () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
             {
-            // InternalFPML.g:5124:2: ( () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
-            // InternalFPML.g:5125:3: () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) )
+            // InternalFPML.g:5133:2: ( () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
+            // InternalFPML.g:5134:3: () otherlv_1= 'rightADT' ( (lv_type_2_0= rulePureAlgebraicType ) )
             {
-            // InternalFPML.g:5125:3: ()
-            // InternalFPML.g:5126:4: 
+            // InternalFPML.g:5134:3: ()
+            // InternalFPML.g:5135:4: 
             {
 
             				current = forceCreateModelElement(
@@ -13296,11 +13328,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getRightAlgebraicAccess().getRightADTKeyword_1());
             		
-            // InternalFPML.g:5136:3: ( (lv_type_2_0= rulePureAlgebraicType ) )
-            // InternalFPML.g:5137:4: (lv_type_2_0= rulePureAlgebraicType )
+            // InternalFPML.g:5145:3: ( (lv_type_2_0= rulePureAlgebraicType ) )
+            // InternalFPML.g:5146:4: (lv_type_2_0= rulePureAlgebraicType )
             {
-            // InternalFPML.g:5137:4: (lv_type_2_0= rulePureAlgebraicType )
-            // InternalFPML.g:5138:5: lv_type_2_0= rulePureAlgebraicType
+            // InternalFPML.g:5146:4: (lv_type_2_0= rulePureAlgebraicType )
+            // InternalFPML.g:5147:5: lv_type_2_0= rulePureAlgebraicType
             {
 
             					newCompositeNode(grammarAccess.getRightAlgebraicAccess().getTypePureAlgebraicTypeParserRuleCall_2_0());
@@ -13350,7 +13382,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleApplyF"
-    // InternalFPML.g:5159:1: entryRuleApplyF returns [EObject current=null] : iv_ruleApplyF= ruleApplyF EOF ;
+    // InternalFPML.g:5168:1: entryRuleApplyF returns [EObject current=null] : iv_ruleApplyF= ruleApplyF EOF ;
     public final EObject entryRuleApplyF() throws RecognitionException {
         EObject current = null;
 
@@ -13358,8 +13390,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5159:47: (iv_ruleApplyF= ruleApplyF EOF )
-            // InternalFPML.g:5160:2: iv_ruleApplyF= ruleApplyF EOF
+            // InternalFPML.g:5168:47: (iv_ruleApplyF= ruleApplyF EOF )
+            // InternalFPML.g:5169:2: iv_ruleApplyF= ruleApplyF EOF
             {
              newCompositeNode(grammarAccess.getApplyFRule()); 
             pushFollow(FOLLOW_1);
@@ -13386,7 +13418,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleApplyF"
-    // InternalFPML.g:5166:1: ruleApplyF returns [EObject current=null] : ( () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) ) ) ;
+    // InternalFPML.g:5175:1: ruleApplyF returns [EObject current=null] : ( () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) ) ) ;
     public final EObject ruleApplyF() throws RecognitionException {
         EObject current = null;
 
@@ -13400,14 +13432,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5172:2: ( ( () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) ) ) )
-            // InternalFPML.g:5173:2: ( () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) ) )
+            // InternalFPML.g:5181:2: ( ( () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) ) ) )
+            // InternalFPML.g:5182:2: ( () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) ) )
             {
-            // InternalFPML.g:5173:2: ( () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) ) )
-            // InternalFPML.g:5174:3: () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) )
+            // InternalFPML.g:5182:2: ( () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) ) )
+            // InternalFPML.g:5183:3: () otherlv_1= 'applyF' ( (lv_functionType_2_0= rulePureFunctionType ) ) ( (lv_value_3_0= ruleApplyFFactor ) )
             {
-            // InternalFPML.g:5174:3: ()
-            // InternalFPML.g:5175:4: 
+            // InternalFPML.g:5183:3: ()
+            // InternalFPML.g:5184:4: 
             {
 
             				current = forceCreateModelElement(
@@ -13421,11 +13453,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getApplyFAccess().getApplyFKeyword_1());
             		
-            // InternalFPML.g:5185:3: ( (lv_functionType_2_0= rulePureFunctionType ) )
-            // InternalFPML.g:5186:4: (lv_functionType_2_0= rulePureFunctionType )
+            // InternalFPML.g:5194:3: ( (lv_functionType_2_0= rulePureFunctionType ) )
+            // InternalFPML.g:5195:4: (lv_functionType_2_0= rulePureFunctionType )
             {
-            // InternalFPML.g:5186:4: (lv_functionType_2_0= rulePureFunctionType )
-            // InternalFPML.g:5187:5: lv_functionType_2_0= rulePureFunctionType
+            // InternalFPML.g:5195:4: (lv_functionType_2_0= rulePureFunctionType )
+            // InternalFPML.g:5196:5: lv_functionType_2_0= rulePureFunctionType
             {
 
             					newCompositeNode(grammarAccess.getApplyFAccess().getFunctionTypePureFunctionTypeParserRuleCall_2_0());
@@ -13452,11 +13484,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalFPML.g:5204:3: ( (lv_value_3_0= ruleApplyFFactor ) )
-            // InternalFPML.g:5205:4: (lv_value_3_0= ruleApplyFFactor )
+            // InternalFPML.g:5213:3: ( (lv_value_3_0= ruleApplyFFactor ) )
+            // InternalFPML.g:5214:4: (lv_value_3_0= ruleApplyFFactor )
             {
-            // InternalFPML.g:5205:4: (lv_value_3_0= ruleApplyFFactor )
-            // InternalFPML.g:5206:5: lv_value_3_0= ruleApplyFFactor
+            // InternalFPML.g:5214:4: (lv_value_3_0= ruleApplyFFactor )
+            // InternalFPML.g:5215:5: lv_value_3_0= ruleApplyFFactor
             {
 
             					newCompositeNode(grammarAccess.getApplyFAccess().getValueApplyFFactorParserRuleCall_3_0());
@@ -13506,7 +13538,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleApplyFFactor"
-    // InternalFPML.g:5227:1: entryRuleApplyFFactor returns [EObject current=null] : iv_ruleApplyFFactor= ruleApplyFFactor EOF ;
+    // InternalFPML.g:5236:1: entryRuleApplyFFactor returns [EObject current=null] : iv_ruleApplyFFactor= ruleApplyFFactor EOF ;
     public final EObject entryRuleApplyFFactor() throws RecognitionException {
         EObject current = null;
 
@@ -13514,8 +13546,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5227:53: (iv_ruleApplyFFactor= ruleApplyFFactor EOF )
-            // InternalFPML.g:5228:2: iv_ruleApplyFFactor= ruleApplyFFactor EOF
+            // InternalFPML.g:5236:53: (iv_ruleApplyFFactor= ruleApplyFFactor EOF )
+            // InternalFPML.g:5237:2: iv_ruleApplyFFactor= ruleApplyFFactor EOF
             {
              newCompositeNode(grammarAccess.getApplyFFactorRule()); 
             pushFollow(FOLLOW_1);
@@ -13542,7 +13574,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleApplyFFactor"
-    // InternalFPML.g:5234:1: ruleApplyFFactor returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) | (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' ) ) ;
+    // InternalFPML.g:5243:1: ruleApplyFFactor returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) | (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' ) ) ;
     public final EObject ruleApplyFFactor() throws RecognitionException {
         EObject current = null;
 
@@ -13556,10 +13588,10 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5240:2: ( ( ( (otherlv_0= RULE_ID ) ) | (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' ) ) )
-            // InternalFPML.g:5241:2: ( ( (otherlv_0= RULE_ID ) ) | (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' ) )
+            // InternalFPML.g:5249:2: ( ( ( (otherlv_0= RULE_ID ) ) | (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' ) ) )
+            // InternalFPML.g:5250:2: ( ( (otherlv_0= RULE_ID ) ) | (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' ) )
             {
-            // InternalFPML.g:5241:2: ( ( (otherlv_0= RULE_ID ) ) | (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' ) )
+            // InternalFPML.g:5250:2: ( ( (otherlv_0= RULE_ID ) ) | (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' ) )
             int alt38=2;
             int LA38_0 = input.LA(1);
 
@@ -13577,13 +13609,13 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt38) {
                 case 1 :
-                    // InternalFPML.g:5242:3: ( (otherlv_0= RULE_ID ) )
+                    // InternalFPML.g:5251:3: ( (otherlv_0= RULE_ID ) )
                     {
-                    // InternalFPML.g:5242:3: ( (otherlv_0= RULE_ID ) )
-                    // InternalFPML.g:5243:4: (otherlv_0= RULE_ID )
+                    // InternalFPML.g:5251:3: ( (otherlv_0= RULE_ID ) )
+                    // InternalFPML.g:5252:4: (otherlv_0= RULE_ID )
                     {
-                    // InternalFPML.g:5243:4: (otherlv_0= RULE_ID )
-                    // InternalFPML.g:5244:5: otherlv_0= RULE_ID
+                    // InternalFPML.g:5252:4: (otherlv_0= RULE_ID )
+                    // InternalFPML.g:5253:5: otherlv_0= RULE_ID
                     {
 
                     					if (current==null) {
@@ -13604,20 +13636,20 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:5256:3: (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' )
+                    // InternalFPML.g:5265:3: (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' )
                     {
-                    // InternalFPML.g:5256:3: (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' )
-                    // InternalFPML.g:5257:4: otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')'
+                    // InternalFPML.g:5265:3: (otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')' )
+                    // InternalFPML.g:5266:4: otherlv_1= '(' ( (lv_valueExpression_2_0= ruleExpression ) ) otherlv_3= ')'
                     {
                     otherlv_1=(Token)match(input,21,FOLLOW_14); 
 
                     				newLeafNode(otherlv_1, grammarAccess.getApplyFFactorAccess().getLeftParenthesisKeyword_1_0());
                     			
-                    // InternalFPML.g:5261:4: ( (lv_valueExpression_2_0= ruleExpression ) )
-                    // InternalFPML.g:5262:5: (lv_valueExpression_2_0= ruleExpression )
+                    // InternalFPML.g:5270:4: ( (lv_valueExpression_2_0= ruleExpression ) )
+                    // InternalFPML.g:5271:5: (lv_valueExpression_2_0= ruleExpression )
                     {
-                    // InternalFPML.g:5262:5: (lv_valueExpression_2_0= ruleExpression )
-                    // InternalFPML.g:5263:6: lv_valueExpression_2_0= ruleExpression
+                    // InternalFPML.g:5271:5: (lv_valueExpression_2_0= ruleExpression )
+                    // InternalFPML.g:5272:6: lv_valueExpression_2_0= ruleExpression
                     {
 
                     						newCompositeNode(grammarAccess.getApplyFFactorAccess().getValueExpressionExpressionParserRuleCall_1_1_0());
@@ -13677,7 +13709,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEquals"
-    // InternalFPML.g:5289:1: entryRuleEquals returns [EObject current=null] : iv_ruleEquals= ruleEquals EOF ;
+    // InternalFPML.g:5298:1: entryRuleEquals returns [EObject current=null] : iv_ruleEquals= ruleEquals EOF ;
     public final EObject entryRuleEquals() throws RecognitionException {
         EObject current = null;
 
@@ -13685,8 +13717,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5289:47: (iv_ruleEquals= ruleEquals EOF )
-            // InternalFPML.g:5290:2: iv_ruleEquals= ruleEquals EOF
+            // InternalFPML.g:5298:47: (iv_ruleEquals= ruleEquals EOF )
+            // InternalFPML.g:5299:2: iv_ruleEquals= ruleEquals EOF
             {
              newCompositeNode(grammarAccess.getEqualsRule()); 
             pushFollow(FOLLOW_1);
@@ -13713,7 +13745,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEquals"
-    // InternalFPML.g:5296:1: ruleEquals returns [EObject current=null] : ( () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) ) ) ;
+    // InternalFPML.g:5305:1: ruleEquals returns [EObject current=null] : ( () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) ) ) ;
     public final EObject ruleEquals() throws RecognitionException {
         EObject current = null;
 
@@ -13729,14 +13761,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5302:2: ( ( () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) ) ) )
-            // InternalFPML.g:5303:2: ( () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) ) )
+            // InternalFPML.g:5311:2: ( ( () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) ) ) )
+            // InternalFPML.g:5312:2: ( () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) ) )
             {
-            // InternalFPML.g:5303:2: ( () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) ) )
-            // InternalFPML.g:5304:3: () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) )
+            // InternalFPML.g:5312:2: ( () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) ) )
+            // InternalFPML.g:5313:3: () otherlv_1= '==' ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) )
             {
-            // InternalFPML.g:5304:3: ()
-            // InternalFPML.g:5305:4: 
+            // InternalFPML.g:5313:3: ()
+            // InternalFPML.g:5314:4: 
             {
 
             				current = forceCreateModelElement(
@@ -13750,13 +13782,13 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getEqualsAccess().getEqualsSignEqualsSignKeyword_1());
             		
-            // InternalFPML.g:5315:3: ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) )
-            // InternalFPML.g:5316:4: ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) )
+            // InternalFPML.g:5324:3: ( ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) ) )
+            // InternalFPML.g:5325:4: ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) )
             {
-            // InternalFPML.g:5316:4: ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) )
-            // InternalFPML.g:5317:5: (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType )
+            // InternalFPML.g:5325:4: ( (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType ) )
+            // InternalFPML.g:5326:5: (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType )
             {
-            // InternalFPML.g:5317:5: (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType )
+            // InternalFPML.g:5326:5: (lv_type_2_1= ruleIntegerType | lv_type_2_2= ruleStringType | lv_type_2_3= ruleBooleanType )
             int alt39=3;
             switch ( input.LA(1) ) {
             case 29:
@@ -13783,7 +13815,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             switch (alt39) {
                 case 1 :
-                    // InternalFPML.g:5318:6: lv_type_2_1= ruleIntegerType
+                    // InternalFPML.g:5327:6: lv_type_2_1= ruleIntegerType
                     {
 
                     						newCompositeNode(grammarAccess.getEqualsAccess().getTypeIntegerTypeParserRuleCall_2_0_0());
@@ -13808,7 +13840,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:5334:6: lv_type_2_2= ruleStringType
+                    // InternalFPML.g:5343:6: lv_type_2_2= ruleStringType
                     {
 
                     						newCompositeNode(grammarAccess.getEqualsAccess().getTypeStringTypeParserRuleCall_2_0_1());
@@ -13833,7 +13865,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalFPML.g:5350:6: lv_type_2_3= ruleBooleanType
+                    // InternalFPML.g:5359:6: lv_type_2_3= ruleBooleanType
                     {
 
                     						newCompositeNode(grammarAccess.getEqualsAccess().getTypeBooleanTypeParserRuleCall_2_0_2());
@@ -13889,7 +13921,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMinorEquals"
-    // InternalFPML.g:5372:1: entryRuleMinorEquals returns [EObject current=null] : iv_ruleMinorEquals= ruleMinorEquals EOF ;
+    // InternalFPML.g:5381:1: entryRuleMinorEquals returns [EObject current=null] : iv_ruleMinorEquals= ruleMinorEquals EOF ;
     public final EObject entryRuleMinorEquals() throws RecognitionException {
         EObject current = null;
 
@@ -13897,8 +13929,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5372:52: (iv_ruleMinorEquals= ruleMinorEquals EOF )
-            // InternalFPML.g:5373:2: iv_ruleMinorEquals= ruleMinorEquals EOF
+            // InternalFPML.g:5381:52: (iv_ruleMinorEquals= ruleMinorEquals EOF )
+            // InternalFPML.g:5382:2: iv_ruleMinorEquals= ruleMinorEquals EOF
             {
              newCompositeNode(grammarAccess.getMinorEqualsRule()); 
             pushFollow(FOLLOW_1);
@@ -13925,7 +13957,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMinorEquals"
-    // InternalFPML.g:5379:1: ruleMinorEquals returns [EObject current=null] : ( () otherlv_1= '<=' ) ;
+    // InternalFPML.g:5388:1: ruleMinorEquals returns [EObject current=null] : ( () otherlv_1= '<=' ) ;
     public final EObject ruleMinorEquals() throws RecognitionException {
         EObject current = null;
 
@@ -13935,14 +13967,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5385:2: ( ( () otherlv_1= '<=' ) )
-            // InternalFPML.g:5386:2: ( () otherlv_1= '<=' )
+            // InternalFPML.g:5394:2: ( ( () otherlv_1= '<=' ) )
+            // InternalFPML.g:5395:2: ( () otherlv_1= '<=' )
             {
-            // InternalFPML.g:5386:2: ( () otherlv_1= '<=' )
-            // InternalFPML.g:5387:3: () otherlv_1= '<='
+            // InternalFPML.g:5395:2: ( () otherlv_1= '<=' )
+            // InternalFPML.g:5396:3: () otherlv_1= '<='
             {
-            // InternalFPML.g:5387:3: ()
-            // InternalFPML.g:5388:4: 
+            // InternalFPML.g:5396:3: ()
+            // InternalFPML.g:5397:4: 
             {
 
             				current = forceCreateModelElement(
@@ -13979,7 +14011,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMajorEquals"
-    // InternalFPML.g:5402:1: entryRuleMajorEquals returns [EObject current=null] : iv_ruleMajorEquals= ruleMajorEquals EOF ;
+    // InternalFPML.g:5411:1: entryRuleMajorEquals returns [EObject current=null] : iv_ruleMajorEquals= ruleMajorEquals EOF ;
     public final EObject entryRuleMajorEquals() throws RecognitionException {
         EObject current = null;
 
@@ -13987,8 +14019,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5402:52: (iv_ruleMajorEquals= ruleMajorEquals EOF )
-            // InternalFPML.g:5403:2: iv_ruleMajorEquals= ruleMajorEquals EOF
+            // InternalFPML.g:5411:52: (iv_ruleMajorEquals= ruleMajorEquals EOF )
+            // InternalFPML.g:5412:2: iv_ruleMajorEquals= ruleMajorEquals EOF
             {
              newCompositeNode(grammarAccess.getMajorEqualsRule()); 
             pushFollow(FOLLOW_1);
@@ -14015,7 +14047,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMajorEquals"
-    // InternalFPML.g:5409:1: ruleMajorEquals returns [EObject current=null] : ( () otherlv_1= '>=' ) ;
+    // InternalFPML.g:5418:1: ruleMajorEquals returns [EObject current=null] : ( () otherlv_1= '>=' ) ;
     public final EObject ruleMajorEquals() throws RecognitionException {
         EObject current = null;
 
@@ -14025,14 +14057,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5415:2: ( ( () otherlv_1= '>=' ) )
-            // InternalFPML.g:5416:2: ( () otherlv_1= '>=' )
+            // InternalFPML.g:5424:2: ( ( () otherlv_1= '>=' ) )
+            // InternalFPML.g:5425:2: ( () otherlv_1= '>=' )
             {
-            // InternalFPML.g:5416:2: ( () otherlv_1= '>=' )
-            // InternalFPML.g:5417:3: () otherlv_1= '>='
+            // InternalFPML.g:5425:2: ( () otherlv_1= '>=' )
+            // InternalFPML.g:5426:3: () otherlv_1= '>='
             {
-            // InternalFPML.g:5417:3: ()
-            // InternalFPML.g:5418:4: 
+            // InternalFPML.g:5426:3: ()
+            // InternalFPML.g:5427:4: 
             {
 
             				current = forceCreateModelElement(
@@ -14069,7 +14101,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMinor"
-    // InternalFPML.g:5432:1: entryRuleMinor returns [EObject current=null] : iv_ruleMinor= ruleMinor EOF ;
+    // InternalFPML.g:5441:1: entryRuleMinor returns [EObject current=null] : iv_ruleMinor= ruleMinor EOF ;
     public final EObject entryRuleMinor() throws RecognitionException {
         EObject current = null;
 
@@ -14077,8 +14109,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5432:46: (iv_ruleMinor= ruleMinor EOF )
-            // InternalFPML.g:5433:2: iv_ruleMinor= ruleMinor EOF
+            // InternalFPML.g:5441:46: (iv_ruleMinor= ruleMinor EOF )
+            // InternalFPML.g:5442:2: iv_ruleMinor= ruleMinor EOF
             {
              newCompositeNode(grammarAccess.getMinorRule()); 
             pushFollow(FOLLOW_1);
@@ -14105,7 +14137,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMinor"
-    // InternalFPML.g:5439:1: ruleMinor returns [EObject current=null] : ( () otherlv_1= '<' ) ;
+    // InternalFPML.g:5448:1: ruleMinor returns [EObject current=null] : ( () otherlv_1= '<' ) ;
     public final EObject ruleMinor() throws RecognitionException {
         EObject current = null;
 
@@ -14115,14 +14147,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5445:2: ( ( () otherlv_1= '<' ) )
-            // InternalFPML.g:5446:2: ( () otherlv_1= '<' )
+            // InternalFPML.g:5454:2: ( ( () otherlv_1= '<' ) )
+            // InternalFPML.g:5455:2: ( () otherlv_1= '<' )
             {
-            // InternalFPML.g:5446:2: ( () otherlv_1= '<' )
-            // InternalFPML.g:5447:3: () otherlv_1= '<'
+            // InternalFPML.g:5455:2: ( () otherlv_1= '<' )
+            // InternalFPML.g:5456:3: () otherlv_1= '<'
             {
-            // InternalFPML.g:5447:3: ()
-            // InternalFPML.g:5448:4: 
+            // InternalFPML.g:5456:3: ()
+            // InternalFPML.g:5457:4: 
             {
 
             				current = forceCreateModelElement(
@@ -14159,7 +14191,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMajor"
-    // InternalFPML.g:5462:1: entryRuleMajor returns [EObject current=null] : iv_ruleMajor= ruleMajor EOF ;
+    // InternalFPML.g:5471:1: entryRuleMajor returns [EObject current=null] : iv_ruleMajor= ruleMajor EOF ;
     public final EObject entryRuleMajor() throws RecognitionException {
         EObject current = null;
 
@@ -14167,8 +14199,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5462:46: (iv_ruleMajor= ruleMajor EOF )
-            // InternalFPML.g:5463:2: iv_ruleMajor= ruleMajor EOF
+            // InternalFPML.g:5471:46: (iv_ruleMajor= ruleMajor EOF )
+            // InternalFPML.g:5472:2: iv_ruleMajor= ruleMajor EOF
             {
              newCompositeNode(grammarAccess.getMajorRule()); 
             pushFollow(FOLLOW_1);
@@ -14195,7 +14227,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMajor"
-    // InternalFPML.g:5469:1: ruleMajor returns [EObject current=null] : ( () otherlv_1= '>' ) ;
+    // InternalFPML.g:5478:1: ruleMajor returns [EObject current=null] : ( () otherlv_1= '>' ) ;
     public final EObject ruleMajor() throws RecognitionException {
         EObject current = null;
 
@@ -14205,14 +14237,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5475:2: ( ( () otherlv_1= '>' ) )
-            // InternalFPML.g:5476:2: ( () otherlv_1= '>' )
+            // InternalFPML.g:5484:2: ( ( () otherlv_1= '>' ) )
+            // InternalFPML.g:5485:2: ( () otherlv_1= '>' )
             {
-            // InternalFPML.g:5476:2: ( () otherlv_1= '>' )
-            // InternalFPML.g:5477:3: () otherlv_1= '>'
+            // InternalFPML.g:5485:2: ( () otherlv_1= '>' )
+            // InternalFPML.g:5486:3: () otherlv_1= '>'
             {
-            // InternalFPML.g:5477:3: ()
-            // InternalFPML.g:5478:4: 
+            // InternalFPML.g:5486:3: ()
+            // InternalFPML.g:5487:4: 
             {
 
             				current = forceCreateModelElement(
@@ -14249,7 +14281,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLogicAnd"
-    // InternalFPML.g:5492:1: entryRuleLogicAnd returns [EObject current=null] : iv_ruleLogicAnd= ruleLogicAnd EOF ;
+    // InternalFPML.g:5501:1: entryRuleLogicAnd returns [EObject current=null] : iv_ruleLogicAnd= ruleLogicAnd EOF ;
     public final EObject entryRuleLogicAnd() throws RecognitionException {
         EObject current = null;
 
@@ -14257,8 +14289,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5492:49: (iv_ruleLogicAnd= ruleLogicAnd EOF )
-            // InternalFPML.g:5493:2: iv_ruleLogicAnd= ruleLogicAnd EOF
+            // InternalFPML.g:5501:49: (iv_ruleLogicAnd= ruleLogicAnd EOF )
+            // InternalFPML.g:5502:2: iv_ruleLogicAnd= ruleLogicAnd EOF
             {
              newCompositeNode(grammarAccess.getLogicAndRule()); 
             pushFollow(FOLLOW_1);
@@ -14285,7 +14317,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLogicAnd"
-    // InternalFPML.g:5499:1: ruleLogicAnd returns [EObject current=null] : ( () otherlv_1= '&&' ) ;
+    // InternalFPML.g:5508:1: ruleLogicAnd returns [EObject current=null] : ( () otherlv_1= '&&' ) ;
     public final EObject ruleLogicAnd() throws RecognitionException {
         EObject current = null;
 
@@ -14295,14 +14327,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5505:2: ( ( () otherlv_1= '&&' ) )
-            // InternalFPML.g:5506:2: ( () otherlv_1= '&&' )
+            // InternalFPML.g:5514:2: ( ( () otherlv_1= '&&' ) )
+            // InternalFPML.g:5515:2: ( () otherlv_1= '&&' )
             {
-            // InternalFPML.g:5506:2: ( () otherlv_1= '&&' )
-            // InternalFPML.g:5507:3: () otherlv_1= '&&'
+            // InternalFPML.g:5515:2: ( () otherlv_1= '&&' )
+            // InternalFPML.g:5516:3: () otherlv_1= '&&'
             {
-            // InternalFPML.g:5507:3: ()
-            // InternalFPML.g:5508:4: 
+            // InternalFPML.g:5516:3: ()
+            // InternalFPML.g:5517:4: 
             {
 
             				current = forceCreateModelElement(
@@ -14339,7 +14371,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLogicOr"
-    // InternalFPML.g:5522:1: entryRuleLogicOr returns [EObject current=null] : iv_ruleLogicOr= ruleLogicOr EOF ;
+    // InternalFPML.g:5531:1: entryRuleLogicOr returns [EObject current=null] : iv_ruleLogicOr= ruleLogicOr EOF ;
     public final EObject entryRuleLogicOr() throws RecognitionException {
         EObject current = null;
 
@@ -14347,8 +14379,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5522:48: (iv_ruleLogicOr= ruleLogicOr EOF )
-            // InternalFPML.g:5523:2: iv_ruleLogicOr= ruleLogicOr EOF
+            // InternalFPML.g:5531:48: (iv_ruleLogicOr= ruleLogicOr EOF )
+            // InternalFPML.g:5532:2: iv_ruleLogicOr= ruleLogicOr EOF
             {
              newCompositeNode(grammarAccess.getLogicOrRule()); 
             pushFollow(FOLLOW_1);
@@ -14375,7 +14407,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLogicOr"
-    // InternalFPML.g:5529:1: ruleLogicOr returns [EObject current=null] : ( () otherlv_1= '||' ) ;
+    // InternalFPML.g:5538:1: ruleLogicOr returns [EObject current=null] : ( () otherlv_1= '||' ) ;
     public final EObject ruleLogicOr() throws RecognitionException {
         EObject current = null;
 
@@ -14385,14 +14417,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5535:2: ( ( () otherlv_1= '||' ) )
-            // InternalFPML.g:5536:2: ( () otherlv_1= '||' )
+            // InternalFPML.g:5544:2: ( ( () otherlv_1= '||' ) )
+            // InternalFPML.g:5545:2: ( () otherlv_1= '||' )
             {
-            // InternalFPML.g:5536:2: ( () otherlv_1= '||' )
-            // InternalFPML.g:5537:3: () otherlv_1= '||'
+            // InternalFPML.g:5545:2: ( () otherlv_1= '||' )
+            // InternalFPML.g:5546:3: () otherlv_1= '||'
             {
-            // InternalFPML.g:5537:3: ()
-            // InternalFPML.g:5538:4: 
+            // InternalFPML.g:5546:3: ()
+            // InternalFPML.g:5547:4: 
             {
 
             				current = forceCreateModelElement(
@@ -14429,7 +14461,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExtractPure"
-    // InternalFPML.g:5552:1: entryRuleExtractPure returns [EObject current=null] : iv_ruleExtractPure= ruleExtractPure EOF ;
+    // InternalFPML.g:5561:1: entryRuleExtractPure returns [EObject current=null] : iv_ruleExtractPure= ruleExtractPure EOF ;
     public final EObject entryRuleExtractPure() throws RecognitionException {
         EObject current = null;
 
@@ -14437,8 +14469,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5552:52: (iv_ruleExtractPure= ruleExtractPure EOF )
-            // InternalFPML.g:5553:2: iv_ruleExtractPure= ruleExtractPure EOF
+            // InternalFPML.g:5561:52: (iv_ruleExtractPure= ruleExtractPure EOF )
+            // InternalFPML.g:5562:2: iv_ruleExtractPure= ruleExtractPure EOF
             {
              newCompositeNode(grammarAccess.getExtractPureRule()); 
             pushFollow(FOLLOW_1);
@@ -14465,7 +14497,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExtractPure"
-    // InternalFPML.g:5559:1: ruleExtractPure returns [EObject current=null] : ( () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) ) ) ;
+    // InternalFPML.g:5568:1: ruleExtractPure returns [EObject current=null] : ( () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) ) ) ;
     public final EObject ruleExtractPure() throws RecognitionException {
         EObject current = null;
 
@@ -14476,14 +14508,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5565:2: ( ( () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) ) ) )
-            // InternalFPML.g:5566:2: ( () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) ) )
+            // InternalFPML.g:5574:2: ( ( () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) ) ) )
+            // InternalFPML.g:5575:2: ( () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) ) )
             {
-            // InternalFPML.g:5566:2: ( () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) ) )
-            // InternalFPML.g:5567:3: () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) )
+            // InternalFPML.g:5575:2: ( () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) ) )
+            // InternalFPML.g:5576:3: () otherlv_1= 'extract' ( (otherlv_2= RULE_ID ) )
             {
-            // InternalFPML.g:5567:3: ()
-            // InternalFPML.g:5568:4: 
+            // InternalFPML.g:5576:3: ()
+            // InternalFPML.g:5577:4: 
             {
 
             				current = forceCreateModelElement(
@@ -14497,11 +14529,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getExtractPureAccess().getExtractKeyword_1());
             		
-            // InternalFPML.g:5578:3: ( (otherlv_2= RULE_ID ) )
-            // InternalFPML.g:5579:4: (otherlv_2= RULE_ID )
+            // InternalFPML.g:5587:3: ( (otherlv_2= RULE_ID ) )
+            // InternalFPML.g:5588:4: (otherlv_2= RULE_ID )
             {
-            // InternalFPML.g:5579:4: (otherlv_2= RULE_ID )
-            // InternalFPML.g:5580:5: otherlv_2= RULE_ID
+            // InternalFPML.g:5588:4: (otherlv_2= RULE_ID )
+            // InternalFPML.g:5589:5: otherlv_2= RULE_ID
             {
 
             					if (current==null) {
@@ -14541,7 +14573,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIsLeftPure"
-    // InternalFPML.g:5595:1: entryRuleIsLeftPure returns [EObject current=null] : iv_ruleIsLeftPure= ruleIsLeftPure EOF ;
+    // InternalFPML.g:5604:1: entryRuleIsLeftPure returns [EObject current=null] : iv_ruleIsLeftPure= ruleIsLeftPure EOF ;
     public final EObject entryRuleIsLeftPure() throws RecognitionException {
         EObject current = null;
 
@@ -14549,8 +14581,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5595:51: (iv_ruleIsLeftPure= ruleIsLeftPure EOF )
-            // InternalFPML.g:5596:2: iv_ruleIsLeftPure= ruleIsLeftPure EOF
+            // InternalFPML.g:5604:51: (iv_ruleIsLeftPure= ruleIsLeftPure EOF )
+            // InternalFPML.g:5605:2: iv_ruleIsLeftPure= ruleIsLeftPure EOF
             {
              newCompositeNode(grammarAccess.getIsLeftPureRule()); 
             pushFollow(FOLLOW_1);
@@ -14577,7 +14609,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIsLeftPure"
-    // InternalFPML.g:5602:1: ruleIsLeftPure returns [EObject current=null] : ( () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) ;
+    // InternalFPML.g:5611:1: ruleIsLeftPure returns [EObject current=null] : ( () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) ;
     public final EObject ruleIsLeftPure() throws RecognitionException {
         EObject current = null;
 
@@ -14589,14 +14621,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5608:2: ( ( () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) )
-            // InternalFPML.g:5609:2: ( () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
+            // InternalFPML.g:5617:2: ( ( () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) )
+            // InternalFPML.g:5618:2: ( () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
             {
-            // InternalFPML.g:5609:2: ( () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
-            // InternalFPML.g:5610:3: () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) )
+            // InternalFPML.g:5618:2: ( () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
+            // InternalFPML.g:5619:3: () otherlv_1= 'isLeft' ( (lv_type_2_0= rulePureAlgebraicType ) )
             {
-            // InternalFPML.g:5610:3: ()
-            // InternalFPML.g:5611:4: 
+            // InternalFPML.g:5619:3: ()
+            // InternalFPML.g:5620:4: 
             {
 
             				current = forceCreateModelElement(
@@ -14610,11 +14642,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getIsLeftPureAccess().getIsLeftKeyword_1());
             		
-            // InternalFPML.g:5621:3: ( (lv_type_2_0= rulePureAlgebraicType ) )
-            // InternalFPML.g:5622:4: (lv_type_2_0= rulePureAlgebraicType )
+            // InternalFPML.g:5630:3: ( (lv_type_2_0= rulePureAlgebraicType ) )
+            // InternalFPML.g:5631:4: (lv_type_2_0= rulePureAlgebraicType )
             {
-            // InternalFPML.g:5622:4: (lv_type_2_0= rulePureAlgebraicType )
-            // InternalFPML.g:5623:5: lv_type_2_0= rulePureAlgebraicType
+            // InternalFPML.g:5631:4: (lv_type_2_0= rulePureAlgebraicType )
+            // InternalFPML.g:5632:5: lv_type_2_0= rulePureAlgebraicType
             {
 
             					newCompositeNode(grammarAccess.getIsLeftPureAccess().getTypePureAlgebraicTypeParserRuleCall_2_0());
@@ -14664,7 +14696,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIsRightPure"
-    // InternalFPML.g:5644:1: entryRuleIsRightPure returns [EObject current=null] : iv_ruleIsRightPure= ruleIsRightPure EOF ;
+    // InternalFPML.g:5653:1: entryRuleIsRightPure returns [EObject current=null] : iv_ruleIsRightPure= ruleIsRightPure EOF ;
     public final EObject entryRuleIsRightPure() throws RecognitionException {
         EObject current = null;
 
@@ -14672,8 +14704,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5644:52: (iv_ruleIsRightPure= ruleIsRightPure EOF )
-            // InternalFPML.g:5645:2: iv_ruleIsRightPure= ruleIsRightPure EOF
+            // InternalFPML.g:5653:52: (iv_ruleIsRightPure= ruleIsRightPure EOF )
+            // InternalFPML.g:5654:2: iv_ruleIsRightPure= ruleIsRightPure EOF
             {
              newCompositeNode(grammarAccess.getIsRightPureRule()); 
             pushFollow(FOLLOW_1);
@@ -14700,7 +14732,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIsRightPure"
-    // InternalFPML.g:5651:1: ruleIsRightPure returns [EObject current=null] : ( () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) ;
+    // InternalFPML.g:5660:1: ruleIsRightPure returns [EObject current=null] : ( () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) ;
     public final EObject ruleIsRightPure() throws RecognitionException {
         EObject current = null;
 
@@ -14712,14 +14744,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5657:2: ( ( () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) )
-            // InternalFPML.g:5658:2: ( () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
+            // InternalFPML.g:5666:2: ( ( () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) ) ) )
+            // InternalFPML.g:5667:2: ( () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
             {
-            // InternalFPML.g:5658:2: ( () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
-            // InternalFPML.g:5659:3: () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) )
+            // InternalFPML.g:5667:2: ( () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) ) )
+            // InternalFPML.g:5668:3: () otherlv_1= 'isRight' ( (lv_type_2_0= rulePureAlgebraicType ) )
             {
-            // InternalFPML.g:5659:3: ()
-            // InternalFPML.g:5660:4: 
+            // InternalFPML.g:5668:3: ()
+            // InternalFPML.g:5669:4: 
             {
 
             				current = forceCreateModelElement(
@@ -14733,11 +14765,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getIsRightPureAccess().getIsRightKeyword_1());
             		
-            // InternalFPML.g:5670:3: ( (lv_type_2_0= rulePureAlgebraicType ) )
-            // InternalFPML.g:5671:4: (lv_type_2_0= rulePureAlgebraicType )
+            // InternalFPML.g:5679:3: ( (lv_type_2_0= rulePureAlgebraicType ) )
+            // InternalFPML.g:5680:4: (lv_type_2_0= rulePureAlgebraicType )
             {
-            // InternalFPML.g:5671:4: (lv_type_2_0= rulePureAlgebraicType )
-            // InternalFPML.g:5672:5: lv_type_2_0= rulePureAlgebraicType
+            // InternalFPML.g:5680:4: (lv_type_2_0= rulePureAlgebraicType )
+            // InternalFPML.g:5681:5: lv_type_2_0= rulePureAlgebraicType
             {
 
             					newCompositeNode(grammarAccess.getIsRightPureAccess().getTypePureAlgebraicTypeParserRuleCall_2_0());
@@ -14787,7 +14819,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePureIf"
-    // InternalFPML.g:5693:1: entryRulePureIf returns [EObject current=null] : iv_rulePureIf= rulePureIf EOF ;
+    // InternalFPML.g:5702:1: entryRulePureIf returns [EObject current=null] : iv_rulePureIf= rulePureIf EOF ;
     public final EObject entryRulePureIf() throws RecognitionException {
         EObject current = null;
 
@@ -14795,8 +14827,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5693:47: (iv_rulePureIf= rulePureIf EOF )
-            // InternalFPML.g:5694:2: iv_rulePureIf= rulePureIf EOF
+            // InternalFPML.g:5702:47: (iv_rulePureIf= rulePureIf EOF )
+            // InternalFPML.g:5703:2: iv_rulePureIf= rulePureIf EOF
             {
              newCompositeNode(grammarAccess.getPureIfRule()); 
             pushFollow(FOLLOW_1);
@@ -14823,7 +14855,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePureIf"
-    // InternalFPML.g:5700:1: rulePureIf returns [EObject current=null] : ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' ) ;
+    // InternalFPML.g:5709:1: rulePureIf returns [EObject current=null] : ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' ) ;
     public final EObject rulePureIf() throws RecognitionException {
         EObject current = null;
 
@@ -14843,14 +14875,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5706:2: ( ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' ) )
-            // InternalFPML.g:5707:2: ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' )
+            // InternalFPML.g:5715:2: ( ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' ) )
+            // InternalFPML.g:5716:2: ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' )
             {
-            // InternalFPML.g:5707:2: ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' )
-            // InternalFPML.g:5708:3: () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}'
+            // InternalFPML.g:5716:2: ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' )
+            // InternalFPML.g:5717:3: () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}'
             {
-            // InternalFPML.g:5708:3: ()
-            // InternalFPML.g:5709:4: 
+            // InternalFPML.g:5717:3: ()
+            // InternalFPML.g:5718:4: 
             {
 
             				current = forceCreateModelElement(
@@ -14872,11 +14904,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_3, grammarAccess.getPureIfAccess().getLeftCurlyBracketKeyword_3());
             		
-            // InternalFPML.g:5727:3: ( (lv_then_4_0= rulePureIfBody ) )
-            // InternalFPML.g:5728:4: (lv_then_4_0= rulePureIfBody )
+            // InternalFPML.g:5736:3: ( (lv_then_4_0= rulePureIfBody ) )
+            // InternalFPML.g:5737:4: (lv_then_4_0= rulePureIfBody )
             {
-            // InternalFPML.g:5728:4: (lv_then_4_0= rulePureIfBody )
-            // InternalFPML.g:5729:5: lv_then_4_0= rulePureIfBody
+            // InternalFPML.g:5737:4: (lv_then_4_0= rulePureIfBody )
+            // InternalFPML.g:5738:5: lv_then_4_0= rulePureIfBody
             {
 
             					newCompositeNode(grammarAccess.getPureIfAccess().getThenPureIfBodyParserRuleCall_4_0());
@@ -14915,11 +14947,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_7, grammarAccess.getPureIfAccess().getLeftCurlyBracketKeyword_7());
             		
-            // InternalFPML.g:5758:3: ( (lv_else_8_0= rulePureIfBody ) )
-            // InternalFPML.g:5759:4: (lv_else_8_0= rulePureIfBody )
+            // InternalFPML.g:5767:3: ( (lv_else_8_0= rulePureIfBody ) )
+            // InternalFPML.g:5768:4: (lv_else_8_0= rulePureIfBody )
             {
-            // InternalFPML.g:5759:4: (lv_else_8_0= rulePureIfBody )
-            // InternalFPML.g:5760:5: lv_else_8_0= rulePureIfBody
+            // InternalFPML.g:5768:4: (lv_else_8_0= rulePureIfBody )
+            // InternalFPML.g:5769:5: lv_else_8_0= rulePureIfBody
             {
 
             					newCompositeNode(grammarAccess.getPureIfAccess().getElsePureIfBodyParserRuleCall_8_0());
@@ -14973,7 +15005,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePureIfBody"
-    // InternalFPML.g:5785:1: entryRulePureIfBody returns [EObject current=null] : iv_rulePureIfBody= rulePureIfBody EOF ;
+    // InternalFPML.g:5794:1: entryRulePureIfBody returns [EObject current=null] : iv_rulePureIfBody= rulePureIfBody EOF ;
     public final EObject entryRulePureIfBody() throws RecognitionException {
         EObject current = null;
 
@@ -14981,8 +15013,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5785:51: (iv_rulePureIfBody= rulePureIfBody EOF )
-            // InternalFPML.g:5786:2: iv_rulePureIfBody= rulePureIfBody EOF
+            // InternalFPML.g:5794:51: (iv_rulePureIfBody= rulePureIfBody EOF )
+            // InternalFPML.g:5795:2: iv_rulePureIfBody= rulePureIfBody EOF
             {
              newCompositeNode(grammarAccess.getPureIfBodyRule()); 
             pushFollow(FOLLOW_1);
@@ -15009,7 +15041,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePureIfBody"
-    // InternalFPML.g:5792:1: rulePureIfBody returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleExpression ) ) ) ;
+    // InternalFPML.g:5801:1: rulePureIfBody returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleExpression ) ) ) ;
     public final EObject rulePureIfBody() throws RecognitionException {
         EObject current = null;
 
@@ -15021,10 +15053,10 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5798:2: ( ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleExpression ) ) ) )
-            // InternalFPML.g:5799:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleExpression ) ) )
+            // InternalFPML.g:5807:2: ( ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleExpression ) ) ) )
+            // InternalFPML.g:5808:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleExpression ) ) )
             {
-            // InternalFPML.g:5799:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleExpression ) ) )
+            // InternalFPML.g:5808:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleExpression ) ) )
             int alt40=2;
             int LA40_0 = input.LA(1);
 
@@ -15055,13 +15087,13 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt40) {
                 case 1 :
-                    // InternalFPML.g:5800:3: ( (otherlv_0= RULE_ID ) )
+                    // InternalFPML.g:5809:3: ( (otherlv_0= RULE_ID ) )
                     {
-                    // InternalFPML.g:5800:3: ( (otherlv_0= RULE_ID ) )
-                    // InternalFPML.g:5801:4: (otherlv_0= RULE_ID )
+                    // InternalFPML.g:5809:3: ( (otherlv_0= RULE_ID ) )
+                    // InternalFPML.g:5810:4: (otherlv_0= RULE_ID )
                     {
-                    // InternalFPML.g:5801:4: (otherlv_0= RULE_ID )
-                    // InternalFPML.g:5802:5: otherlv_0= RULE_ID
+                    // InternalFPML.g:5810:4: (otherlv_0= RULE_ID )
+                    // InternalFPML.g:5811:5: otherlv_0= RULE_ID
                     {
 
                     					if (current==null) {
@@ -15082,13 +15114,13 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:5814:3: ( (lv_functionExpression_1_0= ruleExpression ) )
+                    // InternalFPML.g:5823:3: ( (lv_functionExpression_1_0= ruleExpression ) )
                     {
-                    // InternalFPML.g:5814:3: ( (lv_functionExpression_1_0= ruleExpression ) )
-                    // InternalFPML.g:5815:4: (lv_functionExpression_1_0= ruleExpression )
+                    // InternalFPML.g:5823:3: ( (lv_functionExpression_1_0= ruleExpression ) )
+                    // InternalFPML.g:5824:4: (lv_functionExpression_1_0= ruleExpression )
                     {
-                    // InternalFPML.g:5815:4: (lv_functionExpression_1_0= ruleExpression )
-                    // InternalFPML.g:5816:5: lv_functionExpression_1_0= ruleExpression
+                    // InternalFPML.g:5824:4: (lv_functionExpression_1_0= ruleExpression )
+                    // InternalFPML.g:5825:5: lv_functionExpression_1_0= ruleExpression
                     {
 
                     					newCompositeNode(grammarAccess.getPureIfBodyAccess().getFunctionExpressionExpressionParserRuleCall_1_0());
@@ -15140,8 +15172,194 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulePureIfBody"
 
 
+    // $ANTLR start "entryRulePureEitherIf"
+    // InternalFPML.g:5846:1: entryRulePureEitherIf returns [EObject current=null] : iv_rulePureEitherIf= rulePureEitherIf EOF ;
+    public final EObject entryRulePureEitherIf() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_rulePureEitherIf = null;
+
+
+        try {
+            // InternalFPML.g:5846:53: (iv_rulePureEitherIf= rulePureEitherIf EOF )
+            // InternalFPML.g:5847:2: iv_rulePureEitherIf= rulePureEitherIf EOF
+            {
+             newCompositeNode(grammarAccess.getPureEitherIfRule()); 
+            pushFollow(FOLLOW_1);
+            iv_rulePureEitherIf=rulePureEitherIf();
+
+            state._fsp--;
+
+             current =iv_rulePureEitherIf; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRulePureEitherIf"
+
+
+    // $ANTLR start "rulePureEitherIf"
+    // InternalFPML.g:5853:1: rulePureEitherIf returns [EObject current=null] : ( () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' ) ;
+    public final EObject rulePureEitherIf() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_1=null;
+        Token otherlv_2=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_7=null;
+        Token otherlv_9=null;
+        EObject lv_then_4_0 = null;
+
+        EObject lv_else_8_0 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalFPML.g:5859:2: ( ( () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' ) )
+            // InternalFPML.g:5860:2: ( () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' )
+            {
+            // InternalFPML.g:5860:2: ( () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}' )
+            // InternalFPML.g:5861:3: () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= rulePureIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= rulePureIfBody ) ) otherlv_9= '}'
+            {
+            // InternalFPML.g:5861:3: ()
+            // InternalFPML.g:5862:4: 
+            {
+
+            				current = forceCreateModelElement(
+            					grammarAccess.getPureEitherIfAccess().getPureEitherIfAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,69,FOLLOW_44); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getPureEitherIfAccess().getIfEitherKeyword_1());
+            		
+            otherlv_2=(Token)match(input,67,FOLLOW_4); 
+
+            			newLeafNode(otherlv_2, grammarAccess.getPureEitherIfAccess().getThenKeyword_2());
+            		
+            otherlv_3=(Token)match(input,13,FOLLOW_14); 
+
+            			newLeafNode(otherlv_3, grammarAccess.getPureEitherIfAccess().getLeftCurlyBracketKeyword_3());
+            		
+            // InternalFPML.g:5880:3: ( (lv_then_4_0= rulePureIfBody ) )
+            // InternalFPML.g:5881:4: (lv_then_4_0= rulePureIfBody )
+            {
+            // InternalFPML.g:5881:4: (lv_then_4_0= rulePureIfBody )
+            // InternalFPML.g:5882:5: lv_then_4_0= rulePureIfBody
+            {
+
+            					newCompositeNode(grammarAccess.getPureEitherIfAccess().getThenPureIfBodyParserRuleCall_4_0());
+            				
+            pushFollow(FOLLOW_7);
+            lv_then_4_0=rulePureIfBody();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getPureEitherIfRule());
+            					}
+            					set(
+            						current,
+            						"then",
+            						lv_then_4_0,
+            						"it.unibo.FPML.PureIfBody");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_5=(Token)match(input,14,FOLLOW_45); 
+
+            			newLeafNode(otherlv_5, grammarAccess.getPureEitherIfAccess().getRightCurlyBracketKeyword_5());
+            		
+            otherlv_6=(Token)match(input,68,FOLLOW_4); 
+
+            			newLeafNode(otherlv_6, grammarAccess.getPureEitherIfAccess().getElseKeyword_6());
+            		
+            otherlv_7=(Token)match(input,13,FOLLOW_14); 
+
+            			newLeafNode(otherlv_7, grammarAccess.getPureEitherIfAccess().getLeftCurlyBracketKeyword_7());
+            		
+            // InternalFPML.g:5911:3: ( (lv_else_8_0= rulePureIfBody ) )
+            // InternalFPML.g:5912:4: (lv_else_8_0= rulePureIfBody )
+            {
+            // InternalFPML.g:5912:4: (lv_else_8_0= rulePureIfBody )
+            // InternalFPML.g:5913:5: lv_else_8_0= rulePureIfBody
+            {
+
+            					newCompositeNode(grammarAccess.getPureEitherIfAccess().getElsePureIfBodyParserRuleCall_8_0());
+            				
+            pushFollow(FOLLOW_7);
+            lv_else_8_0=rulePureIfBody();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getPureEitherIfRule());
+            					}
+            					set(
+            						current,
+            						"else",
+            						lv_else_8_0,
+            						"it.unibo.FPML.PureIfBody");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_9=(Token)match(input,14,FOLLOW_2); 
+
+            			newLeafNode(otherlv_9, grammarAccess.getPureEitherIfAccess().getRightCurlyBracketKeyword_9());
+            		
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "rulePureEitherIf"
+
+
     // $ANTLR start "entryRulePrimitiveEffectFullFunction"
-    // InternalFPML.g:5837:1: entryRulePrimitiveEffectFullFunction returns [EObject current=null] : iv_rulePrimitiveEffectFullFunction= rulePrimitiveEffectFullFunction EOF ;
+    // InternalFPML.g:5938:1: entryRulePrimitiveEffectFullFunction returns [EObject current=null] : iv_rulePrimitiveEffectFullFunction= rulePrimitiveEffectFullFunction EOF ;
     public final EObject entryRulePrimitiveEffectFullFunction() throws RecognitionException {
         EObject current = null;
 
@@ -15149,8 +15367,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5837:68: (iv_rulePrimitiveEffectFullFunction= rulePrimitiveEffectFullFunction EOF )
-            // InternalFPML.g:5838:2: iv_rulePrimitiveEffectFullFunction= rulePrimitiveEffectFullFunction EOF
+            // InternalFPML.g:5938:68: (iv_rulePrimitiveEffectFullFunction= rulePrimitiveEffectFullFunction EOF )
+            // InternalFPML.g:5939:2: iv_rulePrimitiveEffectFullFunction= rulePrimitiveEffectFullFunction EOF
             {
              newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionRule()); 
             pushFollow(FOLLOW_1);
@@ -15177,7 +15395,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimitiveEffectFullFunction"
-    // InternalFPML.g:5844:1: rulePrimitiveEffectFullFunction returns [EObject current=null] : (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf ) ;
+    // InternalFPML.g:5945:1: rulePrimitiveEffectFullFunction returns [EObject current=null] : (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf | this_EffectFullEitherIf_11= ruleEffectFullEitherIf ) ;
     public final EObject rulePrimitiveEffectFullFunction() throws RecognitionException {
         EObject current = null;
 
@@ -15203,20 +15421,22 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
         EObject this_EffectFullIf_10 = null;
 
+        EObject this_EffectFullEitherIf_11 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalFPML.g:5850:2: ( (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf ) )
-            // InternalFPML.g:5851:2: (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf )
+            // InternalFPML.g:5951:2: ( (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf | this_EffectFullEitherIf_11= ruleEffectFullEitherIf ) )
+            // InternalFPML.g:5952:2: (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf | this_EffectFullEitherIf_11= ruleEffectFullEitherIf )
             {
-            // InternalFPML.g:5851:2: (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf )
-            int alt41=11;
+            // InternalFPML.g:5952:2: (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf | this_EffectFullEitherIf_11= ruleEffectFullEitherIf )
+            int alt41=12;
             alt41 = dfa41.predict(input);
             switch (alt41) {
                 case 1 :
-                    // InternalFPML.g:5852:3: this_PrimitivePrint_0= rulePrimitivePrint
+                    // InternalFPML.g:5953:3: this_PrimitivePrint_0= rulePrimitivePrint
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getPrimitivePrintParserRuleCall_0());
@@ -15234,7 +15454,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:5861:3: this_ApplyFIO_1= ruleApplyFIO
+                    // InternalFPML.g:5962:3: this_ApplyFIO_1= ruleApplyFIO
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getApplyFIOParserRuleCall_1());
@@ -15252,7 +15472,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalFPML.g:5870:3: this_PrimitiveReturn_2= rulePrimitiveReturn
+                    // InternalFPML.g:5971:3: this_PrimitiveReturn_2= rulePrimitiveReturn
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getPrimitiveReturnParserRuleCall_2());
@@ -15270,7 +15490,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalFPML.g:5879:3: this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO
+                    // InternalFPML.g:5980:3: this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getLeftAlgebraicIOParserRuleCall_3());
@@ -15288,7 +15508,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalFPML.g:5888:3: this_RightAlgebraicIO_4= ruleRightAlgebraicIO
+                    // InternalFPML.g:5989:3: this_RightAlgebraicIO_4= ruleRightAlgebraicIO
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getRightAlgebraicIOParserRuleCall_4());
@@ -15306,7 +15526,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalFPML.g:5897:3: this_ExtractEffectFull_5= ruleExtractEffectFull
+                    // InternalFPML.g:5998:3: this_ExtractEffectFull_5= ruleExtractEffectFull
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getExtractEffectFullParserRuleCall_5());
@@ -15324,7 +15544,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalFPML.g:5906:3: this_LiftPureFunction_6= ruleLiftPureFunction
+                    // InternalFPML.g:6007:3: this_LiftPureFunction_6= ruleLiftPureFunction
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getLiftPureFunctionParserRuleCall_6());
@@ -15342,7 +15562,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // InternalFPML.g:5915:3: this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction
+                    // InternalFPML.g:6016:3: this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getLiftEffectFullFunctionParserRuleCall_7());
@@ -15360,7 +15580,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // InternalFPML.g:5924:3: this_IsLeftEffectFull_8= ruleIsLeftEffectFull
+                    // InternalFPML.g:6025:3: this_IsLeftEffectFull_8= ruleIsLeftEffectFull
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getIsLeftEffectFullParserRuleCall_8());
@@ -15378,7 +15598,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // InternalFPML.g:5933:3: this_IsRightEffectFull_9= ruleIsRightEffectFull
+                    // InternalFPML.g:6034:3: this_IsRightEffectFull_9= ruleIsRightEffectFull
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getIsRightEffectFullParserRuleCall_9());
@@ -15396,7 +15616,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 11 :
-                    // InternalFPML.g:5942:3: this_EffectFullIf_10= ruleEffectFullIf
+                    // InternalFPML.g:6043:3: this_EffectFullIf_10= ruleEffectFullIf
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getEffectFullIfParserRuleCall_10());
@@ -15408,6 +15628,24 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
                     			current = this_EffectFullIf_10;
+                    			afterParserOrEnumRuleCall();
+                    		
+
+                    }
+                    break;
+                case 12 :
+                    // InternalFPML.g:6052:3: this_EffectFullEitherIf_11= ruleEffectFullEitherIf
+                    {
+
+                    			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getEffectFullEitherIfParserRuleCall_11());
+                    		
+                    pushFollow(FOLLOW_2);
+                    this_EffectFullEitherIf_11=ruleEffectFullEitherIf();
+
+                    state._fsp--;
+
+
+                    			current = this_EffectFullEitherIf_11;
                     			afterParserOrEnumRuleCall();
                     		
 
@@ -15436,7 +15674,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrimitivePrint"
-    // InternalFPML.g:5954:1: entryRulePrimitivePrint returns [EObject current=null] : iv_rulePrimitivePrint= rulePrimitivePrint EOF ;
+    // InternalFPML.g:6064:1: entryRulePrimitivePrint returns [EObject current=null] : iv_rulePrimitivePrint= rulePrimitivePrint EOF ;
     public final EObject entryRulePrimitivePrint() throws RecognitionException {
         EObject current = null;
 
@@ -15444,8 +15682,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5954:55: (iv_rulePrimitivePrint= rulePrimitivePrint EOF )
-            // InternalFPML.g:5955:2: iv_rulePrimitivePrint= rulePrimitivePrint EOF
+            // InternalFPML.g:6064:55: (iv_rulePrimitivePrint= rulePrimitivePrint EOF )
+            // InternalFPML.g:6065:2: iv_rulePrimitivePrint= rulePrimitivePrint EOF
             {
              newCompositeNode(grammarAccess.getPrimitivePrintRule()); 
             pushFollow(FOLLOW_1);
@@ -15472,7 +15710,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimitivePrint"
-    // InternalFPML.g:5961:1: rulePrimitivePrint returns [EObject current=null] : ( () otherlv_1= 'print' ) ;
+    // InternalFPML.g:6071:1: rulePrimitivePrint returns [EObject current=null] : ( () otherlv_1= 'print' ) ;
     public final EObject rulePrimitivePrint() throws RecognitionException {
         EObject current = null;
 
@@ -15482,14 +15720,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5967:2: ( ( () otherlv_1= 'print' ) )
-            // InternalFPML.g:5968:2: ( () otherlv_1= 'print' )
+            // InternalFPML.g:6077:2: ( ( () otherlv_1= 'print' ) )
+            // InternalFPML.g:6078:2: ( () otherlv_1= 'print' )
             {
-            // InternalFPML.g:5968:2: ( () otherlv_1= 'print' )
-            // InternalFPML.g:5969:3: () otherlv_1= 'print'
+            // InternalFPML.g:6078:2: ( () otherlv_1= 'print' )
+            // InternalFPML.g:6079:3: () otherlv_1= 'print'
             {
-            // InternalFPML.g:5969:3: ()
-            // InternalFPML.g:5970:4: 
+            // InternalFPML.g:6079:3: ()
+            // InternalFPML.g:6080:4: 
             {
 
             				current = forceCreateModelElement(
@@ -15499,7 +15737,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,69,FOLLOW_2); 
+            otherlv_1=(Token)match(input,70,FOLLOW_2); 
 
             			newLeafNode(otherlv_1, grammarAccess.getPrimitivePrintAccess().getPrintKeyword_1());
             		
@@ -15526,7 +15764,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLeftAlgebraicIO"
-    // InternalFPML.g:5984:1: entryRuleLeftAlgebraicIO returns [EObject current=null] : iv_ruleLeftAlgebraicIO= ruleLeftAlgebraicIO EOF ;
+    // InternalFPML.g:6094:1: entryRuleLeftAlgebraicIO returns [EObject current=null] : iv_ruleLeftAlgebraicIO= ruleLeftAlgebraicIO EOF ;
     public final EObject entryRuleLeftAlgebraicIO() throws RecognitionException {
         EObject current = null;
 
@@ -15534,8 +15772,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:5984:56: (iv_ruleLeftAlgebraicIO= ruleLeftAlgebraicIO EOF )
-            // InternalFPML.g:5985:2: iv_ruleLeftAlgebraicIO= ruleLeftAlgebraicIO EOF
+            // InternalFPML.g:6094:56: (iv_ruleLeftAlgebraicIO= ruleLeftAlgebraicIO EOF )
+            // InternalFPML.g:6095:2: iv_ruleLeftAlgebraicIO= ruleLeftAlgebraicIO EOF
             {
              newCompositeNode(grammarAccess.getLeftAlgebraicIORule()); 
             pushFollow(FOLLOW_1);
@@ -15562,7 +15800,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLeftAlgebraicIO"
-    // InternalFPML.g:5991:1: ruleLeftAlgebraicIO returns [EObject current=null] : ( () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) ;
+    // InternalFPML.g:6101:1: ruleLeftAlgebraicIO returns [EObject current=null] : ( () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) ;
     public final EObject ruleLeftAlgebraicIO() throws RecognitionException {
         EObject current = null;
 
@@ -15574,14 +15812,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:5997:2: ( ( () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) )
-            // InternalFPML.g:5998:2: ( () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
+            // InternalFPML.g:6107:2: ( ( () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) )
+            // InternalFPML.g:6108:2: ( () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
             {
-            // InternalFPML.g:5998:2: ( () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
-            // InternalFPML.g:5999:3: () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:6108:2: ( () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
+            // InternalFPML.g:6109:3: () otherlv_1= 'leftADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
             {
-            // InternalFPML.g:5999:3: ()
-            // InternalFPML.g:6000:4: 
+            // InternalFPML.g:6109:3: ()
+            // InternalFPML.g:6110:4: 
             {
 
             				current = forceCreateModelElement(
@@ -15595,11 +15833,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getLeftAlgebraicIOAccess().getLeftADTKeyword_1());
             		
-            // InternalFPML.g:6010:3: ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
-            // InternalFPML.g:6011:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
+            // InternalFPML.g:6120:3: ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:6121:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
             {
-            // InternalFPML.g:6011:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
-            // InternalFPML.g:6012:5: lv_type_2_0= ruleEffectFullAlgebraicType
+            // InternalFPML.g:6121:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
+            // InternalFPML.g:6122:5: lv_type_2_0= ruleEffectFullAlgebraicType
             {
 
             					newCompositeNode(grammarAccess.getLeftAlgebraicIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0());
@@ -15649,7 +15887,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRightAlgebraicIO"
-    // InternalFPML.g:6033:1: entryRuleRightAlgebraicIO returns [EObject current=null] : iv_ruleRightAlgebraicIO= ruleRightAlgebraicIO EOF ;
+    // InternalFPML.g:6143:1: entryRuleRightAlgebraicIO returns [EObject current=null] : iv_ruleRightAlgebraicIO= ruleRightAlgebraicIO EOF ;
     public final EObject entryRuleRightAlgebraicIO() throws RecognitionException {
         EObject current = null;
 
@@ -15657,8 +15895,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6033:57: (iv_ruleRightAlgebraicIO= ruleRightAlgebraicIO EOF )
-            // InternalFPML.g:6034:2: iv_ruleRightAlgebraicIO= ruleRightAlgebraicIO EOF
+            // InternalFPML.g:6143:57: (iv_ruleRightAlgebraicIO= ruleRightAlgebraicIO EOF )
+            // InternalFPML.g:6144:2: iv_ruleRightAlgebraicIO= ruleRightAlgebraicIO EOF
             {
              newCompositeNode(grammarAccess.getRightAlgebraicIORule()); 
             pushFollow(FOLLOW_1);
@@ -15685,7 +15923,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRightAlgebraicIO"
-    // InternalFPML.g:6040:1: ruleRightAlgebraicIO returns [EObject current=null] : ( () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) ;
+    // InternalFPML.g:6150:1: ruleRightAlgebraicIO returns [EObject current=null] : ( () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) ;
     public final EObject ruleRightAlgebraicIO() throws RecognitionException {
         EObject current = null;
 
@@ -15697,14 +15935,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6046:2: ( ( () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) )
-            // InternalFPML.g:6047:2: ( () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
+            // InternalFPML.g:6156:2: ( ( () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) )
+            // InternalFPML.g:6157:2: ( () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
             {
-            // InternalFPML.g:6047:2: ( () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
-            // InternalFPML.g:6048:3: () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:6157:2: ( () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
+            // InternalFPML.g:6158:3: () otherlv_1= 'rightADT' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
             {
-            // InternalFPML.g:6048:3: ()
-            // InternalFPML.g:6049:4: 
+            // InternalFPML.g:6158:3: ()
+            // InternalFPML.g:6159:4: 
             {
 
             				current = forceCreateModelElement(
@@ -15718,11 +15956,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getRightAlgebraicIOAccess().getRightADTKeyword_1());
             		
-            // InternalFPML.g:6059:3: ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
-            // InternalFPML.g:6060:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
+            // InternalFPML.g:6169:3: ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:6170:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
             {
-            // InternalFPML.g:6060:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
-            // InternalFPML.g:6061:5: lv_type_2_0= ruleEffectFullAlgebraicType
+            // InternalFPML.g:6170:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
+            // InternalFPML.g:6171:5: lv_type_2_0= ruleEffectFullAlgebraicType
             {
 
             					newCompositeNode(grammarAccess.getRightAlgebraicIOAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0());
@@ -15772,7 +16010,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrimitiveEffectFullValue"
-    // InternalFPML.g:6082:1: entryRulePrimitiveEffectFullValue returns [EObject current=null] : iv_rulePrimitiveEffectFullValue= rulePrimitiveEffectFullValue EOF ;
+    // InternalFPML.g:6192:1: entryRulePrimitiveEffectFullValue returns [EObject current=null] : iv_rulePrimitiveEffectFullValue= rulePrimitiveEffectFullValue EOF ;
     public final EObject entryRulePrimitiveEffectFullValue() throws RecognitionException {
         EObject current = null;
 
@@ -15780,8 +16018,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6082:65: (iv_rulePrimitiveEffectFullValue= rulePrimitiveEffectFullValue EOF )
-            // InternalFPML.g:6083:2: iv_rulePrimitiveEffectFullValue= rulePrimitiveEffectFullValue EOF
+            // InternalFPML.g:6192:65: (iv_rulePrimitiveEffectFullValue= rulePrimitiveEffectFullValue EOF )
+            // InternalFPML.g:6193:2: iv_rulePrimitiveEffectFullValue= rulePrimitiveEffectFullValue EOF
             {
              newCompositeNode(grammarAccess.getPrimitiveEffectFullValueRule()); 
             pushFollow(FOLLOW_1);
@@ -15808,7 +16046,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimitiveEffectFullValue"
-    // InternalFPML.g:6089:1: rulePrimitiveEffectFullValue returns [EObject current=null] : (this_PrimitiveRandom_0= rulePrimitiveRandom | this_PrimitiveTime_1= rulePrimitiveTime ) ;
+    // InternalFPML.g:6199:1: rulePrimitiveEffectFullValue returns [EObject current=null] : (this_PrimitiveRandom_0= rulePrimitiveRandom | this_PrimitiveTime_1= rulePrimitiveTime ) ;
     public final EObject rulePrimitiveEffectFullValue() throws RecognitionException {
         EObject current = null;
 
@@ -15821,17 +16059,17 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6095:2: ( (this_PrimitiveRandom_0= rulePrimitiveRandom | this_PrimitiveTime_1= rulePrimitiveTime ) )
-            // InternalFPML.g:6096:2: (this_PrimitiveRandom_0= rulePrimitiveRandom | this_PrimitiveTime_1= rulePrimitiveTime )
+            // InternalFPML.g:6205:2: ( (this_PrimitiveRandom_0= rulePrimitiveRandom | this_PrimitiveTime_1= rulePrimitiveTime ) )
+            // InternalFPML.g:6206:2: (this_PrimitiveRandom_0= rulePrimitiveRandom | this_PrimitiveTime_1= rulePrimitiveTime )
             {
-            // InternalFPML.g:6096:2: (this_PrimitiveRandom_0= rulePrimitiveRandom | this_PrimitiveTime_1= rulePrimitiveTime )
+            // InternalFPML.g:6206:2: (this_PrimitiveRandom_0= rulePrimitiveRandom | this_PrimitiveTime_1= rulePrimitiveTime )
             int alt42=2;
             int LA42_0 = input.LA(1);
 
-            if ( (LA42_0==70) ) {
+            if ( (LA42_0==71) ) {
                 alt42=1;
             }
-            else if ( (LA42_0==72) ) {
+            else if ( (LA42_0==73) ) {
                 alt42=2;
             }
             else {
@@ -15842,7 +16080,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt42) {
                 case 1 :
-                    // InternalFPML.g:6097:3: this_PrimitiveRandom_0= rulePrimitiveRandom
+                    // InternalFPML.g:6207:3: this_PrimitiveRandom_0= rulePrimitiveRandom
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveRandomParserRuleCall_0());
@@ -15860,7 +16098,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:6106:3: this_PrimitiveTime_1= rulePrimitiveTime
+                    // InternalFPML.g:6216:3: this_PrimitiveTime_1= rulePrimitiveTime
                     {
 
                     			newCompositeNode(grammarAccess.getPrimitiveEffectFullValueAccess().getPrimitiveTimeParserRuleCall_1());
@@ -15900,7 +16138,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrimitiveRandom"
-    // InternalFPML.g:6118:1: entryRulePrimitiveRandom returns [EObject current=null] : iv_rulePrimitiveRandom= rulePrimitiveRandom EOF ;
+    // InternalFPML.g:6228:1: entryRulePrimitiveRandom returns [EObject current=null] : iv_rulePrimitiveRandom= rulePrimitiveRandom EOF ;
     public final EObject entryRulePrimitiveRandom() throws RecognitionException {
         EObject current = null;
 
@@ -15908,8 +16146,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6118:56: (iv_rulePrimitiveRandom= rulePrimitiveRandom EOF )
-            // InternalFPML.g:6119:2: iv_rulePrimitiveRandom= rulePrimitiveRandom EOF
+            // InternalFPML.g:6228:56: (iv_rulePrimitiveRandom= rulePrimitiveRandom EOF )
+            // InternalFPML.g:6229:2: iv_rulePrimitiveRandom= rulePrimitiveRandom EOF
             {
              newCompositeNode(grammarAccess.getPrimitiveRandomRule()); 
             pushFollow(FOLLOW_1);
@@ -15936,7 +16174,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimitiveRandom"
-    // InternalFPML.g:6125:1: rulePrimitiveRandom returns [EObject current=null] : ( () otherlv_1= 'randomInt' ) ;
+    // InternalFPML.g:6235:1: rulePrimitiveRandom returns [EObject current=null] : ( () otherlv_1= 'randomInt' ) ;
     public final EObject rulePrimitiveRandom() throws RecognitionException {
         EObject current = null;
 
@@ -15946,14 +16184,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6131:2: ( ( () otherlv_1= 'randomInt' ) )
-            // InternalFPML.g:6132:2: ( () otherlv_1= 'randomInt' )
+            // InternalFPML.g:6241:2: ( ( () otherlv_1= 'randomInt' ) )
+            // InternalFPML.g:6242:2: ( () otherlv_1= 'randomInt' )
             {
-            // InternalFPML.g:6132:2: ( () otherlv_1= 'randomInt' )
-            // InternalFPML.g:6133:3: () otherlv_1= 'randomInt'
+            // InternalFPML.g:6242:2: ( () otherlv_1= 'randomInt' )
+            // InternalFPML.g:6243:3: () otherlv_1= 'randomInt'
             {
-            // InternalFPML.g:6133:3: ()
-            // InternalFPML.g:6134:4: 
+            // InternalFPML.g:6243:3: ()
+            // InternalFPML.g:6244:4: 
             {
 
             				current = forceCreateModelElement(
@@ -15963,7 +16201,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,70,FOLLOW_2); 
+            otherlv_1=(Token)match(input,71,FOLLOW_2); 
 
             			newLeafNode(otherlv_1, grammarAccess.getPrimitiveRandomAccess().getRandomIntKeyword_1());
             		
@@ -15990,7 +16228,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrimitiveReturn"
-    // InternalFPML.g:6148:1: entryRulePrimitiveReturn returns [EObject current=null] : iv_rulePrimitiveReturn= rulePrimitiveReturn EOF ;
+    // InternalFPML.g:6258:1: entryRulePrimitiveReturn returns [EObject current=null] : iv_rulePrimitiveReturn= rulePrimitiveReturn EOF ;
     public final EObject entryRulePrimitiveReturn() throws RecognitionException {
         EObject current = null;
 
@@ -15998,8 +16236,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6148:56: (iv_rulePrimitiveReturn= rulePrimitiveReturn EOF )
-            // InternalFPML.g:6149:2: iv_rulePrimitiveReturn= rulePrimitiveReturn EOF
+            // InternalFPML.g:6258:56: (iv_rulePrimitiveReturn= rulePrimitiveReturn EOF )
+            // InternalFPML.g:6259:2: iv_rulePrimitiveReturn= rulePrimitiveReturn EOF
             {
              newCompositeNode(grammarAccess.getPrimitiveReturnRule()); 
             pushFollow(FOLLOW_1);
@@ -16026,7 +16264,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimitiveReturn"
-    // InternalFPML.g:6155:1: rulePrimitiveReturn returns [EObject current=null] : ( () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) ) ) ;
+    // InternalFPML.g:6265:1: rulePrimitiveReturn returns [EObject current=null] : ( () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) ) ) ;
     public final EObject rulePrimitiveReturn() throws RecognitionException {
         EObject current = null;
 
@@ -16038,14 +16276,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6161:2: ( ( () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) ) ) )
-            // InternalFPML.g:6162:2: ( () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) ) )
+            // InternalFPML.g:6271:2: ( ( () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) ) ) )
+            // InternalFPML.g:6272:2: ( () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) ) )
             {
-            // InternalFPML.g:6162:2: ( () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) ) )
-            // InternalFPML.g:6163:3: () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) )
+            // InternalFPML.g:6272:2: ( () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) ) )
+            // InternalFPML.g:6273:3: () otherlv_1= 'return' ( (lv_type_2_0= ruleType ) )
             {
-            // InternalFPML.g:6163:3: ()
-            // InternalFPML.g:6164:4: 
+            // InternalFPML.g:6273:3: ()
+            // InternalFPML.g:6274:4: 
             {
 
             				current = forceCreateModelElement(
@@ -16055,15 +16293,15 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,71,FOLLOW_23); 
+            otherlv_1=(Token)match(input,72,FOLLOW_23); 
 
             			newLeafNode(otherlv_1, grammarAccess.getPrimitiveReturnAccess().getReturnKeyword_1());
             		
-            // InternalFPML.g:6174:3: ( (lv_type_2_0= ruleType ) )
-            // InternalFPML.g:6175:4: (lv_type_2_0= ruleType )
+            // InternalFPML.g:6284:3: ( (lv_type_2_0= ruleType ) )
+            // InternalFPML.g:6285:4: (lv_type_2_0= ruleType )
             {
-            // InternalFPML.g:6175:4: (lv_type_2_0= ruleType )
-            // InternalFPML.g:6176:5: lv_type_2_0= ruleType
+            // InternalFPML.g:6285:4: (lv_type_2_0= ruleType )
+            // InternalFPML.g:6286:5: lv_type_2_0= ruleType
             {
 
             					newCompositeNode(grammarAccess.getPrimitiveReturnAccess().getTypeTypeParserRuleCall_2_0());
@@ -16113,7 +16351,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrimitiveTime"
-    // InternalFPML.g:6197:1: entryRulePrimitiveTime returns [EObject current=null] : iv_rulePrimitiveTime= rulePrimitiveTime EOF ;
+    // InternalFPML.g:6307:1: entryRulePrimitiveTime returns [EObject current=null] : iv_rulePrimitiveTime= rulePrimitiveTime EOF ;
     public final EObject entryRulePrimitiveTime() throws RecognitionException {
         EObject current = null;
 
@@ -16121,8 +16359,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6197:54: (iv_rulePrimitiveTime= rulePrimitiveTime EOF )
-            // InternalFPML.g:6198:2: iv_rulePrimitiveTime= rulePrimitiveTime EOF
+            // InternalFPML.g:6307:54: (iv_rulePrimitiveTime= rulePrimitiveTime EOF )
+            // InternalFPML.g:6308:2: iv_rulePrimitiveTime= rulePrimitiveTime EOF
             {
              newCompositeNode(grammarAccess.getPrimitiveTimeRule()); 
             pushFollow(FOLLOW_1);
@@ -16149,7 +16387,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimitiveTime"
-    // InternalFPML.g:6204:1: rulePrimitiveTime returns [EObject current=null] : ( () otherlv_1= 'currentTime' ) ;
+    // InternalFPML.g:6314:1: rulePrimitiveTime returns [EObject current=null] : ( () otherlv_1= 'currentTime' ) ;
     public final EObject rulePrimitiveTime() throws RecognitionException {
         EObject current = null;
 
@@ -16159,14 +16397,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6210:2: ( ( () otherlv_1= 'currentTime' ) )
-            // InternalFPML.g:6211:2: ( () otherlv_1= 'currentTime' )
+            // InternalFPML.g:6320:2: ( ( () otherlv_1= 'currentTime' ) )
+            // InternalFPML.g:6321:2: ( () otherlv_1= 'currentTime' )
             {
-            // InternalFPML.g:6211:2: ( () otherlv_1= 'currentTime' )
-            // InternalFPML.g:6212:3: () otherlv_1= 'currentTime'
+            // InternalFPML.g:6321:2: ( () otherlv_1= 'currentTime' )
+            // InternalFPML.g:6322:3: () otherlv_1= 'currentTime'
             {
-            // InternalFPML.g:6212:3: ()
-            // InternalFPML.g:6213:4: 
+            // InternalFPML.g:6322:3: ()
+            // InternalFPML.g:6323:4: 
             {
 
             				current = forceCreateModelElement(
@@ -16176,7 +16414,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,72,FOLLOW_2); 
+            otherlv_1=(Token)match(input,73,FOLLOW_2); 
 
             			newLeafNode(otherlv_1, grammarAccess.getPrimitiveTimeAccess().getCurrentTimeKeyword_1());
             		
@@ -16203,7 +16441,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleApplyFIO"
-    // InternalFPML.g:6227:1: entryRuleApplyFIO returns [EObject current=null] : iv_ruleApplyFIO= ruleApplyFIO EOF ;
+    // InternalFPML.g:6337:1: entryRuleApplyFIO returns [EObject current=null] : iv_ruleApplyFIO= ruleApplyFIO EOF ;
     public final EObject entryRuleApplyFIO() throws RecognitionException {
         EObject current = null;
 
@@ -16211,8 +16449,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6227:49: (iv_ruleApplyFIO= ruleApplyFIO EOF )
-            // InternalFPML.g:6228:2: iv_ruleApplyFIO= ruleApplyFIO EOF
+            // InternalFPML.g:6337:49: (iv_ruleApplyFIO= ruleApplyFIO EOF )
+            // InternalFPML.g:6338:2: iv_ruleApplyFIO= ruleApplyFIO EOF
             {
              newCompositeNode(grammarAccess.getApplyFIORule()); 
             pushFollow(FOLLOW_1);
@@ -16239,7 +16477,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleApplyFIO"
-    // InternalFPML.g:6234:1: ruleApplyFIO returns [EObject current=null] : ( () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) ) ) ;
+    // InternalFPML.g:6344:1: ruleApplyFIO returns [EObject current=null] : ( () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) ) ) ;
     public final EObject ruleApplyFIO() throws RecognitionException {
         EObject current = null;
 
@@ -16253,14 +16491,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6240:2: ( ( () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) ) ) )
-            // InternalFPML.g:6241:2: ( () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) ) )
+            // InternalFPML.g:6350:2: ( ( () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) ) ) )
+            // InternalFPML.g:6351:2: ( () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) ) )
             {
-            // InternalFPML.g:6241:2: ( () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) ) )
-            // InternalFPML.g:6242:3: () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) )
+            // InternalFPML.g:6351:2: ( () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) ) )
+            // InternalFPML.g:6352:3: () otherlv_1= 'applyFIO' ( (lv_functionType_2_0= ruleEffectFullFunctionType ) ) ( (lv_value_3_0= ruleApplyFIOFactor ) )
             {
-            // InternalFPML.g:6242:3: ()
-            // InternalFPML.g:6243:4: 
+            // InternalFPML.g:6352:3: ()
+            // InternalFPML.g:6353:4: 
             {
 
             				current = forceCreateModelElement(
@@ -16270,15 +16508,15 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,73,FOLLOW_46); 
+            otherlv_1=(Token)match(input,74,FOLLOW_46); 
 
             			newLeafNode(otherlv_1, grammarAccess.getApplyFIOAccess().getApplyFIOKeyword_1());
             		
-            // InternalFPML.g:6253:3: ( (lv_functionType_2_0= ruleEffectFullFunctionType ) )
-            // InternalFPML.g:6254:4: (lv_functionType_2_0= ruleEffectFullFunctionType )
+            // InternalFPML.g:6363:3: ( (lv_functionType_2_0= ruleEffectFullFunctionType ) )
+            // InternalFPML.g:6364:4: (lv_functionType_2_0= ruleEffectFullFunctionType )
             {
-            // InternalFPML.g:6254:4: (lv_functionType_2_0= ruleEffectFullFunctionType )
-            // InternalFPML.g:6255:5: lv_functionType_2_0= ruleEffectFullFunctionType
+            // InternalFPML.g:6364:4: (lv_functionType_2_0= ruleEffectFullFunctionType )
+            // InternalFPML.g:6365:5: lv_functionType_2_0= ruleEffectFullFunctionType
             {
 
             					newCompositeNode(grammarAccess.getApplyFIOAccess().getFunctionTypeEffectFullFunctionTypeParserRuleCall_2_0());
@@ -16305,11 +16543,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalFPML.g:6272:3: ( (lv_value_3_0= ruleApplyFIOFactor ) )
-            // InternalFPML.g:6273:4: (lv_value_3_0= ruleApplyFIOFactor )
+            // InternalFPML.g:6382:3: ( (lv_value_3_0= ruleApplyFIOFactor ) )
+            // InternalFPML.g:6383:4: (lv_value_3_0= ruleApplyFIOFactor )
             {
-            // InternalFPML.g:6273:4: (lv_value_3_0= ruleApplyFIOFactor )
-            // InternalFPML.g:6274:5: lv_value_3_0= ruleApplyFIOFactor
+            // InternalFPML.g:6383:4: (lv_value_3_0= ruleApplyFIOFactor )
+            // InternalFPML.g:6384:5: lv_value_3_0= ruleApplyFIOFactor
             {
 
             					newCompositeNode(grammarAccess.getApplyFIOAccess().getValueApplyFIOFactorParserRuleCall_3_0());
@@ -16359,7 +16597,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleApplyFIOFactor"
-    // InternalFPML.g:6295:1: entryRuleApplyFIOFactor returns [EObject current=null] : iv_ruleApplyFIOFactor= ruleApplyFIOFactor EOF ;
+    // InternalFPML.g:6405:1: entryRuleApplyFIOFactor returns [EObject current=null] : iv_ruleApplyFIOFactor= ruleApplyFIOFactor EOF ;
     public final EObject entryRuleApplyFIOFactor() throws RecognitionException {
         EObject current = null;
 
@@ -16367,8 +16605,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6295:55: (iv_ruleApplyFIOFactor= ruleApplyFIOFactor EOF )
-            // InternalFPML.g:6296:2: iv_ruleApplyFIOFactor= ruleApplyFIOFactor EOF
+            // InternalFPML.g:6405:55: (iv_ruleApplyFIOFactor= ruleApplyFIOFactor EOF )
+            // InternalFPML.g:6406:2: iv_ruleApplyFIOFactor= ruleApplyFIOFactor EOF
             {
              newCompositeNode(grammarAccess.getApplyFIOFactorRule()); 
             pushFollow(FOLLOW_1);
@@ -16395,7 +16633,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleApplyFIOFactor"
-    // InternalFPML.g:6302:1: ruleApplyFIOFactor returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) | ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) ) | (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' ) ) ;
+    // InternalFPML.g:6412:1: ruleApplyFIOFactor returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) | ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) ) | (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' ) ) ;
     public final EObject ruleApplyFIOFactor() throws RecognitionException {
         EObject current = null;
 
@@ -16411,10 +16649,10 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6308:2: ( ( ( (otherlv_0= RULE_ID ) ) | ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) ) | (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' ) ) )
-            // InternalFPML.g:6309:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) ) | (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' ) )
+            // InternalFPML.g:6418:2: ( ( ( (otherlv_0= RULE_ID ) ) | ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) ) | (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' ) ) )
+            // InternalFPML.g:6419:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) ) | (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' ) )
             {
-            // InternalFPML.g:6309:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) ) | (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' ) )
+            // InternalFPML.g:6419:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) ) | (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' ) )
             int alt43=3;
             switch ( input.LA(1) ) {
             case RULE_ID:
@@ -16434,6 +16672,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             case 73:
             case 74:
             case 75:
+            case 76:
                 {
                 alt43=2;
                 }
@@ -16452,13 +16691,13 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             switch (alt43) {
                 case 1 :
-                    // InternalFPML.g:6310:3: ( (otherlv_0= RULE_ID ) )
+                    // InternalFPML.g:6420:3: ( (otherlv_0= RULE_ID ) )
                     {
-                    // InternalFPML.g:6310:3: ( (otherlv_0= RULE_ID ) )
-                    // InternalFPML.g:6311:4: (otherlv_0= RULE_ID )
+                    // InternalFPML.g:6420:3: ( (otherlv_0= RULE_ID ) )
+                    // InternalFPML.g:6421:4: (otherlv_0= RULE_ID )
                     {
-                    // InternalFPML.g:6311:4: (otherlv_0= RULE_ID )
-                    // InternalFPML.g:6312:5: otherlv_0= RULE_ID
+                    // InternalFPML.g:6421:4: (otherlv_0= RULE_ID )
+                    // InternalFPML.g:6422:5: otherlv_0= RULE_ID
                     {
 
                     					if (current==null) {
@@ -16479,13 +16718,13 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:6324:3: ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) )
+                    // InternalFPML.g:6434:3: ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) )
                     {
-                    // InternalFPML.g:6324:3: ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) )
-                    // InternalFPML.g:6325:4: (lv_valuePrimitive_1_0= ruleEffectFullPrimitive )
+                    // InternalFPML.g:6434:3: ( (lv_valuePrimitive_1_0= ruleEffectFullPrimitive ) )
+                    // InternalFPML.g:6435:4: (lv_valuePrimitive_1_0= ruleEffectFullPrimitive )
                     {
-                    // InternalFPML.g:6325:4: (lv_valuePrimitive_1_0= ruleEffectFullPrimitive )
-                    // InternalFPML.g:6326:5: lv_valuePrimitive_1_0= ruleEffectFullPrimitive
+                    // InternalFPML.g:6435:4: (lv_valuePrimitive_1_0= ruleEffectFullPrimitive )
+                    // InternalFPML.g:6436:5: lv_valuePrimitive_1_0= ruleEffectFullPrimitive
                     {
 
                     					newCompositeNode(grammarAccess.getApplyFIOFactorAccess().getValuePrimitiveEffectFullPrimitiveParserRuleCall_1_0());
@@ -16516,20 +16755,20 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalFPML.g:6344:3: (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' )
+                    // InternalFPML.g:6454:3: (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' )
                     {
-                    // InternalFPML.g:6344:3: (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' )
-                    // InternalFPML.g:6345:4: otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')'
+                    // InternalFPML.g:6454:3: (otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')' )
+                    // InternalFPML.g:6455:4: otherlv_2= '(' ( (lv_valueExpression_3_0= ruleEffectFullExpression ) ) otherlv_4= ')'
                     {
                     otherlv_2=(Token)match(input,21,FOLLOW_16); 
 
                     				newLeafNode(otherlv_2, grammarAccess.getApplyFIOFactorAccess().getLeftParenthesisKeyword_2_0());
                     			
-                    // InternalFPML.g:6349:4: ( (lv_valueExpression_3_0= ruleEffectFullExpression ) )
-                    // InternalFPML.g:6350:5: (lv_valueExpression_3_0= ruleEffectFullExpression )
+                    // InternalFPML.g:6459:4: ( (lv_valueExpression_3_0= ruleEffectFullExpression ) )
+                    // InternalFPML.g:6460:5: (lv_valueExpression_3_0= ruleEffectFullExpression )
                     {
-                    // InternalFPML.g:6350:5: (lv_valueExpression_3_0= ruleEffectFullExpression )
-                    // InternalFPML.g:6351:6: lv_valueExpression_3_0= ruleEffectFullExpression
+                    // InternalFPML.g:6460:5: (lv_valueExpression_3_0= ruleEffectFullExpression )
+                    // InternalFPML.g:6461:6: lv_valueExpression_3_0= ruleEffectFullExpression
                     {
 
                     						newCompositeNode(grammarAccess.getApplyFIOFactorAccess().getValueExpressionEffectFullExpressionParserRuleCall_2_1_0());
@@ -16589,7 +16828,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExtractEffectFull"
-    // InternalFPML.g:6377:1: entryRuleExtractEffectFull returns [EObject current=null] : iv_ruleExtractEffectFull= ruleExtractEffectFull EOF ;
+    // InternalFPML.g:6487:1: entryRuleExtractEffectFull returns [EObject current=null] : iv_ruleExtractEffectFull= ruleExtractEffectFull EOF ;
     public final EObject entryRuleExtractEffectFull() throws RecognitionException {
         EObject current = null;
 
@@ -16597,8 +16836,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6377:58: (iv_ruleExtractEffectFull= ruleExtractEffectFull EOF )
-            // InternalFPML.g:6378:2: iv_ruleExtractEffectFull= ruleExtractEffectFull EOF
+            // InternalFPML.g:6487:58: (iv_ruleExtractEffectFull= ruleExtractEffectFull EOF )
+            // InternalFPML.g:6488:2: iv_ruleExtractEffectFull= ruleExtractEffectFull EOF
             {
              newCompositeNode(grammarAccess.getExtractEffectFullRule()); 
             pushFollow(FOLLOW_1);
@@ -16625,7 +16864,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExtractEffectFull"
-    // InternalFPML.g:6384:1: ruleExtractEffectFull returns [EObject current=null] : ( () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) ) ) ;
+    // InternalFPML.g:6494:1: ruleExtractEffectFull returns [EObject current=null] : ( () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) ) ) ;
     public final EObject ruleExtractEffectFull() throws RecognitionException {
         EObject current = null;
 
@@ -16636,14 +16875,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6390:2: ( ( () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) ) ) )
-            // InternalFPML.g:6391:2: ( () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) ) )
+            // InternalFPML.g:6500:2: ( ( () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) ) ) )
+            // InternalFPML.g:6501:2: ( () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) ) )
             {
-            // InternalFPML.g:6391:2: ( () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) ) )
-            // InternalFPML.g:6392:3: () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) )
+            // InternalFPML.g:6501:2: ( () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) ) )
+            // InternalFPML.g:6502:3: () otherlv_1= 'extractEffectFull' ( (otherlv_2= RULE_ID ) )
             {
-            // InternalFPML.g:6392:3: ()
-            // InternalFPML.g:6393:4: 
+            // InternalFPML.g:6502:3: ()
+            // InternalFPML.g:6503:4: 
             {
 
             				current = forceCreateModelElement(
@@ -16653,15 +16892,15 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,74,FOLLOW_17); 
+            otherlv_1=(Token)match(input,75,FOLLOW_17); 
 
             			newLeafNode(otherlv_1, grammarAccess.getExtractEffectFullAccess().getExtractEffectFullKeyword_1());
             		
-            // InternalFPML.g:6403:3: ( (otherlv_2= RULE_ID ) )
-            // InternalFPML.g:6404:4: (otherlv_2= RULE_ID )
+            // InternalFPML.g:6513:3: ( (otherlv_2= RULE_ID ) )
+            // InternalFPML.g:6514:4: (otherlv_2= RULE_ID )
             {
-            // InternalFPML.g:6404:4: (otherlv_2= RULE_ID )
-            // InternalFPML.g:6405:5: otherlv_2= RULE_ID
+            // InternalFPML.g:6514:4: (otherlv_2= RULE_ID )
+            // InternalFPML.g:6515:5: otherlv_2= RULE_ID
             {
 
             					if (current==null) {
@@ -16701,7 +16940,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiftPureFunction"
-    // InternalFPML.g:6420:1: entryRuleLiftPureFunction returns [EObject current=null] : iv_ruleLiftPureFunction= ruleLiftPureFunction EOF ;
+    // InternalFPML.g:6530:1: entryRuleLiftPureFunction returns [EObject current=null] : iv_ruleLiftPureFunction= ruleLiftPureFunction EOF ;
     public final EObject entryRuleLiftPureFunction() throws RecognitionException {
         EObject current = null;
 
@@ -16709,8 +16948,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6420:57: (iv_ruleLiftPureFunction= ruleLiftPureFunction EOF )
-            // InternalFPML.g:6421:2: iv_ruleLiftPureFunction= ruleLiftPureFunction EOF
+            // InternalFPML.g:6530:57: (iv_ruleLiftPureFunction= ruleLiftPureFunction EOF )
+            // InternalFPML.g:6531:2: iv_ruleLiftPureFunction= ruleLiftPureFunction EOF
             {
              newCompositeNode(grammarAccess.getLiftPureFunctionRule()); 
             pushFollow(FOLLOW_1);
@@ -16737,7 +16976,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiftPureFunction"
-    // InternalFPML.g:6427:1: ruleLiftPureFunction returns [EObject current=null] : ( (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' ) ) ;
+    // InternalFPML.g:6537:1: ruleLiftPureFunction returns [EObject current=null] : ( (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' ) ) ;
     public final EObject ruleLiftPureFunction() throws RecognitionException {
         EObject current = null;
 
@@ -16755,24 +16994,24 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6433:2: ( ( (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' ) ) )
-            // InternalFPML.g:6434:2: ( (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' ) )
+            // InternalFPML.g:6543:2: ( ( (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' ) ) )
+            // InternalFPML.g:6544:2: ( (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' ) )
             {
-            // InternalFPML.g:6434:2: ( (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' ) )
+            // InternalFPML.g:6544:2: ( (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' ) )
             int alt44=2;
             int LA44_0 = input.LA(1);
 
-            if ( (LA44_0==75) ) {
+            if ( (LA44_0==76) ) {
                 int LA44_1 = input.LA(2);
 
                 if ( (LA44_1==21) ) {
                     int LA44_2 = input.LA(3);
 
-                    if ( ((LA44_2>=36 && LA44_2<=37)||(LA44_2>=41 && LA44_2<=42)||(LA44_2>=51 && LA44_2<=66)) ) {
-                        alt44=2;
-                    }
-                    else if ( (LA44_2==RULE_ID) ) {
+                    if ( (LA44_2==RULE_ID) ) {
                         alt44=1;
+                    }
+                    else if ( ((LA44_2>=36 && LA44_2<=37)||(LA44_2>=41 && LA44_2<=42)||(LA44_2>=51 && LA44_2<=66)||LA44_2==69) ) {
+                        alt44=2;
                     }
                     else {
                         NoViableAltException nvae =
@@ -16796,12 +17035,12 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt44) {
                 case 1 :
-                    // InternalFPML.g:6435:3: (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' )
+                    // InternalFPML.g:6545:3: (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' )
                     {
-                    // InternalFPML.g:6435:3: (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' )
-                    // InternalFPML.g:6436:4: otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')'
+                    // InternalFPML.g:6545:3: (otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' )
+                    // InternalFPML.g:6546:4: otherlv_0= 'Lift' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')'
                     {
-                    otherlv_0=(Token)match(input,75,FOLLOW_18); 
+                    otherlv_0=(Token)match(input,76,FOLLOW_18); 
 
                     				newLeafNode(otherlv_0, grammarAccess.getLiftPureFunctionAccess().getLiftKeyword_0_0());
                     			
@@ -16809,11 +17048,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_1, grammarAccess.getLiftPureFunctionAccess().getLeftParenthesisKeyword_0_1());
                     			
-                    // InternalFPML.g:6444:4: ( (otherlv_2= RULE_ID ) )
-                    // InternalFPML.g:6445:5: (otherlv_2= RULE_ID )
+                    // InternalFPML.g:6554:4: ( (otherlv_2= RULE_ID ) )
+                    // InternalFPML.g:6555:5: (otherlv_2= RULE_ID )
                     {
-                    // InternalFPML.g:6445:5: (otherlv_2= RULE_ID )
-                    // InternalFPML.g:6446:6: otherlv_2= RULE_ID
+                    // InternalFPML.g:6555:5: (otherlv_2= RULE_ID )
+                    // InternalFPML.g:6556:6: otherlv_2= RULE_ID
                     {
 
                     						if (current==null) {
@@ -16841,12 +17080,12 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:6463:3: (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' )
+                    // InternalFPML.g:6573:3: (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' )
                     {
-                    // InternalFPML.g:6463:3: (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' )
-                    // InternalFPML.g:6464:4: otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')'
+                    // InternalFPML.g:6573:3: (otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')' )
+                    // InternalFPML.g:6574:4: otherlv_4= 'Lift' otherlv_5= '(' ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) ) otherlv_7= ')'
                     {
-                    otherlv_4=(Token)match(input,75,FOLLOW_18); 
+                    otherlv_4=(Token)match(input,76,FOLLOW_18); 
 
                     				newLeafNode(otherlv_4, grammarAccess.getLiftPureFunctionAccess().getLiftKeyword_1_0());
                     			
@@ -16854,11 +17093,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_5, grammarAccess.getLiftPureFunctionAccess().getLeftParenthesisKeyword_1_1());
                     			
-                    // InternalFPML.g:6472:4: ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) )
-                    // InternalFPML.g:6473:5: (lv_functionPrimitive_6_0= rulePrimitivePureFunction )
+                    // InternalFPML.g:6582:4: ( (lv_functionPrimitive_6_0= rulePrimitivePureFunction ) )
+                    // InternalFPML.g:6583:5: (lv_functionPrimitive_6_0= rulePrimitivePureFunction )
                     {
-                    // InternalFPML.g:6473:5: (lv_functionPrimitive_6_0= rulePrimitivePureFunction )
-                    // InternalFPML.g:6474:6: lv_functionPrimitive_6_0= rulePrimitivePureFunction
+                    // InternalFPML.g:6583:5: (lv_functionPrimitive_6_0= rulePrimitivePureFunction )
+                    // InternalFPML.g:6584:6: lv_functionPrimitive_6_0= rulePrimitivePureFunction
                     {
 
                     						newCompositeNode(grammarAccess.getLiftPureFunctionAccess().getFunctionPrimitivePrimitivePureFunctionParserRuleCall_1_2_0());
@@ -16918,7 +17157,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiftEffectFullFunction"
-    // InternalFPML.g:6500:1: entryRuleLiftEffectFullFunction returns [EObject current=null] : iv_ruleLiftEffectFullFunction= ruleLiftEffectFullFunction EOF ;
+    // InternalFPML.g:6610:1: entryRuleLiftEffectFullFunction returns [EObject current=null] : iv_ruleLiftEffectFullFunction= ruleLiftEffectFullFunction EOF ;
     public final EObject entryRuleLiftEffectFullFunction() throws RecognitionException {
         EObject current = null;
 
@@ -16926,8 +17165,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6500:63: (iv_ruleLiftEffectFullFunction= ruleLiftEffectFullFunction EOF )
-            // InternalFPML.g:6501:2: iv_ruleLiftEffectFullFunction= ruleLiftEffectFullFunction EOF
+            // InternalFPML.g:6610:63: (iv_ruleLiftEffectFullFunction= ruleLiftEffectFullFunction EOF )
+            // InternalFPML.g:6611:2: iv_ruleLiftEffectFullFunction= ruleLiftEffectFullFunction EOF
             {
              newCompositeNode(grammarAccess.getLiftEffectFullFunctionRule()); 
             pushFollow(FOLLOW_1);
@@ -16954,7 +17193,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiftEffectFullFunction"
-    // InternalFPML.g:6507:1: ruleLiftEffectFullFunction returns [EObject current=null] : ( (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' ) | (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' ) ) ;
+    // InternalFPML.g:6617:1: ruleLiftEffectFullFunction returns [EObject current=null] : ( (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' ) | (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' ) ) ;
     public final EObject ruleLiftEffectFullFunction() throws RecognitionException {
         EObject current = null;
 
@@ -16972,24 +17211,24 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6513:2: ( ( (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' ) | (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' ) ) )
-            // InternalFPML.g:6514:2: ( (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' ) | (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' ) )
+            // InternalFPML.g:6623:2: ( ( (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' ) | (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' ) ) )
+            // InternalFPML.g:6624:2: ( (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' ) | (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' ) )
             {
-            // InternalFPML.g:6514:2: ( (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' ) | (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' ) )
+            // InternalFPML.g:6624:2: ( (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' ) | (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' ) )
             int alt45=2;
             int LA45_0 = input.LA(1);
 
-            if ( (LA45_0==75) ) {
+            if ( (LA45_0==76) ) {
                 int LA45_1 = input.LA(2);
 
                 if ( (LA45_1==39) ) {
                     int LA45_2 = input.LA(3);
 
-                    if ( (LA45_2==RULE_ID) ) {
-                        alt45=1;
-                    }
-                    else if ( ((LA45_2>=55 && LA45_2<=56)||(LA45_2>=64 && LA45_2<=66)||LA45_2==69||LA45_2==71||(LA45_2>=73 && LA45_2<=75)) ) {
+                    if ( ((LA45_2>=55 && LA45_2<=56)||(LA45_2>=64 && LA45_2<=66)||(LA45_2>=69 && LA45_2<=70)||LA45_2==72||(LA45_2>=74 && LA45_2<=76)) ) {
                         alt45=2;
+                    }
+                    else if ( (LA45_2==RULE_ID) ) {
+                        alt45=1;
                     }
                     else {
                         NoViableAltException nvae =
@@ -17013,12 +17252,12 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt45) {
                 case 1 :
-                    // InternalFPML.g:6515:3: (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' )
+                    // InternalFPML.g:6625:3: (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' )
                     {
-                    // InternalFPML.g:6515:3: (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' )
-                    // InternalFPML.g:6516:4: otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']'
+                    // InternalFPML.g:6625:3: (otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']' )
+                    // InternalFPML.g:6626:4: otherlv_0= 'Lift' otherlv_1= '[' ( (otherlv_2= RULE_ID ) ) otherlv_3= ']'
                     {
-                    otherlv_0=(Token)match(input,75,FOLLOW_37); 
+                    otherlv_0=(Token)match(input,76,FOLLOW_37); 
 
                     				newLeafNode(otherlv_0, grammarAccess.getLiftEffectFullFunctionAccess().getLiftKeyword_0_0());
                     			
@@ -17026,11 +17265,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_1, grammarAccess.getLiftEffectFullFunctionAccess().getLeftSquareBracketKeyword_0_1());
                     			
-                    // InternalFPML.g:6524:4: ( (otherlv_2= RULE_ID ) )
-                    // InternalFPML.g:6525:5: (otherlv_2= RULE_ID )
+                    // InternalFPML.g:6634:4: ( (otherlv_2= RULE_ID ) )
+                    // InternalFPML.g:6635:5: (otherlv_2= RULE_ID )
                     {
-                    // InternalFPML.g:6525:5: (otherlv_2= RULE_ID )
-                    // InternalFPML.g:6526:6: otherlv_2= RULE_ID
+                    // InternalFPML.g:6635:5: (otherlv_2= RULE_ID )
+                    // InternalFPML.g:6636:6: otherlv_2= RULE_ID
                     {
 
                     						if (current==null) {
@@ -17058,12 +17297,12 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:6543:3: (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' )
+                    // InternalFPML.g:6653:3: (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' )
                     {
-                    // InternalFPML.g:6543:3: (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' )
-                    // InternalFPML.g:6544:4: otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']'
+                    // InternalFPML.g:6653:3: (otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']' )
+                    // InternalFPML.g:6654:4: otherlv_4= 'Lift' otherlv_5= '[' ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) ) otherlv_7= ']'
                     {
-                    otherlv_4=(Token)match(input,75,FOLLOW_37); 
+                    otherlv_4=(Token)match(input,76,FOLLOW_37); 
 
                     				newLeafNode(otherlv_4, grammarAccess.getLiftEffectFullFunctionAccess().getLiftKeyword_1_0());
                     			
@@ -17071,11 +17310,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_5, grammarAccess.getLiftEffectFullFunctionAccess().getLeftSquareBracketKeyword_1_1());
                     			
-                    // InternalFPML.g:6552:4: ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) )
-                    // InternalFPML.g:6553:5: (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction )
+                    // InternalFPML.g:6662:4: ( (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction ) )
+                    // InternalFPML.g:6663:5: (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction )
                     {
-                    // InternalFPML.g:6553:5: (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction )
-                    // InternalFPML.g:6554:6: lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction
+                    // InternalFPML.g:6663:5: (lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction )
+                    // InternalFPML.g:6664:6: lv_functionPrimitive_6_0= rulePrimitiveEffectFullFunction
                     {
 
                     						newCompositeNode(grammarAccess.getLiftEffectFullFunctionAccess().getFunctionPrimitivePrimitiveEffectFullFunctionParserRuleCall_1_2_0());
@@ -17135,7 +17374,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIsLeftEffectFull"
-    // InternalFPML.g:6580:1: entryRuleIsLeftEffectFull returns [EObject current=null] : iv_ruleIsLeftEffectFull= ruleIsLeftEffectFull EOF ;
+    // InternalFPML.g:6690:1: entryRuleIsLeftEffectFull returns [EObject current=null] : iv_ruleIsLeftEffectFull= ruleIsLeftEffectFull EOF ;
     public final EObject entryRuleIsLeftEffectFull() throws RecognitionException {
         EObject current = null;
 
@@ -17143,8 +17382,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6580:57: (iv_ruleIsLeftEffectFull= ruleIsLeftEffectFull EOF )
-            // InternalFPML.g:6581:2: iv_ruleIsLeftEffectFull= ruleIsLeftEffectFull EOF
+            // InternalFPML.g:6690:57: (iv_ruleIsLeftEffectFull= ruleIsLeftEffectFull EOF )
+            // InternalFPML.g:6691:2: iv_ruleIsLeftEffectFull= ruleIsLeftEffectFull EOF
             {
              newCompositeNode(grammarAccess.getIsLeftEffectFullRule()); 
             pushFollow(FOLLOW_1);
@@ -17171,7 +17410,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIsLeftEffectFull"
-    // InternalFPML.g:6587:1: ruleIsLeftEffectFull returns [EObject current=null] : ( () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) ;
+    // InternalFPML.g:6697:1: ruleIsLeftEffectFull returns [EObject current=null] : ( () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) ;
     public final EObject ruleIsLeftEffectFull() throws RecognitionException {
         EObject current = null;
 
@@ -17183,14 +17422,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6593:2: ( ( () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) )
-            // InternalFPML.g:6594:2: ( () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
+            // InternalFPML.g:6703:2: ( ( () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) )
+            // InternalFPML.g:6704:2: ( () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
             {
-            // InternalFPML.g:6594:2: ( () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
-            // InternalFPML.g:6595:3: () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:6704:2: ( () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
+            // InternalFPML.g:6705:3: () otherlv_1= 'isLeft' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
             {
-            // InternalFPML.g:6595:3: ()
-            // InternalFPML.g:6596:4: 
+            // InternalFPML.g:6705:3: ()
+            // InternalFPML.g:6706:4: 
             {
 
             				current = forceCreateModelElement(
@@ -17204,11 +17443,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getIsLeftEffectFullAccess().getIsLeftKeyword_1());
             		
-            // InternalFPML.g:6606:3: ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
-            // InternalFPML.g:6607:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
+            // InternalFPML.g:6716:3: ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:6717:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
             {
-            // InternalFPML.g:6607:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
-            // InternalFPML.g:6608:5: lv_type_2_0= ruleEffectFullAlgebraicType
+            // InternalFPML.g:6717:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
+            // InternalFPML.g:6718:5: lv_type_2_0= ruleEffectFullAlgebraicType
             {
 
             					newCompositeNode(grammarAccess.getIsLeftEffectFullAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0());
@@ -17258,7 +17497,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIsRightEffectFull"
-    // InternalFPML.g:6629:1: entryRuleIsRightEffectFull returns [EObject current=null] : iv_ruleIsRightEffectFull= ruleIsRightEffectFull EOF ;
+    // InternalFPML.g:6739:1: entryRuleIsRightEffectFull returns [EObject current=null] : iv_ruleIsRightEffectFull= ruleIsRightEffectFull EOF ;
     public final EObject entryRuleIsRightEffectFull() throws RecognitionException {
         EObject current = null;
 
@@ -17266,8 +17505,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6629:58: (iv_ruleIsRightEffectFull= ruleIsRightEffectFull EOF )
-            // InternalFPML.g:6630:2: iv_ruleIsRightEffectFull= ruleIsRightEffectFull EOF
+            // InternalFPML.g:6739:58: (iv_ruleIsRightEffectFull= ruleIsRightEffectFull EOF )
+            // InternalFPML.g:6740:2: iv_ruleIsRightEffectFull= ruleIsRightEffectFull EOF
             {
              newCompositeNode(grammarAccess.getIsRightEffectFullRule()); 
             pushFollow(FOLLOW_1);
@@ -17294,7 +17533,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIsRightEffectFull"
-    // InternalFPML.g:6636:1: ruleIsRightEffectFull returns [EObject current=null] : ( () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) ;
+    // InternalFPML.g:6746:1: ruleIsRightEffectFull returns [EObject current=null] : ( () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) ;
     public final EObject ruleIsRightEffectFull() throws RecognitionException {
         EObject current = null;
 
@@ -17306,14 +17545,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6642:2: ( ( () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) )
-            // InternalFPML.g:6643:2: ( () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
+            // InternalFPML.g:6752:2: ( ( () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) ) )
+            // InternalFPML.g:6753:2: ( () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
             {
-            // InternalFPML.g:6643:2: ( () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
-            // InternalFPML.g:6644:3: () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:6753:2: ( () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) ) )
+            // InternalFPML.g:6754:3: () otherlv_1= 'isRight' ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
             {
-            // InternalFPML.g:6644:3: ()
-            // InternalFPML.g:6645:4: 
+            // InternalFPML.g:6754:3: ()
+            // InternalFPML.g:6755:4: 
             {
 
             				current = forceCreateModelElement(
@@ -17327,11 +17566,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getIsRightEffectFullAccess().getIsRightKeyword_1());
             		
-            // InternalFPML.g:6655:3: ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
-            // InternalFPML.g:6656:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
+            // InternalFPML.g:6765:3: ( (lv_type_2_0= ruleEffectFullAlgebraicType ) )
+            // InternalFPML.g:6766:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
             {
-            // InternalFPML.g:6656:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
-            // InternalFPML.g:6657:5: lv_type_2_0= ruleEffectFullAlgebraicType
+            // InternalFPML.g:6766:4: (lv_type_2_0= ruleEffectFullAlgebraicType )
+            // InternalFPML.g:6767:5: lv_type_2_0= ruleEffectFullAlgebraicType
             {
 
             					newCompositeNode(grammarAccess.getIsRightEffectFullAccess().getTypeEffectFullAlgebraicTypeParserRuleCall_2_0());
@@ -17381,7 +17620,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEffectFullIf"
-    // InternalFPML.g:6678:1: entryRuleEffectFullIf returns [EObject current=null] : iv_ruleEffectFullIf= ruleEffectFullIf EOF ;
+    // InternalFPML.g:6788:1: entryRuleEffectFullIf returns [EObject current=null] : iv_ruleEffectFullIf= ruleEffectFullIf EOF ;
     public final EObject entryRuleEffectFullIf() throws RecognitionException {
         EObject current = null;
 
@@ -17389,8 +17628,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6678:53: (iv_ruleEffectFullIf= ruleEffectFullIf EOF )
-            // InternalFPML.g:6679:2: iv_ruleEffectFullIf= ruleEffectFullIf EOF
+            // InternalFPML.g:6788:53: (iv_ruleEffectFullIf= ruleEffectFullIf EOF )
+            // InternalFPML.g:6789:2: iv_ruleEffectFullIf= ruleEffectFullIf EOF
             {
              newCompositeNode(grammarAccess.getEffectFullIfRule()); 
             pushFollow(FOLLOW_1);
@@ -17417,7 +17656,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEffectFullIf"
-    // InternalFPML.g:6685:1: ruleEffectFullIf returns [EObject current=null] : ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' ) ;
+    // InternalFPML.g:6795:1: ruleEffectFullIf returns [EObject current=null] : ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' ) ;
     public final EObject ruleEffectFullIf() throws RecognitionException {
         EObject current = null;
 
@@ -17437,14 +17676,14 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6691:2: ( ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' ) )
-            // InternalFPML.g:6692:2: ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' )
+            // InternalFPML.g:6801:2: ( ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' ) )
+            // InternalFPML.g:6802:2: ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' )
             {
-            // InternalFPML.g:6692:2: ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' )
-            // InternalFPML.g:6693:3: () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}'
+            // InternalFPML.g:6802:2: ( () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' )
+            // InternalFPML.g:6803:3: () otherlv_1= 'if' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}'
             {
-            // InternalFPML.g:6693:3: ()
-            // InternalFPML.g:6694:4: 
+            // InternalFPML.g:6803:3: ()
+            // InternalFPML.g:6804:4: 
             {
 
             				current = forceCreateModelElement(
@@ -17466,11 +17705,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_3, grammarAccess.getEffectFullIfAccess().getLeftCurlyBracketKeyword_3());
             		
-            // InternalFPML.g:6712:3: ( (lv_then_4_0= ruleEffectFullIfBody ) )
-            // InternalFPML.g:6713:4: (lv_then_4_0= ruleEffectFullIfBody )
+            // InternalFPML.g:6822:3: ( (lv_then_4_0= ruleEffectFullIfBody ) )
+            // InternalFPML.g:6823:4: (lv_then_4_0= ruleEffectFullIfBody )
             {
-            // InternalFPML.g:6713:4: (lv_then_4_0= ruleEffectFullIfBody )
-            // InternalFPML.g:6714:5: lv_then_4_0= ruleEffectFullIfBody
+            // InternalFPML.g:6823:4: (lv_then_4_0= ruleEffectFullIfBody )
+            // InternalFPML.g:6824:5: lv_then_4_0= ruleEffectFullIfBody
             {
 
             					newCompositeNode(grammarAccess.getEffectFullIfAccess().getThenEffectFullIfBodyParserRuleCall_4_0());
@@ -17509,11 +17748,11 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_7, grammarAccess.getEffectFullIfAccess().getLeftCurlyBracketKeyword_7());
             		
-            // InternalFPML.g:6743:3: ( (lv_else_8_0= ruleEffectFullIfBody ) )
-            // InternalFPML.g:6744:4: (lv_else_8_0= ruleEffectFullIfBody )
+            // InternalFPML.g:6853:3: ( (lv_else_8_0= ruleEffectFullIfBody ) )
+            // InternalFPML.g:6854:4: (lv_else_8_0= ruleEffectFullIfBody )
             {
-            // InternalFPML.g:6744:4: (lv_else_8_0= ruleEffectFullIfBody )
-            // InternalFPML.g:6745:5: lv_else_8_0= ruleEffectFullIfBody
+            // InternalFPML.g:6854:4: (lv_else_8_0= ruleEffectFullIfBody )
+            // InternalFPML.g:6855:5: lv_else_8_0= ruleEffectFullIfBody
             {
 
             					newCompositeNode(grammarAccess.getEffectFullIfAccess().getElseEffectFullIfBodyParserRuleCall_8_0());
@@ -17566,8 +17805,194 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleEffectFullIf"
 
 
+    // $ANTLR start "entryRuleEffectFullEitherIf"
+    // InternalFPML.g:6880:1: entryRuleEffectFullEitherIf returns [EObject current=null] : iv_ruleEffectFullEitherIf= ruleEffectFullEitherIf EOF ;
+    public final EObject entryRuleEffectFullEitherIf() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleEffectFullEitherIf = null;
+
+
+        try {
+            // InternalFPML.g:6880:59: (iv_ruleEffectFullEitherIf= ruleEffectFullEitherIf EOF )
+            // InternalFPML.g:6881:2: iv_ruleEffectFullEitherIf= ruleEffectFullEitherIf EOF
+            {
+             newCompositeNode(grammarAccess.getEffectFullEitherIfRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleEffectFullEitherIf=ruleEffectFullEitherIf();
+
+            state._fsp--;
+
+             current =iv_ruleEffectFullEitherIf; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleEffectFullEitherIf"
+
+
+    // $ANTLR start "ruleEffectFullEitherIf"
+    // InternalFPML.g:6887:1: ruleEffectFullEitherIf returns [EObject current=null] : ( () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' ) ;
+    public final EObject ruleEffectFullEitherIf() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_1=null;
+        Token otherlv_2=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_7=null;
+        Token otherlv_9=null;
+        EObject lv_then_4_0 = null;
+
+        EObject lv_else_8_0 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalFPML.g:6893:2: ( ( () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' ) )
+            // InternalFPML.g:6894:2: ( () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' )
+            {
+            // InternalFPML.g:6894:2: ( () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}' )
+            // InternalFPML.g:6895:3: () otherlv_1= 'ifEither' otherlv_2= 'then' otherlv_3= '{' ( (lv_then_4_0= ruleEffectFullIfBody ) ) otherlv_5= '}' otherlv_6= 'else' otherlv_7= '{' ( (lv_else_8_0= ruleEffectFullIfBody ) ) otherlv_9= '}'
+            {
+            // InternalFPML.g:6895:3: ()
+            // InternalFPML.g:6896:4: 
+            {
+
+            				current = forceCreateModelElement(
+            					grammarAccess.getEffectFullEitherIfAccess().getEffectFullEitherIfAction_0(),
+            					current);
+            			
+
+            }
+
+            otherlv_1=(Token)match(input,69,FOLLOW_44); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getEffectFullEitherIfAccess().getIfEitherKeyword_1());
+            		
+            otherlv_2=(Token)match(input,67,FOLLOW_4); 
+
+            			newLeafNode(otherlv_2, grammarAccess.getEffectFullEitherIfAccess().getThenKeyword_2());
+            		
+            otherlv_3=(Token)match(input,13,FOLLOW_16); 
+
+            			newLeafNode(otherlv_3, grammarAccess.getEffectFullEitherIfAccess().getLeftCurlyBracketKeyword_3());
+            		
+            // InternalFPML.g:6914:3: ( (lv_then_4_0= ruleEffectFullIfBody ) )
+            // InternalFPML.g:6915:4: (lv_then_4_0= ruleEffectFullIfBody )
+            {
+            // InternalFPML.g:6915:4: (lv_then_4_0= ruleEffectFullIfBody )
+            // InternalFPML.g:6916:5: lv_then_4_0= ruleEffectFullIfBody
+            {
+
+            					newCompositeNode(grammarAccess.getEffectFullEitherIfAccess().getThenEffectFullIfBodyParserRuleCall_4_0());
+            				
+            pushFollow(FOLLOW_7);
+            lv_then_4_0=ruleEffectFullIfBody();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getEffectFullEitherIfRule());
+            					}
+            					set(
+            						current,
+            						"then",
+            						lv_then_4_0,
+            						"it.unibo.FPML.EffectFullIfBody");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_5=(Token)match(input,14,FOLLOW_45); 
+
+            			newLeafNode(otherlv_5, grammarAccess.getEffectFullEitherIfAccess().getRightCurlyBracketKeyword_5());
+            		
+            otherlv_6=(Token)match(input,68,FOLLOW_4); 
+
+            			newLeafNode(otherlv_6, grammarAccess.getEffectFullEitherIfAccess().getElseKeyword_6());
+            		
+            otherlv_7=(Token)match(input,13,FOLLOW_16); 
+
+            			newLeafNode(otherlv_7, grammarAccess.getEffectFullEitherIfAccess().getLeftCurlyBracketKeyword_7());
+            		
+            // InternalFPML.g:6945:3: ( (lv_else_8_0= ruleEffectFullIfBody ) )
+            // InternalFPML.g:6946:4: (lv_else_8_0= ruleEffectFullIfBody )
+            {
+            // InternalFPML.g:6946:4: (lv_else_8_0= ruleEffectFullIfBody )
+            // InternalFPML.g:6947:5: lv_else_8_0= ruleEffectFullIfBody
+            {
+
+            					newCompositeNode(grammarAccess.getEffectFullEitherIfAccess().getElseEffectFullIfBodyParserRuleCall_8_0());
+            				
+            pushFollow(FOLLOW_7);
+            lv_else_8_0=ruleEffectFullIfBody();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getEffectFullEitherIfRule());
+            					}
+            					set(
+            						current,
+            						"else",
+            						lv_else_8_0,
+            						"it.unibo.FPML.EffectFullIfBody");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_9=(Token)match(input,14,FOLLOW_2); 
+
+            			newLeafNode(otherlv_9, grammarAccess.getEffectFullEitherIfAccess().getRightCurlyBracketKeyword_9());
+            		
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleEffectFullEitherIf"
+
+
     // $ANTLR start "entryRuleEffectFullIfBody"
-    // InternalFPML.g:6770:1: entryRuleEffectFullIfBody returns [EObject current=null] : iv_ruleEffectFullIfBody= ruleEffectFullIfBody EOF ;
+    // InternalFPML.g:6972:1: entryRuleEffectFullIfBody returns [EObject current=null] : iv_ruleEffectFullIfBody= ruleEffectFullIfBody EOF ;
     public final EObject entryRuleEffectFullIfBody() throws RecognitionException {
         EObject current = null;
 
@@ -17575,8 +18000,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalFPML.g:6770:57: (iv_ruleEffectFullIfBody= ruleEffectFullIfBody EOF )
-            // InternalFPML.g:6771:2: iv_ruleEffectFullIfBody= ruleEffectFullIfBody EOF
+            // InternalFPML.g:6972:57: (iv_ruleEffectFullIfBody= ruleEffectFullIfBody EOF )
+            // InternalFPML.g:6973:2: iv_ruleEffectFullIfBody= ruleEffectFullIfBody EOF
             {
              newCompositeNode(grammarAccess.getEffectFullIfBodyRule()); 
             pushFollow(FOLLOW_1);
@@ -17603,7 +18028,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEffectFullIfBody"
-    // InternalFPML.g:6777:1: ruleEffectFullIfBody returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleEffectFullExpression ) ) ) ;
+    // InternalFPML.g:6979:1: ruleEffectFullIfBody returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleEffectFullExpression ) ) ) ;
     public final EObject ruleEffectFullIfBody() throws RecognitionException {
         EObject current = null;
 
@@ -17615,10 +18040,10 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalFPML.g:6783:2: ( ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleEffectFullExpression ) ) ) )
-            // InternalFPML.g:6784:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleEffectFullExpression ) ) )
+            // InternalFPML.g:6985:2: ( ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleEffectFullExpression ) ) ) )
+            // InternalFPML.g:6986:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleEffectFullExpression ) ) )
             {
-            // InternalFPML.g:6784:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleEffectFullExpression ) ) )
+            // InternalFPML.g:6986:2: ( ( (otherlv_0= RULE_ID ) ) | ( (lv_functionExpression_1_0= ruleEffectFullExpression ) ) )
             int alt46=2;
             int LA46_0 = input.LA(1);
 
@@ -17649,13 +18074,13 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt46) {
                 case 1 :
-                    // InternalFPML.g:6785:3: ( (otherlv_0= RULE_ID ) )
+                    // InternalFPML.g:6987:3: ( (otherlv_0= RULE_ID ) )
                     {
-                    // InternalFPML.g:6785:3: ( (otherlv_0= RULE_ID ) )
-                    // InternalFPML.g:6786:4: (otherlv_0= RULE_ID )
+                    // InternalFPML.g:6987:3: ( (otherlv_0= RULE_ID ) )
+                    // InternalFPML.g:6988:4: (otherlv_0= RULE_ID )
                     {
-                    // InternalFPML.g:6786:4: (otherlv_0= RULE_ID )
-                    // InternalFPML.g:6787:5: otherlv_0= RULE_ID
+                    // InternalFPML.g:6988:4: (otherlv_0= RULE_ID )
+                    // InternalFPML.g:6989:5: otherlv_0= RULE_ID
                     {
 
                     					if (current==null) {
@@ -17676,13 +18101,13 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalFPML.g:6799:3: ( (lv_functionExpression_1_0= ruleEffectFullExpression ) )
+                    // InternalFPML.g:7001:3: ( (lv_functionExpression_1_0= ruleEffectFullExpression ) )
                     {
-                    // InternalFPML.g:6799:3: ( (lv_functionExpression_1_0= ruleEffectFullExpression ) )
-                    // InternalFPML.g:6800:4: (lv_functionExpression_1_0= ruleEffectFullExpression )
+                    // InternalFPML.g:7001:3: ( (lv_functionExpression_1_0= ruleEffectFullExpression ) )
+                    // InternalFPML.g:7002:4: (lv_functionExpression_1_0= ruleEffectFullExpression )
                     {
-                    // InternalFPML.g:6800:4: (lv_functionExpression_1_0= ruleEffectFullExpression )
-                    // InternalFPML.g:6801:5: lv_functionExpression_1_0= ruleEffectFullExpression
+                    // InternalFPML.g:7002:4: (lv_functionExpression_1_0= ruleEffectFullExpression )
+                    // InternalFPML.g:7003:5: lv_functionExpression_1_0= ruleEffectFullExpression
                     {
 
                     					newCompositeNode(grammarAccess.getEffectFullIfBodyAccess().getFunctionExpressionEffectFullExpressionParserRuleCall_1_0());
@@ -17740,12 +18165,12 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
     protected DFA41 dfa41 = new DFA41(this);
     static final String dfa_1s = "\20\uffff";
     static final String dfa_2s = "\1\4\2\25\7\uffff\2\4\4\uffff";
-    static final String dfa_3s = "\1\62\2\47\7\uffff\1\113\1\102\4\uffff";
-    static final String dfa_4s = "\3\uffff\1\7\1\10\1\11\1\12\1\13\1\2\1\1\2\uffff\1\5\1\6\1\3\1\4";
+    static final String dfa_3s = "\1\62\2\47\7\uffff\1\114\1\105\4\uffff";
+    static final String dfa_4s = "\3\uffff\1\7\1\10\1\11\1\12\1\13\1\1\1\2\2\uffff\1\6\1\5\1\4\1\3";
     static final String dfa_5s = "\20\uffff}>";
     static final String[] dfa_6s = {
             "\1\4\23\uffff\1\1\16\uffff\1\5\3\uffff\1\2\1\uffff\1\7\1\3\2\uffff\2\6",
-            "\1\10\21\uffff\1\11",
+            "\1\11\21\uffff\1\10",
             "\1\13\21\uffff\1\12",
             "",
             "",
@@ -17754,8 +18179,8 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             "",
             "",
             "",
-            "\1\14\62\uffff\2\15\7\uffff\3\15\2\uffff\1\15\1\uffff\1\15\1\uffff\3\15",
-            "\1\16\37\uffff\2\17\3\uffff\2\17\10\uffff\20\17",
+            "\1\15\62\uffff\2\14\7\uffff\3\14\2\uffff\2\14\1\uffff\1\14\1\uffff\3\14",
+            "\1\17\37\uffff\2\16\3\uffff\2\16\10\uffff\20\16\2\uffff\1\16",
             "",
             "",
             "",
@@ -17786,20 +18211,21 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             return "3158:2: ( ( () otherlv_1= 'IO' otherlv_2= '[' ( (lv_innerValue_3_0= ruleEffectFullExpression ) ) otherlv_4= ']' ) | ( () otherlv_6= 'IO' otherlv_7= '(' ( (lv_innerValue_8_0= ruleExpression ) ) otherlv_9= ')' ) | ( () otherlv_11= 'IOF' otherlv_12= '(' ( (otherlv_13= RULE_ID ) ) otherlv_14= ')' ) | ( () otherlv_16= 'IOF' otherlv_17= '(' ( (lv_purePrimitive_18_0= rulePrimitivePureFunction ) ) otherlv_19= ')' ) | ( () otherlv_21= 'IOF' otherlv_22= '[' ( (otherlv_23= RULE_ID ) ) otherlv_24= ']' ) | ( () otherlv_26= 'IOF' otherlv_27= '[' ( (lv_effectFullPrimitive_28_0= rulePrimitiveEffectFullFunction ) ) otherlv_29= ']' ) | this_EffectFullFunctionValue_30= ruleEffectFullFunctionValue | this_EffectFullDataValue_31= ruleEffectFullDataValue | this_EffectFullProdValue_32= ruleEffectFullProdValue | this_EffectFullSumValue_33= ruleEffectFullSumValue | this_EffectFullValueRef_34= ruleEffectFullValueRef )";
         }
     }
-    static final String dfa_7s = "\15\uffff";
-    static final String dfa_8s = "\1\67\6\uffff\1\25\5\uffff";
-    static final String dfa_9s = "\1\113\6\uffff\1\47\5\uffff";
-    static final String dfa_10s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\uffff\1\11\1\12\1\13\1\7\1\10";
-    static final String dfa_11s = "\15\uffff}>";
+    static final String dfa_7s = "\16\uffff";
+    static final String dfa_8s = "\1\67\6\uffff\1\25\6\uffff";
+    static final String dfa_9s = "\1\114\6\uffff\1\47\6\uffff";
+    static final String dfa_10s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\uffff\1\11\1\12\1\13\1\14\1\7\1\10";
+    static final String dfa_11s = "\16\uffff}>";
     static final String[] dfa_12s = {
-            "\1\4\1\5\7\uffff\1\10\1\11\1\12\2\uffff\1\1\1\uffff\1\3\1\uffff\1\2\1\6\1\7",
+            "\1\4\1\5\7\uffff\1\10\1\11\1\12\2\uffff\1\13\1\1\1\uffff\1\3\1\uffff\1\2\1\6\1\7",
             "",
             "",
             "",
             "",
             "",
             "",
-            "\1\13\21\uffff\1\14",
+            "\1\14\21\uffff\1\15",
+            "",
             "",
             "",
             "",
@@ -17828,7 +18254,7 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
             this.transition = dfa_12;
         }
         public String getDescription() {
-            return "5851:2: (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf )";
+            return "5952:2: (this_PrimitivePrint_0= rulePrimitivePrint | this_ApplyFIO_1= ruleApplyFIO | this_PrimitiveReturn_2= rulePrimitiveReturn | this_LeftAlgebraicIO_3= ruleLeftAlgebraicIO | this_RightAlgebraicIO_4= ruleRightAlgebraicIO | this_ExtractEffectFull_5= ruleExtractEffectFull | this_LiftPureFunction_6= ruleLiftPureFunction | this_LiftEffectFullFunction_7= ruleLiftEffectFullFunction | this_IsLeftEffectFull_8= ruleIsLeftEffectFull | this_IsRightEffectFull_9= ruleIsRightEffectFull | this_EffectFullIf_10= ruleEffectFullIf | this_EffectFullEitherIf_11= ruleEffectFullEitherIf )";
         }
     }
  
@@ -17853,24 +18279,24 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000000C00000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0xFFFF5630042000F0L,0x0000000000000007L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0xFFFF5630042000F0L,0x0000000000000027L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000001000000L});
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x000000CFE1002000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0186688005000010L,0x0000000000000FE7L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0186688005000010L,0x0000000000001FE7L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000008000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0xFFF8063000000000L,0x0000000000000007L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0xFFF8063000000000L,0x0000000000000027L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000010000002L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0180000000000000L,0x0000000000000FE7L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0180000000000000L,0x0000000000001FE7L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000001000000000L});
     public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000060000000000L});
     public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000010000000000L});
     public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0180000000000000L,0x0000000000000EA7L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0180000000000000L,0x0000000000001D67L});
     public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000800000000000L});
     public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000060000000L});
     public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000800000000L});
@@ -17879,6 +18305,6 @@ public class InternalFPMLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
     public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
     public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0180000000200010L,0x0000000000000FE7L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0180000000200010L,0x0000000000001FE7L});
 
 }

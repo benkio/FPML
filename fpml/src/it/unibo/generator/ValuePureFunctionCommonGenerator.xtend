@@ -44,26 +44,26 @@ class ValuePureFunctionCommonGenerator {
 		}
 	}
 	
-		def String compile(PureFunctionType pft) '''
-	«IF (pft.value.functionBody instanceof CompositionFunctionBodyPure) && pft.value.arg != null»
-		new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))»>() {
-				@Override
-				public «typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
-					 return «compile(pft.value.functionBody, pft.value.arg.name, true)»;
-				}
-		}
-	«ELSEIF (pft.value.functionBody instanceof EmptyFunctionBody)»
-		new F<() {
+	def String compile(PureFunctionType pft) '''
+		«IF (pft.value.functionBody instanceof CompositionFunctionBodyPure) && pft.value.arg != null»
+			new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))»>() {
 					@Override
-					public Object f(Object «pft.value.arg.name») {
-						throw new UnsupportedOperationException("TODO");
+					public «typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
+						 return «compile(pft.value.functionBody, pft.value.arg.name, true)»;
 					}
 			}
-	«ELSE»
-	«compile(pft.value.functionBody, "", true)»
-	«ENDIF»
-	'''
-	
+		«ELSEIF (pft.value.functionBody instanceof EmptyFunctionBody)»
+			new F<() {
+						@Override
+						public Object f(Object «pft.value.arg.name») {
+							throw new UnsupportedOperationException("TODO");
+						}
+				}
+		«ELSE»
+		«compile(pft.value.functionBody, "", true)»
+		«ENDIF»
+		'''
+		
 	
 	def String compile(FunctionBodyPure pf, String argName, boolean outSideCall) {
 		switch pf { 
@@ -123,6 +123,14 @@ class ValuePureFunctionCommonGenerator {
 			LogicAnd: "Primitives.logicAnd(" + acc + ")"
 			LogicOr: "Primitives.logicOr(" + acc + ")"
 			ExtractPure: acc + ".getValue()"
+			IsLeftPure: "Primitives.isLeft(" + acc +")"
+			IsRightPure: "Primitives.isRight("+ acc +")"
+			PureIf: "Primitives.pureIf(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
+											   + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls) 
+											   + ")"
+    		PureEitherIf: "Primitives.pureEitherIf(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
+											   + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls) 
+											   + ")"
 		}
 	}
 	
@@ -141,6 +149,20 @@ class ValuePureFunctionCommonGenerator {
 	//		PrimitivePureFunction: compilePrimitivePureFunctionRef(pf) CANNOT HAPPEN, DOES NOT HAVE NAME REFERENCE
 			PureArgument: pf.name
 			Expression: compile(pf)
+		}
+	}
+	
+	def String compile(PureIfBody pib) {
+		switch pib {
+			Expression: compile(pib as Expression)
+			PureFunction: {
+				switch pib {
+					PureValue: pib.name
+					PureFunctionDefinition: compilePureFunctionRef(pib as PureFunctionDefinition)
+					PrimitivePureFunction: compilePureFunctionRef(pib as PrimitivePureFunction)
+					PureArgument: pib.name
+				}
+			}
 		}
 	}
 }

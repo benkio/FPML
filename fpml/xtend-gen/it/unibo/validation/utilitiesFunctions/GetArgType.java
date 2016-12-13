@@ -9,6 +9,7 @@ import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullEitherIf;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
@@ -59,6 +60,7 @@ import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureEitherIf;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
@@ -253,6 +255,12 @@ public class GetArgType {
     }
     if (!_matched) {
       if (f instanceof PureIf) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createBooleanType();
+      }
+    }
+    if (!_matched) {
+      if (f instanceof PureEitherIf) {
         _matched=true;
         return FPMLFactory.eINSTANCE.createBooleanType();
       }
@@ -503,6 +511,12 @@ public class GetArgType {
     }
     if (!_matched) {
       if (function instanceof EffectFullIf) {
+        _matched=true;
+        _switchResult = FPMLFactory.eINSTANCE.createBooleanType();
+      }
+    }
+    if (!_matched) {
+      if (function instanceof EffectFullEitherIf) {
         _matched=true;
         _switchResult = FPMLFactory.eINSTANCE.createBooleanType();
       }

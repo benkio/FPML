@@ -466,6 +466,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createPureIfBodyAdapter();
       }
       @Override
+      public Adapter casePureEitherIf(PureEitherIf object)
+      {
+        return createPureEitherIfAdapter();
+      }
+      @Override
       public Adapter casePrimitiveEffectFullFunction(PrimitiveEffectFullFunction object)
       {
         return createPrimitiveEffectFullFunctionAdapter();
@@ -544,6 +549,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseEffectFullIf(EffectFullIf object)
       {
         return createEffectFullIfAdapter();
+      }
+      @Override
+      public Adapter caseEffectFullEitherIf(EffectFullEitherIf object)
+      {
+        return createEffectFullEitherIfAdapter();
       }
       @Override
       public Adapter caseEffectFullIfBody(EffectFullIfBody object)
@@ -1813,6 +1823,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.PureEitherIf <em>Pure Either If</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.PureEitherIf
+   * @generated
+   */
+  public Adapter createPureEitherIfAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link it.unibo.fPML.PrimitiveEffectFullFunction <em>Primitive Effect Full Function</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2048,6 +2073,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEffectFullIfAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.EffectFullEitherIf <em>Effect Full Either If</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.EffectFullEitherIf
+   * @generated
+   */
+  public Adapter createEffectFullEitherIfAdapter()
   {
     return null;
   }

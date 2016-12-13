@@ -12,11 +12,14 @@ import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
+import it.unibo.fPML.EffectFullEitherIf;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionBlock;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullIf;
+import it.unibo.fPML.EffectFullIfBody;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
@@ -58,9 +61,12 @@ import it.unibo.fPML.PrimitiveReturn;
 import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureEitherIf;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureIf;
+import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.RightAlgebraic;
@@ -435,6 +441,38 @@ public class EffectFullFunctionGenerator {
         _switchResult = _builder;
       }
     }
+    if (!_matched) {
+      if (pef instanceof EffectFullIf) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".bind((Boolean c) -> PrimtivesEffectFull.effectFullIf(c,");
+        EffectFullIfBody _then = ((EffectFullIf)pef).getThen();
+        String _compile = this.commonEffectFullFunctions.compile(_then);
+        _builder.append(_compile, "");
+        _builder.append(" ,");
+        EffectFullIfBody _else = ((EffectFullIf)pef).getElse();
+        String _compile_1 = this.commonEffectFullFunctions.compile(_else);
+        _builder.append(_compile_1, "");
+        _builder.append(")");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (pef instanceof EffectFullEitherIf) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".bind((Boolean c) -> PrimtivesEffectFull.effectFullIfEither(c,");
+        EffectFullIfBody _then = ((EffectFullEitherIf)pef).getThen();
+        String _compile = this.commonEffectFullFunctions.compile(_then);
+        _builder.append(_compile, "");
+        _builder.append(" ,");
+        EffectFullIfBody _else = ((EffectFullEitherIf)pef).getElse();
+        String _compile_1 = this.commonEffectFullFunctions.compile(_else);
+        _builder.append(_compile_1, "");
+        _builder.append(")");
+        _switchResult = _builder;
+      }
+    }
     return _switchResult;
   }
   
@@ -646,6 +684,38 @@ public class EffectFullFunctionGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(".map(Primitives::isRight)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (ppf instanceof PureIf) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".map((Boolean c) -> Primitives.pureIf(c, ");
+        PureIfBody _then = ((PureIf)ppf).getThen();
+        String _compile = this.commonPureFunctions.compile(_then);
+        _builder.append(_compile, "");
+        _builder.append(", ");
+        PureIfBody _else = ((PureIf)ppf).getElse();
+        String _compile_1 = this.commonPureFunctions.compile(_else);
+        _builder.append(_compile_1, "");
+        _builder.append("))");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (ppf instanceof PureEitherIf) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".map((Boolean c) -> Primitives.pureIfEither(c, ");
+        PureIfBody _then = ((PureEitherIf)ppf).getThen();
+        String _compile = this.commonPureFunctions.compile(_then);
+        _builder.append(_compile, "");
+        _builder.append(", ");
+        PureIfBody _else = ((PureEitherIf)ppf).getElse();
+        String _compile_1 = this.commonPureFunctions.compile(_else);
+        _builder.append(_compile_1, "");
+        _builder.append("))");
         _switchResult = _builder;
       }
     }

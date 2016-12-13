@@ -4837,6 +4837,15 @@ rulePrimitivePureFunction returns [EObject current=null]
 			$current = $this_PureIf_19.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPureEitherIfParserRuleCall_20());
+		}
+		this_PureEitherIf_20=rulePureEitherIf
+		{
+			$current = $this_PureEitherIf_20.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -5833,6 +5842,98 @@ rulePureIfBody returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRulePureEitherIf
+entryRulePureEitherIf returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPureEitherIfRule()); }
+	iv_rulePureEitherIf=rulePureEitherIf
+	{ $current=$iv_rulePureEitherIf.current; }
+	EOF;
+
+// Rule PureEitherIf
+rulePureEitherIf returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getPureEitherIfAccess().getPureEitherIfAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='ifEither'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getPureEitherIfAccess().getIfEitherKeyword_1());
+		}
+		otherlv_2='then'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getPureEitherIfAccess().getThenKeyword_2());
+		}
+		otherlv_3='{'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getPureEitherIfAccess().getLeftCurlyBracketKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPureEitherIfAccess().getThenPureIfBodyParserRuleCall_4_0());
+				}
+				lv_then_4_0=rulePureIfBody
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPureEitherIfRule());
+					}
+					set(
+						$current,
+						"then",
+						lv_then_4_0,
+						"it.unibo.FPML.PureIfBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_5='}'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getPureEitherIfAccess().getRightCurlyBracketKeyword_5());
+		}
+		otherlv_6='else'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getPureEitherIfAccess().getElseKeyword_6());
+		}
+		otherlv_7='{'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getPureEitherIfAccess().getLeftCurlyBracketKeyword_7());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPureEitherIfAccess().getElsePureIfBodyParserRuleCall_8_0());
+				}
+				lv_else_8_0=rulePureIfBody
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPureEitherIfRule());
+					}
+					set(
+						$current,
+						"else",
+						lv_else_8_0,
+						"it.unibo.FPML.PureIfBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_9='}'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getPureEitherIfAccess().getRightCurlyBracketKeyword_9());
+		}
+	)
+;
+
 // Entry rule entryRulePrimitiveEffectFullFunction
 entryRulePrimitiveEffectFullFunction returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionRule()); }
@@ -5945,6 +6046,15 @@ rulePrimitiveEffectFullFunction returns [EObject current=null]
 		this_EffectFullIf_10=ruleEffectFullIf
 		{
 			$current = $this_EffectFullIf_10.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getEffectFullEitherIfParserRuleCall_11());
+		}
+		this_EffectFullEitherIf_11=ruleEffectFullEitherIf
+		{
+			$current = $this_EffectFullEitherIf_11.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -6762,6 +6872,98 @@ ruleEffectFullIf returns [EObject current=null]
 		otherlv_9='}'
 		{
 			newLeafNode(otherlv_9, grammarAccess.getEffectFullIfAccess().getRightCurlyBracketKeyword_9());
+		}
+	)
+;
+
+// Entry rule entryRuleEffectFullEitherIf
+entryRuleEffectFullEitherIf returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getEffectFullEitherIfRule()); }
+	iv_ruleEffectFullEitherIf=ruleEffectFullEitherIf
+	{ $current=$iv_ruleEffectFullEitherIf.current; }
+	EOF;
+
+// Rule EffectFullEitherIf
+ruleEffectFullEitherIf returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getEffectFullEitherIfAccess().getEffectFullEitherIfAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='ifEither'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getEffectFullEitherIfAccess().getIfEitherKeyword_1());
+		}
+		otherlv_2='then'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getEffectFullEitherIfAccess().getThenKeyword_2());
+		}
+		otherlv_3='{'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getEffectFullEitherIfAccess().getLeftCurlyBracketKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getEffectFullEitherIfAccess().getThenEffectFullIfBodyParserRuleCall_4_0());
+				}
+				lv_then_4_0=ruleEffectFullIfBody
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getEffectFullEitherIfRule());
+					}
+					set(
+						$current,
+						"then",
+						lv_then_4_0,
+						"it.unibo.FPML.EffectFullIfBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_5='}'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getEffectFullEitherIfAccess().getRightCurlyBracketKeyword_5());
+		}
+		otherlv_6='else'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getEffectFullEitherIfAccess().getElseKeyword_6());
+		}
+		otherlv_7='{'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getEffectFullEitherIfAccess().getLeftCurlyBracketKeyword_7());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getEffectFullEitherIfAccess().getElseEffectFullIfBodyParserRuleCall_8_0());
+				}
+				lv_else_8_0=ruleEffectFullIfBody
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getEffectFullEitherIfRule());
+					}
+					set(
+						$current,
+						"else",
+						lv_else_8_0,
+						"it.unibo.FPML.EffectFullIfBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_9='}'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getEffectFullEitherIfAccess().getRightCurlyBracketKeyword_9());
 		}
 	)
 ;

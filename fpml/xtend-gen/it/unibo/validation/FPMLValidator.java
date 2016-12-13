@@ -3,6 +3,7 @@
  */
 package it.unibo.validation;
 
+import com.google.common.base.Objects;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.DataValue;
@@ -12,6 +13,8 @@ import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
+import it.unibo.fPML.EffectFullIf;
+import it.unibo.fPML.EffectFullIfBody;
 import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullSumTypeFactor;
 import it.unibo.fPML.EffectFullType;
@@ -31,6 +34,8 @@ import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
+import it.unibo.fPML.PureIf;
+import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureSumTypeFactor;
 import it.unibo.fPML.PureValue;
@@ -39,6 +44,7 @@ import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.validation.AbstractFPMLValidator;
 import it.unibo.validation.utilitiesFunctions.Checks;
+import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.xtext.validation.Check;
 
@@ -60,6 +66,8 @@ public class FPMLValidator extends AbstractFPMLValidator {
   public final static String FUNCTIONDEFINITIONWITHUNITARGUMENT = "The function definition cannot have the first argument as Unit type. Use Values instead";
   
   public final static String EITHERCHECKERROR = "The isRight or isLeft primitive can only be applied to SumTypes";
+  
+  public final static String IFBRANCHESTYPEMISMATCH = "The if branches types doesn\'t match, use the ifEither instead.";
   
   public final static String EFFECTFULLVALUEWARING = "This value has a pure expression content, maybe you want to move it to pure value section";
   
@@ -216,6 +224,18 @@ public class FPMLValidator extends AbstractFPMLValidator {
       }
     }
     if (!_matched) {
+      if (p instanceof PureIf) {
+        _matched=true;
+        PureIfBody _then = ((PureIf)p).getThen();
+        final ValueType thenType = GetReturnType.pureIfBody(_then);
+        PureIfBody _else = ((PureIf)p).getElse();
+        final ValueType elseType = GetReturnType.pureIfBody(_else);
+        if (((!Checks.TypeEquals(thenType, elseType)) && (!Objects.equal(thenType.eClass(), elseType.eClass())))) {
+          this.error(FPMLValidator.IFBRANCHESTYPEMISMATCH, FPMLPackage.Literals.PURE_IF__THEN);
+        }
+      }
+    }
+    if (!_matched) {
       if (p instanceof ApplyF) {
         _matched=true;
         boolean _applyF = Checks.applyF(((ApplyF)p));
@@ -277,6 +297,18 @@ public class FPMLValidator extends AbstractFPMLValidator {
         boolean _not = (!(_element2ValueTypeFromEffectFullAlgebraicType instanceof EffectFullSumTypeFactor));
         if (_not) {
           this.error(FPMLValidator.EITHERCHECKERROR, FPMLPackage.Literals.IS_RIGHT_EFFECT_FULL__TYPE);
+        }
+      }
+    }
+    if (!_matched) {
+      if (p instanceof EffectFullIf) {
+        _matched=true;
+        EffectFullIfBody _then = ((EffectFullIf)p).getThen();
+        final Type thenType = GetReturnType.effectFullIfBody(_then);
+        EffectFullIfBody _else = ((EffectFullIf)p).getElse();
+        final Type elseType = GetReturnType.effectFullIfBody(_else);
+        if (((!Checks.TypeEquals(thenType, elseType)) && (!Objects.equal(thenType.eClass(), elseType.eClass())))) {
+          this.error(FPMLValidator.IFBRANCHESTYPEMISMATCH, FPMLPackage.Literals.EFFECT_FULL_IF__THEN);
         }
       }
     }

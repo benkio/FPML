@@ -13,10 +13,13 @@ import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullEitherIf;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
+import it.unibo.fPML.EffectFullIf;
+import it.unibo.fPML.EffectFullIfBody;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullSumValue;
@@ -62,8 +65,11 @@ import it.unibo.fPML.PrimitiveReturn;
 import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureEitherIf;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
+import it.unibo.fPML.PureIf;
+import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.RightAlgebraic;
 import it.unibo.fPML.RightAlgebraicIO;
@@ -197,7 +203,7 @@ public class ValueEffectFullFunctionCommonGenerator {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IOFunctions.unit(");
         EffectFullFunction _effectFullFunctionFromIOEffectFullFunction = Others.getEffectFullFunctionFromIOEffectFullFunction(((IOEffectFullFunction)e));
-        CharSequence _compileEffectFullFunctionRef = this.compileEffectFullFunctionRef(_effectFullFunctionFromIOEffectFullFunction);
+        String _compileEffectFullFunctionRef = this.compileEffectFullFunctionRef(_effectFullFunctionFromIOEffectFullFunction);
         _builder.append(_compileEffectFullFunctionRef, "");
         _builder.append(")");
         _switchResult = _builder.toString();
@@ -206,8 +212,8 @@ public class ValueEffectFullFunctionCommonGenerator {
     return _switchResult;
   }
   
-  public CharSequence compileEffectFullFunctionRef(final EffectFullFunction function) {
-    CharSequence _switchResult = null;
+  public String compileEffectFullFunctionRef(final EffectFullFunction function) {
+    String _switchResult = null;
     boolean _matched = false;
     if (function instanceof EffectFullValue) {
       _matched=true;
@@ -215,7 +221,7 @@ public class ValueEffectFullFunctionCommonGenerator {
       _builder.append("EffectFullValue::");
       String _name = ((EffectFullValue) function).getName();
       _builder.append(_name, "");
-      _switchResult = _builder;
+      _switchResult = _builder.toString();
     }
     if (!_matched) {
       if (function instanceof EffectFullFunctionDefinition) {
@@ -224,7 +230,7 @@ public class ValueEffectFullFunctionCommonGenerator {
         _builder.append("EffectFullFunctionDefinitions::");
         String _name = ((EffectFullFunctionDefinition)function).getName();
         _builder.append(_name, "");
-        _switchResult = _builder;
+        _switchResult = _builder.toString();
       }
     }
     if (!_matched) {
@@ -369,7 +375,7 @@ public class ValueEffectFullFunctionCommonGenerator {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IOFunctions.unit(");
         EffectFullFunction _effectFullFunctionFromIOEffectFullFunction = Others.getEffectFullFunctionFromIOEffectFullFunction(((IOEffectFullFunction)v));
-        CharSequence _compileEffectFullFunctionRef = this.compileEffectFullFunctionRef(_effectFullFunctionFromIOEffectFullFunction);
+        String _compileEffectFullFunctionRef = this.compileEffectFullFunctionRef(_effectFullFunctionFromIOEffectFullFunction);
         _builder.append(_compileEffectFullFunctionRef, "");
         _builder.append(")");
         _switchResult = _builder;
@@ -742,6 +748,42 @@ public class ValueEffectFullFunctionCommonGenerator {
         _switchResult = _builder.toString();
       }
     }
+    if (!_matched) {
+      if (peff instanceof EffectFullIf) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(acc, "");
+        _builder.append(", (Boolean c) -> PrimitivesEffectFull.effectFullIf(c, ");
+        EffectFullIfBody _then = ((EffectFullIf)peff).getThen();
+        String _compile = this.compile(_then);
+        _builder.append(_compile, "");
+        _builder.append(" , ");
+        EffectFullIfBody _else = ((EffectFullIf)peff).getElse();
+        String _compile_1 = this.compile(_else);
+        _builder.append(_compile_1, "");
+        _builder.append("))");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (peff instanceof EffectFullEitherIf) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.bind(");
+        _builder.append(acc, "");
+        _builder.append(", (Boolean c) -> PrimitivesEffectFull.effectFullIfEither(c, ");
+        EffectFullIfBody _then = ((EffectFullEitherIf)peff).getThen();
+        String _compile = this.compile(_then);
+        _builder.append(_compile, "");
+        _builder.append(" , ");
+        EffectFullIfBody _else = ((EffectFullEitherIf)peff).getElse();
+        String _compile_1 = this.compile(_else);
+        _builder.append(_compile_1, "");
+        _builder.append("))");
+        _switchResult = _builder.toString();
+      }
+    }
     return _switchResult;
   }
   
@@ -1000,6 +1042,42 @@ public class ValueEffectFullFunctionCommonGenerator {
         _switchResult = _builder.toString();
       }
     }
+    if (!_matched) {
+      if (ppf instanceof PureIf) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(acc, "");
+        _builder.append(", (Boolean c) -> Primitives.pureIf(c, ");
+        PureIfBody _then = ((PureIf)ppf).getThen();
+        String _compile = this.commonPureFunctions.compile(_then);
+        _builder.append(_compile, "");
+        _builder.append(" , ");
+        PureIfBody _else = ((PureIf)ppf).getElse();
+        String _compile_1 = this.commonPureFunctions.compile(_else);
+        _builder.append(_compile_1, "");
+        _builder.append("))");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (ppf instanceof PureEitherIf) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(acc, "");
+        _builder.append(", (Boolean c) -> Primitives.pureIfEither(c, ");
+        PureIfBody _then = ((PureEitherIf)ppf).getThen();
+        String _compile = this.commonPureFunctions.compile(_then);
+        _builder.append(_compile, "");
+        _builder.append(" , ");
+        PureIfBody _else = ((PureEitherIf)ppf).getElse();
+        String _compile_1 = this.commonPureFunctions.compile(_else);
+        _builder.append(_compile_1, "");
+        _builder.append("))");
+        _switchResult = _builder.toString();
+      }
+    }
     return _switchResult;
   }
   
@@ -1028,5 +1106,45 @@ public class ValueEffectFullFunctionCommonGenerator {
       _builder.append(")");
       return _builder.toString();
     }
+  }
+  
+  public String compile(final EffectFullIfBody pib) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (pib instanceof EffectFullExpression) {
+      _matched=true;
+      _switchResult = this.compile(((EffectFullExpression) pib));
+    }
+    if (!_matched) {
+      if (pib instanceof EffectFullFunction) {
+        _matched=true;
+        String _switchResult_1 = null;
+        boolean _matched_1 = false;
+        if (pib instanceof EffectFullValue) {
+          _matched_1=true;
+          _switchResult_1 = ((EffectFullValue)pib).getName();
+        }
+        if (!_matched_1) {
+          if (pib instanceof EffectFullFunctionDefinition) {
+            _matched_1=true;
+            _switchResult_1 = this.compileEffectFullFunctionRef(((EffectFullFunctionDefinition) pib));
+          }
+        }
+        if (!_matched_1) {
+          if (pib instanceof PrimitiveEffectFullFunction) {
+            _matched_1=true;
+            _switchResult_1 = this.compileEffectFullFunctionRef(((PrimitiveEffectFullFunction) pib));
+          }
+        }
+        if (!_matched_1) {
+          if (pib instanceof EffectFullArgument) {
+            _matched_1=true;
+            _switchResult_1 = ((EffectFullArgument)pib).getName();
+          }
+        }
+        _switchResult = _switchResult_1;
+      }
+    }
+    return _switchResult;
   }
 }

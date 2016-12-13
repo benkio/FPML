@@ -784,6 +784,17 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FPMLPackage.PURE_EITHER_IF:
+      {
+        PureEitherIf pureEitherIf = (PureEitherIf)theEObject;
+        T result = casePureEitherIf(pureEitherIf);
+        if (result == null) result = casePrimitivePureFunction(pureEitherIf);
+        if (result == null) result = casePureFunction(pureEitherIf);
+        if (result == null) result = casePrimitiveFunction(pureEitherIf);
+        if (result == null) result = caseFunction(pureEitherIf);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION:
       {
         PrimitiveEffectFullFunction primitiveEffectFullFunction = (PrimitiveEffectFullFunction)theEObject;
@@ -975,6 +986,19 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseFunction(effectFullIf);
         if (result == null) result = caseEffectFullBodyContent(effectFullIf);
         if (result == null) result = casePrimitiveFunction(effectFullIf);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.EFFECT_FULL_EITHER_IF:
+      {
+        EffectFullEitherIf effectFullEitherIf = (EffectFullEitherIf)theEObject;
+        T result = caseEffectFullEitherIf(effectFullEitherIf);
+        if (result == null) result = casePrimitiveEffectFullFunction(effectFullEitherIf);
+        if (result == null) result = caseEffectFullFunction(effectFullEitherIf);
+        if (result == null) result = caseEffectFullPrimitive(effectFullEitherIf);
+        if (result == null) result = caseFunction(effectFullEitherIf);
+        if (result == null) result = caseEffectFullBodyContent(effectFullEitherIf);
+        if (result == null) result = casePrimitiveFunction(effectFullEitherIf);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2391,6 +2415,22 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Pure Either If</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pure Either If</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePureEitherIf(PureEitherIf object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2642,6 +2682,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEffectFullIf(EffectFullIf object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Effect Full Either If</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Effect Full Either If</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEffectFullEitherIf(EffectFullEitherIf object)
   {
     return null;
   }

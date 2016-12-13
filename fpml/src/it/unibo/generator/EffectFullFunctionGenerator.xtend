@@ -103,6 +103,8 @@ class EffectFullFunctionGenerator {
 			LiftEffectFullFunction: compileIOWalkthrough(pef)
 			IsLeftEffectFull: '''.bind(PrimitivesEffectFull::isLeft)'''
 			IsRightEffectFull: '''.bind(PrimitivesEffectFull::isRight)'''
+      		EffectFullIf: '''.bind((Boolean c) -> PrimtivesEffectFull.effectFullIf(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»)'''
+      		EffectFullEitherIf: '''.bind((Boolean c) -> PrimtivesEffectFull.effectFullIfEither(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»)'''
 		}
 	}
 	
@@ -149,6 +151,8 @@ class EffectFullFunctionGenerator {
 			ExtractPure: '''.bind((IPureData<«typeGenerator.compile(ppf.data.content)»> d) -> d.getValue())'''
 			IsLeftPure: '''.map(Primitives::isLeft)'''
 			IsRightPure: '''.map(Primitives::isRight)'''
+			PureIf: '''.map((Boolean c) -> Primitives.pureIf(c, «commonPureFunctions.compile(ppf.then)», «commonPureFunctions.compile(ppf.^else)»))'''
+      		PureEitherIf: '''.map((Boolean c) -> Primitives.pureIfEither(c, «commonPureFunctions.compile(ppf.then)», «commonPureFunctions.compile(ppf.^else)»))'''
 		}
 	}
 	

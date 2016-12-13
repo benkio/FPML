@@ -18,6 +18,8 @@ import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
 import it.unibo.fPML.IntegerType;
+import it.unibo.fPML.IsLeftPure;
+import it.unibo.fPML.IsRightPure;
 import it.unibo.fPML.LeftAlgebraic;
 import it.unibo.fPML.LogicAnd;
 import it.unibo.fPML.LogicOr;
@@ -32,9 +34,12 @@ import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureEitherIf;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
+import it.unibo.fPML.PureIf;
+import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureSumValue;
@@ -625,6 +630,48 @@ public class ValuePureFunctionCommonGenerator {
         _switchResult = (acc + ".getValue()");
       }
     }
+    if (!_matched) {
+      if (purePrimitive instanceof IsLeftPure) {
+        _matched=true;
+        _switchResult = (("Primitives.isLeft(" + acc) + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof IsRightPure) {
+        _matched=true;
+        _switchResult = (("Primitives.isRight(" + acc) + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof PureIf) {
+        _matched=true;
+        PureIfBody _then = ((PureIf)purePrimitive).getThen();
+        PureFunction _functionFromPureIfBody = Others.getFunctionFromPureIfBody(_then);
+        String _compileCall = this.compileCall(_functionFromPureIfBody, acc, argName, outsideCalls);
+        String _plus = ((("Primitives.pureIf(" + acc) + ", ") + _compileCall);
+        String _plus_1 = (_plus + ", ");
+        PureIfBody _else = ((PureIf)purePrimitive).getElse();
+        PureFunction _functionFromPureIfBody_1 = Others.getFunctionFromPureIfBody(_else);
+        String _compileCall_1 = this.compileCall(_functionFromPureIfBody_1, acc, argName, outsideCalls);
+        String _plus_2 = (_plus_1 + _compileCall_1);
+        _switchResult = (_plus_2 + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof PureEitherIf) {
+        _matched=true;
+        PureIfBody _then = ((PureEitherIf)purePrimitive).getThen();
+        PureFunction _functionFromPureIfBody = Others.getFunctionFromPureIfBody(_then);
+        String _compileCall = this.compileCall(_functionFromPureIfBody, acc, argName, outsideCalls);
+        String _plus = ((("Primitives.pureEitherIf(" + acc) + ", ") + _compileCall);
+        String _plus_1 = (_plus + ", ");
+        PureIfBody _else = ((PureEitherIf)purePrimitive).getElse();
+        PureFunction _functionFromPureIfBody_1 = Others.getFunctionFromPureIfBody(_else);
+        String _compileCall_1 = this.compileCall(_functionFromPureIfBody_1, acc, argName, outsideCalls);
+        String _plus_2 = (_plus_1 + _compileCall_1);
+        _switchResult = (_plus_2 + ")");
+      }
+    }
     return _switchResult;
   }
   
@@ -678,6 +725,46 @@ public class ValuePureFunctionCommonGenerator {
       if (pf instanceof Expression) {
         _matched=true;
         _switchResult = this.compile(((Expression)pf));
+      }
+    }
+    return _switchResult;
+  }
+  
+  public String compile(final PureIfBody pib) {
+    String _switchResult = null;
+    boolean _matched = false;
+    if (pib instanceof Expression) {
+      _matched=true;
+      _switchResult = this.compile(((Expression) pib));
+    }
+    if (!_matched) {
+      if (pib instanceof PureFunction) {
+        _matched=true;
+        String _switchResult_1 = null;
+        boolean _matched_1 = false;
+        if (pib instanceof PureValue) {
+          _matched_1=true;
+          _switchResult_1 = ((PureValue)pib).getName();
+        }
+        if (!_matched_1) {
+          if (pib instanceof PureFunctionDefinition) {
+            _matched_1=true;
+            _switchResult_1 = this.compilePureFunctionRef(((PureFunctionDefinition) pib));
+          }
+        }
+        if (!_matched_1) {
+          if (pib instanceof PrimitivePureFunction) {
+            _matched_1=true;
+            _switchResult_1 = this.compilePureFunctionRef(((PrimitivePureFunction) pib));
+          }
+        }
+        if (!_matched_1) {
+          if (pib instanceof PureArgument) {
+            _matched_1=true;
+            _switchResult_1 = ((PureArgument)pib).getName();
+          }
+        }
+        _switchResult = _switchResult_1;
       }
     }
     return _switchResult;

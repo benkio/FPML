@@ -726,6 +726,15 @@ public interface FPMLFactory extends EFactory
   PureIfBody createPureIfBody();
 
   /**
+   * Returns a new object of class '<em>Pure Either If</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Either If</em>'.
+   * @generated
+   */
+  PureEitherIf createPureEitherIf();
+
+  /**
    * Returns a new object of class '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -868,6 +877,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   EffectFullIf createEffectFullIf();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Either If</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Either If</em>'.
+   * @generated
+   */
+  EffectFullEitherIf createEffectFullEitherIf();
 
   /**
    * Returns a new object of class '<em>Effect Full If Body</em>'.

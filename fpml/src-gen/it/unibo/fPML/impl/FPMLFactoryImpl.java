@@ -143,6 +143,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.IS_RIGHT_PURE: return createIsRightPure();
       case FPMLPackage.PURE_IF: return createPureIf();
       case FPMLPackage.PURE_IF_BODY: return createPureIfBody();
+      case FPMLPackage.PURE_EITHER_IF: return createPureEitherIf();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
       case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
       case FPMLPackage.LEFT_ALGEBRAIC_IO: return createLeftAlgebraicIO();
@@ -159,6 +160,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.IS_LEFT_EFFECT_FULL: return createIsLeftEffectFull();
       case FPMLPackage.IS_RIGHT_EFFECT_FULL: return createIsRightEffectFull();
       case FPMLPackage.EFFECT_FULL_IF: return createEffectFullIf();
+      case FPMLPackage.EFFECT_FULL_EITHER_IF: return createEffectFullEitherIf();
       case FPMLPackage.EFFECT_FULL_IF_BODY: return createEffectFullIfBody();
       case FPMLPackage.PURE_VALUE: return createPureValue();
       case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
@@ -1042,6 +1044,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PureEitherIf createPureEitherIf()
+  {
+    PureEitherIfImpl pureEitherIf = new PureEitherIfImpl();
+    return pureEitherIf;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PrimitiveEffectFullFunction createPrimitiveEffectFullFunction()
   {
     PrimitiveEffectFullFunctionImpl primitiveEffectFullFunction = new PrimitiveEffectFullFunctionImpl();
@@ -1211,6 +1224,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     EffectFullIfImpl effectFullIf = new EffectFullIfImpl();
     return effectFullIf;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullEitherIf createEffectFullEitherIf()
+  {
+    EffectFullEitherIfImpl effectFullEitherIf = new EffectFullEitherIfImpl();
+    return effectFullEitherIf;
   }
 
   /**

@@ -28,6 +28,7 @@ class FPMLValidator extends AbstractFPMLValidator {
 	public static val APPLYFUNCTIONTOWRONGVALUE = "The function is APPLYF has a wrong value type"
 	public static val FUNCTIONDEFINITIONWITHUNITARGUMENT = "The function definition cannot have the first argument as Unit type. Use Values instead"
 	public static val EITHERCHECKERROR = "The isRight or isLeft primitive can only be applied to SumTypes"
+	public static val IFBRANCHESTYPEMISMATCH = "The if branches types doesn't match, use the ifEither instead."
 	
 	public static val EFFECTFULLVALUEWARING = "This value has a pure expression content, maybe you want to move it to pure value section"
 	public static val EFFECTFULLDATAWARING = "This data has a pure type, maybe you want to move it to pure data section"
@@ -106,6 +107,13 @@ class FPMLValidator extends AbstractFPMLValidator {
    							error(EITHERCHECKERROR, FPMLPackage.Literals.IS_LEFT_PURE__TYPE)
    			IsRightPure: if (!(Others.getElement2ValueTypeFromPureAlgebraicType(p.type) instanceof PureSumTypeFactor))
    							error(EITHERCHECKERROR, FPMLPackage.Literals.IS_RIGHT_PURE__TYPE)
+			PureIf: {
+				val thenType = GetReturnType.pureIfBody(p.then)
+				val elseType = GetReturnType.pureIfBody(p.getElse)
+				if (!Checks.TypeEquals(thenType, elseType) && thenType.eClass != elseType.eClass){
+					error(IFBRANCHESTYPEMISMATCH, FPMLPackage.Literals.PURE_IF__THEN)
+			}
+			}
    			ApplyF: {
    				if (!Checks.applyF(p))
    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_F__FUNCTION_TYPE)
@@ -133,6 +141,12 @@ class FPMLValidator extends AbstractFPMLValidator {
    								error(EITHERCHECKERROR, FPMLPackage.Literals.IS_LEFT_EFFECT_FULL__TYPE)
    			IsRightEffectFull: if (!(Others.getElement2ValueTypeFromEffectFullAlgebraicType(p.type) instanceof EffectFullSumTypeFactor))
    								error(EITHERCHECKERROR, FPMLPackage.Literals.IS_RIGHT_EFFECT_FULL__TYPE)
+   			EffectFullIf: {
+   				val thenType = GetReturnType.effectFullIfBody(p.getThen)
+				val elseType = GetReturnType.effectFullIfBody(p.getElse)
+				if (!Checks.TypeEquals(thenType, elseType) && thenType.eClass != elseType.eClass)
+   					error(IFBRANCHESTYPEMISMATCH, FPMLPackage.Literals.EFFECT_FULL_IF__THEN)
+			}
    			ApplyFIO: {
    				if (!Checks.applyFIO(p))
    					error(APPLYFUNCTIONTOWRONGVALUE, FPMLPackage.Literals.APPLY_FIO__FUNCTION_TYPE)

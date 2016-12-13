@@ -2341,6 +2341,43 @@ public interface FPMLPackage extends EPackage
   int PURE_IF_BODY_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.PureEitherIfImpl <em>Pure Either If</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.PureEitherIfImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureEitherIf()
+   * @generated
+   */
+  int PURE_EITHER_IF = 78;
+
+  /**
+   * The feature id for the '<em><b>Then</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PURE_EITHER_IF__THEN = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Else</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PURE_EITHER_IF__ELSE = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Pure Either If</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PURE_EITHER_IF_FEATURE_COUNT = PRIMITIVE_PURE_FUNCTION_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullFunctionImpl <em>Primitive Effect Full Function</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2348,7 +2385,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullFunction()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_FUNCTION = 78;
+  int PRIMITIVE_EFFECT_FULL_FUNCTION = 79;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Function</em>' class.
@@ -2367,7 +2404,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitivePrint()
    * @generated
    */
-  int PRIMITIVE_PRINT = 79;
+  int PRIMITIVE_PRINT = 80;
 
   /**
    * The number of structural features of the '<em>Primitive Print</em>' class.
@@ -2386,7 +2423,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLeftAlgebraicIO()
    * @generated
    */
-  int LEFT_ALGEBRAIC_IO = 80;
+  int LEFT_ALGEBRAIC_IO = 81;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2414,7 +2451,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getRightAlgebraicIO()
    * @generated
    */
-  int RIGHT_ALGEBRAIC_IO = 81;
+  int RIGHT_ALGEBRAIC_IO = 82;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2442,7 +2479,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveEffectFullValue()
    * @generated
    */
-  int PRIMITIVE_EFFECT_FULL_VALUE = 82;
+  int PRIMITIVE_EFFECT_FULL_VALUE = 83;
 
   /**
    * The number of structural features of the '<em>Primitive Effect Full Value</em>' class.
@@ -2461,7 +2498,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveRandom()
    * @generated
    */
-  int PRIMITIVE_RANDOM = 83;
+  int PRIMITIVE_RANDOM = 84;
 
   /**
    * The number of structural features of the '<em>Primitive Random</em>' class.
@@ -2480,7 +2517,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveReturn()
    * @generated
    */
-  int PRIMITIVE_RETURN = 84;
+  int PRIMITIVE_RETURN = 85;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2508,7 +2545,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPrimitiveTime()
    * @generated
    */
-  int PRIMITIVE_TIME = 85;
+  int PRIMITIVE_TIME = 86;
 
   /**
    * The number of structural features of the '<em>Primitive Time</em>' class.
@@ -2527,7 +2564,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIO()
    * @generated
    */
-  int APPLY_FIO = 86;
+  int APPLY_FIO = 87;
 
   /**
    * The feature id for the '<em><b>Function Type</b></em>' containment reference.
@@ -2564,7 +2601,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getApplyFIOFactor()
    * @generated
    */
-  int APPLY_FIO_FACTOR = 87;
+  int APPLY_FIO_FACTOR = 88;
 
   /**
    * The feature id for the '<em><b>Value Reference</b></em>' reference.
@@ -2610,7 +2647,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getExtractEffectFull()
    * @generated
    */
-  int EXTRACT_EFFECT_FULL = 88;
+  int EXTRACT_EFFECT_FULL = 89;
 
   /**
    * The feature id for the '<em><b>Data</b></em>' reference.
@@ -2638,7 +2675,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLiftPureFunction()
    * @generated
    */
-  int LIFT_PURE_FUNCTION = 89;
+  int LIFT_PURE_FUNCTION = 90;
 
   /**
    * The feature id for the '<em><b>Function Ref</b></em>' reference.
@@ -2675,7 +2712,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getLiftEffectFullFunction()
    * @generated
    */
-  int LIFT_EFFECT_FULL_FUNCTION = 90;
+  int LIFT_EFFECT_FULL_FUNCTION = 91;
 
   /**
    * The feature id for the '<em><b>Function Ref</b></em>' reference.
@@ -2712,7 +2749,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsLeftEffectFull()
    * @generated
    */
-  int IS_LEFT_EFFECT_FULL = 91;
+  int IS_LEFT_EFFECT_FULL = 92;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2740,7 +2777,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIsRightEffectFull()
    * @generated
    */
-  int IS_RIGHT_EFFECT_FULL = 92;
+  int IS_RIGHT_EFFECT_FULL = 93;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2768,7 +2805,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullIf()
    * @generated
    */
-  int EFFECT_FULL_IF = 93;
+  int EFFECT_FULL_IF = 94;
 
   /**
    * The feature id for the '<em><b>Then</b></em>' containment reference.
@@ -2798,6 +2835,43 @@ public interface FPMLPackage extends EPackage
   int EFFECT_FULL_IF_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.EffectFullEitherIfImpl <em>Effect Full Either If</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.EffectFullEitherIfImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullEitherIf()
+   * @generated
+   */
+  int EFFECT_FULL_EITHER_IF = 95;
+
+  /**
+   * The feature id for the '<em><b>Then</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT_FULL_EITHER_IF__THEN = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Else</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT_FULL_EITHER_IF__ELSE = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Effect Full Either If</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT_FULL_EITHER_IF_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link it.unibo.fPML.impl.EffectFullIfBodyImpl <em>Effect Full If Body</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2805,7 +2879,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullIfBody()
    * @generated
    */
-  int EFFECT_FULL_IF_BODY = 94;
+  int EFFECT_FULL_IF_BODY = 96;
 
   /**
    * The feature id for the '<em><b>Function Reference</b></em>' reference.
@@ -2842,7 +2916,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureValue()
    * @generated
    */
-  int PURE_VALUE = 95;
+  int PURE_VALUE = 97;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2915,7 +2989,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullValue()
    * @generated
    */
-  int EFFECT_FULL_VALUE = 96;
+  int EFFECT_FULL_VALUE = 98;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -2988,7 +3062,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOEffectFullExpression()
    * @generated
    */
-  int IO_EFFECT_FULL_EXPRESSION = 97;
+  int IO_EFFECT_FULL_EXPRESSION = 99;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -3016,7 +3090,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOExpression()
    * @generated
    */
-  int IO_EXPRESSION = 98;
+  int IO_EXPRESSION = 100;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -3044,7 +3118,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOPureFunction()
    * @generated
    */
-  int IO_PURE_FUNCTION = 99;
+  int IO_PURE_FUNCTION = 101;
 
   /**
    * The feature id for the '<em><b>Pure Function</b></em>' reference.
@@ -3081,7 +3155,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOEffectFullFunction()
    * @generated
    */
-  int IO_EFFECT_FULL_FUNCTION = 100;
+  int IO_EFFECT_FULL_FUNCTION = 102;
 
   /**
    * The feature id for the '<em><b>Effect Full Function</b></em>' reference.
@@ -3118,7 +3192,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullLambda()
    * @generated
    */
-  int EFFECT_FULL_LAMBDA = 101;
+  int EFFECT_FULL_LAMBDA = 103;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -3182,7 +3256,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 102;
+  int DATA_VALUE = 104;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -3219,7 +3293,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullDataValue()
    * @generated
    */
-  int EFFECT_FULL_DATA_VALUE = 103;
+  int EFFECT_FULL_DATA_VALUE = 105;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -3256,7 +3330,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureLambda()
    * @generated
    */
-  int PURE_LAMBDA = 104;
+  int PURE_LAMBDA = 106;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -3320,7 +3394,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureProdValue()
    * @generated
    */
-  int PURE_PROD_VALUE = 105;
+  int PURE_PROD_VALUE = 107;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -3375,7 +3449,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureSumValue()
    * @generated
    */
-  int PURE_SUM_VALUE = 106;
+  int PURE_SUM_VALUE = 108;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -3430,7 +3504,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullProdValue()
    * @generated
    */
-  int EFFECT_FULL_PROD_VALUE = 107;
+  int EFFECT_FULL_PROD_VALUE = 109;
 
   /**
    * The feature id for the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -3485,7 +3559,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullSumValue()
    * @generated
    */
-  int EFFECT_FULL_SUM_VALUE = 108;
+  int EFFECT_FULL_SUM_VALUE = 110;
 
   /**
    * The feature id for the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -5293,6 +5367,38 @@ public interface FPMLPackage extends EPackage
   EReference getPureIfBody_FunctionExpression();
 
   /**
+   * Returns the meta object for class '{@link it.unibo.fPML.PureEitherIf <em>Pure Either If</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pure Either If</em>'.
+   * @see it.unibo.fPML.PureEitherIf
+   * @generated
+   */
+  EClass getPureEitherIf();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.PureEitherIf#getThen <em>Then</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Then</em>'.
+   * @see it.unibo.fPML.PureEitherIf#getThen()
+   * @see #getPureEitherIf()
+   * @generated
+   */
+  EReference getPureEitherIf_Then();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.PureEitherIf#getElse <em>Else</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Else</em>'.
+   * @see it.unibo.fPML.PureEitherIf#getElse()
+   * @see #getPureEitherIf()
+   * @generated
+   */
+  EReference getPureEitherIf_Else();
+
+  /**
    * Returns the meta object for class '{@link it.unibo.fPML.PrimitiveEffectFullFunction <em>Primitive Effect Full Function</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5638,6 +5744,38 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EReference getEffectFullIf_Else();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.EffectFullEitherIf <em>Effect Full Either If</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Effect Full Either If</em>'.
+   * @see it.unibo.fPML.EffectFullEitherIf
+   * @generated
+   */
+  EClass getEffectFullEitherIf();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.EffectFullEitherIf#getThen <em>Then</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Then</em>'.
+   * @see it.unibo.fPML.EffectFullEitherIf#getThen()
+   * @see #getEffectFullEitherIf()
+   * @generated
+   */
+  EReference getEffectFullEitherIf_Then();
+
+  /**
+   * Returns the meta object for the containment reference '{@link it.unibo.fPML.EffectFullEitherIf#getElse <em>Else</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Else</em>'.
+   * @see it.unibo.fPML.EffectFullEitherIf#getElse()
+   * @see #getEffectFullEitherIf()
+   * @generated
+   */
+  EReference getEffectFullEitherIf_Else();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.EffectFullIfBody <em>Effect Full If Body</em>}'.
@@ -7525,6 +7663,32 @@ public interface FPMLPackage extends EPackage
     EReference PURE_IF_BODY__FUNCTION_EXPRESSION = eINSTANCE.getPureIfBody_FunctionExpression();
 
     /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.PureEitherIfImpl <em>Pure Either If</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.PureEitherIfImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureEitherIf()
+     * @generated
+     */
+    EClass PURE_EITHER_IF = eINSTANCE.getPureEitherIf();
+
+    /**
+     * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PURE_EITHER_IF__THEN = eINSTANCE.getPureEitherIf_Then();
+
+    /**
+     * The meta object literal for the '<em><b>Else</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PURE_EITHER_IF__ELSE = eINSTANCE.getPureEitherIf_Else();
+
+    /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PrimitiveEffectFullFunctionImpl <em>Primitive Effect Full Function</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7819,6 +7983,32 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EReference EFFECT_FULL_IF__ELSE = eINSTANCE.getEffectFullIf_Else();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.EffectFullEitherIfImpl <em>Effect Full Either If</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.EffectFullEitherIfImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullEitherIf()
+     * @generated
+     */
+    EClass EFFECT_FULL_EITHER_IF = eINSTANCE.getEffectFullEitherIf();
+
+    /**
+     * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EFFECT_FULL_EITHER_IF__THEN = eINSTANCE.getEffectFullEitherIf_Then();
+
+    /**
+     * The meta object literal for the '<em><b>Else</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EFFECT_FULL_EITHER_IF__ELSE = eINSTANCE.getEffectFullEitherIf_Else();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.EffectFullIfBodyImpl <em>Effect Full If Body</em>}' class.

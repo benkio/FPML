@@ -92,6 +92,22 @@ class PrimitiveGenerator {
 			public static F<Boolean, Boolean> logicOr(Boolean b) {
 				return (Boolean c) -> b || c;
 			}
+			
+			public static <A> A pureIf(Boolean condition, A thenExpression, A elseExpression) {
+				if (condition) {
+					return thenExpression;
+				} else {
+					return elseExpression;
+				}
+			}
+			
+			public static <A,B> Either<A,B> pureIfEither(Boolean condition, A thenExpression, B elseExpression) {
+				if (condition) {
+					return Either.left(thenExpression);
+				} else {
+					return Either.right(elseExpression);
+				}
+			}
 		}
 	'''
 	
@@ -144,6 +160,22 @@ class PrimitiveGenerator {
 
 				public static <A,B> Boolean isRight(Either<A,B> pair) {
 					return pair.isRight();
+				}
+				
+				public static <A> A effectFullIf(Boolean condition, A thenExpression, A elseExpression) {
+					if (condition) {
+						return thenExpression;
+					} else {
+						return elseExpression;
+					}
+				}
+				
+				public static <A,B> Either<A,B> effectFullIfEither(Boolean condition, A thenExpression, B elseExpression) {
+					if (condition) {
+						return Either.left(thenExpression);
+					} else {
+						return Either.right(elseExpression);
+					}
 				}
 			}
 	'''

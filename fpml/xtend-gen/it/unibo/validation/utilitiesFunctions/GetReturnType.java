@@ -17,6 +17,7 @@ import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullEitherIf;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
@@ -76,6 +77,7 @@ import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureEitherIf;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
@@ -94,7 +96,6 @@ import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.fPML.VoidType;
-import it.unibo.validation.utilitiesFunctions.Checks;
 import it.unibo.validation.utilitiesFunctions.Others;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
@@ -328,6 +329,7 @@ public class GetReturnType {
   }
   
   public static ValueType primitivePureFunction(final PrimitivePureFunction f) {
+    ValueType _switchResult = null;
     boolean _matched = false;
     if (f instanceof IntToString) {
       _matched=true;
@@ -476,20 +478,27 @@ public class GetReturnType {
       }
     }
     if (!_matched) {
+      if (f instanceof PureEitherIf) {
+        _matched=true;
+        PureAlgebraicType _xblockexpression = null;
+        {
+          PureIfBody _then = ((PureEitherIf)f).getThen();
+          final ValueType thenType = GetReturnType.pureIfBody(_then);
+          PureIfBody _else = ((PureEitherIf)f).getElse();
+          final ValueType elseType = GetReturnType.pureIfBody(_else);
+          _xblockexpression = Others.createPureAlgebraicType(thenType, elseType, true);
+        }
+        _switchResult = _xblockexpression;
+      }
+    }
+    if (!_matched) {
       if (f instanceof PureIf) {
         _matched=true;
         PureIfBody _then = ((PureIf)f).getThen();
-        final ValueType thenType = GetReturnType.pureIfBody(_then);
-        PureIfBody _else = ((PureIf)f).getElse();
-        final ValueType elseType = GetReturnType.pureIfBody(_else);
-        if ((Checks.TypeEquals(thenType, elseType) && Objects.equal(thenType.eClass(), elseType.eClass()))) {
-          return thenType;
-        } else {
-          return Others.createPureAlgebraicType(thenType, elseType, true);
-        }
+        _switchResult = GetReturnType.pureIfBody(_then);
       }
     }
-    return null;
+    return _switchResult;
   }
   
   public static ValueType pureIfBody(final PureIfBody body) {
@@ -862,14 +871,21 @@ public class GetReturnType {
       if (function instanceof EffectFullIf) {
         _matched=true;
         EffectFullIfBody _then = ((EffectFullIf)function).getThen();
-        final Type thenType = GetReturnType.effectFullIfBody(_then);
-        EffectFullIfBody _else = ((EffectFullIf)function).getElse();
-        final Type elseType = GetReturnType.effectFullIfBody(_else);
-        if ((Checks.TypeEquals(thenType, elseType) && Objects.equal(thenType.eClass(), elseType.eClass()))) {
-          return thenType;
-        } else {
-          return Others.createEffectFullAlgebraicType(thenType, elseType, true);
+        _switchResult = GetReturnType.effectFullIfBody(_then);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof EffectFullEitherIf) {
+        _matched=true;
+        EffectFullAlgebraicType _xblockexpression = null;
+        {
+          EffectFullIfBody _then = ((EffectFullEitherIf)function).getThen();
+          final Type thenType = GetReturnType.effectFullIfBody(_then);
+          EffectFullIfBody _else = ((EffectFullEitherIf)function).getElse();
+          final Type elseType = GetReturnType.effectFullIfBody(_else);
+          _xblockexpression = Others.createEffectFullAlgebraicType(thenType, elseType, true);
         }
+        _switchResult = _xblockexpression;
       }
     }
     return _switchResult;

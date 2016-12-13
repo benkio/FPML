@@ -223,6 +223,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//PureIfBody/functionReference"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureIfBody/functionExpression"/>
     </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//PureEitherIf">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureEitherIf/then"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//PureEitherIf/else"/>
+    </genClasses>
     <genClasses ecoreClass="FPML.ecore#//PrimitiveEffectFullFunction"/>
     <genClasses ecoreClass="FPML.ecore#//PrimitivePrint"/>
     <genClasses ecoreClass="FPML.ecore#//LeftAlgebraicIO">
@@ -266,6 +270,10 @@
     <genClasses ecoreClass="FPML.ecore#//EffectFullIf">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullIf/then"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullIf/else"/>
+    </genClasses>
+    <genClasses ecoreClass="FPML.ecore#//EffectFullEitherIf">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullEitherIf/then"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullEitherIf/else"/>
     </genClasses>
     <genClasses ecoreClass="FPML.ecore#//EffectFullIfBody">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FPML.ecore#//EffectFullIfBody/functionReference"/>

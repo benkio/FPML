@@ -209,7 +209,7 @@ class Others {
 		}
 	}
 	
-	def static createTypeOfEffectFullBodyContent(EffectFullBodyContent content) {
+	def static Type createTypeOfEffectFullBodyContent(EffectFullBodyContent content) {
 		switch content {
 			EffectFullFunction: createTypeOfEffectFullFunction(content)
 			EffectFullPrimitive: createTypeOfEffectFullPrimitive(content)

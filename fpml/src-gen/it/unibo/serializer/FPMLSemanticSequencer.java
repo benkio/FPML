@@ -24,6 +24,7 @@ import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataBlock;
 import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullDataValue;
+import it.unibo.fPML.EffectFullEitherIf;
 import it.unibo.fPML.EffectFullFunctionBlock;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
@@ -78,6 +79,7 @@ import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureBlock;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureDataBlock;
+import it.unibo.fPML.PureEitherIf;
 import it.unibo.fPML.PureFunctionBlock;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
@@ -194,6 +196,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.EFFECT_FULL_DATA_VALUE:
 				sequence_EffectFullDataValue(context, (EffectFullDataValue) semanticObject); 
+				return; 
+			case FPMLPackage.EFFECT_FULL_EITHER_IF:
+				sequence_EffectFullEitherIf(context, (EffectFullEitherIf) semanticObject); 
 				return; 
 			case FPMLPackage.EFFECT_FULL_FUNCTION_BLOCK:
 				sequence_EffectFullFunctionBlock(context, (EffectFullFunctionBlock) semanticObject); 
@@ -376,6 +381,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.PURE_DATA_BLOCK:
 				sequence_PureDataBlock(context, (PureDataBlock) semanticObject); 
+				return; 
+			case FPMLPackage.PURE_EITHER_IF:
+				sequence_PureEitherIf(context, (PureEitherIf) semanticObject); 
 				return; 
 			case FPMLPackage.PURE_FUNCTION_BLOCK:
 				sequence_PureFunctionBlock(context, (PureFunctionBlock) semanticObject); 
@@ -853,6 +861,33 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEffectFullDataAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getEffectFullDataAccess().getContentEffectFullTypeParserRuleCall_2_0(), semanticObject.getContent());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns EffectFullEitherIf
+	 *     EffectFullFunction returns EffectFullEitherIf
+	 *     PrimitiveFunction returns EffectFullEitherIf
+	 *     EffectFullPrimitive returns EffectFullEitherIf
+	 *     EffectFullBodyContent returns EffectFullEitherIf
+	 *     PrimitiveEffectFullFunction returns EffectFullEitherIf
+	 *     EffectFullEitherIf returns EffectFullEitherIf
+	 *
+	 * Constraint:
+	 *     (then=EffectFullIfBody else=EffectFullIfBody)
+	 */
+	protected void sequence_EffectFullEitherIf(ISerializationContext context, EffectFullEitherIf semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_EITHER_IF__THEN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_EITHER_IF__THEN));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.EFFECT_FULL_EITHER_IF__ELSE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.EFFECT_FULL_EITHER_IF__ELSE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEffectFullEitherIfAccess().getThenEffectFullIfBodyParserRuleCall_4_0(), semanticObject.getThen());
+		feeder.accept(grammarAccess.getEffectFullEitherIfAccess().getElseEffectFullIfBodyParserRuleCall_8_0(), semanticObject.getElse());
 		feeder.finish();
 	}
 	
@@ -1865,6 +1900,31 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPureDataAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getPureDataAccess().getContentValueTypeParserRuleCall_2_0(), semanticObject.getContent());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns PureEitherIf
+	 *     PureFunction returns PureEitherIf
+	 *     PrimitiveFunction returns PureEitherIf
+	 *     PrimitivePureFunction returns PureEitherIf
+	 *     PureEitherIf returns PureEitherIf
+	 *
+	 * Constraint:
+	 *     (then=PureIfBody else=PureIfBody)
+	 */
+	protected void sequence_PureEitherIf(ISerializationContext context, PureEitherIf semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_EITHER_IF__THEN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_EITHER_IF__THEN));
+			if (transientValues.isValueTransient(semanticObject, FPMLPackage.Literals.PURE_EITHER_IF__ELSE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FPMLPackage.Literals.PURE_EITHER_IF__ELSE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPureEitherIfAccess().getThenPureIfBodyParserRuleCall_4_0(), semanticObject.getThen());
+		feeder.accept(grammarAccess.getPureEitherIfAccess().getElsePureIfBodyParserRuleCall_8_0(), semanticObject.getElse());
 		feeder.finish();
 	}
 	
