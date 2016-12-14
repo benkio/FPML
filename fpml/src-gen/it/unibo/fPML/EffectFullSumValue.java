@@ -32,12 +32,12 @@ public interface EffectFullSumValue extends EffectFullAlgebraicType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sum Adt Element1</em>' containment reference.
-   * @see #setSumAdtElement1(EffectFullExpression)
+   * @see #setSumAdtElement1(EffectFullExpressionAndEffectFullFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullSumValue_SumAdtElement1()
    * @model containment="true"
    * @generated
    */
-  EffectFullExpression getSumAdtElement1();
+  EffectFullExpressionAndEffectFullFunctionReference getSumAdtElement1();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullSumValue#getSumAdtElement1 <em>Sum Adt Element1</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface EffectFullSumValue extends EffectFullAlgebraicType
    * @see #getSumAdtElement1()
    * @generated
    */
-  void setSumAdtElement1(EffectFullExpression value);
+  void setSumAdtElement1(EffectFullExpressionAndEffectFullFunctionReference value);
 
   /**
    * Returns the value of the '<em><b>Sum Adt Element2</b></em>' containment reference.
@@ -58,12 +58,12 @@ public interface EffectFullSumValue extends EffectFullAlgebraicType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sum Adt Element2</em>' containment reference.
-   * @see #setSumAdtElement2(EffectFullExpression)
+   * @see #setSumAdtElement2(EffectFullExpressionAndEffectFullFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullSumValue_SumAdtElement2()
    * @model containment="true"
    * @generated
    */
-  EffectFullExpression getSumAdtElement2();
+  EffectFullExpressionAndEffectFullFunctionReference getSumAdtElement2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullSumValue#getSumAdtElement2 <em>Sum Adt Element2</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface EffectFullSumValue extends EffectFullAlgebraicType
    * @see #getSumAdtElement2()
    * @generated
    */
-  void setSumAdtElement2(EffectFullExpression value);
+  void setSumAdtElement2(EffectFullExpressionAndEffectFullFunctionReference value);
 
 } // EffectFullSumValue

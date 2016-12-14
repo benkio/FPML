@@ -31,12 +31,12 @@ public interface EffectFullDataValue extends EffectFullDataType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(EffectFullExpression)
+   * @see #setValue(EffectFullExpressionAndEffectFullFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullDataValue_Value()
    * @model containment="true"
    * @generated
    */
-  EffectFullExpression getValue();
+  EffectFullExpressionAndEffectFullFunctionReference getValue();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullDataValue#getValue <em>Value</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface EffectFullDataValue extends EffectFullDataType
    * @see #getValue()
    * @generated
    */
-  void setValue(EffectFullExpression value);
+  void setValue(EffectFullExpressionAndEffectFullFunctionReference value);
 
 } // EffectFullDataValue

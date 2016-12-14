@@ -15,6 +15,7 @@ import it.unibo.fPML.EffectFullBodyContent;
 import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullExpression;
+import it.unibo.fPML.EffectFullExpressionAndEffectFullFunctionReference;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
@@ -38,12 +39,15 @@ import it.unibo.fPML.PrimitivePureFunction;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
+import it.unibo.fPML.PureExpressionAndPureFunctionReference;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureProdTypeFactor;
+import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureSumTypeFactor;
+import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -289,6 +293,54 @@ public class Others {
       _xifexpression = efib.getFunctionReference();
     } else {
       _xifexpression = efib.getFunctionExpression();
+    }
+    return _xifexpression;
+  }
+  
+  public static PureFunction getInnerElementFromPureExpressionAndPureFunctionReference(final PureExpressionAndPureFunctionReference r) {
+    PureFunction _xifexpression = null;
+    Expression _prodAdtElementExpression = r.getProdAdtElementExpression();
+    boolean _equals = Objects.equal(_prodAdtElementExpression, null);
+    if (_equals) {
+      _xifexpression = r.getProdAdtElementFunction();
+    } else {
+      _xifexpression = r.getProdAdtElementExpression();
+    }
+    return _xifexpression;
+  }
+  
+  public static PureExpressionAndPureFunctionReference getFirstElementFromPureAlgebraicValue(final PureSumValue psv) {
+    PureExpressionAndPureFunctionReference _xifexpression = null;
+    PureExpressionAndPureFunctionReference _sumAdtElement1 = psv.getSumAdtElement1();
+    boolean _equals = Objects.equal(_sumAdtElement1, null);
+    if (_equals) {
+      _xifexpression = psv.getSumAdtElement2();
+    } else {
+      _xifexpression = psv.getSumAdtElement1();
+    }
+    return _xifexpression;
+  }
+  
+  public static PureExpressionAndPureFunctionReference getFirstElementFromPureAlgebraicValue(final PureProdValue ppv) {
+    PureExpressionAndPureFunctionReference _xifexpression = null;
+    PureExpressionAndPureFunctionReference _prodAdtElement1 = ppv.getProdAdtElement1();
+    boolean _equals = Objects.equal(_prodAdtElement1, null);
+    if (_equals) {
+      _xifexpression = ppv.getProdAdtElement2();
+    } else {
+      _xifexpression = ppv.getProdAdtElement1();
+    }
+    return _xifexpression;
+  }
+  
+  public static EffectFullBodyContent getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(final EffectFullExpressionAndEffectFullFunctionReference r) {
+    EffectFullBodyContent _xifexpression = null;
+    EffectFullExpression _prodAdtElementExpression = r.getProdAdtElementExpression();
+    boolean _equals = Objects.equal(_prodAdtElementExpression, null);
+    if (_equals) {
+      _xifexpression = r.getProdAdtElementFunction();
+    } else {
+      _xifexpression = r.getProdAdtElementExpression();
     }
     return _xifexpression;
   }
@@ -539,5 +591,33 @@ public class Others {
       }
     }
     return _switchResult;
+  }
+  
+  public static PureExpressionAndPureFunctionReference createPureExpressionAndPureFunctionReference(final Expression e) {
+    final PureExpressionAndPureFunctionReference result = FPMLFactory.eINSTANCE.createPureExpressionAndPureFunctionReference();
+    Expression _copy = EcoreUtil.<Expression>copy(e);
+    result.setProdAdtElementExpression(_copy);
+    return result;
+  }
+  
+  public static PureExpressionAndPureFunctionReference createPureExpressionAndPureFunctionReference(final PureFunction f) {
+    final PureExpressionAndPureFunctionReference result = FPMLFactory.eINSTANCE.createPureExpressionAndPureFunctionReference();
+    PureFunction _copy = EcoreUtil.<PureFunction>copy(f);
+    result.setProdAdtElementFunction(_copy);
+    return result;
+  }
+  
+  public static EffectFullExpressionAndEffectFullFunctionReference createEffectFullExpressionAndEffectFullFunctionReference(final EffectFullExpression e) {
+    final EffectFullExpressionAndEffectFullFunctionReference result = FPMLFactory.eINSTANCE.createEffectFullExpressionAndEffectFullFunctionReference();
+    EffectFullExpression _copy = EcoreUtil.<EffectFullExpression>copy(e);
+    result.setProdAdtElementExpression(_copy);
+    return result;
+  }
+  
+  public static EffectFullExpressionAndEffectFullFunctionReference createEffectFullExpressionAndEffectFullFunctionReference(final EffectFullFunction f) {
+    final EffectFullExpressionAndEffectFullFunctionReference result = FPMLFactory.eINSTANCE.createEffectFullExpressionAndEffectFullFunctionReference();
+    EffectFullFunction _copy = EcoreUtil.<EffectFullFunction>copy(f);
+    result.setProdAdtElementFunction(_copy);
+    return result;
   }
 }

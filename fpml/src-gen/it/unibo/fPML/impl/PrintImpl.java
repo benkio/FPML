@@ -4,25 +4,25 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PrimitivePrint;
+import it.unibo.fPML.Print;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primitive Print</b></em>'.
+ * An implementation of the model object '<em><b>Print</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class PrimitivePrintImpl extends PrimitiveEffectFullFunctionImpl implements PrimitivePrint
+public class PrintImpl extends PrimitiveEffectFullFunctionImpl implements Print
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PrimitivePrintImpl()
+  protected PrintImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class PrimitivePrintImpl extends PrimitiveEffectFullFunctionImpl implemen
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PRIMITIVE_PRINT;
+    return FPMLPackage.Literals.PRINT;
   }
 
-} //PrimitivePrintImpl
+} //PrintImpl

@@ -31,12 +31,12 @@ public interface DataValue extends DataType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(Expression)
+   * @see #setValue(PureExpressionAndPureFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getDataValue_Value()
    * @model containment="true"
    * @generated
    */
-  Expression getValue();
+  PureExpressionAndPureFunctionReference getValue();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.DataValue#getValue <em>Value</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface DataValue extends DataType
    * @see #getValue()
    * @generated
    */
-  void setValue(Expression value);
+  void setValue(PureExpressionAndPureFunctionReference value);
 
 } // DataValue

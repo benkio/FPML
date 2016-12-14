@@ -4,25 +4,25 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PrimitiveTime;
+import it.unibo.fPML.Time;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primitive Time</b></em>'.
+ * An implementation of the model object '<em><b>Time</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class PrimitiveTimeImpl extends PrimitiveEffectFullValueImpl implements PrimitiveTime
+public class TimeImpl extends PrimitiveEffectFullValueImpl implements Time
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PrimitiveTimeImpl()
+  protected TimeImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class PrimitiveTimeImpl extends PrimitiveEffectFullValueImpl implements P
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PRIMITIVE_TIME;
+    return FPMLPackage.Literals.TIME;
   }
 
-} //PrimitiveTimeImpl
+} //TimeImpl

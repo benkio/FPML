@@ -19,6 +19,7 @@ import it.unibo.fPML.EffectFullData;
 import it.unibo.fPML.EffectFullDataValue;
 import it.unibo.fPML.EffectFullEitherIf;
 import it.unibo.fPML.EffectFullExpression;
+import it.unibo.fPML.EffectFullExpressionAndEffectFullFunctionReference;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
@@ -27,6 +28,7 @@ import it.unibo.fPML.EffectFullIfBody;
 import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdValue;
+import it.unibo.fPML.EffectFullReturn;
 import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
@@ -40,6 +42,7 @@ import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
+import it.unibo.fPML.GetLine;
 import it.unibo.fPML.IOEffectFullExpression;
 import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
@@ -57,6 +60,7 @@ import it.unibo.fPML.LeftAlgebraicIO;
 import it.unibo.fPML.LiftEffectFullFunction;
 import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
+import it.unibo.fPML.LogicNot;
 import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Major;
@@ -69,15 +73,13 @@ import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitiveEffectFullValue;
 import it.unibo.fPML.PrimitiveFunction;
-import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitivePureFunction;
-import it.unibo.fPML.PrimitiveRandom;
-import it.unibo.fPML.PrimitiveReturn;
-import it.unibo.fPML.PrimitiveTime;
+import it.unibo.fPML.Print;
 import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureEitherIf;
+import it.unibo.fPML.PureExpressionAndPureFunctionReference;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
@@ -85,12 +87,15 @@ import it.unibo.fPML.PureIf;
 import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureProdValue;
+import it.unibo.fPML.PureReturn;
 import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.PureValueRef;
+import it.unibo.fPML.Random;
 import it.unibo.fPML.RightAlgebraic;
 import it.unibo.fPML.RightAlgebraicIO;
 import it.unibo.fPML.StringType;
+import it.unibo.fPML.Time;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -252,21 +257,25 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof PureSumValue) {
         _matched=true;
-        Expression _sumAdtElement1 = ((PureSumValue)expression).getSumAdtElement1();
-        ValueType _expression = GetReturnType.expression(_sumAdtElement1);
-        Expression _sumAdtElement2 = ((PureSumValue)expression).getSumAdtElement2();
-        ValueType _expression_1 = GetReturnType.expression(_sumAdtElement2);
-        _switchResult = Others.createPureAlgebraicType(_expression, _expression_1, true);
+        PureExpressionAndPureFunctionReference _sumAdtElement1 = ((PureSumValue)expression).getSumAdtElement1();
+        PureFunction _innerElementFromPureExpressionAndPureFunctionReference = Others.getInnerElementFromPureExpressionAndPureFunctionReference(_sumAdtElement1);
+        ValueType _pureFunction = GetReturnType.pureFunction(_innerElementFromPureExpressionAndPureFunctionReference);
+        PureExpressionAndPureFunctionReference _sumAdtElement2 = ((PureSumValue)expression).getSumAdtElement2();
+        PureFunction _innerElementFromPureExpressionAndPureFunctionReference_1 = Others.getInnerElementFromPureExpressionAndPureFunctionReference(_sumAdtElement2);
+        ValueType _pureFunction_1 = GetReturnType.pureFunction(_innerElementFromPureExpressionAndPureFunctionReference_1);
+        _switchResult = Others.createPureAlgebraicType(_pureFunction, _pureFunction_1, true);
       }
     }
     if (!_matched) {
       if (expression instanceof PureProdValue) {
         _matched=true;
-        Expression _prodAdtElement1 = ((PureProdValue)expression).getProdAdtElement1();
-        ValueType _expression = GetReturnType.expression(_prodAdtElement1);
-        Expression _prodAdtElement2 = ((PureProdValue)expression).getProdAdtElement2();
-        ValueType _expression_1 = GetReturnType.expression(_prodAdtElement2);
-        _switchResult = Others.createPureAlgebraicType(_expression, _expression_1, false);
+        PureExpressionAndPureFunctionReference _prodAdtElement1 = ((PureProdValue)expression).getProdAdtElement1();
+        PureFunction _innerElementFromPureExpressionAndPureFunctionReference = Others.getInnerElementFromPureExpressionAndPureFunctionReference(_prodAdtElement1);
+        ValueType _pureFunction = GetReturnType.pureFunction(_innerElementFromPureExpressionAndPureFunctionReference);
+        PureExpressionAndPureFunctionReference _prodAdtElement2 = ((PureProdValue)expression).getProdAdtElement2();
+        PureFunction _innerElementFromPureExpressionAndPureFunctionReference_1 = Others.getInnerElementFromPureExpressionAndPureFunctionReference(_prodAdtElement2);
+        ValueType _pureFunction_1 = GetReturnType.pureFunction(_innerElementFromPureExpressionAndPureFunctionReference_1);
+        _switchResult = Others.createPureAlgebraicType(_pureFunction, _pureFunction_1, false);
       }
     }
     return _switchResult;
@@ -458,6 +467,12 @@ public class GetReturnType {
       }
     }
     if (!_matched) {
+      if (f instanceof LogicNot) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createBooleanType();
+      }
+    }
+    if (!_matched) {
       if (f instanceof ExtractPure) {
         _matched=true;
         PureData _data = ((ExtractPure)f).getData();
@@ -496,6 +511,13 @@ public class GetReturnType {
         _matched=true;
         PureIfBody _then = ((PureIf)f).getThen();
         _switchResult = GetReturnType.pureIfBody(_then);
+      }
+    }
+    if (!_matched) {
+      if (f instanceof PureReturn) {
+        _matched=true;
+        ValueType _type = ((PureReturn)f).getType();
+        return EcoreUtil.<ValueType>copy(_type);
       }
     }
     return _switchResult;
@@ -654,13 +676,13 @@ public class GetReturnType {
   
   public static IOType primitiveEffectFullValue(final PrimitiveEffectFullValue value) {
     boolean _matched = false;
-    if (value instanceof PrimitiveRandom) {
+    if (value instanceof Random) {
       _matched=true;
       IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
       return Others.IOWrap(_createIntegerType);
     }
     if (!_matched) {
-      if (value instanceof PrimitiveTime) {
+      if (value instanceof Time) {
         _matched=true;
         StringType _createStringType = FPMLFactory.eINSTANCE.createStringType();
         return Others.IOWrap(_createStringType);
@@ -746,21 +768,25 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof EffectFullProdValue) {
         _matched=true;
-        EffectFullExpression _prodAdtElement1 = ((EffectFullProdValue)expression).getProdAdtElement1();
-        Type _effectFullExpression = GetReturnType.effectFullExpression(_prodAdtElement1);
-        EffectFullExpression _prodAdtElement2 = ((EffectFullProdValue)expression).getProdAdtElement2();
-        Type _effectFullExpression_1 = GetReturnType.effectFullExpression(_prodAdtElement2);
-        _switchResult = Others.createEffectFullAlgebraicType(_effectFullExpression, _effectFullExpression_1, false);
+        EffectFullExpressionAndEffectFullFunctionReference _prodAdtElement1 = ((EffectFullProdValue)expression).getProdAdtElement1();
+        EffectFullBodyContent _innerElementFromEffectFullExpressionAndEffectFullFunctionReference = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(_prodAdtElement1);
+        Type _effectFullBodyContent = GetReturnType.effectFullBodyContent(_innerElementFromEffectFullExpressionAndEffectFullFunctionReference);
+        EffectFullExpressionAndEffectFullFunctionReference _prodAdtElement2 = ((EffectFullProdValue)expression).getProdAdtElement2();
+        EffectFullBodyContent _innerElementFromEffectFullExpressionAndEffectFullFunctionReference_1 = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(_prodAdtElement2);
+        Type _effectFullBodyContent_1 = GetReturnType.effectFullBodyContent(_innerElementFromEffectFullExpressionAndEffectFullFunctionReference_1);
+        _switchResult = Others.createEffectFullAlgebraicType(_effectFullBodyContent, _effectFullBodyContent_1, false);
       }
     }
     if (!_matched) {
       if (expression instanceof EffectFullSumValue) {
         _matched=true;
-        EffectFullExpression _sumAdtElement1 = ((EffectFullSumValue)expression).getSumAdtElement1();
-        Type _effectFullExpression = GetReturnType.effectFullExpression(_sumAdtElement1);
-        EffectFullExpression _sumAdtElement2 = ((EffectFullSumValue)expression).getSumAdtElement2();
-        Type _effectFullExpression_1 = GetReturnType.effectFullExpression(_sumAdtElement2);
-        _switchResult = Others.createEffectFullAlgebraicType(_effectFullExpression, _effectFullExpression_1, true);
+        EffectFullExpressionAndEffectFullFunctionReference _sumAdtElement1 = ((EffectFullSumValue)expression).getSumAdtElement1();
+        EffectFullBodyContent _innerElementFromEffectFullExpressionAndEffectFullFunctionReference = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(_sumAdtElement1);
+        Type _effectFullBodyContent = GetReturnType.effectFullBodyContent(_innerElementFromEffectFullExpressionAndEffectFullFunctionReference);
+        EffectFullExpressionAndEffectFullFunctionReference _sumAdtElement2 = ((EffectFullSumValue)expression).getSumAdtElement2();
+        EffectFullBodyContent _innerElementFromEffectFullExpressionAndEffectFullFunctionReference_1 = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(_sumAdtElement2);
+        Type _effectFullBodyContent_1 = GetReturnType.effectFullBodyContent(_innerElementFromEffectFullExpressionAndEffectFullFunctionReference_1);
+        _switchResult = Others.createEffectFullAlgebraicType(_effectFullBodyContent, _effectFullBodyContent_1, true);
       }
     }
     if (!_matched) {
@@ -793,7 +819,7 @@ public class GetReturnType {
   public static Type primitiveEffectFullFunction(final PrimitiveEffectFullFunction function) {
     Type _switchResult = null;
     boolean _matched = false;
-    if (function instanceof PrimitivePrint) {
+    if (function instanceof Print) {
       _matched=true;
       UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
       _switchResult = Others.IOWrap(_createUnitType);
@@ -807,9 +833,9 @@ public class GetReturnType {
       }
     }
     if (!_matched) {
-      if (function instanceof PrimitiveReturn) {
+      if (function instanceof EffectFullReturn) {
         _matched=true;
-        Type _type = ((PrimitiveReturn)function).getType();
+        Type _type = ((EffectFullReturn)function).getType();
         _switchResult = Others.IOWrap(_type);
       }
     }
@@ -871,21 +897,34 @@ public class GetReturnType {
       if (function instanceof EffectFullIf) {
         _matched=true;
         EffectFullIfBody _then = ((EffectFullIf)function).getThen();
-        _switchResult = GetReturnType.effectFullIfBody(_then);
+        final Type result = GetReturnType.effectFullIfBody(_then);
+        if ((result instanceof IOType)) {
+          return result;
+        } else {
+          return Others.IOWrap(result);
+        }
       }
     }
     if (!_matched) {
       if (function instanceof EffectFullEitherIf) {
         _matched=true;
-        EffectFullAlgebraicType _xblockexpression = null;
+        IOType _xblockexpression = null;
         {
           EffectFullIfBody _then = ((EffectFullEitherIf)function).getThen();
           final Type thenType = GetReturnType.effectFullIfBody(_then);
           EffectFullIfBody _else = ((EffectFullEitherIf)function).getElse();
           final Type elseType = GetReturnType.effectFullIfBody(_else);
-          _xblockexpression = Others.createEffectFullAlgebraicType(thenType, elseType, true);
+          EffectFullAlgebraicType _createEffectFullAlgebraicType = Others.createEffectFullAlgebraicType(thenType, elseType, true);
+          _xblockexpression = Others.IOWrap(_createEffectFullAlgebraicType);
         }
         _switchResult = _xblockexpression;
+      }
+    }
+    if (!_matched) {
+      if (function instanceof GetLine) {
+        _matched=true;
+        StringType _createStringType = FPMLFactory.eINSTANCE.createStringType();
+        _switchResult = Others.IOWrap(_createStringType);
       }
     }
     return _switchResult;

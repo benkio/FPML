@@ -249,9 +249,13 @@ BooleanValue returns BooleanType: {BooleanType} value=BOOLEAN;
 
 FunctionValue returns PureFunctionType: value=PureLambda;
 
-DataValue returns DataType: {DataValue} type=[PureData]'(' value=Expression ')';
+DataValue returns DataType: 
+	{DataValue} type=[PureData]'(' value=PureExpressionAndPureFunctionReference ')'
+;
 
-EffectFullDataValue returns EffectFullDataType: {EffectFullDataValue} type=[EffectFullData]'[' value=EffectFullExpression ']';
+EffectFullDataValue returns EffectFullDataType: 
+	{EffectFullDataValue} type=[EffectFullData]'[' value=EffectFullExpressionAndEffectFullFunctionReference ']'
+;
 
 PureValueRef: {PureValueRef} 'PureRef' '(' value=[PureValue] ')';
 
@@ -262,19 +266,27 @@ PureLambda returns PureFunctionDefinition:
 
 
 PureProdValue returns PureAlgebraicType: 
-	{PureProdValue} '(' prodAdtElement1=Expression ',' prodAdtElement2=Expression ')';
+	{PureProdValue} '(' prodAdtElement1=PureExpressionAndPureFunctionReference ','prodAdtElement2=PureExpressionAndPureFunctionReference ')';
+
+PureExpressionAndPureFunctionReference: 
+ 	prodAdtElementExpression=Expression
+ 	| prodAdtElementFunction=[PureFunction];
 
 PureSumValue returns PureAlgebraicType:
-	{PureSumValue} 'Left' '(' sumAdtElement1=Expression ')'
-	| {PureSumValue} 'Right' '(' sumAdtElement2=Expression ')';
+	{PureSumValue} 'Left' '(' sumAdtElement1=PureExpressionAndPureFunctionReference ')'
+	| {PureSumValue} 'Right' '(' sumAdtElement2=PureExpressionAndPureFunctionReference ')';
+
+EffectFullExpressionAndEffectFullFunctionReference: 
+ 	prodAdtElementExpression=EffectFullExpression
+ 	| prodAdtElementFunction=[EffectFullFunction];
 
 
 EffectFullProdValue returns EffectFullAlgebraicType: 
-	{EffectFullProdValue} '[' prodAdtElement1=EffectFullExpression ',' prodAdtElement2=EffectFullExpression ']';
+	{EffectFullProdValue} '[' prodAdtElement1=EffectFullExpressionAndEffectFullFunctionReference ',' prodAdtElement2=EffectFullExpressionAndEffectFullFunctionReference ']';
 
 EffectFullSumValue returns EffectFullAlgebraicType:
-	{EffectFullSumValue} 'Left' '[' sumAdtElement1=EffectFullExpression ']'
-	| {EffectFullSumValue} 'Right' '[' sumAdtElement2=EffectFullExpression ']';
+	{EffectFullSumValue} 'Left' '[' sumAdtElement1=EffectFullExpressionAndEffectFullFunctionReference ']'
+	| {EffectFullSumValue} 'Right' '[' sumAdtElement2=EffectFullExpressionAndEffectFullFunctionReference ']';
     
     
 /////////////////////////////////////////////////////////////////////
@@ -283,8 +295,8 @@ EffectFullSumValue returns EffectFullAlgebraicType:
 
 PrimitivePureFunction: 
 	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
-	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr
-	| ExtractPure | IsLeftPure | IsRightPure | PureIf | PureEitherIf;
+	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr | LogicNot
+	| ExtractPure | IsLeftPure | IsRightPure | PureIf | PureEitherIf | PureReturn;
 
 IntToString: {IntToString} 'intToString';
 IntPow:	{IntPow} 'intPow';
@@ -306,6 +318,7 @@ Minor: {Minor} '<';
 Major: {Major} '>';
 LogicAnd: {LogicAnd} '&&';
 LogicOr: {LogicOr} '||';
+LogicNot: {LogicNot} 'not';
 ExtractPure: {ExtractPure} 'extract' data=[PureData];
 IsLeftPure: {IsLeftPure} 'isLeft' type=PureAlgebraicType;
 IsRightPure: {IsRightPure} 'isRight' type=PureAlgebraicType;
@@ -315,26 +328,29 @@ PureIfBody: functionReference=[PureFunction]
 	
 PureEitherIf: {PureEitherIf} 'ifEither' 'then' '{' then=PureIfBody '}' 'else' '{' else=PureIfBody '}';
 
-PrimitiveEffectFullFunction:
-	PrimitivePrint | ApplyFIO | PrimitiveReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull
-	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf | EffectFullEitherIf;
+PureReturn: {PureReturn} 'return' type=ValueType;
 
-PrimitivePrint:
-    {PrimitivePrint} "print";
+PrimitiveEffectFullFunction:
+	Print | ApplyFIO | EffectFullReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull
+	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf 
+	| EffectFullEitherIf | GetLine;
+
+Print:
+    {Print} "print";
 
 LeftAlgebraicIO: {LeftAlgebraicIO} 'leftADT' type=EffectFullAlgebraicType;
 RightAlgebraicIO: {RightAlgebraicIO} 'rightADT' type=EffectFullAlgebraicType;
 
 PrimitiveEffectFullValue:
-	PrimitiveRandom  | PrimitiveTime;
+	Random  | Time;
 
-PrimitiveRandom:
-	{PrimitiveRandom} "randomInt";
+Random:
+	{Random} "randomInt";
 
-PrimitiveReturn:
-	{PrimitiveReturn} "return" type=Type;
+EffectFullReturn:
+	{EffectFullReturn} "return" type=Type;
 
-PrimitiveTime: {PrimitiveTime} "currentTime";
+Time: {Time} "currentTime";
 
 ApplyFIO: {ApplyFIO} 'applyFIO' functionType=EffectFullFunctionType value=ApplyFIOFactor;
 ApplyFIOFactor: 
@@ -358,6 +374,8 @@ EffectFullIf: {EffectFullIf} 'if' 'then' '{' then=EffectFullIfBody '}' 'else' '{
 EffectFullEitherIf: {EffectFullEitherIf} 'ifEither' 'then' '{' then=EffectFullIfBody '}' 'else' '{' else=EffectFullIfBody '}';
 EffectFullIfBody: functionReference=[EffectFullFunction]
 	| functionExpression=EffectFullExpression;
+
+GetLine: {GetLine} 'getLine';
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // TERMINALS

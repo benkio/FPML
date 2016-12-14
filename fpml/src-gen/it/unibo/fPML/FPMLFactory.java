@@ -519,6 +519,24 @@ public interface FPMLFactory extends EFactory
   PureValueRef createPureValueRef();
 
   /**
+   * Returns a new object of class '<em>Pure Expression And Pure Function Reference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Expression And Pure Function Reference</em>'.
+   * @generated
+   */
+  PureExpressionAndPureFunctionReference createPureExpressionAndPureFunctionReference();
+
+  /**
+   * Returns a new object of class '<em>Effect Full Expression And Effect Full Function Reference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect Full Expression And Effect Full Function Reference</em>'.
+   * @generated
+   */
+  EffectFullExpressionAndEffectFullFunctionReference createEffectFullExpressionAndEffectFullFunctionReference();
+
+  /**
    * Returns a new object of class '<em>Primitive Pure Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -681,6 +699,15 @@ public interface FPMLFactory extends EFactory
   LogicOr createLogicOr();
 
   /**
+   * Returns a new object of class '<em>Logic Not</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logic Not</em>'.
+   * @generated
+   */
+  LogicNot createLogicNot();
+
+  /**
    * Returns a new object of class '<em>Extract Pure</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -735,6 +762,15 @@ public interface FPMLFactory extends EFactory
   PureEitherIf createPureEitherIf();
 
   /**
+   * Returns a new object of class '<em>Pure Return</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pure Return</em>'.
+   * @generated
+   */
+  PureReturn createPureReturn();
+
+  /**
    * Returns a new object of class '<em>Primitive Effect Full Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -744,13 +780,13 @@ public interface FPMLFactory extends EFactory
   PrimitiveEffectFullFunction createPrimitiveEffectFullFunction();
 
   /**
-   * Returns a new object of class '<em>Primitive Print</em>'.
+   * Returns a new object of class '<em>Print</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Primitive Print</em>'.
+   * @return a new object of class '<em>Print</em>'.
    * @generated
    */
-  PrimitivePrint createPrimitivePrint();
+  Print createPrint();
 
   /**
    * Returns a new object of class '<em>Left Algebraic IO</em>'.
@@ -780,31 +816,31 @@ public interface FPMLFactory extends EFactory
   PrimitiveEffectFullValue createPrimitiveEffectFullValue();
 
   /**
-   * Returns a new object of class '<em>Primitive Random</em>'.
+   * Returns a new object of class '<em>Random</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Primitive Random</em>'.
+   * @return a new object of class '<em>Random</em>'.
    * @generated
    */
-  PrimitiveRandom createPrimitiveRandom();
+  Random createRandom();
 
   /**
-   * Returns a new object of class '<em>Primitive Return</em>'.
+   * Returns a new object of class '<em>Effect Full Return</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Primitive Return</em>'.
+   * @return a new object of class '<em>Effect Full Return</em>'.
    * @generated
    */
-  PrimitiveReturn createPrimitiveReturn();
+  EffectFullReturn createEffectFullReturn();
 
   /**
-   * Returns a new object of class '<em>Primitive Time</em>'.
+   * Returns a new object of class '<em>Time</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Primitive Time</em>'.
+   * @return a new object of class '<em>Time</em>'.
    * @generated
    */
-  PrimitiveTime createPrimitiveTime();
+  Time createTime();
 
   /**
    * Returns a new object of class '<em>Apply FIO</em>'.
@@ -895,6 +931,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   EffectFullIfBody createEffectFullIfBody();
+
+  /**
+   * Returns a new object of class '<em>Get Line</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Get Line</em>'.
+   * @generated
+   */
+  GetLine createGetLine();
 
   /**
    * Returns a new object of class '<em>Pure Value</em>'.

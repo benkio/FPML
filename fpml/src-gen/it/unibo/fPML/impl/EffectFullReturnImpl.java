@@ -3,9 +3,9 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullDataValue;
-import it.unibo.fPML.EffectFullExpressionAndEffectFullFunctionReference;
+import it.unibo.fPML.EffectFullReturn;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.Type;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,35 +17,35 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Effect Full Data Value</b></em>'.
+ * An implementation of the model object '<em><b>Effect Full Return</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.EffectFullDataValueImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.EffectFullReturnImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements EffectFullDataValue
+public class EffectFullReturnImpl extends PrimitiveEffectFullFunctionImpl implements EffectFullReturn
 {
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected EffectFullExpressionAndEffectFullFunctionReference value;
+  protected Type type;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EffectFullDataValueImpl()
+  protected EffectFullReturnImpl()
   {
     super();
   }
@@ -58,7 +58,7 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.EFFECT_FULL_DATA_VALUE;
+    return FPMLPackage.Literals.EFFECT_FULL_RETURN;
   }
 
   /**
@@ -66,9 +66,9 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullExpressionAndEffectFullFunctionReference getValue()
+  public Type getType()
   {
-    return value;
+    return type;
   }
 
   /**
@@ -76,13 +76,13 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(EffectFullExpressionAndEffectFullFunctionReference newValue, NotificationChain msgs)
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
   {
-    EffectFullExpressionAndEffectFullFunctionReference oldValue = value;
-    value = newValue;
+    Type oldType = type;
+    type = newType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE, oldValue, newValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_RETURN__TYPE, oldType, newType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -93,20 +93,20 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(EffectFullExpressionAndEffectFullFunctionReference newValue)
+  public void setType(Type newType)
   {
-    if (newValue != value)
+    if (newType != type)
     {
       NotificationChain msgs = null;
-      if (value != null)
-        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE, null, msgs);
-      if (newValue != null)
-        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE, null, msgs);
-      msgs = basicSetValue(newValue, msgs);
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_RETURN__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.EFFECT_FULL_RETURN__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE, newValue, newValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.EFFECT_FULL_RETURN__TYPE, newType, newType));
   }
 
   /**
@@ -119,8 +119,8 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE:
-        return basicSetValue(null, msgs);
+      case FPMLPackage.EFFECT_FULL_RETURN__TYPE:
+        return basicSetType(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -135,8 +135,8 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE:
-        return getValue();
+      case FPMLPackage.EFFECT_FULL_RETURN__TYPE:
+        return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -151,8 +151,8 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE:
-        setValue((EffectFullExpressionAndEffectFullFunctionReference)newValue);
+      case FPMLPackage.EFFECT_FULL_RETURN__TYPE:
+        setType((Type)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,8 +168,8 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE:
-        setValue((EffectFullExpressionAndEffectFullFunctionReference)null);
+      case FPMLPackage.EFFECT_FULL_RETURN__TYPE:
+        setType((Type)null);
         return;
     }
     super.eUnset(featureID);
@@ -185,10 +185,10 @@ public class EffectFullDataValueImpl extends EffectFullDataTypeImpl implements E
   {
     switch (featureID)
     {
-      case FPMLPackage.EFFECT_FULL_DATA_VALUE__VALUE:
-        return value != null;
+      case FPMLPackage.EFFECT_FULL_RETURN__TYPE:
+        return type != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //EffectFullDataValueImpl
+} //EffectFullReturnImpl

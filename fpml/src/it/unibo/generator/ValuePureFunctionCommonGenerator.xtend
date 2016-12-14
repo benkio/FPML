@@ -122,6 +122,7 @@ class ValuePureFunctionCommonGenerator {
 			Major: "Primitives.major(" + acc + ")"
 			LogicAnd: "Primitives.logicAnd(" + acc + ")"
 			LogicOr: "Primitives.logicOr(" + acc + ")"
+      LogicNot: "Primitives.logicNot(" + acc + ")"
 			ExtractPure: acc + ".getValue()"
 			IsLeftPure: "Primitives.isLeft(" + acc +")"
 			IsRightPure: "Primitives.isRight("+ acc +")"
@@ -153,14 +154,15 @@ class ValuePureFunctionCommonGenerator {
 	}
 	
 	def String compile(PureIfBody pib) {
-		switch pib {
-			Expression: compile(pib as Expression)
+		val content = Others.getFunctionFromPureIfBody(pib)
+		switch content {
+			Expression: compile(content as Expression)
 			PureFunction: {
-				switch pib {
-					PureValue: pib.name
-					PureFunctionDefinition: compilePureFunctionRef(pib as PureFunctionDefinition)
-					PrimitivePureFunction: compilePureFunctionRef(pib as PrimitivePureFunction)
-					PureArgument: pib.name
+				switch content {
+					PureValue: content.name
+					PureFunctionDefinition: compilePureFunctionRef(content as PureFunctionDefinition)
+					PrimitivePureFunction: compilePureFunctionRef(content as PrimitivePureFunction)
+					PureArgument: content.name
 				}
 			}
 		}

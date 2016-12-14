@@ -51,11 +51,13 @@ class GetArgType {
       		Major: return FPMLFactory.eINSTANCE.createIntegerType
       		LogicAnd:return FPMLFactory.eINSTANCE.createBooleanType
       		LogicOr: return FPMLFactory.eINSTANCE.createBooleanType
+          LogicNot: return FPMLFactory.eINSTANCE.createBooleanType
       		ExtractPure: return Others.createDataType(f.data)
       		IsLeftPure: EcoreUtil.copy(f.type)
       		IsRightPure: EcoreUtil.copy(f.type)
       		PureIf: return FPMLFactory.eINSTANCE.createBooleanType
           	PureEitherIf: return FPMLFactory.eINSTANCE.createBooleanType
+          	PureReturn: return EcoreUtil.copy(f.type)
 		}
 	}
 	
@@ -95,8 +97,8 @@ class GetArgType {
 			IOPureFunction: FPMLFactory.eINSTANCE.createUnitType
 			EffectFullFunctionType: FPMLFactory.eINSTANCE.createUnitType 
 			EffectFullDataValue: FPMLFactory.eINSTANCE.createUnitType
-			EffectFullProdValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.prodAdtElement1), effectFullExpression(expression.prodAdtElement2), false)
-			EffectFullSumValue: Others.createEffectFullAlgebraicType(effectFullExpression(expression.sumAdtElement1), effectFullExpression(expression.sumAdtElement2), true)
+			EffectFullProdValue: Others.createEffectFullAlgebraicType(effectFullBodyContent(Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(expression.prodAdtElement1)), effectFullBodyContent(Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(expression.prodAdtElement2)), false)
+			EffectFullSumValue: Others.createEffectFullAlgebraicType(effectFullBodyContent(Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(expression.sumAdtElement1)), effectFullBodyContent(Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(expression.sumAdtElement2)), true)
 			EffectFullValueRef: effectFullExpression(expression.value.value)
 		}
 	}
@@ -119,9 +121,9 @@ class GetArgType {
 	
 	def static Type primitiveEffectFullFunction(PrimitiveEffectFullFunction function) {
 		switch function {
-			PrimitivePrint: return FPMLFactory.eINSTANCE.createStringType 
+			Print: return FPMLFactory.eINSTANCE.createStringType 
 			ApplyFIO: return EcoreUtil.copy(function.functionType)
-     		PrimitiveReturn: return EcoreUtil.copy(function.type)
+     		EffectFullReturn: return EcoreUtil.copy(function.type)
       		LeftAlgebraicIO: EcoreUtil.copy(function.type)
       		RightAlgebraicIO: EcoreUtil.copy(function.type)
       		ExtractEffectFull: return Others.createDataType(function.data)
@@ -131,13 +133,14 @@ class GetArgType {
 			IsRightEffectFull: EcoreUtil.copy(function.type)
 			EffectFullIf: FPMLFactory.eINSTANCE.createBooleanType
       		EffectFullEitherIf: FPMLFactory.eINSTANCE.createBooleanType
+          	GetLine: FPMLFactory.eINSTANCE.createUnitType
 		}
 	}
 	
 	def static Type primitiveEffectFullValue(PrimitiveEffectFullValue pefv) {
 		switch pefv {
-			PrimitiveRandom: return FPMLFactory.eINSTANCE.createUnitType
-      		PrimitiveTime: return FPMLFactory.eINSTANCE.createUnitType
+			Random: return FPMLFactory.eINSTANCE.createUnitType
+      		Time: return FPMLFactory.eINSTANCE.createUnitType
 		}
 	}
 	

@@ -120,6 +120,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_VALUE_REF: return createEffectFullValueRef();
       case FPMLPackage.EXPRESSION: return createExpression();
       case FPMLPackage.PURE_VALUE_REF: return createPureValueRef();
+      case FPMLPackage.PURE_EXPRESSION_AND_PURE_FUNCTION_REFERENCE: return createPureExpressionAndPureFunctionReference();
+      case FPMLPackage.EFFECT_FULL_EXPRESSION_AND_EFFECT_FULL_FUNCTION_REFERENCE: return createEffectFullExpressionAndEffectFullFunctionReference();
       case FPMLPackage.PRIMITIVE_PURE_FUNCTION: return createPrimitivePureFunction();
       case FPMLPackage.INT_TO_STRING: return createIntToString();
       case FPMLPackage.INT_POW: return createIntPow();
@@ -138,20 +140,22 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.MAJOR: return createMajor();
       case FPMLPackage.LOGIC_AND: return createLogicAnd();
       case FPMLPackage.LOGIC_OR: return createLogicOr();
+      case FPMLPackage.LOGIC_NOT: return createLogicNot();
       case FPMLPackage.EXTRACT_PURE: return createExtractPure();
       case FPMLPackage.IS_LEFT_PURE: return createIsLeftPure();
       case FPMLPackage.IS_RIGHT_PURE: return createIsRightPure();
       case FPMLPackage.PURE_IF: return createPureIf();
       case FPMLPackage.PURE_IF_BODY: return createPureIfBody();
       case FPMLPackage.PURE_EITHER_IF: return createPureEitherIf();
+      case FPMLPackage.PURE_RETURN: return createPureReturn();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_FUNCTION: return createPrimitiveEffectFullFunction();
-      case FPMLPackage.PRIMITIVE_PRINT: return createPrimitivePrint();
+      case FPMLPackage.PRINT: return createPrint();
       case FPMLPackage.LEFT_ALGEBRAIC_IO: return createLeftAlgebraicIO();
       case FPMLPackage.RIGHT_ALGEBRAIC_IO: return createRightAlgebraicIO();
       case FPMLPackage.PRIMITIVE_EFFECT_FULL_VALUE: return createPrimitiveEffectFullValue();
-      case FPMLPackage.PRIMITIVE_RANDOM: return createPrimitiveRandom();
-      case FPMLPackage.PRIMITIVE_RETURN: return createPrimitiveReturn();
-      case FPMLPackage.PRIMITIVE_TIME: return createPrimitiveTime();
+      case FPMLPackage.RANDOM: return createRandom();
+      case FPMLPackage.EFFECT_FULL_RETURN: return createEffectFullReturn();
+      case FPMLPackage.TIME: return createTime();
       case FPMLPackage.APPLY_FIO: return createApplyFIO();
       case FPMLPackage.APPLY_FIO_FACTOR: return createApplyFIOFactor();
       case FPMLPackage.EXTRACT_EFFECT_FULL: return createExtractEffectFull();
@@ -162,6 +166,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_IF: return createEffectFullIf();
       case FPMLPackage.EFFECT_FULL_EITHER_IF: return createEffectFullEitherIf();
       case FPMLPackage.EFFECT_FULL_IF_BODY: return createEffectFullIfBody();
+      case FPMLPackage.GET_LINE: return createGetLine();
       case FPMLPackage.PURE_VALUE: return createPureValue();
       case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
       case FPMLPackage.IO_EFFECT_FULL_EXPRESSION: return createIOEffectFullExpression();
@@ -791,6 +796,28 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PureExpressionAndPureFunctionReference createPureExpressionAndPureFunctionReference()
+  {
+    PureExpressionAndPureFunctionReferenceImpl pureExpressionAndPureFunctionReference = new PureExpressionAndPureFunctionReferenceImpl();
+    return pureExpressionAndPureFunctionReference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EffectFullExpressionAndEffectFullFunctionReference createEffectFullExpressionAndEffectFullFunctionReference()
+  {
+    EffectFullExpressionAndEffectFullFunctionReferenceImpl effectFullExpressionAndEffectFullFunctionReference = new EffectFullExpressionAndEffectFullFunctionReferenceImpl();
+    return effectFullExpressionAndEffectFullFunctionReference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PrimitivePureFunction createPrimitivePureFunction()
   {
     PrimitivePureFunctionImpl primitivePureFunction = new PrimitivePureFunctionImpl();
@@ -989,6 +1016,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public LogicNot createLogicNot()
+  {
+    LogicNotImpl logicNot = new LogicNotImpl();
+    return logicNot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ExtractPure createExtractPure()
   {
     ExtractPureImpl extractPure = new ExtractPureImpl();
@@ -1055,6 +1093,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PureReturn createPureReturn()
+  {
+    PureReturnImpl pureReturn = new PureReturnImpl();
+    return pureReturn;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PrimitiveEffectFullFunction createPrimitiveEffectFullFunction()
   {
     PrimitiveEffectFullFunctionImpl primitiveEffectFullFunction = new PrimitiveEffectFullFunctionImpl();
@@ -1066,10 +1115,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PrimitivePrint createPrimitivePrint()
+  public Print createPrint()
   {
-    PrimitivePrintImpl primitivePrint = new PrimitivePrintImpl();
-    return primitivePrint;
+    PrintImpl print = new PrintImpl();
+    return print;
   }
 
   /**
@@ -1110,10 +1159,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PrimitiveRandom createPrimitiveRandom()
+  public Random createRandom()
   {
-    PrimitiveRandomImpl primitiveRandom = new PrimitiveRandomImpl();
-    return primitiveRandom;
+    RandomImpl random = new RandomImpl();
+    return random;
   }
 
   /**
@@ -1121,10 +1170,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PrimitiveReturn createPrimitiveReturn()
+  public EffectFullReturn createEffectFullReturn()
   {
-    PrimitiveReturnImpl primitiveReturn = new PrimitiveReturnImpl();
-    return primitiveReturn;
+    EffectFullReturnImpl effectFullReturn = new EffectFullReturnImpl();
+    return effectFullReturn;
   }
 
   /**
@@ -1132,10 +1181,10 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PrimitiveTime createPrimitiveTime()
+  public Time createTime()
   {
-    PrimitiveTimeImpl primitiveTime = new PrimitiveTimeImpl();
-    return primitiveTime;
+    TimeImpl time = new TimeImpl();
+    return time;
   }
 
   /**
@@ -1246,6 +1295,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     EffectFullIfBodyImpl effectFullIfBody = new EffectFullIfBodyImpl();
     return effectFullIfBody;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public GetLine createGetLine()
+  {
+    GetLineImpl getLine = new GetLineImpl();
+    return getLine;
   }
 
   /**

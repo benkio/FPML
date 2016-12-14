@@ -3,8 +3,8 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.PureExpressionAndPureFunctionReference;
 import it.unibo.fPML.PureSumValue;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -39,7 +39,7 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
    * @generated
    * @ordered
    */
-  protected Expression sumAdtElement1;
+  protected PureExpressionAndPureFunctionReference sumAdtElement1;
 
   /**
    * The cached value of the '{@link #getSumAdtElement2() <em>Sum Adt Element2</em>}' containment reference.
@@ -49,7 +49,7 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
    * @generated
    * @ordered
    */
-  protected Expression sumAdtElement2;
+  protected PureExpressionAndPureFunctionReference sumAdtElement2;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression getSumAdtElement1()
+  public PureExpressionAndPureFunctionReference getSumAdtElement1()
   {
     return sumAdtElement1;
   }
@@ -87,9 +87,9 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSumAdtElement1(Expression newSumAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetSumAdtElement1(PureExpressionAndPureFunctionReference newSumAdtElement1, NotificationChain msgs)
   {
-    Expression oldSumAdtElement1 = sumAdtElement1;
+    PureExpressionAndPureFunctionReference oldSumAdtElement1 = sumAdtElement1;
     sumAdtElement1 = newSumAdtElement1;
     if (eNotificationRequired())
     {
@@ -104,7 +104,7 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSumAdtElement1(Expression newSumAdtElement1)
+  public void setSumAdtElement1(PureExpressionAndPureFunctionReference newSumAdtElement1)
   {
     if (newSumAdtElement1 != sumAdtElement1)
     {
@@ -125,7 +125,7 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression getSumAdtElement2()
+  public PureExpressionAndPureFunctionReference getSumAdtElement2()
   {
     return sumAdtElement2;
   }
@@ -135,9 +135,9 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSumAdtElement2(Expression newSumAdtElement2, NotificationChain msgs)
+  public NotificationChain basicSetSumAdtElement2(PureExpressionAndPureFunctionReference newSumAdtElement2, NotificationChain msgs)
   {
-    Expression oldSumAdtElement2 = sumAdtElement2;
+    PureExpressionAndPureFunctionReference oldSumAdtElement2 = sumAdtElement2;
     sumAdtElement2 = newSumAdtElement2;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSumAdtElement2(Expression newSumAdtElement2)
+  public void setSumAdtElement2(PureExpressionAndPureFunctionReference newSumAdtElement2)
   {
     if (newSumAdtElement2 != sumAdtElement2)
     {
@@ -215,10 +215,10 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
     switch (featureID)
     {
       case FPMLPackage.PURE_SUM_VALUE__SUM_ADT_ELEMENT1:
-        setSumAdtElement1((Expression)newValue);
+        setSumAdtElement1((PureExpressionAndPureFunctionReference)newValue);
         return;
       case FPMLPackage.PURE_SUM_VALUE__SUM_ADT_ELEMENT2:
-        setSumAdtElement2((Expression)newValue);
+        setSumAdtElement2((PureExpressionAndPureFunctionReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,10 +235,10 @@ public class PureSumValueImpl extends PureAlgebraicTypeImpl implements PureSumVa
     switch (featureID)
     {
       case FPMLPackage.PURE_SUM_VALUE__SUM_ADT_ELEMENT1:
-        setSumAdtElement1((Expression)null);
+        setSumAdtElement1((PureExpressionAndPureFunctionReference)null);
         return;
       case FPMLPackage.PURE_SUM_VALUE__SUM_ADT_ELEMENT2:
-        setSumAdtElement2((Expression)null);
+        setSumAdtElement2((PureExpressionAndPureFunctionReference)null);
         return;
     }
     super.eUnset(featureID);

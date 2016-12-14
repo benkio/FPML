@@ -4,29 +4,20 @@ import com.google.common.base.Objects;
 import it.unibo.fPML.AdditionalEffectFullArgument;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFFactor;
-import it.unibo.fPML.ApplyFIO;
-import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBodyContent;
-import it.unibo.fPML.EffectFullData;
-import it.unibo.fPML.EffectFullEitherIf;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionBlock;
 import it.unibo.fPML.EffectFullFunctionDefinition;
-import it.unibo.fPML.EffectFullFunctionType;
-import it.unibo.fPML.EffectFullIf;
-import it.unibo.fPML.EffectFullIfBody;
 import it.unibo.fPML.EffectFullPrimitive;
-import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Equals;
 import it.unibo.fPML.Expression;
-import it.unibo.fPML.ExtractEffectFull;
 import it.unibo.fPML.ExtractPure;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
@@ -34,15 +25,13 @@ import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
-import it.unibo.fPML.IsLeftEffectFull;
 import it.unibo.fPML.IsLeftPure;
-import it.unibo.fPML.IsRightEffectFull;
 import it.unibo.fPML.IsRightPure;
 import it.unibo.fPML.LeftAlgebraic;
-import it.unibo.fPML.LeftAlgebraicIO;
 import it.unibo.fPML.LiftEffectFullFunction;
 import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
+import it.unibo.fPML.LogicNot;
 import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.MainFunc;
 import it.unibo.fPML.Major;
@@ -54,11 +43,7 @@ import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitiveEffectFullValue;
-import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitivePureFunction;
-import it.unibo.fPML.PrimitiveRandom;
-import it.unibo.fPML.PrimitiveReturn;
-import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureEitherIf;
@@ -70,7 +55,6 @@ import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.RightAlgebraic;
-import it.unibo.fPML.RightAlgebraicIO;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
@@ -230,12 +214,12 @@ public class EffectFullFunctionGenerator {
             CharSequence _compileIOWalkthrough = this.compileIOWalkthrough(((CompositionFunctionBodyEffect) _functionBody_6));
             _builder_1.append(_compileIOWalkthrough, "\t");
             _builder_1.newLineIfNotEmpty();
+            _builder_1.append("\t");
+            _builder_1.append(".safe().run().on((IOException e) -> { e.printStackTrace(); return Unit.unit(); });");
+            _builder_1.newLine();
           }
         }
       }
-      _builder_1.append("\t");
-      _builder_1.append(".safe().run().on((IOException e) -> { e.printStackTrace(); return Unit.unit(); });");
-      _builder_1.newLine();
       _builder_1.append("}");
       return _builder_1.toString();
     }
@@ -352,128 +336,21 @@ public class EffectFullFunctionGenerator {
   }
   
   public Object compileIOWalkthrough(final PrimitiveEffectFullFunction pef) {
-    Object _switchResult = null;
-    boolean _matched = false;
-    if (pef instanceof PrimitivePrint) {
-      _matched=true;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append(".bind(PrimitivesEffectFull::primitivePrint)");
-      _switchResult = _builder;
-    }
-    if (!_matched) {
-      if (pef instanceof LeftAlgebraicIO) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::leftAlgebricIO)");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof RightAlgebraicIO) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::rightAlgebricIO)");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof ApplyFIO) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind((");
-        EffectFullFunctionType _functionType = ((ApplyFIO)pef).getFunctionType();
-        Object _compile = this.typeGenerator.compile(_functionType);
-        _builder.append(_compile, "");
-        _builder.append(" f) -> f.f(IOFunctions.runSafe(");
-        ApplyFIOFactor _value = ((ApplyFIO)pef).getValue();
-        EffectFullBodyContent _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
-        String _compileIO = this.commonEffectFullFunctions.compileIO(_valueFromApplyFIOFactor, null);
-        _builder.append(_compileIO, "");
-        _builder.append(")))");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof PrimitiveReturn) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof ExtractEffectFull) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind((IEffectFullData");
-        EffectFullData _data = ((ExtractEffectFull)pef).getData();
-        EffectFullType _content = _data.getContent();
-        Object _compile = this.typeGenerator.compile(_content);
-        _builder.append(_compile, "");
-        _builder.append(" d) -> d.getValue())");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof LiftPureFunction) {
-        _matched=true;
-        _switchResult = this.compileIOWalkthrough(((LiftPureFunction)pef));
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof LiftEffectFullFunction) {
-        _matched=true;
-        _switchResult = this.compileIOWalkthrough(((LiftEffectFullFunction)pef));
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof IsLeftEffectFull) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::isLeft)");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof IsRightEffectFull) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind(PrimitivesEffectFull::isRight)");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof EffectFullIf) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind((Boolean c) -> PrimtivesEffectFull.effectFullIf(c,");
-        EffectFullIfBody _then = ((EffectFullIf)pef).getThen();
-        String _compile = this.commonEffectFullFunctions.compile(_then);
-        _builder.append(_compile, "");
-        _builder.append(" ,");
-        EffectFullIfBody _else = ((EffectFullIf)pef).getElse();
-        String _compile_1 = this.commonEffectFullFunctions.compile(_else);
-        _builder.append(_compile_1, "");
-        _builder.append(")");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (pef instanceof EffectFullEitherIf) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".bind((Boolean c) -> PrimtivesEffectFull.effectFullIfEither(c,");
-        EffectFullIfBody _then = ((EffectFullEitherIf)pef).getThen();
-        String _compile = this.commonEffectFullFunctions.compile(_then);
-        _builder.append(_compile, "");
-        _builder.append(" ,");
-        EffectFullIfBody _else = ((EffectFullEitherIf)pef).getElse();
-        String _compile_1 = this.commonEffectFullFunctions.compile(_else);
-        _builder.append(_compile_1, "");
-        _builder.append(")");
-        _switchResult = _builder;
-      }
-    }
-    return _switchResult;
+    throw new Error("Unresolved compilation problems:"
+      + "\nPrimitivePrint cannot be resolved to a type."
+      + "\nPrimitiveReturn cannot be resolved to a type."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition.");
   }
   
   public Object compileIOWalkthrough(final LiftEffectFullFunction lef) {
@@ -514,23 +391,10 @@ public class EffectFullFunctionGenerator {
   }
   
   public CharSequence compileIOWalkthrough(final PrimitiveEffectFullValue pev) {
-    CharSequence _switchResult = null;
-    boolean _matched = false;
-    if (pev instanceof PrimitiveRandom) {
-      _matched=true;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append(".append(PrimitivesEffectFull.primitiveRandom())");
-      _switchResult = _builder;
-    }
-    if (!_matched) {
-      if (pev instanceof PrimitiveTime) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(PrimitivesEffectFull.primitiveTime())");
-        _switchResult = _builder;
-      }
-    }
-    return _switchResult;
+    throw new Error("Unresolved compilation problems:"
+      + "\nPrimitiveRandom cannot be resolved to a type."
+      + "\nPrimitiveTime cannot be resolved to a type."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition.");
   }
   
   public CharSequence compileIOWalkthrough(final PrimitivePureFunction ppf) {
@@ -655,6 +519,14 @@ public class EffectFullFunctionGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(".map(Primitives::logicOr)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (ppf instanceof LogicNot) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".map(Primitives::logicNot)");
         _switchResult = _builder;
       }
     }

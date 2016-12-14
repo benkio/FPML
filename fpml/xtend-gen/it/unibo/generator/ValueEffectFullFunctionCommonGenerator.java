@@ -3,51 +3,32 @@ package it.unibo.generator;
 import com.google.common.base.Objects;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFFactor;
-import it.unibo.fPML.ApplyFIO;
-import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
-import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBodyContent;
-import it.unibo.fPML.EffectFullData;
-import it.unibo.fPML.EffectFullDataValue;
-import it.unibo.fPML.EffectFullEitherIf;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
-import it.unibo.fPML.EffectFullIf;
 import it.unibo.fPML.EffectFullIfBody;
 import it.unibo.fPML.EffectFullPrimitive;
-import it.unibo.fPML.EffectFullProdValue;
-import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.EffectFullType;
 import it.unibo.fPML.EffectFullValue;
-import it.unibo.fPML.EffectFullValueRef;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Equals;
 import it.unibo.fPML.Expression;
-import it.unibo.fPML.ExtractEffectFull;
 import it.unibo.fPML.ExtractPure;
 import it.unibo.fPML.FunctionBodyEffectFull;
-import it.unibo.fPML.IOEffectFullExpression;
-import it.unibo.fPML.IOEffectFullFunction;
-import it.unibo.fPML.IOExpression;
-import it.unibo.fPML.IOPureFunction;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
-import it.unibo.fPML.IsLeftEffectFull;
 import it.unibo.fPML.IsLeftPure;
-import it.unibo.fPML.IsRightEffectFull;
 import it.unibo.fPML.IsRightPure;
 import it.unibo.fPML.LeftAlgebraic;
-import it.unibo.fPML.LeftAlgebraicIO;
-import it.unibo.fPML.LiftEffectFullFunction;
-import it.unibo.fPML.LiftPureFunction;
 import it.unibo.fPML.LogicAnd;
+import it.unibo.fPML.LogicNot;
 import it.unibo.fPML.LogicOr;
 import it.unibo.fPML.Major;
 import it.unibo.fPML.MajorEquals;
@@ -58,11 +39,7 @@ import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitiveEffectFullFunction;
 import it.unibo.fPML.PrimitiveEffectFullValue;
-import it.unibo.fPML.PrimitivePrint;
 import it.unibo.fPML.PrimitivePureFunction;
-import it.unibo.fPML.PrimitiveRandom;
-import it.unibo.fPML.PrimitiveReturn;
-import it.unibo.fPML.PrimitiveTime;
 import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureEitherIf;
@@ -72,7 +49,6 @@ import it.unibo.fPML.PureIf;
 import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureValue;
 import it.unibo.fPML.RightAlgebraic;
-import it.unibo.fPML.RightAlgebraicIO;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
 import it.unibo.generator.TypeGenerator;
@@ -92,124 +68,12 @@ public class ValueEffectFullFunctionCommonGenerator {
   private final ValuePureFunctionCommonGenerator commonPureFunctions = new ValuePureFunctionCommonGenerator();
   
   public String compile(final EffectFullExpression e) {
-    String _switchResult = null;
-    boolean _matched = false;
-    if (e instanceof EffectFullFunctionType) {
-      _matched=true;
-      return this.compile(((EffectFullFunctionType)e));
-    }
-    if (!_matched) {
-      if (e instanceof EffectFullDataValue) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("new ");
-        EffectFullData _type = ((EffectFullDataValue)e).getType();
-        String _name = _type.getName();
-        _builder.append(_name, "");
-        _builder.append("(");
-        EffectFullExpression _value = ((EffectFullDataValue)e).getValue();
-        EffectFullData _type_1 = ((EffectFullDataValue)e).getType();
-        EffectFullType _content = _type_1.getContent();
-        CharSequence _compileAdtValue = this.compileAdtValue(_value, _content);
-        _builder.append(_compileAdtValue, "");
-        _builder.append(")");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof EffectFullProdValue) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("P.p(");
-        EffectFullExpression _prodAdtElement1 = ((EffectFullProdValue)e).getProdAdtElement1();
-        String _compile = this.compile(_prodAdtElement1);
-        _builder.append(_compile, "");
-        _builder.append(", ");
-        EffectFullExpression _prodAdtElement2 = ((EffectFullProdValue)e).getProdAdtElement2();
-        String _compile_1 = this.compile(_prodAdtElement2);
-        _builder.append(_compile_1, "");
-        _builder.append(")");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof EffectFullSumValue) {
-        _matched=true;
-        EffectFullExpression _sumAdtElement1 = ((EffectFullSumValue)e).getSumAdtElement1();
-        boolean _equals = Objects.equal(_sumAdtElement1, null);
-        if (_equals) {
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("Either.right(");
-          EffectFullExpression _sumAdtElement2 = ((EffectFullSumValue)e).getSumAdtElement2();
-          String _compile = this.compile(_sumAdtElement2);
-          _builder.append(_compile, "");
-          _builder.append(")");
-          return _builder.toString();
-        }
-        StringConcatenation _builder_1 = new StringConcatenation();
-        _builder_1.append("Either.left(");
-        EffectFullExpression _sumAdtElement1_1 = ((EffectFullSumValue)e).getSumAdtElement1();
-        String _compile_1 = this.compile(_sumAdtElement1_1);
-        _builder_1.append(_compile_1, "");
-        _builder_1.append(")");
-        return _builder_1.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof EffectFullValueRef) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("EffectFullValue.");
-        EffectFullValue _value = ((EffectFullValueRef)e).getValue();
-        String _name = _value.getName();
-        _builder.append(_name, "");
-        _builder.append("()");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof IOExpression) {
-        _matched=true;
-        Expression _innerValue = ((IOExpression)e).getInnerValue();
-        String _compile = this.commonFunctions.compile(((Expression) _innerValue));
-        String _plus = ("IOFunctions.unit(" + _compile);
-        return (_plus + ")");
-      }
-    }
-    if (!_matched) {
-      if (e instanceof IOEffectFullExpression) {
-        _matched=true;
-        EffectFullExpression _innerValue = ((IOEffectFullExpression)e).getInnerValue();
-        String _compile = this.compile(((EffectFullExpression) _innerValue));
-        String _plus = ("IOFunctions.unit(" + _compile);
-        return (_plus + ")");
-      }
-    }
-    if (!_matched) {
-      if (e instanceof IOPureFunction) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.unit(");
-        PureFunction _pureFunctionFromIOPureFunction = Others.getPureFunctionFromIOPureFunction(((IOPureFunction)e));
-        String _compilePureFunctionRef = this.commonPureFunctions.compilePureFunctionRef(_pureFunctionFromIOPureFunction);
-        _builder.append(_compilePureFunctionRef, "");
-        _builder.append(")");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (e instanceof IOEffectFullFunction) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.unit(");
-        EffectFullFunction _effectFullFunctionFromIOEffectFullFunction = Others.getEffectFullFunctionFromIOEffectFullFunction(((IOEffectFullFunction)e));
-        String _compileEffectFullFunctionRef = this.compileEffectFullFunctionRef(_effectFullFunctionFromIOEffectFullFunction);
-        _builder.append(_compileEffectFullFunctionRef, "");
-        _builder.append(")");
-        _switchResult = _builder.toString();
-      }
-    }
-    return _switchResult;
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from EffectFullExpressionAndEffectFullFunctionReference to EffectFullExpression"
+      + "\nType mismatch: cannot convert from EffectFullExpressionAndEffectFullFunctionReference to EffectFullFunctionType"
+      + "\nType mismatch: cannot convert from EffectFullExpressionAndEffectFullFunctionReference to EffectFullFunctionType"
+      + "\nType mismatch: cannot convert from EffectFullExpressionAndEffectFullFunctionReference to EffectFullFunctionType"
+      + "\nType mismatch: cannot convert from EffectFullExpressionAndEffectFullFunctionReference to EffectFullFunctionType");
   }
   
   public String compileEffectFullFunctionRef(final EffectFullFunction function) {
@@ -243,145 +107,11 @@ public class ValueEffectFullFunctionCommonGenerator {
   }
   
   public CharSequence compileAdtValue(final EffectFullExpression v, final Type d) {
-    CharSequence _switchResult = null;
-    boolean _matched = false;
-    if (v instanceof EffectFullSumValue) {
-      _matched=true;
-      EffectFullExpression _sumAdtElement1 = ((EffectFullSumValue)v).getSumAdtElement1();
-      boolean _equals = Objects.equal(_sumAdtElement1, null);
-      if (_equals) {
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("Either.right(");
-        EffectFullExpression _sumAdtElement2 = ((EffectFullSumValue)v).getSumAdtElement2();
-        Type _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) d));
-        Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType);
-        _builder.append(_compileAdtValue, "");
-        _builder.append(")");
-        return _builder.toString();
-      }
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Either.left(");
-      EffectFullExpression _sumAdtElement1_1 = ((EffectFullSumValue)v).getSumAdtElement1();
-      Type _effectFullAdtElement1 = ((EffectFullAlgebraicType) d).getEffectFullAdtElement1();
-      Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _effectFullAdtElement1);
-      _builder_1.append(_compileAdtValue_1, "");
-      _builder_1.append(")");
-      return _builder_1.toString();
-    }
-    if (!_matched) {
-      if (v instanceof EffectFullProdValue) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("P.p(");
-        EffectFullExpression _prodAdtElement1 = ((EffectFullProdValue)v).getProdAdtElement1();
-        Type _effectFullAdtElement1 = ((EffectFullAlgebraicType) d).getEffectFullAdtElement1();
-        Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _effectFullAdtElement1);
-        _builder.append(_compileAdtValue, "");
-        _builder.append(",");
-        EffectFullExpression _prodAdtElement2 = ((EffectFullProdValue)v).getProdAdtElement2();
-        Type _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) d));
-        Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType);
-        _builder.append(_compileAdtValue_1, "");
-        _builder.append(")");
-        return _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (v instanceof EffectFullValueRef) {
-        _matched=true;
-        EffectFullValue _value = ((EffectFullValueRef)v).getValue();
-        if ((_value instanceof EffectFullValue)) {
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("EffectFullValue.");
-          EffectFullValue _value_1 = ((EffectFullValueRef)v).getValue();
-          String _name = ((EffectFullValue) _value_1).getName();
-          _builder.append(_name, "");
-          _builder.append("()");
-          return _builder.toString();
-        } else {
-          StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append("EffectFullFunctionDefinitions::");
-          EffectFullValue _value_2 = ((EffectFullValueRef)v).getValue();
-          String _name_1 = ((EffectFullFunctionDefinition) _value_2).getName();
-          _builder_1.append(_name_1, "");
-          return _builder_1.toString();
-        }
-      }
-    }
-    if (!_matched) {
-      if (v instanceof EffectFullFunctionType) {
-        _matched=true;
-        if ((d instanceof EffectFullFunctionType)) {
-          return this.compile(((EffectFullFunctionType)v));
-        } else {
-          if ((d instanceof IOType)) {
-            StringConcatenation _builder = new StringConcatenation();
-            _builder.append("IOFunctions.unit(");
-            String _compile = this.compile(((EffectFullFunctionType)v));
-            _builder.append(_compile, "");
-            _builder.append(")");
-            return _builder.toString();
-          }
-        }
-      }
-    }
-    if (!_matched) {
-      if (v instanceof EffectFullDataValue) {
-        _matched=true;
-        return this.compile(((EffectFullExpression) v));
-      }
-    }
-    if (!_matched) {
-      if (v instanceof IOExpression) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.unit(");
-        Expression _innerValue = ((IOExpression)v).getInnerValue();
-        Type _type = ((IOType) d).getType();
-        Object _compileAdtValue = this.commonFunctions.compileAdtValue(((Expression) _innerValue), _type);
-        _builder.append(_compileAdtValue, "");
-        _builder.append(")");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (v instanceof IOEffectFullExpression) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.unit(");
-        EffectFullExpression _innerValue = ((IOEffectFullExpression)v).getInnerValue();
-        Type _type = ((IOType) d).getType();
-        Object _compileAdtValue = this.compileAdtValue(((EffectFullExpression) _innerValue), ((EffectFullType) _type));
-        _builder.append(_compileAdtValue, "");
-        _builder.append(")");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (v instanceof IOPureFunction) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.unit(");
-        PureFunction _pureFunctionFromIOPureFunction = Others.getPureFunctionFromIOPureFunction(((IOPureFunction)v));
-        String _compilePureFunctionRef = this.commonPureFunctions.compilePureFunctionRef(_pureFunctionFromIOPureFunction);
-        _builder.append(_compilePureFunctionRef, "");
-        _builder.append(")");
-        _switchResult = _builder;
-      }
-    }
-    if (!_matched) {
-      if (v instanceof IOEffectFullFunction) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.unit(");
-        EffectFullFunction _effectFullFunctionFromIOEffectFullFunction = Others.getEffectFullFunctionFromIOEffectFullFunction(((IOEffectFullFunction)v));
-        String _compileEffectFullFunctionRef = this.compileEffectFullFunctionRef(_effectFullFunctionFromIOEffectFullFunction);
-        _builder.append(_compileEffectFullFunctionRef, "");
-        _builder.append(")");
-        _switchResult = _builder;
-      }
-    }
-    return _switchResult;
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from EffectFullExpressionAndEffectFullFunctionReference to EffectFullExpression"
+      + "\nType mismatch: cannot convert from EffectFullExpressionAndEffectFullFunctionReference to EffectFullExpression"
+      + "\nType mismatch: cannot convert from EffectFullExpressionAndEffectFullFunctionReference to EffectFullExpression"
+      + "\nType mismatch: cannot convert from EffectFullExpressionAndEffectFullFunctionReference to EffectFullExpression");
   }
   
   public String compile(final EffectFullFunctionType pft) {
@@ -573,19 +303,10 @@ public class ValueEffectFullFunctionCommonGenerator {
   }
   
   public String compileIO(final PrimitiveEffectFullValue pefv, final String acc) {
-    String _switchResult = null;
-    boolean _matched = false;
-    if (pefv instanceof PrimitiveRandom) {
-      _matched=true;
-      _switchResult = this.valueEmbellishment(acc, "PrimitivesEffectFull.primitiveRandom()");
-    }
-    if (!_matched) {
-      if (pefv instanceof PrimitiveTime) {
-        _matched=true;
-        _switchResult = this.valueEmbellishment(acc, "PrimitivesEffectFull.primitiveTime()");
-      }
-    }
-    return _switchResult;
+    throw new Error("Unresolved compilation problems:"
+      + "\nPrimitiveRandom cannot be resolved to a type."
+      + "\nPrimitiveTime cannot be resolved to a type."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition.");
   }
   
   public String compileIO(final EffectFullFunction eff, final String acc) {
@@ -634,157 +355,21 @@ public class ValueEffectFullFunctionCommonGenerator {
   }
   
   public String compileIO(final PrimitiveEffectFullFunction peff, final String acc) {
-    String _switchResult = null;
-    boolean _matched = false;
-    if (peff instanceof PrimitivePrint) {
-      _matched=true;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("IOFunctions.bind(");
-      _builder.append(acc, "");
-      _builder.append(", PrimitivesEffectFull::primitivePrint)");
-      _switchResult = _builder.toString();
-    }
-    if (!_matched) {
-      if (peff instanceof LeftAlgebraicIO) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.bind(");
-        _builder.append(acc, "");
-        _builder.append(", PrimitivesEffectFull:leftAlgebraicIO)");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof RightAlgebraicIO) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.bind(");
-        _builder.append(acc, "");
-        _builder.append(", PrimitivesEffectFull:rightAlgebraicIO)");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof ApplyFIO) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.bind(");
-        _builder.append(acc, "");
-        _builder.append(", (");
-        EffectFullFunctionType _functionType = ((ApplyFIO)peff).getFunctionType();
-        Object _compile = this.typeGenerator.compile(_functionType);
-        _builder.append(_compile, "");
-        _builder.append(" f) -> f.f(IOFunctions.runSafe(");
-        ApplyFIOFactor _value = ((ApplyFIO)peff).getValue();
-        EffectFullBodyContent _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
-        String _compileIO = this.compileIO(_valueFromApplyFIOFactor, null);
-        _builder.append(_compileIO, "");
-        _builder.append(")))");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof PrimitiveReturn) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append(acc, "");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof ExtractEffectFull) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.bind(");
-        _builder.append(acc, "");
-        _builder.append(", (");
-        EffectFullData _data = ((ExtractEffectFull)peff).getData();
-        String _name = _data.getName();
-        _builder.append(_name, "");
-        _builder.append(" d) -> ");
-        {
-          EffectFullData _data_1 = ((ExtractEffectFull)peff).getData();
-          EffectFullType _content = _data_1.getContent();
-          if ((_content instanceof IOType)) {
-            _builder.append(" d.getValue() ");
-          } else {
-            _builder.append(" IOFunctions.unit(d.getValue())) ");
-          }
-        }
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof LiftPureFunction) {
-        _matched=true;
-        PureFunction _pureFunctionFromLiftPureFunction = Others.getPureFunctionFromLiftPureFunction(((LiftPureFunction)peff));
-        _switchResult = this.compileIO(_pureFunctionFromLiftPureFunction, acc);
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof LiftEffectFullFunction) {
-        _matched=true;
-        EffectFullFunction _effectFullFunctionFromLiftEffectFullFunction = Others.getEffectFullFunctionFromLiftEffectFullFunction(((LiftEffectFullFunction)peff));
-        _switchResult = this.compileIO(_effectFullFunctionFromLiftEffectFullFunction, acc);
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof IsLeftEffectFull) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFuctions.bind(");
-        _builder.append(acc, "");
-        _builder.append(", PrimitivesEffectFull::isLeft)");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof IsRightEffectFull) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.bind(");
-        _builder.append(acc, "");
-        _builder.append(", PrimitivesEffectFull::isRight)");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof EffectFullIf) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.bind(");
-        _builder.append(acc, "");
-        _builder.append(", (Boolean c) -> PrimitivesEffectFull.effectFullIf(c, ");
-        EffectFullIfBody _then = ((EffectFullIf)peff).getThen();
-        String _compile = this.compile(_then);
-        _builder.append(_compile, "");
-        _builder.append(" , ");
-        EffectFullIfBody _else = ((EffectFullIf)peff).getElse();
-        String _compile_1 = this.compile(_else);
-        _builder.append(_compile_1, "");
-        _builder.append("))");
-        _switchResult = _builder.toString();
-      }
-    }
-    if (!_matched) {
-      if (peff instanceof EffectFullEitherIf) {
-        _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.bind(");
-        _builder.append(acc, "");
-        _builder.append(", (Boolean c) -> PrimitivesEffectFull.effectFullIfEither(c, ");
-        EffectFullIfBody _then = ((EffectFullEitherIf)peff).getThen();
-        String _compile = this.compile(_then);
-        _builder.append(_compile, "");
-        _builder.append(" , ");
-        EffectFullIfBody _else = ((EffectFullEitherIf)peff).getElse();
-        String _compile_1 = this.compile(_else);
-        _builder.append(_compile_1, "");
-        _builder.append("))");
-        _switchResult = _builder.toString();
-      }
-    }
-    return _switchResult;
+    throw new Error("Unresolved compilation problems:"
+      + "\nPrimitivePrint cannot be resolved to a type."
+      + "\nPrimitiveReturn cannot be resolved to a type."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition."
+      + "\nUnreachable code: The case can never match. It is already handled by a previous condition.");
   }
   
   public String compileIO(final PureFunction pf, final String acc) {
@@ -1023,6 +608,16 @@ public class ValueEffectFullFunctionCommonGenerator {
       }
     }
     if (!_matched) {
+      if (ppf instanceof LogicNot) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.map(");
+        _builder.append(acc, "");
+        _builder.append(", Primitives::logicNot)");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
       if (ppf instanceof IsLeftPure) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
@@ -1109,42 +704,47 @@ public class ValueEffectFullFunctionCommonGenerator {
   }
   
   public String compile(final EffectFullIfBody pib) {
-    String _switchResult = null;
-    boolean _matched = false;
-    if (pib instanceof EffectFullExpression) {
-      _matched=true;
-      _switchResult = this.compile(((EffectFullExpression) pib));
-    }
-    if (!_matched) {
-      if (pib instanceof EffectFullFunction) {
+    String _xblockexpression = null;
+    {
+      final EffectFullBodyContent content = Others.getFunctionFromEffectFullIfBody(pib);
+      String _switchResult = null;
+      boolean _matched = false;
+      if (content instanceof EffectFullExpression) {
         _matched=true;
-        String _switchResult_1 = null;
-        boolean _matched_1 = false;
-        if (pib instanceof EffectFullValue) {
-          _matched_1=true;
-          _switchResult_1 = ((EffectFullValue)pib).getName();
-        }
-        if (!_matched_1) {
-          if (pib instanceof EffectFullFunctionDefinition) {
-            _matched_1=true;
-            _switchResult_1 = this.compileEffectFullFunctionRef(((EffectFullFunctionDefinition) pib));
-          }
-        }
-        if (!_matched_1) {
-          if (pib instanceof PrimitiveEffectFullFunction) {
-            _matched_1=true;
-            _switchResult_1 = this.compileEffectFullFunctionRef(((PrimitiveEffectFullFunction) pib));
-          }
-        }
-        if (!_matched_1) {
-          if (pib instanceof EffectFullArgument) {
-            _matched_1=true;
-            _switchResult_1 = ((EffectFullArgument)pib).getName();
-          }
-        }
-        _switchResult = _switchResult_1;
+        _switchResult = this.compile(((EffectFullExpression) content));
       }
+      if (!_matched) {
+        if (content instanceof EffectFullFunction) {
+          _matched=true;
+          String _switchResult_1 = null;
+          boolean _matched_1 = false;
+          if (content instanceof EffectFullValue) {
+            _matched_1=true;
+            _switchResult_1 = ((EffectFullValue)content).getName();
+          }
+          if (!_matched_1) {
+            if (content instanceof EffectFullFunctionDefinition) {
+              _matched_1=true;
+              _switchResult_1 = this.compileEffectFullFunctionRef(((EffectFullFunctionDefinition) content));
+            }
+          }
+          if (!_matched_1) {
+            if (content instanceof PrimitiveEffectFullFunction) {
+              _matched_1=true;
+              _switchResult_1 = this.compileEffectFullFunctionRef(((PrimitiveEffectFullFunction) content));
+            }
+          }
+          if (!_matched_1) {
+            if (content instanceof EffectFullArgument) {
+              _matched_1=true;
+              _switchResult_1 = ((EffectFullArgument)content).getName();
+            }
+          }
+          _switchResult = _switchResult_1;
+        }
+      }
+      _xblockexpression = _switchResult;
     }
-    return _switchResult;
+    return _xblockexpression;
   }
 }

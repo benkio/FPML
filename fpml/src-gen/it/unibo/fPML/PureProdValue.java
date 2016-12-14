@@ -32,12 +32,12 @@ public interface PureProdValue extends PureAlgebraicType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prod Adt Element1</em>' containment reference.
-   * @see #setProdAdtElement1(Expression)
+   * @see #setProdAdtElement1(PureExpressionAndPureFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getPureProdValue_ProdAdtElement1()
    * @model containment="true"
    * @generated
    */
-  Expression getProdAdtElement1();
+  PureExpressionAndPureFunctionReference getProdAdtElement1();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureProdValue#getProdAdtElement1 <em>Prod Adt Element1</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface PureProdValue extends PureAlgebraicType
    * @see #getProdAdtElement1()
    * @generated
    */
-  void setProdAdtElement1(Expression value);
+  void setProdAdtElement1(PureExpressionAndPureFunctionReference value);
 
   /**
    * Returns the value of the '<em><b>Prod Adt Element2</b></em>' containment reference.
@@ -58,12 +58,12 @@ public interface PureProdValue extends PureAlgebraicType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prod Adt Element2</em>' containment reference.
-   * @see #setProdAdtElement2(Expression)
+   * @see #setProdAdtElement2(PureExpressionAndPureFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getPureProdValue_ProdAdtElement2()
    * @model containment="true"
    * @generated
    */
-  Expression getProdAdtElement2();
+  PureExpressionAndPureFunctionReference getProdAdtElement2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureProdValue#getProdAdtElement2 <em>Prod Adt Element2</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface PureProdValue extends PureAlgebraicType
    * @see #getProdAdtElement2()
    * @generated
    */
-  void setProdAdtElement2(Expression value);
+  void setProdAdtElement2(PureExpressionAndPureFunctionReference value);
 
 } // PureProdValue

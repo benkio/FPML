@@ -3,7 +3,7 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullExpression;
+import it.unibo.fPML.EffectFullExpressionAndEffectFullFunctionReference;
 import it.unibo.fPML.EffectFullSumValue;
 import it.unibo.fPML.FPMLPackage;
 
@@ -39,7 +39,7 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
    * @generated
    * @ordered
    */
-  protected EffectFullExpression sumAdtElement1;
+  protected EffectFullExpressionAndEffectFullFunctionReference sumAdtElement1;
 
   /**
    * The cached value of the '{@link #getSumAdtElement2() <em>Sum Adt Element2</em>}' containment reference.
@@ -49,7 +49,7 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
    * @generated
    * @ordered
    */
-  protected EffectFullExpression sumAdtElement2;
+  protected EffectFullExpressionAndEffectFullFunctionReference sumAdtElement2;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullExpression getSumAdtElement1()
+  public EffectFullExpressionAndEffectFullFunctionReference getSumAdtElement1()
   {
     return sumAdtElement1;
   }
@@ -87,9 +87,9 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSumAdtElement1(EffectFullExpression newSumAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetSumAdtElement1(EffectFullExpressionAndEffectFullFunctionReference newSumAdtElement1, NotificationChain msgs)
   {
-    EffectFullExpression oldSumAdtElement1 = sumAdtElement1;
+    EffectFullExpressionAndEffectFullFunctionReference oldSumAdtElement1 = sumAdtElement1;
     sumAdtElement1 = newSumAdtElement1;
     if (eNotificationRequired())
     {
@@ -104,7 +104,7 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSumAdtElement1(EffectFullExpression newSumAdtElement1)
+  public void setSumAdtElement1(EffectFullExpressionAndEffectFullFunctionReference newSumAdtElement1)
   {
     if (newSumAdtElement1 != sumAdtElement1)
     {
@@ -125,7 +125,7 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullExpression getSumAdtElement2()
+  public EffectFullExpressionAndEffectFullFunctionReference getSumAdtElement2()
   {
     return sumAdtElement2;
   }
@@ -135,9 +135,9 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSumAdtElement2(EffectFullExpression newSumAdtElement2, NotificationChain msgs)
+  public NotificationChain basicSetSumAdtElement2(EffectFullExpressionAndEffectFullFunctionReference newSumAdtElement2, NotificationChain msgs)
   {
-    EffectFullExpression oldSumAdtElement2 = sumAdtElement2;
+    EffectFullExpressionAndEffectFullFunctionReference oldSumAdtElement2 = sumAdtElement2;
     sumAdtElement2 = newSumAdtElement2;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSumAdtElement2(EffectFullExpression newSumAdtElement2)
+  public void setSumAdtElement2(EffectFullExpressionAndEffectFullFunctionReference newSumAdtElement2)
   {
     if (newSumAdtElement2 != sumAdtElement2)
     {
@@ -215,10 +215,10 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT1:
-        setSumAdtElement1((EffectFullExpression)newValue);
+        setSumAdtElement1((EffectFullExpressionAndEffectFullFunctionReference)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT2:
-        setSumAdtElement2((EffectFullExpression)newValue);
+        setSumAdtElement2((EffectFullExpressionAndEffectFullFunctionReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,10 +235,10 @@ public class EffectFullSumValueImpl extends EffectFullAlgebraicTypeImpl implemen
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT1:
-        setSumAdtElement1((EffectFullExpression)null);
+        setSumAdtElement1((EffectFullExpressionAndEffectFullFunctionReference)null);
         return;
       case FPMLPackage.EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT2:
-        setSumAdtElement2((EffectFullExpression)null);
+        setSumAdtElement2((EffectFullExpressionAndEffectFullFunctionReference)null);
         return;
     }
     super.eUnset(featureID);

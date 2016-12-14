@@ -145,8 +145,9 @@ class ValueEffectFullFunctionCommonGenerator {
 			LiftEffectFullFunction: compileIO(Others.getEffectFullFunctionFromLiftEffectFullFunction(peff), acc)
 			IsLeftEffectFull: '''IOFuctions.bind(«acc», PrimitivesEffectFull::isLeft)'''
 			IsRightEffectFull: '''IOFunctions.bind(«acc», PrimitivesEffectFull::isRight)'''
-			EffectFullIf:'''IOFunctions.bind(«acc», (Boolean c) -> PrimitivesEffectFull.effectFullIf(c, «peff.then.compile» , «peff.^else.compile»))'''
-			EffectFullEitherIf: '''IOFunctions.bind(«acc», (Boolean c) -> PrimitivesEffectFull.effectFullIfEither(c, «peff.then.compile» , «peff.^else.compile»))'''
+			EffectFullIf:'''IOFunctions.bind(«acc», (Boolean c) -> «IF (peff.then instanceof IOType)» «ELSE» IOFunctions.unit(«ENDIF»PrimitivesEffectFull.effectFullIf(c, «peff.then.compile» , «peff.^else.compile»))«IF (peff.then instanceof IOType)» «ELSE»)«ENDIF»'''
+			EffectFullEitherIf: '''IOFunctions.bind(«acc», (Boolean c) -> IOFunctions.unit(PrimitivesEffectFull.effectFullIfEither(c, «peff.then.compile» , «peff.^else.compile»)))'''
+      		GetLine: '''IOFunctions.append(«acc», PrimitivesEffectFull::getLine)'''
 		}
 	}
 	
@@ -179,6 +180,7 @@ class ValueEffectFullFunctionCommonGenerator {
 			Major: '''IOFunctions.map(«acc», Primitives::major)'''
 			LogicAnd: '''IOFunctions.map(«acc», Primitives::logicAnd)'''
 			LogicOr: '''IOFunctions.map(«acc», Primitives::logicOr)'''
+     		LogicNot: '''IOFunctions.map(«acc», Primitives::logicNot)'''
 			IsLeftPure: '''IOFuncitons.map(«acc», Primitives::isLeft)'''
 			IsRightPure: '''IOFunctions.map(«acc», Primitives::isRight)'''
 			PureIf: '''IOFunctions.map(«acc», (Boolean c) -> Primitives.pureIf(c, «commonPureFunctions.compile(ppf.then)» , «commonPureFunctions.compile(ppf.^else)»))'''
@@ -201,14 +203,15 @@ class ValueEffectFullFunctionCommonGenerator {
 	}
 
 	def String compile(EffectFullIfBody pib) {
-		switch pib {
-			EffectFullExpression: compile(pib as EffectFullExpression)
+		val content = Others.getFunctionFromEffectFullIfBody(pib)
+		switch content {
+			EffectFullExpression: compile(content as EffectFullExpression)
 			EffectFullFunction: {
-				switch pib {
-					EffectFullValue: pib.name
-					EffectFullFunctionDefinition: compileEffectFullFunctionRef(pib as EffectFullFunctionDefinition)
-					PrimitiveEffectFullFunction: compileEffectFullFunctionRef(pib as PrimitiveEffectFullFunction)
-					EffectFullArgument: pib.name
+				switch content {
+					EffectFullValue: content.name
+					EffectFullFunctionDefinition: compileEffectFullFunctionRef(content as EffectFullFunctionDefinition)
+					PrimitiveEffectFullFunction: compileEffectFullFunctionRef(content as PrimitiveEffectFullFunction)
+					EffectFullArgument: content.name
 				}
 			}
 		}

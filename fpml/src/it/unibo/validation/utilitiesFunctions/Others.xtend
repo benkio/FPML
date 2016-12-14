@@ -108,6 +108,27 @@ class Others {
 		else efib.functionExpression	
 	}
 	
+	def static PureFunction getInnerElementFromPureExpressionAndPureFunctionReference(PureExpressionAndPureFunctionReference r) {
+		if (r.prodAdtElementExpression == null) r.prodAdtElementFunction
+		else r.prodAdtElementExpression
+	}
+	
+	def static PureExpressionAndPureFunctionReference getFirstElementFromPureAlgebraicValue(PureSumValue psv) {
+		if (psv.sumAdtElement1 == null) psv.sumAdtElement2
+		else psv.sumAdtElement1
+	}
+	
+	def static PureExpressionAndPureFunctionReference getFirstElementFromPureAlgebraicValue(PureProdValue ppv) {
+		if (ppv.prodAdtElement1 == null) ppv.prodAdtElement2
+		else ppv.prodAdtElement1
+	}
+	
+	def static EffectFullBodyContent getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(EffectFullExpressionAndEffectFullFunctionReference r) {
+		if (r.prodAdtElementExpression == null) r.prodAdtElementFunction
+		else r.prodAdtElementExpression
+	}
+	
+	
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// CREATE
 	/////////////////////////////////////////////////////////////////////////////////////////
@@ -242,4 +263,27 @@ class Others {
 		}
 	}
 	
+	def static PureExpressionAndPureFunctionReference createPureExpressionAndPureFunctionReference(Expression e) {
+		val result = FPMLFactory.eINSTANCE.createPureExpressionAndPureFunctionReference
+		result.prodAdtElementExpression = EcoreUtil.copy(e)
+		return result
+	}
+	
+	def static PureExpressionAndPureFunctionReference createPureExpressionAndPureFunctionReference(PureFunction f) {
+		val result = FPMLFactory.eINSTANCE.createPureExpressionAndPureFunctionReference
+		result.prodAdtElementFunction = EcoreUtil.copy(f)
+		return result
+	}
+	
+	def static EffectFullExpressionAndEffectFullFunctionReference createEffectFullExpressionAndEffectFullFunctionReference(EffectFullExpression e) {
+		val result = FPMLFactory.eINSTANCE.createEffectFullExpressionAndEffectFullFunctionReference
+		result.prodAdtElementExpression = EcoreUtil.copy(e)
+		return result
+	}
+	
+	def static EffectFullExpressionAndEffectFullFunctionReference createEffectFullExpressionAndEffectFullFunctionReference(EffectFullFunction f) {
+		val result = FPMLFactory.eINSTANCE.createEffectFullExpressionAndEffectFullFunctionReference
+		result.prodAdtElementFunction = EcoreUtil.copy(f)
+		return result
+	}
 }

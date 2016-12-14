@@ -3,7 +3,7 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.EffectFullExpression;
+import it.unibo.fPML.EffectFullExpressionAndEffectFullFunctionReference;
 import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.FPMLPackage;
 
@@ -39,7 +39,7 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
    * @generated
    * @ordered
    */
-  protected EffectFullExpression prodAdtElement1;
+  protected EffectFullExpressionAndEffectFullFunctionReference prodAdtElement1;
 
   /**
    * The cached value of the '{@link #getProdAdtElement2() <em>Prod Adt Element2</em>}' containment reference.
@@ -49,7 +49,7 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
    * @generated
    * @ordered
    */
-  protected EffectFullExpression prodAdtElement2;
+  protected EffectFullExpressionAndEffectFullFunctionReference prodAdtElement2;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullExpression getProdAdtElement1()
+  public EffectFullExpressionAndEffectFullFunctionReference getProdAdtElement1()
   {
     return prodAdtElement1;
   }
@@ -87,9 +87,9 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProdAdtElement1(EffectFullExpression newProdAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetProdAdtElement1(EffectFullExpressionAndEffectFullFunctionReference newProdAdtElement1, NotificationChain msgs)
   {
-    EffectFullExpression oldProdAdtElement1 = prodAdtElement1;
+    EffectFullExpressionAndEffectFullFunctionReference oldProdAdtElement1 = prodAdtElement1;
     prodAdtElement1 = newProdAdtElement1;
     if (eNotificationRequired())
     {
@@ -104,7 +104,7 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProdAdtElement1(EffectFullExpression newProdAdtElement1)
+  public void setProdAdtElement1(EffectFullExpressionAndEffectFullFunctionReference newProdAdtElement1)
   {
     if (newProdAdtElement1 != prodAdtElement1)
     {
@@ -125,7 +125,7 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EffectFullExpression getProdAdtElement2()
+  public EffectFullExpressionAndEffectFullFunctionReference getProdAdtElement2()
   {
     return prodAdtElement2;
   }
@@ -135,9 +135,9 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProdAdtElement2(EffectFullExpression newProdAdtElement2, NotificationChain msgs)
+  public NotificationChain basicSetProdAdtElement2(EffectFullExpressionAndEffectFullFunctionReference newProdAdtElement2, NotificationChain msgs)
   {
-    EffectFullExpression oldProdAdtElement2 = prodAdtElement2;
+    EffectFullExpressionAndEffectFullFunctionReference oldProdAdtElement2 = prodAdtElement2;
     prodAdtElement2 = newProdAdtElement2;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProdAdtElement2(EffectFullExpression newProdAdtElement2)
+  public void setProdAdtElement2(EffectFullExpressionAndEffectFullFunctionReference newProdAdtElement2)
   {
     if (newProdAdtElement2 != prodAdtElement2)
     {
@@ -215,10 +215,10 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT1:
-        setProdAdtElement1((EffectFullExpression)newValue);
+        setProdAdtElement1((EffectFullExpressionAndEffectFullFunctionReference)newValue);
         return;
       case FPMLPackage.EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT2:
-        setProdAdtElement2((EffectFullExpression)newValue);
+        setProdAdtElement2((EffectFullExpressionAndEffectFullFunctionReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,10 +235,10 @@ public class EffectFullProdValueImpl extends EffectFullAlgebraicTypeImpl impleme
     switch (featureID)
     {
       case FPMLPackage.EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT1:
-        setProdAdtElement1((EffectFullExpression)null);
+        setProdAdtElement1((EffectFullExpressionAndEffectFullFunctionReference)null);
         return;
       case FPMLPackage.EFFECT_FULL_PROD_VALUE__PROD_ADT_ELEMENT2:
-        setProdAdtElement2((EffectFullExpression)null);
+        setProdAdtElement2((EffectFullExpressionAndEffectFullFunctionReference)null);
         return;
     }
     super.eUnset(featureID);

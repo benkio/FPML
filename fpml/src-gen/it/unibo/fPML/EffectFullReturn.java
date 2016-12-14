@@ -6,21 +6,21 @@ package it.unibo.fPML;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Primitive Return</b></em>'.
+ * A representation of the model object '<em><b>Effect Full Return</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.PrimitiveReturn#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.EffectFullReturn#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see it.unibo.fPML.FPMLPackage#getPrimitiveReturn()
+ * @see it.unibo.fPML.FPMLPackage#getEffectFullReturn()
  * @model
  * @generated
  */
-public interface PrimitiveReturn extends PrimitiveEffectFullFunction
+public interface EffectFullReturn extends PrimitiveEffectFullFunction
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
@@ -32,14 +32,14 @@ public interface PrimitiveReturn extends PrimitiveEffectFullFunction
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(Type)
-   * @see it.unibo.fPML.FPMLPackage#getPrimitiveReturn_Type()
+   * @see it.unibo.fPML.FPMLPackage#getEffectFullReturn_Type()
    * @model containment="true"
    * @generated
    */
   Type getType();
 
   /**
-   * Sets the value of the '{@link it.unibo.fPML.PrimitiveReturn#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link it.unibo.fPML.EffectFullReturn#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' containment reference.
@@ -48,4 +48,4 @@ public interface PrimitiveReturn extends PrimitiveEffectFullFunction
    */
   void setType(Type value);
 
-} // PrimitiveReturn
+} // EffectFullReturn

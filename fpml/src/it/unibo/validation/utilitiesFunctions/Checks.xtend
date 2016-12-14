@@ -4,10 +4,12 @@ import it.unibo.fPML.*
 import java.util.List
 import org.eclipse.xtend.lib.annotations.EqualsHashCodeProcessor.Util
 import org.eclipse.emf.ecore.util.EcoreUtil
+import it.unibo.services.FPMLGrammarAccess.PureExpressionAndPureFunctionReferenceElements
 
 class Checks {
 	
-	def static boolean DataAndValue(Expression value, ValueType type) {
+	def static boolean DataAndValue(PureExpressionAndPureFunctionReference valueOrReference, ValueType type) {
+		val value = Others.getInnerElementFromPureExpressionAndPureFunctionReference(valueOrReference)
 		switch type {
 			UnitType: value instanceof UnitType ||
 					(value instanceof PureValueRef &&
@@ -197,9 +199,12 @@ class Checks {
 	///
 	/// Most Delicate method
 	///
-	def static boolean effectFullDataAndValue(EffectFullExpression value, Type type) {
+	def static boolean effectFullDataAndValue(EffectFullExpressionAndEffectFullFunctionReference valueOrReference, Type type) {
+		val value = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(valueOrReference)
 		switch type {
-			ValueType: value instanceof Expression && DataAndValue(value as Expression, type)
+			ValueType: (value instanceof Expression || value instanceof PureFunction) 
+						&&  valueOrReference instanceof PureExpressionAndPureFunctionReference 
+						&& DataAndValue(valueOrReference as PureExpressionAndPureFunctionReference, type)
 			EffectFullFunctionType: 
 				if (value instanceof EffectFullFunctionType) 
 					return (value as EffectFullFunctionType).value.getFunctionBody instanceof CompositionFunctionBodyEffect &&
@@ -230,8 +235,8 @@ class Checks {
 			}
 			IOType: {
 				switch value {
-					IOExpression: return ((type as IOType).type instanceof ValueType) && DataAndValue(value.innerValue as Expression, (type as IOType).type as ValueType)
-					IOEffectFullExpression: return ((type as IOType).type instanceof EffectFullType) && effectFullDataAndValue(value.innerValue as EffectFullExpression, (type as IOType).type as EffectFullType)					
+					IOExpression: return ((type as IOType).type instanceof ValueType) && DataAndValue(Others.createPureExpressionAndPureFunctionReference(value.innerValue as Expression), (type as IOType).type as ValueType)
+					IOEffectFullExpression: return ((type as IOType).type instanceof EffectFullType) && effectFullDataAndValue(Others.createEffectFullExpressionAndEffectFullFunctionReference(value.innerValue as EffectFullExpression), (type as IOType).type as EffectFullType)					
 					IOPureFunction: {
 							var PureFunction function;
 							if (value.pureFunction != null) function = value.pureFunction else function = value.purePrimitive
@@ -257,8 +262,8 @@ class Checks {
 			PureFunctionType: if ((af.value.valueExpression as PureFunctionType).argType == null)
 								return ValueTypeEquals(GetReturnType.pureFunction((af.value.valueExpression as PureFunctionType).value), af.functionType.argType)
 							  else 
-								return DataAndValue(af.value.valueExpression, af.functionType.argType)
-			default: return DataAndValue(af.value.valueExpression, af.functionType.argType)
+								return DataAndValue(Others.createPureExpressionAndPureFunctionReference(af.value.valueExpression), af.functionType.argType)
+			default: return DataAndValue(Others.createPureExpressionAndPureFunctionReference(af.value.valueExpression), af.functionType.argType)
 		}
 	}
 	

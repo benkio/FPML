@@ -32,12 +32,12 @@ public interface PureSumValue extends PureAlgebraicType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sum Adt Element1</em>' containment reference.
-   * @see #setSumAdtElement1(Expression)
+   * @see #setSumAdtElement1(PureExpressionAndPureFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getPureSumValue_SumAdtElement1()
    * @model containment="true"
    * @generated
    */
-  Expression getSumAdtElement1();
+  PureExpressionAndPureFunctionReference getSumAdtElement1();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureSumValue#getSumAdtElement1 <em>Sum Adt Element1</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface PureSumValue extends PureAlgebraicType
    * @see #getSumAdtElement1()
    * @generated
    */
-  void setSumAdtElement1(Expression value);
+  void setSumAdtElement1(PureExpressionAndPureFunctionReference value);
 
   /**
    * Returns the value of the '<em><b>Sum Adt Element2</b></em>' containment reference.
@@ -58,12 +58,12 @@ public interface PureSumValue extends PureAlgebraicType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sum Adt Element2</em>' containment reference.
-   * @see #setSumAdtElement2(Expression)
+   * @see #setSumAdtElement2(PureExpressionAndPureFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getPureSumValue_SumAdtElement2()
    * @model containment="true"
    * @generated
    */
-  Expression getSumAdtElement2();
+  PureExpressionAndPureFunctionReference getSumAdtElement2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.PureSumValue#getSumAdtElement2 <em>Sum Adt Element2</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface PureSumValue extends PureAlgebraicType
    * @see #getSumAdtElement2()
    * @generated
    */
-  void setSumAdtElement2(Expression value);
+  void setSumAdtElement2(PureExpressionAndPureFunctionReference value);
 
 } // PureSumValue

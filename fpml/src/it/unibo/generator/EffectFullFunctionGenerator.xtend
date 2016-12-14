@@ -47,8 +47,8 @@ class EffectFullFunctionGenerator {
 				throw new UnsupportedOperationException("TODO");
 				«ELSEIF pf.functionBody instanceof CompositionFunctionBodyEffect»
 				IOW.lift(IOFunctions.ioUnit)«(pf.functionBody as CompositionFunctionBodyEffect).compileIOWalkthrough»
-				«ENDIF»
 				.safe().run().on((IOException e) -> { e.printStackTrace(); return Unit.unit(); });
+				«ENDIF»
 			}'''
 		}
 	}
@@ -103,8 +103,9 @@ class EffectFullFunctionGenerator {
 			LiftEffectFullFunction: compileIOWalkthrough(pef)
 			IsLeftEffectFull: '''.bind(PrimitivesEffectFull::isLeft)'''
 			IsRightEffectFull: '''.bind(PrimitivesEffectFull::isRight)'''
-      		EffectFullIf: '''.bind((Boolean c) -> PrimtivesEffectFull.effectFullIf(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»)'''
-      		EffectFullEitherIf: '''.bind((Boolean c) -> PrimtivesEffectFull.effectFullIfEither(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»)'''
+      		EffectFullIf: '''.bind((Boolean c) -> «IF (pef.then instanceof IOType)» «ELSE» IOFunctions.unit(«ENDIF»PrimtivesEffectFull.effectFullIf(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»«IF (pef.then instanceof IOType)» «ELSE» )«ENDIF»)'''
+      		EffectFullEitherIf: '''.bind((Boolean c) -> IOFuncions.unit(PrimtivesEffectFull.effectFullIfEither(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»))'''
+          	GetLine: '''.append(PrimitivesEffectFull::getLine)'''
 		}
 	}
 	
@@ -148,6 +149,7 @@ class EffectFullFunctionGenerator {
 			Major: '''.map(Primitives::major)'''
 			LogicAnd: '''.map(Primitives::logicAnd)'''
 			LogicOr: '''.map(Primitives::logicOr)'''
+      LogicNot: '''.map(Primitives::logicNot)'''
 			ExtractPure: '''.bind((IPureData<«typeGenerator.compile(ppf.data.content)»> d) -> d.getValue())'''
 			IsLeftPure: '''.map(Primitives::isLeft)'''
 			IsRightPure: '''.map(Primitives::isRight)'''

@@ -92,6 +92,10 @@ class PrimitiveGenerator {
 			public static F<Boolean, Boolean> logicOr(Boolean b) {
 				return (Boolean c) -> b || c;
 			}
+
+			public static Boolean logicNot(Boolean b) {
+				return !b;
+			}
 			
 			public static <A> A pureIf(Boolean condition, A thenExpression, A elseExpression) {
 				if (condition) {
@@ -119,6 +123,7 @@ class PrimitiveGenerator {
 			import java.util.Random;
 			import java.text.SimpleDateFormat;
 			import java.util.Date;
+			import java.util.Scanner;
 			
 			public class PrimitivesEffectFull {
 				
@@ -176,6 +181,15 @@ class PrimitiveGenerator {
 					} else {
 						return Either.right(elseExpression);
 					}
+				}
+				
+				public static IO<String> getLine() {
+					return () -> {
+						Scanner scanner = new Scanner(System.in);
+						String s = scanner.next();
+						scanner.close();
+						return s;
+					};
 				}
 			}
 	'''

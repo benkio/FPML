@@ -4,25 +4,25 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PrimitiveRandom;
+import it.unibo.fPML.GetLine;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primitive Random</b></em>'.
+ * An implementation of the model object '<em><b>Get Line</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class PrimitiveRandomImpl extends PrimitiveEffectFullValueImpl implements PrimitiveRandom
+public class GetLineImpl extends PrimitiveEffectFullFunctionImpl implements GetLine
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PrimitiveRandomImpl()
+  protected GetLineImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class PrimitiveRandomImpl extends PrimitiveEffectFullValueImpl implements
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PRIMITIVE_RANDOM;
+    return FPMLPackage.Literals.GET_LINE;
   }
 
-} //PrimitiveRandomImpl
+} //GetLineImpl

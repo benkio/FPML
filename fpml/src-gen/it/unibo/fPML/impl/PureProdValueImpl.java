@@ -3,8 +3,8 @@
  */
 package it.unibo.fPML.impl;
 
-import it.unibo.fPML.Expression;
 import it.unibo.fPML.FPMLPackage;
+import it.unibo.fPML.PureExpressionAndPureFunctionReference;
 import it.unibo.fPML.PureProdValue;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -39,7 +39,7 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
    * @generated
    * @ordered
    */
-  protected Expression prodAdtElement1;
+  protected PureExpressionAndPureFunctionReference prodAdtElement1;
 
   /**
    * The cached value of the '{@link #getProdAdtElement2() <em>Prod Adt Element2</em>}' containment reference.
@@ -49,7 +49,7 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
    * @generated
    * @ordered
    */
-  protected Expression prodAdtElement2;
+  protected PureExpressionAndPureFunctionReference prodAdtElement2;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression getProdAdtElement1()
+  public PureExpressionAndPureFunctionReference getProdAdtElement1()
   {
     return prodAdtElement1;
   }
@@ -87,9 +87,9 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProdAdtElement1(Expression newProdAdtElement1, NotificationChain msgs)
+  public NotificationChain basicSetProdAdtElement1(PureExpressionAndPureFunctionReference newProdAdtElement1, NotificationChain msgs)
   {
-    Expression oldProdAdtElement1 = prodAdtElement1;
+    PureExpressionAndPureFunctionReference oldProdAdtElement1 = prodAdtElement1;
     prodAdtElement1 = newProdAdtElement1;
     if (eNotificationRequired())
     {
@@ -104,7 +104,7 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProdAdtElement1(Expression newProdAdtElement1)
+  public void setProdAdtElement1(PureExpressionAndPureFunctionReference newProdAdtElement1)
   {
     if (newProdAdtElement1 != prodAdtElement1)
     {
@@ -125,7 +125,7 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression getProdAdtElement2()
+  public PureExpressionAndPureFunctionReference getProdAdtElement2()
   {
     return prodAdtElement2;
   }
@@ -135,9 +135,9 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProdAdtElement2(Expression newProdAdtElement2, NotificationChain msgs)
+  public NotificationChain basicSetProdAdtElement2(PureExpressionAndPureFunctionReference newProdAdtElement2, NotificationChain msgs)
   {
-    Expression oldProdAdtElement2 = prodAdtElement2;
+    PureExpressionAndPureFunctionReference oldProdAdtElement2 = prodAdtElement2;
     prodAdtElement2 = newProdAdtElement2;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProdAdtElement2(Expression newProdAdtElement2)
+  public void setProdAdtElement2(PureExpressionAndPureFunctionReference newProdAdtElement2)
   {
     if (newProdAdtElement2 != prodAdtElement2)
     {
@@ -215,10 +215,10 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
     switch (featureID)
     {
       case FPMLPackage.PURE_PROD_VALUE__PROD_ADT_ELEMENT1:
-        setProdAdtElement1((Expression)newValue);
+        setProdAdtElement1((PureExpressionAndPureFunctionReference)newValue);
         return;
       case FPMLPackage.PURE_PROD_VALUE__PROD_ADT_ELEMENT2:
-        setProdAdtElement2((Expression)newValue);
+        setProdAdtElement2((PureExpressionAndPureFunctionReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,10 +235,10 @@ public class PureProdValueImpl extends PureAlgebraicTypeImpl implements PureProd
     switch (featureID)
     {
       case FPMLPackage.PURE_PROD_VALUE__PROD_ADT_ELEMENT1:
-        setProdAdtElement1((Expression)null);
+        setProdAdtElement1((PureExpressionAndPureFunctionReference)null);
         return;
       case FPMLPackage.PURE_PROD_VALUE__PROD_ADT_ELEMENT2:
-        setProdAdtElement2((Expression)null);
+        setProdAdtElement2((PureExpressionAndPureFunctionReference)null);
         return;
     }
     super.eUnset(featureID);

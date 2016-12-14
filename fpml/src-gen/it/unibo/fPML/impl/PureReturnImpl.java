@@ -4,8 +4,8 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.PrimitiveReturn;
-import it.unibo.fPML.Type;
+import it.unibo.fPML.PureReturn;
+import it.unibo.fPML.ValueType;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,18 +17,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primitive Return</b></em>'.
+ * An implementation of the model object '<em><b>Pure Return</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link it.unibo.fPML.impl.PrimitiveReturnImpl#getType <em>Type</em>}</li>
+ *   <li>{@link it.unibo.fPML.impl.PureReturnImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl implements PrimitiveReturn
+public class PureReturnImpl extends PrimitivePureFunctionImpl implements PureReturn
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -38,14 +38,14 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
    * @generated
    * @ordered
    */
-  protected Type type;
+  protected ValueType type;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PrimitiveReturnImpl()
+  protected PureReturnImpl()
   {
     super();
   }
@@ -58,7 +58,7 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.PRIMITIVE_RETURN;
+    return FPMLPackage.Literals.PURE_RETURN;
   }
 
   /**
@@ -66,7 +66,7 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type getType()
+  public ValueType getType()
   {
     return type;
   }
@@ -76,13 +76,13 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
+  public NotificationChain basicSetType(ValueType newType, NotificationChain msgs)
   {
-    Type oldType = type;
+    ValueType oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PRIMITIVE_RETURN__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_RETURN__TYPE, oldType, newType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -93,20 +93,20 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Type newType)
+  public void setType(ValueType newType)
   {
     if (newType != type)
     {
       NotificationChain msgs = null;
       if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PRIMITIVE_RETURN__TYPE, null, msgs);
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_RETURN__TYPE, null, msgs);
       if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PRIMITIVE_RETURN__TYPE, null, msgs);
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FPMLPackage.PURE_RETURN__TYPE, null, msgs);
       msgs = basicSetType(newType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PRIMITIVE_RETURN__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, FPMLPackage.PURE_RETURN__TYPE, newType, newType));
   }
 
   /**
@@ -119,7 +119,7 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.PRIMITIVE_RETURN__TYPE:
+      case FPMLPackage.PURE_RETURN__TYPE:
         return basicSetType(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -135,7 +135,7 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.PRIMITIVE_RETURN__TYPE:
+      case FPMLPackage.PURE_RETURN__TYPE:
         return getType();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -151,8 +151,8 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.PRIMITIVE_RETURN__TYPE:
-        setType((Type)newValue);
+      case FPMLPackage.PURE_RETURN__TYPE:
+        setType((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,8 +168,8 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.PRIMITIVE_RETURN__TYPE:
-        setType((Type)null);
+      case FPMLPackage.PURE_RETURN__TYPE:
+        setType((ValueType)null);
         return;
     }
     super.eUnset(featureID);
@@ -185,10 +185,10 @@ public class PrimitiveReturnImpl extends PrimitiveEffectFullFunctionImpl impleme
   {
     switch (featureID)
     {
-      case FPMLPackage.PRIMITIVE_RETURN__TYPE:
+      case FPMLPackage.PURE_RETURN__TYPE:
         return type != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //PrimitiveReturnImpl
+} //PureReturnImpl

@@ -32,12 +32,12 @@ public interface EffectFullProdValue extends EffectFullAlgebraicType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prod Adt Element1</em>' containment reference.
-   * @see #setProdAdtElement1(EffectFullExpression)
+   * @see #setProdAdtElement1(EffectFullExpressionAndEffectFullFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullProdValue_ProdAdtElement1()
    * @model containment="true"
    * @generated
    */
-  EffectFullExpression getProdAdtElement1();
+  EffectFullExpressionAndEffectFullFunctionReference getProdAdtElement1();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullProdValue#getProdAdtElement1 <em>Prod Adt Element1</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface EffectFullProdValue extends EffectFullAlgebraicType
    * @see #getProdAdtElement1()
    * @generated
    */
-  void setProdAdtElement1(EffectFullExpression value);
+  void setProdAdtElement1(EffectFullExpressionAndEffectFullFunctionReference value);
 
   /**
    * Returns the value of the '<em><b>Prod Adt Element2</b></em>' containment reference.
@@ -58,12 +58,12 @@ public interface EffectFullProdValue extends EffectFullAlgebraicType
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prod Adt Element2</em>' containment reference.
-   * @see #setProdAdtElement2(EffectFullExpression)
+   * @see #setProdAdtElement2(EffectFullExpressionAndEffectFullFunctionReference)
    * @see it.unibo.fPML.FPMLPackage#getEffectFullProdValue_ProdAdtElement2()
    * @model containment="true"
    * @generated
    */
-  EffectFullExpression getProdAdtElement2();
+  EffectFullExpressionAndEffectFullFunctionReference getProdAdtElement2();
 
   /**
    * Sets the value of the '{@link it.unibo.fPML.EffectFullProdValue#getProdAdtElement2 <em>Prod Adt Element2</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface EffectFullProdValue extends EffectFullAlgebraicType
    * @see #getProdAdtElement2()
    * @generated
    */
-  void setProdAdtElement2(EffectFullExpression value);
+  void setProdAdtElement2(EffectFullExpressionAndEffectFullFunctionReference value);
 
 } // EffectFullProdValue
