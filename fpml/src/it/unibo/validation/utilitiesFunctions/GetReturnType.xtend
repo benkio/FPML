@@ -84,6 +84,7 @@ class GetReturnType {
 	def static ValueType primitivePureFunction(PrimitivePureFunction f) {
 		switch f {
 			IntToString: return FPMLFactory.eINSTANCE.createStringType
+			BoolToString: return FPMLFactory.eINSTANCE.createStringType
 			IntPow: return FPMLFactory.eINSTANCE.createIntegerType
 			Plus: return Others.createPureFuntionType(EcoreUtil.copy(f.type) as ValueType, EcoreUtil.copy(f.type) as ValueType)
 			Minus: return Others.createPureFuntionType(FPMLFactory.eINSTANCE.createIntegerType, FPMLFactory.eINSTANCE.createIntegerType)
@@ -121,7 +122,7 @@ class GetReturnType {
 		switch function {
 			EffectFullArgument: if (function.type instanceof IOType) EcoreUtil.copy(function.type) else Others.IOWrap(function.type)
 			EffectFullValue: effectFullExpression(function.value)
-			EffectFullFunctionDefinition: effectFullFunctionDefinition(function)
+			EffectFullFunctionDefinition: function.returnType
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)
 		}
 	}

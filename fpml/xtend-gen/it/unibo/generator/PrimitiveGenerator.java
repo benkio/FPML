@@ -91,6 +91,17 @@ public class PrimitiveGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.append("\t");
+    _builder.append("public static String boolToString(Boolean x) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return String.valueOf(x);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("public static <A,B> A leftAlgebraic(P2<A,B> pair){");
     _builder.newLine();
     _builder.append("\t\t");

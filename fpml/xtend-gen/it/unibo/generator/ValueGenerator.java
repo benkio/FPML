@@ -54,7 +54,7 @@ public class ValueGenerator {
     _builder.newLine();
     _builder.append("public static ");
     Expression _value = v.getValue();
-    Object _compileType = this.typeGenerator.compileType(_value);
+    String _compileType = this.typeGenerator.compileType(_value);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = v.getName();

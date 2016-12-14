@@ -2923,111 +2923,115 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.PrimitivePureFunction");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIntToStringParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cIntPowParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cPlusParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cMinusParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cTimesParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cModParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cApplyFParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cLeftAlgebraicParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cRightAlgebraicParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cEqualsParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final RuleCall cMinorEqualsParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final RuleCall cMajorEqualsParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final RuleCall cMinorParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
-		private final RuleCall cMajorParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
-		private final RuleCall cLogicAndParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
-		private final RuleCall cLogicOrParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
-		private final RuleCall cLogicNotParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
-		private final RuleCall cExtractPureParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
-		private final RuleCall cIsLeftPureParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
-		private final RuleCall cIsRightPureParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
-		private final RuleCall cPureIfParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
-		private final RuleCall cPureEitherIfParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
-		private final RuleCall cPureReturnParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
+		private final RuleCall cBoolToStringParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cIntPowParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cPlusParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cMinusParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cTimesParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cModParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cApplyFParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cLeftAlgebraicParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cRightAlgebraicParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cEqualsParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cMinorEqualsParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
+		private final RuleCall cMajorEqualsParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cMinorParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
+		private final RuleCall cMajorParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
+		private final RuleCall cLogicAndParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
+		private final RuleCall cLogicOrParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
+		private final RuleCall cLogicNotParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
+		private final RuleCall cExtractPureParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
+		private final RuleCall cIsLeftPureParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
+		private final RuleCall cIsRightPureParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
+		private final RuleCall cPureIfParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
+		private final RuleCall cPureEitherIfParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
+		private final RuleCall cPureReturnParserRuleCall_23 = (RuleCall)cAlternatives.eContents().get(23);
 		
 		///////////////////////////////////////////////////////////////////////
 		//// Primitives
 		///////////////////////////////////////////////////////////////////////
 		//PrimitivePureFunction:
-		//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
+		//	IntToString | BoolToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
 		//	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr | LogicNot
 		//	| ExtractPure | IsLeftPure | IsRightPure | PureIf | PureEitherIf | PureReturn;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic | Equals | MinorEquals |
-		//MajorEquals | Minor | Major | LogicAnd | LogicOr | LogicNot | ExtractPure | IsLeftPure | IsRightPure | PureIf |
-		//PureEitherIf | PureReturn
+		//IntToString | BoolToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic | Equals |
+		//MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr | LogicNot | ExtractPure | IsLeftPure | IsRightPure |
+		//PureIf | PureEitherIf | PureReturn
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//IntToString
 		public RuleCall getIntToStringParserRuleCall_0() { return cIntToStringParserRuleCall_0; }
 		
+		//BoolToString
+		public RuleCall getBoolToStringParserRuleCall_1() { return cBoolToStringParserRuleCall_1; }
+		
 		//IntPow
-		public RuleCall getIntPowParserRuleCall_1() { return cIntPowParserRuleCall_1; }
+		public RuleCall getIntPowParserRuleCall_2() { return cIntPowParserRuleCall_2; }
 		
 		//Plus
-		public RuleCall getPlusParserRuleCall_2() { return cPlusParserRuleCall_2; }
+		public RuleCall getPlusParserRuleCall_3() { return cPlusParserRuleCall_3; }
 		
 		//Minus
-		public RuleCall getMinusParserRuleCall_3() { return cMinusParserRuleCall_3; }
+		public RuleCall getMinusParserRuleCall_4() { return cMinusParserRuleCall_4; }
 		
 		//Times
-		public RuleCall getTimesParserRuleCall_4() { return cTimesParserRuleCall_4; }
+		public RuleCall getTimesParserRuleCall_5() { return cTimesParserRuleCall_5; }
 		
 		//Mod
-		public RuleCall getModParserRuleCall_5() { return cModParserRuleCall_5; }
+		public RuleCall getModParserRuleCall_6() { return cModParserRuleCall_6; }
 		
 		//ApplyF
-		public RuleCall getApplyFParserRuleCall_6() { return cApplyFParserRuleCall_6; }
+		public RuleCall getApplyFParserRuleCall_7() { return cApplyFParserRuleCall_7; }
 		
 		//LeftAlgebraic
-		public RuleCall getLeftAlgebraicParserRuleCall_7() { return cLeftAlgebraicParserRuleCall_7; }
+		public RuleCall getLeftAlgebraicParserRuleCall_8() { return cLeftAlgebraicParserRuleCall_8; }
 		
 		//RightAlgebraic
-		public RuleCall getRightAlgebraicParserRuleCall_8() { return cRightAlgebraicParserRuleCall_8; }
+		public RuleCall getRightAlgebraicParserRuleCall_9() { return cRightAlgebraicParserRuleCall_9; }
 		
 		//Equals
-		public RuleCall getEqualsParserRuleCall_9() { return cEqualsParserRuleCall_9; }
+		public RuleCall getEqualsParserRuleCall_10() { return cEqualsParserRuleCall_10; }
 		
 		//MinorEquals
-		public RuleCall getMinorEqualsParserRuleCall_10() { return cMinorEqualsParserRuleCall_10; }
+		public RuleCall getMinorEqualsParserRuleCall_11() { return cMinorEqualsParserRuleCall_11; }
 		
 		//MajorEquals
-		public RuleCall getMajorEqualsParserRuleCall_11() { return cMajorEqualsParserRuleCall_11; }
+		public RuleCall getMajorEqualsParserRuleCall_12() { return cMajorEqualsParserRuleCall_12; }
 		
 		//Minor
-		public RuleCall getMinorParserRuleCall_12() { return cMinorParserRuleCall_12; }
+		public RuleCall getMinorParserRuleCall_13() { return cMinorParserRuleCall_13; }
 		
 		//Major
-		public RuleCall getMajorParserRuleCall_13() { return cMajorParserRuleCall_13; }
+		public RuleCall getMajorParserRuleCall_14() { return cMajorParserRuleCall_14; }
 		
 		//LogicAnd
-		public RuleCall getLogicAndParserRuleCall_14() { return cLogicAndParserRuleCall_14; }
+		public RuleCall getLogicAndParserRuleCall_15() { return cLogicAndParserRuleCall_15; }
 		
 		//LogicOr
-		public RuleCall getLogicOrParserRuleCall_15() { return cLogicOrParserRuleCall_15; }
+		public RuleCall getLogicOrParserRuleCall_16() { return cLogicOrParserRuleCall_16; }
 		
 		//LogicNot
-		public RuleCall getLogicNotParserRuleCall_16() { return cLogicNotParserRuleCall_16; }
+		public RuleCall getLogicNotParserRuleCall_17() { return cLogicNotParserRuleCall_17; }
 		
 		//ExtractPure
-		public RuleCall getExtractPureParserRuleCall_17() { return cExtractPureParserRuleCall_17; }
+		public RuleCall getExtractPureParserRuleCall_18() { return cExtractPureParserRuleCall_18; }
 		
 		//IsLeftPure
-		public RuleCall getIsLeftPureParserRuleCall_18() { return cIsLeftPureParserRuleCall_18; }
+		public RuleCall getIsLeftPureParserRuleCall_19() { return cIsLeftPureParserRuleCall_19; }
 		
 		//IsRightPure
-		public RuleCall getIsRightPureParserRuleCall_19() { return cIsRightPureParserRuleCall_19; }
+		public RuleCall getIsRightPureParserRuleCall_20() { return cIsRightPureParserRuleCall_20; }
 		
 		//PureIf
-		public RuleCall getPureIfParserRuleCall_20() { return cPureIfParserRuleCall_20; }
+		public RuleCall getPureIfParserRuleCall_21() { return cPureIfParserRuleCall_21; }
 		
 		//PureEitherIf
-		public RuleCall getPureEitherIfParserRuleCall_21() { return cPureEitherIfParserRuleCall_21; }
+		public RuleCall getPureEitherIfParserRuleCall_22() { return cPureEitherIfParserRuleCall_22; }
 		
 		//PureReturn
-		public RuleCall getPureReturnParserRuleCall_22() { return cPureReturnParserRuleCall_22; }
+		public RuleCall getPureReturnParserRuleCall_23() { return cPureReturnParserRuleCall_23; }
 	}
 	public class IntToStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.IntToString");
@@ -3047,6 +3051,25 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'intToString'
 		public Keyword getIntToStringKeyword_1() { return cIntToStringKeyword_1; }
+	}
+	public class BoolToStringElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.BoolToString");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cBoolToStringAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cBoolToStringKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//BoolToString:
+		//	{BoolToString} 'boolToString';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{BoolToString} 'boolToString'
+		public Group getGroup() { return cGroup; }
+		
+		//{BoolToString}
+		public Action getBoolToStringAction_0() { return cBoolToStringAction_0; }
+		
+		//'boolToString'
+		public Keyword getBoolToStringKeyword_1() { return cBoolToStringKeyword_1; }
 	}
 	public class IntPowElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.IntPow");
@@ -4492,6 +4515,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final EffectFullSumValueElements pEffectFullSumValue;
 	private final PrimitivePureFunctionElements pPrimitivePureFunction;
 	private final IntToStringElements pIntToString;
+	private final BoolToStringElements pBoolToString;
 	private final IntPowElements pIntPow;
 	private final PlusElements pPlus;
 	private final MinusElements pMinus;
@@ -4621,6 +4645,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pEffectFullSumValue = new EffectFullSumValueElements();
 		this.pPrimitivePureFunction = new PrimitivePureFunctionElements();
 		this.pIntToString = new IntToStringElements();
+		this.pBoolToString = new BoolToStringElements();
 		this.pIntPow = new IntPowElements();
 		this.pPlus = new PlusElements();
 		this.pMinus = new MinusElements();
@@ -5506,7 +5531,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//// Primitives
 	///////////////////////////////////////////////////////////////////////
 	//PrimitivePureFunction:
-	//	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
+	//	IntToString | BoolToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
 	//	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr | LogicNot
 	//	| ExtractPure | IsLeftPure | IsRightPure | PureIf | PureEitherIf | PureReturn;
 	public PrimitivePureFunctionElements getPrimitivePureFunctionAccess() {
@@ -5525,6 +5550,16 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIntToStringRule() {
 		return getIntToStringAccess().getRule();
+	}
+	
+	//BoolToString:
+	//	{BoolToString} 'boolToString';
+	public BoolToStringElements getBoolToStringAccess() {
+		return pBoolToString;
+	}
+	
+	public ParserRule getBoolToStringRule() {
+		return getBoolToStringAccess().getRule();
 	}
 	
 	//IntPow:

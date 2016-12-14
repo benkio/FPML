@@ -294,11 +294,12 @@ EffectFullSumValue returns EffectFullAlgebraicType:
 /////////////////////////////////////////////////////////////////////
 
 PrimitivePureFunction: 
-	IntToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
+	IntToString | BoolToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
 	| Equals | MinorEquals | MajorEquals | Minor | Major | LogicAnd | LogicOr | LogicNot
 	| ExtractPure | IsLeftPure | IsRightPure | PureIf | PureEitherIf | PureReturn;
 
 IntToString: {IntToString} 'intToString';
+BoolToString: {BoolToString} 'boolToString';
 IntPow:	{IntPow} 'intPow';
 Plus: {Plus} '+' type=(IntegerType | StringType);
 Minus: {Minus} '-';

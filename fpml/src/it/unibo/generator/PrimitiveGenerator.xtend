@@ -37,6 +37,10 @@ class PrimitiveGenerator {
 				return String.valueOf(x);
 			}
 		
+			public static String boolToString(Boolean x) {
+				return String.valueOf(x);
+			}
+			
 			public static <A,B> A leftAlgebraic(P2<A,B> pair){
 				return pair._1();
 			}

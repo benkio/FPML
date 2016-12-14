@@ -145,6 +145,7 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEffectFullSumValueAccess().getGroup_0(), "rule__EffectFullSumValue__Group_0__0");
 					put(grammarAccess.getEffectFullSumValueAccess().getGroup_1(), "rule__EffectFullSumValue__Group_1__0");
 					put(grammarAccess.getIntToStringAccess().getGroup(), "rule__IntToString__Group__0");
+					put(grammarAccess.getBoolToStringAccess().getGroup(), "rule__BoolToString__Group__0");
 					put(grammarAccess.getIntPowAccess().getGroup(), "rule__IntPow__Group__0");
 					put(grammarAccess.getPlusAccess().getGroup(), "rule__Plus__Group__0");
 					put(grammarAccess.getMinusAccess().getGroup(), "rule__Minus__Group__0");

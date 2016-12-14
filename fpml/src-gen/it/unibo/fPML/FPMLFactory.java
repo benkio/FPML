@@ -555,6 +555,15 @@ public interface FPMLFactory extends EFactory
   IntToString createIntToString();
 
   /**
+   * Returns a new object of class '<em>Bool To String</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bool To String</em>'.
+   * @generated
+   */
+  BoolToString createBoolToString();
+
+  /**
    * Returns a new object of class '<em>Int Pow</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

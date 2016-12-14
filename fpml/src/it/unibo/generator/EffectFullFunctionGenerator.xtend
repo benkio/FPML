@@ -93,11 +93,11 @@ class EffectFullFunctionGenerator {
 	
 	def compileIOWalkthrough(PrimitiveEffectFullFunction pef){
 		switch pef {
-			PrimitivePrint: '''.bind(PrimitivesEffectFull::primitivePrint)'''
+			Print: '''.bind(PrimitivesEffectFull::primitivePrint)'''
       		LeftAlgebraicIO: '''.bind(PrimitivesEffectFull::leftAlgebricIO)'''
       		RightAlgebraicIO:'''.bind(PrimitivesEffectFull::rightAlgebricIO)'''
       		ApplyFIO: '''.bind((«typeGenerator.compile(pef.functionType)» f) -> f.f(IOFunctions.runSafe(«commonEffectFullFunctions.compileIO(Others.getValueFromApplyFIOFactor(pef.value), null)»)))'''
-			PrimitiveReturn: ''''''
+			EffectFullReturn: ''''''
 			ExtractEffectFull: '''.bind((IEffectFullData«typeGenerator.compile(pef.data.content)» d) -> d.getValue())'''
 			LiftPureFunction: compileIOWalkthrough(pef)
 			LiftEffectFullFunction: compileIOWalkthrough(pef)
@@ -126,14 +126,15 @@ class EffectFullFunctionGenerator {
 	
 	def compileIOWalkthrough(PrimitiveEffectFullValue pev) {
 		switch pev {
-			PrimitiveRandom: '''.append(PrimitivesEffectFull.primitiveRandom())'''
-			PrimitiveTime: '''.append(PrimitivesEffectFull.primitiveTime())'''
+			Random: '''.append(PrimitivesEffectFull.primitiveRandom())'''
+			Time: '''.append(PrimitivesEffectFull.primitiveTime())'''
 		}	
 	}
 	
 	def compileIOWalkthrough(PrimitivePureFunction ppf){
 		switch ppf {
 			IntToString: '''.map(Primitives::intToString)'''
+			BoolToString: '''.map(Primitives::boolToString)'''
 			IntPow: '''.map(Primitives::intPow)'''
 			Plus: ".map(Primitives::plus)"
 			Minus: ".map(Primitives::minus)"
@@ -149,7 +150,7 @@ class EffectFullFunctionGenerator {
 			Major: '''.map(Primitives::major)'''
 			LogicAnd: '''.map(Primitives::logicAnd)'''
 			LogicOr: '''.map(Primitives::logicOr)'''
-      LogicNot: '''.map(Primitives::logicNot)'''
+      		LogicNot: '''.map(Primitives::logicNot)'''
 			ExtractPure: '''.bind((IPureData<«typeGenerator.compile(ppf.data.content)»> d) -> d.getValue())'''
 			IsLeftPure: '''.map(Primitives::isLeft)'''
 			IsRightPure: '''.map(Primitives::isRight)'''

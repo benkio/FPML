@@ -5,8 +5,12 @@ import it.unibo.fPML.AdditionalPureArgument;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.BoolToString;
+import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.CompositionFunctionBodyPure;
 import it.unibo.fPML.CompositionFunctionBodyPureFactor;
+import it.unibo.fPML.DataType;
+import it.unibo.fPML.DataValue;
 import it.unibo.fPML.EmptyFunctionBody;
 import it.unibo.fPML.Equals;
 import it.unibo.fPML.Expression;
@@ -14,6 +18,7 @@ import it.unibo.fPML.ExtractPure;
 import it.unibo.fPML.FunctionBodyPure;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
+import it.unibo.fPML.IntegerType;
 import it.unibo.fPML.IsLeftPure;
 import it.unibo.fPML.IsRightPure;
 import it.unibo.fPML.LeftAlgebraic;
@@ -28,18 +33,27 @@ import it.unibo.fPML.Minus;
 import it.unibo.fPML.Mod;
 import it.unibo.fPML.Plus;
 import it.unibo.fPML.PrimitivePureFunction;
+import it.unibo.fPML.PureAlgebraicType;
 import it.unibo.fPML.PureArgument;
+import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureEitherIf;
+import it.unibo.fPML.PureExpressionAndPureFunctionReference;
 import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureIf;
 import it.unibo.fPML.PureIfBody;
 import it.unibo.fPML.PureLambda;
+import it.unibo.fPML.PureProdValue;
+import it.unibo.fPML.PureReturn;
+import it.unibo.fPML.PureSumValue;
 import it.unibo.fPML.PureValue;
+import it.unibo.fPML.PureValueRef;
 import it.unibo.fPML.RightAlgebraic;
+import it.unibo.fPML.StringType;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
+import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
 import it.unibo.generator.TypeGenerator;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
@@ -52,21 +66,287 @@ public class ValuePureFunctionCommonGenerator {
   private TypeGenerator typeGenerator = new TypeGenerator();
   
   public String compile(final Expression e) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to Expression"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to PureFunctionType"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to PureFunctionType"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to PureFunctionType"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to PureFunctionType");
+    String _switchResult = null;
+    boolean _matched = false;
+    if (e instanceof IntegerType) {
+      _matched=true;
+      StringConcatenation _builder = new StringConcatenation();
+      int _value = ((IntegerType)e).getValue();
+      _builder.append(_value, "");
+      _switchResult = _builder.toString();
+    }
+    if (!_matched) {
+      if (e instanceof UnitType) {
+        _matched=true;
+        _switchResult = "Unit.unit()";
+      }
+    }
+    if (!_matched) {
+      if (e instanceof StringType) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("\"");
+        String _value = ((StringType)e).getValue();
+        _builder.append(_value, "");
+        _builder.append("\"");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof BooleanType) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        boolean _isValue = ((BooleanType)e).isValue();
+        _builder.append(_isValue, "");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof DataType) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("new ");
+        String _compileType = this.typeGenerator.compileType(e);
+        _builder.append(_compileType, "");
+        _builder.append("(");
+        PureExpressionAndPureFunctionReference _value = ((DataValue) e).getValue();
+        PureData _type = ((DataValue) e).getType();
+        ValueType _content = _type.getContent();
+        Object _compileAdtValue = this.compileAdtValue(_value, _content);
+        _builder.append(_compileAdtValue, "");
+        _builder.append(")");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureFunctionType) {
+        _matched=true;
+        return this.compile(((PureFunctionType)e));
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureSumValue) {
+        _matched=true;
+        ValueType _pureAdtElement1 = ((PureSumValue)e).getPureAdtElement1();
+        boolean _notEquals = (!Objects.equal(_pureAdtElement1, null));
+        if (_notEquals) {
+          PureExpressionAndPureFunctionReference _sumAdtElement1 = ((PureSumValue)e).getSumAdtElement1();
+          final PureFunction sumElement1 = Others.getInnerElementFromPureExpressionAndPureFunctionReference(_sumAdtElement1);
+          String sumElement1Type = null;
+          if ((sumElement1 instanceof Expression)) {
+            String _compile = this.compile(((Expression) sumElement1));
+            sumElement1Type = _compile;
+          } else {
+            String _compilePureFunctionRef = this.compilePureFunctionRef(((PureFunction) sumElement1));
+            sumElement1Type = _compilePureFunctionRef;
+          }
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Either.left(");
+          _builder.append(sumElement1Type, "");
+          _builder.append(")");
+          return _builder.toString();
+        } else {
+          PureExpressionAndPureFunctionReference _sumAdtElement2 = ((PureSumValue)e).getSumAdtElement2();
+          final PureFunction sumElement2 = Others.getInnerElementFromPureExpressionAndPureFunctionReference(_sumAdtElement2);
+          String sumElement2Type = null;
+          if ((sumElement2 instanceof Expression)) {
+            String _compile_1 = this.compile(((Expression) sumElement2));
+            sumElement2Type = _compile_1;
+          } else {
+            String _compilePureFunctionRef_1 = this.compilePureFunctionRef(((PureFunction) sumElement2));
+            sumElement2Type = _compilePureFunctionRef_1;
+          }
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("Either.right(");
+          _builder_1.append(sumElement2Type, "");
+          _builder_1.append(")");
+          return _builder_1.toString();
+        }
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureValueRef) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("PureValue.");
+        PureValue _value = ((PureValueRef)e).getValue();
+        String _name = _value.getName();
+        _builder.append(_name, "");
+        _builder.append("()");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (e instanceof PureProdValue) {
+        _matched=true;
+        String _xblockexpression = null;
+        {
+          PureExpressionAndPureFunctionReference _prodAdtElement1 = ((PureProdValue)e).getProdAdtElement1();
+          final PureFunction prodElement1 = Others.getInnerElementFromPureExpressionAndPureFunctionReference(_prodAdtElement1);
+          PureExpressionAndPureFunctionReference _prodAdtElement2 = ((PureProdValue)e).getProdAdtElement2();
+          final PureFunction prodElement2 = Others.getInnerElementFromPureExpressionAndPureFunctionReference(_prodAdtElement2);
+          String prodElement1Type = null;
+          String prodElement2Type = null;
+          if ((prodElement1 instanceof Expression)) {
+            String _compile = this.compile(((Expression) prodElement1));
+            prodElement1Type = _compile;
+          } else {
+            String _compilePureFunctionRef = this.compilePureFunctionRef(((PureFunction) prodElement1));
+            prodElement1Type = _compilePureFunctionRef;
+          }
+          if ((prodElement2 instanceof Expression)) {
+            String _compile_1 = this.compile(((Expression) prodElement2));
+            prodElement2Type = _compile_1;
+          } else {
+            String _compilePureFunctionRef_1 = this.compilePureFunctionRef(((PureFunction) prodElement2));
+            prodElement2Type = _compilePureFunctionRef_1;
+          }
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("P.p(");
+          _builder.append(prodElement1Type, "");
+          _builder.append(", ");
+          _builder.append(prodElement2Type, "");
+          _builder.append(")");
+          _xblockexpression = _builder.toString();
+        }
+        _switchResult = _xblockexpression;
+      }
+    }
+    return _switchResult;
   }
   
-  public Object compileAdtValue(final Expression v, final Type d) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to Expression"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to Expression"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to Expression"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to Expression"
-      + "\nType mismatch: cannot convert from PureExpressionAndPureFunctionReference to Expression");
+  public Object compileAdtValue(final PureExpressionAndPureFunctionReference vr, final Type d) {
+    String _xblockexpression = null;
+    {
+      final PureFunction v = Others.getInnerElementFromPureExpressionAndPureFunctionReference(vr);
+      String _switchResult = null;
+      boolean _matched = false;
+      if (v instanceof IntegerType) {
+        _matched=true;
+        return Integer.valueOf(((IntegerType)v).getValue());
+      }
+      if (!_matched) {
+        if (v instanceof StringType) {
+          _matched=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("\"");
+          String _value = ((StringType)v).getValue();
+          _builder.append(_value, "");
+          _builder.append("\"");
+          return _builder.toString();
+        }
+      }
+      if (!_matched) {
+        if (v instanceof BooleanType) {
+          _matched=true;
+          return Boolean.valueOf(((BooleanType)v).isValue());
+        }
+      }
+      if (!_matched) {
+        if (v instanceof UnitType) {
+          _matched=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Unit.unit()");
+          return _builder.toString();
+        }
+      }
+      if (!_matched) {
+        if (v instanceof DataType) {
+          _matched=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("new ");
+          String _compileType = this.typeGenerator.compileType(((Expression)v));
+          _builder.append(_compileType, "");
+          _builder.append("(");
+          PureExpressionAndPureFunctionReference _value = ((DataValue) v).getValue();
+          PureData _type = ((DataValue) v).getType();
+          ValueType _content = _type.getContent();
+          Object _compileAdtValue = this.compileAdtValue(_value, _content);
+          _builder.append(_compileAdtValue, "");
+          _builder.append(")");
+          return _builder.toString();
+        }
+      }
+      if (!_matched) {
+        if (v instanceof PureSumValue) {
+          _matched=true;
+          PureExpressionAndPureFunctionReference _sumAdtElement1 = ((PureSumValue)v).getSumAdtElement1();
+          boolean _equals = Objects.equal(_sumAdtElement1, null);
+          if (_equals) {
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append("Either.right(");
+            PureExpressionAndPureFunctionReference _sumAdtElement2 = ((PureSumValue)v).getSumAdtElement2();
+            ValueType _element2ValueTypeFromPureAlgebraicType = Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) d));
+            Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _element2ValueTypeFromPureAlgebraicType);
+            _builder.append(_compileAdtValue, "");
+            _builder.append(")");
+            return _builder.toString();
+          }
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("Either.left(");
+          PureExpressionAndPureFunctionReference _sumAdtElement1_1 = ((PureSumValue)v).getSumAdtElement1();
+          ValueType _pureAdtElement1 = ((PureAlgebraicType) d).getPureAdtElement1();
+          Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _pureAdtElement1);
+          _builder_1.append(_compileAdtValue_1, "");
+          _builder_1.append(")");
+          return _builder_1.toString();
+        }
+      }
+      if (!_matched) {
+        if (v instanceof PureProdValue) {
+          _matched=true;
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("P.p(");
+          PureExpressionAndPureFunctionReference _prodAdtElement1 = ((PureProdValue)v).getProdAdtElement1();
+          ValueType _pureAdtElement1 = ((PureAlgebraicType) d).getPureAdtElement1();
+          Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _pureAdtElement1);
+          _builder.append(_compileAdtValue, "");
+          _builder.append(",");
+          PureExpressionAndPureFunctionReference _prodAdtElement2 = ((PureProdValue)v).getProdAdtElement2();
+          ValueType _element2ValueTypeFromPureAlgebraicType = Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) d));
+          Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _element2ValueTypeFromPureAlgebraicType);
+          _builder.append(_compileAdtValue_1, "");
+          _builder.append(")");
+          return _builder.toString();
+        }
+      }
+      if (!_matched) {
+        if (v instanceof PureValueRef) {
+          _matched=true;
+          PureValue _value = ((PureValueRef)v).getValue();
+          if ((_value instanceof PureValue)) {
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append("PureValue.");
+            PureValue _value_1 = ((PureValueRef)v).getValue();
+            String _name = ((PureValue) _value_1).getName();
+            _builder.append(_name, "");
+            _builder.append("()");
+            return _builder.toString();
+          } else {
+            StringConcatenation _builder_1 = new StringConcatenation();
+            _builder_1.append("PureFunctionDefinitions::");
+            PureValue _value_2 = ((PureValueRef)v).getValue();
+            String _name_1 = ((PureFunctionDefinition) _value_2).getName();
+            _builder_1.append(_name_1, "");
+            return _builder_1.toString();
+          }
+        }
+      }
+      if (!_matched) {
+        if (v instanceof PureFunctionType) {
+          _matched=true;
+          return this.compile(((PureFunctionType)v));
+        }
+      }
+      if (!_matched) {
+        if (v instanceof PureFunction) {
+          _matched=true;
+          _switchResult = this.compilePureFunctionRef(v);
+        }
+      }
+      _xblockexpression = _switchResult;
+    }
+    return _xblockexpression;
   }
   
   public String compile(final PureFunctionType pft) {
@@ -77,12 +357,12 @@ public class ValuePureFunctionCommonGenerator {
         PureFunctionDefinition _value = pft.getValue();
         PureArgument _arg = _value.getArg();
         ValueType _type = _arg.getType();
-        Object _compile = this.typeGenerator.compile(_type);
+        String _compile = this.typeGenerator.compile(_type);
         _builder.append(_compile, "");
         _builder.append(",");
         PureFunctionDefinition _value_1 = pft.getValue();
         ValueType _pureFunctionDefinition = GetReturnType.pureFunctionDefinition(_value_1);
-        Object _compile_1 = this.typeGenerator.compile(_pureFunctionDefinition);
+        String _compile_1 = this.typeGenerator.compile(_pureFunctionDefinition);
         _builder.append(_compile_1, "");
         _builder.append(">() {");
         _builder.newLineIfNotEmpty();
@@ -93,13 +373,13 @@ public class ValuePureFunctionCommonGenerator {
         _builder.append("public ");
         PureFunctionDefinition _value_2 = pft.getValue();
         ValueType _pureFunctionDefinition_1 = GetReturnType.pureFunctionDefinition(_value_2);
-        Object _compile_2 = this.typeGenerator.compile(_pureFunctionDefinition_1);
+        String _compile_2 = this.typeGenerator.compile(_pureFunctionDefinition_1);
         _builder.append(_compile_2, "\t\t");
         _builder.append(" f(");
         PureFunctionDefinition _value_3 = pft.getValue();
         PureArgument _arg_1 = _value_3.getArg();
         ValueType _type_1 = _arg_1.getType();
-        Object _compile_3 = this.typeGenerator.compile(_type_1);
+        String _compile_3 = this.typeGenerator.compile(_type_1);
         _builder.append(_compile_3, "\t\t");
         _builder.append(" ");
         PureFunctionDefinition _value_4 = pft.getValue();
@@ -305,6 +585,12 @@ public class ValuePureFunctionCommonGenerator {
       _switchResult = (("Primitives.intToString(" + acc) + ")");
     }
     if (!_matched) {
+      if (purePrimitive instanceof BoolToString) {
+        _matched=true;
+        _switchResult = (("Primitives.boolToString(" + acc) + ")");
+      }
+    }
+    if (!_matched) {
       if (purePrimitive instanceof IntPow) {
         _matched=true;
         _switchResult = (("Primitives.intPow(" + acc) + ")");
@@ -419,6 +705,12 @@ public class ValuePureFunctionCommonGenerator {
       if (purePrimitive instanceof IsRightPure) {
         _matched=true;
         _switchResult = (("Primitives.isRight(" + acc) + ")");
+      }
+    }
+    if (!_matched) {
+      if (purePrimitive instanceof PureReturn) {
+        _matched=true;
+        _switchResult = acc;
       }
     }
     if (!_matched) {

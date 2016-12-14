@@ -17,49 +17,49 @@ class Others {
 	//////////////////////////////////////////////////////////////////////////////////////
 	
 	def static PureFunction getFunctionDefinitionFromPureFactor(CompositionFunctionBodyPureFactor cfbpf) {
-		if (cfbpf.primitiveElement == null && cfbpf.referenceElement == null) return cfbpf.expressionElement
-		else if (cfbpf.referenceElement == null) return cfbpf.primitiveElement
-		else return cfbpf.referenceElement
+		if (cfbpf.primitiveElement == null && cfbpf.referenceElement == null) return EcoreUtil.copy(cfbpf.expressionElement)
+		else if (cfbpf.referenceElement == null) return EcoreUtil.copy(cfbpf.primitiveElement)
+		else return EcoreUtil.copy(cfbpf.referenceElement)
 	}
 	def static getFunctionDefinitionFromEffectFullFactor(CompositionFunctionBodyEffectFullFactor cfbef) {
-		if (cfbef.primitiveElement == null && cfbef.referenceElement == null) return cfbef.expressionElement
-		else if (cfbef.referenceElement == null) return cfbef.primitiveElement
-		else cfbef.referenceElement
+		if (cfbef.primitiveElement == null && cfbef.referenceElement == null) return EcoreUtil.copy(cfbef.expressionElement)
+		else if (cfbef.referenceElement == null) return EcoreUtil.copy(cfbef.primitiveElement)
+		else EcoreUtil.copy(cfbef.referenceElement)
 	}
 	def static PureFunction getFirstFunctionDefinitionFromCompositionBodyPure(CompositionFunctionBodyPure cfbp) {
-		if (cfbp.primitiveElement == null && cfbp.referenceElement == null) return cfbp.expressionElement
-		else if (cfbp.referenceElement == null) return cfbp.primitiveElement 
-		else return cfbp.referenceElement
+		if (cfbp.primitiveElement == null && cfbp.referenceElement == null) return EcoreUtil.copy(cfbp.expressionElement)
+		else if (cfbp.referenceElement == null) return EcoreUtil.copy(cfbp.primitiveElement) 
+		else return EcoreUtil.copy(cfbp.referenceElement)
 	}
 	def static EffectFullBodyContent getFirstFunctionDefinitionFromCompositionBodyEffectFull(CompositionFunctionBodyEffect cfbe) {
-		if (cfbe.primitiveElement == null && cfbe.referenceElement == null) return cfbe.expressionElement
-		else if (cfbe.referenceElement == null) return cfbe.primitiveElement 
-		else return cfbe.referenceElement
+		if (cfbe.primitiveElement == null && cfbe.referenceElement == null) return EcoreUtil.copy(cfbe.expressionElement)
+		else if (cfbe.referenceElement == null) return EcoreUtil.copy(cfbe.primitiveElement)
+		else return EcoreUtil.copy(cfbe.referenceElement)
 	}
 	
 	def static EffectFullBodyContent getValueFromApplyFIOFactor(ApplyFIOFactor afiof) {
-		if (afiof.valuePrimitive != null) return afiof.valuePrimitive
-		else if (afiof.valueReference != null) return afiof.valueReference
-		else return afiof.valueExpression 
+		if (afiof.valuePrimitive != null) return EcoreUtil.copy(afiof.valuePrimitive)
+		else if (afiof.valueReference != null) return EcoreUtil.copy(afiof.valueReference)
+		else return EcoreUtil.copy(afiof.valueExpression)
 	}
 	
 	def static getValueFromApplyFFactor(ApplyFFactor afiof) {
-		if (afiof.valueExpression != null) return afiof.valueExpression
-		else return afiof.valueReference
+		if (afiof.valueExpression != null) return EcoreUtil.copy(afiof.valueExpression)
+		else return EcoreUtil.copy(afiof.valueReference)
 
 	}
 	
 	def static ValueType getElement2ValueTypeFromPureAlgebraicType(PureAlgebraicType pat){
 		switch pat.pureAdtElement2 {
-			PureSumTypeFactor: (pat.pureAdtElement2 as PureSumTypeFactor).adtElement
-			PureProdTypeFactor: (pat.pureAdtElement2 as PureProdTypeFactor).adtElement 
+			PureSumTypeFactor: EcoreUtil.copy((pat.pureAdtElement2 as PureSumTypeFactor).adtElement)
+			PureProdTypeFactor: EcoreUtil.copy((pat.pureAdtElement2 as PureProdTypeFactor).adtElement )
 		}
 	}
 	
 	def static Type getElement2ValueTypeFromEffectFullAlgebraicType(EffectFullAlgebraicType eat) {
 		switch eat.effectFullAdtElement2 {
-			EffectFullSumTypeFactor: (eat.effectFullAdtElement2 as EffectFullSumTypeFactor).adtElement
-			EffectFullProdTypeFactor: (eat.effectFullAdtElement2 as EffectFullProdTypeFactor).adtElement 
+			EffectFullSumTypeFactor: EcoreUtil.copy((eat.effectFullAdtElement2 as EffectFullSumTypeFactor).adtElement)
+			EffectFullProdTypeFactor: EcoreUtil.copy((eat.effectFullAdtElement2 as EffectFullProdTypeFactor).adtElement )
 		}
 	}
 	
@@ -99,33 +99,33 @@ class Others {
 	}
 	
 	def static PureFunction getFunctionFromPureIfBody(PureIfBody pib){
-		if (pib.functionExpression == null) pib.functionReference
-		else pib.functionExpression
+		if (pib.functionExpression == null) EcoreUtil.copy(pib.functionReference)
+		else EcoreUtil.copy(pib.functionExpression)
 	}
 	
 	def static EffectFullBodyContent getFunctionFromEffectFullIfBody(EffectFullIfBody efib){
-		if (efib.functionExpression == null) efib.functionReference
-		else efib.functionExpression	
+		if (efib.functionExpression == null) EcoreUtil.copy(efib.functionReference)
+		else EcoreUtil.copy(efib.functionExpression)	
 	}
 	
 	def static PureFunction getInnerElementFromPureExpressionAndPureFunctionReference(PureExpressionAndPureFunctionReference r) {
-		if (r.prodAdtElementExpression == null) r.prodAdtElementFunction
-		else r.prodAdtElementExpression
+		if (r.prodAdtElementExpression == null) EcoreUtil.copy(r.prodAdtElementFunction)
+		else EcoreUtil.copy(r.prodAdtElementExpression)
 	}
 	
 	def static PureExpressionAndPureFunctionReference getFirstElementFromPureAlgebraicValue(PureSumValue psv) {
-		if (psv.sumAdtElement1 == null) psv.sumAdtElement2
-		else psv.sumAdtElement1
+		if (psv.sumAdtElement1 == null) EcoreUtil.copy(psv.sumAdtElement2)
+		else EcoreUtil.copy(psv.sumAdtElement1)
 	}
 	
 	def static PureExpressionAndPureFunctionReference getFirstElementFromPureAlgebraicValue(PureProdValue ppv) {
-		if (ppv.prodAdtElement1 == null) ppv.prodAdtElement2
-		else ppv.prodAdtElement1
+		if (ppv.prodAdtElement1 == null) EcoreUtil.copy(ppv.prodAdtElement2)
+		else EcoreUtil.copy(ppv.prodAdtElement1)
 	}
 	
 	def static EffectFullBodyContent getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(EffectFullExpressionAndEffectFullFunctionReference r) {
-		if (r.prodAdtElementExpression == null) r.prodAdtElementFunction
-		else r.prodAdtElementExpression
+		if (r.prodAdtElementExpression == null) EcoreUtil.copy(r.prodAdtElementFunction)
+		else EcoreUtil.copy(r.prodAdtElementExpression)
 	}
 	
 	
@@ -135,15 +135,15 @@ class Others {
 	
 	def static PureFunctionType createPureFuntionType(ValueType argT, ValueType returnT){
 		val func = FPMLFactory.eINSTANCE.createPureFunctionType()
-      	func.argType = argT
-      	func.returnType = returnT
+      	func.argType = EcoreUtil.copy(argT)
+      	func.returnType = EcoreUtil.copy(returnT)
       	return func
 	}
 	
 	def static EffectFullFunctionType createEffectFullFuntionType(Type argT, IOType returnT){
 		val func = FPMLFactory.eINSTANCE.createEffectFullFunctionType()
-      	func.argType = argT
-      	func.returnType = returnT
+      	func.argType = EcoreUtil.copy(argT)
+      	func.returnType = EcoreUtil.copy(returnT)
       	return func
 	}
 	
@@ -165,14 +165,14 @@ class Others {
 		val PureAlgebraicType pat = FPMLFactory.eINSTANCE.createPureAlgebraicType;
 		if (isSumType) {
 			val factor = FPMLFactory.eINSTANCE.createPureSumTypeFactor
-			factor.adtElement = vt2
+			factor.adtElement = EcoreUtil.copy(vt2)
 			pat.pureAdtElement2 =  factor
-			pat.pureAdtElement1 = vt1
+			pat.pureAdtElement1 = EcoreUtil.copy(vt1)
 		}else { //is prod type
 			val factor = FPMLFactory.eINSTANCE.createPureProdTypeFactor
-			factor.adtElement = vt2
+			factor.adtElement = EcoreUtil.copy(vt2)
 			pat.pureAdtElement2 =  factor
-			pat.pureAdtElement1 = vt1
+			pat.pureAdtElement1 = EcoreUtil.copy(vt1)
 		}
 		 pat
 	}
@@ -181,14 +181,14 @@ class Others {
 		val EffectFullAlgebraicType efat = FPMLFactory.eINSTANCE.createEffectFullAlgebraicType;
 		if (isSumType) {
 			val factor = FPMLFactory.eINSTANCE.createEffectFullSumTypeFactor
-			factor.adtElement = t2
+			factor.adtElement = EcoreUtil.copy(t2)
 			efat.effectFullAdtElement2 =  factor
-			efat.effectFullAdtElement1 = t1
+			efat.effectFullAdtElement1 = EcoreUtil.copy(t1)
 		}else { //is prod type
 			val factor = FPMLFactory.eINSTANCE.createEffectFullProdTypeFactor
-			factor.adtElement = t2
+			factor.adtElement = EcoreUtil.copy(t2)
 			efat.effectFullAdtElement2 =  factor
-			efat.effectFullAdtElement1 = t1
+			efat.effectFullAdtElement1 = EcoreUtil.copy(t1)
 		}
 		 efat
 	}
@@ -208,23 +208,23 @@ class Others {
 	def static IOType IOWrap(Type t){
 		val returnT = FPMLFactory.eINSTANCE.createIOType
 		returnT.type = EcoreUtil2.copy(t)
-		return returnT	
+		return returnT
 	}
 	
 	def static ValueType createTypeOfPureFunction(PureFunction pf){
 		switch pf {
-			PureValue: GetReturnType.expression(pf.value)
+			PureValue: EcoreUtil.copy(GetReturnType.expression(pf.value))
 			PureFunctionDefinition: it.unibo.validation.utilitiesFunctions.Others.createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
 			PrimitivePureFunction: it.unibo.validation.utilitiesFunctions.Others.createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
-			PureArgument: pf.type
-			Expression: GetReturnType.expression(pf)
+			PureArgument: EcoreUtil.copy(pf.type)
+			Expression: EcoreUtil.copy(GetReturnType.expression(pf))
 		}
 	}
 	
 	def static Type createTypeOfEffectFullFunction(EffectFullFunction function) {
 		switch function { 
-			EffectFullValue: GetReturnType.effectFullExpression(function.value)
-			EffectFullArgument: function.type
+			EffectFullValue: EcoreUtil.copy(GetReturnType.effectFullExpression(function.value))
+			EffectFullArgument: EcoreUtil.copy(function.type)
 			PrimitiveEffectFullFunction: it.unibo.validation.utilitiesFunctions.Others.createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
 			EffectFullFunctionDefinition: it.unibo.validation.utilitiesFunctions.Others.createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
 		}
@@ -235,9 +235,9 @@ class Others {
 			EffectFullFunction: createTypeOfEffectFullFunction(content)
 			EffectFullPrimitive: createTypeOfEffectFullPrimitive(content)
 			EffectFullFunctionType: {
-				val returnType = GetReturnType.effectFullExpression(content as EffectFullExpression)
+				val returnType = EcoreUtil.copy(GetReturnType.effectFullExpression(content as EffectFullExpression))
 				if (content.value instanceof EffectFullLambda) {
-					val Type argType = GetArgType.effectFullLambda(content.value as EffectFullLambda)
+					val Type argType = EcoreUtil.copy(GetArgType.effectFullLambda(content.value as EffectFullLambda))
 					if (returnType instanceof IOType)
 						Others.createEffectFullFuntionType(argType, (returnType as IOType))
 					else 
@@ -253,7 +253,7 @@ class Others {
 	def static createTypeOfEffectFullPrimitive(EffectFullPrimitive primitive) {
 		switch primitive {
 			PrimitiveEffectFullFunction: {
-				val returnType = GetReturnType.effectFullPrimitive(primitive)
+				val returnType = EcoreUtil.copy(GetReturnType.effectFullPrimitive(primitive))
 				if (returnType instanceof IOType)
 					Others.createEffectFullFuntionType(GetArgType.effectFullPrimitive(primitive), GetReturnType.effectFullPrimitive(primitive) as IOType)
 				else

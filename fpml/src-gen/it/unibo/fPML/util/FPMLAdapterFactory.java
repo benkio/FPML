@@ -371,6 +371,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createIntToStringAdapter();
       }
       @Override
+      public Adapter caseBoolToString(BoolToString object)
+      {
+        return createBoolToStringAdapter();
+      }
+      @Override
       public Adapter caseIntPow(IntPow object)
       {
         return createIntPowAdapter();
@@ -1558,6 +1563,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIntToStringAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.BoolToString <em>Bool To String</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.BoolToString
+   * @generated
+   */
+  public Adapter createBoolToStringAdapter()
   {
     return null;
   }

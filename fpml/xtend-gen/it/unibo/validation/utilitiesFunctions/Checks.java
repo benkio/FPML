@@ -76,7 +76,7 @@ public class Checks {
   public static boolean DataAndValue(final PureExpressionAndPureFunctionReference valueOrReference, final ValueType type) {
     boolean _xblockexpression = false;
     {
-      final PureFunction value = Others.getInnerElementFromPureExpressionAndPureFunctionReference(valueOrReference);
+      PureFunction value = Others.getInnerElementFromPureExpressionAndPureFunctionReference(valueOrReference);
       boolean _switchResult = false;
       boolean _matched = false;
       if (type instanceof UnitType) {

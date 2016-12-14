@@ -30,14 +30,14 @@ public class DataGenerator {
     _builder.append(_name, "");
     _builder.append(" implements IPureData<");
     ValueType _content = d.getContent();
-    Object _compile = this.typeGenerator.compile(_content);
+    String _compile = this.typeGenerator.compile(_content);
     _builder.append(_compile, "");
     _builder.append("> {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("private final ");
     ValueType _content_1 = d.getContent();
-    Object _compile_1 = this.typeGenerator.compile(_content_1);
+    String _compile_1 = this.typeGenerator.compile(_content_1);
     _builder.append(_compile_1, "\t");
     _builder.append(" value;");
     _builder.newLineIfNotEmpty();
@@ -49,7 +49,7 @@ public class DataGenerator {
     _builder.append(_name_1, "\t");
     _builder.append("(");
     ValueType _content_2 = d.getContent();
-    Object _compile_2 = this.typeGenerator.compile(_content_2);
+    String _compile_2 = this.typeGenerator.compile(_content_2);
     _builder.append(_compile_2, "\t");
     _builder.append(" value){");
     _builder.newLineIfNotEmpty();
@@ -64,7 +64,7 @@ public class DataGenerator {
     _builder.append("\t");
     _builder.append("public ");
     ValueType _content_3 = d.getContent();
-    Object _compile_3 = this.typeGenerator.compile(_content_3);
+    String _compile_3 = this.typeGenerator.compile(_content_3);
     _builder.append(_compile_3, "\t");
     _builder.append(" getValue() {");
     _builder.newLineIfNotEmpty();

@@ -10,6 +10,7 @@ import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.ApplyFIOFactor;
+import it.unibo.fPML.BoolToString;
 import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
@@ -147,6 +148,9 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case FPMLPackage.APPLY_FIO_FACTOR:
 				sequence_ApplyFIOFactor(context, (ApplyFIOFactor) semanticObject); 
+				return; 
+			case FPMLPackage.BOOL_TO_STRING:
+				sequence_BoolToString(context, (BoolToString) semanticObject); 
 				return; 
 			case FPMLPackage.BOOLEAN_TYPE:
 				if (rule == grammarAccess.getValueTypeRule()
@@ -612,6 +616,22 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		feeder.accept(grammarAccess.getApplyFAccess().getFunctionTypePureFunctionTypeParserRuleCall_2_0(), semanticObject.getFunctionType());
 		feeder.accept(grammarAccess.getApplyFAccess().getValueApplyFFactorParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns BoolToString
+	 *     PureFunction returns BoolToString
+	 *     PrimitiveFunction returns BoolToString
+	 *     PrimitivePureFunction returns BoolToString
+	 *     BoolToString returns BoolToString
+	 *
+	 * Constraint:
+	 *     {BoolToString}
+	 */
+	protected void sequence_BoolToString(ISerializationContext context, BoolToString semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

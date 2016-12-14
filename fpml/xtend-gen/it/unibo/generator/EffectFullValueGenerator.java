@@ -59,7 +59,7 @@ public class EffectFullValueGenerator {
     _builder.newLine();
     _builder.append("public static ");
     EffectFullExpression _value = v.getValue();
-    Object _compileType = this.typeGenerator.compileType(_value);
+    String _compileType = this.typeGenerator.compileType(_value);
     _builder.append(_compileType, "");
     _builder.append(" ");
     String _name = v.getName();

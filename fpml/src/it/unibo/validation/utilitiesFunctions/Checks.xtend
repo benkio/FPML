@@ -9,7 +9,7 @@ import it.unibo.services.FPMLGrammarAccess.PureExpressionAndPureFunctionReferenc
 class Checks {
 	
 	def static boolean DataAndValue(PureExpressionAndPureFunctionReference valueOrReference, ValueType type) {
-		val value = Others.getInnerElementFromPureExpressionAndPureFunctionReference(valueOrReference)
+		var PureFunction value = Others.getInnerElementFromPureExpressionAndPureFunctionReference(valueOrReference)
 		switch type {
 			UnitType: value instanceof UnitType ||
 					(value instanceof PureValueRef &&

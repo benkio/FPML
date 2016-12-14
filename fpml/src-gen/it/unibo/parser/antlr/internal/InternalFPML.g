@@ -4772,200 +4772,209 @@ rulePrimitivePureFunction returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getIntPowParserRuleCall_1());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getBoolToStringParserRuleCall_1());
 		}
-		this_IntPow_1=ruleIntPow
+		this_BoolToString_1=ruleBoolToString
 		{
-			$current = $this_IntPow_1.current;
+			$current = $this_BoolToString_1.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPlusParserRuleCall_2());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getIntPowParserRuleCall_2());
 		}
-		this_Plus_2=rulePlus
+		this_IntPow_2=ruleIntPow
 		{
-			$current = $this_Plus_2.current;
+			$current = $this_IntPow_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMinusParserRuleCall_3());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPlusParserRuleCall_3());
 		}
-		this_Minus_3=ruleMinus
+		this_Plus_3=rulePlus
 		{
-			$current = $this_Minus_3.current;
+			$current = $this_Plus_3.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getTimesParserRuleCall_4());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMinusParserRuleCall_4());
 		}
-		this_Times_4=ruleTimes
+		this_Minus_4=ruleMinus
 		{
-			$current = $this_Times_4.current;
+			$current = $this_Minus_4.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getModParserRuleCall_5());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getTimesParserRuleCall_5());
 		}
-		this_Mod_5=ruleMod
+		this_Times_5=ruleTimes
 		{
-			$current = $this_Mod_5.current;
+			$current = $this_Times_5.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getApplyFParserRuleCall_6());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getModParserRuleCall_6());
 		}
-		this_ApplyF_6=ruleApplyF
+		this_Mod_6=ruleMod
 		{
-			$current = $this_ApplyF_6.current;
+			$current = $this_Mod_6.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getLeftAlgebraicParserRuleCall_7());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getApplyFParserRuleCall_7());
 		}
-		this_LeftAlgebraic_7=ruleLeftAlgebraic
+		this_ApplyF_7=ruleApplyF
 		{
-			$current = $this_LeftAlgebraic_7.current;
+			$current = $this_ApplyF_7.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getRightAlgebraicParserRuleCall_8());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getLeftAlgebraicParserRuleCall_8());
 		}
-		this_RightAlgebraic_8=ruleRightAlgebraic
+		this_LeftAlgebraic_8=ruleLeftAlgebraic
 		{
-			$current = $this_RightAlgebraic_8.current;
+			$current = $this_LeftAlgebraic_8.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getEqualsParserRuleCall_9());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getRightAlgebraicParserRuleCall_9());
 		}
-		this_Equals_9=ruleEquals
+		this_RightAlgebraic_9=ruleRightAlgebraic
 		{
-			$current = $this_Equals_9.current;
+			$current = $this_RightAlgebraic_9.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMinorEqualsParserRuleCall_10());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getEqualsParserRuleCall_10());
 		}
-		this_MinorEquals_10=ruleMinorEquals
+		this_Equals_10=ruleEquals
 		{
-			$current = $this_MinorEquals_10.current;
+			$current = $this_Equals_10.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMajorEqualsParserRuleCall_11());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMinorEqualsParserRuleCall_11());
 		}
-		this_MajorEquals_11=ruleMajorEquals
+		this_MinorEquals_11=ruleMinorEquals
 		{
-			$current = $this_MajorEquals_11.current;
+			$current = $this_MinorEquals_11.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMinorParserRuleCall_12());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMajorEqualsParserRuleCall_12());
 		}
-		this_Minor_12=ruleMinor
+		this_MajorEquals_12=ruleMajorEquals
 		{
-			$current = $this_Minor_12.current;
+			$current = $this_MajorEquals_12.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMajorParserRuleCall_13());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMinorParserRuleCall_13());
 		}
-		this_Major_13=ruleMajor
+		this_Minor_13=ruleMinor
 		{
-			$current = $this_Major_13.current;
+			$current = $this_Minor_13.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getLogicAndParserRuleCall_14());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getMajorParserRuleCall_14());
 		}
-		this_LogicAnd_14=ruleLogicAnd
+		this_Major_14=ruleMajor
 		{
-			$current = $this_LogicAnd_14.current;
+			$current = $this_Major_14.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getLogicOrParserRuleCall_15());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getLogicAndParserRuleCall_15());
 		}
-		this_LogicOr_15=ruleLogicOr
+		this_LogicAnd_15=ruleLogicAnd
 		{
-			$current = $this_LogicOr_15.current;
+			$current = $this_LogicAnd_15.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getLogicNotParserRuleCall_16());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getLogicOrParserRuleCall_16());
 		}
-		this_LogicNot_16=ruleLogicNot
+		this_LogicOr_16=ruleLogicOr
 		{
-			$current = $this_LogicNot_16.current;
+			$current = $this_LogicOr_16.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getExtractPureParserRuleCall_17());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getLogicNotParserRuleCall_17());
 		}
-		this_ExtractPure_17=ruleExtractPure
+		this_LogicNot_17=ruleLogicNot
 		{
-			$current = $this_ExtractPure_17.current;
+			$current = $this_LogicNot_17.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getIsLeftPureParserRuleCall_18());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getExtractPureParserRuleCall_18());
 		}
-		this_IsLeftPure_18=ruleIsLeftPure
+		this_ExtractPure_18=ruleExtractPure
 		{
-			$current = $this_IsLeftPure_18.current;
+			$current = $this_ExtractPure_18.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getIsRightPureParserRuleCall_19());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getIsLeftPureParserRuleCall_19());
 		}
-		this_IsRightPure_19=ruleIsRightPure
+		this_IsLeftPure_19=ruleIsLeftPure
 		{
-			$current = $this_IsRightPure_19.current;
+			$current = $this_IsLeftPure_19.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPureIfParserRuleCall_20());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getIsRightPureParserRuleCall_20());
 		}
-		this_PureIf_20=rulePureIf
+		this_IsRightPure_20=ruleIsRightPure
 		{
-			$current = $this_PureIf_20.current;
+			$current = $this_IsRightPure_20.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPureEitherIfParserRuleCall_21());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPureIfParserRuleCall_21());
 		}
-		this_PureEitherIf_21=rulePureEitherIf
+		this_PureIf_21=rulePureIf
 		{
-			$current = $this_PureEitherIf_21.current;
+			$current = $this_PureIf_21.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPureReturnParserRuleCall_22());
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPureEitherIfParserRuleCall_22());
 		}
-		this_PureReturn_22=rulePureReturn
+		this_PureEitherIf_22=rulePureEitherIf
 		{
-			$current = $this_PureReturn_22.current;
+			$current = $this_PureEitherIf_22.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitivePureFunctionAccess().getPureReturnParserRuleCall_23());
+		}
+		this_PureReturn_23=rulePureReturn
+		{
+			$current = $this_PureReturn_23.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -4997,6 +5006,36 @@ ruleIntToString returns [EObject current=null]
 		otherlv_1='intToString'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getIntToStringAccess().getIntToStringKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleBoolToString
+entryRuleBoolToString returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBoolToStringRule()); }
+	iv_ruleBoolToString=ruleBoolToString
+	{ $current=$iv_ruleBoolToString.current; }
+	EOF;
+
+// Rule BoolToString
+ruleBoolToString returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getBoolToStringAccess().getBoolToStringAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='boolToString'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getBoolToStringAccess().getBoolToStringKeyword_1());
 		}
 	)
 ;

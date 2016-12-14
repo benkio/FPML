@@ -9,21 +9,38 @@ class ValueEffectFullFunctionCommonGenerator {
 	
 	val typeGenerator = new TypeGenerator
 	val commonFunctions = new ValuePureFunctionCommonGenerator
-	val commonPureFunctions = new ValuePureFunctionCommonGenerator
 	
 	def String compile(EffectFullExpression e) {
 		switch e {
 			EffectFullFunctionType: return e.compile 
 			EffectFullDataValue: '''new «e.type.name»(«compileAdtValue(e.value,e.type.content)»)'''
-			EffectFullProdValue: '''P.p(«e.prodAdtElement1.compile», «e.prodAdtElement2.compile»)'''
+			EffectFullProdValue: {
+				val prodElement1 = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(e.prodAdtElement1)
+				val prodElement2 = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(e.prodAdtElement2)
+				var String prodElement1Type 
+				var String prodElement2Type
+				if (prodElement1 instanceof Expression) prodElement1Type = compile(prodElement1 as EffectFullExpression) else prodElement1Type = compileEffectFullFunctionRef(prodElement1 as EffectFullFunction) 
+				if (prodElement2 instanceof Expression) prodElement2Type = compile(prodElement2 as EffectFullExpression) else prodElement2Type = compileEffectFullFunctionRef(prodElement2 as EffectFullFunction)
+				'''P.p(«prodElement1Type», «prodElement2Type»)'''
+			}
 			EffectFullSumValue: {
-				if (e.sumAdtElement1 == null) return '''Either.right(«e.sumAdtElement2.compile»)'''
-				return '''Either.left(«e.sumAdtElement1.compile»)'''
+				if (e.sumAdtElement1 != null){
+		    		val sumElement1 = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(e.sumAdtElement1)
+					var String sumElement1Type 
+					if (sumElement1 instanceof Expression) sumElement1Type = compile(sumElement1 as EffectFullExpression) else sumElement1Type = compileEffectFullFunctionRef(sumElement1 as EffectFullFunction) 	
+		    		return '''Either.left(«sumElement1Type»)'''
+		    	}
+		    	else {
+		    		val sumElement2 = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(e.sumAdtElement2)
+		    		var String sumElement2Type
+		    		if (sumElement2 instanceof Expression) sumElement2Type = compile(sumElement2 as EffectFullExpression) else sumElement2Type = compileEffectFullFunctionRef(sumElement2 as EffectFullFunction)
+		    		return '''Either.right(«sumElement2Type»)'''
+		    	}
 			}
 			EffectFullValueRef: '''EffectFullValue.«e.value.name»()'''
 			IOExpression: return "IOFunctions.unit(" + commonFunctions.compile(e.innerValue as Expression) + ")"
 			IOEffectFullExpression: return "IOFunctions.unit(" + (e.innerValue as EffectFullExpression).compile + ")"
-			IOPureFunction: '''IOFunctions.unit(«commonPureFunctions.compilePureFunctionRef(Others.getPureFunctionFromIOPureFunction(e))»)'''
+			IOPureFunction: '''IOFunctions.unit(«commonFunctions.compilePureFunctionRef(Others.getPureFunctionFromIOPureFunction(e))»)'''
 			IOEffectFullFunction: '''IOFunctions.unit(«compileEffectFullFunctionRef(Others.getEffectFullFunctionFromIOEffectFullFunction(e))»)'''
 		}	
 	}
@@ -37,7 +54,8 @@ class ValueEffectFullFunctionCommonGenerator {
 		}
 	}
 	
-	def compileAdtValue(EffectFullExpression v, Type d) {
+	def compileAdtValue(EffectFullExpressionAndEffectFullFunctionReference vr, Type d) {
+		val v = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(vr)
 		switch v {
 			EffectFullSumValue: {
 				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromEffectFullAlgebraicType(d as EffectFullAlgebraicType))»)'''
@@ -52,9 +70,9 @@ class ValueEffectFullFunctionCommonGenerator {
 					return '''IOFunctions.unit(«v.compile»)'''
 			}
 			EffectFullDataValue: return compile(v as EffectFullExpression)
-			IOExpression: '''IOFunctions.unit(«commonFunctions.compileAdtValue(v.innerValue as Expression, (d as IOType).type)»)'''
-			IOEffectFullExpression: '''IOFunctions.unit(«compileAdtValue(v.innerValue as EffectFullExpression, (d as IOType).type as EffectFullType)»)'''
-			IOPureFunction: '''IOFunctions.unit(«commonPureFunctions.compilePureFunctionRef(Others.getPureFunctionFromIOPureFunction(v))»)'''
+			IOExpression: '''IOFunctions.unit(«commonFunctions.compileAdtValue(Others.createPureExpressionAndPureFunctionReference(v.innerValue as Expression), (d as IOType).type)»)'''
+			IOEffectFullExpression: '''IOFunctions.unit(«compileAdtValue(Others.createEffectFullExpressionAndEffectFullFunctionReference(v.innerValue as EffectFullExpression), (d as IOType).type as EffectFullType)»)'''
+			IOPureFunction: '''IOFunctions.unit(«commonFunctions.compilePureFunctionRef(Others.getPureFunctionFromIOPureFunction(v))»)'''
 			IOEffectFullFunction: '''IOFunctions.unit(«compileEffectFullFunctionRef(Others.getEffectFullFunctionFromIOEffectFullFunction(v))»)'''
 		}
 	}
@@ -119,8 +137,8 @@ class ValueEffectFullFunctionCommonGenerator {
 
 	def String compileIO(PrimitiveEffectFullValue pefv, String acc) {
 		switch pefv {
-			PrimitiveRandom: valueEmbellishment(acc,"PrimitivesEffectFull.primitiveRandom()")
-      		PrimitiveTime: valueEmbellishment(acc,"PrimitivesEffectFull.primitiveTime()")
+			Random: valueEmbellishment(acc,"PrimitivesEffectFull.primitiveRandom()")
+      		Time: valueEmbellishment(acc,"PrimitivesEffectFull.primitiveTime()")
 		}
 	}
 	
@@ -135,11 +153,11 @@ class ValueEffectFullFunctionCommonGenerator {
 	
 	def String compileIO(PrimitiveEffectFullFunction peff, String acc) {
 		switch peff {
-			PrimitivePrint: '''IOFunctions.bind(«acc», PrimitivesEffectFull::primitivePrint)'''
+			Print: '''IOFunctions.bind(«acc», PrimitivesEffectFull::primitivePrint)'''
       		LeftAlgebraicIO: '''IOFunctions.bind(«acc», PrimitivesEffectFull:leftAlgebraicIO)'''
       		RightAlgebraicIO: '''IOFunctions.bind(«acc», PrimitivesEffectFull:rightAlgebraicIO)'''
 			ApplyFIO: '''IOFunctions.bind(«acc», («typeGenerator.compile(peff.functionType)» f) -> f.f(IOFunctions.runSafe(«compileIO(Others.getValueFromApplyFIOFactor(peff.value), null)»)))'''
-			PrimitiveReturn: '''«acc»'''
+			EffectFullReturn: '''«acc»'''
 			ExtractEffectFull: '''IOFunctions.bind(«acc», («peff.data.name» d) -> «IF (peff.data.content instanceof IOType)» d.getValue() «ELSE» IOFunctions.unit(d.getValue())) «ENDIF»'''
 			LiftPureFunction: compileIO(Others.getPureFunctionFromLiftPureFunction(peff), acc)
 			LiftEffectFullFunction: compileIO(Others.getEffectFullFunctionFromLiftEffectFullFunction(peff), acc)
@@ -147,7 +165,7 @@ class ValueEffectFullFunctionCommonGenerator {
 			IsRightEffectFull: '''IOFunctions.bind(«acc», PrimitivesEffectFull::isRight)'''
 			EffectFullIf:'''IOFunctions.bind(«acc», (Boolean c) -> «IF (peff.then instanceof IOType)» «ELSE» IOFunctions.unit(«ENDIF»PrimitivesEffectFull.effectFullIf(c, «peff.then.compile» , «peff.^else.compile»))«IF (peff.then instanceof IOType)» «ELSE»)«ENDIF»'''
 			EffectFullEitherIf: '''IOFunctions.bind(«acc», (Boolean c) -> IOFunctions.unit(PrimitivesEffectFull.effectFullIfEither(c, «peff.then.compile» , «peff.^else.compile»)))'''
-      		GetLine: '''IOFunctions.append(«acc», PrimitivesEffectFull::getLine)'''
+      		GetLine: '''IOFunctions.append(«acc», PrimitivesEffectFull.getLine())'''
 		}
 	}
 	
@@ -157,13 +175,14 @@ class ValueEffectFullFunctionCommonGenerator {
 			PureFunctionDefinition: '''IOFunctions.map(«acc», PureFunctionDefinitions::«(pf as PureFunctionDefinition).name»)'''
 			PrimitivePureFunction: compileIO(pf, acc)
 			PureArgument: valueEmbellishment(acc, '''IOFunctions.unit(«pf.name»)''')
-			Expression: valueEmbellishment(acc, '''IOFuncitons.unit(«commonPureFunctions.compile(pf)»)''')
+			Expression: valueEmbellishment(acc, '''IOFuncitons.unit(«commonFunctions.compile(pf)»)''')
 		}
 	}
 	
 	def String compileIO(PrimitivePureFunction ppf, String acc) {
 		switch ppf {
 			IntToString: '''IOFunctions.map(«acc» ,Primitives::intToString)'''
+			BoolToString: '''IOFunctions.map(«acc» ,Primitives::boolToString)''' 
       		IntPow: '''IOFunctions.map(«acc»,Primitives::intPow) '''
 			Plus: '''IOFunctions.map(«acc», Primitives::plus)'''
 			Minus: '''IOFunctions.map(«acc», Primitives::minus)'''
@@ -171,7 +190,7 @@ class ValueEffectFullFunctionCommonGenerator {
 		  	LeftAlgebraic: '''IOFunctions.map(«acc», Primitives::leftAlgebraic)'''
  			RightAlgebraic: '''IOFunctions.map(«acc», Primitives::rightAlgebraic)'''
       		Mod: '''IOFunctions.map(«acc», Primitives::mod)'''
-   			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«acc»).f(«commonPureFunctions.compileApplyFFactor(ppf.value,"", true)»))'''
+   			ApplyF: '''IOFunctions.unit(IOFunctions.runSafe(«acc»).f(«commonFunctions.compileApplyFFactor(ppf.value,"", true)»))'''
 			ExtractPure: '''IOFunctions.bind(«acc», («ppf.data.name» d) ->  IOFunctions.unit(d.getValue()))'''
 			Equals: '''IOFunctions.map(«acc», Primitives::equalsCurrying)'''
 			MinorEquals: '''IOFunctions.map(«acc», Primitives::minorEquals)'''
@@ -183,8 +202,9 @@ class ValueEffectFullFunctionCommonGenerator {
      		LogicNot: '''IOFunctions.map(«acc», Primitives::logicNot)'''
 			IsLeftPure: '''IOFuncitons.map(«acc», Primitives::isLeft)'''
 			IsRightPure: '''IOFunctions.map(«acc», Primitives::isRight)'''
-			PureIf: '''IOFunctions.map(«acc», (Boolean c) -> Primitives.pureIf(c, «commonPureFunctions.compile(ppf.then)» , «commonPureFunctions.compile(ppf.^else)»))'''
-			PureEitherIf: '''IOFunctions.map(«acc», (Boolean c) -> Primitives.pureIfEither(c, «commonPureFunctions.compile(ppf.then)» , «commonPureFunctions.compile(ppf.^else)»))'''
+			PureIf: '''IOFunctions.map(«acc», (Boolean c) -> Primitives.pureIf(c, «commonFunctions.compile(ppf.then)» , «commonFunctions.compile(ppf.^else)»))'''
+			PureEitherIf: '''IOFunctions.map(«acc», (Boolean c) -> Primitives.pureIfEither(c, «commonFunctions.compile(ppf.then)» , «commonFunctions.compile(ppf.^else)»))'''
+			PureReturn: acc
 		}
 	}
 	

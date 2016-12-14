@@ -31,14 +31,14 @@ public class EffectFullDataGenerator {
     _builder.append(_name, "");
     _builder.append(" implements IEffectFullData<");
     EffectFullType _content = d.getContent();
-    Object _compile = this.typeGenerator.compile(((Type) _content));
+    String _compile = this.typeGenerator.compile(((Type) _content));
     _builder.append(_compile, "");
     _builder.append("> {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("private final ");
     EffectFullType _content_1 = d.getContent();
-    Object _compile_1 = this.typeGenerator.compile(((Type) _content_1));
+    String _compile_1 = this.typeGenerator.compile(((Type) _content_1));
     _builder.append(_compile_1, "\t");
     _builder.append(" value;");
     _builder.newLineIfNotEmpty();
@@ -50,7 +50,7 @@ public class EffectFullDataGenerator {
     _builder.append(_name_1, "\t");
     _builder.append("(");
     EffectFullType _content_2 = d.getContent();
-    Object _compile_2 = this.typeGenerator.compile(((Type) _content_2));
+    String _compile_2 = this.typeGenerator.compile(((Type) _content_2));
     _builder.append(_compile_2, "\t");
     _builder.append(" value){");
     _builder.newLineIfNotEmpty();
@@ -65,7 +65,7 @@ public class EffectFullDataGenerator {
     _builder.append("\t");
     _builder.append("public ");
     EffectFullType _content_3 = d.getContent();
-    Object _compile_3 = this.typeGenerator.compile(((Type) _content_3));
+    String _compile_3 = this.typeGenerator.compile(((Type) _content_3));
     _builder.append(_compile_3, "\t");
     _builder.append(" getValue() {");
     _builder.newLineIfNotEmpty();

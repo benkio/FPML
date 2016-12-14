@@ -61,7 +61,7 @@ public class PureFunctionGenerator {
       _builder.newLine();
       _builder.append("public static ");
       ValueType _returnType = pf.getReturnType();
-      Object _compile = this.typeGenerator.compile(_returnType);
+      String _compile = this.typeGenerator.compile(_returnType);
       _builder.append(_compile, "");
       _builder.append(" ");
       String _name = pf.getName();

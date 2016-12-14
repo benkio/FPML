@@ -36,6 +36,7 @@ class GetArgType {
 	def static ValueType primitivePureFunction(PrimitivePureFunction f) {
 		switch f {
 			IntToString: return FPMLFactory.eINSTANCE.createIntegerType
+			BoolToString: return FPMLFactory.eINSTANCE.createBooleanType
 			IntPow: return FPMLFactory.eINSTANCE.createIntegerType
 			Plus: return EcoreUtil.copy(f.type) as ValueType
 			Minus: return FPMLFactory.eINSTANCE.createIntegerType

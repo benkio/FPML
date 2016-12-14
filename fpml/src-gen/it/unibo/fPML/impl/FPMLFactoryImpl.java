@@ -124,6 +124,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_EXPRESSION_AND_EFFECT_FULL_FUNCTION_REFERENCE: return createEffectFullExpressionAndEffectFullFunctionReference();
       case FPMLPackage.PRIMITIVE_PURE_FUNCTION: return createPrimitivePureFunction();
       case FPMLPackage.INT_TO_STRING: return createIntToString();
+      case FPMLPackage.BOOL_TO_STRING: return createBoolToString();
       case FPMLPackage.INT_POW: return createIntPow();
       case FPMLPackage.PLUS: return createPlus();
       case FPMLPackage.MINUS: return createMinus();
@@ -833,6 +834,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     IntToStringImpl intToString = new IntToStringImpl();
     return intToString;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BoolToString createBoolToString()
+  {
+    BoolToStringImpl boolToString = new BoolToStringImpl();
+    return boolToString;
   }
 
   /**

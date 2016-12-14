@@ -10,6 +10,7 @@ import it.unibo.fPML.ApplyFFactor;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.ApplyFIOFactor;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.BoolToString;
 import it.unibo.fPML.BooleanType;
 import it.unibo.fPML.CompositionFunctionBodyEffect;
 import it.unibo.fPML.CompositionFunctionBodyEffectFullFactor;
@@ -549,6 +550,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass intToStringEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass boolToStringEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2387,6 +2395,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getBoolToString()
+  {
+    return boolToStringEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getIntPow()
   {
     return intPowEClass;
@@ -3748,6 +3766,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
 
     intToStringEClass = createEClass(INT_TO_STRING);
 
+    boolToStringEClass = createEClass(BOOL_TO_STRING);
+
     intPowEClass = createEClass(INT_POW);
 
     plusEClass = createEClass(PLUS);
@@ -3995,6 +4015,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     primitivePureFunctionEClass.getESuperTypes().add(this.getPureFunction());
     primitivePureFunctionEClass.getESuperTypes().add(this.getPrimitiveFunction());
     intToStringEClass.getESuperTypes().add(this.getPrimitivePureFunction());
+    boolToStringEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     intPowEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     plusEClass.getESuperTypes().add(this.getPrimitivePureFunction());
     minusEClass.getESuperTypes().add(this.getPrimitivePureFunction());
@@ -4246,6 +4267,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(primitivePureFunctionEClass, PrimitivePureFunction.class, "PrimitivePureFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(intToStringEClass, IntToString.class, "IntToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(boolToStringEClass, BoolToString.class, "BoolToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(intPowEClass, IntPow.class, "IntPow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

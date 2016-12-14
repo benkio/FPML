@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.Argument;
+import it.unibo.fPML.BoolToString;
 import it.unibo.fPML.EffectFullAlgebraicType;
 import it.unibo.fPML.EffectFullArgument;
 import it.unibo.fPML.EffectFullBodyContent;
@@ -138,6 +139,12 @@ public class GetArgType {
     if (f instanceof IntToString) {
       _matched=true;
       return FPMLFactory.eINSTANCE.createIntegerType();
+    }
+    if (!_matched) {
+      if (f instanceof BoolToString) {
+        _matched=true;
+        return FPMLFactory.eINSTANCE.createBooleanType();
+      }
     }
     if (!_matched) {
       if (f instanceof IntPow) {

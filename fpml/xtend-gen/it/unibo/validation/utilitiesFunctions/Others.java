@@ -63,14 +63,17 @@ import org.eclipse.xtext.EcoreUtil2;
 public class Others {
   public static PureFunction getFunctionDefinitionFromPureFactor(final CompositionFunctionBodyPureFactor cfbpf) {
     if ((Objects.equal(cfbpf.getPrimitiveElement(), null) && Objects.equal(cfbpf.getReferenceElement(), null))) {
-      return cfbpf.getExpressionElement();
+      Expression _expressionElement = cfbpf.getExpressionElement();
+      return EcoreUtil.<Expression>copy(_expressionElement);
     } else {
       PureFunction _referenceElement = cfbpf.getReferenceElement();
       boolean _equals = Objects.equal(_referenceElement, null);
       if (_equals) {
-        return cfbpf.getPrimitiveElement();
+        PrimitivePureFunction _primitiveElement = cfbpf.getPrimitiveElement();
+        return EcoreUtil.<PrimitivePureFunction>copy(_primitiveElement);
       } else {
-        return cfbpf.getReferenceElement();
+        PureFunction _referenceElement_1 = cfbpf.getReferenceElement();
+        return EcoreUtil.<PureFunction>copy(_referenceElement_1);
       }
     }
   }
@@ -78,15 +81,18 @@ public class Others {
   public static EffectFullBodyContent getFunctionDefinitionFromEffectFullFactor(final CompositionFunctionBodyEffectFullFactor cfbef) {
     EffectFullFunction _xifexpression = null;
     if ((Objects.equal(cfbef.getPrimitiveElement(), null) && Objects.equal(cfbef.getReferenceElement(), null))) {
-      return cfbef.getExpressionElement();
+      EffectFullExpression _expressionElement = cfbef.getExpressionElement();
+      return EcoreUtil.<EffectFullExpression>copy(_expressionElement);
     } else {
       EffectFullFunction _xifexpression_1 = null;
       EffectFullFunction _referenceElement = cfbef.getReferenceElement();
       boolean _equals = Objects.equal(_referenceElement, null);
       if (_equals) {
-        return cfbef.getPrimitiveElement();
+        EffectFullPrimitive _primitiveElement = cfbef.getPrimitiveElement();
+        return EcoreUtil.<EffectFullPrimitive>copy(_primitiveElement);
       } else {
-        _xifexpression_1 = cfbef.getReferenceElement();
+        EffectFullFunction _referenceElement_1 = cfbef.getReferenceElement();
+        _xifexpression_1 = EcoreUtil.<EffectFullFunction>copy(_referenceElement_1);
       }
       _xifexpression = _xifexpression_1;
     }
@@ -95,28 +101,34 @@ public class Others {
   
   public static PureFunction getFirstFunctionDefinitionFromCompositionBodyPure(final CompositionFunctionBodyPure cfbp) {
     if ((Objects.equal(cfbp.getPrimitiveElement(), null) && Objects.equal(cfbp.getReferenceElement(), null))) {
-      return cfbp.getExpressionElement();
+      Expression _expressionElement = cfbp.getExpressionElement();
+      return EcoreUtil.<Expression>copy(_expressionElement);
     } else {
       PureFunction _referenceElement = cfbp.getReferenceElement();
       boolean _equals = Objects.equal(_referenceElement, null);
       if (_equals) {
-        return cfbp.getPrimitiveElement();
+        PrimitivePureFunction _primitiveElement = cfbp.getPrimitiveElement();
+        return EcoreUtil.<PrimitivePureFunction>copy(_primitiveElement);
       } else {
-        return cfbp.getReferenceElement();
+        PureFunction _referenceElement_1 = cfbp.getReferenceElement();
+        return EcoreUtil.<PureFunction>copy(_referenceElement_1);
       }
     }
   }
   
   public static EffectFullBodyContent getFirstFunctionDefinitionFromCompositionBodyEffectFull(final CompositionFunctionBodyEffect cfbe) {
     if ((Objects.equal(cfbe.getPrimitiveElement(), null) && Objects.equal(cfbe.getReferenceElement(), null))) {
-      return cfbe.getExpressionElement();
+      EffectFullExpression _expressionElement = cfbe.getExpressionElement();
+      return EcoreUtil.<EffectFullExpression>copy(_expressionElement);
     } else {
       EffectFullFunction _referenceElement = cfbe.getReferenceElement();
       boolean _equals = Objects.equal(_referenceElement, null);
       if (_equals) {
-        return cfbe.getPrimitiveElement();
+        EffectFullPrimitive _primitiveElement = cfbe.getPrimitiveElement();
+        return EcoreUtil.<EffectFullPrimitive>copy(_primitiveElement);
       } else {
-        return cfbe.getReferenceElement();
+        EffectFullFunction _referenceElement_1 = cfbe.getReferenceElement();
+        return EcoreUtil.<EffectFullFunction>copy(_referenceElement_1);
       }
     }
   }
@@ -125,14 +137,17 @@ public class Others {
     EffectFullPrimitive _valuePrimitive = afiof.getValuePrimitive();
     boolean _notEquals = (!Objects.equal(_valuePrimitive, null));
     if (_notEquals) {
-      return afiof.getValuePrimitive();
+      EffectFullPrimitive _valuePrimitive_1 = afiof.getValuePrimitive();
+      return EcoreUtil.<EffectFullPrimitive>copy(_valuePrimitive_1);
     } else {
       EffectFullFunction _valueReference = afiof.getValueReference();
       boolean _notEquals_1 = (!Objects.equal(_valueReference, null));
       if (_notEquals_1) {
-        return afiof.getValueReference();
+        EffectFullFunction _valueReference_1 = afiof.getValueReference();
+        return EcoreUtil.<EffectFullFunction>copy(_valueReference_1);
       } else {
-        return afiof.getValueExpression();
+        EffectFullExpression _valueExpression = afiof.getValueExpression();
+        return EcoreUtil.<EffectFullExpression>copy(_valueExpression);
       }
     }
   }
@@ -141,9 +156,11 @@ public class Others {
     Expression _valueExpression = afiof.getValueExpression();
     boolean _notEquals = (!Objects.equal(_valueExpression, null));
     if (_notEquals) {
-      return afiof.getValueExpression();
+      Expression _valueExpression_1 = afiof.getValueExpression();
+      return EcoreUtil.<Expression>copy(_valueExpression_1);
     } else {
-      return afiof.getValueReference();
+      PureFunction _valueReference = afiof.getValueReference();
+      return EcoreUtil.<PureFunction>copy(_valueReference);
     }
   }
   
@@ -154,13 +171,15 @@ public class Others {
     if (_pureAdtElement2 instanceof PureSumTypeFactor) {
       _matched=true;
       EObject _pureAdtElement2_1 = pat.getPureAdtElement2();
-      _switchResult = ((PureSumTypeFactor) _pureAdtElement2_1).getAdtElement();
+      ValueType _adtElement = ((PureSumTypeFactor) _pureAdtElement2_1).getAdtElement();
+      _switchResult = EcoreUtil.<ValueType>copy(_adtElement);
     }
     if (!_matched) {
       if (_pureAdtElement2 instanceof PureProdTypeFactor) {
         _matched=true;
         EObject _pureAdtElement2_1 = pat.getPureAdtElement2();
-        _switchResult = ((PureProdTypeFactor) _pureAdtElement2_1).getAdtElement();
+        ValueType _adtElement = ((PureProdTypeFactor) _pureAdtElement2_1).getAdtElement();
+        _switchResult = EcoreUtil.<ValueType>copy(_adtElement);
       }
     }
     return _switchResult;
@@ -173,13 +192,15 @@ public class Others {
     if (_effectFullAdtElement2 instanceof EffectFullSumTypeFactor) {
       _matched=true;
       EObject _effectFullAdtElement2_1 = eat.getEffectFullAdtElement2();
-      _switchResult = ((EffectFullSumTypeFactor) _effectFullAdtElement2_1).getAdtElement();
+      Type _adtElement = ((EffectFullSumTypeFactor) _effectFullAdtElement2_1).getAdtElement();
+      _switchResult = EcoreUtil.<Type>copy(_adtElement);
     }
     if (!_matched) {
       if (_effectFullAdtElement2 instanceof EffectFullProdTypeFactor) {
         _matched=true;
         EObject _effectFullAdtElement2_1 = eat.getEffectFullAdtElement2();
-        _switchResult = ((EffectFullProdTypeFactor) _effectFullAdtElement2_1).getAdtElement();
+        Type _adtElement = ((EffectFullProdTypeFactor) _effectFullAdtElement2_1).getAdtElement();
+        _switchResult = EcoreUtil.<Type>copy(_adtElement);
       }
     }
     return _switchResult;
@@ -278,9 +299,11 @@ public class Others {
     Expression _functionExpression = pib.getFunctionExpression();
     boolean _equals = Objects.equal(_functionExpression, null);
     if (_equals) {
-      _xifexpression = pib.getFunctionReference();
+      PureFunction _functionReference = pib.getFunctionReference();
+      _xifexpression = EcoreUtil.<PureFunction>copy(_functionReference);
     } else {
-      _xifexpression = pib.getFunctionExpression();
+      Expression _functionExpression_1 = pib.getFunctionExpression();
+      _xifexpression = EcoreUtil.<Expression>copy(_functionExpression_1);
     }
     return _xifexpression;
   }
@@ -290,9 +313,11 @@ public class Others {
     EffectFullExpression _functionExpression = efib.getFunctionExpression();
     boolean _equals = Objects.equal(_functionExpression, null);
     if (_equals) {
-      _xifexpression = efib.getFunctionReference();
+      EffectFullFunction _functionReference = efib.getFunctionReference();
+      _xifexpression = EcoreUtil.<EffectFullFunction>copy(_functionReference);
     } else {
-      _xifexpression = efib.getFunctionExpression();
+      EffectFullExpression _functionExpression_1 = efib.getFunctionExpression();
+      _xifexpression = EcoreUtil.<EffectFullExpression>copy(_functionExpression_1);
     }
     return _xifexpression;
   }
@@ -302,9 +327,11 @@ public class Others {
     Expression _prodAdtElementExpression = r.getProdAdtElementExpression();
     boolean _equals = Objects.equal(_prodAdtElementExpression, null);
     if (_equals) {
-      _xifexpression = r.getProdAdtElementFunction();
+      PureFunction _prodAdtElementFunction = r.getProdAdtElementFunction();
+      _xifexpression = EcoreUtil.<PureFunction>copy(_prodAdtElementFunction);
     } else {
-      _xifexpression = r.getProdAdtElementExpression();
+      Expression _prodAdtElementExpression_1 = r.getProdAdtElementExpression();
+      _xifexpression = EcoreUtil.<Expression>copy(_prodAdtElementExpression_1);
     }
     return _xifexpression;
   }
@@ -314,9 +341,11 @@ public class Others {
     PureExpressionAndPureFunctionReference _sumAdtElement1 = psv.getSumAdtElement1();
     boolean _equals = Objects.equal(_sumAdtElement1, null);
     if (_equals) {
-      _xifexpression = psv.getSumAdtElement2();
+      PureExpressionAndPureFunctionReference _sumAdtElement2 = psv.getSumAdtElement2();
+      _xifexpression = EcoreUtil.<PureExpressionAndPureFunctionReference>copy(_sumAdtElement2);
     } else {
-      _xifexpression = psv.getSumAdtElement1();
+      PureExpressionAndPureFunctionReference _sumAdtElement1_1 = psv.getSumAdtElement1();
+      _xifexpression = EcoreUtil.<PureExpressionAndPureFunctionReference>copy(_sumAdtElement1_1);
     }
     return _xifexpression;
   }
@@ -326,9 +355,11 @@ public class Others {
     PureExpressionAndPureFunctionReference _prodAdtElement1 = ppv.getProdAdtElement1();
     boolean _equals = Objects.equal(_prodAdtElement1, null);
     if (_equals) {
-      _xifexpression = ppv.getProdAdtElement2();
+      PureExpressionAndPureFunctionReference _prodAdtElement2 = ppv.getProdAdtElement2();
+      _xifexpression = EcoreUtil.<PureExpressionAndPureFunctionReference>copy(_prodAdtElement2);
     } else {
-      _xifexpression = ppv.getProdAdtElement1();
+      PureExpressionAndPureFunctionReference _prodAdtElement1_1 = ppv.getProdAdtElement1();
+      _xifexpression = EcoreUtil.<PureExpressionAndPureFunctionReference>copy(_prodAdtElement1_1);
     }
     return _xifexpression;
   }
@@ -338,24 +369,30 @@ public class Others {
     EffectFullExpression _prodAdtElementExpression = r.getProdAdtElementExpression();
     boolean _equals = Objects.equal(_prodAdtElementExpression, null);
     if (_equals) {
-      _xifexpression = r.getProdAdtElementFunction();
+      EffectFullFunction _prodAdtElementFunction = r.getProdAdtElementFunction();
+      _xifexpression = EcoreUtil.<EffectFullFunction>copy(_prodAdtElementFunction);
     } else {
-      _xifexpression = r.getProdAdtElementExpression();
+      EffectFullExpression _prodAdtElementExpression_1 = r.getProdAdtElementExpression();
+      _xifexpression = EcoreUtil.<EffectFullExpression>copy(_prodAdtElementExpression_1);
     }
     return _xifexpression;
   }
   
   public static PureFunctionType createPureFuntionType(final ValueType argT, final ValueType returnT) {
     final PureFunctionType func = FPMLFactory.eINSTANCE.createPureFunctionType();
-    func.setArgType(argT);
-    func.setReturnType(returnT);
+    ValueType _copy = EcoreUtil.<ValueType>copy(argT);
+    func.setArgType(_copy);
+    ValueType _copy_1 = EcoreUtil.<ValueType>copy(returnT);
+    func.setReturnType(_copy_1);
     return func;
   }
   
   public static EffectFullFunctionType createEffectFullFuntionType(final Type argT, final IOType returnT) {
     final EffectFullFunctionType func = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
-    func.setArgType(argT);
-    func.setReturnType(returnT);
+    Type _copy = EcoreUtil.<Type>copy(argT);
+    func.setArgType(_copy);
+    IOType _copy_1 = EcoreUtil.<IOType>copy(returnT);
+    func.setReturnType(_copy_1);
     return func;
   }
   
@@ -381,14 +418,18 @@ public class Others {
       final PureAlgebraicType pat = FPMLFactory.eINSTANCE.createPureAlgebraicType();
       if (isSumType) {
         final PureSumTypeFactor factor = FPMLFactory.eINSTANCE.createPureSumTypeFactor();
-        factor.setAdtElement(vt2);
+        ValueType _copy = EcoreUtil.<ValueType>copy(vt2);
+        factor.setAdtElement(_copy);
         pat.setPureAdtElement2(factor);
-        pat.setPureAdtElement1(vt1);
+        ValueType _copy_1 = EcoreUtil.<ValueType>copy(vt1);
+        pat.setPureAdtElement1(_copy_1);
       } else {
         final PureProdTypeFactor factor_1 = FPMLFactory.eINSTANCE.createPureProdTypeFactor();
-        factor_1.setAdtElement(vt2);
+        ValueType _copy_2 = EcoreUtil.<ValueType>copy(vt2);
+        factor_1.setAdtElement(_copy_2);
         pat.setPureAdtElement2(factor_1);
-        pat.setPureAdtElement1(vt1);
+        ValueType _copy_3 = EcoreUtil.<ValueType>copy(vt1);
+        pat.setPureAdtElement1(_copy_3);
       }
       _xblockexpression = pat;
     }
@@ -401,14 +442,18 @@ public class Others {
       final EffectFullAlgebraicType efat = FPMLFactory.eINSTANCE.createEffectFullAlgebraicType();
       if (isSumType) {
         final EffectFullSumTypeFactor factor = FPMLFactory.eINSTANCE.createEffectFullSumTypeFactor();
-        factor.setAdtElement(t2);
+        Type _copy = EcoreUtil.<Type>copy(t2);
+        factor.setAdtElement(_copy);
         efat.setEffectFullAdtElement2(factor);
-        efat.setEffectFullAdtElement1(t1);
+        Type _copy_1 = EcoreUtil.<Type>copy(t1);
+        efat.setEffectFullAdtElement1(_copy_1);
       } else {
         final EffectFullProdTypeFactor factor_1 = FPMLFactory.eINSTANCE.createEffectFullProdTypeFactor();
-        factor_1.setAdtElement(t2);
+        Type _copy_2 = EcoreUtil.<Type>copy(t2);
+        factor_1.setAdtElement(_copy_2);
         efat.setEffectFullAdtElement2(factor_1);
-        efat.setEffectFullAdtElement1(t1);
+        Type _copy_3 = EcoreUtil.<Type>copy(t1);
+        efat.setEffectFullAdtElement1(_copy_3);
       }
       _xblockexpression = efat;
     }
@@ -442,7 +487,8 @@ public class Others {
     if (pf instanceof PureValue) {
       _matched=true;
       Expression _value = ((PureValue)pf).getValue();
-      _switchResult = GetReturnType.expression(_value);
+      ValueType _expression = GetReturnType.expression(_value);
+      _switchResult = EcoreUtil.<ValueType>copy(_expression);
     }
     if (!_matched) {
       if (pf instanceof PureFunctionDefinition) {
@@ -463,13 +509,15 @@ public class Others {
     if (!_matched) {
       if (pf instanceof PureArgument) {
         _matched=true;
-        _switchResult = ((PureArgument)pf).getType();
+        ValueType _type = ((PureArgument)pf).getType();
+        _switchResult = EcoreUtil.<ValueType>copy(_type);
       }
     }
     if (!_matched) {
       if (pf instanceof Expression) {
         _matched=true;
-        _switchResult = GetReturnType.expression(((Expression)pf));
+        ValueType _expression = GetReturnType.expression(((Expression)pf));
+        _switchResult = EcoreUtil.<ValueType>copy(_expression);
       }
     }
     return _switchResult;
@@ -481,12 +529,14 @@ public class Others {
     if (function instanceof EffectFullValue) {
       _matched=true;
       EffectFullExpression _value = ((EffectFullValue)function).getValue();
-      _switchResult = GetReturnType.effectFullExpression(_value);
+      Type _effectFullExpression = GetReturnType.effectFullExpression(_value);
+      _switchResult = EcoreUtil.<Type>copy(_effectFullExpression);
     }
     if (!_matched) {
       if (function instanceof EffectFullArgument) {
         _matched=true;
-        _switchResult = ((EffectFullArgument)function).getType();
+        EffectFullType _type = ((EffectFullArgument)function).getType();
+        _switchResult = EcoreUtil.<EffectFullType>copy(_type);
       }
     }
     if (!_matched) {
@@ -526,14 +576,16 @@ public class Others {
         _matched=true;
         Type _xblockexpression = null;
         {
-          final Type returnType = GetReturnType.effectFullExpression(((EffectFullExpression) content));
+          Type _effectFullExpression = GetReturnType.effectFullExpression(((EffectFullExpression) content));
+          final Type returnType = EcoreUtil.<Type>copy(_effectFullExpression);
           Type _xifexpression = null;
           EffectFullFunctionDefinition _value = ((EffectFullFunctionType)content).getValue();
           if ((_value instanceof EffectFullLambda)) {
             EffectFullFunctionType _xblockexpression_1 = null;
             {
               EffectFullFunctionDefinition _value_1 = ((EffectFullFunctionType)content).getValue();
-              final Type argType = GetArgType.effectFullLambda(((EffectFullLambda) _value_1));
+              Type _effectFullLambda = GetArgType.effectFullLambda(((EffectFullLambda) _value_1));
+              final Type argType = EcoreUtil.<Type>copy(_effectFullLambda);
               EffectFullFunctionType _xifexpression_1 = null;
               if ((returnType instanceof IOType)) {
                 _xifexpression_1 = Others.createEffectFullFuntionType(argType, ((IOType) returnType));
@@ -568,17 +620,18 @@ public class Others {
       _matched=true;
       EffectFullFunctionType _xblockexpression = null;
       {
-        final Type returnType = GetReturnType.effectFullPrimitive(primitive);
+        Type _effectFullPrimitive = GetReturnType.effectFullPrimitive(primitive);
+        final Type returnType = EcoreUtil.<Type>copy(_effectFullPrimitive);
         EffectFullFunctionType _xifexpression = null;
         if ((returnType instanceof IOType)) {
-          Type _effectFullPrimitive = GetArgType.effectFullPrimitive(primitive);
-          Type _effectFullPrimitive_1 = GetReturnType.effectFullPrimitive(primitive);
-          _xifexpression = Others.createEffectFullFuntionType(_effectFullPrimitive, ((IOType) _effectFullPrimitive_1));
+          Type _effectFullPrimitive_1 = GetArgType.effectFullPrimitive(primitive);
+          Type _effectFullPrimitive_2 = GetReturnType.effectFullPrimitive(primitive);
+          _xifexpression = Others.createEffectFullFuntionType(_effectFullPrimitive_1, ((IOType) _effectFullPrimitive_2));
         } else {
-          Type _effectFullPrimitive_2 = GetArgType.effectFullPrimitive(primitive);
-          Type _effectFullPrimitive_3 = GetReturnType.effectFullPrimitive(primitive);
-          IOType _IOWrap = Others.IOWrap(_effectFullPrimitive_3);
-          _xifexpression = Others.createEffectFullFuntionType(_effectFullPrimitive_2, _IOWrap);
+          Type _effectFullPrimitive_3 = GetArgType.effectFullPrimitive(primitive);
+          Type _effectFullPrimitive_4 = GetReturnType.effectFullPrimitive(primitive);
+          IOType _IOWrap = Others.IOWrap(_effectFullPrimitive_4);
+          _xifexpression = Others.createEffectFullFuntionType(_effectFullPrimitive_3, _IOWrap);
         }
         _xblockexpression = _xifexpression;
       }
