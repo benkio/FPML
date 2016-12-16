@@ -82,7 +82,7 @@ public class Checks {
       if (type instanceof UnitType) {
         _matched=true;
         _switchResult = ((value instanceof UnitType) || ((value instanceof PureValueRef) && 
-          Checks.TypeEquals(GetReturnType.expression(((PureValueRef) value).getValue().getValue()), type)));
+          Checks.TypeEquals(GetReturnType.expression(((PureValueRef) value).getValue().getValue()), type, false)));
       }
       if (!_matched) {
         if (type instanceof IntegerType) {
@@ -115,16 +115,17 @@ public class Checks {
       if (!_matched) {
         if (type instanceof PureFunctionType) {
           _matched=true;
-          if ((value instanceof PureFunctionType)) {
-            return (((((PureFunctionType) value).getValue().getFunctionBody() instanceof CompositionFunctionBodyPure) && 
-              Checks.ValueTypeEquals(((PureFunctionType) value).getValue().getArg().getType(), ((PureFunctionType)type).getArgType())) && 
-              Checks.ValueTypeEquals(GetReturnType.pureFunctionDefinition(((PureFunctionType) value).getValue()), ((PureFunctionType)type).getReturnType()));
-          } else {
-            if (((value instanceof PureValueRef) && (((PureValueRef) value).getValue() instanceof PureFunctionDefinition))) {
-              return (Checks.ValueTypeEquals(((PureFunctionDefinition) ((PureValueRef) value).getValue()).getArg().getType(), ((PureFunctionType)type).getArgType()) && 
-                Checks.ValueTypeEquals(((PureFunctionDefinition) ((PureValueRef) value).getValue()).getReturnType(), ((PureFunctionType)type).getReturnType()));
-            }
+          boolean _switchResult_1 = false;
+          boolean _matched_1 = false;
+          if (value instanceof PureValueRef) {
+            _matched_1=true;
+            _switchResult_1 = ((((PureValueRef)value).getValue() instanceof PureFunctionDefinition) && Checks.TypeEquals(Others.createTypeOfPureFunction(((PureValueRef) value).getValue()), type, false));
           }
+          if (!_matched_1) {
+            ValueType _createTypeOfPureFunction = Others.createTypeOfPureFunction(value);
+            _switchResult_1 = Checks.TypeEquals(_createTypeOfPureFunction, type, false);
+          }
+          _switchResult = _switchResult_1;
         }
       }
       if (!_matched) {
@@ -145,7 +146,7 @@ public class Checks {
           if (!_matched_1) {
             if (value instanceof PureValueRef) {
               _matched_1=true;
-              return ((((PureValueRef)value).getValue().getValue() instanceof DataValue) && Checks.ValueTypeEquals(((DataValue) ((PureValueRef)value).getValue().getValue()).getType().getContent(), type));
+              return ((((PureValueRef)value).getValue().getValue() instanceof DataValue) && Checks.ValueTypeEquals(((DataValue) ((PureValueRef)value).getValue().getValue()).getType().getContent(), type, false));
             }
           }
           if (!_matched_1) {
@@ -194,7 +195,7 @@ public class Checks {
       if (!_matched) {
         if (adtt instanceof PureFunctionType) {
           _matched=true;
-          _switchResult = (((valueType instanceof PureFunctionType) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getArgType(), ((PureFunctionType) valueType).getArgType())) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getReturnType(), ((PureFunctionType) valueType).getReturnType()));
+          _switchResult = (((valueType instanceof PureFunctionType) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getArgType(), ((PureFunctionType) valueType).getArgType(), false)) && Checks.ValueTypeEquals(((PureFunctionType)adtt).getReturnType(), ((PureFunctionType) valueType).getReturnType(), false));
         }
       }
       if (!_matched) {
@@ -205,7 +206,7 @@ public class Checks {
     return _xblockexpression;
   }
   
-  public static boolean ValueTypeEquals(final ValueType v, final ValueType v2) {
+  public static boolean ValueTypeEquals(final ValueType v, final ValueType v2, final boolean unitCheck) {
     if ((v2 instanceof VoidType)) {
       return false;
     }
@@ -213,8 +214,8 @@ public class Checks {
     if (v instanceof PureFunctionType) {
       _matched=true;
       return (((v2 instanceof PureFunctionType) && 
-        Checks.ValueTypeEquals(((PureFunctionType)v).getArgType(), ((PureFunctionType) v2).getArgType())) && 
-        Checks.ValueTypeEquals(((PureFunctionType)v).getReturnType(), ((PureFunctionType) v2).getReturnType()));
+        Checks.ValueTypeEquals(((PureFunctionType)v).getArgType(), ((PureFunctionType) v2).getArgType(), false)) && 
+        Checks.ValueTypeEquals(((PureFunctionType)v).getReturnType(), ((PureFunctionType) v2).getReturnType(), false));
     }
     if (!_matched) {
       if (v instanceof DataType) {
@@ -226,8 +227,8 @@ public class Checks {
       if (v instanceof PureAlgebraicType) {
         _matched=true;
         return (((v2 instanceof PureAlgebraicType) && 
-          Checks.ValueTypeEquals(((PureAlgebraicType)v).getPureAdtElement1(), ((PureAlgebraicType) v2).getPureAdtElement1())) && 
-          Checks.ValueTypeEquals(Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType)v)), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) v2))));
+          Checks.ValueTypeEquals(((PureAlgebraicType)v).getPureAdtElement1(), ((PureAlgebraicType) v2).getPureAdtElement1(), false)) && 
+          Checks.ValueTypeEquals(Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType)v)), Others.getElement2ValueTypeFromPureAlgebraicType(((PureAlgebraicType) v2)), false));
       }
     }
     if (!_matched) {
@@ -242,11 +243,11 @@ public class Checks {
         return (v2 instanceof UnitType);
       }
     }
-    return ((v2 instanceof UnitType) || Objects.equal(v.eClass(), v2.eClass()));
+    return ((unitCheck && (v2 instanceof UnitType)) || Objects.equal(v.eClass(), v2.eClass()));
   }
   
-  public static boolean TypeEquals(final Type t, final Type t1) {
-    if (((t1 instanceof UnitType) || ((t instanceof UnitType) && Objects.equal(t1, null)))) {
+  public static boolean TypeEquals(final Type t, final Type t1, final boolean unitTypeCheck) {
+    if ((unitTypeCheck && ((t1 instanceof UnitType) || ((t instanceof UnitType) && Objects.equal(t1, null))))) {
       return true;
     }
     if (((t instanceof VoidType) || (t1 instanceof VoidType))) {
@@ -255,9 +256,7 @@ public class Checks {
     boolean _matched = false;
     if (t instanceof EffectFullFunctionType) {
       _matched=true;
-      return (((t1 instanceof EffectFullFunctionType) && 
-        Checks.TypeEquals(((EffectFullFunctionType)t).getArgType(), ((EffectFullFunctionType) t1).getArgType())) && 
-        Checks.TypeEquals(((EffectFullFunctionType)t).getReturnType().getType(), ((EffectFullFunctionType) t1).getReturnType().getType()));
+      return (((t1 instanceof EffectFullFunctionType) && Checks.TypeEquals(((EffectFullFunctionType)t).getArgType(), ((EffectFullFunctionType) t1).getArgType(), false)) && Checks.TypeEquals(((EffectFullFunctionType)t).getReturnType().getType(), ((EffectFullFunctionType) t1).getReturnType().getType(), false));
     }
     if (!_matched) {
       if (t instanceof UnitType) {
@@ -268,7 +267,7 @@ public class Checks {
     if (!_matched) {
       if (t instanceof IOType) {
         _matched=true;
-        return (((t1 instanceof IOType) && Checks.TypeEquals(((IOType)t).getType(), ((IOType) t1).getType())) && (!((((IOType) t1).getType() instanceof UnitType) && (!(((IOType)t).getType() instanceof UnitType)))));
+        return ((t1 instanceof IOType) && Checks.TypeEquals(((IOType)t).getType(), ((IOType) t1).getType(), false));
       }
     }
     if (!_matched) {
@@ -281,19 +280,19 @@ public class Checks {
       if (t instanceof EffectFullAlgebraicType) {
         _matched=true;
         return (((t1 instanceof EffectFullAlgebraicType) && 
-          Checks.TypeEquals(((EffectFullAlgebraicType)t).getEffectFullAdtElement1(), ((EffectFullAlgebraicType) t1).getEffectFullAdtElement1())) && 
-          Checks.TypeEquals(Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)t)), Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) t1))));
+          Checks.TypeEquals(((EffectFullAlgebraicType)t).getEffectFullAdtElement1(), ((EffectFullAlgebraicType) t1).getEffectFullAdtElement1(), false)) && 
+          Checks.TypeEquals(Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType)t)), Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) t1)), false));
       }
     }
-    return ((t1 instanceof ValueType) && Checks.ValueTypeEquals(((ValueType) t), ((ValueType) t1)));
+    return ((t1 instanceof ValueType) && Checks.ValueTypeEquals(((ValueType) t), ((ValueType) t1), unitTypeCheck));
   }
   
   public static boolean functionReturnType(final PureFunctionDefinition f) {
-    return (Checks.ValueTypeEquals(GetReturnType.pureFunctionDefinition(f), f.getReturnType()) || Objects.equal(GetReturnType.pureFunctionDefinition(f), null));
+    return (Checks.ValueTypeEquals(GetReturnType.pureFunctionDefinition(f), f.getReturnType(), false) || Objects.equal(GetReturnType.pureFunctionDefinition(f), null));
   }
   
   public static boolean mainReturnType(final MainFunc m) {
-    return (Checks.TypeEquals(GetReturnType.mainFunc(m), FPMLFactory.eINSTANCE.createUnitType()) || Objects.equal(GetReturnType.mainFunc(m), null));
+    return ((GetReturnType.mainFunc(m) instanceof IOType) && (((IOType) GetReturnType.mainFunc(m)).getType() instanceof UnitType));
   }
   
   public static boolean functionArgType(final PureFunctionDefinition f) {
@@ -304,9 +303,18 @@ public class Checks {
   }
   
   public static boolean pureLambda(final PureLambda lambda) {
-    final ValueType arg = GetArgType.pureLambda(lambda);
-    FunctionBodyPure _functionBody = lambda.getFunctionBody();
-    return Checks.functionBody(_functionBody, arg);
+    PureArgument _arg = lambda.getArg();
+    boolean _notEquals = (!Objects.equal(_arg, null));
+    if (_notEquals) {
+      FunctionBodyPure _functionBody = lambda.getFunctionBody();
+      PureArgument _arg_1 = lambda.getArg();
+      ValueType _type = _arg_1.getType();
+      return Checks.functionBody(_functionBody, _type);
+    } else {
+      FunctionBodyPure _functionBody_1 = lambda.getFunctionBody();
+      UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+      return Checks.functionBody(_functionBody_1, _createUnitType);
+    }
   }
   
   public static boolean functionBody(final FunctionBodyPure pure, final ValueType argType) {
@@ -341,7 +349,7 @@ public class Checks {
     }
     ValueType startType = type;
     final ValueType argFuncFirst = GetArgType.pureFunction(first);
-    boolean _ValueTypeEquals = Checks.ValueTypeEquals(startType, argFuncFirst);
+    boolean _ValueTypeEquals = Checks.ValueTypeEquals(startType, argFuncFirst, true);
     boolean _not = (!_ValueTypeEquals);
     if (_not) {
       return false;
@@ -351,7 +359,7 @@ public class Checks {
     for (final PureFunction f : functions) {
       {
         final ValueType argFunc = GetArgType.pureFunction(f);
-        boolean _ValueTypeEquals_1 = Checks.ValueTypeEquals(startType, argFunc);
+        boolean _ValueTypeEquals_1 = Checks.ValueTypeEquals(startType, argFunc, true);
         boolean _not_1 = (!_ValueTypeEquals_1);
         if (_not_1) {
           return false;
@@ -402,7 +410,7 @@ public class Checks {
     }
     Type startType = type;
     final Type argFuncFirst = GetArgType.effectFullBodyContent(first);
-    boolean _TypeEquals = Checks.TypeEquals(startType, argFuncFirst);
+    boolean _TypeEquals = Checks.TypeEquals(startType, argFuncFirst, true);
     boolean _not = (!_TypeEquals);
     if (_not) {
       return false;
@@ -412,7 +420,7 @@ public class Checks {
     for (final EffectFullBodyContent r : references) {
       {
         final Type argFunc = GetArgType.effectFullBodyContent(r);
-        final boolean result = ((!(startType instanceof IOType)) || (!Checks.TypeEquals(((IOType) startType).getType(), argFunc)));
+        final boolean result = ((!(startType instanceof IOType)) || (!Checks.TypeEquals(((IOType) startType).getType(), argFunc, true)));
         if (result) {
           return false;
         }
@@ -424,7 +432,7 @@ public class Checks {
   }
   
   public static boolean functionReturnTypeEffectFull(final EffectFullFunctionDefinition definition) {
-    return (Checks.TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), definition.getReturnType()) || Objects.equal(GetReturnType.effectFullFunctionDefinition(definition), null));
+    return (Checks.TypeEquals(GetReturnType.effectFullFunctionDefinition(definition), definition.getReturnType(), false) || Objects.equal(GetReturnType.effectFullFunctionDefinition(definition), null));
   }
   
   public static boolean functionArgTypeEffectFull(final EffectFullFunctionDefinition definition) {
@@ -435,9 +443,18 @@ public class Checks {
   }
   
   public static boolean effectFullLambda(final EffectFullLambda lambda) {
-    final Type arg = GetArgType.effectFullLambda(lambda);
-    FunctionBodyEffectFull _functionBody = lambda.getFunctionBody();
-    return Checks.functionBodyEffectFull(_functionBody, arg);
+    Argument _arg = lambda.getArg();
+    boolean _notEquals = (!Objects.equal(_arg, null));
+    if (_notEquals) {
+      FunctionBodyEffectFull _functionBody = lambda.getFunctionBody();
+      Argument _arg_1 = lambda.getArg();
+      Type _argumentType = Others.getArgumentType(_arg_1);
+      return Checks.functionBodyEffectFull(_functionBody, _argumentType);
+    } else {
+      FunctionBodyEffectFull _functionBody_1 = lambda.getFunctionBody();
+      UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+      return Checks.functionBodyEffectFull(_functionBody_1, _createUnitType);
+    }
   }
   
   public static boolean effectFullDataAndValue(final EffectFullExpressionAndEffectFullFunctionReference valueOrReference, final Type type) {
@@ -453,20 +470,18 @@ public class Checks {
       if (!_matched) {
         if (type instanceof EffectFullFunctionType) {
           _matched=true;
-          if ((value instanceof EffectFullFunctionType)) {
-            return (((((EffectFullFunctionType) value).getValue().getFunctionBody() instanceof CompositionFunctionBodyEffect) && 
-              Checks.TypeEquals(Others.getArgumentType(((EffectFullFunctionType) value).getValue().getArg()), ((EffectFullFunctionType)type).getArgType())) && 
-              Checks.TypeEquals(GetReturnType.effectFullFunctionDefinition(((EffectFullFunctionType) value).getValue()), ((EffectFullFunctionType)type).getReturnType()));
-          } else {
-            if ((((value instanceof EffectFullValueRef) && 
-              (((EffectFullValueRef) value).getValue() instanceof EffectFullFunctionType)) && 
-              (((EffectFullFunctionType) ((EffectFullValueRef) value).getValue()).getValue() instanceof EffectFullLambda))) {
-              EffectFullValue _value = ((EffectFullValueRef) value).getValue();
-              final EffectFullFunctionType lambda = ((EffectFullFunctionType) _value);
-              return (Checks.TypeEquals(GetArgType.effectFullLambda(((EffectFullLambda) lambda.getValue())), ((EffectFullFunctionType)type).getArgType()) && 
-                Checks.TypeEquals(GetReturnType.effectFullExpression(lambda), ((EffectFullFunctionType)type).getReturnType()));
-            }
+          boolean _switchResult_1 = false;
+          boolean _matched_1 = false;
+          if (value instanceof EffectFullValueRef) {
+            _matched_1=true;
+            _switchResult_1 = ((((EffectFullValueRef)value).getValue() instanceof EffectFullFunctionDefinition) && Checks.TypeEquals(Others.createTypeOfPureFunction(((PureValueRef) value).getValue()), type, false));
           }
+          if (!_matched_1) {
+            Type _createTypeOfEffectFullBodyContent = Others.createTypeOfEffectFullBodyContent(value);
+            IOType _IOWrap = Others.IOWrap(type);
+            _switchResult_1 = Checks.TypeEquals(_createTypeOfEffectFullBodyContent, _IOWrap, false);
+          }
+          _switchResult = _switchResult_1;
         }
       }
       if (!_matched) {
@@ -474,7 +489,7 @@ public class Checks {
           _matched=true;
           return (((value instanceof EffectFullDataValue) && 
             Checks.effectFullDataAndValue(((EffectFullDataValue) value).getValue(), ((EffectFullDataType)type).getType().getContent())) || ((value instanceof EffectFullValueRef) && 
-            Checks.TypeEquals(GetReturnType.effectFullExpression(((EffectFullValueRef) value).getValue().getValue()), type)));
+            Checks.TypeEquals(GetReturnType.effectFullExpression(((EffectFullValueRef) value).getValue().getValue()), type, true)));
         }
       }
       if (!_matched) {
@@ -497,7 +512,7 @@ public class Checks {
               EffectFullValue _value = ((EffectFullValueRef)value).getValue();
               EffectFullExpression _value_1 = _value.getValue();
               Type _effectFullExpression = GetReturnType.effectFullExpression(_value_1);
-              return Checks.TypeEquals(_effectFullExpression, type);
+              return Checks.TypeEquals(_effectFullExpression, type, true);
             }
           }
           return false;
@@ -530,7 +545,7 @@ public class Checks {
                 PrimitivePureFunction _purePrimitive = ((IOPureFunction)value).getPurePrimitive();
                 function = _purePrimitive;
               }
-              return ((((IOType) type).getType() instanceof ValueType) && Checks.ValueTypeEquals(Others.createTypeOfPureFunction(function), ((ValueType) ((IOType) type).getType())));
+              return ((((IOType) type).getType() instanceof ValueType) && Checks.ValueTypeEquals(Others.createTypeOfPureFunction(function), ((ValueType) ((IOType) type).getType()), false));
             }
           }
           if (!_matched_1) {
@@ -546,7 +561,7 @@ public class Checks {
                 PrimitiveEffectFullFunction _effectFullPrimitive = ((IOEffectFullFunction)value).getEffectFullPrimitive();
                 function = _effectFullPrimitive;
               }
-              return ((((IOType) type).getType() instanceof EffectFullType) && Checks.TypeEquals(Others.createTypeOfEffectFullFunction(function), ((EffectFullType) ((IOType) type).getType())));
+              return ((((IOType) type).getType() instanceof EffectFullType) && Checks.TypeEquals(Others.createTypeOfEffectFullFunction(function), ((EffectFullType) ((IOType) type).getType()), false));
             }
           }
           return false;
@@ -570,50 +585,42 @@ public class Checks {
       ApplyFFactor _value_1 = af.getValue();
       PureFunction _valueReference = _value_1.getValueReference();
       ValueType _pureFunction = GetReturnType.pureFunction(_valueReference);
-      return Checks.ValueTypeEquals(_argType, _pureFunction);
-    }
-    ApplyFFactor _value_2 = af.getValue();
-    Expression _valueExpression_1 = _value_2.getValueExpression();
-    boolean _matched = false;
-    if (_valueExpression_1 instanceof PureFunctionType) {
-      _matched=true;
-      ApplyFFactor _value_3 = af.getValue();
-      Expression _valueExpression_2 = _value_3.getValueExpression();
-      ValueType _argType_1 = ((PureFunctionType) _valueExpression_2).getArgType();
-      boolean _equals_1 = Objects.equal(_argType_1, null);
-      if (_equals_1) {
-        ApplyFFactor _value_4 = af.getValue();
-        Expression _valueExpression_3 = _value_4.getValueExpression();
-        PureFunctionDefinition _value_5 = ((PureFunctionType) _valueExpression_3).getValue();
-        ValueType _pureFunction_1 = GetReturnType.pureFunction(_value_5);
+      return Checks.ValueTypeEquals(_argType, _pureFunction, false);
+    } else {
+      if (((af.getValue().getValueExpression() instanceof PureFunctionType) && Objects.equal(((PureFunctionType) af.getValue().getValueExpression()).getValue().getArg(), null))) {
+        ApplyFFactor _value_2 = af.getValue();
+        Expression _valueExpression_1 = _value_2.getValueExpression();
+        PureFunctionDefinition _value_3 = ((PureFunctionType) _valueExpression_1).getValue();
+        ValueType _pureFunction_1 = GetReturnType.pureFunction(_value_3);
+        final ValueType lambdaReturnType = ((PureFunctionType) _pureFunction_1).getReturnType();
         PureFunctionType _functionType_1 = af.getFunctionType();
-        ValueType _argType_2 = _functionType_1.getArgType();
-        return Checks.ValueTypeEquals(_pureFunction_1, _argType_2);
-      } else {
-        ApplyFFactor _value_6 = af.getValue();
-        Expression _valueExpression_4 = _value_6.getValueExpression();
-        PureExpressionAndPureFunctionReference _createPureExpressionAndPureFunctionReference = Others.createPureExpressionAndPureFunctionReference(_valueExpression_4);
-        PureFunctionType _functionType_2 = af.getFunctionType();
-        ValueType _argType_3 = _functionType_2.getArgType();
-        return Checks.DataAndValue(_createPureExpressionAndPureFunctionReference, _argType_3);
+        ValueType _argType_1 = _functionType_1.getArgType();
+        return Checks.ValueTypeEquals(lambdaReturnType, _argType_1, false);
       }
+      ApplyFFactor _value_4 = af.getValue();
+      Expression _valueExpression_2 = _value_4.getValueExpression();
+      PureExpressionAndPureFunctionReference _createPureExpressionAndPureFunctionReference = Others.createPureExpressionAndPureFunctionReference(_valueExpression_2);
+      PureFunctionType _functionType_2 = af.getFunctionType();
+      ValueType _argType_2 = _functionType_2.getArgType();
+      return Checks.DataAndValue(_createPureExpressionAndPureFunctionReference, _argType_2);
     }
-    ApplyFFactor _value_3 = af.getValue();
-    Expression _valueExpression_2 = _value_3.getValueExpression();
-    PureExpressionAndPureFunctionReference _createPureExpressionAndPureFunctionReference = Others.createPureExpressionAndPureFunctionReference(_valueExpression_2);
-    PureFunctionType _functionType_1 = af.getFunctionType();
-    ValueType _argType_1 = _functionType_1.getArgType();
-    return Checks.DataAndValue(_createPureExpressionAndPureFunctionReference, _argType_1);
   }
   
   public static boolean applyFIO(final ApplyFIO afio) {
-    EffectFullFunctionType _functionType = afio.getFunctionType();
-    Type _argType = _functionType.getArgType();
-    IOType _IOWrap = Others.IOWrap(_argType);
     ApplyFIOFactor _value = afio.getValue();
     EffectFullBodyContent _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
-    Type _effectFullBodyContent = GetReturnType.effectFullBodyContent(_valueFromApplyFIOFactor);
-    return Checks.TypeEquals(_IOWrap, _effectFullBodyContent);
+    final Type valueReturnType = GetReturnType.effectFullBodyContent(_valueFromApplyFIOFactor);
+    if ((((!Objects.equal(afio.getValue().getValueExpression(), null)) && (afio.getValue().getValueExpression() instanceof EffectFullFunctionType)) && Objects.equal(((EffectFullFunctionType) afio.getValue().getValueExpression()).getValue().getArg(), null))) {
+      EffectFullFunctionType _functionType = afio.getFunctionType();
+      Type _argType = _functionType.getArgType();
+      IOType _IOWrap = Others.IOWrap(_argType);
+      IOType _returnType = ((EffectFullFunctionType) valueReturnType).getReturnType();
+      return Checks.TypeEquals(_IOWrap, _returnType, false);
+    }
+    EffectFullFunctionType _functionType_1 = afio.getFunctionType();
+    Type _argType_1 = _functionType_1.getArgType();
+    IOType _IOWrap_1 = Others.IOWrap(_argType_1);
+    return Checks.TypeEquals(_IOWrap_1, valueReturnType, false);
   }
   
   public static boolean effectFullExpressionHasSideEffects(final EffectFullExpression expression) {

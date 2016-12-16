@@ -27,7 +27,7 @@ class ValueGenerator {
 	def compile(PureValue v) '''
 	
 	public static «typeGenerator.compileType(v.value)» «v.name»() {
-		return «commonFunctions.compile(v.value)»;
+		return «commonFunctions.compile(v.value, false)»;
 	}
 	'''
 	

@@ -110,7 +110,7 @@ class FPMLValidator extends AbstractFPMLValidator {
 			PureIf: {
 				val thenType = GetReturnType.pureIfBody(p.then)
 				val elseType = GetReturnType.pureIfBody(p.getElse)
-				if (!Checks.TypeEquals(thenType, elseType) && thenType.eClass != elseType.eClass){
+				if (!Checks.TypeEquals(thenType, elseType, false) && thenType.eClass != elseType.eClass){
 					error(IFBRANCHESTYPEMISMATCH, FPMLPackage.Literals.PURE_IF__THEN)
 			}
 			}
@@ -144,7 +144,7 @@ class FPMLValidator extends AbstractFPMLValidator {
    			EffectFullIf: {
    				val thenType = GetReturnType.effectFullIfBody(p.getThen)
 				val elseType = GetReturnType.effectFullIfBody(p.getElse)
-				if (!Checks.TypeEquals(thenType, elseType) && thenType.eClass != elseType.eClass)
+				if (!Checks.TypeEquals(thenType, elseType, false))
    					error(IFBRANCHESTYPEMISMATCH, FPMLPackage.Literals.EFFECT_FULL_IF__THEN)
 			}
    			ApplyFIO: {

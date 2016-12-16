@@ -71,7 +71,7 @@ class EffectFullFunctionGenerator {
 		switch e {
 			EffectFullFunction: compileIOWalkthrough(e)
 			EffectFullPrimitive: compileIOWalkthrough(e)
-			EffectFullExpression: '''.append(«commonEffectFullFunctions.compile(e)»)'''
+			EffectFullExpression: '''.append(«commonEffectFullFunctions.compile(e, true)»)'''
 		}
 	}
 	
@@ -103,7 +103,7 @@ class EffectFullFunctionGenerator {
 			LiftEffectFullFunction: compileIOWalkthrough(pef)
 			IsLeftEffectFull: '''.bind(PrimitivesEffectFull::isLeft)'''
 			IsRightEffectFull: '''.bind(PrimitivesEffectFull::isRight)'''
-      		EffectFullIf: '''.bind((Boolean c) -> «IF (pef.then instanceof IOType)» «ELSE» IOFunctions.unit(«ENDIF»PrimtivesEffectFull.effectFullIf(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»«IF (pef.then instanceof IOType)» «ELSE» )«ENDIF»)'''
+      		EffectFullIf: '''.bind((Boolean c) -> «IF (pef.then instanceof IOType)» «ELSE» IOFunctions.unit(«ENDIF»PrimtivesEffectFull.<«typeGenerator.compile(GetReturnType.effectFullIfBody(pef.then))»>effectFullIf(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»«IF (pef.then instanceof IOType)» «ELSE» )«ENDIF»)'''
       		EffectFullEitherIf: '''.bind((Boolean c) -> IOFuncions.unit(PrimtivesEffectFull.effectFullIfEither(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»))'''
           	GetLine: '''.append(PrimitivesEffectFull::getLine)'''
 		}
@@ -154,7 +154,7 @@ class EffectFullFunctionGenerator {
 			ExtractPure: '''.bind((IPureData<«typeGenerator.compile(ppf.data.content)»> d) -> d.getValue())'''
 			IsLeftPure: '''.map(Primitives::isLeft)'''
 			IsRightPure: '''.map(Primitives::isRight)'''
-			PureIf: '''.map((Boolean c) -> Primitives.pureIf(c, «commonPureFunctions.compile(ppf.then)», «commonPureFunctions.compile(ppf.^else)»))'''
+			PureIf: '''.map((Boolean c) -> Primitives.<«typeGenerator.compile(GetReturnType.pureIfBody(ppf.then))»>pureIf(c, «commonPureFunctions.compile(ppf.then)», «commonPureFunctions.compile(ppf.^else)»))'''
       		PureEitherIf: '''.map((Boolean c) -> Primitives.pureIfEither(c, «commonPureFunctions.compile(ppf.then)», «commonPureFunctions.compile(ppf.^else)»))'''
 		}
 	}
@@ -163,7 +163,7 @@ class EffectFullFunctionGenerator {
 		switch pf {
 			// PrimitivePureFunction in previous liftpurefunction switch
 			PureArgument: '''.append(«pf.name»)'''
-			Expression: '''.append(«commonPureFunctions.compile(pf)»)'''
+			Expression: '''.append(«commonPureFunctions.compile(pf, true)»)'''
 			PureValue: return '''.append(IOFunctions.unit(PureValue.«(pf as PureValue).name»()))'''
 			PureLambda: {
 				if (pf.arg == null)

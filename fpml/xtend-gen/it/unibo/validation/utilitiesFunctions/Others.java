@@ -20,7 +20,6 @@ import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullIfBody;
-import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.EffectFullSumTypeFactor;
@@ -396,12 +395,10 @@ public class Others {
     return func;
   }
   
-  public static EffectFullArgument createUnitEffectFullArgument() {
-    final EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument();
-    final IOType unitType = FPMLFactory.eINSTANCE.createIOType();
+  public static Argument createUnitPureArgument() {
+    final PureArgument arg = FPMLFactory.eINSTANCE.createPureArgument();
     UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
-    unitType.setType(_createUnitType);
-    arg.setType(unitType);
+    arg.setType(_createUnitType);
     return arg;
   }
   
@@ -479,6 +476,49 @@ public class Others {
     Type _copy = EcoreUtil2.<Type>copy(t);
     returnT.setType(_copy);
     return returnT;
+  }
+  
+  public static EffectFullFunctionType lambdaWrap(final Type lambdaArgumentType, final Type lambdaReturnType) {
+    final EffectFullFunctionType returnT = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
+    UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+    returnT.setArgType(_createUnitType);
+    if ((lambdaArgumentType instanceof UnitType)) {
+      if ((lambdaReturnType instanceof IOType)) {
+        returnT.setReturnType(((IOType) lambdaReturnType));
+      } else {
+        IOType _IOWrap = Others.IOWrap(lambdaReturnType);
+        returnT.setReturnType(_IOWrap);
+      }
+      return returnT;
+    } else {
+      final EffectFullFunctionType innerT = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
+      innerT.setArgType(lambdaArgumentType);
+      if ((lambdaReturnType instanceof IOType)) {
+        innerT.setReturnType(((IOType) lambdaReturnType));
+      } else {
+        IOType _IOWrap_1 = Others.IOWrap(lambdaReturnType);
+        innerT.setReturnType(_IOWrap_1);
+      }
+      IOType _IOWrap_2 = Others.IOWrap(innerT);
+      returnT.setReturnType(_IOWrap_2);
+      return returnT;
+    }
+  }
+  
+  public static PureFunctionType lambdaWrap(final ValueType lambdaArgumentType, final ValueType lambdaReturnType) {
+    final PureFunctionType returnT = FPMLFactory.eINSTANCE.createPureFunctionType();
+    UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+    returnT.setArgType(_createUnitType);
+    if ((lambdaArgumentType instanceof UnitType)) {
+      returnT.setReturnType(lambdaReturnType);
+      return returnT;
+    } else {
+      final PureFunctionType innerT = FPMLFactory.eINSTANCE.createPureFunctionType();
+      innerT.setArgType(lambdaArgumentType);
+      innerT.setReturnType(lambdaReturnType);
+      returnT.setReturnType(innerT);
+      return returnT;
+    }
   }
   
   public static ValueType createTypeOfPureFunction(final PureFunction pf) {
@@ -574,34 +614,8 @@ public class Others {
     if (!_matched) {
       if (content instanceof EffectFullFunctionType) {
         _matched=true;
-        Type _xblockexpression = null;
-        {
-          Type _effectFullExpression = GetReturnType.effectFullExpression(((EffectFullExpression) content));
-          final Type returnType = EcoreUtil.<Type>copy(_effectFullExpression);
-          Type _xifexpression = null;
-          EffectFullFunctionDefinition _value = ((EffectFullFunctionType)content).getValue();
-          if ((_value instanceof EffectFullLambda)) {
-            EffectFullFunctionType _xblockexpression_1 = null;
-            {
-              EffectFullFunctionDefinition _value_1 = ((EffectFullFunctionType)content).getValue();
-              Type _effectFullLambda = GetArgType.effectFullLambda(((EffectFullLambda) _value_1));
-              final Type argType = EcoreUtil.<Type>copy(_effectFullLambda);
-              EffectFullFunctionType _xifexpression_1 = null;
-              if ((returnType instanceof IOType)) {
-                _xifexpression_1 = Others.createEffectFullFuntionType(argType, ((IOType) returnType));
-              } else {
-                IOType _IOWrap = Others.IOWrap(returnType);
-                _xifexpression_1 = Others.createEffectFullFuntionType(argType, _IOWrap);
-              }
-              _xblockexpression_1 = _xifexpression_1;
-            }
-            _xifexpression = _xblockexpression_1;
-          } else {
-            _xifexpression = returnType;
-          }
-          _xblockexpression = _xifexpression;
-        }
-        _switchResult = _xblockexpression;
+        Type _effectFullExpression = GetReturnType.effectFullExpression(((EffectFullExpression) content));
+        _switchResult = EcoreUtil.<Type>copy(_effectFullExpression);
       }
     }
     if (!_matched) {

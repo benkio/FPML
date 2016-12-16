@@ -1,6 +1,5 @@
 package it.unibo.validation.utilitiesFunctions;
 
-import com.google.common.base.Objects;
 import it.unibo.fPML.ApplyF;
 import it.unibo.fPML.ApplyFIO;
 import it.unibo.fPML.Argument;
@@ -296,36 +295,17 @@ public class GetArgType {
     boolean _matched = false;
     if (f instanceof PureValue) {
       _matched=true;
-      Expression _value = ((PureValue)f).getValue();
-      if ((_value instanceof PureFunctionType)) {
-        Expression _value_1 = ((PureValue)f).getValue();
-        PureFunctionDefinition _value_2 = ((PureFunctionType) _value_1).getValue();
-        return GetArgType.pureLambda(((PureLambda) _value_2));
-      } else {
-        return FPMLFactory.eINSTANCE.createUnitType();
-      }
+      return FPMLFactory.eINSTANCE.createUnitType();
     }
     if (!_matched) {
       if (f instanceof PureLambda) {
         _matched=true;
-        return GetArgType.pureLambda(((PureLambda)f));
+        return FPMLFactory.eINSTANCE.createUnitType();
       }
     }
     PureArgument _arg = f.getArg();
     ValueType _type = _arg.getType();
     return EcoreUtil.<ValueType>copy(_type);
-  }
-  
-  public static ValueType pureLambda(final PureLambda l) {
-    PureArgument _arg = l.getArg();
-    boolean _notEquals = (!Objects.equal(_arg, null));
-    if (_notEquals) {
-      PureArgument _arg_1 = l.getArg();
-      ValueType _type = _arg_1.getType();
-      return EcoreUtil.<ValueType>copy(_type);
-    } else {
-      return FPMLFactory.eINSTANCE.createUnitType();
-    }
   }
   
   public static Type effectFullBodyContent(final EffectFullBodyContent reference) {
@@ -578,24 +558,12 @@ public class GetArgType {
     boolean _matched = false;
     if (definition instanceof EffectFullValue) {
       _matched=true;
-      Type _switchResult_1 = null;
-      EffectFullExpression _value = ((EffectFullValue)definition).getValue();
-      boolean _matched_1 = false;
-      if (_value instanceof EffectFullFunctionType) {
-        _matched_1=true;
-        EffectFullExpression _value_1 = ((EffectFullValue)definition).getValue();
-        EffectFullFunctionDefinition _value_2 = ((EffectFullFunctionType) _value_1).getValue();
-        _switchResult_1 = GetArgType.effectFullLambda(((EffectFullLambda) _value_2));
-      }
-      if (!_matched_1) {
-        _switchResult_1 = FPMLFactory.eINSTANCE.createUnitType();
-      }
-      _switchResult = _switchResult_1;
+      _switchResult = FPMLFactory.eINSTANCE.createUnitType();
     }
     if (!_matched) {
       if (definition instanceof EffectFullLambda) {
         _matched=true;
-        _switchResult = GetArgType.effectFullLambda(((EffectFullLambda)definition));
+        _switchResult = FPMLFactory.eINSTANCE.createUnitType();
       }
     }
     if (!_matched) {
@@ -606,16 +574,5 @@ public class GetArgType {
       }
     }
     return _switchResult;
-  }
-  
-  public static Type effectFullLambda(final EffectFullLambda lambda) {
-    Argument _arg = lambda.getArg();
-    boolean _equals = Objects.equal(_arg, null);
-    if (_equals) {
-      return FPMLFactory.eINSTANCE.createUnitType();
-    } else {
-      Argument _arg_1 = lambda.getArg();
-      return Others.getArgumentType(_arg_1);
-    }
   }
 }

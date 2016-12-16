@@ -10,24 +10,24 @@ class ValuePureFunctionCommonGenerator {
 	
 	TypeGenerator typeGenerator = new TypeGenerator
 	
-	def String compile(Expression e) {
+	def String compile(Expression e, boolean functionTypeExec) {
 		switch e {
 			IntegerType: '''«e.value»'''
 			UnitType: "Unit.unit()"
 			StringType: '''"«e.value»"'''
       		BooleanType: '''«e.value»'''
-			DataType: '''new «typeGenerator.compileType(e)»(«compileAdtValue((e as DataValue).value, (e as DataValue).type.content)»)'''
-			PureFunctionType: return e.compile 
+			DataType: '''new «typeGenerator.compileType(e)»(«compileAdtValue((e as DataValue).value, (e as DataValue).type.content, functionTypeExec)»)'''
+			PureFunctionType: return compile(e, functionTypeExec) 
 			PureSumValue: {
 				if (e.pureAdtElement1 != null) {
 					val sumElement1 = Others.getInnerElementFromPureExpressionAndPureFunctionReference(e.sumAdtElement1)
 					var String sumElement1Type 
-					if (sumElement1 instanceof Expression) sumElement1Type = compile(sumElement1 as Expression) else sumElement1Type = compilePureFunctionRef(sumElement1 as PureFunction) 
+					if (sumElement1 instanceof Expression) sumElement1Type = compile((sumElement1 as Expression), functionTypeExec) else sumElement1Type = compilePureFunctionRef(sumElement1 as PureFunction) 
 					return '''Either.left(«sumElement1Type»)'''
 				}else {
 					val sumElement2 = Others.getInnerElementFromPureExpressionAndPureFunctionReference(e.sumAdtElement2)
 					var String sumElement2Type
-					if (sumElement2 instanceof Expression) sumElement2Type = compile(sumElement2 as Expression) else sumElement2Type = compilePureFunctionRef(sumElement2 as PureFunction)
+					if (sumElement2 instanceof Expression) sumElement2Type = compile((sumElement2 as Expression), functionTypeExec) else sumElement2Type = compilePureFunctionRef(sumElement2 as PureFunction)
 					return '''Either.right(«sumElement2Type»)'''
 				}
 			}
@@ -37,33 +37,33 @@ class ValuePureFunctionCommonGenerator {
 				val prodElement2 = Others.getInnerElementFromPureExpressionAndPureFunctionReference(e.prodAdtElement2)
 				var String prodElement1Type 
 				var String prodElement2Type
-				if (prodElement1 instanceof Expression) prodElement1Type = compile(prodElement1 as Expression) else prodElement1Type = compilePureFunctionRef(prodElement1 as PureFunction) 
-				if (prodElement2 instanceof Expression) prodElement2Type = compile(prodElement2 as Expression) else prodElement2Type = compilePureFunctionRef(prodElement2 as PureFunction)
+				if (prodElement1 instanceof Expression) prodElement1Type = compile((prodElement1 as Expression), functionTypeExec) else prodElement1Type = compilePureFunctionRef(prodElement1 as PureFunction) 
+				if (prodElement2 instanceof Expression) prodElement2Type = compile((prodElement2 as Expression), functionTypeExec) else prodElement2Type = compilePureFunctionRef(prodElement2 as PureFunction)
 				'''P.p(«prodElement1Type», «prodElement2Type»)'''
 				}
 		}	
 	}
 	
-	def compileAdtValue(PureExpressionAndPureFunctionReference vr, Type d) {
+	def String compileAdtValue(PureExpressionAndPureFunctionReference vr, Type d, boolean functionTypeExec) {
 		val v = Others.getInnerElementFromPureExpressionAndPureFunctionReference(vr)
 		switch v {
-			IntegerType: return v.value
+			IntegerType: return '''«v.value»'''
 			StringType: return '''"«v.value»"'''
-      		BooleanType: return v.value
+      		BooleanType: return '''«v.value»'''
 			UnitType: return '''Unit.unit()'''
-			DataType: return '''new «typeGenerator.compileType(v)»(«compileAdtValue((v as DataValue).value, (v as DataValue).type.content)»)'''
+			DataType: return '''new «typeGenerator.compileType(v)»(«compileAdtValue((v as DataValue).value, (v as DataValue).type.content, functionTypeExec)»)'''
 			PureSumValue: {
-				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromPureAlgebraicType(d as PureAlgebraicType))»)'''
-				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as PureAlgebraicType).pureAdtElement1))»)'''
+				if (v.sumAdtElement1 == null) return '''Either.right(«compileAdtValue(v.sumAdtElement2, Others.getElement2ValueTypeFromPureAlgebraicType(d as PureAlgebraicType), functionTypeExec)»)'''
+				return '''Either.left(«compileAdtValue(v.sumAdtElement1, ((d as PureAlgebraicType).pureAdtElement1), functionTypeExec)»)'''
 			}
-			PureProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,(d as PureAlgebraicType).pureAdtElement1)»,«compileAdtValue(v.prodAdtElement2, Others.getElement2ValueTypeFromPureAlgebraicType(d as PureAlgebraicType))»)'''
+			PureProdValue: return '''P.p(«compileAdtValue(v.prodAdtElement1,(d as PureAlgebraicType).pureAdtElement1, functionTypeExec)»,«compileAdtValue(v.prodAdtElement2, Others.getElement2ValueTypeFromPureAlgebraicType(d as PureAlgebraicType), functionTypeExec)»)'''
 			PureValueRef: if ( v.value instanceof PureValue ) return '''PureValue.«(v.value as PureValue).name»()''' else return '''PureFunctionDefinitions::«(v.value as PureFunctionDefinition).name»'''
-			PureFunctionType: return v.compile
+			PureFunctionType: return compile(v, functionTypeExec)
 			PureFunction: compilePureFunctionRef(v)
 		}
 	}
 	
-	def String compile(PureFunctionType pft) '''
+	def String compile(PureFunctionType pft, boolean call) '''
 		«IF (pft.value.functionBody instanceof CompositionFunctionBodyPure) && pft.value.arg != null»
 			new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))»>() {
 					@Override
@@ -72,14 +72,19 @@ class ValuePureFunctionCommonGenerator {
 					}
 			}
 		«ELSEIF (pft.value.functionBody instanceof EmptyFunctionBody)»
-			new F<() {
+			new F<Object>() {
 						@Override
 						public Object f(Object «pft.value.arg.name») {
 							throw new UnsupportedOperationException("TODO");
 						}
-				}
+				}«IF (call)».f()«ENDIF»
 		«ELSE»
-		«compile(pft.value.functionBody, "", true)»
+			new F0<«typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))»>() {
+					@Override
+					public «typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))» f() {
+						return «compile(pft.value.functionBody, "", true)»;
+					}
+				}«IF (call)».f()«ENDIF»
 		«ENDIF»
 		'''
 		
@@ -99,7 +104,7 @@ class ValuePureFunctionCommonGenerator {
 			PureLambda: result = "(" + typeGenerator.compile(initialElement.arg) + ") -> return " + initialElement.functionBody.compile(argName,outsideCalls) + ";"
 			PrimitivePureFunction: result = compilePrimitiveCall(initialElement, argName, argName, outsideCalls)
 			PureFunctionDefinition: result = compileCall(initialElement, argName, argName, outsideCalls)
-			Expression: result = initialElement.compile
+			Expression: result = compile(initialElement, true)
 			Argument: result = Others.getArgumentName(initialElement)
 		}
 		for (f : cfbp.functionChain){
@@ -119,7 +124,7 @@ class ValuePureFunctionCommonGenerator {
 				else 
 					return "PureFunctionDefinitions." + pf.name + "(" + acc + ")"	
 			}
-			Expression: compile(pf)
+			Expression: compile(pf, true)
 		}
 	}
 	
@@ -147,7 +152,7 @@ class ValuePureFunctionCommonGenerator {
 			IsLeftPure: "Primitives.isLeft(" + acc +")"
 			IsRightPure: "Primitives.isRight("+ acc +")"
 			PureReturn: acc
-			PureIf: "Primitives.pureIf(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
+			PureIf: "Primitives.<«typeGenerator.compile(GetReturnType.pureFunction(Others.getFunctionFromPureIfBody(purePrimitive.then)))»>pureIf(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
 											   + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls) 
 											   + ")"
     		PureEitherIf: "Primitives.pureIfEither(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
@@ -160,7 +165,7 @@ class ValuePureFunctionCommonGenerator {
 		switch r.valueReference {
 			PureValue: return compileCall(r.valueReference as PureValue, argName, argName, outsideCalls)
 			Argument: return Others.getArgumentName(r.valueReference as Argument)
-			default: return compile(r.valueExpression)
+			default: return compile(r.valueExpression, true)
 		}
 	}
 	
@@ -170,14 +175,14 @@ class ValuePureFunctionCommonGenerator {
 			PureFunctionDefinition: '''PureFunctionDefinitions::«pf.name»'''
 	//		PrimitivePureFunction: compilePrimitivePureFunctionRef(pf) CANNOT HAPPEN, DOES NOT HAVE NAME REFERENCE
 			PureArgument: pf.name
-			Expression: compile(pf)
+			Expression: compile(pf, true)
 		}
 	}
 	
 	def String compile(PureIfBody pib) {
 		val content = Others.getFunctionFromPureIfBody(pib)
 		switch content {
-			Expression: compile(content as Expression)
+			Expression: compile(content as Expression, false)
 			PureFunction: {
 				switch content {
 					PureValue: content.name

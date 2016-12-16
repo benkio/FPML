@@ -28,7 +28,12 @@ class GetReturnType {
 	def static ValueType pureFunctionDefinition(PureFunctionDefinition f){
 		switch f {
 			PureValue: expression(f.value)
-			PureLambda: functionBodyPure(f.functionBody, f.arg, f.higherOrderArg, f.returnType)
+			PureLambda: {
+				if (f.arg != null)
+					return Others.lambdaWrap(f.arg.type, functionBodyPure(f.functionBody, f.arg, f.higherOrderArg, f.returnType))
+				else
+					return Others.lambdaWrap(FPMLFactory.eINSTANCE.createUnitType, functionBodyPure(f.functionBody, f.arg, f.higherOrderArg, f.returnType))
+			}
 			PureFunctionDefinition: functionBodyPure(f.functionBody, f.arg, f.higherOrderArg, f.returnType)
 		}
 	}
@@ -39,12 +44,7 @@ class GetReturnType {
 			StringType: return FPMLFactory.eINSTANCE.createStringType
       		BooleanType: return FPMLFactory.eINSTANCE.createBooleanType
 			DataValue: return EcoreUtil.copy(expression)
-			PureFunctionType: {
-				if (expression.value instanceof PureLambda){
-					functionBodyPure(expression.value.functionBody, expression.value.arg, null, expression.value.returnType)
-				}else
-					EcoreUtil.copy(expression)
-				}
+			PureFunctionType: pureFunction(expression.value)
        		UnitType: EcoreUtil.copy(expression)
        		PureValueRef: expression(expression.value.value)
 			PureSumValue: Others.createPureAlgebraicType(pureFunction(Others.getInnerElementFromPureExpressionAndPureFunctionReference(expression.sumAdtElement1)), pureFunction(Others.getInnerElementFromPureExpressionAndPureFunctionReference(expression.sumAdtElement2)), true)
@@ -122,13 +122,22 @@ class GetReturnType {
 		switch function {
 			EffectFullArgument: if (function.type instanceof IOType) EcoreUtil.copy(function.type) else Others.IOWrap(function.type)
 			EffectFullValue: effectFullExpression(function.value)
-			EffectFullFunctionDefinition: function.returnType
+			EffectFullFunctionDefinition: if (function.returnType != null) function.returnType else effectFullFunctionDefinition(function)
 			PrimitiveEffectFullFunction: primitiveEffectFullFunction(function)
 		}
 	}
 	
 	def static Type effectFullFunctionDefinition(EffectFullFunctionDefinition definition) {
-		functionBodyEffectFull(definition.functionBody, definition.arg, definition.higherOrderArg, definition.returnType)
+		switch definition{
+			EffectFullLambda: {
+					val returnType = functionBodyEffectFull(definition.functionBody, definition.arg, definition.higherOrderArg, definition.returnType)
+					var Type argType = FPMLFactory.eINSTANCE.createUnitType
+					if (definition.arg != null) argType = Others.getArgumentType(definition.arg)
+					return Others.lambdaWrap(argType, returnType)
+			} 
+			EffectFullValue: effectFullExpression(definition.value)
+			EffectFullFunctionDefinition: functionBodyEffectFull(definition.functionBody, definition.arg, definition.higherOrderArg, definition.returnType)
+		}
 	}
 	
 	def static Type functionBodyEffectFull(FunctionBodyEffectFull full, Argument argument, AdditionalEffectFullArgument argument2, IOType type) {
@@ -202,15 +211,7 @@ class GetReturnType {
 			}
 			IOPureFunction: Others.IOWrap(Others.createTypeOfPureFunction(Others.getPureFunctionFromIOPureFunction(expression)))
 			IOEffectFullFunction: Others.IOWrap(Others.createTypeOfEffectFullFunction(Others.getEffectFullFunctionFromIOEffectFullFunction(expression)))
-			EffectFullFunctionType:{
-				if (expression.value instanceof EffectFullLambda){
-					var EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument
-					arg.type = Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
-					if (expression.value.arg != null) arg.type = Others.IOWrap(Others.getArgumentType(expression.value.arg))
-					functionBodyEffectFull(expression.value.functionBody, arg, null, expression.value.returnType)
-				}else
-					EcoreUtil.copy(expression)
-				} 
+			EffectFullFunctionType:	effectFullFunction(expression.value)
 			EffectFullDataValue: EcoreUtil.copy(expression)
 			EffectFullProdValue: Others.createEffectFullAlgebraicType(effectFullBodyContent(Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(expression.prodAdtElement1)), effectFullBodyContent(Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(expression.prodAdtElement2)), false)
 			EffectFullSumValue: Others.createEffectFullAlgebraicType(effectFullBodyContent(Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(expression.sumAdtElement1)), effectFullBodyContent(Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(expression.sumAdtElement2)), true)
@@ -259,8 +260,7 @@ class GetReturnType {
 	
 	def static Type mainFunc(MainFunc m) {
 		val ioType = Others.IOWrap(FPMLFactory.eINSTANCE.createUnitType)
-		var addictionalEffectFullArgument = FPMLFactory.eINSTANCE.createAdditionalEffectFullArgument
-		addictionalEffectFullArgument.arg2 = Others.createVoidEffectFullArgument
-		functionBodyEffectFull(m.functionBody, Others.createUnitEffectFullArgument, addictionalEffectFullArgument, ioType)
+		functionBodyEffectFull(m.functionBody, Others.createUnitPureArgument, null, ioType)
+		
 	}
 }

@@ -69,7 +69,7 @@ public class EffectFullValueGenerator {
     _builder.append("\t");
     _builder.append("return ");
     EffectFullExpression _value_1 = v.getValue();
-    String _compile = this.commonEffectFullFunctions.compile(_value_1);
+    String _compile = this.commonEffectFullFunctions.compile(_value_1, false);
     _builder.append(_compile, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();

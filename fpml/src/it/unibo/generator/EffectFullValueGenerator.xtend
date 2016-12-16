@@ -31,7 +31,7 @@ class EffectFullValueGenerator {
 	def compile(EffectFullValue v) '''
 	
 	public static «typeGenerator.compileType(v.value)» «v.name»() {
-		return «commonEffectFullFunctions.compile(v.value)»;
+		return «commonEffectFullFunctions.compile(v.value, false)»;
 	}
 	'''
 	

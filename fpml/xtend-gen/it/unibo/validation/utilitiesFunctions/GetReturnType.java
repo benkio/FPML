@@ -177,11 +177,26 @@ public class GetReturnType {
     if (!_matched) {
       if (f instanceof PureLambda) {
         _matched=true;
-        FunctionBodyPure _functionBody = ((PureLambda)f).getFunctionBody();
         PureArgument _arg = ((PureLambda)f).getArg();
-        AdditionalPureArgument _higherOrderArg = ((PureLambda)f).getHigherOrderArg();
-        ValueType _returnType = ((PureLambda)f).getReturnType();
-        _switchResult = GetReturnType.functionBodyPure(_functionBody, _arg, _higherOrderArg, _returnType);
+        boolean _notEquals = (!Objects.equal(_arg, null));
+        if (_notEquals) {
+          PureArgument _arg_1 = ((PureLambda)f).getArg();
+          ValueType _type = _arg_1.getType();
+          FunctionBodyPure _functionBody = ((PureLambda)f).getFunctionBody();
+          PureArgument _arg_2 = ((PureLambda)f).getArg();
+          AdditionalPureArgument _higherOrderArg = ((PureLambda)f).getHigherOrderArg();
+          ValueType _returnType = ((PureLambda)f).getReturnType();
+          ValueType _functionBodyPure = GetReturnType.functionBodyPure(_functionBody, _arg_2, _higherOrderArg, _returnType);
+          return Others.lambdaWrap(_type, _functionBodyPure);
+        } else {
+          UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
+          FunctionBodyPure _functionBody_1 = ((PureLambda)f).getFunctionBody();
+          PureArgument _arg_3 = ((PureLambda)f).getArg();
+          AdditionalPureArgument _higherOrderArg_1 = ((PureLambda)f).getHigherOrderArg();
+          ValueType _returnType_1 = ((PureLambda)f).getReturnType();
+          ValueType _functionBodyPure_1 = GetReturnType.functionBodyPure(_functionBody_1, _arg_3, _higherOrderArg_1, _returnType_1);
+          return Others.lambdaWrap(_createUnitType, _functionBodyPure_1);
+        }
       }
     }
     if (!_matched) {
@@ -225,20 +240,8 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof PureFunctionType) {
         _matched=true;
-        ValueType _xifexpression = null;
         PureFunctionDefinition _value = ((PureFunctionType)expression).getValue();
-        if ((_value instanceof PureLambda)) {
-          PureFunctionDefinition _value_1 = ((PureFunctionType)expression).getValue();
-          FunctionBodyPure _functionBody = _value_1.getFunctionBody();
-          PureFunctionDefinition _value_2 = ((PureFunctionType)expression).getValue();
-          PureArgument _arg = _value_2.getArg();
-          PureFunctionDefinition _value_3 = ((PureFunctionType)expression).getValue();
-          ValueType _returnType = _value_3.getReturnType();
-          _xifexpression = GetReturnType.functionBodyPure(_functionBody, _arg, null, _returnType);
-        } else {
-          _xifexpression = EcoreUtil.<PureFunctionType>copy(((PureFunctionType)expression));
-        }
-        _switchResult = _xifexpression;
+        _switchResult = GetReturnType.pureFunction(_value);
       }
     }
     if (!_matched) {
@@ -561,7 +564,15 @@ public class GetReturnType {
     if (!_matched) {
       if (function instanceof EffectFullFunctionDefinition) {
         _matched=true;
-        _switchResult = ((EffectFullFunctionDefinition)function).getReturnType();
+        Type _xifexpression = null;
+        IOType _returnType = ((EffectFullFunctionDefinition)function).getReturnType();
+        boolean _notEquals = (!Objects.equal(_returnType, null));
+        if (_notEquals) {
+          _xifexpression = ((EffectFullFunctionDefinition)function).getReturnType();
+        } else {
+          _xifexpression = GetReturnType.effectFullFunctionDefinition(((EffectFullFunctionDefinition)function));
+        }
+        _switchResult = _xifexpression;
       }
     }
     if (!_matched) {
@@ -574,11 +585,43 @@ public class GetReturnType {
   }
   
   public static Type effectFullFunctionDefinition(final EffectFullFunctionDefinition definition) {
-    FunctionBodyEffectFull _functionBody = definition.getFunctionBody();
-    Argument _arg = definition.getArg();
-    AdditionalEffectFullArgument _higherOrderArg = definition.getHigherOrderArg();
-    IOType _returnType = definition.getReturnType();
-    return GetReturnType.functionBodyEffectFull(_functionBody, _arg, _higherOrderArg, _returnType);
+    Type _switchResult = null;
+    boolean _matched = false;
+    if (definition instanceof EffectFullLambda) {
+      _matched=true;
+      FunctionBodyEffectFull _functionBody = ((EffectFullLambda)definition).getFunctionBody();
+      Argument _arg = ((EffectFullLambda)definition).getArg();
+      AdditionalEffectFullArgument _higherOrderArg = ((EffectFullLambda)definition).getHigherOrderArg();
+      IOType _returnType = ((EffectFullLambda)definition).getReturnType();
+      final Type returnType = GetReturnType.functionBodyEffectFull(_functionBody, _arg, _higherOrderArg, _returnType);
+      Type argType = FPMLFactory.eINSTANCE.createUnitType();
+      Argument _arg_1 = ((EffectFullLambda)definition).getArg();
+      boolean _notEquals = (!Objects.equal(_arg_1, null));
+      if (_notEquals) {
+        Argument _arg_2 = ((EffectFullLambda)definition).getArg();
+        Type _argumentType = Others.getArgumentType(_arg_2);
+        argType = _argumentType;
+      }
+      return Others.lambdaWrap(argType, returnType);
+    }
+    if (!_matched) {
+      if (definition instanceof EffectFullValue) {
+        _matched=true;
+        EffectFullExpression _value = ((EffectFullValue)definition).getValue();
+        _switchResult = GetReturnType.effectFullExpression(_value);
+      }
+    }
+    if (!_matched) {
+      if (definition instanceof EffectFullFunctionDefinition) {
+        _matched=true;
+        FunctionBodyEffectFull _functionBody = definition.getFunctionBody();
+        Argument _arg = definition.getArg();
+        AdditionalEffectFullArgument _higherOrderArg = definition.getHigherOrderArg();
+        IOType _returnType = definition.getReturnType();
+        _switchResult = GetReturnType.functionBodyEffectFull(_functionBody, _arg, _higherOrderArg, _returnType);
+      }
+    }
+    return _switchResult;
   }
   
   public static Type functionBodyEffectFull(final FunctionBodyEffectFull full, final Argument argument, final AdditionalEffectFullArgument argument2, final IOType type) {
@@ -734,36 +777,8 @@ public class GetReturnType {
     if (!_matched) {
       if (expression instanceof EffectFullFunctionType) {
         _matched=true;
-        Type _xifexpression = null;
         EffectFullFunctionDefinition _value = ((EffectFullFunctionType)expression).getValue();
-        if ((_value instanceof EffectFullLambda)) {
-          Type _xblockexpression = null;
-          {
-            EffectFullArgument arg = FPMLFactory.eINSTANCE.createEffectFullArgument();
-            UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
-            IOType _IOWrap = Others.IOWrap(_createUnitType);
-            arg.setType(_IOWrap);
-            EffectFullFunctionDefinition _value_1 = ((EffectFullFunctionType)expression).getValue();
-            Argument _arg = _value_1.getArg();
-            boolean _notEquals = (!Objects.equal(_arg, null));
-            if (_notEquals) {
-              EffectFullFunctionDefinition _value_2 = ((EffectFullFunctionType)expression).getValue();
-              Argument _arg_1 = _value_2.getArg();
-              Type _argumentType = Others.getArgumentType(_arg_1);
-              IOType _IOWrap_1 = Others.IOWrap(_argumentType);
-              arg.setType(_IOWrap_1);
-            }
-            EffectFullFunctionDefinition _value_3 = ((EffectFullFunctionType)expression).getValue();
-            FunctionBodyEffectFull _functionBody = _value_3.getFunctionBody();
-            EffectFullFunctionDefinition _value_4 = ((EffectFullFunctionType)expression).getValue();
-            IOType _returnType = _value_4.getReturnType();
-            _xblockexpression = GetReturnType.functionBodyEffectFull(_functionBody, arg, null, _returnType);
-          }
-          _xifexpression = _xblockexpression;
-        } else {
-          _xifexpression = EcoreUtil.<EffectFullFunctionType>copy(((EffectFullFunctionType)expression));
-        }
-        _switchResult = _xifexpression;
+        _switchResult = GetReturnType.effectFullFunction(_value);
       }
     }
     if (!_matched) {
@@ -947,12 +962,9 @@ public class GetReturnType {
     {
       UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
       final IOType ioType = Others.IOWrap(_createUnitType);
-      AdditionalEffectFullArgument addictionalEffectFullArgument = FPMLFactory.eINSTANCE.createAdditionalEffectFullArgument();
-      EffectFullArgument _createVoidEffectFullArgument = Others.createVoidEffectFullArgument();
-      addictionalEffectFullArgument.setArg2(_createVoidEffectFullArgument);
       FunctionBodyEffectFull _functionBody = m.getFunctionBody();
-      EffectFullArgument _createUnitEffectFullArgument = Others.createUnitEffectFullArgument();
-      _xblockexpression = GetReturnType.functionBodyEffectFull(_functionBody, _createUnitEffectFullArgument, addictionalEffectFullArgument, ioType);
+      Argument _createUnitPureArgument = Others.createUnitPureArgument();
+      _xblockexpression = GetReturnType.functionBodyEffectFull(_functionBody, _createUnitPureArgument, null, ioType);
     }
     return _xblockexpression;
   }

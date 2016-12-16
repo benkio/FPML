@@ -12,7 +12,10 @@ class TypeGenerator {
 			IntegerType: return 'Integer'
 			StringType: return vt.type
       		BooleanType: return 'Boolean'
-			PureFunctionType: return '''F<«vt.argType.compile»,«vt.returnType.compile»>'''
+			PureFunctionType:{ 
+				if (vt.argType instanceof UnitType) return '''F0<«vt.returnType.compile»>'''
+				return '''F<«vt.argType.compile»,«vt.returnType.compile»>'''
+			}
 			PureAlgebraicType: {
 				if ((vt as PureAlgebraicType).pureAdtElement2 instanceof PureSumTypeFactor)
 					return '''Either<«vt.pureAdtElement1.compile», «Others.getElement2ValueTypeFromPureAlgebraicType(vt).compile»>'''
@@ -29,7 +32,10 @@ class TypeGenerator {
 	def String compile(Type t){
 		switch t {
 			ValueType: return compile(t)
-			EffectFullFunctionType: return '''F<«t.argType.compile», IO<«t.returnType.type.compile»>>'''
+			EffectFullFunctionType: {
+				if (t.argType instanceof UnitType) return '''F0<«t.returnType.compile»>'''
+				return '''F<«t.argType.compile», IO<«t.returnType.type.compile»>>'''
+			}
 			EffectFullDataType: '''«t.type.name»'''
 			EffectFullAlgebraicType: {
 				if (t.effectFullAdtElement2 instanceof EffectFullSumTypeFactor)
@@ -48,7 +54,7 @@ class TypeGenerator {
       		BooleanType: return "Boolean"
 			DataType: return e.type.name
 			PureFunctionType: 	if (e.value.arg != null) return '''F<«e.value.arg.type.compile», «GetReturnType.function(e.value).compile»>'''
-								else return GetReturnType.function(e.value).compile
+								else return '''F0<«GetReturnType.function(e.value).compile»>'''
 			PureValueRef: return '''«compileType(e.value.value)»'''
 			PureSumValue: {
 		    	if (e.sumAdtElement1 != null){
@@ -85,9 +91,9 @@ class TypeGenerator {
 			EffectFullFunctionType: if (e.argType != null && e.returnType != null) 
 										return '''F<«e.argType.compile», IO<«e.returnType.type.compile»>>'''
 									else if(e.returnType != null)
-										return '''«e.returnType.type.compile»'''
+										return '''F0<«e.returnType.type.compile»>'''
 									else 
-										return '''«GetReturnType.function(e.value).compile»'''
+										return '''F0<«GetReturnType.function(e.value).compile»>'''
 			EffectFullDataType: e.type.name
 		    IOEffectFullExpression: '''IO<«(e.innerValue as EffectFullExpression).compileType»>'''
 		    IOPureFunction:	{

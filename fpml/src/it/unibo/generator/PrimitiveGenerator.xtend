@@ -131,6 +131,8 @@ class PrimitiveGenerator {
 			
 			public class PrimitivesEffectFull {
 				
+				private final static Scanner scanner = new Scanner(System.in);
+				
 				public static IO<Unit> primitivePrint(String s) {
 					return IOFunctions.stdoutPrintln(s);
 				} 
@@ -188,12 +190,7 @@ class PrimitiveGenerator {
 				}
 				
 				public static IO<String> getLine() {
-					return () -> {
-						Scanner scanner = new Scanner(System.in);
-						String s = scanner.next();
-						scanner.close();
-						return s;
-					};
+					return () -> scanner.next();
 				}
 			}
 	'''

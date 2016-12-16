@@ -81,17 +81,27 @@ public class TypeGenerator {
     if (!_matched) {
       if (vt instanceof PureFunctionType) {
         _matched=true;
-        StringConcatenation _builder_1 = new StringConcatenation();
-        _builder_1.append("F<");
         ValueType _argType = ((PureFunctionType)vt).getArgType();
-        String _compile = this.compile(_argType);
-        _builder_1.append(_compile, "");
-        _builder_1.append(",");
-        ValueType _returnType = ((PureFunctionType)vt).getReturnType();
-        String _compile_1 = this.compile(_returnType);
-        _builder_1.append(_compile_1, "");
-        _builder_1.append(">");
-        return _builder_1.toString();
+        if ((_argType instanceof UnitType)) {
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("F0<");
+          ValueType _returnType = ((PureFunctionType)vt).getReturnType();
+          String _compile = this.compile(_returnType);
+          _builder_1.append(_compile, "");
+          _builder_1.append(">");
+          return _builder_1.toString();
+        }
+        StringConcatenation _builder_2 = new StringConcatenation();
+        _builder_2.append("F<");
+        ValueType _argType_1 = ((PureFunctionType)vt).getArgType();
+        String _compile_1 = this.compile(_argType_1);
+        _builder_2.append(_compile_1, "");
+        _builder_2.append(",");
+        ValueType _returnType_1 = ((PureFunctionType)vt).getReturnType();
+        String _compile_2 = this.compile(_returnType_1);
+        _builder_2.append(_compile_2, "");
+        _builder_2.append(">");
+        return _builder_2.toString();
       }
     }
     if (!_matched) {
@@ -169,18 +179,28 @@ public class TypeGenerator {
     if (!_matched) {
       if (t instanceof EffectFullFunctionType) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("F<");
         Type _argType = ((EffectFullFunctionType)t).getArgType();
-        String _compile = this.compile(_argType);
-        _builder.append(_compile, "");
-        _builder.append(", IO<");
-        IOType _returnType = ((EffectFullFunctionType)t).getReturnType();
-        Type _type = _returnType.getType();
-        String _compile_1 = this.compile(_type);
-        _builder.append(_compile_1, "");
-        _builder.append(">>");
-        return _builder.toString();
+        if ((_argType instanceof UnitType)) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("F0<");
+          IOType _returnType = ((EffectFullFunctionType)t).getReturnType();
+          String _compile = this.compile(_returnType);
+          _builder.append(_compile, "");
+          _builder.append(">");
+          return _builder.toString();
+        }
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("F<");
+        Type _argType_1 = ((EffectFullFunctionType)t).getArgType();
+        String _compile_1 = this.compile(_argType_1);
+        _builder_1.append(_compile_1, "");
+        _builder_1.append(", IO<");
+        IOType _returnType_1 = ((EffectFullFunctionType)t).getReturnType();
+        Type _type = _returnType_1.getType();
+        String _compile_2 = this.compile(_type);
+        _builder_1.append(_compile_2, "");
+        _builder_1.append(">>");
+        return _builder_1.toString();
       }
     }
     if (!_matched) {
@@ -286,9 +306,14 @@ public class TypeGenerator {
           _builder.append(">");
           return _builder.toString();
         } else {
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("F0<");
           PureFunctionDefinition _value_3 = ((PureFunctionType)e).getValue();
           Type _function_1 = GetReturnType.function(_value_3);
-          return this.compile(_function_1);
+          String _compile_2 = this.compile(_function_1);
+          _builder_1.append(_compile_2, "");
+          _builder_1.append(">");
+          return _builder_1.toString();
         }
       }
     }
@@ -424,17 +449,21 @@ public class TypeGenerator {
           boolean _notEquals = (!Objects.equal(_returnType_1, null));
           if (_notEquals) {
             StringConcatenation _builder_1 = new StringConcatenation();
+            _builder_1.append("F0<");
             IOType _returnType_2 = ((EffectFullFunctionType)e).getReturnType();
             Type _type_1 = _returnType_2.getType();
             String _compile_2 = this.compile(_type_1);
             _builder_1.append(_compile_2, "");
+            _builder_1.append(">");
             return _builder_1.toString();
           } else {
             StringConcatenation _builder_2 = new StringConcatenation();
+            _builder_2.append("F0<");
             EffectFullFunctionDefinition _value = ((EffectFullFunctionType)e).getValue();
             Type _function = GetReturnType.function(_value);
             String _compile_3 = this.compile(_function);
             _builder_2.append(_compile_3, "");
+            _builder_2.append(">");
             return _builder_2.toString();
           }
         }

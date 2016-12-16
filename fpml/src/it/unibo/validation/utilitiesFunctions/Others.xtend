@@ -147,11 +147,9 @@ class Others {
       	return func
 	}
 	
-	def static EffectFullArgument createUnitEffectFullArgument(){
-		val arg = FPMLFactory.eINSTANCE.createEffectFullArgument
-		val unitType = FPMLFactory.eINSTANCE.createIOType
-		unitType.type = FPMLFactory.eINSTANCE.createUnitType
-		arg.type = unitType
+	def static Argument createUnitPureArgument(){
+		val arg = FPMLFactory.eINSTANCE.createPureArgument
+		arg.type = FPMLFactory.eINSTANCE.createUnitType
 		return arg
 	}
 	
@@ -211,6 +209,44 @@ class Others {
 		return returnT
 	}
 	
+	def static EffectFullFunctionType lambdaWrap(Type lambdaArgumentType, Type lambdaReturnType){
+		val returnT = FPMLFactory.eINSTANCE.createEffectFullFunctionType
+		returnT.argType = FPMLFactory.eINSTANCE.createUnitType
+		
+		if (lambdaArgumentType instanceof UnitType) {
+			if (lambdaReturnType instanceof IOType)
+				returnT.returnType = (lambdaReturnType as IOType)
+			else
+				returnT.returnType = IOWrap(lambdaReturnType)
+			return returnT
+		} else {
+			val innerT = FPMLFactory.eINSTANCE.createEffectFullFunctionType
+			innerT.argType = lambdaArgumentType
+			if (lambdaReturnType instanceof IOType)
+				innerT.returnType = (lambdaReturnType as IOType)
+			else
+				innerT.returnType = IOWrap(lambdaReturnType)
+			returnT.returnType = IOWrap(innerT)
+			return returnT	
+		}
+	}
+	
+	def static PureFunctionType lambdaWrap(ValueType lambdaArgumentType, ValueType lambdaReturnType){
+		val returnT = FPMLFactory.eINSTANCE.createPureFunctionType
+		returnT.argType = FPMLFactory.eINSTANCE.createUnitType
+		
+		if (lambdaArgumentType instanceof UnitType){
+			returnT.returnType = lambdaReturnType
+			return returnT
+		}else {
+			val innerT = FPMLFactory.eINSTANCE.createPureFunctionType
+			innerT.argType = lambdaArgumentType
+			innerT.returnType = lambdaReturnType
+			returnT.returnType = innerT
+			return returnT	
+		}
+	}
+	
 	def static ValueType createTypeOfPureFunction(PureFunction pf){
 		switch pf {
 			PureValue: EcoreUtil.copy(GetReturnType.expression(pf.value))
@@ -234,18 +270,7 @@ class Others {
 		switch content {
 			EffectFullFunction: createTypeOfEffectFullFunction(content)
 			EffectFullPrimitive: createTypeOfEffectFullPrimitive(content)
-			EffectFullFunctionType: {
-				val returnType = EcoreUtil.copy(GetReturnType.effectFullExpression(content as EffectFullExpression))
-				if (content.value instanceof EffectFullLambda) {
-					val Type argType = EcoreUtil.copy(GetArgType.effectFullLambda(content.value as EffectFullLambda))
-					if (returnType instanceof IOType)
-						Others.createEffectFullFuntionType(argType, (returnType as IOType))
-					else 
-						Others.createEffectFullFuntionType(argType, Others.IOWrap(returnType))				
-				} else {
-					returnType
-				}
-			}
+			EffectFullFunctionType: EcoreUtil.copy(GetReturnType.effectFullExpression(content as EffectFullExpression))
 			EffectFullExpression: GetReturnType.effectFullExpression(content as EffectFullExpression)
 		}
 	}

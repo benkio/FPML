@@ -81,6 +81,7 @@ import it.unibo.fPML.RightAlgebraicIO;
 import it.unibo.fPML.Time;
 import it.unibo.fPML.Times;
 import it.unibo.fPML.Type;
+import it.unibo.fPML.UnitType;
 import it.unibo.generator.TypeGenerator;
 import it.unibo.generator.ValuePureFunctionCommonGenerator;
 import it.unibo.validation.utilitiesFunctions.GetReturnType;
@@ -95,12 +96,12 @@ public class ValueEffectFullFunctionCommonGenerator {
   
   private final ValuePureFunctionCommonGenerator commonFunctions = new ValuePureFunctionCommonGenerator();
   
-  public String compile(final EffectFullExpression e) {
+  public String compile(final EffectFullExpression e, final boolean functionTypeExec) {
     String _switchResult = null;
     boolean _matched = false;
     if (e instanceof EffectFullFunctionType) {
       _matched=true;
-      return this.compile(((EffectFullFunctionType)e));
+      return this.compile(((EffectFullFunctionType)e), functionTypeExec);
     }
     if (!_matched) {
       if (e instanceof EffectFullDataValue) {
@@ -114,7 +115,7 @@ public class ValueEffectFullFunctionCommonGenerator {
         EffectFullExpressionAndEffectFullFunctionReference _value = ((EffectFullDataValue)e).getValue();
         EffectFullData _type_1 = ((EffectFullDataValue)e).getType();
         EffectFullType _content = _type_1.getContent();
-        CharSequence _compileAdtValue = this.compileAdtValue(_value, _content);
+        CharSequence _compileAdtValue = this.compileAdtValue(_value, _content, functionTypeExec);
         _builder.append(_compileAdtValue, "");
         _builder.append(")");
         _switchResult = _builder.toString();
@@ -132,14 +133,14 @@ public class ValueEffectFullFunctionCommonGenerator {
           String prodElement1Type = null;
           String prodElement2Type = null;
           if ((prodElement1 instanceof Expression)) {
-            String _compile = this.compile(((EffectFullExpression) prodElement1));
+            String _compile = this.compile(((EffectFullExpression) prodElement1), false);
             prodElement1Type = _compile;
           } else {
             String _compileEffectFullFunctionRef = this.compileEffectFullFunctionRef(((EffectFullFunction) prodElement1));
             prodElement1Type = _compileEffectFullFunctionRef;
           }
           if ((prodElement2 instanceof Expression)) {
-            String _compile_1 = this.compile(((EffectFullExpression) prodElement2));
+            String _compile_1 = this.compile(((EffectFullExpression) prodElement2), false);
             prodElement2Type = _compile_1;
           } else {
             String _compileEffectFullFunctionRef_1 = this.compileEffectFullFunctionRef(((EffectFullFunction) prodElement2));
@@ -166,7 +167,7 @@ public class ValueEffectFullFunctionCommonGenerator {
           final EffectFullBodyContent sumElement1 = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(_sumAdtElement1_1);
           String sumElement1Type = null;
           if ((sumElement1 instanceof Expression)) {
-            String _compile = this.compile(((EffectFullExpression) sumElement1));
+            String _compile = this.compile(((EffectFullExpression) sumElement1), false);
             sumElement1Type = _compile;
           } else {
             String _compileEffectFullFunctionRef = this.compileEffectFullFunctionRef(((EffectFullFunction) sumElement1));
@@ -182,7 +183,7 @@ public class ValueEffectFullFunctionCommonGenerator {
           final EffectFullBodyContent sumElement2 = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(_sumAdtElement2);
           String sumElement2Type = null;
           if ((sumElement2 instanceof Expression)) {
-            String _compile_1 = this.compile(((EffectFullExpression) sumElement2));
+            String _compile_1 = this.compile(((EffectFullExpression) sumElement2), false);
             sumElement2Type = _compile_1;
           } else {
             String _compileEffectFullFunctionRef_1 = this.compileEffectFullFunctionRef(((EffectFullFunction) sumElement2));
@@ -212,7 +213,7 @@ public class ValueEffectFullFunctionCommonGenerator {
       if (e instanceof IOExpression) {
         _matched=true;
         Expression _innerValue = ((IOExpression)e).getInnerValue();
-        String _compile = this.commonFunctions.compile(((Expression) _innerValue));
+        String _compile = this.commonFunctions.compile(((Expression) _innerValue), false);
         String _plus = ("IOFunctions.unit(" + _compile);
         return (_plus + ")");
       }
@@ -221,7 +222,7 @@ public class ValueEffectFullFunctionCommonGenerator {
       if (e instanceof IOEffectFullExpression) {
         _matched=true;
         EffectFullExpression _innerValue = ((IOEffectFullExpression)e).getInnerValue();
-        String _compile = this.compile(((EffectFullExpression) _innerValue));
+        String _compile = this.compile(((EffectFullExpression) _innerValue), false);
         String _plus = ("IOFunctions.unit(" + _compile);
         return (_plus + ")");
       }
@@ -283,7 +284,7 @@ public class ValueEffectFullFunctionCommonGenerator {
     return _switchResult;
   }
   
-  public CharSequence compileAdtValue(final EffectFullExpressionAndEffectFullFunctionReference vr, final Type d) {
+  public CharSequence compileAdtValue(final EffectFullExpressionAndEffectFullFunctionReference vr, final Type d, final boolean functionTypeExec) {
     CharSequence _xblockexpression = null;
     {
       final EffectFullBodyContent v = Others.getInnerElementFromEffectFullExpressionAndEffectFullFunctionReference(vr);
@@ -298,7 +299,7 @@ public class ValueEffectFullFunctionCommonGenerator {
           _builder.append("Either.right(");
           EffectFullExpressionAndEffectFullFunctionReference _sumAdtElement2 = ((EffectFullSumValue)v).getSumAdtElement2();
           Type _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) d));
-          Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType);
+          Object _compileAdtValue = this.compileAdtValue(_sumAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType, functionTypeExec);
           _builder.append(_compileAdtValue, "");
           _builder.append(")");
           return _builder.toString();
@@ -307,7 +308,7 @@ public class ValueEffectFullFunctionCommonGenerator {
         _builder_1.append("Either.left(");
         EffectFullExpressionAndEffectFullFunctionReference _sumAdtElement1_1 = ((EffectFullSumValue)v).getSumAdtElement1();
         Type _effectFullAdtElement1 = ((EffectFullAlgebraicType) d).getEffectFullAdtElement1();
-        Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _effectFullAdtElement1);
+        Object _compileAdtValue_1 = this.compileAdtValue(_sumAdtElement1_1, _effectFullAdtElement1, functionTypeExec);
         _builder_1.append(_compileAdtValue_1, "");
         _builder_1.append(")");
         return _builder_1.toString();
@@ -319,12 +320,12 @@ public class ValueEffectFullFunctionCommonGenerator {
           _builder.append("P.p(");
           EffectFullExpressionAndEffectFullFunctionReference _prodAdtElement1 = ((EffectFullProdValue)v).getProdAdtElement1();
           Type _effectFullAdtElement1 = ((EffectFullAlgebraicType) d).getEffectFullAdtElement1();
-          Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _effectFullAdtElement1);
+          Object _compileAdtValue = this.compileAdtValue(_prodAdtElement1, _effectFullAdtElement1, functionTypeExec);
           _builder.append(_compileAdtValue, "");
           _builder.append(",");
           EffectFullExpressionAndEffectFullFunctionReference _prodAdtElement2 = ((EffectFullProdValue)v).getProdAdtElement2();
           Type _element2ValueTypeFromEffectFullAlgebraicType = Others.getElement2ValueTypeFromEffectFullAlgebraicType(((EffectFullAlgebraicType) d));
-          Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType);
+          Object _compileAdtValue_1 = this.compileAdtValue(_prodAdtElement2, _element2ValueTypeFromEffectFullAlgebraicType, functionTypeExec);
           _builder.append(_compileAdtValue_1, "");
           _builder.append(")");
           return _builder.toString();
@@ -356,12 +357,12 @@ public class ValueEffectFullFunctionCommonGenerator {
         if (v instanceof EffectFullFunctionType) {
           _matched=true;
           if ((d instanceof EffectFullFunctionType)) {
-            return this.compile(((EffectFullFunctionType)v));
+            return this.compile(((EffectFullFunctionType)v), functionTypeExec);
           } else {
             if ((d instanceof IOType)) {
               StringConcatenation _builder = new StringConcatenation();
               _builder.append("IOFunctions.unit(");
-              String _compile = this.compile(((EffectFullFunctionType)v));
+              String _compile = this.compile(((EffectFullFunctionType)v), functionTypeExec);
               _builder.append(_compile, "");
               _builder.append(")");
               return _builder.toString();
@@ -372,7 +373,7 @@ public class ValueEffectFullFunctionCommonGenerator {
       if (!_matched) {
         if (v instanceof EffectFullDataValue) {
           _matched=true;
-          return this.compile(((EffectFullExpression) v));
+          return this.compile(((EffectFullExpression) v), functionTypeExec);
         }
       }
       if (!_matched) {
@@ -383,7 +384,7 @@ public class ValueEffectFullFunctionCommonGenerator {
           Expression _innerValue = ((IOExpression)v).getInnerValue();
           PureExpressionAndPureFunctionReference _createPureExpressionAndPureFunctionReference = Others.createPureExpressionAndPureFunctionReference(((Expression) _innerValue));
           Type _type = ((IOType) d).getType();
-          Object _compileAdtValue = this.commonFunctions.compileAdtValue(_createPureExpressionAndPureFunctionReference, _type);
+          String _compileAdtValue = this.commonFunctions.compileAdtValue(_createPureExpressionAndPureFunctionReference, _type, false);
           _builder.append(_compileAdtValue, "");
           _builder.append(")");
           _switchResult = _builder;
@@ -397,7 +398,7 @@ public class ValueEffectFullFunctionCommonGenerator {
           EffectFullExpression _innerValue = ((IOEffectFullExpression)v).getInnerValue();
           EffectFullExpressionAndEffectFullFunctionReference _createEffectFullExpressionAndEffectFullFunctionReference = Others.createEffectFullExpressionAndEffectFullFunctionReference(((EffectFullExpression) _innerValue));
           Type _type = ((IOType) d).getType();
-          Object _compileAdtValue = this.compileAdtValue(_createEffectFullExpressionAndEffectFullFunctionReference, ((EffectFullType) _type));
+          Object _compileAdtValue = this.compileAdtValue(_createEffectFullExpressionAndEffectFullFunctionReference, ((EffectFullType) _type), functionTypeExec);
           _builder.append(_compileAdtValue, "");
           _builder.append(")");
           _switchResult = _builder;
@@ -432,7 +433,7 @@ public class ValueEffectFullFunctionCommonGenerator {
     return _xblockexpression;
   }
   
-  public String compile(final EffectFullFunctionType pft) {
+  public String compile(final EffectFullFunctionType pft, final boolean call) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EffectFullFunctionDefinition _value = pft.getValue();
@@ -459,7 +460,12 @@ public class ValueEffectFullFunctionCommonGenerator {
         _builder.newLine();
         _builder.append("\t\t");
         _builder.append("}");
-        _builder.newLine();
+        {
+          if (call) {
+            _builder.append(".f()");
+          }
+        }
+        _builder.newLineIfNotEmpty();
       } else {
         if (((pft.getValue().getFunctionBody() instanceof CompositionFunctionBodyEffect) && (!Objects.equal(pft.getValue().getArg(), null)))) {
           _builder.append("new F<");
@@ -534,7 +540,7 @@ public class ValueEffectFullFunctionCommonGenerator {
             _builder.append(" f() {");
             _builder.newLineIfNotEmpty();
             _builder.append("\t\t\t\t");
-            _builder.append("return ");
+            _builder.append("return () -> ");
             EffectFullFunctionDefinition _value_11 = pft.getValue();
             FunctionBodyEffectFull _functionBody_2 = _value_11.getFunctionBody();
             String _compileIO_1 = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_2), null);
@@ -545,8 +551,13 @@ public class ValueEffectFullFunctionCommonGenerator {
             _builder.append("}");
             _builder.newLine();
             _builder.append("\t");
-            _builder.append("}.f()");
-            _builder.newLine();
+            _builder.append("}");
+            {
+              if (call) {
+                _builder.append(".f()");
+              }
+            }
+            _builder.newLineIfNotEmpty();
           }
         }
       }
@@ -586,7 +597,7 @@ public class ValueEffectFullFunctionCommonGenerator {
     boolean _matched = false;
     if (e instanceof EffectFullExpression) {
       _matched=true;
-      String _compile = this.compile(((EffectFullExpression)e));
+      String _compile = this.compile(((EffectFullExpression)e), true);
       _switchResult = this.valueEmbellishment(valueName, _compile);
     }
     if (!_matched) {
@@ -653,14 +664,29 @@ public class ValueEffectFullFunctionCommonGenerator {
     if (!_matched) {
       if (eff instanceof EffectFullFunctionDefinition) {
         _matched=true;
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("IOFunctions.bind(");
-        _builder.append(acc, "");
-        _builder.append(", EffectFullFunctionDefinitions::");
-        String _name = ((EffectFullFunctionDefinition) eff).getName();
-        _builder.append(_name, "");
-        _builder.append(")");
-        _switchResult = _builder.toString();
+        String _xifexpression = null;
+        Argument _arg = ((EffectFullFunctionDefinition)eff).getArg();
+        Type _argumentType = Others.getArgumentType(_arg);
+        if ((_argumentType instanceof UnitType)) {
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("IOFunctions.bind(");
+          _builder.append(acc, "");
+          _builder.append(",ignored -> EffectFullFunctionDefinitions.");
+          String _name = ((EffectFullFunctionDefinition) eff).getName();
+          _builder.append(_name, "");
+          _builder.append("(Unit.unit()))");
+          _xifexpression = _builder.toString();
+        } else {
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("IOFunctions.bind(");
+          _builder_1.append(acc, "");
+          _builder_1.append(", EffectFullFunctionDefinitions::");
+          String _name_1 = ((EffectFullFunctionDefinition) eff).getName();
+          _builder_1.append(_name_1, "");
+          _builder_1.append(")");
+          _xifexpression = _builder_1.toString();
+        }
+        _switchResult = _xifexpression;
       }
     }
     if (!_matched) {
@@ -722,12 +748,21 @@ public class ValueEffectFullFunctionCommonGenerator {
         EffectFullFunctionType _functionType = ((ApplyFIO)peff).getFunctionType();
         String _compile = this.typeGenerator.compile(_functionType);
         _builder.append(_compile, "");
-        _builder.append(" f) -> f.f(IOFunctions.runSafe(");
-        ApplyFIOFactor _value = ((ApplyFIO)peff).getValue();
-        EffectFullBodyContent _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
-        String _compileIO = this.compileIO(_valueFromApplyFIOFactor, null);
-        _builder.append(_compileIO, "");
-        _builder.append(")))");
+        _builder.append(" f) -> f.f(");
+        {
+          EffectFullFunctionType _functionType_1 = ((ApplyFIO)peff).getFunctionType();
+          Type _argType = _functionType_1.getArgType();
+          boolean _not = (!(_argType instanceof UnitType));
+          if (_not) {
+            _builder.append("IOFunctions.runSafe(");
+            ApplyFIOFactor _value = ((ApplyFIO)peff).getValue();
+            EffectFullBodyContent _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
+            String _compileIO = this.compileIO(_valueFromApplyFIOFactor, null);
+            _builder.append(_compileIO, "");
+            _builder.append(")");
+          }
+        }
+        _builder.append("))");
         _switchResult = _builder.toString();
       }
     }
@@ -811,18 +846,23 @@ public class ValueEffectFullFunctionCommonGenerator {
             _builder.append(" IOFunctions.unit(");
           }
         }
-        _builder.append("PrimitivesEffectFull.effectFullIf(c, ");
+        _builder.append("PrimitivesEffectFull.<");
         EffectFullIfBody _then_1 = ((EffectFullIf)peff).getThen();
-        String _compile = this.compile(_then_1);
+        Type _effectFullIfBody = GetReturnType.effectFullIfBody(_then_1);
+        String _compile = this.typeGenerator.compile(_effectFullIfBody);
         _builder.append(_compile, "");
+        _builder.append(">effectFullIf(c, ");
+        EffectFullIfBody _then_2 = ((EffectFullIf)peff).getThen();
+        String _compile_1 = this.compile(_then_2);
+        _builder.append(_compile_1, "");
         _builder.append(" , ");
         EffectFullIfBody _else = ((EffectFullIf)peff).getElse();
-        String _compile_1 = this.compile(_else);
-        _builder.append(_compile_1, "");
+        String _compile_2 = this.compile(_else);
+        _builder.append(_compile_2, "");
         _builder.append("))");
         {
-          EffectFullIfBody _then_2 = ((EffectFullIf)peff).getThen();
-          if ((_then_2 instanceof IOType)) {
+          EffectFullIfBody _then_3 = ((EffectFullIf)peff).getThen();
+          if ((_then_3 instanceof IOType)) {
             _builder.append(" ");
           } else {
             _builder.append(")");
@@ -909,7 +949,7 @@ public class ValueEffectFullFunctionCommonGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IOFuncitons.unit(");
-        String _compile = this.commonFunctions.compile(((Expression)pf));
+        String _compile = this.commonFunctions.compile(((Expression)pf), true);
         _builder.append(_compile, "");
         _builder.append(")");
         _switchResult = this.valueEmbellishment(acc, _builder.toString());
@@ -1217,7 +1257,7 @@ public class ValueEffectFullFunctionCommonGenerator {
       boolean _matched = false;
       if (content instanceof EffectFullExpression) {
         _matched=true;
-        _switchResult = this.compile(((EffectFullExpression) content));
+        _switchResult = this.compile(((EffectFullExpression) content), true);
       }
       if (!_matched) {
         if (content instanceof EffectFullFunction) {

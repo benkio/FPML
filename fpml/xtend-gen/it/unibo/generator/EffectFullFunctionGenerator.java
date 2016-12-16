@@ -82,6 +82,7 @@ import it.unibo.generator.FPMLGenerator;
 import it.unibo.generator.TypeGenerator;
 import it.unibo.generator.ValueEffectFullFunctionCommonGenerator;
 import it.unibo.generator.ValuePureFunctionCommonGenerator;
+import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -286,7 +287,7 @@ public class EffectFullFunctionGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(".append(");
-        String _compile = this.commonEffectFullFunctions.compile(((EffectFullExpression)e));
+        String _compile = this.commonEffectFullFunctions.compile(((EffectFullExpression)e), true);
         _builder.append(_compile, "");
         _builder.append(")");
         _switchResult = _builder;
@@ -457,17 +458,22 @@ public class EffectFullFunctionGenerator {
             _builder.append(" IOFunctions.unit(");
           }
         }
-        _builder.append("PrimtivesEffectFull.effectFullIf(c,");
+        _builder.append("PrimtivesEffectFull.<");
         EffectFullIfBody _then_1 = ((EffectFullIf)pef).getThen();
-        String _compile = this.commonEffectFullFunctions.compile(_then_1);
+        Type _effectFullIfBody = GetReturnType.effectFullIfBody(_then_1);
+        String _compile = this.typeGenerator.compile(_effectFullIfBody);
         _builder.append(_compile, "");
+        _builder.append(">effectFullIf(c,");
+        EffectFullIfBody _then_2 = ((EffectFullIf)pef).getThen();
+        String _compile_1 = this.commonEffectFullFunctions.compile(_then_2);
+        _builder.append(_compile_1, "");
         _builder.append(" ,");
         EffectFullIfBody _else = ((EffectFullIf)pef).getElse();
-        String _compile_1 = this.commonEffectFullFunctions.compile(_else);
-        _builder.append(_compile_1, "");
+        String _compile_2 = this.commonEffectFullFunctions.compile(_else);
+        _builder.append(_compile_2, "");
         {
-          EffectFullIfBody _then_2 = ((EffectFullIf)pef).getThen();
-          if ((_then_2 instanceof IOType)) {
+          EffectFullIfBody _then_3 = ((EffectFullIf)pef).getThen();
+          if ((_then_3 instanceof IOType)) {
             _builder.append(" ");
           } else {
             _builder.append(" )");
@@ -735,14 +741,19 @@ public class EffectFullFunctionGenerator {
       if (ppf instanceof PureIf) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".map((Boolean c) -> Primitives.pureIf(c, ");
+        _builder.append(".map((Boolean c) -> Primitives.<");
         PureIfBody _then = ((PureIf)ppf).getThen();
-        String _compile = this.commonPureFunctions.compile(_then);
+        ValueType _pureIfBody = GetReturnType.pureIfBody(_then);
+        String _compile = this.typeGenerator.compile(_pureIfBody);
         _builder.append(_compile, "");
+        _builder.append(">pureIf(c, ");
+        PureIfBody _then_1 = ((PureIf)ppf).getThen();
+        String _compile_1 = this.commonPureFunctions.compile(_then_1);
+        _builder.append(_compile_1, "");
         _builder.append(", ");
         PureIfBody _else = ((PureIf)ppf).getElse();
-        String _compile_1 = this.commonPureFunctions.compile(_else);
-        _builder.append(_compile_1, "");
+        String _compile_2 = this.commonPureFunctions.compile(_else);
+        _builder.append(_compile_2, "");
         _builder.append("))");
         _switchResult = _builder;
       }
@@ -783,7 +794,7 @@ public class EffectFullFunctionGenerator {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(".append(");
-        String _compile = this.commonPureFunctions.compile(((Expression)pf));
+        String _compile = this.commonPureFunctions.compile(((Expression)pf), true);
         _builder.append(_compile, "");
         _builder.append(")");
         _switchResult = _builder;

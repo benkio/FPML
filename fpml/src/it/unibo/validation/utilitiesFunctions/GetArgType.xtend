@@ -64,22 +64,10 @@ class GetArgType {
 	
 	def static ValueType pureFunctionDefinition(PureFunctionDefinition f) {
 		switch f {
-			PureValue: {
-				if (f.value instanceof PureFunctionType) {
-						return pureLambda((f.value as PureFunctionType).value as PureLambda)
-				}else 
-					return FPMLFactory.eINSTANCE.createUnitType
-			}
-			PureLambda: return pureLambda(f)
+			PureValue: return FPMLFactory.eINSTANCE.createUnitType
+			PureLambda: return FPMLFactory.eINSTANCE.createUnitType
 			default: return EcoreUtil.copy(f.arg.type)
 		}
-	}
-	
-	def static ValueType pureLambda(PureLambda l){
-    if (l.arg != null) 
-		  return EcoreUtil.copy(l.arg.type)
-    else
-      return FPMLFactory.eINSTANCE.createUnitType
 	}
 	
 	def static Type effectFullBodyContent(EffectFullBodyContent reference) {
@@ -147,19 +135,9 @@ class GetArgType {
 	
 	def static Type effectFullFunctionDefinition(EffectFullFunctionDefinition definition) {
 		switch definition{
-			EffectFullValue: {
-				switch definition.value{
-					EffectFullFunctionType: effectFullLambda((definition.value as EffectFullFunctionType).value as EffectFullLambda)
-					default: FPMLFactory.eINSTANCE.createUnitType
-				}
-			}
-			EffectFullLambda: effectFullLambda(definition)
+			EffectFullValue: FPMLFactory.eINSTANCE.createUnitType
+			EffectFullLambda: FPMLFactory.eINSTANCE.createUnitType
 			EffectFullFunctionDefinition: Others.getArgumentType(definition.arg)
 		}
-	}
-	
-	def static Type effectFullLambda(EffectFullLambda lambda) {
-		if (lambda.arg == null) return FPMLFactory.eINSTANCE.createUnitType
-		else return Others.getArgumentType(lambda.arg)
 	}
 }

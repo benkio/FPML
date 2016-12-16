@@ -230,7 +230,7 @@ public class FPMLValidator extends AbstractFPMLValidator {
         final ValueType thenType = GetReturnType.pureIfBody(_then);
         PureIfBody _else = ((PureIf)p).getElse();
         final ValueType elseType = GetReturnType.pureIfBody(_else);
-        if (((!Checks.TypeEquals(thenType, elseType)) && (!Objects.equal(thenType.eClass(), elseType.eClass())))) {
+        if (((!Checks.TypeEquals(thenType, elseType, false)) && (!Objects.equal(thenType.eClass(), elseType.eClass())))) {
           this.error(FPMLValidator.IFBRANCHESTYPEMISMATCH, FPMLPackage.Literals.PURE_IF__THEN);
         }
       }
@@ -307,7 +307,9 @@ public class FPMLValidator extends AbstractFPMLValidator {
         final Type thenType = GetReturnType.effectFullIfBody(_then);
         EffectFullIfBody _else = ((EffectFullIf)p).getElse();
         final Type elseType = GetReturnType.effectFullIfBody(_else);
-        if (((!Checks.TypeEquals(thenType, elseType)) && (!Objects.equal(thenType.eClass(), elseType.eClass())))) {
+        boolean _TypeEquals = Checks.TypeEquals(thenType, elseType, false);
+        boolean _not = (!_TypeEquals);
+        if (_not) {
           this.error(FPMLValidator.IFBRANCHESTYPEMISMATCH, FPMLPackage.Literals.EFFECT_FULL_IF__THEN);
         }
       }
