@@ -46,7 +46,8 @@ import it.unibo.fPML.Equals;
 import it.unibo.fPML.ExtractEffectFull;
 import it.unibo.fPML.ExtractPure;
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.GetLine;
+import it.unibo.fPML.GetIntStdIn;
+import it.unibo.fPML.GetLineStdIn;
 import it.unibo.fPML.IOEffectFullExpression;
 import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
@@ -277,8 +278,11 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case FPMLPackage.EXTRACT_PURE:
 				sequence_ExtractPure(context, (ExtractPure) semanticObject); 
 				return; 
-			case FPMLPackage.GET_LINE:
-				sequence_GetLine(context, (GetLine) semanticObject); 
+			case FPMLPackage.GET_INT_STD_IN:
+				sequence_GetIntSdtIn(context, (GetIntStdIn) semanticObject); 
+				return; 
+			case FPMLPackage.GET_LINE_STD_IN:
+				sequence_GetLineStdIn(context, (GetLineStdIn) semanticObject); 
 				return; 
 			case FPMLPackage.IO_EFFECT_FULL_EXPRESSION:
 				sequence_EffectFullExpression(context, (IOEffectFullExpression) semanticObject); 
@@ -1381,18 +1385,36 @@ public class FPMLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Function returns GetLine
-	 *     EffectFullFunction returns GetLine
-	 *     PrimitiveFunction returns GetLine
-	 *     EffectFullPrimitive returns GetLine
-	 *     EffectFullBodyContent returns GetLine
-	 *     PrimitiveEffectFullFunction returns GetLine
-	 *     GetLine returns GetLine
+	 *     Function returns GetIntStdIn
+	 *     EffectFullFunction returns GetIntStdIn
+	 *     PrimitiveFunction returns GetIntStdIn
+	 *     EffectFullPrimitive returns GetIntStdIn
+	 *     EffectFullBodyContent returns GetIntStdIn
+	 *     PrimitiveEffectFullFunction returns GetIntStdIn
+	 *     GetIntSdtIn returns GetIntStdIn
 	 *
 	 * Constraint:
-	 *     {GetLine}
+	 *     {GetIntStdIn}
 	 */
-	protected void sequence_GetLine(ISerializationContext context, GetLine semanticObject) {
+	protected void sequence_GetIntSdtIn(ISerializationContext context, GetIntStdIn semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns GetLineStdIn
+	 *     EffectFullFunction returns GetLineStdIn
+	 *     PrimitiveFunction returns GetLineStdIn
+	 *     EffectFullPrimitive returns GetLineStdIn
+	 *     EffectFullBodyContent returns GetLineStdIn
+	 *     PrimitiveEffectFullFunction returns GetLineStdIn
+	 *     GetLineStdIn returns GetLineStdIn
+	 *
+	 * Constraint:
+	 *     {GetLineStdIn}
+	 */
+	protected void sequence_GetLineStdIn(ISerializationContext context, GetLineStdIn semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

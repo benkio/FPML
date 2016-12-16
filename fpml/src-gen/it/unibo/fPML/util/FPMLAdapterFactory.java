@@ -586,9 +586,14 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
         return createEffectFullIfBodyAdapter();
       }
       @Override
-      public Adapter caseGetLine(GetLine object)
+      public Adapter caseGetLineStdIn(GetLineStdIn object)
       {
-        return createGetLineAdapter();
+        return createGetLineStdInAdapter();
+      }
+      @Override
+      public Adapter caseGetIntSdtIn(GetIntSdtIn object)
+      {
+        return createGetIntSdtInAdapter();
       }
       @Override
       public Adapter casePureValue(PureValue object)
@@ -659,6 +664,11 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseEffectFullSumValue(EffectFullSumValue object)
       {
         return createEffectFullSumValueAdapter();
+      }
+      @Override
+      public Adapter caseGetIntStdIn(GetIntStdIn object)
+      {
+        return createGetIntStdInAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -2213,16 +2223,31 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link it.unibo.fPML.GetLine <em>Get Line</em>}'.
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.GetLineStdIn <em>Get Line Std In</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see it.unibo.fPML.GetLine
+   * @see it.unibo.fPML.GetLineStdIn
    * @generated
    */
-  public Adapter createGetLineAdapter()
+  public Adapter createGetLineStdInAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.GetIntSdtIn <em>Get Int Sdt In</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.GetIntSdtIn
+   * @generated
+   */
+  public Adapter createGetIntSdtInAdapter()
   {
     return null;
   }
@@ -2433,6 +2458,21 @@ public class FPMLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEffectFullSumValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link it.unibo.fPML.GetIntStdIn <em>Get Int Std In</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see it.unibo.fPML.GetIntStdIn
+   * @generated
+   */
+  public Adapter createGetIntStdInAdapter()
   {
     return null;
   }

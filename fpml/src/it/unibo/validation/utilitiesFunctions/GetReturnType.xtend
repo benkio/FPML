@@ -250,7 +250,8 @@ class GetReturnType {
 				val elseType = effectFullIfBody(function.getElse)
 				Others.IOWrap(Others.createEffectFullAlgebraicType(thenType, elseType, true))
 			}
-      		GetLine: Others.IOWrap(FPMLFactory.eINSTANCE.createStringType)
+      		GetLineStdIn: Others.IOWrap(FPMLFactory.eINSTANCE.createStringType)
+      		GetIntSdtIn: Others.IOWrap(FPMLFactory.eINSTANCE.createIntegerType)
 		}
 	}
 	

@@ -1056,16 +1056,29 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case FPMLPackage.GET_LINE:
+      case FPMLPackage.GET_LINE_STD_IN:
       {
-        GetLine getLine = (GetLine)theEObject;
-        T result = caseGetLine(getLine);
-        if (result == null) result = casePrimitiveEffectFullFunction(getLine);
-        if (result == null) result = caseEffectFullFunction(getLine);
-        if (result == null) result = caseEffectFullPrimitive(getLine);
-        if (result == null) result = caseFunction(getLine);
-        if (result == null) result = caseEffectFullBodyContent(getLine);
-        if (result == null) result = casePrimitiveFunction(getLine);
+        GetLineStdIn getLineStdIn = (GetLineStdIn)theEObject;
+        T result = caseGetLineStdIn(getLineStdIn);
+        if (result == null) result = casePrimitiveEffectFullFunction(getLineStdIn);
+        if (result == null) result = caseEffectFullFunction(getLineStdIn);
+        if (result == null) result = caseEffectFullPrimitive(getLineStdIn);
+        if (result == null) result = caseFunction(getLineStdIn);
+        if (result == null) result = caseEffectFullBodyContent(getLineStdIn);
+        if (result == null) result = casePrimitiveFunction(getLineStdIn);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.GET_INT_SDT_IN:
+      {
+        GetIntSdtIn getIntSdtIn = (GetIntSdtIn)theEObject;
+        T result = caseGetIntSdtIn(getIntSdtIn);
+        if (result == null) result = casePrimitiveEffectFullFunction(getIntSdtIn);
+        if (result == null) result = caseEffectFullFunction(getIntSdtIn);
+        if (result == null) result = caseEffectFullPrimitive(getIntSdtIn);
+        if (result == null) result = caseFunction(getIntSdtIn);
+        if (result == null) result = caseEffectFullBodyContent(getIntSdtIn);
+        if (result == null) result = casePrimitiveFunction(getIntSdtIn);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1219,6 +1232,20 @@ public class FPMLSwitch<T> extends Switch<T>
         if (result == null) result = caseEffectFullExpression(effectFullSumValue);
         if (result == null) result = caseType(effectFullSumValue);
         if (result == null) result = caseEffectFullBodyContent(effectFullSumValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FPMLPackage.GET_INT_STD_IN:
+      {
+        GetIntStdIn getIntStdIn = (GetIntStdIn)theEObject;
+        T result = caseGetIntStdIn(getIntStdIn);
+        if (result == null) result = caseGetIntSdtIn(getIntStdIn);
+        if (result == null) result = casePrimitiveEffectFullFunction(getIntStdIn);
+        if (result == null) result = caseEffectFullFunction(getIntStdIn);
+        if (result == null) result = caseEffectFullPrimitive(getIntStdIn);
+        if (result == null) result = caseFunction(getIntStdIn);
+        if (result == null) result = caseEffectFullBodyContent(getIntStdIn);
+        if (result == null) result = casePrimitiveFunction(getIntStdIn);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2859,17 +2886,33 @@ public class FPMLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Get Line</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Get Line Std In</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Get Line</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Get Line Std In</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGetLine(GetLine object)
+  public T caseGetLineStdIn(GetLineStdIn object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Get Int Sdt In</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Get Int Sdt In</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGetIntSdtIn(GetIntSdtIn object)
   {
     return null;
   }
@@ -3094,6 +3137,22 @@ public class FPMLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEffectFullSumValue(EffectFullSumValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Get Int Std In</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Get Int Std In</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGetIntStdIn(GetIntStdIn object)
   {
     return null;
   }

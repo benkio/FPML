@@ -334,7 +334,7 @@ PureReturn: {PureReturn} 'return' type=ValueType;
 PrimitiveEffectFullFunction:
 	Print | ApplyFIO | EffectFullReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull
 	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf 
-	| EffectFullEitherIf | GetLine;
+	| EffectFullEitherIf | GetLineStdIn | GetIntSdtIn;
 
 Print:
     {Print} "print";
@@ -376,8 +376,8 @@ EffectFullEitherIf: {EffectFullEitherIf} 'ifEither' 'then' '{' then=EffectFullIf
 EffectFullIfBody: functionReference=[EffectFullFunction]
 	| functionExpression=EffectFullExpression;
 
-GetLine: {GetLine} 'getLine';
-
+GetLineStdIn: {GetLineStdIn} 'getLineStdIn';
+GetIntSdtIn: {GetIntStdIn} 'getIntStdIn';
 ////////////////////////////////////////////////////////////////////////////////////////////
 // TERMINALS
 ////////////////////////////////////////////////////////////////////////////////////////////

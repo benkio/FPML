@@ -33,7 +33,8 @@ import it.unibo.fPML.ExtractPure;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
-import it.unibo.fPML.GetLine;
+import it.unibo.fPML.GetIntStdIn;
+import it.unibo.fPML.GetLineStdIn;
 import it.unibo.fPML.IOType;
 import it.unibo.fPML.IntPow;
 import it.unibo.fPML.IntToString;
@@ -500,10 +501,18 @@ public class EffectFullFunctionGenerator {
       }
     }
     if (!_matched) {
-      if (pef instanceof GetLine) {
+      if (pef instanceof GetLineStdIn) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(PrimitivesEffectFull::getLine)");
+        _builder.append(".append(PrimitivesEffectFull::getLineStdIn)");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (pef instanceof GetIntStdIn) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(".append(PrimitivesEffectFull::getIntStdIn)");
         _switchResult = _builder;
       }
     }

@@ -942,13 +942,22 @@ public interface FPMLFactory extends EFactory
   EffectFullIfBody createEffectFullIfBody();
 
   /**
-   * Returns a new object of class '<em>Get Line</em>'.
+   * Returns a new object of class '<em>Get Line Std In</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Get Line</em>'.
+   * @return a new object of class '<em>Get Line Std In</em>'.
    * @generated
    */
-  GetLine createGetLine();
+  GetLineStdIn createGetLineStdIn();
+
+  /**
+   * Returns a new object of class '<em>Get Int Sdt In</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Get Int Sdt In</em>'.
+   * @generated
+   */
+  GetIntSdtIn createGetIntSdtIn();
 
   /**
    * Returns a new object of class '<em>Pure Value</em>'.
@@ -1075,6 +1084,15 @@ public interface FPMLFactory extends EFactory
    * @generated
    */
   EffectFullSumValue createEffectFullSumValue();
+
+  /**
+   * Returns a new object of class '<em>Get Int Std In</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Get Int Std In</em>'.
+   * @generated
+   */
+  GetIntStdIn createGetIntStdIn();
 
   /**
    * Returns the package supported by this factory.

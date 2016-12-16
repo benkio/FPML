@@ -43,7 +43,8 @@
 'else'=70
 'extract'=65
 'extractEffectFull'=77
-'getLine'=79
+'getIntStdIn'=80
+'getLineStdIn'=79
 'if'=68
 'ifEither'=71
 'int'=29
@@ -142,3 +143,4 @@ T__76=76
 T__77=77
 T__78=78
 T__79=79
+T__80=80

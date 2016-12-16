@@ -35,7 +35,8 @@ import it.unibo.fPML.Expression;
 import it.unibo.fPML.ExtractEffectFull;
 import it.unibo.fPML.ExtractPure;
 import it.unibo.fPML.FunctionBodyEffectFull;
-import it.unibo.fPML.GetLine;
+import it.unibo.fPML.GetIntStdIn;
+import it.unibo.fPML.GetLineStdIn;
 import it.unibo.fPML.IOEffectFullExpression;
 import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
@@ -890,12 +891,22 @@ public class ValueEffectFullFunctionCommonGenerator {
       }
     }
     if (!_matched) {
-      if (peff instanceof GetLine) {
+      if (peff instanceof GetLineStdIn) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("IOFunctions.append(");
         _builder.append(acc, "");
-        _builder.append(", PrimitivesEffectFull.getLine())");
+        _builder.append(", PrimitivesEffectFull.getLineStdIn())");
+        _switchResult = _builder.toString();
+      }
+    }
+    if (!_matched) {
+      if (peff instanceof GetIntStdIn) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("IOFunctions.append(");
+        _builder.append(acc, "");
+        _builder.append(", PrimitivesEffectFull.getIntStdIn())");
         _switchResult = _builder.toString();
       }
     }

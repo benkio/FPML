@@ -186,7 +186,8 @@ public class FPMLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIsRightEffectFullAccess().getGroup(), "rule__IsRightEffectFull__Group__0");
 					put(grammarAccess.getEffectFullIfAccess().getGroup(), "rule__EffectFullIf__Group__0");
 					put(grammarAccess.getEffectFullEitherIfAccess().getGroup(), "rule__EffectFullEitherIf__Group__0");
-					put(grammarAccess.getGetLineAccess().getGroup(), "rule__GetLine__Group__0");
+					put(grammarAccess.getGetLineStdInAccess().getGroup(), "rule__GetLineStdIn__Group__0");
+					put(grammarAccess.getGetIntSdtInAccess().getGroup(), "rule__GetIntSdtIn__Group__0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_0(), "rule__Model__ElementsAssignment_0");
 					put(grammarAccess.getModelAccess().getElementsAssignment_1(), "rule__Model__ElementsAssignment_1");
 					put(grammarAccess.getPureBlockAccess().getElementsAssignment_2(), "rule__PureBlock__ElementsAssignment_2");

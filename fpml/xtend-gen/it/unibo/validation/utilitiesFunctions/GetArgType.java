@@ -29,7 +29,8 @@ import it.unibo.fPML.ExtractEffectFull;
 import it.unibo.fPML.ExtractPure;
 import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
-import it.unibo.fPML.GetLine;
+import it.unibo.fPML.GetIntSdtIn;
+import it.unibo.fPML.GetLineStdIn;
 import it.unibo.fPML.IOEffectFullExpression;
 import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
@@ -530,7 +531,13 @@ public class GetArgType {
       }
     }
     if (!_matched) {
-      if (function instanceof GetLine) {
+      if (function instanceof GetLineStdIn) {
+        _matched=true;
+        _switchResult = FPMLFactory.eINSTANCE.createUnitType();
+      }
+    }
+    if (!_matched) {
+      if (function instanceof GetIntSdtIn) {
         _matched=true;
         _switchResult = FPMLFactory.eINSTANCE.createUnitType();
       }

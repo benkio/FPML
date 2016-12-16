@@ -66,6 +66,9 @@ class Checks {
 	}
 	
 	def static boolean ValueTypeEquals(ValueType v, ValueType v2, boolean unitCheck) {
+		if (unitCheck && (v2 instanceof UnitType || (v instanceof UnitType && v2 == null)))
+			return true
+		
 		if (v2 instanceof VoidType) return false
 		switch v {
 			PureFunctionType: return 	v2 instanceof PureFunctionType && 

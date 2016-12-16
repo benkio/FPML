@@ -166,7 +166,8 @@ class ValueEffectFullFunctionCommonGenerator {
 			IsRightEffectFull: '''IOFunctions.bind(«acc», PrimitivesEffectFull::isRight)'''
 			EffectFullIf:'''IOFunctions.bind(«acc», (Boolean c) -> «IF (peff.then instanceof IOType)» «ELSE» IOFunctions.unit(«ENDIF»PrimitivesEffectFull.<«typeGenerator.compile(GetReturnType.effectFullIfBody(peff.then))»>effectFullIf(c, «peff.then.compile» , «peff.^else.compile»))«IF (peff.then instanceof IOType)» «ELSE»)«ENDIF»'''
 			EffectFullEitherIf: '''IOFunctions.bind(«acc», (Boolean c) -> IOFunctions.unit(PrimitivesEffectFull.effectFullIfEither(c, «peff.then.compile» , «peff.^else.compile»)))'''
-      		GetLine: '''IOFunctions.append(«acc», PrimitivesEffectFull.getLine())'''
+      		GetLineStdIn: '''IOFunctions.append(«acc», PrimitivesEffectFull.getLineStdIn())'''
+			GetIntStdIn: '''IOFunctions.append(«acc», PrimitivesEffectFull.getIntStdIn())'''
 		}
 	}
 	

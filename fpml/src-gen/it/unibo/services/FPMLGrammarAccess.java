@@ -3762,16 +3762,18 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIsRightEffectFullParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		private final RuleCall cEffectFullIfParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
 		private final RuleCall cEffectFullEitherIfParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final RuleCall cGetLineParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cGetLineStdInParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cGetIntSdtInParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
 		
 		//PrimitiveEffectFullFunction:
 		//	Print | ApplyFIO | EffectFullReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull
 		//	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf
-		//	| EffectFullEitherIf | GetLine;
+		//	| EffectFullEitherIf | GetLineStdIn | GetIntSdtIn;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//Print | ApplyFIO | EffectFullReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull | LiftPureFunction |
-		//LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf | EffectFullEitherIf | GetLine
+		//LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf | EffectFullEitherIf | GetLineStdIn |
+		//GetIntSdtIn
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Print
@@ -3810,8 +3812,11 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//EffectFullEitherIf
 		public RuleCall getEffectFullEitherIfParserRuleCall_11() { return cEffectFullEitherIfParserRuleCall_11; }
 		
-		//GetLine
-		public RuleCall getGetLineParserRuleCall_12() { return cGetLineParserRuleCall_12; }
+		//GetLineStdIn
+		public RuleCall getGetLineStdInParserRuleCall_12() { return cGetLineStdInParserRuleCall_12; }
+		
+		//GetIntSdtIn
+		public RuleCall getGetIntSdtInParserRuleCall_13() { return cGetIntSdtInParserRuleCall_13; }
 	}
 	public class PrintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.Print");
@@ -4419,24 +4424,43 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		//EffectFullExpression
 		public RuleCall getFunctionExpressionEffectFullExpressionParserRuleCall_1_0() { return cFunctionExpressionEffectFullExpressionParserRuleCall_1_0; }
 	}
-	public class GetLineElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.GetLine");
+	public class GetLineStdInElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.GetLineStdIn");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cGetLineAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cGetLineKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Action cGetLineStdInAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cGetLineStdInKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		//GetLine:
-		//	{GetLine} 'getLine';
+		//GetLineStdIn:
+		//	{GetLineStdIn} 'getLineStdIn';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{GetLine} 'getLine'
+		//{GetLineStdIn} 'getLineStdIn'
 		public Group getGroup() { return cGroup; }
 		
-		//{GetLine}
-		public Action getGetLineAction_0() { return cGetLineAction_0; }
+		//{GetLineStdIn}
+		public Action getGetLineStdInAction_0() { return cGetLineStdInAction_0; }
 		
-		//'getLine'
-		public Keyword getGetLineKeyword_1() { return cGetLineKeyword_1; }
+		//'getLineStdIn'
+		public Keyword getGetLineStdInKeyword_1() { return cGetLineStdInKeyword_1; }
+	}
+	public class GetIntSdtInElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.GetIntSdtIn");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cGetIntStdInAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cGetIntStdInKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//GetIntSdtIn:
+		//	{GetIntStdIn} 'getIntStdIn';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{GetIntStdIn} 'getIntStdIn'
+		public Group getGroup() { return cGroup; }
+		
+		//{GetIntStdIn}
+		public Action getGetIntStdInAction_0() { return cGetIntStdInAction_0; }
+		
+		//'getIntStdIn'
+		public Keyword getGetIntStdInKeyword_1() { return cGetIntStdInKeyword_1; }
 	}
 	
 	
@@ -4558,7 +4582,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final EffectFullIfElements pEffectFullIf;
 	private final EffectFullEitherIfElements pEffectFullEitherIf;
 	private final EffectFullIfBodyElements pEffectFullIfBody;
-	private final GetLineElements pGetLine;
+	private final GetLineStdInElements pGetLineStdIn;
+	private final GetIntSdtInElements pGetIntSdtIn;
 	private final TerminalRule tBOOLEAN;
 	
 	private final Grammar grammar;
@@ -4688,7 +4713,8 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pEffectFullIf = new EffectFullIfElements();
 		this.pEffectFullEitherIf = new EffectFullEitherIfElements();
 		this.pEffectFullIfBody = new EffectFullIfBodyElements();
-		this.pGetLine = new GetLineElements();
+		this.pGetLineStdIn = new GetLineStdInElements();
+		this.pGetIntSdtIn = new GetIntSdtInElements();
 		this.tBOOLEAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "it.unibo.FPML.BOOLEAN");
 	}
 	
@@ -5805,7 +5831,7 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 	//PrimitiveEffectFullFunction:
 	//	Print | ApplyFIO | EffectFullReturn | LeftAlgebraicIO | RightAlgebraicIO | ExtractEffectFull
 	//	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf
-	//	| EffectFullEitherIf | GetLine;
+	//	| EffectFullEitherIf | GetLineStdIn | GetIntSdtIn;
 	public PrimitiveEffectFullFunctionElements getPrimitiveEffectFullFunctionAccess() {
 		return pPrimitiveEffectFullFunction;
 	}
@@ -5987,14 +6013,24 @@ public class FPMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getEffectFullIfBodyAccess().getRule();
 	}
 	
-	//GetLine:
-	//	{GetLine} 'getLine';
-	public GetLineElements getGetLineAccess() {
-		return pGetLine;
+	//GetLineStdIn:
+	//	{GetLineStdIn} 'getLineStdIn';
+	public GetLineStdInElements getGetLineStdInAccess() {
+		return pGetLineStdIn;
 	}
 	
-	public ParserRule getGetLineRule() {
-		return getGetLineAccess().getRule();
+	public ParserRule getGetLineStdInRule() {
+		return getGetLineStdInAccess().getRule();
+	}
+	
+	//GetIntSdtIn:
+	//	{GetIntStdIn} 'getIntStdIn';
+	public GetIntSdtInElements getGetIntSdtInAccess() {
+		return pGetIntSdtIn;
+	}
+	
+	public ParserRule getGetIntSdtInRule() {
+		return getGetIntSdtInAccess().getRule();
 	}
 	
 	//terminal BOOLEAN returns ecore::EBoolean:

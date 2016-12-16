@@ -167,7 +167,8 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.EFFECT_FULL_IF: return createEffectFullIf();
       case FPMLPackage.EFFECT_FULL_EITHER_IF: return createEffectFullEitherIf();
       case FPMLPackage.EFFECT_FULL_IF_BODY: return createEffectFullIfBody();
-      case FPMLPackage.GET_LINE: return createGetLine();
+      case FPMLPackage.GET_LINE_STD_IN: return createGetLineStdIn();
+      case FPMLPackage.GET_INT_SDT_IN: return createGetIntSdtIn();
       case FPMLPackage.PURE_VALUE: return createPureValue();
       case FPMLPackage.EFFECT_FULL_VALUE: return createEffectFullValue();
       case FPMLPackage.IO_EFFECT_FULL_EXPRESSION: return createIOEffectFullExpression();
@@ -182,6 +183,7 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
       case FPMLPackage.PURE_SUM_VALUE: return createPureSumValue();
       case FPMLPackage.EFFECT_FULL_PROD_VALUE: return createEffectFullProdValue();
       case FPMLPackage.EFFECT_FULL_SUM_VALUE: return createEffectFullSumValue();
+      case FPMLPackage.GET_INT_STD_IN: return createGetIntStdIn();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -1314,10 +1316,21 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public GetLine createGetLine()
+  public GetLineStdIn createGetLineStdIn()
   {
-    GetLineImpl getLine = new GetLineImpl();
-    return getLine;
+    GetLineStdInImpl getLineStdIn = new GetLineStdInImpl();
+    return getLineStdIn;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public GetIntSdtIn createGetIntSdtIn()
+  {
+    GetIntSdtInImpl getIntSdtIn = new GetIntSdtInImpl();
+    return getIntSdtIn;
   }
 
   /**
@@ -1472,6 +1485,17 @@ public class FPMLFactoryImpl extends EFactoryImpl implements FPMLFactory
   {
     EffectFullSumValueImpl effectFullSumValue = new EffectFullSumValueImpl();
     return effectFullSumValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public GetIntStdIn createGetIntStdIn()
+  {
+    GetIntStdInImpl getIntStdIn = new GetIntStdInImpl();
+    return getIntStdIn;
   }
 
   /**

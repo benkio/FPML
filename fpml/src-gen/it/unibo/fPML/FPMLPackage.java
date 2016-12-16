@@ -3049,23 +3049,42 @@ public interface FPMLPackage extends EPackage
   int EFFECT_FULL_IF_BODY_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link it.unibo.fPML.impl.GetLineImpl <em>Get Line</em>}' class.
+   * The meta object id for the '{@link it.unibo.fPML.impl.GetLineStdInImpl <em>Get Line Std In</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see it.unibo.fPML.impl.GetLineImpl
-   * @see it.unibo.fPML.impl.FPMLPackageImpl#getGetLine()
+   * @see it.unibo.fPML.impl.GetLineStdInImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getGetLineStdIn()
    * @generated
    */
-  int GET_LINE = 102;
+  int GET_LINE_STD_IN = 102;
 
   /**
-   * The number of structural features of the '<em>Get Line</em>' class.
+   * The number of structural features of the '<em>Get Line Std In</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GET_LINE_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
+  int GET_LINE_STD_IN_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.GetIntSdtInImpl <em>Get Int Sdt In</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.GetIntSdtInImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getGetIntSdtIn()
+   * @generated
+   */
+  int GET_INT_SDT_IN = 103;
+
+  /**
+   * The number of structural features of the '<em>Get Int Sdt In</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GET_INT_SDT_IN_FEATURE_COUNT = PRIMITIVE_EFFECT_FULL_FUNCTION_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link it.unibo.fPML.impl.PureValueImpl <em>Pure Value</em>}' class.
@@ -3075,7 +3094,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureValue()
    * @generated
    */
-  int PURE_VALUE = 103;
+  int PURE_VALUE = 104;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -3148,7 +3167,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullValue()
    * @generated
    */
-  int EFFECT_FULL_VALUE = 104;
+  int EFFECT_FULL_VALUE = 105;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -3221,7 +3240,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOEffectFullExpression()
    * @generated
    */
-  int IO_EFFECT_FULL_EXPRESSION = 105;
+  int IO_EFFECT_FULL_EXPRESSION = 106;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -3249,7 +3268,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOExpression()
    * @generated
    */
-  int IO_EXPRESSION = 106;
+  int IO_EXPRESSION = 107;
 
   /**
    * The feature id for the '<em><b>Inner Value</b></em>' containment reference.
@@ -3277,7 +3296,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOPureFunction()
    * @generated
    */
-  int IO_PURE_FUNCTION = 107;
+  int IO_PURE_FUNCTION = 108;
 
   /**
    * The feature id for the '<em><b>Pure Function</b></em>' reference.
@@ -3314,7 +3333,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getIOEffectFullFunction()
    * @generated
    */
-  int IO_EFFECT_FULL_FUNCTION = 108;
+  int IO_EFFECT_FULL_FUNCTION = 109;
 
   /**
    * The feature id for the '<em><b>Effect Full Function</b></em>' reference.
@@ -3351,7 +3370,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullLambda()
    * @generated
    */
-  int EFFECT_FULL_LAMBDA = 109;
+  int EFFECT_FULL_LAMBDA = 110;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -3415,7 +3434,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getDataValue()
    * @generated
    */
-  int DATA_VALUE = 110;
+  int DATA_VALUE = 111;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -3452,7 +3471,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullDataValue()
    * @generated
    */
-  int EFFECT_FULL_DATA_VALUE = 111;
+  int EFFECT_FULL_DATA_VALUE = 112;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -3489,7 +3508,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureLambda()
    * @generated
    */
-  int PURE_LAMBDA = 112;
+  int PURE_LAMBDA = 113;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -3553,7 +3572,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureProdValue()
    * @generated
    */
-  int PURE_PROD_VALUE = 113;
+  int PURE_PROD_VALUE = 114;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -3608,7 +3627,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getPureSumValue()
    * @generated
    */
-  int PURE_SUM_VALUE = 114;
+  int PURE_SUM_VALUE = 115;
 
   /**
    * The feature id for the '<em><b>Pure Adt Element1</b></em>' containment reference.
@@ -3663,7 +3682,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullProdValue()
    * @generated
    */
-  int EFFECT_FULL_PROD_VALUE = 115;
+  int EFFECT_FULL_PROD_VALUE = 116;
 
   /**
    * The feature id for the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -3718,7 +3737,7 @@ public interface FPMLPackage extends EPackage
    * @see it.unibo.fPML.impl.FPMLPackageImpl#getEffectFullSumValue()
    * @generated
    */
-  int EFFECT_FULL_SUM_VALUE = 116;
+  int EFFECT_FULL_SUM_VALUE = 117;
 
   /**
    * The feature id for the '<em><b>Effect Full Adt Element1</b></em>' containment reference.
@@ -3764,6 +3783,25 @@ public interface FPMLPackage extends EPackage
    * @ordered
    */
   int EFFECT_FULL_SUM_VALUE_FEATURE_COUNT = EFFECT_FULL_ALGEBRAIC_TYPE_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link it.unibo.fPML.impl.GetIntStdInImpl <em>Get Int Std In</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see it.unibo.fPML.impl.GetIntStdInImpl
+   * @see it.unibo.fPML.impl.FPMLPackageImpl#getGetIntStdIn()
+   * @generated
+   */
+  int GET_INT_STD_IN = 118;
+
+  /**
+   * The number of structural features of the '<em>Get Int Std In</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GET_INT_STD_IN_FEATURE_COUNT = GET_INT_SDT_IN_FEATURE_COUNT + 0;
 
 
   /**
@@ -6074,14 +6112,24 @@ public interface FPMLPackage extends EPackage
   EReference getEffectFullIfBody_FunctionExpression();
 
   /**
-   * Returns the meta object for class '{@link it.unibo.fPML.GetLine <em>Get Line</em>}'.
+   * Returns the meta object for class '{@link it.unibo.fPML.GetLineStdIn <em>Get Line Std In</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Get Line</em>'.
-   * @see it.unibo.fPML.GetLine
+   * @return the meta object for class '<em>Get Line Std In</em>'.
+   * @see it.unibo.fPML.GetLineStdIn
    * @generated
    */
-  EClass getGetLine();
+  EClass getGetLineStdIn();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.GetIntSdtIn <em>Get Int Sdt In</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Get Int Sdt In</em>'.
+   * @see it.unibo.fPML.GetIntSdtIn
+   * @generated
+   */
+  EClass getGetIntSdtIn();
 
   /**
    * Returns the meta object for class '{@link it.unibo.fPML.PureValue <em>Pure Value</em>}'.
@@ -6420,6 +6468,16 @@ public interface FPMLPackage extends EPackage
    * @generated
    */
   EReference getEffectFullSumValue_SumAdtElement2();
+
+  /**
+   * Returns the meta object for class '{@link it.unibo.fPML.GetIntStdIn <em>Get Int Std In</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Get Int Std In</em>'.
+   * @see it.unibo.fPML.GetIntStdIn
+   * @generated
+   */
+  EClass getGetIntStdIn();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -8401,14 +8459,24 @@ public interface FPMLPackage extends EPackage
     EReference EFFECT_FULL_IF_BODY__FUNCTION_EXPRESSION = eINSTANCE.getEffectFullIfBody_FunctionExpression();
 
     /**
-     * The meta object literal for the '{@link it.unibo.fPML.impl.GetLineImpl <em>Get Line</em>}' class.
+     * The meta object literal for the '{@link it.unibo.fPML.impl.GetLineStdInImpl <em>Get Line Std In</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see it.unibo.fPML.impl.GetLineImpl
-     * @see it.unibo.fPML.impl.FPMLPackageImpl#getGetLine()
+     * @see it.unibo.fPML.impl.GetLineStdInImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getGetLineStdIn()
      * @generated
      */
-    EClass GET_LINE = eINSTANCE.getGetLine();
+    EClass GET_LINE_STD_IN = eINSTANCE.getGetLineStdIn();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.GetIntSdtInImpl <em>Get Int Sdt In</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.GetIntSdtInImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getGetIntSdtIn()
+     * @generated
+     */
+    EClass GET_INT_SDT_IN = eINSTANCE.getGetIntSdtIn();
 
     /**
      * The meta object literal for the '{@link it.unibo.fPML.impl.PureValueImpl <em>Pure Value</em>}' class.
@@ -8693,6 +8761,16 @@ public interface FPMLPackage extends EPackage
      * @generated
      */
     EReference EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT2 = eINSTANCE.getEffectFullSumValue_SumAdtElement2();
+
+    /**
+     * The meta object literal for the '{@link it.unibo.fPML.impl.GetIntStdInImpl <em>Get Int Std In</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see it.unibo.fPML.impl.GetIntStdInImpl
+     * @see it.unibo.fPML.impl.FPMLPackageImpl#getGetIntStdIn()
+     * @generated
+     */
+    EClass GET_INT_STD_IN = eINSTANCE.getGetIntStdIn();
 
   }
 

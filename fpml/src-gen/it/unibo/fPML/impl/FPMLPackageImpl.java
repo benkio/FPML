@@ -56,7 +56,9 @@ import it.unibo.fPML.FPMLPackage;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
-import it.unibo.fPML.GetLine;
+import it.unibo.fPML.GetIntSdtIn;
+import it.unibo.fPML.GetIntStdIn;
+import it.unibo.fPML.GetLineStdIn;
 import it.unibo.fPML.IOEffectFullExpression;
 import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
@@ -857,7 +859,14 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass getLineEClass = null;
+  private EClass getLineStdInEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass getIntSdtInEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -956,6 +965,13 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * @generated
    */
   private EClass effectFullSumValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass getIntStdInEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -3215,9 +3231,19 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getGetLine()
+  public EClass getGetLineStdIn()
   {
-    return getLineEClass;
+    return getLineStdInEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getGetIntSdtIn()
+  {
+    return getIntSdtInEClass;
   }
 
   /**
@@ -3538,6 +3564,16 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
   public EReference getEffectFullSumValue_SumAdtElement2()
   {
     return (EReference)effectFullSumValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getGetIntStdIn()
+  {
+    return getIntStdInEClass;
   }
 
   /**
@@ -3891,7 +3927,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     createEReference(effectFullIfBodyEClass, EFFECT_FULL_IF_BODY__FUNCTION_REFERENCE);
     createEReference(effectFullIfBodyEClass, EFFECT_FULL_IF_BODY__FUNCTION_EXPRESSION);
 
-    getLineEClass = createEClass(GET_LINE);
+    getLineStdInEClass = createEClass(GET_LINE_STD_IN);
+
+    getIntSdtInEClass = createEClass(GET_INT_SDT_IN);
 
     pureValueEClass = createEClass(PURE_VALUE);
     createEReference(pureValueEClass, PURE_VALUE__VALUE);
@@ -3938,6 +3976,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     effectFullSumValueEClass = createEClass(EFFECT_FULL_SUM_VALUE);
     createEReference(effectFullSumValueEClass, EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT1);
     createEReference(effectFullSumValueEClass, EFFECT_FULL_SUM_VALUE__SUM_ADT_ELEMENT2);
+
+    getIntStdInEClass = createEClass(GET_INT_STD_IN);
   }
 
   /**
@@ -4055,7 +4095,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     isRightEffectFullEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     effectFullIfEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     effectFullEitherIfEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
-    getLineEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
+    getLineStdInEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
+    getIntSdtInEClass.getESuperTypes().add(this.getPrimitiveEffectFullFunction());
     pureValueEClass.getESuperTypes().add(this.getPureFunctionDefinition());
     effectFullValueEClass.getESuperTypes().add(this.getEffectFullFunctionDefinition());
     ioEffectFullExpressionEClass.getESuperTypes().add(this.getEffectFullExpression());
@@ -4070,6 +4111,7 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     pureSumValueEClass.getESuperTypes().add(this.getPureAlgebraicType());
     effectFullProdValueEClass.getESuperTypes().add(this.getEffectFullAlgebraicType());
     effectFullSumValueEClass.getESuperTypes().add(this.getEffectFullAlgebraicType());
+    getIntStdInEClass.getESuperTypes().add(this.getGetIntSdtIn());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4393,7 +4435,9 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEReference(getEffectFullIfBody_FunctionReference(), this.getEffectFullFunction(), null, "functionReference", null, 0, 1, EffectFullIfBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEffectFullIfBody_FunctionExpression(), this.getEffectFullExpression(), null, "functionExpression", null, 0, 1, EffectFullIfBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(getLineEClass, GetLine.class, "GetLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(getLineStdInEClass, GetLineStdIn.class, "GetLineStdIn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(getIntSdtInEClass, GetIntSdtIn.class, "GetIntSdtIn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pureValueEClass, PureValue.class, "PureValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPureValue_Value(), this.getExpression(), null, "value", null, 0, 1, PureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4440,6 +4484,8 @@ public class FPMLPackageImpl extends EPackageImpl implements FPMLPackage
     initEClass(effectFullSumValueEClass, EffectFullSumValue.class, "EffectFullSumValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEffectFullSumValue_SumAdtElement1(), this.getEffectFullExpressionAndEffectFullFunctionReference(), null, "sumAdtElement1", null, 0, 1, EffectFullSumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEffectFullSumValue_SumAdtElement2(), this.getEffectFullExpressionAndEffectFullFunctionReference(), null, "sumAdtElement2", null, 0, 1, EffectFullSumValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(getIntStdInEClass, GetIntStdIn.class, "GetIntStdIn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

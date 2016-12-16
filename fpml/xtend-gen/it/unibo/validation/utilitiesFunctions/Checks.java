@@ -207,6 +207,9 @@ public class Checks {
   }
   
   public static boolean ValueTypeEquals(final ValueType v, final ValueType v2, final boolean unitCheck) {
+    if ((unitCheck && ((v2 instanceof UnitType) || ((v instanceof UnitType) && Objects.equal(v2, null))))) {
+      return true;
+    }
     if ((v2 instanceof VoidType)) {
       return false;
     }

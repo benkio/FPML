@@ -759,31 +759,52 @@ public class ValuePureFunctionCommonGenerator {
     if (!_matched) {
       if (purePrimitive instanceof PureIf) {
         _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Primitives.<");
         PureIfBody _then = ((PureIf)purePrimitive).getThen();
         PureFunction _functionFromPureIfBody = Others.getFunctionFromPureIfBody(_then);
-        String _compileCall = this.compileCall(_functionFromPureIfBody, acc, argName, outsideCalls);
-        String _plus = ((("Primitives.<«typeGenerator.compile(GetReturnType.pureFunction(Others.getFunctionFromPureIfBody(purePrimitive.then)))»>pureIf(" + acc) + ", ") + _compileCall);
-        String _plus_1 = (_plus + ", ");
+        ValueType _pureFunction = GetReturnType.pureFunction(_functionFromPureIfBody);
+        String _compile = this.typeGenerator.compile(_pureFunction);
+        _builder.append(_compile, "");
+        _builder.append(">pureIf(");
+        _builder.append(acc, "");
+        _builder.append(" , ");
+        PureIfBody _then_1 = ((PureIf)purePrimitive).getThen();
+        PureFunction _functionFromPureIfBody_1 = Others.getFunctionFromPureIfBody(_then_1);
+        String _compileCall = this.compileCall(_functionFromPureIfBody_1, acc, argName, outsideCalls);
+        _builder.append(_compileCall, "");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t\t\t\t\t\t\t\t\t   ");
+        _builder.append(", ");
         PureIfBody _else = ((PureIf)purePrimitive).getElse();
-        PureFunction _functionFromPureIfBody_1 = Others.getFunctionFromPureIfBody(_else);
-        String _compileCall_1 = this.compileCall(_functionFromPureIfBody_1, acc, argName, outsideCalls);
-        String _plus_2 = (_plus_1 + _compileCall_1);
-        _switchResult = (_plus_2 + ")");
+        PureFunction _functionFromPureIfBody_2 = Others.getFunctionFromPureIfBody(_else);
+        String _compileCall_1 = this.compileCall(_functionFromPureIfBody_2, acc, argName, outsideCalls);
+        _builder.append(_compileCall_1, "\t\t\t\t\t\t\t\t\t\t\t   ");
+        _builder.append(")");
+        _switchResult = _builder.toString();
       }
     }
     if (!_matched) {
       if (purePrimitive instanceof PureEitherIf) {
         _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Primitives.pureIfEither(");
+        _builder.append(acc, "");
+        _builder.append(", ");
         PureIfBody _then = ((PureEitherIf)purePrimitive).getThen();
         PureFunction _functionFromPureIfBody = Others.getFunctionFromPureIfBody(_then);
         String _compileCall = this.compileCall(_functionFromPureIfBody, acc, argName, outsideCalls);
-        String _plus = ((("Primitives.pureIfEither(" + acc) + ", ") + _compileCall);
-        String _plus_1 = (_plus + ", ");
+        _builder.append(_compileCall, "");
+        _builder.append(" ");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t\t\t\t\t\t\t\t\t   \t\t\t");
+        _builder.append(", ");
         PureIfBody _else = ((PureEitherIf)purePrimitive).getElse();
         PureFunction _functionFromPureIfBody_1 = Others.getFunctionFromPureIfBody(_else);
         String _compileCall_1 = this.compileCall(_functionFromPureIfBody_1, acc, argName, outsideCalls);
-        String _plus_2 = (_plus_1 + _compileCall_1);
-        _switchResult = (_plus_2 + ")");
+        _builder.append(_compileCall_1, "\t\t\t\t\t\t\t\t\t\t\t   \t\t\t");
+        _builder.append(")");
+        _switchResult = _builder.toString();
       }
     }
     return _switchResult;

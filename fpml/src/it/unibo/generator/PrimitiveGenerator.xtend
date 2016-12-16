@@ -189,8 +189,12 @@ class PrimitiveGenerator {
 					}
 				}
 				
-				public static IO<String> getLine() {
+				public static IO<String> getLineStdIn() {
 					return () -> scanner.next();
+				}
+				
+				public static IO<Integer> getIntStdIn() {
+					return () -> scanner.nextInt();
 				}
 			}
 	'''

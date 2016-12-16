@@ -42,12 +42,16 @@ public class PureFunctionGenerator {
     _builder.append("public class PureFunctionDefinitions {");
     _builder.newLine();
     {
-      EList<PureFunctionDefinition> _features = pfb.getFeatures();
-      for(final PureFunctionDefinition f : _features) {
-        _builder.append("\t");
-        String _compile = this.compile(f);
-        _builder.append(_compile, "\t");
-        _builder.newLineIfNotEmpty();
+      if (((!Objects.equal(pfb, null)) && (!Objects.equal(pfb.getFeatures(), null)))) {
+        {
+          EList<PureFunctionDefinition> _features = pfb.getFeatures();
+          for(final PureFunctionDefinition f : _features) {
+            _builder.append("\t");
+            String _compile = this.compile(f);
+            _builder.append(_compile, "\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
       }
     }
     _builder.append("}");

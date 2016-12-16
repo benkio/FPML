@@ -6299,11 +6299,20 @@ rulePrimitiveEffectFullFunction returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getGetLineParserRuleCall_12());
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getGetLineStdInParserRuleCall_12());
 		}
-		this_GetLine_12=ruleGetLine
+		this_GetLineStdIn_12=ruleGetLineStdIn
 		{
-			$current = $this_GetLine_12.current;
+			$current = $this_GetLineStdIn_12.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimitiveEffectFullFunctionAccess().getGetIntSdtInParserRuleCall_13());
+		}
+		this_GetIntSdtIn_13=ruleGetIntSdtIn
+		{
+			$current = $this_GetIntSdtIn_13.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -7269,15 +7278,15 @@ ruleEffectFullIfBody returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleGetLine
-entryRuleGetLine returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getGetLineRule()); }
-	iv_ruleGetLine=ruleGetLine
-	{ $current=$iv_ruleGetLine.current; }
+// Entry rule entryRuleGetLineStdIn
+entryRuleGetLineStdIn returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getGetLineStdInRule()); }
+	iv_ruleGetLineStdIn=ruleGetLineStdIn
+	{ $current=$iv_ruleGetLineStdIn.current; }
 	EOF;
 
-// Rule GetLine
-ruleGetLine returns [EObject current=null]
+// Rule GetLineStdIn
+ruleGetLineStdIn returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -7288,13 +7297,43 @@ ruleGetLine returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getGetLineAccess().getGetLineAction_0(),
+					grammarAccess.getGetLineStdInAccess().getGetLineStdInAction_0(),
 					$current);
 			}
 		)
-		otherlv_1='getLine'
+		otherlv_1='getLineStdIn'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getGetLineAccess().getGetLineKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getGetLineStdInAccess().getGetLineStdInKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleGetIntSdtIn
+entryRuleGetIntSdtIn returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getGetIntSdtInRule()); }
+	iv_ruleGetIntSdtIn=ruleGetIntSdtIn
+	{ $current=$iv_ruleGetIntSdtIn.current; }
+	EOF;
+
+// Rule GetIntSdtIn
+ruleGetIntSdtIn returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getGetIntSdtInAccess().getGetIntStdInAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='getIntStdIn'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getGetIntSdtInAccess().getGetIntStdInKeyword_1());
 		}
 	)
 ;

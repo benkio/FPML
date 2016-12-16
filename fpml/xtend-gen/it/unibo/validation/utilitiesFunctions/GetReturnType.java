@@ -43,7 +43,8 @@ import it.unibo.fPML.FPMLFactory;
 import it.unibo.fPML.Function;
 import it.unibo.fPML.FunctionBodyEffectFull;
 import it.unibo.fPML.FunctionBodyPure;
-import it.unibo.fPML.GetLine;
+import it.unibo.fPML.GetIntSdtIn;
+import it.unibo.fPML.GetLineStdIn;
 import it.unibo.fPML.IOEffectFullExpression;
 import it.unibo.fPML.IOEffectFullFunction;
 import it.unibo.fPML.IOExpression;
@@ -943,10 +944,17 @@ public class GetReturnType {
       }
     }
     if (!_matched) {
-      if (function instanceof GetLine) {
+      if (function instanceof GetLineStdIn) {
         _matched=true;
         StringType _createStringType = FPMLFactory.eINSTANCE.createStringType();
         _switchResult = Others.IOWrap(_createStringType);
+      }
+    }
+    if (!_matched) {
+      if (function instanceof GetIntSdtIn) {
+        _matched=true;
+        IntegerType _createIntegerType = FPMLFactory.eINSTANCE.createIntegerType();
+        _switchResult = Others.IOWrap(_createIntegerType);
       }
     }
     return _switchResult;

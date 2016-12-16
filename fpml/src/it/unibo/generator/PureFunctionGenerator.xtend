@@ -37,9 +37,11 @@ class PureFunctionGenerator {
 		import fj.data.*;
 		
 		public class PureFunctionDefinitions {
-			«FOR f:pfb.features»
-				«f.compile»
-			«ENDFOR»	
+			«IF (pfb != null && pfb.features != null)»
+				«FOR f:pfb.features»
+					«f.compile»
+				«ENDFOR»
+			«ENDIF»	
 		}
 	'''
 

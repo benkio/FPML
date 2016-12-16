@@ -4,25 +4,25 @@
 package it.unibo.fPML.impl;
 
 import it.unibo.fPML.FPMLPackage;
-import it.unibo.fPML.GetLine;
+import it.unibo.fPML.GetLineStdIn;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Get Line</b></em>'.
+ * An implementation of the model object '<em><b>Get Line Std In</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class GetLineImpl extends PrimitiveEffectFullFunctionImpl implements GetLine
+public class GetLineStdInImpl extends PrimitiveEffectFullFunctionImpl implements GetLineStdIn
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GetLineImpl()
+  protected GetLineStdInImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class GetLineImpl extends PrimitiveEffectFullFunctionImpl implements GetL
   @Override
   protected EClass eStaticClass()
   {
-    return FPMLPackage.Literals.GET_LINE;
+    return FPMLPackage.Literals.GET_LINE_STD_IN;
   }
 
-} //GetLineImpl
+} //GetLineStdInImpl

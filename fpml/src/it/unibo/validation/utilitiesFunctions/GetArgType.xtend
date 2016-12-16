@@ -122,7 +122,8 @@ class GetArgType {
 			IsRightEffectFull: EcoreUtil.copy(function.type)
 			EffectFullIf: FPMLFactory.eINSTANCE.createBooleanType
       		EffectFullEitherIf: FPMLFactory.eINSTANCE.createBooleanType
-          	GetLine: FPMLFactory.eINSTANCE.createUnitType
+          	GetLineStdIn: FPMLFactory.eINSTANCE.createUnitType
+          	GetIntSdtIn: FPMLFactory.eINSTANCE.createUnitType
 		}
 	}
 	

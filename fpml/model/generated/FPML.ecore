@@ -373,7 +373,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionExpression" eType="#//EffectFullExpression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GetLine" eSuperTypes="#//PrimitiveEffectFullFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GetLineStdIn" eSuperTypes="#//PrimitiveEffectFullFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GetIntSdtIn" eSuperTypes="#//PrimitiveEffectFullFunction"/>
   <eClassifiers xsi:type="ecore:EClass" name="PureValue" eSuperTypes="#//PureFunctionDefinition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
         containment="true"/>
@@ -434,4 +435,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sumAdtElement2" eType="#//EffectFullExpressionAndEffectFullFunctionReference"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GetIntStdIn" eSuperTypes="#//GetIntSdtIn"/>
 </ecore:EPackage>

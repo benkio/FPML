@@ -128,7 +128,7 @@ class ValuePureFunctionCommonGenerator {
 		}
 	}
 	
-	def compilePrimitiveCall(PrimitivePureFunction purePrimitive, String acc, String argName , boolean outsideCalls){
+	def String compilePrimitiveCall(PrimitivePureFunction purePrimitive, String acc, String argName , boolean outsideCalls){
 		switch purePrimitive {
 			IntToString: "Primitives.intToString(" + acc + ")"
 			BoolToString: "Primitives.boolToString(" + acc + ")"
@@ -152,12 +152,10 @@ class ValuePureFunctionCommonGenerator {
 			IsLeftPure: "Primitives.isLeft(" + acc +")"
 			IsRightPure: "Primitives.isRight("+ acc +")"
 			PureReturn: acc
-			PureIf: "Primitives.<«typeGenerator.compile(GetReturnType.pureFunction(Others.getFunctionFromPureIfBody(purePrimitive.then)))»>pureIf(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
-											   + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls) 
-											   + ")"
-    		PureEitherIf: "Primitives.pureIfEither(" + acc + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls) 
-											   + ", " + compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls) 
-											   + ")"
+			PureIf: '''Primitives.<«typeGenerator.compile(GetReturnType.pureFunction(Others.getFunctionFromPureIfBody(purePrimitive.then)))»>pureIf(«acc» , «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls)»
+											   , «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls)»)'''
+    		PureEitherIf: '''Primitives.pureIfEither(«acc», «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls)» 
+											   			, «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls)»)'''
 		}
 	}
 	
