@@ -86,17 +86,23 @@ class ValueEffectFullFunctionCommonGenerator {
 						}
 				}«IF (call)».f()«ENDIF»
 	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg != null)»
-	new F<«typeGenerator.compile(Others.getArgumentType(pft.value.arg))»,«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>() {
+	new «typeGenerator.compile((Others.createTypeOfEffectFullFunction(pft.value) as EffectFullFunctionType).returnType)»() {
 				@Override
-				public «typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))» f(«typeGenerator.compile(Others.getArgumentType(pft.value.arg))» «Others.getArgumentName(pft.value.arg)») {
-					return «compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), pft.value.arg)»;
+				public «typeGenerator.compile(((Others.createTypeOfEffectFullFunction(pft.value) as EffectFullFunctionType).returnType as IOType))» f() {
+					return («typeGenerator.compile(Others.getArgumentType(pft.value.arg))» «Others.getArgumentName(pft.value.arg)») -> «compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), pft.value.arg)»;
 				}
 		}
 	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg == null)»
-		new F0<«typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))»>() {
+		new «typeGenerator.compile((Others.createTypeOfEffectFullFunction(pft.value) as EffectFullFunctionType))»() {
 					@Override
-					public «typeGenerator.compile(GetReturnType.effectFullFunctionDefinition(pft.value))» f() {
-						return () -> «compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), null)»;
+					public «typeGenerator.compile(
+						(
+							(Others.createTypeOfEffectFullFunction(pft.value)
+								as EffectFullFunctionType
+							).returnType as IOType
+						)
+					)» f() {
+						return «compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), null)»;
 					}
 			}«IF (call)».f()«ENDIF»
 	«ENDIF»
@@ -227,7 +233,7 @@ class ValueEffectFullFunctionCommonGenerator {
 	def String compile(EffectFullIfBody pib) {
 		val content = Others.getFunctionFromEffectFullIfBody(pib)
 		switch content {
-			EffectFullExpression: compile(content as EffectFullExpression, true)
+			EffectFullExpression: compile(content as EffectFullExpression, false)
 			EffectFullFunction: {
 				switch content {
 					EffectFullValue: content.name

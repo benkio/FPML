@@ -20,6 +20,7 @@ import it.unibo.fPML.EffectFullFunction;
 import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullIfBody;
+import it.unibo.fPML.EffectFullLambda;
 import it.unibo.fPML.EffectFullPrimitive;
 import it.unibo.fPML.EffectFullProdTypeFactor;
 import it.unibo.fPML.EffectFullSumTypeFactor;
@@ -43,6 +44,7 @@ import it.unibo.fPML.PureFunction;
 import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureIfBody;
+import it.unibo.fPML.PureLambda;
 import it.unibo.fPML.PureProdTypeFactor;
 import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureSumTypeFactor;
@@ -531,14 +533,6 @@ public class Others {
       _switchResult = EcoreUtil.<ValueType>copy(_expression);
     }
     if (!_matched) {
-      if (pf instanceof PureFunctionDefinition) {
-        _matched=true;
-        ValueType _pureFunction = GetArgType.pureFunction(pf);
-        ValueType _pureFunction_1 = GetReturnType.pureFunction(pf);
-        _switchResult = Others.createPureFuntionType(_pureFunction, _pureFunction_1);
-      }
-    }
-    if (!_matched) {
       if (pf instanceof PrimitivePureFunction) {
         _matched=true;
         ValueType _pureFunction = GetArgType.pureFunction(pf);
@@ -551,6 +545,30 @@ public class Others {
         _matched=true;
         ValueType _type = ((PureArgument)pf).getType();
         _switchResult = EcoreUtil.<ValueType>copy(_type);
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof PureLambda) {
+        _matched=true;
+        ValueType _xifexpression = null;
+        PureArgument _arg = ((PureLambda)pf).getArg();
+        boolean _equals = Objects.equal(_arg, null);
+        if (_equals) {
+          _xifexpression = GetReturnType.pureFunction(pf);
+        } else {
+          ValueType _pureFunction = GetArgType.pureFunction(pf);
+          ValueType _pureFunction_1 = GetReturnType.pureFunction(pf);
+          _xifexpression = Others.createPureFuntionType(_pureFunction, _pureFunction_1);
+        }
+        _switchResult = _xifexpression;
+      }
+    }
+    if (!_matched) {
+      if (pf instanceof PureFunctionDefinition) {
+        _matched=true;
+        ValueType _pureFunction = GetArgType.pureFunction(pf);
+        ValueType _pureFunction_1 = GetReturnType.pureFunction(pf);
+        _switchResult = Others.createPureFuntionType(_pureFunction, _pureFunction_1);
       }
     }
     if (!_matched) {
@@ -585,6 +603,23 @@ public class Others {
         Type _effectFullFunction = GetArgType.effectFullFunction(function);
         Type _effectFullFunction_1 = GetReturnType.effectFullFunction(function);
         _switchResult = Others.createEffectFullFuntionType(_effectFullFunction, ((IOType) _effectFullFunction_1));
+      }
+    }
+    if (!_matched) {
+      if (function instanceof EffectFullLambda) {
+        _matched=true;
+        Type _xifexpression = null;
+        Argument _arg = ((EffectFullLambda)function).getArg();
+        boolean _equals = Objects.equal(_arg, null);
+        if (_equals) {
+          _xifexpression = GetReturnType.effectFullFunction(function);
+        } else {
+          Type _effectFullFunction = GetArgType.effectFullFunction(function);
+          Type _effectFullFunction_1 = GetReturnType.effectFullFunction(function);
+          IOType _IOWrap = Others.IOWrap(_effectFullFunction_1);
+          _xifexpression = Others.createEffectFullFuntionType(_effectFullFunction, _IOWrap);
+        }
+        _switchResult = _xifexpression;
       }
     }
     if (!_matched) {

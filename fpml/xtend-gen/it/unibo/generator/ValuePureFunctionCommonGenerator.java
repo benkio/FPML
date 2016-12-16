@@ -359,50 +359,47 @@ public class ValuePureFunctionCommonGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       if (((pft.getValue().getFunctionBody() instanceof CompositionFunctionBodyPure) && (!Objects.equal(pft.getValue().getArg(), null)))) {
-        _builder.append("new F<");
+        _builder.append("new ");
         PureFunctionDefinition _value = pft.getValue();
-        PureArgument _arg = _value.getArg();
-        ValueType _type = _arg.getType();
-        String _compile = this.typeGenerator.compile(_type);
+        ValueType _createTypeOfPureFunction = Others.createTypeOfPureFunction(_value);
+        ValueType _returnType = ((PureFunctionType) _createTypeOfPureFunction).getReturnType();
+        String _compile = this.typeGenerator.compile(_returnType);
         _builder.append(_compile, "");
-        _builder.append(",");
-        PureFunctionDefinition _value_1 = pft.getValue();
-        ValueType _pureFunctionDefinition = GetReturnType.pureFunctionDefinition(_value_1);
-        String _compile_1 = this.typeGenerator.compile(_pureFunctionDefinition);
-        _builder.append(_compile_1, "");
-        _builder.append(">() {");
+        _builder.append("() {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("@Override");
         _builder.newLine();
         _builder.append("\t\t");
         _builder.append("public ");
-        PureFunctionDefinition _value_2 = pft.getValue();
-        ValueType _pureFunctionDefinition_1 = GetReturnType.pureFunctionDefinition(_value_2);
-        String _compile_2 = this.typeGenerator.compile(_pureFunctionDefinition_1);
-        _builder.append(_compile_2, "\t\t");
-        _builder.append(" f(");
-        PureFunctionDefinition _value_3 = pft.getValue();
-        PureArgument _arg_1 = _value_3.getArg();
-        ValueType _type_1 = _arg_1.getType();
-        String _compile_3 = this.typeGenerator.compile(_type_1);
-        _builder.append(_compile_3, "\t\t");
-        _builder.append(" ");
-        PureFunctionDefinition _value_4 = pft.getValue();
-        PureArgument _arg_2 = _value_4.getArg();
-        String _name = _arg_2.getName();
-        _builder.append(_name, "\t\t");
-        _builder.append(") {");
+        PureFunctionDefinition _value_1 = pft.getValue();
+        ValueType _createTypeOfPureFunction_1 = Others.createTypeOfPureFunction(_value_1);
+        ValueType _returnType_1 = ((PureFunctionType) _createTypeOfPureFunction_1).getReturnType();
+        ValueType _returnType_2 = ((PureFunctionType) _returnType_1).getReturnType();
+        String _compile_1 = this.typeGenerator.compile(_returnType_2);
+        _builder.append(_compile_1, "\t\t");
+        _builder.append(" f() {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t ");
-        _builder.append("return ");
+        _builder.append("return (");
+        PureFunctionDefinition _value_2 = pft.getValue();
+        PureArgument _arg = _value_2.getArg();
+        ValueType _type = _arg.getType();
+        String _compile_2 = this.typeGenerator.compile(_type);
+        _builder.append(_compile_2, "\t\t\t ");
+        _builder.append(" ");
+        PureFunctionDefinition _value_3 = pft.getValue();
+        PureArgument _arg_1 = _value_3.getArg();
+        String _name = _arg_1.getName();
+        _builder.append(_name, "\t\t\t ");
+        _builder.append(") -> ");
+        PureFunctionDefinition _value_4 = pft.getValue();
+        FunctionBodyPure _functionBody = _value_4.getFunctionBody();
         PureFunctionDefinition _value_5 = pft.getValue();
-        FunctionBodyPure _functionBody = _value_5.getFunctionBody();
-        PureFunctionDefinition _value_6 = pft.getValue();
-        PureArgument _arg_3 = _value_6.getArg();
-        String _name_1 = _arg_3.getName();
-        String _compile_4 = this.compile(_functionBody, _name_1, true);
-        _builder.append(_compile_4, "\t\t\t ");
+        PureArgument _arg_2 = _value_5.getArg();
+        String _name_1 = _arg_2.getName();
+        String _compile_3 = this.compile(_functionBody, _name_1, true);
+        _builder.append(_compile_3, "\t\t\t ");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
@@ -411,8 +408,8 @@ public class ValuePureFunctionCommonGenerator {
         _builder.append("}");
         _builder.newLine();
       } else {
-        PureFunctionDefinition _value_7 = pft.getValue();
-        FunctionBodyPure _functionBody_1 = _value_7.getFunctionBody();
+        PureFunctionDefinition _value_6 = pft.getValue();
+        FunctionBodyPure _functionBody_1 = _value_6.getFunctionBody();
         if ((_functionBody_1 instanceof EmptyFunctionBody)) {
           _builder.append("new F<Object>() {");
           _builder.newLine();
@@ -421,9 +418,9 @@ public class ValuePureFunctionCommonGenerator {
           _builder.newLine();
           _builder.append("\t\t\t");
           _builder.append("public Object f(Object ");
-          PureFunctionDefinition _value_8 = pft.getValue();
-          PureArgument _arg_4 = _value_8.getArg();
-          String _name_2 = _arg_4.getName();
+          PureFunctionDefinition _value_7 = pft.getValue();
+          PureArgument _arg_3 = _value_7.getArg();
+          String _name_2 = _arg_3.getName();
           _builder.append(_name_2, "\t\t\t");
           _builder.append(") {");
           _builder.newLineIfNotEmpty();
@@ -442,30 +439,31 @@ public class ValuePureFunctionCommonGenerator {
           }
           _builder.newLineIfNotEmpty();
         } else {
-          _builder.append("new F0<");
-          PureFunctionDefinition _value_9 = pft.getValue();
-          ValueType _pureFunctionDefinition_2 = GetReturnType.pureFunctionDefinition(_value_9);
-          String _compile_5 = this.typeGenerator.compile(_pureFunctionDefinition_2);
-          _builder.append(_compile_5, "");
-          _builder.append(">() {");
+          _builder.append("new ");
+          PureFunctionDefinition _value_8 = pft.getValue();
+          ValueType _createTypeOfPureFunction_2 = Others.createTypeOfPureFunction(_value_8);
+          String _compile_4 = this.typeGenerator.compile(((PureFunctionType) _createTypeOfPureFunction_2));
+          _builder.append(_compile_4, "");
+          _builder.append("() {");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t");
           _builder.append("@Override");
           _builder.newLine();
           _builder.append("\t\t");
           _builder.append("public ");
-          PureFunctionDefinition _value_10 = pft.getValue();
-          ValueType _pureFunctionDefinition_3 = GetReturnType.pureFunctionDefinition(_value_10);
-          String _compile_6 = this.typeGenerator.compile(_pureFunctionDefinition_3);
-          _builder.append(_compile_6, "\t\t");
+          PureFunctionDefinition _value_9 = pft.getValue();
+          ValueType _createTypeOfPureFunction_3 = Others.createTypeOfPureFunction(_value_9);
+          ValueType _returnType_3 = ((PureFunctionType) _createTypeOfPureFunction_3).getReturnType();
+          String _compile_5 = this.typeGenerator.compile(_returnType_3);
+          _builder.append(_compile_5, "\t\t");
           _builder.append(" f() {");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t\t");
           _builder.append("return ");
-          PureFunctionDefinition _value_11 = pft.getValue();
-          FunctionBodyPure _functionBody_2 = _value_11.getFunctionBody();
-          String _compile_7 = this.compile(_functionBody_2, "", true);
-          _builder.append(_compile_7, "\t\t\t");
+          PureFunctionDefinition _value_10 = pft.getValue();
+          FunctionBodyPure _functionBody_2 = _value_10.getFunctionBody();
+          String _compile_6 = this.compile(_functionBody_2, "", true);
+          _builder.append(_compile_6, "\t\t\t");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t");
@@ -538,7 +536,7 @@ public class ValuePureFunctionCommonGenerator {
     if (!_matched) {
       if (initialElement instanceof PureFunctionDefinition) {
         _matched=true;
-        String _compileCall = this.compileCall(initialElement, argName, argName, outsideCalls);
+        String _compileCall = this.compileCall(initialElement, argName, argName, outsideCalls, true);
         result = _compileCall;
       }
     }
@@ -559,13 +557,13 @@ public class ValuePureFunctionCommonGenerator {
     EList<CompositionFunctionBodyPureFactor> _functionChain = cfbp.getFunctionChain();
     for (final CompositionFunctionBodyPureFactor f : _functionChain) {
       PureFunction _functionDefinitionFromPureFactor = Others.getFunctionDefinitionFromPureFactor(f);
-      String _compileCall = this.compileCall(_functionDefinitionFromPureFactor, result, argName, outsideCalls);
+      String _compileCall = this.compileCall(_functionDefinitionFromPureFactor, result, argName, outsideCalls, true);
       result = _compileCall;
     }
     return result;
   }
   
-  public String compileCall(final PureFunction pf, final String acc, final String argName, final boolean outsideCalls) {
+  public String compileCall(final PureFunction pf, final String acc, final String argName, final boolean outsideCalls, final boolean execFunction) {
     String _switchResult = null;
     boolean _matched = false;
     if (pf instanceof PureValue) {
@@ -614,7 +612,7 @@ public class ValuePureFunctionCommonGenerator {
     if (!_matched) {
       if (pf instanceof Expression) {
         _matched=true;
-        _switchResult = this.compile(((Expression)pf), true);
+        _switchResult = this.compile(((Expression)pf), execFunction);
       }
     }
     return _switchResult;
@@ -771,14 +769,14 @@ public class ValuePureFunctionCommonGenerator {
         _builder.append(" , ");
         PureIfBody _then_1 = ((PureIf)purePrimitive).getThen();
         PureFunction _functionFromPureIfBody_1 = Others.getFunctionFromPureIfBody(_then_1);
-        String _compileCall = this.compileCall(_functionFromPureIfBody_1, acc, argName, outsideCalls);
+        String _compileCall = this.compileCall(_functionFromPureIfBody_1, acc, argName, outsideCalls, false);
         _builder.append(_compileCall, "");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t\t\t\t\t\t\t\t\t   ");
         _builder.append(", ");
         PureIfBody _else = ((PureIf)purePrimitive).getElse();
         PureFunction _functionFromPureIfBody_2 = Others.getFunctionFromPureIfBody(_else);
-        String _compileCall_1 = this.compileCall(_functionFromPureIfBody_2, acc, argName, outsideCalls);
+        String _compileCall_1 = this.compileCall(_functionFromPureIfBody_2, acc, argName, outsideCalls, false);
         _builder.append(_compileCall_1, "\t\t\t\t\t\t\t\t\t\t\t   ");
         _builder.append(")");
         _switchResult = _builder.toString();
@@ -793,7 +791,7 @@ public class ValuePureFunctionCommonGenerator {
         _builder.append(", ");
         PureIfBody _then = ((PureEitherIf)purePrimitive).getThen();
         PureFunction _functionFromPureIfBody = Others.getFunctionFromPureIfBody(_then);
-        String _compileCall = this.compileCall(_functionFromPureIfBody, acc, argName, outsideCalls);
+        String _compileCall = this.compileCall(_functionFromPureIfBody, acc, argName, outsideCalls, false);
         _builder.append(_compileCall, "");
         _builder.append(" ");
         _builder.newLineIfNotEmpty();
@@ -801,7 +799,7 @@ public class ValuePureFunctionCommonGenerator {
         _builder.append(", ");
         PureIfBody _else = ((PureEitherIf)purePrimitive).getElse();
         PureFunction _functionFromPureIfBody_1 = Others.getFunctionFromPureIfBody(_else);
-        String _compileCall_1 = this.compileCall(_functionFromPureIfBody_1, acc, argName, outsideCalls);
+        String _compileCall_1 = this.compileCall(_functionFromPureIfBody_1, acc, argName, outsideCalls, false);
         _builder.append(_compileCall_1, "\t\t\t\t\t\t\t\t\t\t\t   \t\t\t");
         _builder.append(")");
         _switchResult = _builder.toString();
@@ -811,22 +809,27 @@ public class ValuePureFunctionCommonGenerator {
   }
   
   public String compileApplyFFactor(final ApplyFFactor r, final String argName, final boolean outsideCalls) {
+    String _xifexpression = null;
     PureFunction _valueReference = r.getValueReference();
-    boolean _matched = false;
-    if (_valueReference instanceof PureValue) {
-      _matched=true;
+    boolean _notEquals = (!Objects.equal(_valueReference, null));
+    if (_notEquals) {
       PureFunction _valueReference_1 = r.getValueReference();
-      return this.compileCall(((PureValue) _valueReference_1), argName, argName, outsideCalls);
-    }
-    if (!_matched) {
-      if (_valueReference instanceof Argument) {
+      return this.compilePureFunctionRef(_valueReference_1);
+    } else {
+      String _switchResult = null;
+      Expression _valueExpression = r.getValueExpression();
+      boolean _matched = false;
+      if (_valueExpression instanceof UnitType) {
         _matched=true;
-        PureFunction _valueReference_1 = r.getValueReference();
-        return Others.getArgumentName(((Argument) _valueReference_1));
+        _switchResult = "";
       }
+      if (!_matched) {
+        Expression _valueExpression_1 = r.getValueExpression();
+        return this.compile(_valueExpression_1, true);
+      }
+      _xifexpression = _switchResult;
     }
-    Expression _valueExpression = r.getValueExpression();
-    return this.compile(_valueExpression, true);
+    return _xifexpression;
   }
   
   public String compilePureFunctionRef(final PureFunction pf) {
@@ -835,9 +838,10 @@ public class ValuePureFunctionCommonGenerator {
     if (pf instanceof PureValue) {
       _matched=true;
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("PureValue::");
+      _builder.append("PureValue.");
       String _name = ((PureValue)pf).getName();
       _builder.append(_name, "");
+      _builder.append("()");
       _switchResult = _builder.toString();
     }
     if (!_matched) {

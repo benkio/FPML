@@ -34,7 +34,7 @@ class TypeGenerator {
 			ValueType: return compile(t)
 			EffectFullFunctionType: {
 				if (t.argType instanceof UnitType) return '''F0<«t.returnType.compile»>'''
-				return '''F<«t.argType.compile», IO<«t.returnType.type.compile»>>'''
+				return '''F<«t.argType.compile», «t.returnType.compile»>'''
 			}
 			EffectFullDataType: '''«t.type.name»'''
 			EffectFullAlgebraicType: {
@@ -53,8 +53,7 @@ class TypeGenerator {
 			StringType: return "String"
       		BooleanType: return "Boolean"
 			DataType: return e.type.name
-			PureFunctionType: 	if (e.value.arg != null) return '''F<«e.value.arg.type.compile», «GetReturnType.function(e.value).compile»>'''
-								else return '''F0<«GetReturnType.function(e.value).compile»>'''
+			PureFunctionType: 	compile(Others.createTypeOfPureFunction(e))
 			PureValueRef: return '''«compileType(e.value.value)»'''
 			PureSumValue: {
 		    	if (e.sumAdtElement1 != null){
@@ -88,12 +87,7 @@ class TypeGenerator {
 		switch e {
 			IOExpression: '''IO<«compileType(e.innerValue as Expression)»>'''
 			Expression: compileType(e as Expression)
-			EffectFullFunctionType: if (e.argType != null && e.returnType != null) 
-										return '''F<«e.argType.compile», IO<«e.returnType.type.compile»>>'''
-									else if(e.returnType != null)
-										return '''F0<«e.returnType.type.compile»>'''
-									else 
-										return '''F0<«GetReturnType.function(e.value).compile»>'''
+			EffectFullFunctionType: compile(Others.createTypeOfEffectFullBodyContent(e))
 			EffectFullDataType: e.type.name
 		    IOEffectFullExpression: '''IO<«(e.innerValue as EffectFullExpression).compileType»>'''
 		    IOPureFunction:	{

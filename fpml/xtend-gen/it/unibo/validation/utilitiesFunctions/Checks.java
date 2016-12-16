@@ -481,8 +481,10 @@ public class Checks {
           }
           if (!_matched_1) {
             Type _createTypeOfEffectFullBodyContent = Others.createTypeOfEffectFullBodyContent(value);
-            IOType _IOWrap = Others.IOWrap(type);
-            _switchResult_1 = Checks.TypeEquals(_createTypeOfEffectFullBodyContent, _IOWrap, false);
+            Type _argType = ((EffectFullFunctionType)type).getArgType();
+            IOType _returnType = ((EffectFullFunctionType)type).getReturnType();
+            EffectFullFunctionType _lambdaWrap = Others.lambdaWrap(_argType, _returnType);
+            _switchResult_1 = Checks.TypeEquals(_createTypeOfEffectFullBodyContent, _lambdaWrap, false);
           }
           _switchResult = _switchResult_1;
         }

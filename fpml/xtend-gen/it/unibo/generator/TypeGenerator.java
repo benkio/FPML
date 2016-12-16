@@ -11,7 +11,6 @@ import it.unibo.fPML.EffectFullDataType;
 import it.unibo.fPML.EffectFullExpression;
 import it.unibo.fPML.EffectFullExpressionAndEffectFullFunctionReference;
 import it.unibo.fPML.EffectFullFunction;
-import it.unibo.fPML.EffectFullFunctionDefinition;
 import it.unibo.fPML.EffectFullFunctionType;
 import it.unibo.fPML.EffectFullProdValue;
 import it.unibo.fPML.EffectFullSumTypeFactor;
@@ -33,7 +32,6 @@ import it.unibo.fPML.PureArgument;
 import it.unibo.fPML.PureData;
 import it.unibo.fPML.PureExpressionAndPureFunctionReference;
 import it.unibo.fPML.PureFunction;
-import it.unibo.fPML.PureFunctionDefinition;
 import it.unibo.fPML.PureFunctionType;
 import it.unibo.fPML.PureProdValue;
 import it.unibo.fPML.PureSumTypeFactor;
@@ -44,7 +42,6 @@ import it.unibo.fPML.StringType;
 import it.unibo.fPML.Type;
 import it.unibo.fPML.UnitType;
 import it.unibo.fPML.ValueType;
-import it.unibo.validation.utilitiesFunctions.GetReturnType;
 import it.unibo.validation.utilitiesFunctions.Others;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -194,12 +191,11 @@ public class TypeGenerator {
         Type _argType_1 = ((EffectFullFunctionType)t).getArgType();
         String _compile_1 = this.compile(_argType_1);
         _builder_1.append(_compile_1, "");
-        _builder_1.append(", IO<");
+        _builder_1.append(", ");
         IOType _returnType_1 = ((EffectFullFunctionType)t).getReturnType();
-        Type _type = _returnType_1.getType();
-        String _compile_2 = this.compile(_type);
+        String _compile_2 = this.compile(_returnType_1);
         _builder_1.append(_compile_2, "");
-        _builder_1.append(">>");
+        _builder_1.append(">");
         return _builder_1.toString();
       }
     }
@@ -260,6 +256,7 @@ public class TypeGenerator {
   }
   
   public String compileType(final Expression e) {
+    String _switchResult = null;
     boolean _matched = false;
     if (e instanceof IntegerType) {
       _matched=true;
@@ -287,34 +284,8 @@ public class TypeGenerator {
     if (!_matched) {
       if (e instanceof PureFunctionType) {
         _matched=true;
-        PureFunctionDefinition _value = ((PureFunctionType)e).getValue();
-        PureArgument _arg = _value.getArg();
-        boolean _notEquals = (!Objects.equal(_arg, null));
-        if (_notEquals) {
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("F<");
-          PureFunctionDefinition _value_1 = ((PureFunctionType)e).getValue();
-          PureArgument _arg_1 = _value_1.getArg();
-          ValueType _type = _arg_1.getType();
-          String _compile = this.compile(_type);
-          _builder.append(_compile, "");
-          _builder.append(", ");
-          PureFunctionDefinition _value_2 = ((PureFunctionType)e).getValue();
-          Type _function = GetReturnType.function(_value_2);
-          String _compile_1 = this.compile(_function);
-          _builder.append(_compile_1, "");
-          _builder.append(">");
-          return _builder.toString();
-        } else {
-          StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append("F0<");
-          PureFunctionDefinition _value_3 = ((PureFunctionType)e).getValue();
-          Type _function_1 = GetReturnType.function(_value_3);
-          String _compile_2 = this.compile(_function_1);
-          _builder_1.append(_compile_2, "");
-          _builder_1.append(">");
-          return _builder_1.toString();
-        }
+        ValueType _createTypeOfPureFunction = Others.createTypeOfPureFunction(e);
+        _switchResult = this.compile(_createTypeOfPureFunction);
       }
     }
     if (!_matched) {
@@ -404,9 +375,12 @@ public class TypeGenerator {
         return _builder.toString();
       }
     }
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Unit");
-    return _builder.toString();
+    if (!_matched) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Unit");
+      return _builder.toString();
+    }
+    return _switchResult;
   }
   
   public String compileType(final EffectFullExpression e) {
@@ -431,42 +405,8 @@ public class TypeGenerator {
     if (!_matched) {
       if (e instanceof EffectFullFunctionType) {
         _matched=true;
-        if (((!Objects.equal(((EffectFullFunctionType)e).getArgType(), null)) && (!Objects.equal(((EffectFullFunctionType)e).getReturnType(), null)))) {
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("F<");
-          Type _argType = ((EffectFullFunctionType)e).getArgType();
-          String _compile = this.compile(_argType);
-          _builder.append(_compile, "");
-          _builder.append(", IO<");
-          IOType _returnType = ((EffectFullFunctionType)e).getReturnType();
-          Type _type = _returnType.getType();
-          String _compile_1 = this.compile(_type);
-          _builder.append(_compile_1, "");
-          _builder.append(">>");
-          return _builder.toString();
-        } else {
-          IOType _returnType_1 = ((EffectFullFunctionType)e).getReturnType();
-          boolean _notEquals = (!Objects.equal(_returnType_1, null));
-          if (_notEquals) {
-            StringConcatenation _builder_1 = new StringConcatenation();
-            _builder_1.append("F0<");
-            IOType _returnType_2 = ((EffectFullFunctionType)e).getReturnType();
-            Type _type_1 = _returnType_2.getType();
-            String _compile_2 = this.compile(_type_1);
-            _builder_1.append(_compile_2, "");
-            _builder_1.append(">");
-            return _builder_1.toString();
-          } else {
-            StringConcatenation _builder_2 = new StringConcatenation();
-            _builder_2.append("F0<");
-            EffectFullFunctionDefinition _value = ((EffectFullFunctionType)e).getValue();
-            Type _function = GetReturnType.function(_value);
-            String _compile_3 = this.compile(_function);
-            _builder_2.append(_compile_3, "");
-            _builder_2.append(">");
-            return _builder_2.toString();
-          }
-        }
+        Type _createTypeOfEffectFullBodyContent = Others.createTypeOfEffectFullBodyContent(e);
+        _switchResult = this.compile(_createTypeOfEffectFullBodyContent);
       }
     }
     if (!_matched) {

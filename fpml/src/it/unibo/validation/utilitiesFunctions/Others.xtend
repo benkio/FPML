@@ -250,9 +250,11 @@ class Others {
 	def static ValueType createTypeOfPureFunction(PureFunction pf){
 		switch pf {
 			PureValue: EcoreUtil.copy(GetReturnType.expression(pf.value))
-			PureFunctionDefinition: it.unibo.validation.utilitiesFunctions.Others.createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
 			PrimitivePureFunction: it.unibo.validation.utilitiesFunctions.Others.createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
 			PureArgument: EcoreUtil.copy(pf.type)
+			PureLambda: if (pf.arg == null) GetReturnType.pureFunction(pf)
+						else createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
+			PureFunctionDefinition: createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
 			Expression: EcoreUtil.copy(GetReturnType.expression(pf))
 		}
 	}
@@ -261,8 +263,10 @@ class Others {
 		switch function { 
 			EffectFullValue: EcoreUtil.copy(GetReturnType.effectFullExpression(function.value))
 			EffectFullArgument: EcoreUtil.copy(function.type)
-			PrimitiveEffectFullFunction: it.unibo.validation.utilitiesFunctions.Others.createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
-			EffectFullFunctionDefinition: it.unibo.validation.utilitiesFunctions.Others.createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
+			PrimitiveEffectFullFunction: createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
+			EffectFullLambda: if (function.arg == null) GetReturnType.effectFullFunction(function)
+							  else createEffectFullFuntionType(GetArgType.effectFullFunction(function),IOWrap(GetReturnType.effectFullFunction(function)))
+			EffectFullFunctionDefinition: createEffectFullFuntionType(GetArgType.effectFullFunction(function),GetReturnType.effectFullFunction(function) as IOType)
 		}
 	}
 	

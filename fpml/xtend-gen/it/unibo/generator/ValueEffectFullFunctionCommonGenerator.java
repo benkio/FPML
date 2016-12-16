@@ -469,48 +469,44 @@ public class ValueEffectFullFunctionCommonGenerator {
         _builder.newLineIfNotEmpty();
       } else {
         if (((pft.getValue().getFunctionBody() instanceof CompositionFunctionBodyEffect) && (!Objects.equal(pft.getValue().getArg(), null)))) {
-          _builder.append("new F<");
+          _builder.append("new ");
           EffectFullFunctionDefinition _value_2 = pft.getValue();
-          Argument _arg_1 = _value_2.getArg();
-          Type _argumentType = Others.getArgumentType(_arg_1);
-          String _compile = this.typeGenerator.compile(_argumentType);
+          Type _createTypeOfEffectFullFunction = Others.createTypeOfEffectFullFunction(_value_2);
+          IOType _returnType = ((EffectFullFunctionType) _createTypeOfEffectFullFunction).getReturnType();
+          String _compile = this.typeGenerator.compile(_returnType);
           _builder.append(_compile, "");
-          _builder.append(",");
-          EffectFullFunctionDefinition _value_3 = pft.getValue();
-          Type _effectFullFunctionDefinition = GetReturnType.effectFullFunctionDefinition(_value_3);
-          String _compile_1 = this.typeGenerator.compile(_effectFullFunctionDefinition);
-          _builder.append(_compile_1, "");
-          _builder.append(">() {");
+          _builder.append("() {");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t\t");
           _builder.append("@Override");
           _builder.newLine();
           _builder.append("\t\t\t");
           _builder.append("public ");
-          EffectFullFunctionDefinition _value_4 = pft.getValue();
-          Type _effectFullFunctionDefinition_1 = GetReturnType.effectFullFunctionDefinition(_value_4);
-          String _compile_2 = this.typeGenerator.compile(_effectFullFunctionDefinition_1);
-          _builder.append(_compile_2, "\t\t\t");
-          _builder.append(" f(");
-          EffectFullFunctionDefinition _value_5 = pft.getValue();
-          Argument _arg_2 = _value_5.getArg();
-          Type _argumentType_1 = Others.getArgumentType(_arg_2);
-          String _compile_3 = this.typeGenerator.compile(_argumentType_1);
-          _builder.append(_compile_3, "\t\t\t");
-          _builder.append(" ");
-          EffectFullFunctionDefinition _value_6 = pft.getValue();
-          Argument _arg_3 = _value_6.getArg();
-          String _argumentName_1 = Others.getArgumentName(_arg_3);
-          _builder.append(_argumentName_1, "\t\t\t");
-          _builder.append(") {");
+          EffectFullFunctionDefinition _value_3 = pft.getValue();
+          Type _createTypeOfEffectFullFunction_1 = Others.createTypeOfEffectFullFunction(_value_3);
+          IOType _returnType_1 = ((EffectFullFunctionType) _createTypeOfEffectFullFunction_1).getReturnType();
+          String _compile_1 = this.typeGenerator.compile(((IOType) _returnType_1));
+          _builder.append(_compile_1, "\t\t\t");
+          _builder.append(" f() {");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t\t\t");
-          _builder.append("return ");
+          _builder.append("return (");
+          EffectFullFunctionDefinition _value_4 = pft.getValue();
+          Argument _arg_1 = _value_4.getArg();
+          Type _argumentType = Others.getArgumentType(_arg_1);
+          String _compile_2 = this.typeGenerator.compile(_argumentType);
+          _builder.append(_compile_2, "\t\t\t\t");
+          _builder.append(" ");
+          EffectFullFunctionDefinition _value_5 = pft.getValue();
+          Argument _arg_2 = _value_5.getArg();
+          String _argumentName_1 = Others.getArgumentName(_arg_2);
+          _builder.append(_argumentName_1, "\t\t\t\t");
+          _builder.append(") -> ");
+          EffectFullFunctionDefinition _value_6 = pft.getValue();
+          FunctionBodyEffectFull _functionBody_1 = _value_6.getFunctionBody();
           EffectFullFunctionDefinition _value_7 = pft.getValue();
-          FunctionBodyEffectFull _functionBody_1 = _value_7.getFunctionBody();
-          EffectFullFunctionDefinition _value_8 = pft.getValue();
-          Argument _arg_4 = _value_8.getArg();
-          String _compileIO = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_1), _arg_4);
+          Argument _arg_3 = _value_7.getArg();
+          String _compileIO = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_1), _arg_3);
           _builder.append(_compileIO, "\t\t\t\t");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
@@ -522,28 +518,30 @@ public class ValueEffectFullFunctionCommonGenerator {
           _builder.newLine();
         } else {
           if (((pft.getValue().getFunctionBody() instanceof CompositionFunctionBodyEffect) && Objects.equal(pft.getValue().getArg(), null))) {
-            _builder.append("new F0<");
-            EffectFullFunctionDefinition _value_9 = pft.getValue();
-            Type _effectFullFunctionDefinition_2 = GetReturnType.effectFullFunctionDefinition(_value_9);
-            String _compile_4 = this.typeGenerator.compile(_effectFullFunctionDefinition_2);
-            _builder.append(_compile_4, "");
-            _builder.append(">() {");
+            _builder.append("new ");
+            EffectFullFunctionDefinition _value_8 = pft.getValue();
+            Type _createTypeOfEffectFullFunction_2 = Others.createTypeOfEffectFullFunction(_value_8);
+            String _compile_3 = this.typeGenerator.compile(((EffectFullFunctionType) _createTypeOfEffectFullFunction_2));
+            _builder.append(_compile_3, "");
+            _builder.append("() {");
             _builder.newLineIfNotEmpty();
             _builder.append("\t\t\t");
             _builder.append("@Override");
             _builder.newLine();
             _builder.append("\t\t\t");
             _builder.append("public ");
-            EffectFullFunctionDefinition _value_10 = pft.getValue();
-            Type _effectFullFunctionDefinition_3 = GetReturnType.effectFullFunctionDefinition(_value_10);
-            String _compile_5 = this.typeGenerator.compile(_effectFullFunctionDefinition_3);
-            _builder.append(_compile_5, "\t\t\t");
+            EffectFullFunctionDefinition _value_9 = pft.getValue();
+            Type _createTypeOfEffectFullFunction_3 = Others.createTypeOfEffectFullFunction(_value_9);
+            IOType _returnType_2 = ((EffectFullFunctionType) _createTypeOfEffectFullFunction_3).getReturnType();
+            String _compile_4 = this.typeGenerator.compile(
+              ((IOType) _returnType_2));
+            _builder.append(_compile_4, "\t\t\t");
             _builder.append(" f() {");
             _builder.newLineIfNotEmpty();
             _builder.append("\t\t\t\t");
-            _builder.append("return () -> ");
-            EffectFullFunctionDefinition _value_11 = pft.getValue();
-            FunctionBodyEffectFull _functionBody_2 = _value_11.getFunctionBody();
+            _builder.append("return ");
+            EffectFullFunctionDefinition _value_10 = pft.getValue();
+            FunctionBodyEffectFull _functionBody_2 = _value_10.getFunctionBody();
             String _compileIO_1 = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_2), null);
             _builder.append(_compileIO_1, "\t\t\t\t");
             _builder.append(";");
@@ -1268,7 +1266,7 @@ public class ValueEffectFullFunctionCommonGenerator {
       boolean _matched = false;
       if (content instanceof EffectFullExpression) {
         _matched=true;
-        _switchResult = this.compile(((EffectFullExpression) content), true);
+        _switchResult = this.compile(((EffectFullExpression) content), false);
       }
       if (!_matched) {
         if (content instanceof EffectFullFunction) {

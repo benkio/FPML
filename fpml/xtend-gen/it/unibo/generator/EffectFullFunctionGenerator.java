@@ -389,12 +389,21 @@ public class EffectFullFunctionGenerator {
         EffectFullFunctionType _functionType = ((ApplyFIO)pef).getFunctionType();
         String _compile = this.typeGenerator.compile(_functionType);
         _builder.append(_compile, "");
-        _builder.append(" f) -> f.f(IOFunctions.runSafe(");
-        ApplyFIOFactor _value = ((ApplyFIO)pef).getValue();
-        EffectFullBodyContent _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
-        String _compileIO = this.commonEffectFullFunctions.compileIO(_valueFromApplyFIOFactor, null);
-        _builder.append(_compileIO, "");
-        _builder.append(")))");
+        _builder.append(" f) -> f.f(");
+        {
+          EffectFullFunctionType _functionType_1 = ((ApplyFIO)pef).getFunctionType();
+          Type _argType = _functionType_1.getArgType();
+          boolean _not = (!(_argType instanceof UnitType));
+          if (_not) {
+            _builder.append("IOFunctions.runSafe(");
+            ApplyFIOFactor _value = ((ApplyFIO)pef).getValue();
+            EffectFullBodyContent _valueFromApplyFIOFactor = Others.getValueFromApplyFIOFactor(_value);
+            String _compileIO = this.commonEffectFullFunctions.compileIO(_valueFromApplyFIOFactor, null);
+            _builder.append(_compileIO, "");
+            _builder.append(")");
+          }
+        }
+        _builder.append("))");
         _switchResult = _builder;
       }
     }
@@ -504,7 +513,7 @@ public class EffectFullFunctionGenerator {
       if (pef instanceof GetLineStdIn) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(PrimitivesEffectFull::getLineStdIn)");
+        _builder.append(".append(PrimitivesEffectFull.getLineStdIn())");
         _switchResult = _builder;
       }
     }
@@ -512,7 +521,7 @@ public class EffectFullFunctionGenerator {
       if (pef instanceof GetIntStdIn) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append(".append(PrimitivesEffectFull::getIntStdIn)");
+        _builder.append(".append(PrimitivesEffectFull.getIntStdIn())");
         _switchResult = _builder;
       }
     }
@@ -634,9 +643,18 @@ public class EffectFullFunctionGenerator {
         String _compile = this.typeGenerator.compile(_functionType);
         _builder.append(_compile, "");
         _builder.append(" f) -> f.f(");
-        ApplyFFactor _value = ((ApplyF)ppf).getValue();
-        String _compileApplyFFactor = this.commonPureFunctions.compileApplyFFactor(_value, "", true);
-        _builder.append(_compileApplyFFactor, "");
+        {
+          PureFunctionType _functionType_1 = ((ApplyF)ppf).getFunctionType();
+          ValueType _argType = _functionType_1.getArgType();
+          boolean _not = (!(_argType instanceof UnitType));
+          if (_not) {
+            _builder.append(" ");
+            ApplyFFactor _value = ((ApplyF)ppf).getValue();
+            String _compileApplyFFactor = this.commonPureFunctions.compileApplyFFactor(_value, "", true);
+            _builder.append(_compileApplyFFactor, "");
+            _builder.append(" ");
+          }
+        }
         _builder.append("))");
         _switchResult = _builder;
       }
@@ -888,9 +906,7 @@ public class EffectFullFunctionGenerator {
     _builder.newLine();
     _builder.append("import java.io.IOException;");
     _builder.newLine();
-    _builder.append("import fj.Unit;");
-    _builder.newLine();
-    _builder.append("import fj.F;");
+    _builder.append("import fj.*;");
     _builder.newLine();
     _builder.append("import ");
     String _basePackageJava_2 = FPMLGenerator.basePackageJava();

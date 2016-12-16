@@ -34,7 +34,7 @@ class Checks {
 				switch value {
 					PureValueRef: value.value instanceof PureFunctionDefinition
 								  && TypeEquals(Others.createTypeOfPureFunction((value as PureValueRef).value), type, false)
-					default: TypeEquals(Others.createTypeOfPureFunction(value), type, false) 
+					default: TypeEquals(Others.createTypeOfPureFunction(value), type, false)
 				} 
 			}
 			PureAlgebraicType: {
@@ -215,7 +215,7 @@ class Checks {
 				switch value {
 					EffectFullValueRef: value.value instanceof EffectFullFunctionDefinition
 								  && TypeEquals(Others.createTypeOfPureFunction((value as PureValueRef).value), type, false)
-					default: TypeEquals(Others.createTypeOfEffectFullBodyContent(value), Others.IOWrap(type), false) 
+					default: TypeEquals(Others.createTypeOfEffectFullBodyContent(value), Others.lambdaWrap(type.argType, type.returnType), false) 
 					
 				}
 			}

@@ -96,7 +96,7 @@ class EffectFullFunctionGenerator {
 			Print: '''.bind(PrimitivesEffectFull::primitivePrint)'''
       		LeftAlgebraicIO: '''.bind(PrimitivesEffectFull::leftAlgebricIO)'''
       		RightAlgebraicIO:'''.bind(PrimitivesEffectFull::rightAlgebricIO)'''
-      		ApplyFIO: '''.bind((«typeGenerator.compile(pef.functionType)» f) -> f.f(IOFunctions.runSafe(«commonEffectFullFunctions.compileIO(Others.getValueFromApplyFIOFactor(pef.value), null)»)))'''
+      		ApplyFIO: '''.bind((«typeGenerator.compile(pef.functionType)» f) -> f.f(«IF (!(pef.functionType.argType instanceof UnitType))»IOFunctions.runSafe(«commonEffectFullFunctions.compileIO(Others.getValueFromApplyFIOFactor(pef.value), null)»)«ENDIF»))'''
 			EffectFullReturn: ''''''
 			ExtractEffectFull: '''.bind((IEffectFullData«typeGenerator.compile(pef.data.content)» d) -> d.getValue())'''
 			LiftPureFunction: compileIOWalkthrough(pef)
@@ -105,8 +105,8 @@ class EffectFullFunctionGenerator {
 			IsRightEffectFull: '''.bind(PrimitivesEffectFull::isRight)'''
       		EffectFullIf: '''.bind((Boolean c) -> «IF (pef.then instanceof IOType)» «ELSE» IOFunctions.unit(«ENDIF»PrimtivesEffectFull.<«typeGenerator.compile(GetReturnType.effectFullIfBody(pef.then))»>effectFullIf(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»«IF (pef.then instanceof IOType)» «ELSE» )«ENDIF»)'''
       		EffectFullEitherIf: '''.bind((Boolean c) -> IOFuncions.unit(PrimtivesEffectFull.effectFullIfEither(c,«commonEffectFullFunctions.compile(pef.then)» ,«commonEffectFullFunctions.compile(pef.^else)»))'''
-          	GetLineStdIn: '''.append(PrimitivesEffectFull::getLineStdIn)'''
-          	GetIntStdIn: '''.append(PrimitivesEffectFull::getIntStdIn)'''
+          	GetLineStdIn: '''.append(PrimitivesEffectFull.getLineStdIn())'''
+          	GetIntStdIn: '''.append(PrimitivesEffectFull.getIntStdIn())'''
 		}
 	}
 	
@@ -141,7 +141,7 @@ class EffectFullFunctionGenerator {
 			Minus: ".map(Primitives::minus)"
 			Times: ".map(Primitives::times)"
 			Mod: ".map(Primitives::mod)"
-			ApplyF: '''.map((«typeGenerator.compile(ppf.functionType)» f) -> f.f(«commonPureFunctions.compileApplyFFactor(ppf.value, "", true)»))''' 
+			ApplyF: '''.map((«typeGenerator.compile(ppf.functionType)» f) -> f.f(«IF (!(ppf.functionType.argType instanceof UnitType))» «commonPureFunctions.compileApplyFFactor(ppf.value, "", true)» «ENDIF»))''' 
 			LeftAlgebraic: ".map(Primitives::leftAlgebraic)" 
 			RightAlgebraic: ".map(Primitives::rightAlgebric)"
 			Equals: '''.map(Primitives::equalsCurryng)'''
@@ -186,8 +186,7 @@ class EffectFullFunctionGenerator {
 		import «FPMLGenerator.basePackageJava»Pure.Data.*;
 		import fj.data.*;
 		import java.io.IOException;
-		import fj.Unit;
-		import fj.F;
+		import fj.*;
 		import «FPMLGenerator.basePackageJava»Effectfull.Data.*;
 		import «FPMLGenerator.basePackageJava»Pure.*;
 		

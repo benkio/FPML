@@ -65,10 +65,10 @@ class ValuePureFunctionCommonGenerator {
 	
 	def String compile(PureFunctionType pft, boolean call) '''
 		«IF (pft.value.functionBody instanceof CompositionFunctionBodyPure) && pft.value.arg != null»
-			new F<«typeGenerator.compile(pft.value.arg.type)»,«typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))»>() {
+			new «typeGenerator.compile((Others.createTypeOfPureFunction(pft.value) as PureFunctionType).returnType)»() {
 					@Override
-					public «typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))» f(«typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») {
-						 return «compile(pft.value.functionBody, pft.value.arg.name, true)»;
+					public «typeGenerator.compile(((Others.createTypeOfPureFunction(pft.value) as PureFunctionType).returnType as PureFunctionType).returnType)» f() {
+						 return («typeGenerator.compile(pft.value.arg.type)» «pft.value.arg.name») -> «compile(pft.value.functionBody, pft.value.arg.name, true)»;
 					}
 			}
 		«ELSEIF (pft.value.functionBody instanceof EmptyFunctionBody)»
@@ -79,9 +79,9 @@ class ValuePureFunctionCommonGenerator {
 						}
 				}«IF (call)».f()«ENDIF»
 		«ELSE»
-			new F0<«typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))»>() {
+			new «typeGenerator.compile((Others.createTypeOfPureFunction(pft.value) as PureFunctionType))»() {
 					@Override
-					public «typeGenerator.compile(GetReturnType.pureFunctionDefinition(pft.value))» f() {
+					public «typeGenerator.compile(((Others.createTypeOfPureFunction(pft.value) as PureFunctionType).returnType))» f() {
 						return «compile(pft.value.functionBody, "", true)»;
 					}
 				}«IF (call)».f()«ENDIF»
@@ -103,17 +103,17 @@ class ValuePureFunctionCommonGenerator {
 			PureValue: result = "PureValue." + (initialElement as PureValue).name + "()"
 			PureLambda: result = "(" + typeGenerator.compile(initialElement.arg) + ") -> return " + initialElement.functionBody.compile(argName,outsideCalls) + ";"
 			PrimitivePureFunction: result = compilePrimitiveCall(initialElement, argName, argName, outsideCalls)
-			PureFunctionDefinition: result = compileCall(initialElement, argName, argName, outsideCalls)
+			PureFunctionDefinition: result = compileCall(initialElement, argName, argName, outsideCalls, true)
 			Expression: result = compile(initialElement, true)
 			Argument: result = Others.getArgumentName(initialElement)
 		}
 		for (f : cfbp.functionChain){
-			result = compileCall( Others.getFunctionDefinitionFromPureFactor(f), result, argName , outsideCalls)
+			result = compileCall( Others.getFunctionDefinitionFromPureFactor(f), result, argName , outsideCalls, true)
 		}
 		return result
 	} 
 	
-	def String compileCall(PureFunction pf, String acc, String argName, boolean outsideCalls) {
+	def String compileCall(PureFunction pf, String acc, String argName, boolean outsideCalls, boolean execFunction) {
 		switch pf {
 			PureValue: return "PureValue." + (pf as PureValue).name + "()"
 			PureLambda: return "(" + typeGenerator.compile(pf.higherOrderArg.arg2) + ") -> return " + pf.functionBody.compile(argName,outsideCalls) + ";"
@@ -124,7 +124,7 @@ class ValuePureFunctionCommonGenerator {
 				else 
 					return "PureFunctionDefinitions." + pf.name + "(" + acc + ")"	
 			}
-			Expression: compile(pf, true)
+			Expression: compile(pf, execFunction)
 		}
 	}
 	
@@ -152,24 +152,27 @@ class ValuePureFunctionCommonGenerator {
 			IsLeftPure: "Primitives.isLeft(" + acc +")"
 			IsRightPure: "Primitives.isRight("+ acc +")"
 			PureReturn: acc
-			PureIf: '''Primitives.<«typeGenerator.compile(GetReturnType.pureFunction(Others.getFunctionFromPureIfBody(purePrimitive.then)))»>pureIf(«acc» , «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls)»
-											   , «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls)»)'''
-    		PureEitherIf: '''Primitives.pureIfEither(«acc», «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls)» 
-											   			, «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls)»)'''
+			PureIf: '''Primitives.<«typeGenerator.compile(GetReturnType.pureFunction(Others.getFunctionFromPureIfBody(purePrimitive.then)))»>pureIf(«acc» , «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls, false)»
+											   , «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls, false)»)'''
+    		PureEitherIf: '''Primitives.pureIfEither(«acc», «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.then), acc, argName, outsideCalls, false)» 
+											   			, «compileCall(Others.getFunctionFromPureIfBody(purePrimitive.^else), acc, argName, outsideCalls, false)»)'''
 		}
 	}
 	
 	def String compileApplyFFactor(ApplyFFactor r,  String argName, boolean outsideCalls) {
-		switch r.valueReference {
-			PureValue: return compileCall(r.valueReference as PureValue, argName, argName, outsideCalls)
-			Argument: return Others.getArgumentName(r.valueReference as Argument)
-			default: return compile(r.valueExpression, true)
-		}
+		if (r.valueReference != null)
+			return compilePureFunctionRef(r.valueReference)
+		else {
+			switch r.valueExpression {
+				UnitType: ""
+				default: return compile(r.valueExpression, true)	
+			}
+		}	
 	}
 	
 	def String compilePureFunctionRef(PureFunction pf) {
 		switch pf {
-			PureValue: '''PureValue::«pf.name»'''
+			PureValue: '''PureValue.«pf.name»()'''
 			PureFunctionDefinition: '''PureFunctionDefinitions::«pf.name»'''
 	//		PrimitivePureFunction: compilePrimitivePureFunctionRef(pf) CANNOT HAPPEN, DOES NOT HAVE NAME REFERENCE
 			PureArgument: pf.name
