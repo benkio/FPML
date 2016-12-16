@@ -473,7 +473,8 @@ public class ValueEffectFullFunctionCommonGenerator {
           EffectFullFunctionDefinition _value_2 = pft.getValue();
           Type _createTypeOfEffectFullFunction = Others.createTypeOfEffectFullFunction(_value_2);
           IOType _returnType = ((EffectFullFunctionType) _createTypeOfEffectFullFunction).getReturnType();
-          String _compile = this.typeGenerator.compile(_returnType);
+          Type _type = ((IOType) _returnType).getType();
+          String _compile = this.typeGenerator.compile(_type);
           _builder.append(_compile, "");
           _builder.append("() {");
           _builder.newLineIfNotEmpty();
@@ -485,12 +486,14 @@ public class ValueEffectFullFunctionCommonGenerator {
           EffectFullFunctionDefinition _value_3 = pft.getValue();
           Type _createTypeOfEffectFullFunction_1 = Others.createTypeOfEffectFullFunction(_value_3);
           IOType _returnType_1 = ((EffectFullFunctionType) _createTypeOfEffectFullFunction_1).getReturnType();
-          String _compile_1 = this.typeGenerator.compile(((IOType) _returnType_1));
+          Type _type_1 = ((IOType) _returnType_1).getType();
+          IOType _returnType_2 = ((EffectFullFunctionType) _type_1).getReturnType();
+          String _compile_1 = this.typeGenerator.compile(_returnType_2);
           _builder.append(_compile_1, "\t\t\t");
           _builder.append(" f() {");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t\t\t");
-          _builder.append("return (");
+          _builder.append("return IOFunctions.unit((");
           EffectFullFunctionDefinition _value_4 = pft.getValue();
           Argument _arg_1 = _value_4.getArg();
           Type _argumentType = Others.getArgumentType(_arg_1);
@@ -508,7 +511,7 @@ public class ValueEffectFullFunctionCommonGenerator {
           Argument _arg_3 = _value_7.getArg();
           String _compileIO = this.compileIO(((CompositionFunctionBodyEffect) _functionBody_1), _arg_3);
           _builder.append(_compileIO, "\t\t\t\t");
-          _builder.append(";");
+          _builder.append(");");
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t\t");
           _builder.append("}");
@@ -532,9 +535,9 @@ public class ValueEffectFullFunctionCommonGenerator {
             _builder.append("public ");
             EffectFullFunctionDefinition _value_9 = pft.getValue();
             Type _createTypeOfEffectFullFunction_3 = Others.createTypeOfEffectFullFunction(_value_9);
-            IOType _returnType_2 = ((EffectFullFunctionType) _createTypeOfEffectFullFunction_3).getReturnType();
+            IOType _returnType_3 = ((EffectFullFunctionType) _createTypeOfEffectFullFunction_3).getReturnType();
             String _compile_4 = this.typeGenerator.compile(
-              ((IOType) _returnType_2));
+              ((IOType) _returnType_3));
             _builder.append(_compile_4, "\t\t\t");
             _builder.append(" f() {");
             _builder.newLineIfNotEmpty();

@@ -86,10 +86,10 @@ class ValueEffectFullFunctionCommonGenerator {
 						}
 				}«IF (call)».f()«ENDIF»
 	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg != null)»
-	new «typeGenerator.compile((Others.createTypeOfEffectFullFunction(pft.value) as EffectFullFunctionType).returnType)»() {
+	new «typeGenerator.compile(((Others.createTypeOfEffectFullFunction(pft.value) as EffectFullFunctionType).returnType as IOType).type)»() {
 				@Override
-				public «typeGenerator.compile(((Others.createTypeOfEffectFullFunction(pft.value) as EffectFullFunctionType).returnType as IOType))» f() {
-					return («typeGenerator.compile(Others.getArgumentType(pft.value.arg))» «Others.getArgumentName(pft.value.arg)») -> «compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), pft.value.arg)»;
+				public «typeGenerator.compile((((Others.createTypeOfEffectFullFunction(pft.value) as EffectFullFunctionType).returnType as IOType).type as EffectFullFunctionType).returnType)» f() {
+					return IOFunctions.unit((«typeGenerator.compile(Others.getArgumentType(pft.value.arg))» «Others.getArgumentName(pft.value.arg)») -> «compileIO((pft.value.functionBody as CompositionFunctionBodyEffect), pft.value.arg)»);
 				}
 		}
 	«ELSEIF (pft.value.functionBody instanceof CompositionFunctionBodyEffect && pft.value.arg == null)»
