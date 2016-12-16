@@ -215,15 +215,15 @@ class Others {
 		
 		if (lambdaArgumentType instanceof UnitType) {
 			if (lambdaReturnType instanceof IOType)
-				returnT.returnType = (lambdaReturnType as IOType)
+				returnT.returnType = EcoreUtil.copy((lambdaReturnType as IOType))
 			else
 				returnT.returnType = IOWrap(lambdaReturnType)
 			return returnT
 		} else {
 			val innerT = FPMLFactory.eINSTANCE.createEffectFullFunctionType
-			innerT.argType = lambdaArgumentType
+			innerT.argType = EcoreUtil.copy(lambdaArgumentType)
 			if (lambdaReturnType instanceof IOType)
-				innerT.returnType = (lambdaReturnType as IOType)
+				innerT.returnType = EcoreUtil.copy((lambdaReturnType as IOType))
 			else
 				innerT.returnType = IOWrap(lambdaReturnType)
 			returnT.returnType = IOWrap(innerT)
@@ -236,12 +236,12 @@ class Others {
 		returnT.argType = FPMLFactory.eINSTANCE.createUnitType
 		
 		if (lambdaArgumentType instanceof UnitType){
-			returnT.returnType = lambdaReturnType
+			returnT.returnType = EcoreUtil.copy(lambdaReturnType)
 			return returnT
 		}else {
 			val innerT = FPMLFactory.eINSTANCE.createPureFunctionType
-			innerT.argType = lambdaArgumentType
-			innerT.returnType = lambdaReturnType
+			innerT.argType = EcoreUtil.copy(lambdaArgumentType)
+			innerT.returnType = EcoreUtil.copy(lambdaReturnType)
 			returnT.returnType = innerT
 			return returnT	
 		}
@@ -250,7 +250,7 @@ class Others {
 	def static ValueType createTypeOfPureFunction(PureFunction pf){
 		switch pf {
 			PureValue: EcoreUtil.copy(GetReturnType.expression(pf.value))
-			PrimitivePureFunction: it.unibo.validation.utilitiesFunctions.Others.createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
+			PrimitivePureFunction: createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))
 			PureArgument: EcoreUtil.copy(pf.type)
 			PureLambda: if (pf.arg == null) GetReturnType.pureFunction(pf)
 						else createPureFuntionType(GetArgType.pureFunction(pf),GetReturnType.pureFunction(pf))

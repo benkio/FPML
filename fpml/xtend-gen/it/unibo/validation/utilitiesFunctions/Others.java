@@ -486,7 +486,8 @@ public class Others {
     returnT.setArgType(_createUnitType);
     if ((lambdaArgumentType instanceof UnitType)) {
       if ((lambdaReturnType instanceof IOType)) {
-        returnT.setReturnType(((IOType) lambdaReturnType));
+        IOType _copy = EcoreUtil.<IOType>copy(((IOType) lambdaReturnType));
+        returnT.setReturnType(_copy);
       } else {
         IOType _IOWrap = Others.IOWrap(lambdaReturnType);
         returnT.setReturnType(_IOWrap);
@@ -494,9 +495,11 @@ public class Others {
       return returnT;
     } else {
       final EffectFullFunctionType innerT = FPMLFactory.eINSTANCE.createEffectFullFunctionType();
-      innerT.setArgType(lambdaArgumentType);
+      Type _copy_1 = EcoreUtil.<Type>copy(lambdaArgumentType);
+      innerT.setArgType(_copy_1);
       if ((lambdaReturnType instanceof IOType)) {
-        innerT.setReturnType(((IOType) lambdaReturnType));
+        IOType _copy_2 = EcoreUtil.<IOType>copy(((IOType) lambdaReturnType));
+        innerT.setReturnType(_copy_2);
       } else {
         IOType _IOWrap_1 = Others.IOWrap(lambdaReturnType);
         innerT.setReturnType(_IOWrap_1);
@@ -512,12 +515,15 @@ public class Others {
     UnitType _createUnitType = FPMLFactory.eINSTANCE.createUnitType();
     returnT.setArgType(_createUnitType);
     if ((lambdaArgumentType instanceof UnitType)) {
-      returnT.setReturnType(lambdaReturnType);
+      ValueType _copy = EcoreUtil.<ValueType>copy(lambdaReturnType);
+      returnT.setReturnType(_copy);
       return returnT;
     } else {
       final PureFunctionType innerT = FPMLFactory.eINSTANCE.createPureFunctionType();
-      innerT.setArgType(lambdaArgumentType);
-      innerT.setReturnType(lambdaReturnType);
+      ValueType _copy_1 = EcoreUtil.<ValueType>copy(lambdaArgumentType);
+      innerT.setArgType(_copy_1);
+      ValueType _copy_2 = EcoreUtil.<ValueType>copy(lambdaReturnType);
+      innerT.setReturnType(_copy_2);
       returnT.setReturnType(innerT);
       return returnT;
     }
