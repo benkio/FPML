@@ -1,0 +1,21 @@
+Pure {
+	Data {
+		Value {
+			AskMessage: "Hello, who you are?"
+			GreetingsMessage: "Greetings, "
+		}
+	}
+	Functions {
+		def String greetingsConcat(String name): { GreetingsMessage |>  + String |> applyF F<String,String> name }
+	}
+}
+Effects {
+	Data { 
+		Value {
+			
+		} 
+	}
+	Functions {
+		IO Unit main: { IO(PureRef(AskMessage)) >>= print >>= getLineStdIn >>= Lift(greetingsConcat) >>= print }
+	}
+}

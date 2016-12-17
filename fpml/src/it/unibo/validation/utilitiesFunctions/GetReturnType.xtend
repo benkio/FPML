@@ -18,7 +18,7 @@ class GetReturnType {
 	def static ValueType pureFunction(PureFunction f){
 		switch f {
 			PureValue: expression(f.value)
-			PureFunctionDefinition: pureFunctionDefinition(f)
+			PureFunctionDefinition: if(f.returnType == null) pureFunctionDefinition(f) else f.returnType
 			PrimitivePureFunction: primitivePureFunction(f)
 			PureArgument: EcoreUtil.copy(f.type)
 			Expression: expression(f)

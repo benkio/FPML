@@ -1,0 +1,48 @@
+Pure {
+	Data {
+		Value {
+			WelcomeMessage: "----------Summation From 1 to n (only 3s and 5s) --------------"
+			AskNMessage: "Insert the n:"
+			ResultMessage: "The summation from 1 to n (only 3s and 5s) is: "
+		}
+	}
+	Functions {
+		def boolean isMultipleOf3or5(int n): {
+			mod |> applyF F<int,int> (3) |>
+			== int 
+			|> applyF F<int, boolean> (0) 
+			|> || 
+			|> applyF F<boolean, boolean> 
+					(\( ) -> { n |> mod |> applyF F<int,int> (5) |> == int |> applyF F<int,boolean> (0) })
+		}
+		def int Summation(int n): {
+			isMultipleOf3or5
+			|> if then { \( ) -> {
+			n |> == int |> applyF F<int, boolean> (3)
+			|> if 	then { \( ) -> { 3 |> return int } } 
+					else { \( ) -> {  
+						n |> + int 
+						|> applyF F<int, int> (\( ) -> { n |> - |> applyF F<int, int> (1) |> Summation })
+					}}
+			|> applyF F<Unit, int> (())	
+			} } else {
+				\( ) -> { n |> - |> applyF F<int, int> (1) |> Summation }
+			}
+			|> applyF F<Unit, int> (())
+		}
+	}
+}
+Effects {
+	Data { 
+		Value {
+			
+		} 
+	}
+	Functions {
+		def IO int printResultMessageAndPass(int result): { IO(PureRef(ResultMessage)) >>= print >>= IOF(result) }
+		IO Unit main: { 
+			IO(PureRef(WelcomeMessage)) >>= print >>= IO(PureRef(AskNMessage)) >>= print 
+			>>= getIntStdIn >>= Lift(Summation) >>= printResultMessageAndPass >>= Lift(intToString) >>= print
+		}
+	}
+}

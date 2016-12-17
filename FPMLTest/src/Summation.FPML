@@ -1,0 +1,34 @@
+Pure {
+	Data {
+		Value {
+			WelcomeMessage: "----------Summation From 1 to n --------------"
+			AskNMessage: "Insert the n:"
+			ResultMessage: "The summation from 1 to n is: "
+		}
+	}
+	Functions {
+		def int Summation(int n): {
+			== int |> applyF F<int, boolean> (1)
+			|> if 	then { \( ) -> { 1 |> return int } } 
+					else { \( ) -> {  
+						n |> + int 
+						|> applyF F<int, int> (\( ) -> { n |> - |> applyF F<int, int> (1) |> Summation })
+					}}
+			|> applyF F<Unit, int> (())
+		}
+	}
+}
+Effects {
+	Data { 
+		Value {
+			
+		} 
+	}
+	Functions {
+		def IO int printResultMessageAndPass(int result): { IO(PureRef(ResultMessage)) >>= print >>= IOF(result) }
+		IO Unit main: { 
+			IO(PureRef(WelcomeMessage)) >>= print >>= IO(PureRef(AskNMessage)) >>= print 
+			>>= getIntStdIn >>= Lift(Summation) >>= printResultMessageAndPass >>= Lift(intToString) >>= print
+		}
+	}
+}

@@ -151,7 +151,7 @@ class ValueEffectFullFunctionCommonGenerator {
 	def String compileIO(EffectFullFunction eff, String acc) {
 		switch eff {
 			EffectFullValue: compileIOEffectFullReference('''EffectFullValue.«(eff as EffectFullValue).name»()''', acc, !(GetReturnType.effectFullBodyContent(eff) instanceof IOType))
-			EffectFullFunctionDefinition: if (Others.getArgumentType(eff.arg) instanceof UnitType) '''IOFunctions.bind(«acc»,ignored -> EffectFullFunctionDefinitions.«(eff as EffectFullFunctionDefinition).name»(Unit.unit()))'''
+			EffectFullFunctionDefinition: if (Others.getArgumentType(eff.arg) instanceof UnitType) '''IOFunctions.bind(«if (acc.isNullOrEmpty) "IOFunctions.ioUnit" else acc»,ignored -> EffectFullFunctionDefinitions.«(eff as EffectFullFunctionDefinition).name»(Unit.unit()))'''
 										  else '''IOFunctions.bind(«acc», EffectFullFunctionDefinitions::«(eff as EffectFullFunctionDefinition).name»)'''
 			PrimitiveEffectFullFunction: compileIO(eff, acc)
 			EffectFullArgument: compileIOEffectFullReference((eff as EffectFullArgument).name, acc, !(eff.type instanceof IOType))

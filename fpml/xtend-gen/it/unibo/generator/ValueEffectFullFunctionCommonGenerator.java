@@ -672,7 +672,14 @@ public class ValueEffectFullFunctionCommonGenerator {
         if ((_argumentType instanceof UnitType)) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("IOFunctions.bind(");
-          _builder.append(acc, "");
+          String _xifexpression_1 = null;
+          boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(acc);
+          if (_isNullOrEmpty) {
+            _xifexpression_1 = "IOFunctions.ioUnit";
+          } else {
+            _xifexpression_1 = acc;
+          }
+          _builder.append(_xifexpression_1, "");
           _builder.append(",ignored -> EffectFullFunctionDefinitions.");
           String _name = ((EffectFullFunctionDefinition) eff).getName();
           _builder.append(_name, "");

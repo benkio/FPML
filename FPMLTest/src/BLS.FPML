@@ -1,0 +1,51 @@
+Pure {
+	Data {
+		Led: [ boolean * String ]
+		Value {
+			initialLedStatus: Led((false, "led"))
+			startMessage: "-----------Functional Java Console BLS-----------------"
+			askMessage: "press 'x' to exit, press anykey to press the button"
+			ledStatusMessage: "the current led status:"
+		}
+	}
+	Functions {
+		def F<boolean, ref Led> buildNewLed(String ledDescription, boolean status): { Led((status, ledDescription)) |> return ref Led }
+		def F<ref Led, ref Led> injectNewLedStatus(boolean newStatus, ref Led currentLed): {
+			currentLed
+			|> extract Led 
+			|> rightADT [boolean * String]
+			|> buildNewLed 
+			|> applyF F<boolean,ref Led> newStatus
+		}
+		def ref Led switchLed(ref Led currentLed): {
+			extract Led 
+			|> leftADT [boolean * String] 
+			|> not
+			|> injectNewLedStatus
+			|> applyF F<ref Led, ref Led> currentLed
+		}
+	}
+}
+Effects {
+	Data {
+		Value {
+		}
+	}
+	Functions {
+		def IO Unit printLedStatus(ref Led l): { Lift(extract Led) >>= Lift(leftADT [boolean * String]) >>= Lift(boolToString) >>= print}
+		def IO Unit printLedName(ref Led l): { Lift(extract Led) >>= Lift(rightADT [boolean * String]) >>= print}
+		def IO Unit printLed(ref Led l): { IO(PureRef(ledStatusMessage)) >>= print >>= IOF(l) >>= printLedName >>= IOF(l) >>= printLedStatus }
+		def IO String askAndWaitPress(Unit a): { IO(PureRef(askMessage)) >>= print >>= getLineStdIn }
+		def IO Unit blsLoop(ref Led l): { 
+			askAndWaitPress
+			>>= Lift( == String)
+			>>= Lift(applyF F<String,boolean> ("x")) 
+		 	>>= if 
+				then { \[ ] -> { IOF(l) >>= printLed >>= return Unit } } 
+				else { \[ ] -> { IOF(l) >>= printLed >>= IOF(l) >>= Lift(switchLed) >>= blsLoop } }
+			>>= applyFIO FIO<Unit,IO Unit> (IO(())) 
+		}
+		IO Unit main: { IO(PureRef(startMessage)) >>= print >>= IO(PureRef(initialLedStatus)) >>= blsLoop }
+	}
+}	
+	

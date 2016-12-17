@@ -142,7 +142,15 @@ public class GetReturnType {
     if (!_matched) {
       if (f instanceof PureFunctionDefinition) {
         _matched=true;
-        _switchResult = GetReturnType.pureFunctionDefinition(((PureFunctionDefinition)f));
+        ValueType _xifexpression = null;
+        ValueType _returnType = ((PureFunctionDefinition)f).getReturnType();
+        boolean _equals = Objects.equal(_returnType, null);
+        if (_equals) {
+          _xifexpression = GetReturnType.pureFunctionDefinition(((PureFunctionDefinition)f));
+        } else {
+          _xifexpression = ((PureFunctionDefinition)f).getReturnType();
+        }
+        _switchResult = _xifexpression;
       }
     }
     if (!_matched) {

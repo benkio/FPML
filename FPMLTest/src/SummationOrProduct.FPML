@@ -1,0 +1,68 @@
+Pure {
+	Data {
+		Value {
+			WelcomeMessage: "----------Summation or Product From 1 to n --------------"
+			AskMessage: "Do you want to compute Sum or Prod? (s or p, anykey to exit)"
+			AskNMessage: "Insert the n:"
+			ResultMessage: "The result from 1 to n is: "
+			ExitMessage: "Exit"
+		}
+	}
+	Functions {
+		def int Summation(int n): {
+			== int |> applyF F<int, boolean> (1)
+			|> if 	then { \( ) -> { 1 |> return int } } 
+					else { \( ) -> {  
+						n |> + int 
+						|> applyF F<int, int> (\( ) -> { n |> - |> applyF F<int, int> (1) |> Summation })
+					}}
+			|> applyF F<Unit, int> (())
+		}
+		def int Product(int n): {
+			== int |> applyF F<int, boolean> (1)
+			|> if 	then { \( ) -> { 1 |> return int } } 
+					else { \( ) -> {  
+						n |> * 
+						|> applyF F<int, int> (\( ) -> { n |> - |> applyF F<int, int> (1) |> Product })
+					}}
+			|> applyF F<Unit, int> (())
+		}
+	}
+}
+Effects {
+	Data { 
+		Value {
+			
+		} 
+	}
+	Functions {
+		def IO int printResultMessageAndPass(int result): { IO(PureRef(ResultMessage)) >>= print >>= IOF(result) }
+		def IO Unit printResult(int result): { printResultMessageAndPass >>= Lift(intToString) >>= print }
+		def IO int SummationIO(Unit u): { 
+			IO(PureRef(AskNMessage)) >>= print 
+			>>= getIntStdIn >>= Lift(Summation) 
+		}
+		def IO int ProductIO(Unit u): {
+			IO(PureRef(AskNMessage)) >>= print 
+			>>= getIntStdIn >>= Lift(Product) 
+		}
+		def IO Unit DecideSumProd(String decision): {
+			Lift(== String) >>= Lift(applyF F<String, boolean> ("s")) 
+			>>= if then { 
+				\[ ] -> { IO(()) >>= SummationIO >>= printResult } 
+			} else {
+				\[ ] -> { 
+					IOF(decision) >>= Lift(== String) >>= Lift(applyF F<String, boolean> ("p"))
+					>>= if 	then { \[ ] -> { ProductIO >>= printResult } }
+							else { \[ ] -> { IO(PureRef(ExitMessage)) >>= print }}
+					>>= applyFIO FIO<Unit, IO Unit> (IO(()))
+				}
+			}
+			>>= applyFIO FIO<Unit, IO Unit> (IO(()))
+		}
+		IO Unit main: { 
+			IO(PureRef(WelcomeMessage)) >>= print >>= IO(PureRef(AskMessage)) >>= print >>= getLineStdIn >>=
+			DecideSumProd
+		}
+	}
+}

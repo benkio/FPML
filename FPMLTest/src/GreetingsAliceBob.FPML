@@ -1,0 +1,39 @@
+Pure {
+	Data {
+		Value {
+			AskMessage: "Hello, who you are?"
+			GreetingsMessage: "Greetings, "
+			DontKnowYouMessage: "I don't know you!! Get out of here!!"
+			KnownName1: "Alice"
+			KnownName2: "Bob"
+		}
+	}
+	Functions {
+		def String greetingsConcat(String name): { GreetingsMessage |>  + String |> applyF F<String,String> name }
+		def boolean isKnown(String name): { 
+			== String 
+			|> applyF F<String,boolean> KnownName1 
+			|> || 
+			|> applyF F<boolean,boolean>
+						(\( ) -> { name |> == String |> applyF F<String,boolean> KnownName2 })
+		}
+		def String selectOutMessage(String name): { 
+			isKnown 
+			|> if then { \( ) -> { name |> greetingsConcat } } else { \( ) -> { DontKnowYouMessage |> return String }}
+			|> applyF F<Unit, String> (())
+		}
+	}
+}
+Effects {
+	Data { 
+		Value {
+			
+		} 
+	}
+	Functions {
+		IO Unit main: { 
+			IO(PureRef(AskMessage)) >>= print >>= getLineStdIn 
+			>>= Lift(selectOutMessage) >>= print
+		}
+	}
+}

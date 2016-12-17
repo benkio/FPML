@@ -1,0 +1,52 @@
+Pure {
+	Data {
+		Value {
+			WelcomeMessage: "--------------------Fibonacci Calculator-----------------"
+			AskNumberMessage: "Insert the fibonacci number to compute"
+		}
+	}
+	Functions {
+		def boolean fibCondition(int n): { 
+			== int 
+			|> applyF F<int, boolean> (1) 
+			|> || 
+			|> applyF F<boolean, boolean> 
+				(\( ) -> { n 
+					|> == int 
+					|> applyF F<int,boolean> (2)
+				})
+		}
+		def int fibNextValue(int n): {
+			n
+			|> - 
+			|> applyF F<int,int> (1)
+			|> fib
+			|> +  int
+			|> applyF F<int,int> 
+				(\( ) -> { 
+					n 
+					|> - 
+					|> applyF F<int,int> (2)
+					|> fib } )
+		}
+		def int fib(int n): { 
+			fibCondition 
+			|> if 
+				then {\( ) -> { 1 |> return int}} 
+				else {\( ) -> { n |> fibNextValue}}
+			|> applyF F<Unit, int> (()) 
+		}
+	}
+}
+Effects {
+	Data {
+		Value {
+			
+		}
+	}
+	Functions {
+		IO Unit main: { IO(PureRef(WelcomeMessage)) >>=  print 
+						>>= IO(PureRef(AskNumberMessage)) >>= print
+						>>= getIntStdIn >>= Lift(fib) >>= Lift(intToString) >>= print }
+	}
+}

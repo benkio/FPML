@@ -1,0 +1,20 @@
+Pure {
+	Data {
+		Value {
+			HelloWorldMessage: "hello World!!!"
+		}
+	}
+	Functions {
+		
+	}
+}
+Effects {
+	Data { 
+		Value {
+			
+		} 
+	}
+	Functions {
+		IO Unit main: { IO(PureRef(HelloWorldMessage)) >>= print }
+	}
+}

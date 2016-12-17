@@ -1,0 +1,83 @@
+Pure {
+	Data {
+		MyPair: [int * int]
+		MyData: int
+		MyDataString: String
+		MyDataRef: ref MyData
+		MyDataProd: [ref MyDataString * int]
+		MyDataFunc: F<Unit, F<int, int> >
+		Value {
+			unitValue: ()
+			num2: 3
+			num: 2
+			boolValue: \( ) -> { true |> && |> applyF F<boolean,boolean> (false) |> not |> ifEither then { 4 } else { 6 } }
+			pairValue: MyPair((PureRef(num), PureRef(num2)))
+			synonim: PureRef(num)
+			EitherValue: Right(PureRef(pairValue))
+			lambdaValue: \( ) -> { num |> + int } 
+			randomMessage1: "This is the random generated: "
+			randomMessage2: "Result of the computation: "
+			endMessage: "Good Bye"
+			MyDataValue2: MyDataFunc(\( ) -> { num2 |> * })
+			MyDataValuen: MyDataFunc(PureRef(lambdaValue))
+			DataProdValue: MyDataProd((MyDataString("hello"), 6))
+		}
+	}
+	Functions {
+		def F<int, int> a(int b, int c): { + int |> applyF F<int, int> synonim |> * |> applyF F<int, int> c }
+		def int a1(int b1): { lambdaValue |> applyF F<Unit,F<int, int> > (()) |> applyF F<int, int> b1 }
+		def String a2(int b2): { intPow |> intToString}
+		def F<int,int> a3(int b3, int b4): { a |> applyF F<int,int> num2 |> intPow |> - |> applyF F<int,int> b4 }
+		def String a4([String + int] b5): { Undefined }
+		def int a5(ref MyPair b6): { extract MyPair |> leftADT [int * int] |> mod |> applyF F<int,int> (\( ) -> { b6 |> extract MyPair |> rightADT [int * int]}) }
+		def int sumPair([int * int] pair): { leftADT [int * int] |> + int |> applyF F<int,int> (\( ) -> { pair |> rightADT [int * int] })}
+		def int pairLeft(ref MyPair p): { extract MyPair |> leftADT [int * int]}
+		def int pairRight(ref MyPair p): { extract MyPair |> rightADT [int * int] }
+	}
+}
+Effects {
+	Data { 
+		MyDataIO: IO int
+		MyDataIOString: IO String
+		MyDataIOProd: {IO int + IO int}
+		MyDataIORef: IO refIO MyDataIO
+		MyDataIOFunc: FIO<Unit, IO FIO<int, IO String> >
+		MyDataIOFunc2: IO F<Unit, F<ref MyPair, int> >
+		Value {
+ 			MyDataIOStringvalue: \[ ] -> { IO(PureRef(endMessage)) >>= return String }
+			MyDataIOValue: MyDataIO[IO (4)] 
+			RandomInt: \[ ]-> { randomInt >>= return int } 
+			FuncValue2: \[ ] -> { IO(true) >>= ifEither then { IO(4) } else { IO(2) } }
+ 		    MyDataPureValueIO: IO(PureRef(endMessage))
+     	 	MyDataFuncValue: MyDataIOFunc[\[int a] -> { Lift(a2) >>= return String }]
+			MyDataFuncValue3: MyDataIOFunc2[IO(\(ref MyPair l) -> { PureRef(num) |> return int })]
+		}
+	}
+	Functions {
+		def IO FIO <String,IO int> printValueAndMassageAndPassValue(int g, String m): { Lift (intToString) >>= print >>= Lift(m) >>= print >>= Lift(g) } 
+		def IO int d2(int e2): { Lift(+ int) >>= Lift(applyF F<int,int> (\( )-> { num2 |> intPow })) >>= return int }
+		def IO FIO<IO String, IO String> d(String e, IO String c): { print >>= c }
+		def IO int d1(int e1): { printValueAndMassageAndPassValue >>= applyFIO FIO<String,IO int> (IO(PureRef(endMessage))) }
+		def IO String d4(String b5): { d 
+			>>= applyFIO FIO<IO String, IO String> (IO[EffectFullRef[MyDataPureValueIO]])
+											
+		}
+		def IO {IO int + IO {String + String}} d5({IO String + IO Unit} b5): { Undefined }
+		def IO Unit test(Unit b): { Undefined }
+		def IO FIO<Unit, IO int>  test2(boolean b): { if then {\[] -> {IO(2) >>= return int}} else {\[] -> { IO(4) >>= return int} } >>= return FIO<Unit, IO int> } 
+		def IO int d6(ref MyPair r6): { Lift(extract MyPair) >>= Lift(leftADT [int * int]) >>= Lift(mod) >>= Lift(applyF F<int, int> (\( ) -> { r6 |> extract MyPair |> rightADT [int * int] })) >>= return int}
+		IO Unit main: { IO(PureRef(randomMessage1))
+					>>= print
+					>>= IO[EffectFullRef[RandomInt]]
+					>>= applyFIO FIO<Unit,IO int> (IO(()))
+					>>= printValueAndMassageAndPassValue 
+					>>= applyFIO FIO<String,IO int> (IO(PureRef(randomMessage2)))
+					>>= d2 
+					>>= Lift (*) 
+					>>= Lift(applyF F<int, int> (PureRef(num2))) 
+					>>= d1 
+					>>= currentTime
+					>>= d4
+					>>= print}
+	}
+}

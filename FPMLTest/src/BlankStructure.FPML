@@ -1,0 +1,20 @@
+Pure {
+	Data {
+		Value {
+			
+		}
+	}
+	Functions {
+		
+	}
+}
+Effects {
+	Data { 
+		Value {
+			
+		} 
+	}
+	Functions {
+		IO Unit main: { Undefined}
+	}
+}
