@@ -4,16 +4,16 @@ generate fPML "http://www.unibo.it/FPML"
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
-///////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 // Entry element
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 Model:
 	elements+=PureBlock
 	elements+=EffectFullBlock;
 
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 // Outer Blocks
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 
 PureBlock:
 	'Pure' '{'
@@ -35,8 +35,7 @@ PureDataBlock:
 PureValueBlock:
 	'Value' '{' 
 		(elements+=PureValue)*
-	'}'
-;
+	'}';
 
 EffectFullBlock:
     'Effects' '{'
@@ -45,7 +44,7 @@ EffectFullBlock:
     '}';
 
 EffectFullDataBlock:
-		'Data' '{'
+	'Data' '{'
 		(elements+=EffectFullData)*
 		value=EffectFullValueBlock
 	'}';
@@ -53,8 +52,7 @@ EffectFullDataBlock:
 EffectFullValueBlock:
 	'Value' '{' 
 		(elements+=EffectFullValue)*
-	'}'
-;
+	'}';
 
 EffectFullFunctionBlock:
 	'Functions' '{'
@@ -62,12 +60,11 @@ EffectFullFunctionBlock:
 		main=MainFunc
     '}';
 
-/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 // Outer Block Elements
-/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 
-PureData:
-    name=ID ':' content=ValueType;
+PureData: name=ID ':' content=ValueType;
 
 PureValue returns PureFunctionDefinition: {PureValue} name=ID ':' value=Expression;
 
@@ -87,9 +84,9 @@ MainFunc:
 AdditionalPureArgument: arg2=PureArgument;
 AdditionalEffectFullArgument: arg2=Argument;
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 // Aggregate Types
-///////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 
 Function: EffectFullFunction | PureFunction;
 
@@ -103,27 +100,22 @@ EffectFullPrimitive: PrimitiveEffectFullFunction | PrimitiveEffectFullValue;
 
 EffectFullBodyContent:  EffectFullFunction | EffectFullPrimitive | EffectFullExpression;
 
-///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////
 // Function Body Elements
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////
 
 
 Argument: EffectFullArgument | PureArgument;
 
-EffectFullArgument:
-	type=EffectFullType name=ID;
+EffectFullArgument:	type=EffectFullType name=ID;
 
-PureArgument:
-	type=ValueType name=ID;
+PureArgument: type=ValueType name=ID;
 
-FunctionBodyPure:
-		 EmptyFunctionBody | CompositionFunctionBodyPure;
+FunctionBodyPure: EmptyFunctionBody | CompositionFunctionBodyPure;
 
-FunctionBodyEffectFull:
-  	     EmptyFunctionBody | CompositionFunctionBodyEffect;
+FunctionBodyEffectFull: EmptyFunctionBody | CompositionFunctionBodyEffect;
 
-EmptyFunctionBody:
-    {EmptyFunctionBody} 'Undefined';
+EmptyFunctionBody: {EmptyFunctionBody} 'Undefined';
 
 CompositionFunctionBodyPure:
       referenceElement=[PureFunction] (functionChain+=CompositionFunctionBodyPureFactor)+ 
@@ -145,39 +137,32 @@ CompositionFunctionBodyEffectFullFactor:
 	| ( '>>=' (primitiveElement=EffectFullPrimitive))
 	| ( '>>=' (expressionElement=EffectFullExpression));
 
-//////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 // Types
-//////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 
-IOType:
-	'IO' type=Type ;
+IOType:	'IO' type=Type ;
 
 ValueType:
 	IntegerType | StringType | BooleanType | DataType | PureFunctionType | PureAlgebraicType
-	| UnitType ;
+	| UnitType;
 
-Type:
-	ValueType | EffectFullType;
+Type: ValueType | EffectFullType;
 
 EffectFullType:
 	EffectFullFunctionType | EffectFullDataType | EffectFullAlgebraicType | IOType | VoidType;
 
 VoidType: {VoidType};
 
-IntegerType:
-	{IntegerType} type="int";
+IntegerType: {IntegerType} type="int";
 
-StringType:
-	{StringType} type="String";
+StringType: {StringType} type="String";
 
-BooleanType:
-	{BooleanType} type="boolean";
+BooleanType: {BooleanType} type="boolean";
 
-UnitType:
-	{UnitType} type="Unit";
+UnitType: {UnitType} type="Unit";
 
-DataType:
-    {DataType} 'ref' type=[PureData];
+DataType: {DataType} 'ref' type=[PureData];
   
 EffectFullDataType:
     {EffectFullDataType} 'refIO' type=[EffectFullData];  
@@ -190,21 +175,17 @@ EffectFullFunctionType:
 
 PureAlgebraicType: '[' pureAdtElement1=ValueType pureAdtElement2=(PureSumTypeFactor | PureProdTypeFactor) ']';
 
-PureSumTypeFactor:
-    '+' adtElement=ValueType;
-PureProdTypeFactor:
-    '*' adtElement=ValueType;
+PureSumTypeFactor: '+' adtElement=ValueType;
+PureProdTypeFactor: '*' adtElement=ValueType;
 
 EffectFullAlgebraicType: '{' effectFullAdtElement1=Type effectFullAdtElement2=(EffectFullSumTypeFactor | EffectFullProdTypeFactor) '}';
 
-EffectFullSumTypeFactor:
-    '+' adtElement=Type;
-EffectFullProdTypeFactor:
-    '*' adtElement=Type;
+EffectFullSumTypeFactor: '+' adtElement=Type;
+EffectFullProdTypeFactor: '*' adtElement=Type;
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 // Values
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 EffectFullExpression:
 	{IOEffectFullExpression} 'IO' '[' innerValue=EffectFullExpression ']' 
@@ -250,19 +231,16 @@ BooleanValue returns BooleanType: {BooleanType} value=BOOLEAN;
 FunctionValue returns PureFunctionType: value=PureLambda;
 
 DataValue returns DataType: 
-	{DataValue} type=[PureData]'(' value=PureExpressionAndPureFunctionReference ')'
-;
+	{DataValue} type=[PureData]'(' value=PureExpressionAndPureFunctionReference ')';
 
 EffectFullDataValue returns EffectFullDataType: 
-	{EffectFullDataValue} type=[EffectFullData]'[' value=EffectFullExpressionAndEffectFullFunctionReference ']'
-;
+	{EffectFullDataValue} type=[EffectFullData]'[' value=EffectFullExpressionAndEffectFullFunctionReference ']';
 
 PureValueRef: {PureValueRef} 'PureRef' '(' value=[PureValue] ')';
 
 PureLambda returns PureFunctionDefinition: 
 	{PureLambda} '\\' '(' arg=PureArgument ')' '->' '{' functionBody=CompositionFunctionBodyPure '}'
-	| {PureLambda} '\\' '('')' '->' '{' functionBody=CompositionFunctionBodyPure '}'
-;
+	| {PureLambda} '\\' '('')' '->' '{' functionBody=CompositionFunctionBodyPure '}';
 
 
 PureProdValue returns PureAlgebraicType: 
@@ -289,9 +267,9 @@ EffectFullSumValue returns EffectFullAlgebraicType:
 	| {EffectFullSumValue} 'Right' '[' sumAdtElement2=EffectFullExpressionAndEffectFullFunctionReference ']';
     
     
-/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////
 // Primitives
-/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////
 
 PrimitivePureFunction: 
 	IntToString | BoolToString | IntPow | Plus | Minus | Times | Mod | ApplyF | LeftAlgebraic | RightAlgebraic
@@ -310,8 +288,8 @@ RightAlgebraic: {RightAlgebraic} 'rightADT' type=PureAlgebraicType;
 ApplyF: {ApplyF} 'applyF' functionType=PureFunctionType value=ApplyFFactor;
 ApplyFFactor:
 	valueReference=[PureFunction]
-	| '(' valueExpression=Expression ')'
-;
+	| '(' valueExpression=Expression ')';
+	
 Equals: {Equals} '==' type=(IntegerType | StringType | BooleanType);
 MinorEquals: {MinorEquals} '<='; 
 MajorEquals: {MajorEquals} '>=';
@@ -336,20 +314,16 @@ PrimitiveEffectFullFunction:
 	| LiftPureFunction | LiftEffectFullFunction | IsLeftEffectFull | IsRightEffectFull | EffectFullIf 
 	| EffectFullEitherIf | GetLineStdIn | GetIntSdtIn;
 
-Print:
-    {Print} "print";
+Print: {Print} "print";
 
 LeftAlgebraicIO: {LeftAlgebraicIO} 'leftADT' type=EffectFullAlgebraicType;
 RightAlgebraicIO: {RightAlgebraicIO} 'rightADT' type=EffectFullAlgebraicType;
 
-PrimitiveEffectFullValue:
-	Random  | Time;
+PrimitiveEffectFullValue: Random  | Time;
 
-Random:
-	{Random} "randomInt";
+Random: {Random} "randomInt";
 
-EffectFullReturn:
-	{EffectFullReturn} "return" type=Type;
+EffectFullReturn: {EffectFullReturn} "return" type=Type;
 
 Time: {Time} "currentTime";
 
@@ -362,11 +336,10 @@ ApplyFIOFactor:
 ExtractEffectFull: {ExtractEffectFull} 'extractEffectFull' data=[EffectFullData];
 
 LiftPureFunction: 'Lift' '(' functionRef=[PureFunction] ')'
-	| 'Lift' '(' functionPrimitive=PrimitivePureFunction ')'
-;
+	| 'Lift' '(' functionPrimitive=PrimitivePureFunction ')';
+	
 LiftEffectFullFunction: 'Lift' '[' functionRef=[EffectFullFunction] ']'
-	| 'Lift' '[' functionPrimitive=PrimitiveEffectFullFunction ']'
-;
+	| 'Lift' '[' functionPrimitive=PrimitiveEffectFullFunction ']';
 
 IsLeftEffectFull: {IsLeftEffectFull} 'isLeft' type=EffectFullAlgebraicType;
 IsRightEffectFull: {IsRightEffectFull} 'isRight' type=EffectFullAlgebraicType;
@@ -378,8 +351,9 @@ EffectFullIfBody: functionReference=[EffectFullFunction]
 
 GetLineStdIn: {GetLineStdIn} 'getLineStdIn';
 GetIntSdtIn: {GetIntStdIn} 'getIntStdIn';
-////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
 // TERMINALS
-////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 terminal BOOLEAN returns ecore::EBoolean: 'true' | 'false';
